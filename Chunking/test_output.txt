@@ -1,0 +1,15 @@
+--- Parent Chunk 1 ---
+Metadata: {"Header_1_QuyetDinh": "3530 29-7-2025 qd dinhmuchocbong 251.signed.signed"}
+Độ dài: 282 ký tự
+Nội dung (150 ký tự đầu): # 3530 29-7-2025 qd dinhmuchocbong 251.signed.signed   \n Kế toán tài chính 1 (Trường Đại học Cần Thơ)   \n BỘ GIÁO DỤC VÀ ĐÀO TẠO \n **TRƯỜNG ĐẠI HỌC CẦN THƠ*...
+
+--- Parent Chunk 2 ---
+Metadata: {"Header_1_QuyetDinh": "QUYẾT ĐỊNH", "Header_2_ChuyenMuc": "Về việc định mức học bổng khuyến khích học tập áp dụng từ học kỳ 1, năm học 2025-2026", "Header_3_NguoiKy": "HIỆU TRƯỞNG TRƯỜNG ĐẠI HỌC CẦN THƠ"}
+Độ dài: 1615 ký tự
+Nội dung (150 ký tự đầu): # QUYẾT ĐỊNH   \n ## Về việc định mức học bổng khuyến khích học tập áp dụng từ học kỳ 1, năm học 2025-2026   \n ### HIỆU TRƯỞNG TRƯỜNG ĐẠI HỌC CẦN THƠ   \n Căn...
+
+--- Parent Chunk 3 ---
+Metadata: {"Header_1_QuyetDinh": "QUYẾT ĐỊNH", "Header_2_ChuyenMuc": "QUYẾT ĐỊNH:"}
+Độ dài: 3934 ký tự
+Nội dung (150 ký tự đầu): ## QUYẾT ĐỊNH:   \n **Điều 1.** Quy định Học bổng khuyến khích cho sinh viên đại học, học hình thức **chính quy** tại trường theo khối ngành như sau:   \n |...
+
