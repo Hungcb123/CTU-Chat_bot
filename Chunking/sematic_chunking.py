@@ -57,7 +57,7 @@ class AdvancedChunkingEngine:
     Engine phân mảnh dữ liệu áp dụng chiến lược Small-to-Big.
     Khắc phục triệt để hiện tượng mất ngữ cảnh của LLM.
     """
-    def __init__(self, persist_dir: str = "./vector_db"):
+    def __init__(self, persist_dir: str = "./qdrant_storage"):
         self.persist_dir = persist_dir
         
         # 1. CẤU HÌNH PARENT SPLITTER (Trích xuất theo Cấu trúc Markdown)
@@ -110,7 +110,7 @@ class AdvancedChunkingEngine:
             docstore=self.doc_store,
             child_splitter=self.child_splitter,
             search_kwargs={
-                "k": 3, # Lấy ra 3 đoạn văn bản sát nghĩa nhất
+                "k": 7, # Lấy ra 7 đoạn văn bản sát nghĩa nhất (tăng từ 3 lên 7 để không bị sót tài liệu)
                 "filter": Filter(
                     must=[
                         FieldCondition(
@@ -121,6 +121,34 @@ class AdvancedChunkingEngine:
                 )
             }
         )
+
+    def clear_database(self):
+        """Xóa toàn bộ dữ liệu cũ trong VectorDB và Parent Doc Store để tránh trùng lặp."""
+        import os
+        import glob
+        logger.info("Bắt đầu xóa dữ liệu cũ (Clear Database)...")
+        
+        collection_name = "ctu_scholarship_docs_v3"
+        if self.qdrant_client.collection_exists(collection_name):
+            self.qdrant_client.delete_collection(collection_name)
+            logger.info(f"Đã xóa collection '{collection_name}' trong Qdrant.")
+            
+            # Tạo lại collection trống
+            self.qdrant_client.create_collection(
+                collection_name=collection_name,
+                vectors_config=VectorParams(size=768, distance=Distance.COSINE),
+                hnsw_config=HnswConfigDiff(m=16, ef_construct=100),
+            )
+            
+        store_path = str(Path(self.persist_dir) / "parent_doc_store")
+        for f in glob.glob(store_path + "*"):
+            try:
+                os.remove(f)
+                logger.info(f"Đã xóa file dữ liệu cũ: {f}")
+            except Exception as e:
+                logger.warning(f"Không thể xóa {f}: {e}")
+                
+        logger.info("Hoàn tất dọn dẹp dữ liệu cũ!")
 
     def ingest_markdown_document(self, file_path: str) -> bool:
         """Thực thi luồng Ingestion nạp dữ liệu vào Hệ thống."""
@@ -188,10 +216,19 @@ class AdvancedChunkingEngine:
 
 if __name__ == "__main__":
     # Kịch bản tích hợp (Integration Scenario)
-    MD_FILE = "/mnt/d/Project/Chatbot/clean_markdown/API_Llama/Tài liệu phân bổ quỹ học bổng.md"
-
+    md_folder = Path("/mnt/d/Project/Chatbot/clean_markdown/API_Llama/")
+    md_files = list(md_folder.glob("*.md"))
+    
     engine = AdvancedChunkingEngine()
-    engine.ingest_markdown_document(MD_FILE)
+    
+    if not md_files:
+        print(f"Không tìm thấy file .md nào trong {md_folder}")
+    else:
+        print(f"Tìm thấy {len(md_files)} file .md. Bắt đầu quá trình Ingestion...")
+        for file_path in md_files:
+            print(f"Đang xử lý file: {file_path.name}")
+            engine.ingest_markdown_document(str(file_path))
+        print("Đã nạp toàn bộ file vào Vector DB thành công!")
     
     # ---------------------------------------------------------
     # GÓC NHÌN TEST CHỨNG MINH KIẾN TRÚC (Proof of Concept)
@@ -204,5 +241,6 @@ if __name__ == "__main__":
     retrieved_parents = engine.retriever.invoke(query)
     
     print(f"Hệ thống truy xuất được {len(retrieved_parents)} Parent Document.")
-    print(f"Metadata của Parent được gọi lên: {retrieved_parents[0].metadata}")
-    print(f"Bức tranh tổng thể gửi cho LLM:\n{retrieved_parents[0].page_content[:5000]}...\n")
+    if retrieved_parents:
+        print(f"Metadata của Parent được gọi lên: {retrieved_parents[0].metadata}")
+        print(f"Bức tranh tổng thể gửi cho LLM:\n{retrieved_parents[0].page_content[:500]}...\n")

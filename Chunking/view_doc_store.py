@@ -39,7 +39,7 @@ def export_shelve_to_json(db_path: str, output_json: str):
 
 if __name__ == "__main__":
     # Đường dẫn tới thư mục lưu trữ (tương đối so với vị trí bạn đang chạy code)
-    DB_PATH = "./vector_db/parent_doc_store"
+    DB_PATH = "./qdrant_storage/parent_doc_store"
     OUTPUT_FILE = "xem_du_lieu_kho.json"
     
     export_shelve_to_json(DB_PATH, OUTPUT_FILE)

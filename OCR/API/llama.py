@@ -1,7 +1,10 @@
+import os
 import asyncio
 import logging
 import httpx
+import shutil
 from pathlib import Path
+from clean_md import clean_markdown_file
 from typing import Optional
 
 # Cấu hình Logging chuẩn Production
@@ -122,19 +125,24 @@ class LlamaParseAsyncClient:
 
 # --- Cách gọi trong một ứng dụng Async ---
 async def main():
-    api_key = "llx-UPOmlt8qMiAxlyVJaiI0Sq4joeQHXuGRplrZwXbDHjqBqJjT"
+    api_key = os.environ.get("LLAMA_CLOUD_API_KEY")
+    if not api_key:
+        print("❌ Lỗi: Chưa tìm thấy LLAMA_CLOUD_API_KEY. Vui lòng thêm vào file .env!")
+        return
+        
     client = LlamaParseAsyncClient(api_key=api_key)
     
     try:
-        folder_path = Path("/mnt/d/Project/Chatbot/Data/Input/General/")
+        folder_path = Path("/mnt/d/Project/Chatbot/Data/Input/")
         output_dir = Path("/mnt/d/Project/Chatbot/clean_markdown/API_Llama")
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        # 1. Chỉ chọn đúng 2 file PDF cụ thể theo yêu cầu
-        pdf_files = [
-            folder_path / "Tài liệu phân bổ quỹ học bổng.pdf",
-            folder_path / "VayVon.pdf"
-        ]
+        # 1. Lấy toàn bộ file PDF trong thư mục
+        pdf_files = list(folder_path.glob("*.pdf"))
+        
+        if not pdf_files:
+            print(f"Không tìm thấy file PDF nào trong thư mục: {folder_path}")
+            return
         
         # 2. Tạo một hàm nhỏ để xử lý từng file
         async def process_file(file):
@@ -143,6 +151,15 @@ async def main():
                 output_file = output_dir / f"{file.stem}.md"
                 output_file.write_text(markdown_content, encoding="utf-8")
                 print(f"Đã lưu thành công: {output_file.name}")
+                
+                # Gọi hàm làm sạch nội dung markdown
+                clean_markdown_file(output_file)
+                
+                # Di chuyển file PDF vào thư mục Data/Done
+                done_dir = Path("/mnt/d/Project/Chatbot/Data/Done")
+                done_dir.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(file), str(done_dir / file.name))
+                print(f"Đã chuyển {file.name} sang thư mục Done.")
             except Exception as e:
                 print(f"Lỗi khi xử lý file {file.name}: {e}")
 

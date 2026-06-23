@@ -1,8 +1,8 @@
 THỦ TƯỚNG CHÍNH PHỦ
-Số: 29/2025/QĐ-TTg
-
 CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM
 Độc lập - Tự do - Hạnh phúc
+
+Số: 29/2025/QĐ-TTg
 Hà Nội, ngày 28 tháng 8 năm 2025
 
 # QUYẾT ĐỊNH
@@ -28,7 +28,7 @@ Hà Nội, ngày 28 tháng 8 năm 2025
 
 Scanned with CamScanner
 
-2
+<page_number>2</page_number>
 
 **Điều 2. Đối tượng áp dụng**
 
@@ -62,7 +62,7 @@ Khách hàng vay vốn để trang trải học phí, sinh hoạt phí và chi p
 
 Scanned with CamScanner
 
-3
+<page_number>3</page_number>
 
 **Điều 6. Phương thức cho vay**
 
@@ -98,7 +98,7 @@ b) Tiền sinh hoạt phí và chi phí học tập khác tối đa là 5 triệ
 
 Scanned with CamScanner
 
-4
+<page_number>4</page_number>
 
 a) Thời hạn giải ngân vốn vay được chia thành các kỳ hạn giải ngân vốn vay do Ngân hàng Chính sách xã hội quy định hoặc thỏa thuận với khách hàng vay vốn;
 
@@ -126,7 +126,7 @@ c) Trong thời hạn giải ngân vốn vay, khách hàng vay vốn chưa phả
 
 Scanned with CamScanner
 
-5
+<page_number>5</page_number>
 
 **Điều 13. Nguồn vốn cho vay**
 
@@ -164,7 +164,7 @@ a) Hướng dẫn chi tiết về hồ sơ vay vốn, trình tự và thủ tụ
 
 Scanned with CamScanner
 
-6
+<page_number>6</page_number>
 
 b) Quản lý và sử dụng nguồn vốn, thực hiện cho vay đúng đối tượng, đủ điều kiện, đúng mục đích, rõ ràng, công khai và minh bạch; định kỳ chủ trì, phối hợp với các tổ chức chính trị - xã hội, các cơ sở giáo dục đại học, cơ sở giáo dục nghề nghiệp và cơ quan liên quan để thực hiện việc kiểm tra, giám sát quá trình sử dụng vốn vay của khách hàng nhằm bảo đảm việc sử dụng vốn vay đúng mục đích, tạo điều kiện thuận lợi cho người học trong việc vay vốn và khả năng thu hồi vốn vay;
 
@@ -190,13 +190,13 @@ a) Hằng năm, báo cáo cấp có thẩm quyền xem xét, phê duyệt bố t
 
 Scanned with CamScanner
 
-7
+<page_number>7</page_number>
 
 b) Phối hợp với Ngân hàng Chính sách xã hội và các cơ sở giáo dục trên địa bàn để tổ chức tuyên truyền và thực hiện chính sách theo quy định tại Quyết định này;
 
 c) Phối hợp với Ngân hàng Chính sách xã hội thực hiện các biện pháp thu hồi nợ vay theo quy định.
 
-5. Các cơ sở giáo dục đại học, cơ sở giáo dục nghề nghiệp:
+**5. Các cơ sở giáo dục đại học, cơ sở giáo dục nghề nghiệp:**
 
 a) Thực hiện việc xác nhận cho người học tại Tờ khai thông tin theo mẫu tại Phụ lục I và Phụ lục II ban hành kèm theo Quyết định này;
 
@@ -206,9 +206,9 @@ c) Phối hợp với Ủy ban nhân dân các cấp và Ngân hàng Chính sác
 
 d) Phối hợp với Ngân hàng Chính sách xã hội thực hiện việc kiểm tra, giám sát quá trình sử dụng vốn vay của khách hàng nhằm bảo đảm việc sử dụng vốn vay đúng mục đích, tạo điều kiện thuận lợi cho người học trong việc vay vốn và khả năng thu hồi vốn vay.
 
-6. Khách hàng vay vốn có trách nhiệm sử dụng vốn vay đúng mục đích, phải hoàn trả nợ gốc và lãi tiền vay đúng thời hạn đã thỏa thuận.
+**6. Khách hàng vay vốn có trách nhiệm sử dụng vốn vay đúng mục đích, phải hoàn trả nợ gốc và lãi tiền vay đúng thời hạn đã thỏa thuận.**
 
-## Điều 17. Điều khoản thi hành
+# Điều 17. Điều khoản thi hành
 
 1. Quyết định này có hiệu lực thi hành kể từ ngày ký ban hành.
 
@@ -216,14 +216,13 @@ d) Phối hợp với Ngân hàng Chính sách xã hội thực hiện việc ki
 
 3. Trường hợp khách hàng đang vay vốn theo quy định tại Quyết định số 157/2007/QĐ-TTg và các văn bản sửa đổi, bổ sung, thay thế (nếu có), nếu thuộc đối tượng, đáp ứng đủ điều kiện và có nhu cầu vay vốn theo quy định tại Quyết định này thì được chuyển sang áp dụng cơ chế vay vốn theo quy định tại Quyết định này trong thời gian học còn lại mà không phải trả trước hạn khoản nợ vay theo Quyết định số 157/2007/QĐ-TTg.
 
-Scanned with
-CS CamScanner
+Scanned with CamScanner
 
-8
+<page_number>8</page_number>
 
 4. Các Bộ trưởng, Thủ trưởng cơ quan ngang bộ, Thủ trưởng cơ quan thuộc Chính phủ, Chủ tịch Ủy ban nhân dân tỉnh, thành phố trực thuộc trung ương, Chủ tịch Hội đồng quản trị và Tổng Giám đốc Ngân hàng Chính sách xã hội chịu trách nhiệm thi hành Quyết định này.
 
-**_Nơi nhận:_**
+**Nơi nhận:**
 - Ban Bí thư Trung ương Đảng;
 - Thủ tướng, các Phó Thủ tướng Chính phủ;
 - Các bộ, cơ quan ngang bộ, cơ quan thuộc Chính phủ;
@@ -245,153 +244,172 @@ CS CamScanner
 **KT. THỦ TƯỚNG**
 **PHÓ THỦ TƯỚNG**
 
-(Ấn dấu: THỦ TƯỚNG CHÍNH PHỦ)
+Red seal of the Government of Vietnam with signature
 
 **Hồ Đức Phớc**
 
 Scanned with CamScanner
 
-**Phụ lục I**
-**MẪU TỜ KHAI THÔNG TIN TẠI THỜI ĐIỂM ĐỀ NGHỊ NGÂN HÀNG CHÍNH SÁCH XÃ HỘI CHO VAY VỐN**
-*(Kèm theo Quyết định số 29/2025/QĐ-TTg ngày 28 tháng 8 năm 2025 của Thủ tướng Chính phủ)*
+Phụ lục I
+**MẪU TỜ KHAI THÔNG TIN TẠI THỜI ĐIỂM ĐỀ NGHỊ**
+**NGÂN HÀNG CHÍNH SÁCH XÃ HỘI CHO VAY VỐN**
+*(Kèm theo Quyết định số 29/2025/QĐ-TTg*
+*ngày 28 tháng 8 năm 2025 của Thủ tướng Chính phủ)*
+
+Dấu giáp lai của Thủ tướng Chính phủ
 
 **CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
 **Độc lập - Tự do - Hạnh phúc**
 
-----
-
 # TỜ KHAI THÔNG TIN TẠI THỜI ĐIỂM ĐỀ NGHỊ NGÂN HÀNG CHÍNH SÁCH XÃ HỘI CHO VAY VỐN
 
-### 1. Đối tượng vay vốn<sup>1</sup>
-Họ và tên học sinh sinh viên/Học viên thạc sỹ/nghiên cứu sinh: [________________________________]
-[_________________________________________________________________________________________]
-Ngày sinh:     /    /[_______] Giới tính: Nam [ ] Nữ [ ]
-CCCD số: [________________] ngày cấp     /    /[_______] Nơi cấp: [________________]
-Tên cơ sở giáo dục đại học, cơ sở giáo dục nghề nghiệp đang theo học: [_________________________________________________________________________________________]
-Hệ đào tạo (Cao đẳng, Đại học, Thạc sĩ, Tiến sĩ...): [_________________________________________]
-Ngành, lĩnh vực đào tạo:
-- [ ] Khoa học sự sống
-- [ ] Khoa học tự nhiên
-- [ ] Máy tính và công nghệ thông tin
-- [ ] Công nghệ kỹ thuật
-- [ ] Kỹ thuật
-- [ ] Kiến trúc và xây dựng
-- [ ] Sản xuất và chế biến
-- [ ] Toán và thống kê
-- [ ] Công nghệ tài chính
-- [ ] Các ngành đào tạo công nghệ then chốt khác theo quy định của pháp luật
+## 1. Đối tượng vay vốn<sup>1</sup>
 
-Mã ngành: [________________________________________________________________________________]
-Loại hình đào tạo: [_________________________________________________________________________]
+*   **Họ và tên học sinh sinh viên/Học viên thạc sỹ/nghiên cứu sinh**:
+*   **Ngày sinh**:     /    /
+*   **Giới tính**:
+    *   Nam [ ]
+    *   Nữ [ ]
+*   **CCCD số**:      **ngày cấp**     /    /     **Nơi cấp**:
+*   **Tên cơ sở giáo dục đại học, cơ sở giáo dục nghề nghiệp đang theo học**:
+*   **Hệ đào tạo (Cao đẳng, Đại học, Thạc sĩ, Tiến sĩ...)**:
+*   **Ngành, lĩnh vực đào tạo**:
+    *   [ ] Khoa học sự sống
+    *   [ ] Khoa học tự nhiên
+    *   [ ] Máy tính và công nghệ thông tin
+    *   [ ] Công nghệ kỹ thuật
+    *   [ ] Kỹ thuật
+    *   [ ] Kiến trúc và xây dựng
+    *   [ ] Sản xuất và chế biến
+    *   [ ] Toán và thống kê
+    *   [ ] Công nghệ tài chính
+    *   [ ] Các ngành đào tạo công nghệ then chốt khác theo quy định của pháp luật
+*   **Mã ngành**:
+*   **Loại hình đào tạo**:
+
+***
 
 <sup>1</sup> Căn cứ vào từng đối tượng cụ thể để điền thông tin cho phù hợp
 
 Scanned with CamScanner
 
-2
+<page_number>2</page_number>
 
-Họ và tên học sinh sinh viên/Học viên thạc sỹ/nghiên cứu sinh: [____________________]
-[___________________________________________________________________________]
-Ngày nhập học (tháng/năm): ...../...... Đang học năm thứ: [____________________]
-Thời gian dự kiến ra trường (tháng/năm): ....../......
-Thời gian học tại trường: ............... tháng.
-Đơn vị công tác (nếu có): [______________________________________________________]
+**Họ và tên học sinh sinh viên/Học viên thạc sỹ/nghiên cứu sinh**:
+**Ngày nhập học (tháng/năm)**:     /     **Đang học năm thứ**:
+**Thời gian dự kiến ra trường (tháng/năm)**:     /
+**Thời gian học tại trường**:      tháng.
+**Đơn vị công tác (nếu có)**:
 
-**2. Điều kiện vay vốn**
-a) Đối với HSSV năm nhất:
-- Xếp loại học lực của 03 năm học THPT:
-Lớp 10: ............... Lớp 11: ............... Lớp 12: ...............
-- Điểm trung bình năm lớp 12 THPT của các môn:
-Toán: ............... Vật lí: ............... Hóa học: ............... Sinh học: ...............
-b) Đối với HSSV từ năm hai trở đi:
-- Điểm trung bình các môn của năm học liền kề trước: [_____________________________]
-- Xếp loại năm học liền kề trước: [______________________________________________]
+## 2. Điều kiện vay vốn
+### a) Đối với HSSV năm nhất:
+- **Xếp loại học lực của 03 năm học THPT**:
+**Lớp 10**:      **Lớp 11**:      **Lớp 12**:
+- **Điểm trung bình năm lớp 12 THPT của các môn**:
+**Toán**:      **Vật lí**:      **Hóa học**:      **Sinh học**:
 
-**3. Học phí và các khoản hỗ trợ tại trường**
-- Số tiền học phí trong thời gian còn lại của khoá học theo quy định: [________________________________] đồng/tháng.
-- Số tiền hỗ trợ tài chính của nhà trường (nếu có): [____________________] đồng/tháng.
-- Số tiền học bổng (nếu có): [____________________________________] đồng/tháng.
-- Số tiền miễn giảm khác (nếu có): [_______________________________] đồng/tháng.
-- **Số tiền học phí còn phải đóng** *(sau khi trừ các khoản học bổng và hỗ trợ tài chính khác của nhà trường)* [____________________________________] đồng/tháng.
+### b) Đối với HSSV từ năm hai trở đi:
+- **Điểm trung bình các môn của năm học liền kề trước**:
+- **Xếp loại năm học liền kề trước**:
 
-| ........., ngày .... tháng .... năm ........ | ........., ngày .... tháng .... năm ........ |
-| -------------------------------------------- | -------------------------------------------- |
-| NGƯỜI HỌC                                    | XÁC NHẬN CỦA CƠ SỞ GIÁO DỤC                  |
-| (Ký, ghi rõ họ tên)                          | (Ký, ghi rõ họ tên, chức danh và đóng dấu)   |
+## 3. Học phí và các khoản hỗ trợ tại trường
+- **Số tiền học phí trong thời gian còn lại của khoá học theo quy định**:      đồng/tháng.
+- **Số tiền hỗ trợ tài chính của nhà trường (nếu có)**:      đồng/tháng.
+- **Số tiền học bổng (nếu có)**:      đồng/tháng.
+- **Số tiền miễn giảm khác (nếu có)**:      đồng/tháng.
+- **Số tiền học phí còn phải đóng** (*sau khi trừ các khoản học bổng và hỗ trợ tài chính khác của nhà trường*):      đồng/tháng.
+
+    , ngày      tháng      năm
+**NGƯỜI HỌC**
+*(Ký, ghi rõ họ tên)*
+
+    , ngày      tháng      năm
+**XÁC NHẬN CỦA CƠ SỞ GIÁO DỤC**
+*(Ký, ghi rõ họ tên, chức danh và đóng dấu)*
 
 Scanned with CamScanner
 
 Phụ lục II
-**MẪU THÔNG TIN HẰNG NĂM CỦA NGƯỜI HỌC**
+THÔNG TIN HẰNG NĂM CỦA NGƯỜI HỌC
 *(Kèm theo Quyết định số 29/2025/QĐ-TTg ngày 08 tháng 8 năm 2025 của Thủ tướng Chính phủ)*
+
+Dấu giáp lai của Thủ tướng Chính phủ
 
 **CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
 **Độc lập - Tự do - Hạnh phúc**
 
 # TỜ KHAI THÔNG TIN HẰNG NĂM
 
-**1. Thông tin người học**
+### 1. Thông tin người học
+- **Họ và tên**:
+- **Ngày sinh**:     /    /
+- **Giới tính**:
+    - Nam [ ]
+    - Nữ [ ]
+- **CCCD số**:      **ngày cấp**:     /    /     **Nơi cấp**:
+- **Tên cơ sở giáo dục đại học, cơ sở giáo dục nghề nghiệp đang theo học**:
+- **Có thay đổi ngành, lĩnh vực đào tạo so với năm trước không?**:
+    - Có [ ]
+    - Không [ ]
+- **Nếu có, ngành, lĩnh vực đào tạo thay đổi có thuộc một trong các ngành, lĩnh vực đào tạo STEM<sup>1</sup> hay không?**:
+    - Có [ ]
+    - Không [ ]
+- **Nêu rõ ngành và mã ngành**:
+- **Thời gian đã học tại trường**:      tháng.
+- **Thời gian được trường cho phép nghỉ học tạm thời và được bảo lưu kết quả học tập**:      tháng (nếu có).
+- **Đơn vị công tác (nếu có)**:
 
-Họ và tên: [________________________________________________________________________________]
-Ngày sinh: ....../....../...... Giới tính: Nam [ ] Nữ [ ]
-CCCD số: [____________________] ngày cấp ....../....../.......... Nơi cấp: [____________________]
-Tên cơ sở giáo dục đại học, cơ sở giáo dục nghề nghiệp đang theo học: [________________________________________________________________________________]
-Có thay đổi ngành, lĩnh vực đào tạo so với năm trước không? [ ] Có [ ] Không
-Nếu có, ngành, lĩnh vực đào tạo thay đổi có thuộc một trong các ngành, lĩnh vực đào tạo STEM<sup>1</sup> hay không? [ ] Có [ ] Không
-Nêu rõ ngành và mã ngành: [________________________________________________________________]
-Thời gian đã học tại trường: [____________] tháng. Thời gian được trường cho phép nghỉ học tạm thời và được bảo lưu kết quả học tập [____________] tháng (nếu có).
-Đơn vị công tác (nếu có): [________________________________________________________________]
+### 2. Học phí và các khoản hỗ trợ tại trường
+- **Số tiền học phí trong thời gian còn lại của khoá học theo quy định**:      đồng/tháng.
+- **Số tiền hỗ trợ tài chính của nhà trường**:      đồng/tháng.
+- **Số tiền học bổng**:      đồng/tháng.
+- **Số tiền miễn giảm khác**:      đồng/tháng.
+- **Số tiền học phí còn phải đóng** *(sau khi trừ các khoản học bổng và hỗ trợ tài chính khác của nhà trường)*:      đồng/tháng.
 
-**2. Học phí và các khoản hỗ trợ tại trường**
-
-- Số tiền học phí trong thời gian còn lại của khoá học theo quy định: [____________________] đồng/tháng.
-- Số tiền hỗ trợ tài chính của nhà trường: [____________________] đồng/tháng.
-- Số tiền học bổng: [____________________] đồng/tháng.
-- Số tiền miễn giảm khác: [____________________] đồng/tháng.
-- **Số tiền học phí còn phải đóng** *(sau khi trừ các khoản học bổng và hỗ trợ tài chính khác của nhà trường)*: [____________________] đồng/tháng.
-
-| ..., ngày .... tháng .... năm .... | ..., ngày .... tháng .... năm ....         |
-| ---------------------------------- | ------------------------------------------ |
-| NGƯỜI HỌC                          | XÁC NHẬN CỦA CƠ SỞ GIÁO DỤC                |
-| (Ký, ghi rõ họ tên)                | (Ký, ghi rõ họ tên, chức danh và đóng dấu) |
-
-***
+| , ngày tháng năm        | , ngày tháng năm                               |
+| ----------------------- | ---------------------------------------------- |
+| \*\*NGƯỜI HỌC\*\*       | \*\*XÁC NHẬN CỦA CƠ SỞ GIÁO DỤC\*\*            |
+| \*(Ký, ghi rõ họ tên)\* | \*(Ký, ghi rõ họ tên, chức danh và đóng dấu)\* |
 
 <sup>1</sup> Một trong các ngành, lĩnh vực đào tạo sau: Khoa học sự sống; Khoa học tự nhiên; Máy tính và công nghệ thông tin; Công nghệ kỹ thuật; Kỹ thuật; Kiến trúc và xây dựng; Sản xuất và chế biến; Toán và thống kê; Công nghệ tài chính; Các ngành đào tạo công nghệ then chốt khác theo quy định của pháp luật.
 
 Scanned with CamScanner
 
 Phụ lục III
-MẪU BÁO CÁO ĐỊNH KỲ HÀNG NĂM KẾT QUẢ THỰC HIỆN CHO VAY CHƯƠNG TRÌNH
+**MẪU BÁO CÁO ĐỊNH KỲ HÀNG NĂM KẾT QUẢ THỰC HIỆN CHO VAY CHƯƠNG TRÌNH**
 *(Kèm theo Quyết định số 29/2025/QĐ-TTg ngày 28 tháng 8 năm 2025 của Thủ tướng Chính phủ)*
 
-| TT1 | Phân loại2                      | Doanh số cho vay | Doanh số cho vay Trong kỳ báo cáo 3 | Doanh số thu nợ Lũy kế từ khi thực hiện chương trình 4 | Doanh số thu nợ Trong kỳ báo cáo 5 | Doanh số xóa nợ Lũy kế từ khi thực hiện chương trình 6 | Doanh số xóa nợ Trong kỳ báo cáo 7 | Dư nợ Lũy kế từ khi thực hiện chương trình 8 | Dư nợ Tổng dư nợ 9 | Dư nợ Nợ trong hạn 10 | Dư nợ Nợ quá hạn 11 | Khách hàng Nợ khoanh 12 | Khách hàng Số khách hàng còn dư nợ 13 | Khách hàng Số lượt khách hàng vay vốn trong kỳ báo cáo 14 | Lũy kế số lượt khách hàng vay vốn từ khi thực hiện chương trình 15 |
-| --- | ------------------------------- | ---------------- | ------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------ | ---------------------------------------------------- | -------------------------- | ----------------------------- | --------------------------- | ------------------------------- | --------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| I   | PHÂN LOẠI THEO KHỐI NGÀNH HỌC   |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
-| 1   | Khoa học sự sống                |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
-| 2   | Khoa học tự nhiên               |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
-| 3   | Toán và thống kê                |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
-| 4   | Máy tính và công nghệ thông tin |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
-| 5   | Công nghệ kỹ thuật              |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
-| 6   | Kỹ thuật                        |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
-| 7   | Kiến trúc và xây dựng           |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
-| 8   | Sản xuất và chế biến            |                  |                                             |                                                                |                                            |                                                                |                                            |                                                      |                            |                               |                             |                                 |                                               |                                                                   |                                                                        |
+Dấu giáp lai của Thủ tướng Chính phủ
+
+| TT1 | Phân loại2                      | Doanh số cho vay<br/>Trong kỳ báo cáo<br/>3 | Doanh số cho vay<br/>Lũy kế từ khi thực hiện chương trình<br/>4 | Doanh số thu nợ<br/>Trong kỳ báo cáo<br/>5 | Doanh số thu nợ<br/>Lũy kế từ khi thực hiện chương trình<br/>6 | Doanh số xóa nợ<br/>Trong kỳ báo cáo<br/>7 | Doanh số xóa nợ<br/>Lũy kế từ khi thực hiện chương trình<br/>8 | Dư nợ<br/>Tổng dư nợ<br/>9 | Dư nợ<br/>Nợ trong hạn<br/>10 | Dư nợ<br/>Nợ quá hạn<br/>11 | Dư nợ<br/>Nợ khoanh<br/>12 | Khách hàng<br/>Số khách hàng còn dư nợ<br/>13 | Khách hàng<br/>Số lượt khách hàng vay vốn trong kỳ báo cáo<br/>14 | Khách hàng<br/>Lũy kế số lượt khách hàng vay vốn từ khi thực hiện chương trình<br/>15 |
+| --- | ------------------------------- | ------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------- | -------------------------- | ----------------------------- | --------------------------- | -------------------------- | --------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| I   | PHÂN LOẠI THEO KHỐI NGÀNH HỌC   |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
+| 1   | Khoa học sự sống                |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
+| 2   | Khoa học tự nhiên               |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
+| 3   | Toán và thống kê                |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
+| 4   | Máy tính và công nghệ thông tin |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
+| 5   | Công nghệ kỹ thuật              |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
+| 6   | Kỹ thuật                        |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
+| 7   | Kiến trúc và xây dựng           |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
+| 8   | Sản xuất và chế biến            |                                             |                                                                 |                                            |                                                                |                                            |                                                                |                            |                               |                             |                            |                                               |                                                                   |                                                                                       |
 
 Scanned with CamScanner
 
-2
+<page_number>2</page_number>
 
-| 9  | Công nghệ tài chính                                                    |   |   |   |   |   |   |   |   |   |   |   |   |
-| -- | ---------------------------------------------------------------------- | - | - | - | - | - | - | - | - | - | - | - | - |
-| 10 | Các ngành đào tạo công nghệ then chốt khác theo quy định của pháp luật |   |   |   |   |   |   |   |   |   |   |   |   |
-|    | Tổng cộng                                                              |   |   |   |   |   |   |   |   |   |   |   |   |
-| II | PHÂN LOẠI THEO CẤP HỌC                                                 |   |   |   |   |   |   |   |   |   |   |   |   |
-| 1  | Tiến sĩ                                                                |   |   |   |   |   |   |   |   |   |   |   |   |
-| 2  | Thạc sĩ                                                                |   |   |   |   |   |   |   |   |   |   |   |   |
-| 3  | Đại học                                                                |   |   |   |   |   |   |   |   |   |   |   |   |
-| 4  | Cao đẳng                                                               |   |   |   |   |   |   |   |   |   |   |   |   |
-| 5  | Trung cấp                                                              |   |   |   |   |   |   |   |   |   |   |   |   |
-| 6  | Giáo dục nghề nghiệp khác                                              |   |   |   |   |   |   |   |   |   |   |   |   |
-|    | Tổng cộng                                                              |   |   |   |   |   |   |   |   |   |   |   |   |
+| 9                         | Công nghệ tài chính                                                    |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| ------------------------- | ---------------------------------------------------------------------- | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| 10                        | Các ngành đào tạo công nghệ then chốt khác theo quy định của pháp luật |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| Tổng cộng                 |                                                                        |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| II PHÂN LOẠI THEO CẤP HỌC |                                                                        |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 1                         | Tiến sĩ                                                                |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 2                         | Thạc sĩ                                                                |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 3                         | Đại học                                                                |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 4                         | Cao đẳng                                                               |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 5                         | Trung cấp                                                              |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 6                         | Giáo dục nghề nghiệp khác                                              |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| Tổng cộng                 |                                                                        |   |   |   |   |   |   |   |   |   |   |   |   |   |
+
+Red circular stamp
 
 Scanned with CamScanner

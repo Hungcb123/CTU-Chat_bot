@@ -1,3 +1,12 @@
 .antigravitycli/
 venv/
 wsl_venv/
+.env
+Data/Done
+Data/Input
+OCR/DeepSeek/
+OCR/MinerU/
+OCR/unstructured_poc/
+qdrant_storage/
+Chunking/vector_db
+redis_data

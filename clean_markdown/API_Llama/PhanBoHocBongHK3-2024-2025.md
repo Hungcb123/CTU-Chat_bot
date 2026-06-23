@@ -1,7 +1,7 @@
 BỘ GIÁO DỤC VÀ ĐÀO TẠO
 **TRƯỜNG ĐẠI HỌC CẦN THƠ**
 
-Số: 2080 /QĐ-ĐHCT
+Số: 2080/QĐ-ĐHCT
 
 **CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
 **Độc lập - Tự do - Hạnh phúc**
@@ -11,7 +11,7 @@ Số: 2080 /QĐ-ĐHCT
 # QUYẾT ĐỊNH
 ## Về việc phân bổ quỹ học bổng khuyến khích học tập Học kỳ 3, năm học 2024-2025
 
-### HIỆU TRƯỞNG TRƯỜNG ĐẠI HỌC CẦN THƠ
+**HIỆU TRƯỞNG TRƯỜNG ĐẠI HỌC CẦN THƠ**
 
 *Căn cứ Luật Giáo dục đại học ngày 18 tháng 6 năm 2012 và Luật sửa đổi, bổ sung một số điều của Luật Giáo dục đại học ngày 19 tháng 11 năm 2018;*
 *Căn cứ Nghị định số 99/2019/NĐ-CP ngày 30 tháng 12 năm 2019 quy định chi tiết và hướng dẫn thi hành một số điều của Luật sửa đổi, bổ sung một số điều của Luật Giáo dục đại học;*
@@ -21,7 +21,7 @@ Số: 2080 /QĐ-ĐHCT
 *Căn cứ Quyết định số 5972/QĐ-ĐHCT, ngày 02 tháng 12 năm 2024 về định mức học bổng khuyến khích học tập áp dụng từ học kỳ 2, năm học 2024-2025 của Hiệu trưởng Trường Đại học Cần Thơ;*
 *Theo đề nghị của Trưởng phòng Công tác Sinh viên.*
 
-## QUYẾT ĐỊNH:
+# QUYẾT ĐỊNH:
 
 **Điều 1.** Nay phân bổ quỹ học bổng khuyến khích học tập cho **66 lớp** chuyên ngành, hình thức chính quy **khóa 47** đang theo học tại Trường Đại học Cần Thơ:
 *(Danh sách kèm theo)*
@@ -35,5 +35,5 @@ Số: 2080 /QĐ-ĐHCT
 - Lưu: VT, CTSV
 
 **HIỆU TRƯỞNG**
-(Đã ký và đóng dấu)
+Dấu mộc đỏ của Trường Đại học Cần Thơ và chữ ký của Trần Trung Tính
 **Trần Trung Tính**
