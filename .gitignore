@@ -10,3 +10,6 @@ OCR/unstructured_poc/
 qdrant_storage/
 Chunking/vector_db
 redis_data
+__pycache__/
+*.pyc
+*.pyo
