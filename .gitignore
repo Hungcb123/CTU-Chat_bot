@@ -13,3 +13,19 @@ redis_data
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# OS specific
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
