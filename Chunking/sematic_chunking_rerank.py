@@ -115,7 +115,7 @@ class AdvancedChunkingEngine:
             docstore=self.doc_store,
             child_splitter=self.child_splitter,
             search_kwargs={
-                "k": 20, # Mở rộng từ 7 lên 20 kết quả để lấy thật nhiều tài liệu tiềm năng
+                "k": 10, # Giảm từ 20 xuống 10 để tránh quá tải GPU (OOM)
                 "filter": Filter(
                     must=[
                         FieldCondition(
@@ -130,8 +130,11 @@ class AdvancedChunkingEngine:
         # Bước 7 (Theo lý thuyết): Xếp hạng lại (Re-ranking) bằng Cross-Encoder
         logger.info("Đang nạp mô hình Cross-Encoder (Re-ranker) vào hệ thống...")
         self.cross_encoder = HuggingFaceCrossEncoder(
-            model_name="BAAI/bge-reranker-v2-m3" # Mô hình tối ưu cho đa ngôn ngữ và tiếng Việt
+            model_name="BAAI/bge-reranker-v2-m3", # Mô hình tối ưu cho đa ngôn ngữ và tiếng Việt
+            model_kwargs={"device": "cuda"}
         )
+        # BẮT BUỘC: Giới hạn số token đưa vào mô hình để tránh lỗi CUDA Out of Memory (GPU 4GB)
+        self.cross_encoder.client.max_length = 512
         self.reranker = CrossEncoderReranker(
             model=self.cross_encoder, 
             top_n=3 # Chấm điểm 20 kết quả trên, và lọc ra đúng 3 kết quả xuất sắc nhất
@@ -226,7 +229,7 @@ class AdvancedChunkingEngine:
             # 1. Băm Parent thành các Children bằng RecursiveCharacterTextSplitter.
             # 2. Nhúng (Embed) Children vào Chroma DB.
             # 3. Lưu Parent vào InMemoryStore và tạo Mapping ID (Link).
-            self.retriever.add_documents(parent_docs, ids=None)
+            self.base_retriever.add_documents(parent_docs, ids=None)
             logger.info("Hoàn tất nhúng Vector (Children) và lưu trữ nguyên bản (Parents).")
             
             return True

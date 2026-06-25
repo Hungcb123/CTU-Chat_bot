@@ -50,7 +50,7 @@ async def lifespan(app: FastAPI):
         logger.info("🤖 Khởi tạo Vector DB và LLM Gemini...")
         app.state.engine = AdvancedChunkingEngine(persist_dir=os.path.join(PROJECT_ROOT, "qdrant_storage"))
         # LLM chính (đời mới, thông minh) dùng để đọc tài liệu và trả lời
-        app.state.llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.8)
+        app.state.llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite", temperature=0.4)
         
         # --- CẤU HÌNH TOOL CALLING TÍCH HỢP ---
         app.state.tools = [tinh_tien_hoc_bong]
@@ -141,12 +141,41 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request):
         # Đánh chặn: Kiểm tra xem Gemini có quyết định dùng Tool hay không
         if response_msg.tool_calls:
             logger.info(f"Gemini đã kích hoạt Tool: {response_msg.tool_calls}")
-            tool_call = response_msg.tool_calls[0]
-            if tool_call["name"] == "tinh_tien_hoc_bong":
-                # Chạy hàm tính toán Python và dùng thẳng kết quả đó làm câu trả lời
-                ai_response = tinh_tien_hoc_bong.invoke(tool_call["args"])
+            
+            # 1. Format lịch sử tin nhắn ban đầu
+            prompt_value = await app.state.chat_prompt.ainvoke(chain_input)
+            messages = prompt_value.to_messages()
+            messages.append(response_msg) # Gắn tin nhắn AI chứa các lệnh gọi tool
+            
+            from langchain_core.messages import ToolMessage
+            
+            # 2. Xử lý TẤT CẢ các Tool Calls mà LLM yêu cầu (Parallel Function Calling)
+            for tool_call in response_msg.tool_calls:
+                if tool_call["name"] == "tinh_tien_hoc_bong":
+                    tool_result_str = tinh_tien_hoc_bong.invoke(tool_call["args"])
+                    messages.append(ToolMessage(
+                        content=tool_result_str,
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
+                else:
+                    messages.append(ToolMessage(
+                        content="Lỗi: Không tìm thấy công cụ này.",
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
+            
+            # 3. Yêu cầu LLM đúc kết lại câu trả lời dựa trên kết quả của tất cả các tools
+            final_response = await app.state.llm.ainvoke(messages)
+            
+            if isinstance(final_response.content, list):
+                ai_response = " ".join(block.get("text", "") for block in final_response.content if isinstance(block, dict) and block.get("type") == "text")
             else:
-                ai_response = "Đã xảy ra lỗi không xác định khi gọi công cụ."
+                ai_response = str(final_response.content)
+                
+            # Fallback nếu LLM vẫn trả về rỗng
+            if not ai_response.strip():
+                ai_response = "Hệ thống đã tính toán xong nhưng gặp lỗi khi diễn đạt. Vui lòng thử hỏi tách từng người ra nhé!"
         else:
             # Nếu không dùng Tool, lấy câu trả lời chữ thông thường (Xử lý lỗi Array Pydantic)
             if isinstance(response_msg.content, list):
