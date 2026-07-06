@@ -1,0 +1,69 @@
+# Kế hoạch Tích hợp PostgreSQL vào Hệ thống (Microservices Architecture)
+
+Dự án sẽ chuyển đổi sang cấu trúc chuẩn mực: **Qdrant (Vector)** + **PostgreSQL (Dữ liệu vĩnh viễn)** + **Redis (RAM Cache)**.
+
+## User Review Required
+
+> [!IMPORTANT]
+> Vui lòng xác nhận 2 điểm sau trước khi tôi bắt đầu code:
+> 1. Bạn có muốn dời luôn kho `Parent Document` từ `LocalShelveStore` vào PostgreSQL luôn không? (Khuyến nghị: Rất nên làm để tập trung toàn bộ dữ liệu vào 1 mối, dễ quản lý và an toàn hơn).
+> 2. Việc cài đặt thư viện mới (`SQLAlchemy`, `asyncpg`, `passlib`, `psycopg2-binary`) sẽ được thực hiện vào môi trường ảo `wsl_venv` của bạn. Bạn đồng ý chứ?
+
+## Proposed Changes
+
+---
+
+### Hạ tầng (Infrastructure)
+
+#### [MODIFY] docker-compose.yml
+- Bổ sung service `postgres`.
+- Cấu hình port `5432:5432`, thiết lập biến môi trường `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`.
+- Map volume `./postgres_data:/var/lib/postgresql/data` để lưu trữ vĩnh viễn.
+
+#### [MODIFY] .env
+- Thêm chuỗi kết nối: `DATABASE_URL=postgresql+asyncpg://admin:admin@localhost:5432/ctu_chatbot`
+
+---
+
+### Core Database (Tầng thao tác CSDL)
+
+#### [NEW] database.py (hoặc `model/database.py`)
+- Khởi tạo `AsyncEngine` và `sessionmaker` của SQLAlchemy để kết nối tới PostgreSQL bất đồng bộ (Non-blocking).
+- Tạo `Base` class cho các model.
+
+#### [NEW] models/schema.py
+Định nghĩa cấu trúc các bảng (Tables) trong PostgreSQL:
+- Bảng `User`: Lưu thông tin đăng nhập (id, username, hashed_password, role).
+- Bảng `ChatSession`: Quản lý các phiên chat (id, user_id, title, created_at).
+- Bảng `ChatMessage`: Lưu chi tiết tin nhắn (id, session_id, role, content, timestamp).
+- Bảng `ParentDocument`: Làm DocStore (id, content, metadata) thay thế cho Shelve.
+
+---
+
+### Tích hợp vào hệ thống hiện tại
+
+#### [MODIFY] controller/main.py
+- Thêm hook `lifespan` để khởi tạo kết nối tới PostgreSQL khi FastAPI khởi động (`engine.begin()` và tạo bảng).
+
+#### [MODIFY] Chunking/sematic_chunking_rerank.py
+*(Chỉ thực hiện nếu bạn đồng ý gộp Parent Doc vào Postgres)*
+- Viết lại class `LocalShelveStore` thành `PostgresDocStore` kế thừa `BaseStore`.
+- Sửa hàm lưu và truy xuất Parent Docs để gọi SQL (Thao tác Key-Value đơn giản).
+
+#### [MODIFY] controller/chat_controller.py & history_controller.py
+- **Trí nhớ ngắn hạn (Redis):** Vẫn giữ nguyên logic cũ, đọc ghi 5-10 tin nhắn gần nhất trực tiếp từ Redis siêu nhanh.
+- **Trí nhớ dài hạn (PostgreSQL - Điểm mới):** 
+  - Khi bắt đầu một phiên chat (New Chat), tạo 1 record `ChatSession` trong Postgres.
+  - Viết tính năng `BackgroundTasks` (Chạy ngầm): Cứ mỗi lần AI trả lời xong, âm thầm đẩy bản copy tin nhắn đó xuống bảng `ChatMessage` trong Postgres.
+  - Chức năng "Lịch sử": Lôi toàn bộ ChatSession từ Postgres trả về cho UI hiển thị.
+
+## Verification Plan
+
+### Automated Tests
+- Chạy lệnh `docker-compose up -d` để đảm bảo container Postgres khởi động thành công (port 5432).
+- Khởi động lại `main.py` để SQLAlchemy tự động tạo bảng (Auto Migration) không văng lỗi.
+
+### Manual Verification
+- Bạn sẽ thử chat vài câu trên UI.
+- Tôi sẽ chạy lệnh query trực tiếp vào PostgreSQL để kiểm tra xem tin nhắn có được lưu vào bảng `ChatMessage` thành công hay không.
+- Kiểm tra tính năng Đăng nhập / Tạo User mới có insert dữ liệu vào bảng `User` trơn tru không.

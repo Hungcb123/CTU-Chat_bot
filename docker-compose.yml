@@ -19,3 +19,19 @@ services:
     volumes:
       - ./redis_data:/data
     restart: always
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: ctu-chatbot-postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ctu_chatbot
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:
