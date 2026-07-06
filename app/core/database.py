@@ -4,7 +4,9 @@ from sqlalchemy.orm import declarative_base
 
 # Load connection string from environment or use default
 # URL for asyncpg is postgresql+asyncpg://user:pass@host:port/db_name
-DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql+asyncpg://admin:admin@localhost:5432/ctu_chatbot")
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    raise ValueError("❌ DATABASE_URL is not set in environment variables.")
 
 # Create async engine
 engine = create_async_engine(DATABASE_URL, echo=False)

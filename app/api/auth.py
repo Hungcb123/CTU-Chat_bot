@@ -12,7 +12,9 @@ from app.models.pydantic import UserAuth, UserResponse
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 # Cấu hình bảo mật
-SECRET_KEY = os.getenv("JWT_SECRET_KEY", "ctu_chatbot_super_secret_key_2026")
+SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+if not SECRET_KEY:
+    raise ValueError("❌ JWT_SECRET_KEY is not set in environment variables.")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7 # 7 ngày
 

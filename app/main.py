@@ -40,7 +40,8 @@ async def lifespan(app: FastAPI):
         
     try:
         logger.info("📡 Đang kết nối tới Redis Server...")
-        app.state.redis_client = redis.from_url("redis://localhost:6379", decode_responses=True)
+        redis_url = os.environ.get("REDIS_URL", "redis://localhost:6379")
+        app.state.redis_client = redis.from_url(redis_url, decode_responses=True)
         await app.state.redis_client.ping()
         logger.info("✅ Kết nối Redis thành công!")
 

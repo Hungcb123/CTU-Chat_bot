@@ -3,7 +3,8 @@ import httpx
 from pathlib import Path
 
 async def main():
-    api_key = "llx-UPOmlt8qMiAxlyVJaiI0Sq4joeQHXuGRplrZwXbDHjqBqJjT"
+    import os
+    api_key = os.getenv("LLAMA_CLOUD_API_KEY")
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Accept": "application/json"
