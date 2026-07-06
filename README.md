@@ -24,7 +24,6 @@ Welcome to the **CTU Chatbot** project! This is a specialized RAG-based (Retriev
    # API Keys for LLM Models
    GOOGLE_API_KEY="your_google_gemini_api_key"
    GROQ_API_KEY="your_groq_api_key"
-   ZHIPUAI_API_KEY="your_zhipu_api_key"
    
    # API Key for LlamaParse (PDF Processing)
    LLAMA_CLOUD_API_KEY="your_llama_cloud_api_key"
