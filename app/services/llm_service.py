@@ -5,8 +5,8 @@ import sys
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(PROJECT_ROOT)
 
-# Bước 2: BÂY GIỜ MỚI IMPORT ĐƯỢC Engine từ file sematic_chunking.py
-from Chunking.sematic_chunking import AdvancedChunkingEngine
+# Bước 2: BÂY GIỜ MỚI IMPORT ĐƯỢC Engine từ rag_engine.py
+from app.services.rag_engine import AdvancedChunkingEngine
 
 from langchain_google_genai import ChatGoogleGenerativeAI 
 from langchain_core.prompts import PromptTemplate
@@ -22,7 +22,7 @@ if __name__ == "__main__":
         print("❌ Lỗi: Chưa tìm thấy GOOGLE_API_KEY. Vui lòng kiểm tra file .env và chạy qua start_env.sh!")
         sys.exit(1)
         
-    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.1)
+    llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite", temperature=0.1)
 
     prompt_template = """
     Bạn là một trợ lý thông minh của Trường Đại học Cần Thơ. 

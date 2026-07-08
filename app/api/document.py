@@ -29,10 +29,10 @@ async def upload_document(request: Request, file: UploadFile = File(...)):
         
     try:
         # 1. Tạo thư mục tạm và lưu file
-        input_dir = Path(PROJECT_ROOT) / "Data" / "Input"
+        input_dir = Path(PROJECT_ROOT) / "data" / "input"
         input_dir.mkdir(parents=True, exist_ok=True)
         
-        md_dir = Path(PROJECT_ROOT) / "clean_markdown" / "API_Llama"
+        md_dir = Path(PROJECT_ROOT) / "data" / "markdown"
         md_dir.mkdir(parents=True, exist_ok=True)
         
         file_path = input_dir / file.filename
@@ -61,7 +61,7 @@ async def upload_document(request: Request, file: UploadFile = File(...)):
             raise HTTPException(status_code=500, detail="Lỗi khi lưu dữ liệu vào cơ sở dữ liệu Vector.")
             
         # 5. Dọn dẹp (Chuyển file PDF sang thư mục Done)
-        done_dir = Path(PROJECT_ROOT) / "Data" / "Done"
+        done_dir = Path(PROJECT_ROOT) / "data" / "done"
         done_dir.mkdir(parents=True, exist_ok=True)
         shutil.move(str(file_path), str(done_dir / file.filename))
         

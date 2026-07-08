@@ -2,14 +2,15 @@
 venv/
 wsl_venv/
 .env
-Data/Done
-Data/Input
-OCR/DeepSeek/
-OCR/MinerU/
-OCR/unstructured_poc/
+
+# Data and Storage
+data/input/
+data/done/
+postgres_data/
 qdrant_storage/
-Chunking/vector_db
-redis_data
+redis_data/
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo

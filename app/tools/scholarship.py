@@ -2,8 +2,8 @@ import json
 import os
 from langchain.tools import tool
 
-current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-json_path = os.path.join(current_dir, "data", "hoc_bong.json")
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+json_path = os.path.join(PROJECT_ROOT, "data", "hoc_bong.json")
 
 try:
     with open(json_path, 'r', encoding='utf-8') as f:

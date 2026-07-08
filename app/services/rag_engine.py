@@ -54,7 +54,7 @@ logger = logging.getLogger("SemanticChunker")
 
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import operator
 from collections.abc import Sequence as AbcSequence
@@ -436,6 +436,7 @@ class AdvancedChunkingEngine:
 
 if __name__ == "__main__":
     # Kịch bản tích hợp (Integration Scenario)
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     md_folder = Path(os.path.join(PROJECT_ROOT, "data", "markdown"))
     md_files = list(md_folder.glob("*.md"))
     
