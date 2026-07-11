@@ -25,6 +25,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_groq import ChatGroq
 from app.tools.scholarship import tinh_tien_hoc_bong
+from app.tools.tuition import tinh_toan_hoc_phi
 
 # Import controllers
 from app.api.chat import router as chat_router
@@ -66,7 +67,7 @@ async def lifespan(app: FastAPI):
         )
         
         # --- CẤU HÌNH TOOL CALLING TÍCH HỢP ---
-        app.state.tools = [tinh_tien_hoc_bong]
+        app.state.tools = [tinh_tien_hoc_bong, tinh_toan_hoc_phi]
         app.state.llm_with_tools = app.state.llm.bind_tools(app.state.tools)
         
         app.state.chat_prompt = ChatPromptTemplate.from_messages([
@@ -79,7 +80,12 @@ async def lifespan(app: FastAPI):
             
             LUẬT QUAN TRỌNG:
             - Trả lời ngắn gọn, súc tích, đi thẳng vào trọng tâm.
-            - NẾU người dùng nhắc đến điểm GPA, điểm rèn luyện hoặc hỏi số tiền học bổng: BẮT BUỘC gọi công cụ (tool) để tính toán. Dựa trực tiếp vào KẾT QUẢ CỦA CÔNG CỤ ĐỂ TRẢ LỜI NGƯỜI DÙNG, tuyệt đối không được nói là không tìm thấy thông tin nếu công cụ đã trả về kết quả.
+            - NẾU người dùng nhắc đến điểm GPA, điểm rèn luyện hoặc hỏi số tiền học bổng: BẮT BUỘC gọi công cụ `tinh_tien_hoc_bong` để tính toán. Dựa trực tiếp vào KẾT QUẢ CỦA CÔNG CỤ ĐỂ TRẢ LỜI NGƯỜI DÙNG, tuyệt đối không được nói là không tìm thấy thông tin nếu công cụ đã trả về kết quả.
+            - NẾU người dùng hỏi số tiền MIỄN GIẢM HỌC PHÍ cụ thể: BẮT BUỘC thực hiện 4 bước:
+              Bước 1: Tìm "Mức học phí thực tế" của 1 tín chỉ (Dựa vào Ngành và Khóa học, trong file MucHocPhi).
+              Bước 2: Tìm "Mức học phí làm cơ sở tính miễn giảm" (Mức trần) của Khối ngành đó (trong file cơ sở tính miễn giảm).
+              Bước 3: Tìm "% được giảm" dựa vào diện đối tượng sinh viên.
+              Bước 4: Gọi công cụ `tinh_toan_hoc_phi` với 3 con số vừa tìm được. Dựa trực tiếp vào kết quả của công cụ để trả lời.
             
             Context:
             {context}"""),

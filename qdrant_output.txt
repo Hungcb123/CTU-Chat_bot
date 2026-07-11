@@ -1,0 +1,64 @@
+/mnt/d/Project/Chatbot/query_qdrant.py:3: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.
+  from langchain_community.embeddings import HuggingFaceEmbeddings
+/mnt/d/Project/Chatbot/query_qdrant.py:6: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  embeddings = HuggingFaceEmbeddings(model_name="bkai-foundation-models/vietnamese-bi-encoder")
+/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/mnt/d/Project/Chatbot/query_qdrant.py", line 8, in <module>
+    vector_store = QdrantVectorStore(
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/langchain_qdrant/qdrant.py", line 241, in __init__
+    self._validate_collection_config(
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/langchain_qdrant/qdrant.py", line 1161, in _validate_collection_config
+    cls._validate_collection_for_dense(
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/langchain_qdrant/qdrant.py", line 1223, in _validate_collection_for_dense
+    vector_size = len(dense_embeddings.embed_documents(["dummy_text"])[0])
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/langchain_community/embeddings/huggingface.py", line 115, in embed_documents
+    embeddings = self.client.encode(
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/sentence_transformers/sentence_transformer/model.py", line 657, in encode
+    out_features = self.forward(features, **kwargs)
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/sentence_transformers/base/model.py", line 492, in forward
+    input = module(input, **module_kwargs)
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/sentence_transformers/base/modules/transformer.py", line 1090, in forward
+    model_output = model_method(**filtered_kwargs)
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/transformers/models/roberta/modeling_roberta.py", line 782, in forward
+    self.warn_if_padding_and_no_attention_mask(input_ids, attention_mask)
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4194, in warn_if_padding_and_no_attention_mask
+    if is_torch_fx_proxy(input_ids) or torch.jit.is_tracing() or is_torchdynamo_compiling():
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/transformers/utils/import_utils.py", line 614, in is_torchdynamo_compiling
+    import torch._dynamo as dynamo  # noqa: F401
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/torch/_dynamo/__init__.py", line 2, in <module>
+    from . import allowed_functions, convert_frame, eval_frame, resume_execution
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/torch/_dynamo/allowed_functions.py", line 30, in <module>
+    from .utils import hashable, is_safe_constant, NP_SUPPORTED_MODULES
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/torch/_dynamo/utils.py", line 89, in <module>
+    import torch.fx.experimental.symbolic_shapes
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/torch/fx/experimental/symbolic_shapes.py", line 38, in <module>
+    from torch.utils._sympy.functions import FloorDiv, Mod, IsNonOverlappingAndDenseIndicator
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/torch/utils/_sympy/functions.py", line 1, in <module>
+    import sympy
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/sympy/__init__.py", line 23, in <module>
+    import mpmath
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/mpmath/__init__.py", line 5, in <module>
+    from .ctx_fp import FPContext
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/mpmath/ctx_fp.py", line 1, in <module>
+    from .ctx_base import StandardBaseContext
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/mpmath/ctx_base.py", line 5, in <module>
+    from .functions.functions import SpecialFunctions
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/mpmath/functions/__init__.py", line 4, in <module>
+    from . import hypergeometric
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 975, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_data
+KeyboardInterrupt

@@ -7,6 +7,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from app.models.pydantic import ChatRequest, ChatResponse
 from app.tools.scholarship import tinh_tien_hoc_bong
+from app.tools.tuition import tinh_toan_hoc_phi
 
 # Imports cho PostgreSQL
 from app.core.database import AsyncSessionLocal
@@ -74,29 +75,44 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
             history_text = "\n".join([f"{'User' if isinstance(m, HumanMessage) else 'AI'}: {m.content}" for m in chat_history])
             
             rewrite_prompt = ChatPromptTemplate.from_messages([
-                ("system", "Bạn là một công cụ phân tích ngôn ngữ. Nhiệm vụ DUY NHẤT của bạn là ĐỊNH DẠNG LẠI câu hỏi.\n"
-                 "TUYỆT ĐỐI KHÔNG TRẢ LỜI CÂU HỎI. TUYỆT ĐỐI KHÔNG GIẢI THÍCH.\n"
-                 "Nếu câu hỏi của người dùng bị thiếu ngữ cảnh (chủ ngữ, đối tượng), hãy tìm thông tin từ Lịch sử Chat để đắp vào câu hỏi cho đầy đủ ý nghĩa.\n"
-                 "Ví dụ Lịch sử: Đang nói về Học bổng SCIC của Khoa CNTT.\n"
-                 "Ví dụ Câu hỏi: Điều kiện điểm số là bao nhiêu?\n"
-                 "Ví dụ Output chuẩn: Điều kiện điểm số để nhận học bổng SCIC của Khoa CNTT là bao nhiêu?\n"
-                 "CHỈ IN RA ĐÚNG 1 CÂU VIẾT LẠI, KHÔNG THÊM DẤU NGOẶC KÉP.\n"
-                 "Nếu câu hỏi là câu chào hỏi, trêu đùa hoặc không có ngữ cảnh rõ ràng, HÃY TRẢ VỀ Y NGUYÊN CÂU HỎI GỐC."),
-                ("human", "Lịch sử Chat:\n{history_text}\n\nCâu hỏi cần viết lại: {question}")
+                ("system", """Bạn là một chuyên gia ngôn ngữ học. Nhiệm vụ của bạn là VIẾT LẠI câu hỏi của người dùng cho rõ nghĩa hơn dựa vào lịch sử trò chuyện.
+Quy tắc BẮT BUỘC:
+1. Nếu câu hỏi hiện tại thiếu chủ ngữ hoặc ngữ cảnh (ví dụ: "vậy còn ngành CNTT thì sao?"), hãy lấy ngữ cảnh từ Lịch sử Chat đắp vào (ví dụ: "Vậy còn ngành CNTT thì học bổng là bao nhiêu?").
+2. Nếu câu hỏi ĐÃ ĐẦY ĐỦ ý nghĩa, KHÔNG ĐƯỢC CHẾ THÊM, hãy trả về CHÍNH XÁC câu hỏi gốc.
+3. TUYỆT ĐỐI KHÔNG trả lời câu hỏi. CHỈ in ra 1 câu duy nhất là câu đã được viết lại.
+4. KHÔNG nhắc đến các ví dụ trong hướng dẫn này."""),
+                ("human", "Lịch sử Chat:\n{history_text}\n\nCâu hỏi hiện tại: {question}\n\nViết lại câu hỏi:")
             ])
             rewrite_chain = rewrite_prompt | rewrite_llm | StrOutputParser()
             search_query = await rewrite_chain.ainvoke({
                 "history_text": history_text,
                 "question": request.query
             })
-            logger.info(f"🔍 Groq Llama viết lại: '{request.query}' -> '{search_query}'")
+            
+            # Llama 3 hay bị "ảo tưởng" đang là chatbot nên hay trả lời từ chối
+            search_query_clean = search_query.strip().replace('"', '').replace("'", "")
+            bad_phrases = ["tôi không", "xin lỗi", "không thể", "không có", "không rõ", "là một ai"]
+            
+            if any(phrase in search_query_clean.lower() for phrase in bad_phrases):
+                logger.warning(f"⚠️ Llama viết lại thất bại ('{search_query}'). Fallback về câu gốc.")
+                search_query = request.query
+            else:
+                logger.info(f"🔍 Groq Llama viết lại: '{request.query}' -> '{search_query}'")
         else:
             # Nếu là câu hỏi đầu tiên, dùng luôn câu gốc (Tối ưu tốc độ)
             search_query = request.query
 
         # --- BƯỚC 2: RÚT TRÍCH TÀI LIỆU TỪ VECTOR DB ---
         docs = engine.retriever.invoke(search_query)
-        context_str = "\n\n".join(doc.page_content for doc in docs)
+        
+        # Ghép nội dung và tiêm lại Header từ Metadata để LLM không bị mất bối cảnh ở các đoạn bị cắt ngang
+        context_blocks = []
+        for doc in docs:
+            headers = [str(v) for k, v in doc.metadata.items() if k.startswith("Header_")]
+            header_prefix = "Chuyên mục: " + " > ".join(headers) + "\n" if headers else ""
+            context_blocks.append(f"[{doc.metadata.get('source', 'Tài liệu')}]\n{header_prefix}{doc.page_content}")
+            
+        context_str = "\n\n---\n\n".join(context_blocks)
 
         # --- BƯỚC 3: GỌI LLM GEMINI VÀ XỬ LÝ TOOL ---
         chain_input = {
@@ -118,6 +134,13 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
             for tool_call in response_msg.tool_calls:
                 if tool_call["name"] == "tinh_tien_hoc_bong":
                     tool_result_str = tinh_tien_hoc_bong.invoke(tool_call["args"])
+                    messages.append(ToolMessage(
+                        content=tool_result_str,
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
+                elif tool_call["name"] == "tinh_toan_hoc_phi":
+                    tool_result_str = tinh_toan_hoc_phi.invoke(tool_call["args"])
                     messages.append(ToolMessage(
                         content=tool_result_str,
                         tool_call_id=tool_call["id"],

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ đồ Kiến trúc Hệ thống RAG </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Inter, sans-serif',
+                primaryColor: '#ffffff',
+                primaryBorderColor: '#cbd5e1',
+                lineType: 'basis',
+                edgeLabelBackground: '#ffffff',
+                clusterBkg: '#f8fafc',
+                clusterBorder: '#e2e8f0'
+            },
+            flowchart: {
+                curve: 'basis', // Tạo nét vẽ mềm mại, thanh mảnh
+                nodeSpacing: 60,
+                rankSpacing: 70
+            }
+        });
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .mermaid { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+    </style>
+</head>
+<body class="p-6 md:p-10 text-slate-800">
+
+    <div class="max-w-7xl mx-auto space-y-8">
+        <!-- Header -->
+        <header class="border-b border-slate-200 pb-6">
+            <h1 class="text-3xl font-semibold text-slate-900 tracking-tight">Kiến trúc Hệ thống RAG </h1>
+        </header>
+
+        <!-- Diagram Section -->
+        <section class="space-y-4">
+            <h2 class="text-xl font-medium text-slate-800 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                1. Sơ đồ Luồng Dữ liệu (Data Flow)
+            </h2>
+            <div class="overflow-x-auto">
+                <pre class="mermaid flex justify-center">
+graph TD
+    %% Định dạng CSS cho Sơ đồ (Nét thanh mảnh, màu đơn giản)
+    classDef default fill:#ffffff,stroke:#94a3b8,stroke-width:1px,color:#334155,rx:6px,ry:6px
+    classDef db fill:#f0f9ff,stroke:#7dd3fc,stroke-width:1px,color:#0369a1,rx:6px,ry:6px
+    classDef user fill:#f0fdf4,stroke:#86efac,stroke-width:1px,color:#15803d,rx:20px,ry:20px
+    classDef highlight fill:#fffbeb,stroke:#fde047,stroke-width:1px,color:#854d0e,rx:6px,ry:6px
+
+    %% Các Node Đầu vào (Source)
+    User_In([Người dùng]):::user
+    API_Chat[API /chat]
+
+    %% Giai đoạn 1
+    subgraph G1 [1. Retrieval]
+        direction TB
+        Redis[(Redis<br>Lịch sử chat)]:::db
+        Rewrite[Rewriter <br> llama-3.1-8b-instant]
+        Qdrant[(Qdrant DB<br>Tài liệu con)]:::db
+        PG_Parent[(PostgreSQL<br>Tài liệu cha)]:::db
+        Reranker[(Reranker <br> bge-reranker-v2-m3)]
+    end
+
+    %% Giai đoạn 2
+    subgraph G2 [2. Augmented]
+        direction TB
+        PromptBuilder[Đóng gói<br>Prompt]
+        Context[Ngữ cảnh + Lịch sử<br>+ Câu hỏi]
+    end
+
+    %% Giai đoạn 3
+    subgraph G3 [3. Generation]
+        direction TB
+        Gemini[Gemini 3.1<br>Flash Lite]:::highlight
+        Tools[[Công cụ<br>Tool]]
+        Answer([Câu trả lời]):::user
+    end
+
+    %% Các Node Đầu ra (Sink) - Tách riêng để tránh bóp méo sơ đồ
+    User_Out([Người dùng<br>Hiển thị]):::user
+    Redis_Out[(Redis<br>Cập nhật)]:::db
+    PG_Chat[(PostgreSQL<br>Phiên Chat)]:::db
+
+    %% --- ĐƯỜNG NỐI THEO LUỒNG ---
+
+    %% Bắt đầu
+    User_In -- "Gửi<br>Câu hỏi" --> API_Chat
+
+    %% Giai đoạn 1: Truy xuất
+    API_Chat -- "Câu hỏi gốc" --> Rewrite
+    API_Chat -- "Câu hỏi gốc" --> Reranker
+    Redis -- "Lấy 5<br>tin nhắn gần nhất" --> Rewrite
+    Rewrite -- "Tìm vector<br>tương đồng" --> Qdrant
+    Qdrant -- "10 ParentID của <br>Child document" --> PG_Parent
+    PG_Parent -- "10 Parent<br>document"--> Reranker
+
+    %% Giai đoạn 2: Tăng cường
+    Reranker -- "Top 3 document" --> PromptBuilder
+    Redis -- "Lấy 5 tin nhắn" --> PromptBuilder
+    API_Chat -- "Câu hỏi gốc" --> PromptBuilder
+    PromptBuilder -- "Prompt<br>hoàn chỉnh" --> Context
+
+    %% Giai đoạn 3: Tạo sinh
+    Context ---> Gemini
+    Gemini <--> Tools
+    Gemini ---> Answer
+
+    %% Kết thúc / Trả kết quả (Data Sink)
+    Answer -- "Hiển thị" --> User_Out
+    Answer -- "Lưu<br>ngắn hạn" --> Redis_Out
+    Answer -- "Lưu dài hạn<br>(Chạy ngầm)" --> PG_Chat
+                </pre>
+            </div>
+        </section>
+
+
+    </div>
+</body>
+</html>
