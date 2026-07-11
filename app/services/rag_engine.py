@@ -211,13 +211,13 @@ class AdvancedChunkingEngine:
         )
         
         # 4. ORCHESTRATOR: BỘ ĐIỀU PHỐI PARENT-CHILD & RE-RANKING
-        # Bước 6 (Theo lý thuyết): Tìm kiếm cơ sở (Lưới rộng Top 10)
+        # Bước 6 (Theo lý thuyết): Tìm kiếm cơ sở (Lưới rộng Top 15)
         self.base_retriever = ParentDocumentRetriever(
             vectorstore=self.vector_store,
             docstore=self.doc_store,
             child_splitter=self.child_splitter,
             search_kwargs={
-                "k": 10, # Giảm từ 20 xuống 10 để tránh quá tải GPU (OOM)
+                "k": 15, # Tăng lên 15 để lấy đủ tài liệu khi câu hỏi bao gồm nhiều ý (vay vốn + học phí)
                 "filter": Filter(
                     must=[
                         FieldCondition(
@@ -239,7 +239,7 @@ class AdvancedChunkingEngine:
         self.cross_encoder.client.max_length = 512
         self.reranker = TemporalCrossEncoderReranker(
             model=self.cross_encoder,
-            top_n=3, # Chấm điểm 10 kết quả trên, và lọc ra đúng 3 kết quả xuất sắc nhất
+            top_n=6, # Tăng lên 6 kết quả để Gemini có đủ Context cho cả Học phí và Vay vốn
             score_tolerance=0.05 # Chênh điểm <= 0.05 coi như "gần bằng" -> ưu tiên bản mới hơn
         )
 

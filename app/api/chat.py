@@ -68,39 +68,39 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
                 
         logger.info(f"Đã nạp {len(chat_history)} tin nhắn lịch sử từ Redis.")
 
-        # --- BƯỚC 1.5: ĐỊNH HÌNH LẠI CÂU HỎI BẰNG Llama LOCAL ---
-        # Chỉ tốn thời gian gọi mô hình Rewriter nếu như ĐÃ CÓ lịch sử chat
+        # --- BƯỚC 1.5: ĐỊNH HÌNH LẠI CÂU HỎI VÀ MỞ RỘNG TRUY VẤN (QUERY EXPANSION) BẰNG Llama ---
+        # Luôn chạy để đảm bảo các câu hỏi chung chung được mở rộng từ khóa, giúp Vector Search bắt trúng tài liệu
+        history_text = "Không có lịch sử."
         if chat_history:
-            # Chuyển đổi chat_history thành chuỗi văn bản để ép Llama không được đóng vai chatbot
             history_text = "\n".join([f"{'User' if isinstance(m, HumanMessage) else 'AI'}: {m.content}" for m in chat_history])
             
-            rewrite_prompt = ChatPromptTemplate.from_messages([
-                ("system", """Bạn là một chuyên gia ngôn ngữ học. Nhiệm vụ của bạn là VIẾT LẠI câu hỏi của người dùng cho rõ nghĩa hơn dựa vào lịch sử trò chuyện.
+        rewrite_prompt = ChatPromptTemplate.from_messages([
+            ("system", """Bạn là một chuyên gia ngôn ngữ học và kỹ sư tối ưu tìm kiếm (Prompt Engineer). Nhiệm vụ của bạn là VIẾT LẠI câu hỏi của người dùng cho rõ nghĩa hơn và MỞ RỘNG TỪ KHÓA (Query Expansion) để hệ thống Vector Search tìm được tài liệu chính xác nhất.
 Quy tắc BẮT BUỘC:
-1. Nếu câu hỏi hiện tại thiếu chủ ngữ hoặc ngữ cảnh (ví dụ: "vậy còn ngành CNTT thì sao?"), hãy lấy ngữ cảnh từ Lịch sử Chat đắp vào (ví dụ: "Vậy còn ngành CNTT thì học bổng là bao nhiêu?").
-2. Nếu câu hỏi ĐÃ ĐẦY ĐỦ ý nghĩa, KHÔNG ĐƯỢC CHẾ THÊM, hãy trả về CHÍNH XÁC câu hỏi gốc.
-3. TUYỆT ĐỐI KHÔNG trả lời câu hỏi. CHỈ in ra 1 câu duy nhất là câu đã được viết lại.
-4. KHÔNG nhắc đến các ví dụ trong hướng dẫn này."""),
-                ("human", "Lịch sử Chat:\n{history_text}\n\nCâu hỏi hiện tại: {question}\n\nViết lại câu hỏi:")
-            ])
-            rewrite_chain = rewrite_prompt | rewrite_llm | StrOutputParser()
-            search_query = await rewrite_chain.ainvoke({
-                "history_text": history_text,
-                "question": request.query
-            })
-            
-            # Llama 3 hay bị "ảo tưởng" đang là chatbot nên hay trả lời từ chối
-            search_query_clean = search_query.strip().replace('"', '').replace("'", "")
-            bad_phrases = ["tôi không", "xin lỗi", "không thể", "không có", "không rõ", "là một ai"]
-            
-            if any(phrase in search_query_clean.lower() for phrase in bad_phrases):
-                logger.warning(f"⚠️ Llama viết lại thất bại ('{search_query}'). Fallback về câu gốc.")
-                search_query = request.query
-            else:
-                logger.info(f"🔍 Groq Llama viết lại: '{request.query}' -> '{search_query}'")
-        else:
-            # Nếu là câu hỏi đầu tiên, dùng luôn câu gốc (Tối ưu tốc độ)
+1. [BỔ SUNG NGỮ CẢNH]: Nếu câu hỏi bị cụt (ví dụ: "vậy còn ngành CNTT thì sao?"), hãy lấy ngữ cảnh từ Lịch sử Chat đắp vào.
+2. [MỞ RỘNG VAY VỐN]: Nếu người dùng hỏi chung chung về "vay vốn", "vay tiền học", "gia đình khó khăn", "thu nhập trung bình"... mà không nói rõ ngân hàng nào, BẮT BUỘC phải viết lại câu hỏi có chứa cụm từ: "vay vốn qua Ngân hàng Chính sách xã hội (NHCSXH) và vay tiền đóng học phí qua Ngân hàng thương mại VietinBank".
+3. [MỞ RỘNG HỌC BỔNG]: Nếu hỏi chung chung về "học bổng", hãy viết lại có chứa cụm từ: "Học bổng khuyến khích học tập (ngân sách nhà nước) và Học bổng tài trợ từ doanh nghiệp bên ngoài".
+4. Nếu câu hỏi đã nhắc đích danh một tên cụ thể (như VietinBank, học bổng Vallet), thì chỉ làm rõ câu hỏi, không cần nhét thêm các nguồn khác.
+5. TUYỆT ĐỐI KHÔNG trả lời câu hỏi. CHỈ in ra 1 câu duy nhất là câu truy vấn đã được tối ưu.
+6. KHÔNG giải thích, KHÔNG nhắc đến các ví dụ trong hướng dẫn này."""),
+            ("human", "Lịch sử Chat:\n{history_text}\n\nCâu hỏi hiện tại: {question}\n\nViết lại và tối ưu câu truy vấn:")
+        ])
+        
+        rewrite_chain = rewrite_prompt | rewrite_llm | StrOutputParser()
+        search_query = await rewrite_chain.ainvoke({
+            "history_text": history_text,
+            "question": request.query
+        })
+        
+        # Llama 3 hay bị "ảo tưởng" đang là chatbot nên hay trả lời từ chối
+        search_query_clean = search_query.strip().replace('"', '').replace("'", "")
+        bad_phrases = ["tôi không", "xin lỗi", "không thể", "không có", "không rõ", "là một ai"]
+        
+        if any(phrase in search_query_clean.lower() for phrase in bad_phrases):
+            logger.warning(f"⚠️ Llama viết lại thất bại ('{search_query}'). Fallback về câu gốc.")
             search_query = request.query
+        else:
+            logger.info(f"🔍 Groq Llama đã viết lại (Query Expansion): '{request.query}' -> '{search_query}'")
 
         # --- BƯỚC 2: RÚT TRÍCH TÀI LIỆU TỪ VECTOR DB ---
         docs = engine.retriever.invoke(search_query)
