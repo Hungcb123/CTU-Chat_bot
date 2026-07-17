@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "category": "Miễn giảm học phí",
+    "complexity": "Dễ",
+    "query": "Học phí học phần Giáo dục quốc phòng và An ninh dùng để tính miễn giảm học phí là bao nhiêu một tín chỉ?",
+    "expected_answer": "451.000 đồng/tín chỉ.",
+    "source_file": "MucHocPhi_2526_MienGiam.md"
+    
+  },
+  {
+    "id": 2,
+    "category": "Miễn giảm học phí",
+    "complexity": "Dễ",
+    "query": "Học phí khối ngành Khoa học sự sống, khoa học tự nhiên (Khối ngành IV) là bao nhiêu tiền 1 tín chỉ?",
+    "expected_answer": "487.000 đồng/tín chỉ.",
+    "source_file": "MucHocPhi_2526_MienGiam.md"
+  },
+  {
+    "id": 3,
+    "category": "Miễn giảm học phí",
+    "complexity": "Trung bình",
+    "query": "Sinh viên chương trình Tiên tiến khóa 47 trở về trước có mức học phí làm cơ sở tính miễn, giảm là bao nhiêu?",
+    "expected_answer": "335.000 đồng/tín chỉ.",
+    "source_file": "MucHocPhi_2526_MienGiam.md",
+    "status": "pending"
+  },
+  {
+    "id": 4,
+    "category": "Miễn giảm học phí",
+    "complexity": "Trung bình",
+    "query": "Sinh viên thuộc diện mồ côi cả cha lẫn mẹ muốn xin trợ cấp xã hội cần chuẩn bị những giấy tờ gì?",
+    "expected_answer": "Đơn xin hưởng trợ cấp, bản sao giấy chứng tử của cha mẹ hoặc giấy xác nhận của UBND cấp quận/huyện/thị xã xác nhận sinh viên mồ côi cả cha lẫn mẹ.",
+    "source_file": "Tro_cap_XH.md"
+  },
+  {
+    "id": 5,
+    "category": "Miễn giảm học phí",
+    "complexity": "Khó",
+    "query": "Em học ngành Công nghệ thông tin chương trình chất lượng cao, vậy mức học phí làm cơ sở xét miễn giảm sẽ được tính như thế nào?",
+    "expected_answer": "Tính bằng mức học phí năm tuyển sinh của đại học chính quy đại trà cùng ngành (không nhân hệ số tự chủ), cố định một mức trong suốt quá trình học tập.",
+    "source_file": "MucHocPhi_2526_MienGiam.md"
+  },
+  {
+    "id": 6,
+    "category": "Học bổng khuyến khích",
+    "complexity": "Dễ",
+    "query": "Sinh viên đạt 85 điểm rèn luyện sẽ được xếp loại gì?",
+    "expected_answer": "Loại Tốt (Từ 80 đến dưới 90 điểm).",
+    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+  },
+  {
+    "id": 7,
+    "category": "Học bổng khuyến khích",
+    "complexity": "Dễ",
+    "query": "Mức học bổng khuyến khích loại Khá của khối ngành Kinh doanh và Quản lý là bao nhiêu tiền 1 kỳ?",
+    "expected_answer": "6.600.000 đồng/học kỳ.",
+    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+  },
+  {
+    "id": 8,
+    "category": "Học bổng khuyến khích",
+    "complexity": "Trung bình",
+    "query": "Khối ngành Toán, Thống kê, Máy tính, Công nghệ thông tin (Khối V) có mức học bổng loại Xuất sắc là bao nhiêu?",
+    "expected_answer": "10.560.000 đồng/học kỳ.",
+    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+  },
+  {
+    "id": 9,
+    "category": "Học bổng khuyến khích",
+    "complexity": "Trung bình",
+    "query": "Quỹ học bổng của mỗi lớp được tính theo định mức như thế nào?",
+    "expected_answer": "Được tính bằng 8.0% số lượng sinh viên x Mức học bổng loại Khá.",
+    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+  },
+  {
+    "id": 10,
+    "category": "Học bổng khuyến khích",
+    "complexity": "Khó",
+    "query": "Định mức học bổng bình quân cho học kỳ đầu tiên của sinh viên khóa 51 là bao nhiêu? Sinh viên trúng tuyển thẳng có ưu đãi gì khác không?",
+    "expected_answer": "Định mức bình quân kỳ đầu tiên khóa 51 là 5.000.000 đồng/SV/học kỳ. Riêng sinh viên tuyển thẳng, ưu tiên xét tuyển năm 2025 được hưởng 6.000.000 đồng/học kỳ.",
+    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+  },
+  {
+    "id": 11,
+    "category": "Học bổng khuyến khích",
+    "complexity": "Khó",
+    "query": "Em được 95 điểm rèn luyện và học khối ngành Sức khỏe. Nếu học lực của em cũng đạt chuẩn cao nhất thì em nhận học bổng bao nhiêu?",
+    "expected_answer": "95 điểm rèn luyện xếp loại Xuất sắc. Ngành Sức khỏe (Khối VI) mức Xuất sắc là 10.560.000 đồng/học kỳ.",
+    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+  },
+  {
+    "id": 12,
+    "category": "Vay vốn",
+    "complexity": "Dễ",
+    "query": "Sinh viên vay vốn tại Ngân hàng Chính sách Xã hội theo Quyết định 157 được vay tối đa bao nhiêu một tháng?",
+    "expected_answer": "Tối đa 800.000 đồng/tháng (hay 8.000.000 đồng/năm học).",
+    "source_file": "VayVon.md"
+  },
+  {
+    "id": 13,
+    "category": "Vay vốn",
+    "complexity": "Dễ",
+    "query": "Lãi suất cho vay tiền sinh viên từ ngày 01/10/2007 trở đi là bao nhiêu?",
+    "expected_answer": "0.5%/tháng.",
+    "source_file": "VayVon.md"
+  },
+  {
+    "id": 14,
+    "category": "Vay vốn",
+    "complexity": "Trung bình",
+    "query": "Đối tượng nào được vay vốn trực tiếp tại Ngân hàng thay vì phải vay thông qua hộ gia đình?",
+    "expected_answer": "Sinh viên mồ côi cả cha lẫn mẹ, hoặc mồ côi cha/mẹ nhưng người còn lại không có khả năng lao động.",
+    "source_file": "VayVon.md"
+  },
+  {
+    "id": 15,
+    "category": "Vay vốn",
+    "complexity": "Trung bình",
+    "query": "Em học ngành Khoa học máy tính, muốn vay vốn theo Quyết định 29 thì lần đầu tiên vay em phải làm thủ tục mẫu phụ lục số mấy?",
+    "expected_answer": "Làm thủ tục theo mẫu Phụ lục I.",
+    "source_file": "VayVonChoSinhVienKyT.md"
+  },
+  {
+    "id": 16,
+    "category": "Vay vốn",
+    "complexity": "Khó",
+    "query": "Điều kiện học lực đối với sinh viên năm nhất muốn vay vốn theo Quyết định 29 là gì?",
+    "expected_answer": "Cần có đồng thời cả 3 năm THPT đạt từ mức Khá trở lên, HOẶC điểm trung bình môn lớp 12 các môn Toán, Vật lý, Hóa học, Sinh học từ 8 điểm trở lên.",
+    "source_file": "VayVonChoSinhVienKyT.md"
+  },
+  {
+    "id": 17,
+    "category": "Vay vốn",
+    "complexity": "Khó",
+    "query": "Sau khi tốt nghiệp ra trường, sinh viên vay vốn phải bắt đầu trả nợ gốc và lãi vay lần đầu tiên vào lúc nào?",
+    "expected_answer": "Khi có việc làm, có thu nhập nhưng không được quá 12 tháng kể từ ngày kết thúc khóa học.",
+    "source_file": "VayVon.md"
+  },
+  {
+    "id": 18,
+    "category": "Gài bẫy (Anti-Hallucination)",
+    "complexity": "Khó",
+    "query": "Trường mình có hỗ trợ cho sinh viên vay 30 triệu mua laptop để học ngành đồ họa không?",
+    "expected_answer": "Không có chính sách vay mua laptop. Theo các quy định hiện hành, vốn vay chỉ dùng để trang trải học phí, sinh hoạt phí và chi phí học tập.",
+    "source_file": "Ngoài ngữ cảnh"
+  },
+  {
+    "id": 19,
+    "category": "Gài bẫy (Anti-Hallucination)",
+    "complexity": "Khó",
+    "query": "Nếu em thi rớt môn nhưng điểm rèn luyện vẫn đạt 90 điểm thì em có được nhận học bổng không?",
+    "expected_answer": "Không có thông tin trực tiếp trong tài liệu phân bổ quỹ học bổng. Tuy nhiên, thông thường rớt môn sẽ không đủ điều kiện xét học bổng. (Chatbot nên trả lời là tài liệu không đề cập hoặc yêu cầu hỏi chi tiết quy chế).",
+    "source_file": "Ngoài ngữ cảnh"
+  },
+  {
+    "id": 20,
+    "category": "Gài bẫy (Anti-Hallucination)",
+    "complexity": "Khó",
+    "query": "Em ở vùng bão lũ miền Trung, trường có cấp học bổng thiên tai 5 triệu/tháng cho sinh viên khó khăn không?",
+    "expected_answer": "Không có thông tin về loại trợ cấp/học bổng 5 triệu/tháng cho thiên tai trong các văn bản này.",
+    "source_file": "Ngoài ngữ cảnh"
+  }
+]

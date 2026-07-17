@@ -1,41 +1,14 @@
-# 3530 29-7-2025 qd dinhmuchocbong 251.signed.signed
-
-Kế toán tài chính 1 (Trường Đại học Cần Thơ)
-
-BỘ GIÁO DỤC VÀ ĐÀO TẠO
-**TRƯỜNG ĐẠI HỌC CẦN THƠ**
-
-Số: 3530 /QĐ-ĐHCT
-
-**CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
-**Độc lập - Tự do - Hạnh phúc**
 
 *Cần Thơ, ngày 31 tháng 7 năm 2025*
 
 # QUYẾT ĐỊNH
 ## Về việc định mức học bổng khuyến khích học tập áp dụng từ học kỳ 1, năm học 2025-2026
 
-### HIỆU TRƯỞNG TRƯỜNG ĐẠI HỌC CẦN THƠ
+### QUYẾT ĐỊNH:
 
-Căn cứ Luật Giáo dục đại học ngày 18 tháng 6 năm 2012 và Luật sửa đổi, bổ sung một số điều của Luật Giáo dục đại học ngày 19 tháng 11 năm 2018;
+#### Điều 1. Quy định Học bổng khuyến khích cho sinh viên đại học, học hình thức **chính quy** tại trường theo khối ngành như sau:
 
-Căn cứ Nghị định số 99/2019/NĐ-CP của Chính phủ ngày 30 tháng 12 năm 2019 quy định chi tiết và hướng dẫn thi hành một số điều của Luật sửa đổi, bổ sung một số điều của Luật Giáo dục đại học;
-
-Căn cứ Thông tư số 10/2016/TT-BGDĐT ngày 05/4/2016 của Bộ trưởng Bộ Giáo dục và Đào tạo Ban hành Quy chế công tác sinh viên đối với chương trình đào tạo đại học hệ chính quy và các văn bản có liên quan;
-
-Căn cứ Nghị định số 84/2020/NĐ-CP của Chính phủ ngày 17 tháng 7 năm 2020 quy định chi tiết một số điều của Luật Giáo dục;
-
-Căn cứ Nghị quyết số 99/NQ-HĐT ngày 19 tháng 4 năm 2023 của Hội đồng Trường ban hành Quy chế Tổ chức và hoạt động của Trường Đại học Cần Thơ; Nghị quyết số 181/NQ-HĐT ngày 19 tháng 4 năm 2024 và Nghị quyết số 185/NQ-HĐT ngày 03 tháng 7 năm 2024 của Hội đồng Trường về sửa đổi bổ sung một số điều của Quy chế Tổ chức và hoạt động của Trường Đại học Cần Thơ;
-
-Căn cứ Quy định về công tác học vụ dành cho sinh viên bậc đại học và cao đẳng hệ chính quy, ban hành kèm theo Quyết định số 3266/QĐ-ĐHCT, ngày 15/8/2024 của Hiệu trưởng Trường Đại học Cần Thơ;
-
-Căn cứ Tờ trình số 255/TTr-CTSV, ngày 25/07/2025 của Phòng Công tác Sinh viên về điều chỉnh định mức học bổng khuyến khích áp dụng từ học kỳ 1, năm học 2025-2026 đã được Ban Giám hiệu phê duyệt;
-
-Theo đề nghị của Trưởng phòng Công tác Sinh viên.
-
-## QUYẾT ĐỊNH:
-
-**Điều 1.** Quy định Học bổng khuyến khích cho sinh viên đại học, học hình thức **chính quy** tại trường theo khối ngành như sau:
+*Dưới đây là bảng định mức chi tiết số tiền học bổng khuyến khích học tập 1 học kỳ cho tất cả các khối ngành (như Kinh doanh quản lý, Sức khỏe, CNTT, Khoa học tự nhiên, Sư phạm...) tương ứng với các loại Khá, Giỏi, Xuất sắc:*
 
 | STT | Khối ngành                                                                                   | Khối ngành                                                    | Mức học bổng (đồng/học kỳ) Khá | Mức học bổng (đồng/học kỳ) Giỏi | Mức học bổng (đồng/học kỳ) Xuất sắc |
 | --- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------- | ----------------------------------- | --------------------------------------- |
@@ -52,7 +25,7 @@ Theo đề nghị của Trưởng phòng Công tác Sinh viên.
 - Quỹ học bổng của học kỳ đầu tiên của khóa học theo khối lớp chuyên ngành: 8.0% số lượng SV x 7.500.000 đồng/học kỳ;
 - Định mức bình quân học bổng của học kỳ đầu tiên của khóa 51 *(áp dụng cho Sinh viên của tất cả các chương trình: đại trà, tiên tiến, chất lượng cao)*: 5.000.000 đồng/sinh viên/học kỳ; Riêng SV tuyển thẳng, ưu tiên xét tuyển năm 2025 được hưởng học bổng khuyến khích học tập là 6.000.000 đồng/học kỳ.
 
-## 4. PHÂN LOẠI KẾT QUẢ RÈN LUYỆN (Điều 9)
+#### 4. PHÂN LOẠI KẾT QUẢ RÈN LUYỆN (Điều 9)
 - Từ 90 đến 100 điểm ............... loại Xuất sắc;
 - Từ 80 đến dưới 90 điểm .......... loại Tốt;
 - Từ 65 đến dưới 80 điểm .......... loại Khá;
@@ -60,13 +33,12 @@ Theo đề nghị của Trưởng phòng Công tác Sinh viên.
 - Từ 35 đến dưới 50 điểm .......... loại Yếu;
 - Dưới 35 điểm........................... loại Kém
 
-**Điều 2.** Thời gian áp dụng từ học kỳ 1, năm học 2025-2026.
+#### Điều 2. Thời gian áp dụng từ học kỳ 1, năm học 2025-2026.
 
-**Điều 3.** Quyết định này có hiệu lực kể từ ngày ký. Chánh văn phòng Trường Đại học Cần Thơ, các Trưởng phòng: Công tác Sinh viên, Đào tạo, Kế hoạch và Tài chính; Thủ trưởng các đơn vị và sinh viên có liên quan căn cứ quyết định thi hành./.
+## Điều 3. Quyết định này có hiệu lực kể từ ngày ký. Chánh văn phòng Trường Đại học Cần Thơ, các Trưởng phòng: Công tác Sinh viên, Đào tạo, Kế hoạch và Tài chính; Thủ trưởng các đơn vị và sinh viên có liên quan căn cứ quyết định thi hành./.
 
 ***
 
-**HIỆU TRƯỞNG**
 
 *( BỘ GIÁO DỤC VÀ ĐÀO TẠO - TRƯỜNG ĐẠI HỌC CẦN THƠ)*
 
@@ -76,6 +48,4 @@ Theo đề nghị của Trưởng phòng Công tác Sinh viên.
 
 ***
 
-***Nơi nhận:***
-- Như Điều 3;
-- Lưu: VT, CTSV
+*

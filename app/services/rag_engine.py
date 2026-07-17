@@ -107,6 +107,68 @@ from app.core.database import SyncSessionLocal
 from app.models.schema import ParentDocument as DBParentDocument
 import json
 
+class SmartChildSplitter(RecursiveCharacterTextSplitter):
+    """
+    Splitter thông minh:
+    - Nếu là văn bản thường (prose), dùng RecursiveCharacterTextSplitter.
+    - Nếu là Bảng (table), tự động băm theo từng dòng, NHƯNG luôn đính kèm:
+      1. Prefix text (ngữ cảnh Header).
+      2. Tiêu đề cột (Table Headers).
+      3. Dòng Category gần nhất (Ví dụ: "Chương trình chất lượng cao").
+    Đảm bảo 100% ngữ cảnh semantic không bao giờ bị mất!
+    """
+    def split_text(self, text: str) -> List[str]:
+        if "Nội dung chi tiết:\n|" in text or text.strip().startswith("|"):
+            if "Nội dung chi tiết:\n" in text:
+                prefix, table_text = text.split("Nội dung chi tiết:\n", 1)
+                prefix += "Nội dung chi tiết:\n"
+            else:
+                prefix = ""
+                table_text = text
+
+            lines = table_text.split("\n")
+            is_separator = lambda s: bool(re.fullmatch(r'\|?[\s:\-|]+\|?', s)) and '-' in s and '|' in s
+            
+            if len(lines) >= 2 and is_separator(lines[1]):
+                header = lines[:2]
+                body = lines[2:]
+            else:
+                header = lines[:1]
+                body = lines[1:]
+                
+            chunks = []
+            current_chunk_lines = list(header)
+            last_category_row = None
+            
+            current_len = len(prefix) + sum(len(l) + 1 for l in current_chunk_lines)
+            
+            for line in body:
+                if not line.strip():
+                    continue
+                    
+                cells = [c.strip() for c in line.split('|')[1:-1] if c.strip()]
+                is_category_row = len(cells) <= 2
+                
+                if is_category_row:
+                    last_category_row = line
+                    
+                if current_len + len(line) + 1 > self._chunk_size and len(current_chunk_lines) > len(header):
+                    chunks.append(prefix + "\n".join(current_chunk_lines))
+                    current_chunk_lines = list(header)
+                    if last_category_row and not is_category_row:
+                        current_chunk_lines.append(last_category_row)
+                    current_len = len(prefix) + sum(len(l) + 1 for l in current_chunk_lines)
+
+                current_chunk_lines.append(line)
+                current_len += len(line) + 1
+                
+            if len(current_chunk_lines) > len(header):
+                chunks.append(prefix + "\n".join(current_chunk_lines))
+                
+            return chunks
+        else:
+            return super().split_text(text)
+
 class PostgresDocStore(BaseStore[str, Document]):
     """Kho lưu trữ Parent Document trên PostgreSQL để đảm bảo an toàn & tốc độ cao."""
     def __init__(self):
@@ -182,7 +244,7 @@ class AdvancedChunkingEngine:
         
         # 2. CẤU HÌNH CHILD SPLITTER (Độ phân giải Vector cao)
         # Chunk cực nhỏ (400 chars) để thuật toán Cosine Similarity đối sánh cực nhạy
-        self.child_splitter = RecursiveCharacterTextSplitter(
+        self.child_splitter = SmartChildSplitter(
             chunk_size=400,
             chunk_overlap=50,
             separators=["\n\n", "\n", ".", " "] # Ưu tiên cắt theo đoạn/dòng trước
@@ -351,18 +413,28 @@ class AdvancedChunkingEngine:
 
     def _split_parent_preserving_tables(self, raw_parent_docs: List[Document]) -> List[Document]:
         """Hướng A: chặt prose bằng RecursiveCharacterTextSplitter (lọc rác < 50 chars),
-        nhưng giữ bảng nguyên khối để không mất header cột."""
+        nhưng giữ bảng nguyên khối để không mất header cột.
+        Đồng thời TIÊM (INJECT) các thẻ Metadata (Header 1, Header 2...) vào đầu mỗi Chunk
+        để Mô hình nhúng (Embedding Model) không bị mất ngữ cảnh."""
         result: List[Document] = []
         for doc in raw_parent_docs:
+            # Tạo chuỗi Ngữ cảnh từ Metadata
+            header_context = " ".join([f"{k}: {v}" for k, v in doc.metadata.items() if k.startswith("Header")])
+            prefix_text = f"Ngữ cảnh tài liệu - {header_context}\nNội dung chi tiết:\n" if header_context else ""
+            
             for seg_type, seg_text in self._segment_by_table(doc.page_content):
                 if seg_type == "table":
                     for tbl in self._chunk_table(seg_text):
                         if tbl.strip():  # bảng không bị lọc theo ngưỡng 50 chars
-                            result.append(Document(page_content=tbl, metadata=dict(doc.metadata)))
+                            # Tiêm trực tiếp Ngữ cảnh vào nội dung Bảng
+                            tbl_with_context = prefix_text + tbl
+                            result.append(Document(page_content=tbl_with_context, metadata=dict(doc.metadata)))
                 else:
                     for piece in self.parent_splitter.split_text(seg_text):
                         if len(piece.strip()) >= 50:
-                            result.append(Document(page_content=piece, metadata=dict(doc.metadata)))
+                            # Tiêm trực tiếp Ngữ cảnh vào nội dung Prose
+                            piece_with_context = prefix_text + piece
+                            result.append(Document(page_content=piece_with_context, metadata=dict(doc.metadata)))
         return result
 
     def ingest_markdown_document(self, file_path: str) -> bool:

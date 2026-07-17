@@ -1,15 +1,10 @@
-ĐẠI HỌC CẦN THƠ
 **PHÒNG CÔNG TÁC SINH VIÊN**
-Số: 65 /TB-CTSV
 
-**CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
-**Độc lập – Tự do – Hạnh phúc**
 *Cần Thơ, ngày 06 tháng 3 năm 2026*
 
 # THÔNG BÁO
 ## Về việc xét cấp học bổng Lê Sở Memorial Scholarship of Excellence
 
-Kính gửi: Thủ trưởng các đơn vị có liên quan;
 
 Theo Thông tin nhận được ngày 06/3/2026 của Ban Điều hành học bổng **Lê Sở Memorial Scholarship of Excellence** dành cho sinh viên đại học; Phòng Công tác Sinh viên xin thông báo đến Thủ trưởng các đơn vị như sau:
 
@@ -42,8 +37,3 @@ Trân trọng kính chào./.
 *()*
 
 **Nguyễn Thanh Tường**
-
-**Nơi nhận:**
-- Như trên;
-- VP.Đoàn trường (để Thông báo);
-- Lưu: CTSV.

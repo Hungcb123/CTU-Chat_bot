@@ -1,15 +1,10 @@
-ĐẠI HỌC CẦN THƠ
 **PHÒNG CÔNG TÁC SINH VIÊN**
-Số: 58 /TB-CTSV
 
-**CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
-**Độc lập – Tự do – Hạnh phúc**
 *Cần Thơ, ngày 03 tháng 3 năm 2026*
 
 # THÔNG BÁO KHẨN
 ## Về việc trao học bổng Saigon Children’s Charity CIO (SCC), năm học 2025-2026
 
-Kính gửi: Thủ trưởng các đơn vị trong Đại học Cần Thơ
 
 Căn cứ Quyết định số 461/QĐ-UBND ngày 30/01/2026 của Ủy ban nhân dân thành phố Cần Thơ về việc phê duyệt khoản viện trợ dự án “Hỗ trợ học bổng cho sinh viên nghị lực và hiếu học, giai đoạn 2025 – 2027” do Tổ chức Saigon Children’s Charity CIO (SCC) tài trợ thông qua Liên hiệp các tổ chức hữu nghị Thành phố Cần Thơ, Phòng Công tác Sinh viên xin thông tin đến Thủ trưởng các đơn vị về học bổng Saigon Children’s Charity CIO (SCC), năm học 2025 – 2026 cho sinh viên Đại học Cần Thơ như sau:
 
@@ -28,9 +23,4 @@ Căn cứ Quyết định số 461/QĐ-UBND ngày 30/01/2026 của Ủy ban nhâ
 
 Trân trọng kính chào./.
 
-| Nơi nhận:        | TRƯỞNG PHÒNG       |
-| ---------------- | ------------------ |
-| - Như trên;      |                    |
-| - VP.Đoàn - Hội; | ()           |
-| - Lưu: CTSV.     |                    |
-|                  | Nguyễn Thanh Tường |
+|

@@ -1,17 +1,11 @@
-BỘ GIÁO DỤC VÀ ĐÀO TẠ
-**ĐẠI HỌC CẦN THƠ**
 
-Số: 3481 /TB-ĐHCT
 
-**CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
-**Độc lập – Tự do – Hạnh phúc**
 
 *Cần Thơ, ngày 30 tháng 9 năm 2025*
 
 # THÔNG BÁO
 ## Về việc triển khai Chương trình tín dụng đối với sinh viên, học viên thạc sĩ, nghiên cứu sinh học các ngành khoa học, công nghệ, kỹ thuật và toán
 
-Kính gửi: Thủ trưởng các đơn vị trong Trường
 
 Thực hiện Quyết định số 29/2025/QĐ-TTg, ngày 28/8/2025 của Thủ tướng Chính phủ về tín dụng đối với sinh viên, học viên thạc sĩ, nghiên cứu sinh học các ngành khoa học, công nghệ, kỹ thuật và toán (*Quyết định 29*); Công văn số 5423/BGDĐT-HSSV, ngày 09/9/2025 của Bộ Giáo dục và Đào tạo về triển khai Quyết định số 29/2025/QĐ-TTg, ngày 28/8/2025 về tín dụng đối với HSSV, học viên thạc sĩ, nghiên cứu sinh học các ngành khoa học, công nghệ, kỹ thuật và toán;
 
@@ -40,7 +34,7 @@ Sinh viên, học viên thạc sĩ, nghiên cứu sinh là công dân Việt Nam
 | 9   | Công nghệ tài chính                                                    | 7340205                       | --                            | --                                    |
 | 10  | Các ngành đào tạo công nghệ then chốt khác theo quy định của pháp luật |                               |                               |                                       |
 
-**2. Điều kiện vay vốn:**
+## 2. Điều kiện vay vốn:
 
 2.1. Sinh viên phải tốt nghiệp trung học phổ thông theo quy định của pháp luật và đáp ứng các điều kiện sau:
 
@@ -50,7 +44,7 @@ Sinh viên, học viên thạc sĩ, nghiên cứu sinh là công dân Việt Nam
 
 2.2. Học viên thạc sĩ, nghiên cứu sinh: **được ĐHCT công nhận là học viên thạc sĩ, nghiên cứu sinh của Trường.**
 
-**3. Thủ tục đăng ký vay vốn, địa điểm cấp giấy xác nhận:**
+## 3. Thủ tục đăng ký vay vốn, địa điểm cấp giấy xác nhận:
 
 3.1. Thủ tục đăng ký:
 
@@ -60,11 +54,11 @@ Sinh viên, học viên thạc sĩ, nghiên cứu sinh là công dân Việt Nam
 
 3.2. Địa điểm cấp giấy xác nhận vay vốn:
 
-- Sinh viên hình thức chính quy thực hiện thủ tục cấp giấy xác nhận tại văn phòng Phòng Công tác Sinh viên (theo đường dẫn: <u>https://dsa.ctu.edu.vn/images/upload/vbanply/2021/HotroOnline/Huongdan_Dangky_Xacnhan.pdf</u>) ;
+- Sinh viên hình thức chính quy thực hiện thủ tục cấp giấy xác nhận tại văn phòng Phòng Công tác Sinh viên (theo đường dẫn: https://dsa.ctu.edu.vn/images/upload/vbanply/2021/HotroOnline/Huongdan_Dangky_Xacnhan.pdf) ;
 
 - Học viên thạc sĩ, nghiên cứu sinh thực hiện thủ tục cấp giấy xác nhận tại văn phòng Khoa Sau đại học.
 
-**4. Địa điểm đề nghị vay vốn:**
+## 4. Địa điểm đề nghị vay vốn:
 
 Người học thuộc một trong các ngành được quy định tại Quyết định 29 có nhu cầu vay vốn nộp hồ sơ tại các Ngân hàng chính sách xã hội tại địa phương để được hỗ trợ thủ tục vay vốn theo quy định.
 
@@ -72,14 +66,7 @@ Người học thuộc một trong các ngành được quy định tại Quyế
 
 Trân trọng kính chào./.
 
-**HIỆU TRƯỞNG**
 
 *(Đã ký và đóng dấu)*
 
 **Trần Trung Tính**
-
-**Nơi nhận:**
-- Như trên;
-- Khoa SĐH (để phối hợp);
-- VP. Đoàn trường (để thông tin);
-- Lưu: VT, CTSV.

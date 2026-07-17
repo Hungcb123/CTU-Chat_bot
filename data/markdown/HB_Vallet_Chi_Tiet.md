@@ -48,19 +48,19 @@ Danh sách sinh viên và học viên cao học các Trường có thể nộp h
 
 **_Quy định:_** Hồ sơ đăng ký học bổng: tất cả hồ sơ minh chứng (theo đúng thứ tự yêu cầu) phải được tạo thành một tập tin duy nhất có định dạng .pdf theo quy định tên: Họ và tên-Ký hiệu tên trường. Ví dụ: Nguyễn Văn A - HCMUT, hay Nguyễn Văn B - HCMUS.
 
-1. Phiếu đăng ký học bổng
-2. Bảng điểm các học kỳ chính khóa. Điểm xét học bổng căn cứ vào điểm trung bình tích lũy (TBTL) của các học kỳ như sau: kết quả được dùng để tính học bổng gồm điểm TBTL năm học 2024-2025 và HK I năm học 2025-2026, áp dụng cho cả chương trình có 2 học kỳ chính trong một năm học và 3 Học kỳ chính trong năm học. **Các bảng điểm đều phải có xác nhận của Nhà trường** và điểm dùng để đăng ký học bổng phải theo bảng điểm đã được Nhà trường xác nhận.
-3. Bản mềm các công trình nghiên cứu (chụp trang bìa, trang đầu bài báo và trang cuối bài báo) chưa được dùng để xét thành công học bổng các năm trước (nếu có);
-4. Minh chứng của 02 giải thưởng cao nhất các cấp (nếu có);
-5. Bản chụp chứng chỉ ngoại ngữ (nếu có);
-6. Minh chứng của 01 hoạt động xã hội (nếu có).
-7. Bản chụp CMND/CCCD 2 mặt;
-8. Bản chụp thẻ sinh viên;
+## 1. Phiếu đăng ký học bổng
+## 2. Bảng điểm các học kỳ chính khóa. Điểm xét học bổng căn cứ vào điểm trung bình tích lũy (TBTL) của các học kỳ như sau: kết quả được dùng để tính học bổng gồm điểm TBTL năm học 2024-2025 và HK I năm học 2025-2026, áp dụng cho cả chương trình có 2 học kỳ chính trong một năm học và 3 Học kỳ chính trong năm học. **Các bảng điểm đều phải có xác nhận của Nhà trường** và điểm dùng để đăng ký học bổng phải theo bảng điểm đã được Nhà trường xác nhận.
+## 3. Bản mềm các công trình nghiên cứu (chụp trang bìa, trang đầu bài báo và trang cuối bài báo) chưa được dùng để xét thành công học bổng các năm trước (nếu có);
+## 4. Minh chứng của 02 giải thưởng cao nhất các cấp (nếu có);
+## 5. Bản chụp chứng chỉ ngoại ngữ (nếu có);
+## 6. Minh chứng của 01 hoạt động xã hội (nếu có).
+## 7. Bản chụp CMND/CCCD 2 mặt;
+## 8. Bản chụp thẻ sinh viên;
 
 ## IV. Quy trình xét
 
 1- **Đăng ký và nộp hồ sơ:** Hình thức trực tuyến (online) theo đường dẫn:
-<u>https://forms.gle/YXrojGZ9SbWjFrPB6</u>
+https://forms.gle/YXrojGZ9SbWjFrPB6
 
 a/ Thời gian đăng ký trực tuyến: 01/6/2026 – 15/6/2026;
 
@@ -74,7 +74,7 @@ c/ Các thông tin của ứng viên đã nộp sẽ được gửi về các ph
 
 Kết quả học bổng sẽ được gửi về trường và email sinh viên do Nhà trường cung cấp, dự kiến giữa tháng 8/2025.
 
-Mọi thắc mắc vui lòng gửi về email: <u>hbvalletmiennam.dh@gmail.com</u> (đại học)
+Mọi thắc mắc vui lòng gửi về email: hbvalletmiennam.dh@gmail.com (đại học)
 
 Thời gian và địa điểm trao học bổng (dự kiến): dự kiến vào sáng ngày 04/9/2026 tại Nhà hát Thành phố HCM, số 07 Công Trường Lam Sơn, Phường Sài Gòn, Thành phố Hồ Chí Minh.
 
@@ -84,8 +84,8 @@ Thời gian và địa điểm trao học bổng (dự kiến): dự kiến vào
 * Địa chỉ: Khu 2, đường 3 tháng 2, phường Ninh Kiều, Thành phố Cần Thơ
 * Đơn vị hỗ trợ sinh viên và học viên cao học: Phòng Công tác Sinh viên
 * Thông tin liên hệ:
-1. Thầy Phan Quang Vinh - Phó Trưởng phòng Công tác Sinh viên - email <u>pqvinh@ctu.edu.vn</u>
-2. Cô Phạm Ngọc Diễm - Chuyên viên Phòng Công tác Sinh viên - email <u>pndiem@ctu.edu.vn</u>
+## 1. Thầy Phan Quang Vinh - Phó Trưởng phòng Công tác Sinh viên - email pqvinh@ctu.edu.vn
+## 2. Cô Phạm Ngọc Diễm - Chuyên viên Phòng Công tác Sinh viên - email pndiem@ctu.edu.vn
 
 *Các đơn vị của Đại học Cần Thơ được tham gia chương trình học bổng:*
 * Trường Khoa học Tự nhiên
@@ -101,8 +101,8 @@ Thời gian và địa điểm trao học bổng (dự kiến): dự kiến vào
 * Địa chỉ: 268 Lý Thường Kiệt, Phường Diên Hồng, Tp.HCM
 * Đơn vị hỗ trợ sinh viên và học viên cao học: Phòng Công tác sinh viên
 * Thông tin liên hệ:
-1. Lê Thanh Long - Phó trưởng Phòng Công tác sinh viên - Email: <u>ltlong@hcmut.edu.vn</u>
-2. Phạm Thị Kim Phượng - Chuyên viên Phòng Công tác sinh viên: <u>kimphuongctct@hcmut.edu.vn</u>
+## 1. Lê Thanh Long - Phó trưởng Phòng Công tác sinh viên - Email: ltlong@hcmut.edu.vn
+## 2. Phạm Thị Kim Phượng - Chuyên viên Phòng Công tác sinh viên: kimphuongctct@hcmut.edu.vn
 
 *Các khoa của trường được tham gia chương trình học bổng:*
 * Khoa Khoa học và Kỹ thuật máy tính
@@ -123,8 +123,8 @@ Thời gian và địa điểm trao học bổng (dự kiến): dự kiến vào
 *   Địa chỉ: 227 Nguyễn Văn Cừ, Phường Chợ Quán, Tp. HCM
 *   Đơn vị hỗ trợ sinh viên và học viên cao học: Phòng Công tác sinh viên
 *   Thông tin liên hệ:
-    1. Cô Nguyễn Thị Ngọc Hân - Trưởng phòng Phòng Công tác sinh viên-Email: <u>ngtnhan@hcmus.edu.vn</u>
-    2. Cô Nguyễn Thương Nhiệm - Chuyên viên Phòng Công tác sinh viên-Email: <u>ntnhiem@hcmus.edu.vn</u>
+    1. Cô Nguyễn Thị Ngọc Hân - Trưởng phòng Phòng Công tác sinh viên-Email: ngtnhan@hcmus.edu.vn
+    2. Cô Nguyễn Thương Nhiệm - Chuyên viên Phòng Công tác sinh viên-Email: ntnhiem@hcmus.edu.vn
 
 *Các khoa của trường được tham gia chương trình học bổng:*
 *   Khoa Toán – Tin học
@@ -141,8 +141,8 @@ Thời gian và địa điểm trao học bổng (dự kiến): dự kiến vào
 *   Địa chỉ: 59C Nguyễn Đình Chiểu, phường Xuân Hòa, TP.HCM
 *   Đơn vị hỗ trợ sinh viên và học viên cao học: Ban Chăm sóc người học
 *   Thông tin liên hệ: 279 Nguyễn Tri Phương, phường Diên Hồng, TP.HCM
-    1. ThS. Trần Thị Thúy Hải - Phó trưởng ban - Email: <u>haittt@ueh.edu.vn</u>
-    2. Nguyễn Minh Lộc - Chuyên viên Ban Chăm sóc người học - Email: <u>ngmloc@ueh.edu.vn</u>
+    1. ThS. Trần Thị Thúy Hải - Phó trưởng ban - Email: haittt@ueh.edu.vn
+    2. Nguyễn Minh Lộc - Chuyên viên Ban Chăm sóc người học - Email: ngmloc@ueh.edu.vn
 
     *Các khoa của trường được tham gia chương trình học bổng:*
     *   TRƯỜNG KINH DOANH
@@ -188,8 +188,8 @@ Thông tin liên hệ:
 * Địa chỉ: 280 An Dương Vương, phường Chợ Quán, Thành phố Hồ Chí Minh
 * Đơn vị hỗ trợ sinh viên và học viên cao học: Phòng CTCT&HSSV (sinh viên) và Phòng Sau đại học (học viên cao học)
 * Thông tin liên hệ:
-1. Phạm Chung Thủy - Phó Trưởng phòng CTCT&HSSV: <u>thuypc@hcmue.edu.vn</u>
-2. Phạm Thị Thanh Hà - Chuyên viên Phòng CTCT&HSSV: <u>haptt@hcmue.edu.vn</u>
+## 1. Phạm Chung Thủy - Phó Trưởng phòng CTCT&HSSV: thuypc@hcmue.edu.vn
+## 2. Phạm Thị Thanh Hà - Chuyên viên Phòng CTCT&HSSV: haptt@hcmue.edu.vn
 *Các khoa của trường được tham gia chương trình học bổng:*
 * Khoa Toán – Tin học
 * Khoa Công nghệ Thông tin
@@ -201,8 +201,8 @@ Thông tin liên hệ:
 * Địa chỉ: Số 01 Võ Văn Ngân, Phường Thủ Đức, Thành phố Hồ Chí Minh
 * Đơn vị hỗ trợ sinh viên: Phòng Công tác sinh viên (sinh viên) và Viện Sau đại học (học viên cao học)
 * Thông tin liên hệ:
-1. Phan Nguyễn Duy An - Phòng CTSV - Email: <u>anpnd@hcmute.edu.vn</u>
-2. Phạm Thị Hoa - Viện Sau Đại học - Email: <u>hoapt@hcmute.edu.vn</u>
+## 1. Phan Nguyễn Duy An - Phòng CTSV - Email: anpnd@hcmute.edu.vn
+## 2. Phạm Thị Hoa - Viện Sau Đại học - Email: hoapt@hcmute.edu.vn
 *Các khoa của trường được tham gia chương trình học bổng:*
 * Khoa Khoa học ứng dụng
 * Viện Sư phạm Kỹ thuật
@@ -217,12 +217,12 @@ Thông tin liên hệ:
 4. **Đại học Y Dược Thành phố Hồ Chí Minh**
 * Địa chỉ: 217 Hồng Bàng, Phường Chợ Lớn, TP. Hồ Chí Minh
 * Đơn vị hỗ trợ sinh viên và học viên cao học: Phòng Công tác sinh viên
-* Thông tin liên hệ: <u>ctsv@ump.edu.vn</u> SĐT: 02838537976
-Trưởng phòng: Huỳnh Hồ Ngọc Quỳnh (<u>hhnquynhytcc@ump.edu.vn</u>)
+* Thông tin liên hệ: ctsv@ump.edu.vn SĐT: 02838537976
+Trưởng phòng: Huỳnh Hồ Ngọc Quỳnh (hhnquynhytcc@ump.edu.vn)
 
 5
 
-Phó Trưởng phòng: Phạm Tuấn Hiệp (<u>tuanhiep@ump.edu.vn</u>)
+Phó Trưởng phòng: Phạm Tuấn Hiệp (tuanhiep@ump.edu.vn)
 *Các khoa của trường được tham gia chương trình học bổng:*
 * Trường Y
 * Trường Dược
@@ -235,8 +235,8 @@ Phó Trưởng phòng: Phạm Tuấn Hiệp (<u>tuanhiep@ump.edu.vn</u>)
 * Địa chỉ: Số 179, đường Nguyễn Văn Cừ, P. Tân An, TP. Cần Thơ
 * Đơn vị hỗ trợ sinh viên và học viên cao học: Phòng Công tác người học
 * Thông tin liên hệ:
-TS. Ngô Phương Thảo - Trưởng phòng Công tác người học - email: <u>npthao@ctump.edu.vn</u> ;
-ThS. Nguyễn Thọ Sơn - Chuyên viên phòng Công tác người học - email: <u>ntson@ctump.edu.vn</u>
+TS. Ngô Phương Thảo - Trưởng phòng Công tác người học - email: npthao@ctump.edu.vn ;
+ThS. Nguyễn Thọ Sơn - Chuyên viên phòng Công tác người học - email: ntson@ctump.edu.vn
 *Các khoa của trường được tham gia chương trình học bổng:*
 * Khoa Y
 * Khoa Dược
@@ -250,7 +250,7 @@ ThS. Nguyễn Thọ Sơn - Chuyên viên phòng Công tác người học - emai
 * Địa chỉ: 567 Nguyễn Cửu Phú, xã Tân Nhựt, TP. Hồ Chí Minh
 * Đơn vị hỗ trợ sinh viên và học viên cao học: Phòng Công tác Sinh viên và Phòng Quản lí Đào tạo Sau Đại học
 * Thông tin liên hệ:
-Phòng Công tác Sinh viên: Lê Đặng Quốc Thái - 0366.292.177 - Email: <u>Thaildq@pnt.edu.vn</u>
+Phòng Công tác Sinh viên: Lê Đặng Quốc Thái - 0366.292.177 - Email: Thaildq@pnt.edu.vn
 Phòng Quản lý Đào tạo Sau Đại học: Ngô Minh Vinh - 0913653921
 
 6

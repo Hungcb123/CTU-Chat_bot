@@ -1,64 +1,21 @@
-# HƯỚNG DẪN SINH VIÊN ĐĂNG KÝ MẪU XÁC NHẬN
+# HƯỚNG DẪN SINH VIÊN ĐĂNG KÝ MẪU XÁC NHẬN VAY VỐN TRỰC TUYẾN
 
-### 1. Đăng ký in mẫu đơn xác nhận:
-Sau khi đăng nhập thành công vào hệ thống, sinh viên vào **"Kết quả học tập"**
+**Ngữ cảnh:** Tài liệu hướng dẫn chi tiết các bước để sinh viên tự đăng ký hoặc hủy đăng ký mẫu đơn xác nhận vay vốn trên hệ thống quản lý học tập của Trường Đại học Cần Thơ.
 
-*   Kế hoạch học tập
-*   Đăng ký học phần
-*   <mark>**Kết quả học tập**</mark>
-*   Kết quả tốt nghiệp
-*   Nghiên cứu khoa học
-*   Ký túc xá
-*   Hệ thống lấy ý kiến trực tuyến
-*   Hoạt động ngoại khóa
-*   Đoàn viên
-*   Đăng ký ngành 2
-*   Đánh giá rèn luyện
-*   Phòng học
+## 1. Các bước đăng ký in mẫu đơn xác nhận vay vốn
+Để đăng ký mẫu đơn xác nhận vay vốn (hoặc các loại giấy xác nhận khác), sinh viên thực hiện theo các bước sau:
+- **Bước 1:** Đăng nhập vào hệ thống quản lý sinh viên của Trường Đại học Cần Thơ.
+- **Bước 2:** Truy cập vào menu **Kết quả học tập**.
+- **Bước 3:** Chuyển sang tab **Yêu cầu xác nhận**.
+- **Bước 4:** Tại giao diện Danh sách các yêu cầu xác nhận, bấm chọn nút **Đăng ký**.
+- **Bước 5:** Trong danh sách Tên mẫu xác nhận, chọn mục **"1 - Đơn yêu cầu xác nhận vay vốn"**.
+- **Bước 6:** Bấm nút **Thêm**. Hệ thống sẽ thông báo đăng ký thành công.
 
-Sau đó vào **"Yêu cầu xác nhận"**
+*Lưu ý: Sau khi đăng ký thành công, sinh viên theo dõi trạng thái đơn trên hệ thống. Sinh viên sẽ nhận được mẫu xác nhận tại Phòng Công tác Sinh viên sau vài ngày làm việc (khi trạng thái chuyển sang Đã in).*
 
-| Xem kết quả học tập | In bảng điểm cá nhân | Xác nhận thông tin học bổng | *Yêu cầu xác nhận* |
-| ------------------- | -------------------- | --------------------------- | ------------------ |
-
-Danh sách hiển thị các mẫu xác nhận sinh viên đã đăng ký. Chọn **"Đăng ký"**
-
-| Danh sách các yêu cầu xác nhận             | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận |
-| ------------------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| Tên mẫu xác nhận: \[Tất cả v]              |                                | Trạng thái: \[Chưa in v]       |                                | \[Liệt kê]                     |                                |
-| \[ ] Không phân trang Dòng trên trang \[0] |                                |                                |                                |                                |                                |
-| STT                                        | Tên mẫu xác nhận               | Ngày yêu cầu                   | Trạng thái                     | Chọn \[ ]                      |                                |
-| Không có dữ liệu !                         |                                |                                |                                |                                |                                |
-| \[*Đăng ký*] \[Xóa]                        |                                |                                |                                |                                |                                |
-
-Tiếp theo, sinh viên chọn mẫu đơn cần đăng ký và chọn Thêm, khi đó sinh viên đã đăng ký thành công.
-
-| Đăng ký xác nhận  | Đăng ký xác nhận                        |
-| ----------------- | --------------------------------------- |
-| Tên mẫu xác nhận: | *1 - Đơn yêu cầu xác nhận vay vốn* \[v] |
-| *Thêm* Trở về     |                                         |
-
-Danh sách sẽ hiển thị các mẫu đơn sinh viên đã đăng ký, trạng thái in và số ngày nhận mẫu đơn theo quy định từ Phòng Công tác Sinh viên.
-
-| Danh sách các yêu cầu xác nhận                                           | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận |
-| ------------------------------------------------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| Tên mẫu xác nhận: Tất cả \[v] \|                                         |                                | Trạng thái: Chưa in \[v] \|    |                                | Liệt kê                        |                                |
-| \[ ] Không phân trang Dòng trên trang \[1]                               |                                |                                |                                |                                |                                |
-| STT \| Tên mẫu xác nhận \| Ngày yêu cầu \| Trạng thái \| Chọn \[ ]       |                                |                                |                                |                                |                                |
-| 1 \| Đơn yêu cầu xác nhận vay vốn \| 08-09-2021 17:07 \| Chưa in \| \[x] |                                |                                |                                |                                |                                |
-| Tổng số: 1 đơn \| Trang 1 / 1 \[1] 1 \| Chuyển                           |                                |                                |                                |                                |                                |
-| *Ghi chú: Sinh viên sẽ nhận được mẫu xác nhận sau ngày làm việc.*        |                                |                                |                                |                                |                                |
-| Đăng ký Xóa                                                              |                                |                                |                                |                                |                                |
-
-### 2. Xóa mẫu đơn xác nhận đã đăng ký:
-Đối với các mẫu đơn chưa in sinh viên có thể xóa đăng ký bằng cách chọn ở cột bên phải và click Xóa.
-
-| Danh sách các yêu cầu xác nhận                                             | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận | Danh sách các yêu cầu xác nhận |
-| -------------------------------------------------------------------------- | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| Tên mẫu xác nhận: Tất cả \[v] \|                                           |                                | Trạng thái: Chưa in \[v] \|    |                                | Liệt kê                        |                                |
-| \[ ] Không phân trang Dòng trên trang \[1]                                 |                                |                                |                                |                                |                                |
-| STT \| Tên mẫu xác nhận \| Ngày yêu cầu \| Trạng thái \| *Chọn \[ ]*       |                                |                                |                                |                                |                                |
-| 1 \| Đơn yêu cầu xác nhận vay vốn \| 08-09-2021 17:07 \| Chưa in \| *\[x]* |                                |                                |                                |                                |                                |
-| Tổng số: 1 đơn \| Trang 1 / 1 \[1] 1 \| Chuyển                             |                                |                                |                                |                                |                                |
-| *Ghi chú: Sinh viên sẽ nhận được mẫu xác nhận sau ngày làm việc.*          |                                |                                |                                |                                |                                |
-| Đăng ký *Xóa*                                                              |                                |                                |                                |                                |                                |
+## 2. Cách xóa mẫu đơn xác nhận đã đăng ký
+Trong trường hợp sinh viên đăng ký nhầm hoặc không còn nhu cầu, sinh viên có thể hủy đăng ký nếu đơn chưa được xử lý:
+- **Bước 1:** Truy cập vào mục **Yêu cầu xác nhận** như hướng dẫn ở phần trên.
+- **Bước 2:** Tìm đến mẫu đơn cần xóa (Chỉ xóa được đối với các đơn có trạng thái là **Chưa in**).
+- **Bước 3:** Đánh dấu tick `[x]` vào ô **Chọn** ở cột ngoài cùng bên phải của mẫu đơn đó.
+- **Bước 4:** Bấm nút **Xóa** ở phía dưới danh sách để hoàn tất việc hủy yêu cầu.

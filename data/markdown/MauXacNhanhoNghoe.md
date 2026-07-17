@@ -1,36 +1,6 @@
-3
+# Biểu mẫu: Giấy xác nhận hộ nghèo, hộ cận nghèo
 
-**ỦY BAN NHÂN DÂN XÃ     ** | **CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
-:--- | :---
-**Số:     /GXN-HN.HCN** | **Độc lập - Tự do - Hạnh phúc**
-| *    , ngày      tháng      năm     *
+**Ngữ cảnh:** Khi sinh viên cần nộp Giấy xác nhận hộ nghèo/cận nghèo để làm hồ sơ miễn giảm học phí, sinh viên cần xin xác nhận từ Ủy ban nhân dân xã/phường nơi cư trú.
 
-# GIẤY XÁC NHẬN HỘ NGHÈO, HỘ CẬN NGHÈO
-
-*Căn cứ Luật Tổ chức chính quyền địa phương ngày 16 tháng 6 năm 2025;*
-
-*Căn cứ Nghị định số 07/2021/NĐ-CP ngày 27 tháng 01 năm 2021 của Chính phủ quy định chuẩn nghèo đa chiều giai đoạn 2021 - 2025;*
-
-*Căn cứ kết quả rà soát hộ nghèo, hộ cận nghèo hằng năm trên địa bàn, Chủ tịch Ủy ban nhân dân xã      xác nhận:*
-
-Hộ gia đình ông/bà:      Dân tộc:
-Số CCCD:      Ngày cấp:
-Nơi thường trú:
-
-**Danh sách thành viên trong hộ gia đình:**
-
-| Số TT | Họ và tên | Dân tộc | Quan hệ với chủ hộ | Năm sinh \[thead] Nam | Năm sinh \[thead] Nữ | Ghi chú (trường hợp gia đình có sự thay đổi các thành viên trong hộ) Nữ |
-| ----- | --------- | ------- | ------------------ | ------------------------- | ------------------------ | --------------------------------------------------------------------------- |
-| 1     |           |         |                    |                           |                          |                                                                             |
-| 2     |           |         |                    |                           |                          |                                                                             |
-| 3     |           |         |                    |                           |                          |                                                                             |
-| 4     |           |         |                    |                           |                          |                                                                             |
-
-Theo kết quả phân loại hộ gia đình giai đoạn 2022 – 2025: Năm 2025, Hộ gia đình ông/bà:      thuộc diện gia đình:
-
-**_Nơi nhận:_**
-- Hộ gia đình;
-- Các đơn vị có liên quan;
-- Lưu: VT.
-
-**CHỦ TỊCH**
+- **Tải biểu mẫu:** Sinh viên có thể tải biểu mẫu "Giấy xác nhận hộ nghèo, hộ cận nghèo" bản chuẩn (file Word/PDF) tại trang web của Phòng Công tác Sinh viên Trường Đại học Cần Thơ.
+- **Quy trình:** Sinh viên in biểu mẫu này ra, điền đầy đủ thông tin thành viên trong hộ gia đình và mang đến Ủy ban nhân dân xã/phường (kèm theo sổ hộ nghèo bản gốc) để xin chữ ký và đóng dấu mộc đỏ của Chủ tịch UBND xã. Sau đó nộp lại bản gốc (hoặc bản sao có công chứng) cho Phòng Công tác Sinh viên.

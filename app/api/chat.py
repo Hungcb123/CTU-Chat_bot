@@ -77,13 +77,17 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
         rewrite_prompt = ChatPromptTemplate.from_messages([
             ("system", """Bạn là một chuyên gia ngôn ngữ học và kỹ sư tối ưu tìm kiếm (Prompt Engineer). Nhiệm vụ của bạn là VIẾT LẠI câu hỏi của người dùng cho rõ nghĩa hơn và MỞ RỘNG TỪ KHÓA (Query Expansion) để hệ thống Vector Search tìm được tài liệu chính xác nhất.
 Quy tắc BẮT BUỘC:
-1. [BỔ SUNG NGỮ CẢNH]: Nếu câu hỏi bị cụt (ví dụ: "vậy còn ngành CNTT thì sao?"), hãy lấy ngữ cảnh từ Lịch sử Chat đắp vào.
-2. [MỞ RỘNG VAY VỐN]: Nếu người dùng hỏi chung chung về "vay vốn", "vay tiền học", "gia đình khó khăn", "thu nhập trung bình"... mà không nói rõ ngân hàng nào, BẮT BUỘC phải viết lại câu hỏi có chứa cụm từ: "vay vốn qua Ngân hàng Chính sách xã hội (NHCSXH) và vay tiền đóng học phí qua Ngân hàng thương mại VietinBank".
-3. [MỞ RỘNG HỌC BỔNG]: Nếu hỏi chung chung về "học bổng", hãy viết lại có chứa cụm từ: "Học bổng khuyến khích học tập (ngân sách nhà nước) và Học bổng tài trợ từ doanh nghiệp bên ngoài".
-4. Nếu câu hỏi đã nhắc đích danh một tên cụ thể (như VietinBank, học bổng Vallet), thì chỉ làm rõ câu hỏi, không cần nhét thêm các nguồn khác.
-5. TUYỆT ĐỐI KHÔNG trả lời câu hỏi. CHỈ in ra 1 câu duy nhất là câu truy vấn đã được tối ưu.
-6. KHÔNG giải thích, KHÔNG nhắc đến các ví dụ trong hướng dẫn này."""),
-            ("human", "Lịch sử Chat:\n{history_text}\n\nCâu hỏi hiện tại: {question}\n\nViết lại và tối ưu câu truy vấn:")
+1. [NGỮ CẢNH ĐỘC QUYỀN]: Tất cả ngữ cảnh đều thuộc về "Trường Đại học Cần Thơ" (CTU). TUYỆT ĐỐI KHÔNG tự bịa đặt, suy diễn thêm tên các trường đại học khác (ví dụ: ĐHQGHN, Bách Khoa...).
+2. [BỔ SUNG NGỮ CẢNH]: Nếu câu hỏi bị cụt (ví dụ: "vậy còn ngành CNTT thì sao?"), hãy lấy ngữ cảnh từ Lịch sử Chat đắp vào.
+3. [MỞ RỘNG VAY VỐN]: Nếu người dùng hỏi chung chung về "vay vốn", "vay tiền học", "gia đình khó khăn", "thu nhập trung bình"... mà không nói rõ ngân hàng nào, BẮT BUỘC phải viết lại câu hỏi có chứa cụm từ: "vay vốn qua Ngân hàng Chính sách xã hội (NHCSXH) và vay tiền đóng học phí qua Ngân hàng thương mại VietinBank".
+4. [MỞ RỘNG HỌC BỔNG]: Nếu hỏi chung chung về "học bổng", hãy viết lại có chứa cụm từ: "Học bổng khuyến khích học tập (ngân sách nhà nước) và Học bổng tài trợ từ doanh nghiệp bên ngoài".
+5. Nếu câu hỏi đã nhắc đích danh một tên cụ thể (như VietinBank, học bổng Vallet), thì chỉ làm rõ câu hỏi, không cần nhét thêm các nguồn khác.
+6. [MỞ RỘNG KHÓA VÀ HỆ ĐÀO TẠO]: Nếu câu hỏi liên quan đến học phí, BẮT BUỘC phải làm rõ thông tin về "Khóa" (VD: K45 -> Khóa 45, K52 -> Khóa 52). Quan trọng:
+   - Nếu người dùng KHÔNG nhắc đến chữ "chất lượng cao", "clc", "tiên tiến", hãy BỔ SUNG cụm từ "Đại trà" vào truy vấn để tránh bị nhầm với hệ CLC.
+7. [MỞ RỘNG MIỄN GIẢM]: Nếu câu hỏi nhắc đến "miễn giảm", "trừ tiền học", "cơ sở tính miễn giảm", BẮT BUỘC phải BỔ SUNG cụm từ "làm cơ sở để tính miễn, giảm học phí" vào truy vấn.
+8. TUYỆT ĐỐI KHÔNG trả lời câu hỏi. CHỈ in ra 1 câu duy nhất là câu truy vấn đã được tối ưu.
+9. KHÔNG giải thích, KHÔNG nhắc đến các ví dụ trong hướng dẫn này."""),
+            ("human", "Lịch sử Chat:\n{history_text}\n\nCâu hỏi hiện tại: {question}\n\nViết lại và tối ưu câu truy vấn cho Đại học Cần Thơ:")
         ])
         
         rewrite_chain = rewrite_prompt | rewrite_llm | StrOutputParser()
@@ -104,6 +108,47 @@ Quy tắc BẮT BUỘC:
 
         # --- BƯỚC 2: RÚT TRÍCH TÀI LIỆU TỪ VECTOR DB ---
         docs = engine.retriever.invoke(search_query)
+        
+        # --- DEBUG LOG: Ghi lại 6 Parent Documents được Reranker chọn ---
+        try:
+            import os
+            from datetime import datetime
+            log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "logs")
+            os.makedirs(log_dir, exist_ok=True)
+            log_file = os.path.join(log_dir, "retrieved_docs.log")
+            
+            log_lines = []
+            log_lines.append(f"\n{'='*80}")
+            log_lines.append(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] QUERY GỐC: {request.query}")
+            log_lines.append(f"[SEARCH QUERY (sau Rewrite)]: {search_query}")
+            log_lines.append(f"[SỐ LƯỢNG DOCS TRẢ VỀ]: {len(docs)}")
+            log_lines.append(f"{'-'*80}")
+            
+            for i, doc in enumerate(docs):
+                source = doc.metadata.get('source', 'N/A')
+                headers = {k: v for k, v in doc.metadata.items() if k.startswith("Header_")}
+                effective_date = doc.metadata.get('effective_date', 'N/A')
+                preview = doc.page_content[:700].replace('\n', ' ')
+                
+                log_lines.append(f"  [{i+1}] Source: {source} | Date: {effective_date}")
+                log_lines.append(f"      Headers: {headers}")
+                log_lines.append(f"      Preview: {preview}...")
+                log_lines.append(f"      Length: {len(doc.page_content)} chars")
+                log_lines.append("")
+                
+            log_lines.append(f"{'='*80}\n")
+            log_text = "\n".join(log_lines)
+            
+            # Ghi ra console log
+            logger.info(f"📄 Retrieved {len(docs)} Parent Docs cho query: '{request.query}'")
+            for i, doc in enumerate(docs):
+                logger.info(f"  Doc [{i+1}]: {doc.metadata.get('source', '?')} | {doc.page_content[:120]}...")
+            
+            # Ghi ra file (append mode)
+            with open(log_file, "a", encoding="utf-8") as f:
+                f.write(log_text)
+        except Exception as debug_err:
+            logger.warning(f"⚠️ Debug log ghi thất bại (không ảnh hưởng hệ thống): {debug_err}")
         
         # Ghép nội dung và tiêm lại Header từ Metadata để LLM không bị mất bối cảnh ở các đoạn bị cắt ngang
         context_blocks = []

@@ -1,21 +1,16 @@
-ĐẠI HỌC CẦN THƠ
 **PHÒNG CÔNG TÁC SINH VIÊN**
 
-Số: 69 /TB-CTSV
 
-**CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**
-**Độc lập – Tự do – Hạnh phúc**
 
 *Cần Thơ, ngày 12 tháng 3 năm 2026*
 
 # THÔNG BÁO KHẨN
 ## Về việc trao học bổng Hội Khuyến học tỉnh Tây Ninh năm học 2025-2026
 
-Kính gửi: Thủ trưởng các đơn vị trong Đại học Cần Thơ
 
 Thoe thông tin nhận được từ Hội Khuyến học tỉnh Tây Ninh về việc hỗ trợ các suất học bổng cho sinh viên, Phòng Công tác Sinh viên xin thông tin đến Thủ trưởng các đơn vị về chương trình học bổng, năm học 2025 – 2026 cho sinh viên Đại học Cần Thơ (ĐHCT) như sau:
 
-**1. Đối tượng, điều kiện xét cấp học bổng:**
+## 1. Đối tượng, điều kiện xét cấp học bổng:
 
 | STT | Tiêu chí                                                  | Diễn giải                                                                                                                                                                                                                                                                                                                  |
 | --- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -29,14 +24,3 @@ Thoe thông tin nhận được từ Hội Khuyến học tỉnh Tây Ninh về 
 Đề nghị Thủ trưởng các đơn vị quan tâm triển khai cho sinh viên được biết tham gia chương trình học bổng có ý nghĩa này.
 
 Trân trọng kính chào./.
-
-**Nơi nhận:**
-- Như trên;
-- VP.Đoàn - Hội;
-- Lưu: CTSV.
-
-**TRƯỞNG PHÒNG**
-
-*()*
-
-**Nguyễn Thanh Tường**
