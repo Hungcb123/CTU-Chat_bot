@@ -5,8 +5,8 @@
     "complexity": "Dễ",
     "query": "Học phí học phần Giáo dục quốc phòng và An ninh dùng để tính miễn giảm học phí là bao nhiêu một tín chỉ?",
     "expected_answer": "451.000 đồng/tín chỉ.",
-    "source_file": "MucHocPhi_2526_MienGiam.md"
-    
+    "source_file": "MucHocPhi_2526_MienGiam.md",
+    "done"
   },
   {
     "id": 2,
@@ -17,21 +17,13 @@
     "source_file": "MucHocPhi_2526_MienGiam.md"
   },
   {
-    "id": 3,
-    "category": "Miễn giảm học phí",
-    "complexity": "Trung bình",
-    "query": "Sinh viên chương trình Tiên tiến khóa 47 trở về trước có mức học phí làm cơ sở tính miễn, giảm là bao nhiêu?",
-    "expected_answer": "335.000 đồng/tín chỉ.",
-    "source_file": "MucHocPhi_2526_MienGiam.md",
-    "status": "pending"
-  },
-  {
     "id": 4,
     "category": "Miễn giảm học phí",
     "complexity": "Trung bình",
     "query": "Sinh viên thuộc diện mồ côi cả cha lẫn mẹ muốn xin trợ cấp xã hội cần chuẩn bị những giấy tờ gì?",
     "expected_answer": "Đơn xin hưởng trợ cấp, bản sao giấy chứng tử của cha mẹ hoặc giấy xác nhận của UBND cấp quận/huyện/thị xã xác nhận sinh viên mồ côi cả cha lẫn mẹ.",
-    "source_file": "Tro_cap_XH.md"
+    "source_file": "Tro_cap_XH.md",
+    "done"
   },
   {
     "id": 5,
@@ -48,6 +40,7 @@
     "query": "Sinh viên đạt 85 điểm rèn luyện sẽ được xếp loại gì?",
     "expected_answer": "Loại Tốt (Từ 80 đến dưới 90 điểm).",
     "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+    done
   },
   {
     "id": 7,

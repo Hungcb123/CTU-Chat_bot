@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
 </head>
 
 <body>
@@ -45,8 +46,9 @@
                 </div>
 
                 <ul class="nav-links">
-                    <li>
-                        <input type="file" id="pdf-upload" accept=".pdf" style="display: none">
+                    <li id="upload-pdf-nav" hidden>
+                        <input type="file" id="pdf-upload" accept=".pdf,application/pdf,application/x-pdf"
+                            style="display: none">
                         <a href="#" id="upload-pdf-btn">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
                                 fill="none">

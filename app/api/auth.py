@@ -63,6 +63,16 @@ async def get_current_user(request: Request):
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Lỗi xác thực Token")
 
+
+async def require_admin(current_user: User = Depends(get_current_user)) -> User:
+    """Require an authenticated user whose persisted role is ``admin``."""
+    if not current_user.role or current_user.role.strip().casefold() != "admin":
+        raise HTTPException(
+            status_code=403,
+            detail="Bạn không có quyền quản trị để thực hiện thao tác này.",
+        )
+    return current_user
+
 @router.post("/register")
 async def register(user_data: UserAuth):
     async with AsyncSessionLocal() as db:

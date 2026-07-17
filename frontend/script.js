@@ -10,11 +10,34 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSessionId = null;
     let currentUser = null;
 
-    // Configure marked.js for safe markdown rendering
-    marked.setOptions({
-        breaks: true,
-        gfm: true
-    });
+    // Configure marked.js when the CDN dependency is available. Bot output is
+    // still treated as plain text unless DOMPurify is also available.
+    if (window.marked && typeof window.marked.setOptions === 'function') {
+        window.marked.setOptions({
+            breaks: true,
+            gfm: true
+        });
+    }
+
+    function renderBotContent(element, content) {
+        const safeFallback = typeof content === 'string' ? content : String(content ?? '');
+        const canRenderMarkdown = window.marked
+            && typeof window.marked.parse === 'function'
+            && window.DOMPurify
+            && typeof window.DOMPurify.sanitize === 'function';
+
+        if (canRenderMarkdown) {
+            try {
+                const renderedHtml = window.marked.parse(safeFallback);
+                element.innerHTML = window.DOMPurify.sanitize(renderedHtml);
+                return;
+            } catch (error) {
+                console.error('Unable to render sanitized Markdown:', error);
+            }
+        }
+
+        element.textContent = safeFallback;
+    }
 
     function scrollToBottom() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -28,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contentDiv.className = 'message-content';
 
         if (role === 'bot') {
-            contentDiv.innerHTML = marked.parse(content);
+            renderBotContent(contentDiv, content);
         } else {
             contentDiv.textContent = content;
         }
@@ -258,19 +281,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeAuthModalBtn = document.getElementById('close-auth-modal');
     const loginBtn = document.getElementById('login-btn');
     const loginText = document.getElementById('login-text');
+    const uploadPdfNav = document.getElementById('upload-pdf-nav');
 
     const tabLogin = document.getElementById('tab-login');
     const tabRegister = document.getElementById('tab-register');
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
 
+    function isAdminUser(user) {
+        return Boolean(
+            user
+            && typeof user.role === 'string'
+            && user.role.trim().toLowerCase() === 'admin'
+        );
+    }
+
+    function setAdminUploadVisibility(user) {
+        if (uploadPdfNav) {
+            uploadPdfNav.hidden = !isAdminUser(user);
+        }
+    }
+
     // Check Auth Status on Load
     async function checkAuth() {
+        setAdminUploadVisibility(null);
         try {
             const res = await fetch('/auth/me');
             if (res.ok) {
                 currentUser = await res.json();
                 loginText.textContent = `Logout (${currentUser.username})`;
+                setAdminUploadVisibility(currentUser);
                 fetchSessions(); // load sessions after auth
             } else {
                 currentUser = null;
@@ -378,10 +418,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadPdfBtn = document.getElementById('upload-pdf-btn');
     const pdfUploadInput = document.getElementById('pdf-upload');
     const uploadText = document.getElementById('upload-text');
+    const maxPdfSizeBytes = 5 * 1024 * 1024;
 
     if (uploadPdfBtn && pdfUploadInput) {
         uploadPdfBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            if (!isAdminUser(currentUser)) {
+                return;
+            }
             // Chỉ định cho click, mở hộp thoại chọn file
             pdfUploadInput.click();
         });
@@ -390,9 +434,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const file = e.target.files[0];
             if (!file) return;
 
-            if (!file.name.toLowerCase().endsWith('.pdf')) {
+            if (!isAdminUser(currentUser)) {
+                alert('Chỉ tài khoản quản trị mới có thể tải tài liệu lên.');
+                pdfUploadInput.value = '';
+                return;
+            }
+
+            const hasPdfExtension = file.name.toLowerCase().endsWith('.pdf');
+            const allowedPdfMimeTypes = new Set(['application/pdf', 'application/x-pdf']);
+            const hasPdfMimeType = allowedPdfMimeTypes.has(file.type.toLowerCase());
+            if (!hasPdfExtension || !hasPdfMimeType) {
                 alert('Vui lòng chọn file định dạng PDF.');
                 pdfUploadInput.value = ''; // Reset
+                return;
+            }
+
+            if (file.size > maxPdfSizeBytes) {
+                alert('File PDF không được vượt quá 5 MiB.');
+                pdfUploadInput.value = '';
                 return;
             }
 
