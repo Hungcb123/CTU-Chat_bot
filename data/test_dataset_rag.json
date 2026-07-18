@@ -1,157 +1,302 @@
 [
   {
     "id": 1,
-    "category": "Miễn giảm học phí",
-    "complexity": "Dễ",
-    "query": "Học phí học phần Giáo dục quốc phòng và An ninh dùng để tính miễn giảm học phí là bao nhiêu một tín chỉ?",
-    "expected_answer": "451.000 đồng/tín chỉ.",
-    "source_file": "MucHocPhi_2526_MienGiam.md",
-    "done"
+    "category": "Học phí",
+    "query": "Học phí thực tế ngành CNTT đại trà K49 là bao nhiêu một tín chỉ?",
+    "expected_contains": ["832.000", "tín chỉ", "2026-2027"],
+    "expected_not_contains": ["538.000", "cơ sở tính miễn giảm"],
+    "source_files": ["MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md"],
+    "expected_path": "structured_lookup",
+    "expected_tool": "tra_cuu_hoc_phi"
   },
   {
     "id": 2,
-    "category": "Miễn giảm học phí",
-    "complexity": "Dễ",
-    "query": "Học phí khối ngành Khoa học sự sống, khoa học tự nhiên (Khối ngành IV) là bao nhiêu tiền 1 tín chỉ?",
-    "expected_answer": "487.000 đồng/tín chỉ.",
-    "source_file": "MucHocPhi_2526_MienGiam.md"
+    "category": "Học phí",
+    "query": "Học phí ngành CNTT CLC K49 là bao nhiêu?",
+    "expected_contains": ["36.000.000", "1.254.000", "441.000"],
+    "expected_not_contains": ["538.000", "đại trà/chuẩn"],
+    "source_files": ["MucHocPhi_ChatLuongCao_TienTien.md"],
+    "expected_path": "structured_lookup",
+    "expected_tool": "tra_cuu_hoc_phi"
+  },
+  {
+    "id": 3,
+    "category": "Học phí",
+    "query": "Học phí thực tế CNTT đại trà khóa 52 là bao nhiêu?",
+    "expected_contains": ["150.300.000", "966.000"],
+    "expected_not_contains": ["832.000", "miễn giảm"],
+    "source_files": ["MucHocPhi_DaiHocChinhQuy_Khoa52.md"],
+    "expected_path": "structured_lookup",
+    "expected_tool": "tra_cuu_hoc_phi"
   },
   {
     "id": 4,
-    "category": "Miễn giảm học phí",
-    "complexity": "Trung bình",
-    "query": "Sinh viên thuộc diện mồ côi cả cha lẫn mẹ muốn xin trợ cấp xã hội cần chuẩn bị những giấy tờ gì?",
-    "expected_answer": "Đơn xin hưởng trợ cấp, bản sao giấy chứng tử của cha mẹ hoặc giấy xác nhận của UBND cấp quận/huyện/thị xã xác nhận sinh viên mồ côi cả cha lẫn mẹ.",
-    "source_file": "Tro_cap_XH.md",
-    "done"
+    "category": "Học phí",
+    "query": "Học phí chung của K52 là bao nhiêu một tín chỉ?",
+    "expected_contains": ["695.000", "đại cương chung"],
+    "expected_not_contains": ["966.000", "tên hoặc mã ngành"],
+    "source_files": ["MucHocPhi_DaiHocChinhQuy_Khoa52.md"],
+    "expected_path": "structured_lookup",
+    "expected_tool": "tra_cuu_hoc_phi"
   },
   {
     "id": 5,
-    "category": "Miễn giảm học phí",
-    "complexity": "Khó",
-    "query": "Em học ngành Công nghệ thông tin chương trình chất lượng cao, vậy mức học phí làm cơ sở xét miễn giảm sẽ được tính như thế nào?",
-    "expected_answer": "Tính bằng mức học phí năm tuyển sinh của đại học chính quy đại trà cùng ngành (không nhân hệ số tự chủ), cố định một mức trong suốt quá trình học tập.",
-    "source_file": "MucHocPhi_2526_MienGiam.md"
+    "category": "Học phí",
+    "query": "Học phí đại cương chung của chương trình CLC K49 là bao nhiêu?",
+    "expected_contains": ["441.000", "Chất lượng cao"],
+    "expected_not_contains": ["1.254.000", "538.000"],
+    "source_files": ["MucHocPhi_ChatLuongCao_TienTien.md"],
+    "expected_path": "structured_lookup",
+    "expected_tool": "tra_cuu_hoc_phi"
   },
   {
     "id": 6,
-    "category": "Học bổng khuyến khích",
-    "complexity": "Dễ",
-    "query": "Sinh viên đạt 85 điểm rèn luyện sẽ được xếp loại gì?",
-    "expected_answer": "Loại Tốt (Từ 80 đến dưới 90 điểm).",
-    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
-    done
+    "category": "Học phí",
+    "query": "Kỹ thuật điện CLC K49 đóng học phí thực tế bao nhiêu?",
+    "expected_contains": ["33.000.000", "1.142.000", "441.000"],
+    "expected_not_contains": ["538.000"],
+    "source_files": ["MucHocPhi_ChatLuongCao_TienTien.md"],
+    "expected_path": "structured_lookup",
+    "expected_tool": "tra_cuu_hoc_phi"
   },
   {
     "id": 7,
-    "category": "Học bổng khuyến khích",
-    "complexity": "Dễ",
-    "query": "Mức học bổng khuyến khích loại Khá của khối ngành Kinh doanh và Quản lý là bao nhiêu tiền 1 kỳ?",
-    "expected_answer": "6.600.000 đồng/học kỳ.",
-    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+    "category": "Học phí",
+    "query": "Công nghệ sinh học chương trình tiên tiến K49 có học phí bao nhiêu?",
+    "expected_contains": ["36.000.000", "1.286.000", "441.000"],
+    "expected_not_contains": ["487.000"],
+    "source_files": ["MucHocPhi_ChatLuongCao_TienTien.md"],
+    "expected_path": "structured_lookup",
+    "expected_tool": "tra_cuu_hoc_phi"
   },
   {
     "id": 8,
-    "category": "Học bổng khuyến khích",
-    "complexity": "Trung bình",
-    "query": "Khối ngành Toán, Thống kê, Máy tính, Công nghệ thông tin (Khối V) có mức học bổng loại Xuất sắc là bao nhiêu?",
-    "expected_answer": "10.560.000 đồng/học kỳ.",
-    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+    "category": "Học phí",
+    "query": "Học phí ngành CNTT CLC là bao nhiêu?",
+    "expected_contains": ["cho biết khóa tuyển sinh"],
+    "expected_not_contains": ["1.254.000", "538.000"],
+    "source_files": [],
+    "expected_path": "structured_lookup_clarification",
+    "expected_tool": "tra_cuu_hoc_phi"
   },
   {
     "id": 9,
-    "category": "Học bổng khuyến khích",
-    "complexity": "Trung bình",
-    "query": "Quỹ học bổng của mỗi lớp được tính theo định mức như thế nào?",
-    "expected_answer": "Được tính bằng 8.0% số lượng sinh viên x Mức học bổng loại Khá.",
-    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+    "category": "Miễn giảm học phí",
+    "query": "Mức học phí làm cơ sở tính miễn giảm của Giáo dục quốc phòng là bao nhiêu?",
+    "expected_contains": ["451.000", "2025-2026"],
+    "expected_not_contains": ["695.000"],
+    "source_files": ["MucHocPhi_2526_MienGiam.md"],
+    "expected_path": "rag_exemption_basis",
+    "expected_tool": null
   },
   {
     "id": 10,
-    "category": "Học bổng khuyến khích",
-    "complexity": "Khó",
-    "query": "Định mức học bổng bình quân cho học kỳ đầu tiên của sinh viên khóa 51 là bao nhiêu? Sinh viên trúng tuyển thẳng có ưu đãi gì khác không?",
-    "expected_answer": "Định mức bình quân kỳ đầu tiên khóa 51 là 5.000.000 đồng/SV/học kỳ. Riêng sinh viên tuyển thẳng, ưu tiên xét tuyển năm 2025 được hưởng 6.000.000 đồng/học kỳ.",
-    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+    "category": "Miễn giảm học phí",
+    "query": "Mức cơ sở miễn giảm của khối ngành IV là bao nhiêu một tín chỉ?",
+    "expected_contains": ["487.000", "khối ngành IV"],
+    "expected_not_contains": ["749.000"],
+    "source_files": ["MucHocPhi_2526_MienGiam.md"],
+    "expected_path": "rag_exemption_basis",
+    "expected_tool": null
   },
   {
     "id": 11,
-    "category": "Học bổng khuyến khích",
-    "complexity": "Khó",
-    "query": "Em được 95 điểm rèn luyện và học khối ngành Sức khỏe. Nếu học lực của em cũng đạt chuẩn cao nhất thì em nhận học bổng bao nhiêu?",
-    "expected_answer": "95 điểm rèn luyện xếp loại Xuất sắc. Ngành Sức khỏe (Khối VI) mức Xuất sắc là 10.560.000 đồng/học kỳ.",
-    "source_file": "Tài liệu phân bổ quỹ học bổng.md"
+    "category": "Miễn giảm học phí",
+    "query": "CNTT thuộc khối V thì mức làm cơ sở miễn giảm là bao nhiêu?",
+    "expected_contains": ["538.000", "khối V"],
+    "expected_not_contains": ["832.000", "966.000"],
+    "source_files": ["MucHocPhi_2526_MienGiam.md"],
+    "expected_path": "rag_exemption_basis",
+    "expected_tool": null
   },
   {
     "id": 12,
-    "category": "Vay vốn",
-    "complexity": "Dễ",
-    "query": "Sinh viên vay vốn tại Ngân hàng Chính sách Xã hội theo Quyết định 157 được vay tối đa bao nhiêu một tháng?",
-    "expected_answer": "Tối đa 800.000 đồng/tháng (hay 8.000.000 đồng/năm học).",
-    "source_file": "VayVon.md"
+    "category": "Miễn giảm học phí",
+    "query": "Chương trình tiên tiến khóa 47 có mức cơ sở tính miễn giảm bao nhiêu?",
+    "expected_contains": ["335.000", "khóa 47"],
+    "expected_not_contains": ["441.000"],
+    "source_files": ["MucHocPhi_2526_MienGiam.md"],
+    "expected_path": "rag_exemption_basis",
+    "expected_tool": null
   },
   {
     "id": 13,
-    "category": "Vay vốn",
-    "complexity": "Dễ",
-    "query": "Lãi suất cho vay tiền sinh viên từ ngày 01/10/2007 trở đi là bao nhiêu?",
-    "expected_answer": "0.5%/tháng.",
-    "source_file": "VayVon.md"
+    "category": "Miễn giảm học phí",
+    "query": "Sinh viên chương trình chất lượng cao được xác định mức cơ sở miễn giảm như thế nào?",
+    "expected_contains": ["mức học phí năm tuyển sinh", "đại trà cùng ngành", "không tính nhân hệ số tự chủ"],
+    "expected_not_contains": ["học phí CLC thực tế"],
+    "source_files": ["MucHocPhi_2526_MienGiam.md"],
+    "expected_path": "rag_exemption_basis",
+    "expected_tool": null
   },
   {
     "id": 14,
-    "category": "Vay vốn",
-    "complexity": "Trung bình",
-    "query": "Đối tượng nào được vay vốn trực tiếp tại Ngân hàng thay vì phải vay thông qua hộ gia đình?",
-    "expected_answer": "Sinh viên mồ côi cả cha lẫn mẹ, hoặc mồ côi cha/mẹ nhưng người còn lại không có khả năng lao động.",
-    "source_file": "VayVon.md"
+    "category": "Miễn giảm học phí",
+    "query": "Sinh viên dân tộc thiểu số ở xã khu vực III được giảm bao nhiêu phần trăm và cần giấy tờ gì?",
+    "expected_contains": ["70%", "Giấy khai sinh", "Căn cước công dân", "xác nhận thông tin về cư trú"],
+    "expected_not_contains": ["50%"],
+    "source_files": ["mghp.md"],
+    "expected_path": "rag_exemption_policy",
+    "expected_tool": null
   },
   {
     "id": 15,
-    "category": "Vay vốn",
-    "complexity": "Trung bình",
-    "query": "Em học ngành Khoa học máy tính, muốn vay vốn theo Quyết định 29 thì lần đầu tiên vay em phải làm thủ tục mẫu phụ lục số mấy?",
-    "expected_answer": "Làm thủ tục theo mẫu Phụ lục I.",
-    "source_file": "VayVonChoSinhVienKyT.md"
+    "category": "Miễn giảm học phí",
+    "query": "Hạn cuối nộp hồ sơ miễn giảm học phí năm 2026 là ngày nào và nộp ở đâu?",
+    "expected_contains": ["29/4/2026", "Phòng Công tác Sinh viên"],
+    "expected_not_contains": ["29/5/2026"],
+    "source_files": ["mghp.md"],
+    "expected_path": "rag_exemption_policy",
+    "expected_tool": null
   },
   {
     "id": 16,
-    "category": "Vay vốn",
-    "complexity": "Khó",
-    "query": "Điều kiện học lực đối với sinh viên năm nhất muốn vay vốn theo Quyết định 29 là gì?",
-    "expected_answer": "Cần có đồng thời cả 3 năm THPT đạt từ mức Khá trở lên, HOẶC điểm trung bình môn lớp 12 các môn Toán, Vật lý, Hóa học, Sinh học từ 8 điểm trở lên.",
-    "source_file": "VayVonChoSinhVienKyT.md"
+    "category": "Miễn giảm học phí",
+    "query": "CNTT đại trà K49 học phí 832.000 đồng, mức cơ sở 538.000 đồng và em được giảm 70%, còn đóng bao nhiêu một tín chỉ?",
+    "expected_contains": ["455.400", "832.000", "538.000", "70%"],
+    "expected_not_contains": ["376.600 đồng/tín chỉ phải đóng"],
+    "source_files": ["MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md", "MucHocPhi_2526_MienGiam.md"],
+    "expected_path": "calculation_tool",
+    "expected_tool": "tinh_toan_hoc_phi"
   },
   {
     "id": 17,
     "category": "Vay vốn",
-    "complexity": "Khó",
-    "query": "Sau khi tốt nghiệp ra trường, sinh viên vay vốn phải bắt đầu trả nợ gốc và lãi vay lần đầu tiên vào lúc nào?",
-    "expected_answer": "Khi có việc làm, có thu nhập nhưng không được quá 12 tháng kể từ ngày kết thúc khóa học.",
-    "source_file": "VayVon.md"
+    "query": "Theo mức sửa đổi năm 2022, sinh viên được vay NHCSXH tối đa bao nhiêu mỗi tháng?",
+    "expected_contains": ["4.000.000", "tháng"],
+    "expected_not_contains": ["800.000"],
+    "source_files": ["QD_2022.md"],
+    "expected_path": "rag_student_loan",
+    "expected_tool": null
   },
   {
     "id": 18,
-    "category": "Gài bẫy (Anti-Hallucination)",
-    "complexity": "Khó",
-    "query": "Trường mình có hỗ trợ cho sinh viên vay 30 triệu mua laptop để học ngành đồ họa không?",
-    "expected_answer": "Không có chính sách vay mua laptop. Theo các quy định hiện hành, vốn vay chỉ dùng để trang trải học phí, sinh hoạt phí và chi phí học tập.",
-    "source_file": "Ngoài ngữ cảnh"
+    "category": "Vay vốn",
+    "query": "Lãi suất vay vốn dành cho sinh viên ngành STEM theo Quyết định 29 là bao nhiêu?",
+    "expected_contains": ["4,8%/năm"],
+    "expected_not_contains": ["0,5%/tháng"],
+    "source_files": ["NDCP_VayVonSVKT.md"],
+    "expected_path": "rag_student_loan",
+    "expected_tool": null
   },
   {
     "id": 19,
-    "category": "Gài bẫy (Anti-Hallucination)",
-    "complexity": "Khó",
-    "query": "Nếu em thi rớt môn nhưng điểm rèn luyện vẫn đạt 90 điểm thì em có được nhận học bổng không?",
-    "expected_answer": "Không có thông tin trực tiếp trong tài liệu phân bổ quỹ học bổng. Tuy nhiên, thông thường rớt môn sẽ không đủ điều kiện xét học bổng. (Chatbot nên trả lời là tài liệu không đề cập hoặc yêu cầu hỏi chi tiết quy chế).",
-    "source_file": "Ngoài ngữ cảnh"
+    "category": "Vay vốn",
+    "query": "Lãi suất nợ quá hạn của chương trình vay STEM được tính thế nào?",
+    "expected_contains": ["130%", "lãi suất khi cho vay"],
+    "expected_not_contains": ["130%/năm"],
+    "source_files": ["NDCP_VayVonSVKT.md"],
+    "expected_path": "rag_student_loan",
+    "expected_tool": null
   },
   {
     "id": 20,
-    "category": "Gài bẫy (Anti-Hallucination)",
-    "complexity": "Khó",
-    "query": "Em ở vùng bão lũ miền Trung, trường có cấp học bổng thiên tai 5 triệu/tháng cho sinh viên khó khăn không?",
-    "expected_answer": "Không có thông tin về loại trợ cấp/học bổng 5 triệu/tháng cho thiên tai trong các văn bản này.",
-    "source_file": "Ngoài ngữ cảnh"
+    "category": "Vay vốn",
+    "query": "Sinh viên năm nhất muốn vay vốn STEM phải đáp ứng điều kiện học tập nào?",
+    "expected_contains": ["ba năm học trung học phổ thông", "khá trở lên", "8 điểm trở lên"],
+    "expected_not_contains": ["giỏi trở lên ở năm trước"],
+    "source_files": ["NDCP_VayVonSVKT.md"],
+    "expected_path": "rag_student_loan",
+    "expected_tool": null
+  },
+  {
+    "id": 21,
+    "category": "Vay vốn",
+    "query": "Lần đầu và các năm tiếp theo vay vốn STEM phải dùng phụ lục nào?",
+    "expected_contains": ["Phụ lục I", "Phụ lục II"],
+    "expected_not_contains": ["Phụ lục III để vay lần đầu"],
+    "source_files": ["NDCP_VayVonSVKT.md"],
+    "expected_path": "rag_student_loan",
+    "expected_tool": null
+  },
+  {
+    "id": 22,
+    "category": "Vay vốn",
+    "query": "Sau khi kết thúc khóa học bao lâu thì người vay vốn STEM phải trả nợ lần đầu?",
+    "expected_contains": ["12 tháng", "nợ gốc", "lãi"],
+    "expected_not_contains": ["ngay sau khi tốt nghiệp"],
+    "source_files": ["NDCP_VayVonSVKT.md"],
+    "expected_path": "rag_student_loan",
+    "expected_tool": null
+  },
+  {
+    "id": 23,
+    "category": "Vay vốn",
+    "query": "Vay vốn STEM đến mức nào thì không cần tài sản bảo đảm?",
+    "expected_contains": ["đến 500 triệu đồng", "không phải thực hiện bảo đảm"],
+    "expected_not_contains": ["dưới 100 triệu"],
+    "source_files": ["NDCP_VayVonSVKT.md"],
+    "expected_path": "rag_student_loan",
+    "expected_tool": null
+  },
+  {
+    "id": 24,
+    "category": "Học bổng khuyến khích",
+    "query": "Học bổng khuyến khích loại Khá của khối Kinh doanh và quản lý, pháp luật là bao nhiêu?",
+    "expected_contains": ["6.600.000", "học kỳ"],
+    "expected_not_contains": ["7.540.000"],
+    "source_files": ["Tài liệu phân bổ quỹ học bổng.md"],
+    "expected_path": "rag_scholarship",
+    "expected_tool": null
+  },
+  {
+    "id": 25,
+    "category": "Học bổng khuyến khích",
+    "query": "Khối V gồm CNTT có mức học bổng loại Xuất sắc bao nhiêu một học kỳ?",
+    "expected_contains": ["10.560.000", "Xuất sắc"],
+    "expected_not_contains": ["9.240.000"],
+    "source_files": ["Tài liệu phân bổ quỹ học bổng.md"],
+    "expected_path": "rag_scholarship",
+    "expected_tool": null
+  },
+  {
+    "id": 26,
+    "category": "Học bổng khuyến khích",
+    "query": "Quỹ học bổng khuyến khích của mỗi lớp được tính theo công thức nào?",
+    "expected_contains": ["8,0%", "số lượng sinh viên", "mức học bổng loại Khá"],
+    "expected_not_contains": ["10%"],
+    "source_files": ["Tài liệu phân bổ quỹ học bổng.md"],
+    "expected_path": "rag_scholarship",
+    "expected_tool": null
+  },
+  {
+    "id": 27,
+    "category": "Học bổng khuyến khích",
+    "query": "Định mức học bổng bình quân học kỳ đầu khóa 51 là bao nhiêu và sinh viên tuyển thẳng năm 2025 nhận bao nhiêu?",
+    "expected_contains": ["5.000.000", "6.000.000"],
+    "expected_not_contains": ["7.500.000 là mức nhận bình quân"],
+    "source_files": ["Tài liệu phân bổ quỹ học bổng.md", "HB_K51_2026.md"],
+    "expected_path": "rag_scholarship",
+    "expected_tool": null
+  },
+  {
+    "id": 28,
+    "category": "Học bổng khuyến khích",
+    "query": "Em GPA 3.7, điểm rèn luyện 92, học khối CNTT thì đạt học bổng loại gì và bao nhiêu?",
+    "expected_contains": ["Xuất sắc", "10.560.000"],
+    "expected_not_contains": ["chưa đủ điều kiện"],
+    "source_files": ["hoc_bong.json"],
+    "expected_path": "scholarship_tool",
+    "expected_tool": "tinh_tien_hoc_bong"
+  },
+  {
+    "id": 29,
+    "category": "Học bổng khuyến khích",
+    "query": "GPA 3.3, điểm rèn luyện 85, khối Kinh doanh thì học bổng khuyến khích được loại nào và bao nhiêu?",
+    "expected_contains": ["Giỏi", "7.920.000"],
+    "expected_not_contains": ["Xuất sắc"],
+    "source_files": ["hoc_bong.json"],
+    "expected_path": "scholarship_tool",
+    "expected_tool": "tinh_tien_hoc_bong"
+  },
+  {
+    "id": 30,
+    "category": "Học bổng khuyến khích",
+    "query": "GPA 2.4 nhưng điểm rèn luyện 95 thì em có đạt học bổng khuyến khích không?",
+    "expected_contains": ["chưa đủ điều kiện", "GPA >= 2.5"],
+    "expected_not_contains": ["đạt học bổng loại Xuất sắc"],
+    "source_files": ["hoc_bong.json"],
+    "expected_path": "scholarship_tool",
+    "expected_tool": "tinh_tien_hoc_bong"
   }
 ]

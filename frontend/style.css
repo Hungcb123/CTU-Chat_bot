@@ -133,6 +133,11 @@ body {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+.nav-links a[aria-disabled="true"] {
+    opacity: 0.55;
+    pointer-events: none;
+}
+
 .clear-history-btn {
     display: flex;
     align-items: center;
@@ -575,17 +580,28 @@ body {
     color: var(--text-primary);
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
     padding: 10px 12px;
     border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 0.95rem;
     outline: none;
+    color: var(--text-primary);
+    background-color: white;
     transition: border-color 0.2s;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group select:focus {
     border-color: var(--primary-blue);
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+    background-color: #f1f5f9;
+    color: var(--text-secondary);
+    cursor: not-allowed;
 }
 
 .auth-submit {
@@ -610,6 +626,137 @@ body {
     font-size: 0.85rem;
     text-align: center;
     min-height: 20px;
+}
+
+/* Admin PDF Upload Modal */
+.upload-modal-content {
+    max-width: 520px;
+}
+
+.upload-modal-header {
+    padding-right: 24px;
+    margin-bottom: 24px;
+}
+
+.upload-modal-header h2 {
+    color: var(--primary-blue);
+    font-size: 1.3rem;
+    line-height: 1.35;
+    margin-bottom: 8px;
+}
+
+.upload-modal-header p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.upload-form .form-group[hidden] {
+    display: none;
+}
+
+.upload-form input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.upload-form input[type="file"]::file-selector-button {
+    background: #eaf2fb;
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 5px;
+    padding: 7px 10px;
+    margin-right: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.required-marker {
+    color: var(--danger);
+}
+
+.form-help {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.upload-error {
+    color: var(--danger);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    min-height: 20px;
+}
+
+.upload-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.secondary-button,
+.upload-submit {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.secondary-button {
+    background: #eef2f7;
+    color: var(--text-primary);
+}
+
+.secondary-button:hover:not(:disabled) {
+    background: #e2e8f0;
+}
+
+.upload-submit {
+    min-width: 96px;
+    background: var(--primary-blue);
+    color: white;
+}
+
+.upload-submit:hover:not(:disabled) {
+    background: var(--primary-blue-hover);
+}
+
+.secondary-button:disabled,
+.upload-submit:disabled,
+.close-modal:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.upload-form[aria-busy="true"] input,
+.upload-form[aria-busy="true"] select {
+    cursor: wait;
+}
+
+@media (max-width: 520px) {
+    .upload-modal-content {
+        padding: 24px 20px;
+    }
+
+    .upload-actions {
+        flex-direction: column-reverse;
+    }
+
+    .secondary-button,
+    .upload-submit {
+        width: 100%;
+    }
 }
 
 /* Session List */

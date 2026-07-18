@@ -26,6 +26,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_groq import ChatGroq
 from app.tools.scholarship import tinh_tien_hoc_bong
 from app.tools.tuition import tinh_toan_hoc_phi
+from app.services.tuition_catalog import TuitionRateCatalog
 
 # Import controllers
 from app.api.chat import router as chat_router
@@ -55,13 +56,18 @@ async def lifespan(app: FastAPI):
 
         logger.info("🤖 Khởi tạo Vector DB và LLM Gemini + Qwen Local...")
         app.state.engine = AdvancedChunkingEngine(persist_dir=os.path.join(PROJECT_ROOT, "qdrant_storage"))
+        app.state.tuition_catalog = TuitionRateCatalog.load()
+        logger.info(
+            "✅ Đã nạp %d mức học phí có cấu trúc.",
+            len(app.state.tuition_catalog.records),
+        )
         
         # LLM CHÍNH (GEMINI): Dùng để sinh câu trả lời và sử dụng Tool
         app.state.llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite", temperature=0.4)
         
         # LLM PHỤ (GROQ Llama): Dùng để viết lại câu hỏi (Rewriter) siêu tốc
         app.state.rewrite_llm = ChatGroq(
-            model="meta-llama/llama-4-scout-17b-16e-instruct",
+            model="llama-3.3-70b-versatile",
             temperature=0.0, # Không cần sáng tạo, chỉ cần dịch đúng
             api_key=os.getenv("GROQ_API_KEY")
         )
@@ -90,6 +96,10 @@ async def lifespan(app: FastAPI):
             - NẾU người dùng CHỈ HỎI TRA CỨU thông tin (ví dụ: "Mức học phí làm cơ sở tính miễn giảm của môn X là bao nhiêu?", "Học phí của môn Y là bao nhiêu?"): HÃY TÌM TRONG NGỮ CẢNH VÀ TRẢ LỜI TRỰC TIẾP, không gọi công cụ tính toán. 
               + CHÚ Ý CỰC KỲ QUAN TRỌNG: "Mức học phí thực tế" và "Mức học phí làm cơ sở tính miễn giảm" là 2 bảng giá hoàn toàn KHÁC NHAU. 
               + NẾU câu hỏi nhắc đến "miễn giảm", TUYỆT ĐỐI CHỈ lấy số liệu từ tài liệu có tiêu đề "Mức học phí làm cơ sở để tính miễn, giảm". (Ví dụ: môn Giáo dục quốc phòng và an ninh có mức cơ sở miễn giảm là 451.000 đồng/tín chỉ, KHÔNG PHẢI 695.000 đồng).
+            - Nếu Context có nhãn `KẾT QUẢ TRA CỨU HỌC PHÍ CẤU TRÚC - NGUỒN ƯU TIÊN`, phải dùng đúng các mức trong khối đó. Không được thay bằng mức từ vector search.
+
+            CHỈ DẪN ĐỊNH TUYẾN CHO CÂU HỎI HIỆN TẠI:
+            {retrieval_instruction}
             
             Context:
             {context}"""),

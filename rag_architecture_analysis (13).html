@@ -3,84 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sơ đồ Kiến trúc Hệ thống RAG - Data Ingestion</title>
+    <title>Kiến trúc nạp dữ liệu và quản lý chỉ mục RAG</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ 
+        mermaid.initialize({
             startOnLoad: true,
+            securityLevel: 'loose',
             theme: 'base',
             themeVariables: {
                 fontFamily: 'Inter, sans-serif',
                 primaryColor: '#ffffff',
-                primaryBorderColor: '#cbd5e1',
-                lineType: 'basis',
+                primaryBorderColor: '#94a3b8',
+                lineColor: '#64748b',
                 edgeLabelBackground: '#ffffff',
                 clusterBkg: '#f8fafc',
-                clusterBorder: '#e2e8f0'
+                clusterBorder: '#cbd5e1'
             },
-            flowchart: {
-                curve: 'basis', // Tạo nét vẽ mềm mại, thanh mảnh
-                nodeSpacing: 60,
-                rankSpacing: 70
-            }
+            flowchart: { curve: 'basis', nodeSpacing: 40, rankSpacing: 55 }
         });
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
-        .mermaid { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        body { font-family: 'Inter', sans-serif; background: #eef2f7; }
+        .diagram { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 8px 24px rgb(15 23 42 / 0.06); }
+        .mermaid { min-width: 980px; }
     </style>
 </head>
-<body class="p-6 md:p-10 text-slate-800">
-
-    <div class="max-w-7xl mx-auto space-y-8">
-        <!-- Header -->
-        <header class="border-b border-slate-200 pb-6">
-            <h1 class="text-3xl font-semibold text-slate-900 tracking-tight">Chunking Pipeline</h1>
+<body class="p-5 md:p-10 text-slate-800">
+    <main class="max-w-[1500px] mx-auto space-y-8">
+        <header class="rounded-2xl bg-slate-900 text-white p-7 md:p-9 shadow-xl">
+            <p class="text-cyan-300 font-semibold tracking-widest uppercase text-xs">CTU Chatbot · Data & Index Layer</p>
+            <h1 class="mt-3 text-3xl md:text-4xl font-bold">Kiến trúc nạp dữ liệu và quản lý chỉ mục RAG</h1>
+            <p class="mt-3 text-slate-300 max-w-4xl">Corpus văn bản dùng Parent–Child chunking và Qdrant; 553 mức học phí chuẩn hóa được giữ ở catalog JSON riêng để tra cứu chính xác, không nhúng thành hàng trăm vector gần giống nhau. Upload có rollback, còn reindex toàn kho dùng blue–green collection.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-sm">
+                <span class="px-3 py-1 rounded-full bg-cyan-400/15 text-cyan-200">Metadata schema v1</span>
+                <span class="px-3 py-1 rounded-full bg-emerald-400/15 text-emerald-200">Parent 2800 · Child 400</span>
+                <span class="px-3 py-1 rounded-full bg-violet-400/15 text-violet-200">Qdrant v1.18.1</span>
+                <span class="px-3 py-1 rounded-full bg-fuchsia-400/15 text-fuchsia-200">Tuition catalog · 553 records</span>
+                <span class="px-3 py-1 rounded-full bg-amber-400/15 text-amber-200">Dense embedding · Không BM25</span>
+            </div>
         </header>
 
-        <!-- Diagram Section -->
-        <section class="space-y-4">
-            <h2 class="text-xl font-medium text-slate-800 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
-                Sơ đồ Luồng Xử Lý
-            </h2>
-            <div class="overflow-x-auto">
-                <pre class="mermaid flex justify-center">
-graph TD
-    %% Định dạng CSS cho Sơ đồ (Nét thanh mảnh, màu đơn giản)
-    classDef default fill:#ffffff,stroke:#94a3b8,stroke-width:1px,color:#334155,rx:6px,ry:6px
-    classDef db fill:#f0f9ff,stroke:#7dd3fc,stroke-width:1px,color:#0369a1,rx:6px,ry:6px
-    classDef file fill:#f0fdf4,stroke:#86efac,stroke-width:1px,color:#15803d,rx:6px,ry:6px
+        <section class="space-y-3">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900">1. Upload PDF của quản trị viên</h2>
+                <p class="text-sm text-slate-600 mt-1">Luồng dành cho một tài liệu mới; không cần reindex toàn bộ kho.</p>
+            </div>
+            <div class="diagram overflow-x-auto">
+                <pre class="mermaid">
+flowchart LR
+    classDef actor fill:#ecfdf5,stroke:#34d399,color:#065f46,stroke-width:1.5px
+    classDef process fill:#ffffff,stroke:#94a3b8,color:#1e293b
+    classDef metadata fill:#f5f3ff,stroke:#a78bfa,color:#5b21b6
+    classDef db fill:#eff6ff,stroke:#60a5fa,color:#1d4ed8
+    classDef secure fill:#fff7ed,stroke:#fb923c,color:#9a3412
+    classDef rollback fill:#fef2f2,stroke:#f87171,color:#991b1b
 
-    %% Định nghĩa các Subgraph
-    subgraph Input ["Đầu Vào & Tiền Xử Lý"]
-        direction TB
-        A["File PDF"]:::file -->|"LlamaParse"| B["File Markdown"]:::file
-        B --> C["Làm sạch"]
-        C --> D["Trích xuất<br>'Timestamp'<br>'Source'<br>'Effective Date'"]
+    Admin([Admin đã đăng nhập]):::actor
+
+    subgraph UPLOAD[API POST /document/upload]
+        direction LR
+        Guard[Kiểm tra role admin]:::secure
+        PDF[PDF + document_class<br/>+ academic_year]:::process
+        Validate[Tên file an toàn<br/>MIME + magic %PDF-<br/>tối đa 5 MiB]:::secure
+        Parse[LlamaParse<br/>PDF → Markdown]:::process
+        Clean[Làm sạch Markdown]:::process
     end
 
-    subgraph ParentChunking ["Parent Chunking"]
+    subgraph META[Metadata nghiệp vụ]
         direction TB
-        D -->|"MarkdownHeader<br>TextSplitter"| E["Cắt theo thẻ Heading<br>(#, ##, ###)"]
-        E -->|"RecursiveCharacter<br>TextSplitter 2800 Char <br>(Chỉ khi document lớn hơn 2800 char)"| G["Parent Documents"]
+        Map[Pydantic Enum mapping<br/>domain · content_kind<br/>fee_kind · academic_year · status]:::metadata
+        Manifest[(data/document_metadata.json<br/>portalocker + os.replace)]:::metadata
+        Audit[Audit do server tạo<br/>original_filename · uploaded_by · uploaded_at]:::metadata
     end
 
-    subgraph ChildChunking ["Child Chunking & Lưu Trữ"]
-        direction TB
-        G -->|"ParentDocument<br>Retriever"| H["Băm thành Child Chunks<br>(size 400)"]
-        H -->|"Vietnamese<br>Bi-Encoder"| I["Vector Embeddings"]
-        
-        I -->|"Lưu trữ"| J[("Qdrant DB<br>Vector")]:::db
-        G -->|"Lưu trữ"| K[("PostgreSQL<br>Parent Doc")]:::db
+    subgraph CHUNK[Ingestion và chunking]
+        direction LR
+        Header[MarkdownHeaderTextSplitter<br/>#, ##, ###]:::process
+        Attach[Gắn metadata trước<br/>khi chia bảng]:::metadata
+        Parent[Parent chunks 2800<br/>giữ bảng + tiêm prefix]:::process
+        Child[Child chunks 400<br/>prefix trên mọi child]:::process
+        Embed[Vietnamese Bi-Encoder<br/>dense vector 768 chiều]:::process
     end
+
+    subgraph STORE[Lưu trữ nhất quán]
+        direction TB
+        PG[(PostgreSQL<br/>Parent Documents)]:::db
+        QD[(Qdrant qua alias current<br/>Child vectors + payload)]:::db
+        Tech[source_sha256 · index_version<br/>ingest_run_id · schema_version]:::metadata
+        PDFDone[(data/done<br/>PDF gốc)]:::db
+    end
+
+    Rollback[Rollback theo<br/>source + ingest_run_id]:::rollback
+
+    Admin --> Guard --> PDF --> Validate --> Parse --> Clean --> Map
+    Map --> Manifest
+    Map --> Audit
+    Manifest --> Header --> Attach --> Parent --> Child --> Embed --> QD
+    Parent --> PG
+    Tech -. kế thừa .-> Attach
+    Validate -. thành công cuối .-> PDFDone
+    QD -. lỗi bất kỳ .-> Rollback
+    Rollback -. xóa points .-> QD
+    Rollback -. xóa parents .-> PG
+    Rollback -. hoàn tác .-> Manifest
                 </pre>
             </div>
         </section>
 
+        <section class="space-y-3">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900">2. Luồng chunking chi tiết và kho dữ liệu kép</h2>
+                <p class="text-sm text-slate-600 mt-1">Văn bản ngữ nghĩa được chunk để tìm kiếm; bảng học phí chuẩn hóa đi vào catalog xác định và không tạo vector flooding.</p>
+            </div>
+            <div class="diagram overflow-x-auto">
+                <pre class="mermaid">
+flowchart LR
+    classDef source fill:#ecfdf5,stroke:#34d399,color:#065f46
+    classDef process fill:#ffffff,stroke:#94a3b8,color:#1e293b
+    classDef metadata fill:#f5f3ff,stroke:#a78bfa,color:#5b21b6
+    classDef table fill:#fff7ed,stroke:#fb923c,color:#9a3412
+    classDef db fill:#eff6ff,stroke:#60a5fa,color:#1d4ed8
+    classDef exact fill:#fdf4ff,stroke:#d946ef,color:#86198f,stroke-width:2px
 
-    </div>
+    MD[Markdown UTF-8]:::source
+    Header[MarkdownHeaderTextSplitter<br/>Header # · ## · ###]:::process
+    Meta[Gắn metadata nghiệp vụ<br/>+ source_sha256 · index_version<br/>+ ingest_run_id]:::metadata
+    Block{Loại block}:::process
+
+    subgraph PARENT[Parent construction]
+        direction TB
+        Prose[Prose vượt ngưỡng<br/>Recursive splitter 2800<br/>overlap 100]:::process
+        Table[Markdown table<br/>giữ header section<br/>giữ hàng tiêu đề cột]:::table
+        Rows[Chia theo nhóm hàng<br/>không cắt vỡ một hàng]:::table
+        Parent[Parent Document<br/>ngữ cảnh lớn để trả lời]:::process
+        Prose --> Parent
+        Table --> Rows --> Parent
+    end
+
+    Prefix[Tiêm prefix<br/>LOẠI · NĂM · NGUỒN<br/>header path]:::metadata
+    Child[SmartChildSplitter 400<br/>overlap 50]:::process
+    Reinject[Tiêm lại prefix<br/>trên mọi Child]:::metadata
+    Embed[Vietnamese Bi-Encoder<br/>dense vector 768]:::process
+    PG[(PostgreSQL<br/>Parent + metadata)]:::db
+    QD[(Qdrant<br/>Child vector + doc_id<br/>+ keyword payload)]:::db
+
+    MD --> Header --> Meta --> Block
+    Block -- đoạn văn --> Prose
+    Block -- bảng --> Table
+    Parent --> Prefix --> Child --> Reinject --> Embed --> QD
+    Parent --> PG
+    Reinject -. cùng metadata .-> PG
+    QD -- doc_id khi retrieval --> PG
+
+    subgraph STRUCTURED[Nhánh số liệu học phí không chunk]
+        direction TB
+        Four[4 Markdown học phí thực tế]:::source
+        Normalize[Chuẩn hóa theo<br/>ngành · chương trình · khóa<br/>đơn vị tiền]:::exact
+        Rates[(tuition_rates.json<br/>553 records)]:::exact
+        Report[(tuition_rates_report.json<br/>assertion + duplicate check)]:::metadata
+        Catalog[TuitionRateCatalog<br/>exact lookup]:::exact
+        Four --> Normalize --> Rates --> Catalog
+        Normalize --> Report
+    end
+
+    Rates -. không embedding<br/>không đưa vào Qdrant .-> QD
+                </pre>
+            </div>
+        </section>
+
+        <section class="space-y-3">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900">3. Reindex toàn kho theo mô hình blue–green</h2>
+                <p class="text-sm text-slate-600 mt-1">Collection đang phục vụ không bị xóa trong lúc xây collection mới.</p>
+            </div>
+            <div class="diagram overflow-x-auto">
+                <pre class="mermaid">
+flowchart LR
+    classDef step fill:#ffffff,stroke:#94a3b8,color:#1e293b
+    classDef gate fill:#fff7ed,stroke:#fb923c,color:#9a3412
+    classDef db fill:#eff6ff,stroke:#60a5fa,color:#1d4ed8
+    classDef active fill:#ecfdf5,stroke:#34d399,color:#065f46,stroke-width:2px
+    classDef config fill:#f5f3ff,stroke:#a78bfa,color:#5b21b6
+
+    Sources[46 Markdown<br/>+ metadata manifest]:::step
+    Preflight{Preflight đạt?<br/>UTF-8 · đủ/không mồ côi<br/>enum · năm học}:::gate
+    Build[Build collection vật lý mới<br/>dense 768 + payload indexes]:::step
+    New[(ctu_scholarship_docs<br/>_index_version)]:::db
+    Validate{Validate đạt?<br/>source · checksum · metadata<br/>doc_id Qdrant → PostgreSQL}:::gate
+    Alias[[Alias transaction<br/>ctu_scholarship_docs_current]]:::active
+    App[FastAPI RAG Engine]:::active
+    Flag[RAG_METADATA_FILTER_ENABLED<br/>false → true sau kiểm thử]:::config
+    Old[(Collection cũ v3<br/>giữ tối thiểu 48 giờ)]:::db
+    Tests[Retrieval assertions<br/>không gọi Gemini]:::step
+
+    Sources --> Preflight
+    Preflight -- Đạt --> Build --> New --> Validate
+    Preflight -- Không đạt --> Stop1[Dừng rollout]:::gate
+    Validate -- Đạt --> Alias --> Tests --> Flag --> App
+    Validate -- Không đạt --> Stop2[Không activate]:::gate
+    Old --> Alias
+    New --> Alias
+    Alias -. rollback tức thời .-> Old
+                </pre>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+            <article class="bg-white border border-slate-200 rounded-xl p-5">
+                <h3 class="font-bold text-slate-900">Metadata dùng để filter</h3>
+                <p class="mt-2 text-sm text-slate-600">status, domain, content_kind, fee_kind, academic_year và index_version đều có keyword payload index trong Qdrant.</p>
+            </article>
+            <article class="bg-white border border-slate-200 rounded-xl p-5">
+                <h3 class="font-bold text-slate-900">Hai cơ chế nạp dữ liệu</h3>
+                <p class="mt-2 text-sm text-slate-600">Upload admin ingest riêng một nguồn. Reindex chỉ dùng khi cần xây lại toàn bộ corpus hoặc thay đổi kiến trúc chunk/index.</p>
+            </article>
+            <article class="bg-white border border-slate-200 rounded-xl p-5">
+                <h3 class="font-bold text-slate-900">An toàn khi lỗi</h3>
+                <p class="mt-2 text-sm text-slate-600">Upload rollback theo ingest run; rollout không đổi alias nếu validate thất bại và có thể chuyển alias về v3.</p>
+            </article>
+            <article class="bg-white border border-slate-200 rounded-xl p-5">
+                <h3 class="font-bold text-slate-900">Catalog không cần reindex</h3>
+                <p class="mt-2 text-sm text-slate-600">Thay đổi tuition_rates.json chỉ cần validation và restart app; dữ liệu này không nằm trong Qdrant nên không làm tăng top-k hoặc gây vector flooding.</p>
+            </article>
+        </section>
+    </main>
 </body>
 </html>

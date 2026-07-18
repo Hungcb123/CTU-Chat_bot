@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiến trúc RAG - CTU Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            securityLevel: 'loose',
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Inter, sans-serif',
+                primaryColor: '#ffffff',
+                primaryBorderColor: '#94a3b8',
+                lineColor: '#64748b',
+                edgeLabelBackground: '#ffffff',
+                clusterBkg: '#f8fafc',
+                clusterBorder: '#cbd5e1'
+            },
+            flowchart: { curve: 'basis', nodeSpacing: 38, rankSpacing: 58 }
+        });
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #eef2f7; }
+        .diagram {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgb(15 23 42 / 0.06);
+        }
+        .mermaid { min-width: 1500px; }
+        .rag-letter {
+            width: 3rem;
+            height: 3rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.9rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            flex: none;
+        }
+    </style>
+</head>
+<body class="p-5 md:p-10 text-slate-800">
+    <main class="max-w-[1700px] mx-auto space-y-8">
+        <header class="rounded-2xl bg-slate-900 text-white p-7 md:p-9 shadow-xl">
+            <p class="text-cyan-300 font-semibold tracking-widest uppercase text-xs">CTU Chatbot · RAG được ánh xạ theo R – A – G</p>
+            <h1 class="mt-3 text-3xl md:text-4xl font-bold">Thành phần nào là Retrieval, Augmentation và Generation?</h1>
+            <p class="mt-3 text-slate-300 max-w-6xl leading-7">
+                Một request được chuẩn bị bằng xác thực, lịch sử, rewrite và intent router. Sau đó hệ thống đi qua đúng ba pha:
+                <strong class="text-sky-300">R lấy dữ liệu</strong>,
+                <strong class="text-violet-300">A ghép dữ liệu vào prompt</strong>, và
+                <strong class="text-emerald-300">G dùng Gemini sinh câu trả lời</strong>.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold">
+                <span class="px-4 py-2 rounded-xl bg-sky-400/15 text-sky-200 border border-sky-400/20">R · Retrieve đúng dữ liệu</span>
+                <span class="px-4 py-2 rounded-xl bg-violet-400/15 text-violet-200 border border-violet-400/20">A · Augment prompt bằng context</span>
+                <span class="px-4 py-2 rounded-xl bg-emerald-400/15 text-emerald-200 border border-emerald-400/20">G · Generate câu trả lời</span>
+            </div>
+        </header>
+
+        <section class="grid lg:grid-cols-4 gap-4">
+            <article class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+                <span class="rag-letter bg-slate-100 text-slate-600">0</span>
+                <div>
+                    <h2 class="font-bold text-slate-900">Tiền xử lý</h2>
+                    <p class="mt-2 text-sm leading-6 text-slate-600">JWT, Redis, rewrite và intent router chuẩn bị câu truy vấn. Đây là bước hỗ trợ, chưa phải ba chữ R–A–G.</p>
+                </div>
+            </article>
+            <article class="bg-sky-50 border-2 border-sky-300 rounded-xl p-5 flex gap-4">
+                <span class="rag-letter bg-sky-600 text-white">R</span>
+                <div>
+                    <h2 class="font-bold text-sky-950">Retrieval · Truy xuất</h2>
+                    <p class="mt-2 text-sm leading-6 text-sky-900">Lấy số liệu chính xác từ JSON hoặc lấy tài liệu liên quan từ Qdrant → PostgreSQL → reranker.</p>
+                </div>
+            </article>
+            <article class="bg-violet-50 border-2 border-violet-300 rounded-xl p-5 flex gap-4">
+                <span class="rag-letter bg-violet-600 text-white">A</span>
+                <div>
+                    <h2 class="font-bold text-violet-950">Augmentation · Bổ sung</h2>
+                    <p class="mt-2 text-sm leading-6 text-violet-900">Đóng nhãn loại, năm, nguồn; hợp nhất kết quả và chèn chúng vào prompt làm Context.</p>
+                </div>
+            </article>
+            <article class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-5 flex gap-4">
+                <span class="rag-letter bg-emerald-600 text-white">G</span>
+                <div>
+                    <h2 class="font-bold text-emerald-950">Generation · Sinh đáp án</h2>
+                    <p class="mt-2 text-sm leading-6 text-emerald-900">Gemini đọc prompt đã tăng cường, có thể gọi tool tính toán, rồi sinh câu trả lời cuối.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="space-y-3">
+            <div class="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">Luồng một câu hỏi trong ứng dụng</h2>
+                    <p class="mt-1 text-sm text-slate-600">Ba vùng màu lớn bên dưới chính là ba chữ trong RAG.</p>
+                </div>
+                <p class="text-sm font-semibold text-slate-500">R → A → G</p>
+            </div>
+            <div class="diagram overflow-x-auto">
+                <pre class="mermaid">
+flowchart LR
+    classDef actor fill:#ecfdf5,stroke:#34d399,color:#065f46,stroke-width:1.5px
+    classDef api fill:#ffffff,stroke:#94a3b8,color:#1e293b
+    classDef route fill:#f8fafc,stroke:#64748b,color:#334155
+    classDef model fill:#fff7ed,stroke:#fb923c,color:#9a3412
+    classDef db fill:#eff6ff,stroke:#60a5fa,color:#1d4ed8
+    classDef retrieve fill:#e0f2fe,stroke:#0284c7,color:#0c4a6e,stroke-width:2px
+    classDef augment fill:#f3e8ff,stroke:#7c3aed,color:#4c1d95,stroke-width:2px
+    classDef generate fill:#d1fae5,stroke:#059669,color:#064e3b,stroke-width:2px
+    classDef guard fill:#fff7ed,stroke:#fb923c,color:#9a3412
+
+    User([Người dùng]):::actor
+
+    subgraph PRE[0 · TIỀN XỬ LÝ - hỗ trợ RAG]
+        direction TB
+        API[POST /chat · JWT]:::api
+        History[(Redis · 5 tin gần nhất)]:::db
+        Rewrite[Rewrite / expansion<br/>Llama 4 Scout 17B]:::model
+        Router[Rule-based Intent Router<br/>ưu tiên câu hỏi gốc]:::route
+        Plan[Execution plan<br/>intent · lane · academic_year]:::route
+        API --> Rewrite
+        History --> Rewrite
+        API --> Router
+        Rewrite -- chỉ hỗ trợ khi mơ hồ --> Router
+        Router --> Plan
+    end
+
+    subgraph R[ R · RETRIEVAL - LẤY DỮ LIỆU ]
+        direction TB
+        RChoice{Chọn đường truy xuất}:::guard
+
+        subgraph R1[R1 · Exact structured retrieval]
+            direction TB
+            Entity[Chuẩn hóa]:::retrieve
+            Tuition[(tuition_rates.json<br/>553 mức học phí thực tế)]:::db
+            Exact[Lookup chính xác<br/>mức tiền · đơn vị · năm · nguồn]:::retrieve
+            Entity --> Tuition --> Exact
+        end
+
+        subgraph R2[R2 · Metadata-filtered semantic retrieval]
+            direction TB
+            Filter[Metadata filter theo request<br/>status · domain · content_kind<br/>fee_kind · academic_year]:::retrieve
+            Qdrant[(Qdrant<br/>Child vectors + metadata)]:::db
+            Parent[(PostgreSQL<br/>Parent Documents)]:::db
+            Rerank[BGE reranker v2-m3<br/>relevance + temporal tie-break]:::model
+            Docs[Top 6 Parent Documents]:::retrieve
+            Filter -- dense search k=15 --> Qdrant
+            Qdrant -- doc_id --> Parent
+            Parent --> Rerank --> Docs
+        end
+
+        RChoice -- học phí thực tế --> Entity
+        RChoice -- miễn giảm · học bổng · vay vốn<br/>hoặc chủ đề khác --> Filter
+    end
+
+    subgraph A[ A · AUGMENTATION - BỔ SUNG CONTEXT VÀO PROMPT ]
+        direction TB
+        Merge[Hợp nhất context<br/>structured được ưu tiên]:::augment
+        Label[Gắn nhãn loại · năm học · nguồn<br/>và trạng thái lane thiếu]:::augment
+        Prompt[Prompt tăng cường<br/>System instruction + Context<br/>lịch sử + câu hỏi gốc]:::augment
+        Merge --> Label --> Prompt
+    end
+
+    subgraph G[ G · GENERATION - SINH CÂU TRẢ LỜI ]
+        direction TB
+        Gemini[Gemini 3.1 Flash Lite<br/>đọc prompt đã tăng cường]:::generate
+        NeedTool{Có cần tính toán?}:::guard
+        Tools[[tool]]:::model
+        Answer([Câu trả lời cuối]):::generate
+        Gemini --> NeedTool
+        NeedTool -- không --> Answer
+        NeedTool -- có --> Tools --> Gemini
+    end
+
+    Save[(Redis ngắn hạn<br/>PostgreSQL dài hạn)]:::db
+
+    User --> API
+    Plan --> RChoice
+    Exact --> Merge
+    Docs --> Merge
+    History --> Prompt
+    API -- câu hỏi gốc --> Prompt
+    Prompt --> Gemini
+    Answer --> User
+    Answer --> Save
+                </pre>
+            </div>
+        </section>
+
+        <section class="grid lg:grid-cols-3 gap-5">
+            <article class="bg-white border-t-4 border-sky-500 rounded-xl p-6 shadow-sm">
+                <p class="text-xs font-extrabold tracking-widest text-sky-700">R · RETRIEVAL</p>
+                <h3 class="mt-2 text-lg font-bold">Lấy bằng chứng trước khi trả lời</h3>
+                <ul class="mt-3 text-sm text-slate-600 leading-7 list-disc pl-5">
+                    <li>Học phí thực tế: lookup xác định trong <code>tuition_rates.json</code>.</li>
+                    <li>Miễn giảm, học bổng và vay vốn có metadata lane riêng.</li>
+                    <li>Văn bản: metadata filter rồi dense search trong Qdrant.</li>
+                    <li>Child chunk dẫn tới Parent trong PostgreSQL.</li>
+                    <li>BGE reranker chọn 6 Parent liên quan nhất.</li>
+                </ul>
+            </article>
+            <article class="bg-white border-t-4 border-violet-500 rounded-xl p-6 shadow-sm">
+                <p class="text-xs font-extrabold tracking-widest text-violet-700">A · AUGMENTATION</p>
+                <h3 class="mt-2 text-lg font-bold">Đưa bằng chứng vào lời nhắc</h3>
+                <ul class="mt-3 text-sm text-slate-600 leading-7 list-disc pl-5">
+                    <li>Hợp nhất kết quả structured lookup và tài liệu RAG.</li>
+                    <li>Gắn nhãn học phí thực tế / cơ sở miễn giảm.</li>
+                    <li>Đưa năm học, nguồn và chỉ dẫn lane vào Context.</li>
+                    <li>Ghép Context với lịch sử và câu hỏi gốc thành prompt.</li>
+                </ul>
+            </article>
+            <article class="bg-white border-t-4 border-emerald-500 rounded-xl p-6 shadow-sm">
+                <p class="text-xs font-extrabold tracking-widest text-emerald-700">G · GENERATION</p>
+                <h3 class="mt-2 text-lg font-bold">Sinh đáp án có căn cứ</h3>
+                <ul class="mt-3 text-sm text-slate-600 leading-7 list-disc pl-5">
+                    <li>Gemini chỉ nhìn thấy prompt và Context backend đã chuẩn bị.</li>
+                    <li>Gemini có thể gọi hai tool tính toán được bind sẵn.</li>
+                    <li>Tool hiện tại không tự truy vấn Qdrant thêm lần nữa.</li>
+                    <li>Kết quả cuối được lưu vào Redis và PostgreSQL.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-5">
+            <article class="rounded-2xl bg-amber-50 border border-amber-300 p-6">
+                <h2 class="font-bold text-amber-950">Không nên gọi toàn bộ sơ đồ là Retrieval</h2>
+                <p class="mt-2 text-sm leading-6 text-amber-900">
+                    Rewrite và intent router chỉ chuẩn bị truy vấn. Qdrant, PostgreSQL, JSON lookup và reranker mới thuộc pha R.
+                    Việc đưa tài liệu vào prompt thuộc pha A; Gemini và tool calling thuộc pha G.
+                </p>
+            </article>
+            <article class="rounded-2xl bg-slate-900 text-slate-200 p-6">
+                <h2 class="font-bold text-white">Câu trình bày ngắn trước giảng viên</h2>
+                <p class="mt-2 text-sm leading-7">
+                    “Ở pha <strong class="text-sky-300">R</strong>, hệ thống lấy dữ liệu đúng từ JSON hoặc Qdrant–PostgreSQL và rerank.
+                    Ở pha <strong class="text-violet-300">A</strong>, backend hợp nhất, gắn nhãn và chèn các bằng chứng đó vào prompt.
+                    Ở pha <strong class="text-emerald-300">G</strong>, Gemini đọc prompt đã được tăng cường, có thể gọi tool tính toán và sinh câu trả lời cuối.”
+                </p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

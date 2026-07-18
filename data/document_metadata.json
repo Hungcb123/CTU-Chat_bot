@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "documents": {
+    "02_246_23-06-2026.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "03_6175KHTH_10-12-2024.md": {
+      "domain": "other",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "116.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "3hk.md": {
+      "domain": "other",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "66_2013.md": {
+      "domain": "social_support",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "donz.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_K51_2026.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_LeSo.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_LuongVanCang.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_Panasonic.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_SCC.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_SCIC_2026.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_Shihan.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_TanSinhVien_K52.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_TayNinh.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_Vallet.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_Vallet_Chi_Tiet.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "Ho_tro.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HoTroCp.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HTCPHT.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HuongDanXacNhanVayVon.md": {
+      "domain": "student_loan",
+      "content_kind": "procedure",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "MauXacNhanhoNghoe.md": {
+      "domain": "social_support",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "mghp.md": {
+      "domain": "tuition",
+      "content_kind": "exemption_policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "MucHocPhi_2526_MienGiam.md": {
+      "domain": "tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "exemption_basis",
+      "academic_year": "2025-2026",
+      "status": "active"
+    },
+    "MucHocPhi_ChatLuongCao_TienTien.md": {
+      "domain": "tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "actual_tuition",
+      "academic_year": "2026-2027",
+      "status": "active"
+    },
+    "MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md": {
+      "domain": "tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "actual_tuition",
+      "academic_year": "2026-2027",
+      "status": "active"
+    },
+    "MucHocPhi_DaiHocChinhQuy_Khoa52.md": {
+      "domain": "tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "actual_tuition",
+      "academic_year": "2026-2027",
+      "status": "active"
+    },
+    "MucHocPhi_QuyDinhChung.md": {
+      "domain": "tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "actual_tuition",
+      "academic_year": "2026-2027",
+      "status": "active"
+    },
+    "nd116.md": {
+      "domain": "social_support",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "NDCP_VayVonSVKT.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "Q_29_STEM_288.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "QD_1227_TTg.md": {
+      "domain": "social_support",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "QD_2022.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "QD29.md": {
+      "domain": "student_loan",
+      "content_kind": "procedure",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "quyet-dinh-05-2022-qd-ttg-thu-tuong-chinh-phu.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "SoTay.md": {
+      "domain": "other",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "Tài liệu phân bổ quỹ học bổng.md": {
+      "domain": "scholarship",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "TCXH.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "Tro_cap_XH.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVon.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "Vayvon_Viettinbank_2025_v2.md": {
+      "domain": "student_loan",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonChoSinhVienKyT.md": {
+      "domain": "student_loan",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonChoSVSuPham.md": {
+      "domain": "social_support",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonMuaMayTinh.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonSinhVien2022.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonVoiNhomNganhKThuat - Copy.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    }
+  }
+}

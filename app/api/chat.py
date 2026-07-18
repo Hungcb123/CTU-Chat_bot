@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 from fastapi import APIRouter, HTTPException, Request, BackgroundTasks, Depends
 import redis.asyncio as redis
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
@@ -14,10 +15,38 @@ from app.core.database import AsyncSessionLocal
 from app.models.schema import ChatSession, ChatMessage, User, generate_uuid
 from sqlalchemy.sql import func
 from app.api.auth import get_current_user
+from app.services.query_intent import (
+    QueryIntent,
+    build_answer_instruction,
+    build_retrieval_lanes,
+    classify_query_intent,
+)
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+
+
+def _env_flag(name: str, default: bool = False) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().casefold() in {"1", "true", "yes", "on"}
+
+
+def _deduplicate_documents(documents):
+    unique = []
+    seen = set()
+    for doc in documents:
+        key = doc.metadata.get("doc_id") or (
+            doc.metadata.get("source"),
+            doc.page_content,
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(doc)
+    return unique
 
 async def save_message_to_postgres(session_id: str, human_query: str, ai_response: str, user_id: str):
     try:
@@ -46,6 +75,7 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
     rewrite_llm = fast_req.app.state.rewrite_llm
     chat_prompt = fast_req.app.state.chat_prompt
     llm_with_tools = fast_req.app.state.llm_with_tools
+    tuition_catalog = fast_req.app.state.tuition_catalog
     
     if request.session_id:
         session_id = request.session_id
@@ -106,8 +136,128 @@ Quy tắc BẮT BUỘC:
         else:
             logger.info(f"🔍 Groq Llama đã viết lại (Query Expansion): '{request.query}' -> '{search_query}'")
 
-        # --- BƯỚC 2: RÚT TRÍCH TÀI LIỆU TỪ VECTOR DB ---
-        docs = engine.retriever.invoke(search_query)
+        # --- BƯỚC 2: ĐỊNH TUYẾN Ý ĐỊNH & RÚT TRÍCH TÀI LIỆU ---
+        routing_decision = classify_query_intent(request.query, search_query)
+        metadata_filter_enabled = _env_flag("RAG_METADATA_FILTER_ENABLED", default=False)
+        no_result_response = None
+        missing_lanes = []
+        structured_context_blocks = []
+
+        lookup_result = None
+        if routing_decision.intent in {
+            QueryIntent.ACTUAL_TUITION,
+            QueryIntent.CALCULATION,
+            QueryIntent.BOTH,
+            QueryIntent.AMBIGUOUS_TUITION,
+        }:
+            lookup_result = tuition_catalog.lookup(request.query)
+            lookup_source = "original"
+            if (
+                lookup_result.status in {"needs_clarification", "not_found"}
+                and search_query.strip() != request.query.strip()
+                and tuition_catalog.rewrite_is_safe_for_lookup(request.query, search_query)
+            ):
+                rewritten_lookup = tuition_catalog.lookup(search_query)
+                if rewritten_lookup.status == "found":
+                    lookup_result = rewritten_lookup
+                    lookup_source = "rewrite"
+            if lookup_result.status == "found":
+                structured_context_blocks.append(lookup_result.message)
+                logger.info(
+                    "Tra cứu học phí cấu trúc thành công source=%s records=%d",
+                    lookup_source,
+                    len(lookup_result.records),
+                )
+            elif (
+                lookup_result.status in {"needs_clarification", "not_found"}
+                and routing_decision.intent is QueryIntent.ACTUAL_TUITION
+            ):
+                no_result_response = lookup_result.message
+
+        if no_result_response is not None:
+            docs = []
+            retrieval_instruction = build_answer_instruction(routing_decision)
+        elif (
+            lookup_result is not None
+            and lookup_result.status == "found"
+            and routing_decision.intent is QueryIntent.ACTUAL_TUITION
+        ):
+            # Exact monetary lookup is authoritative and must not be diluted by
+            # semantically similar table/rule chunks, even during a rollout
+            # where metadata filtering is temporarily disabled.
+            docs = []
+            retrieval_instruction = build_answer_instruction(routing_decision)
+        elif metadata_filter_enabled:
+            docs = []
+            for lane in build_retrieval_lanes(routing_decision):
+                if lane.name == "actual_tuition" and lookup_result is not None and lookup_result.status == "found":
+                    continue
+                lane_docs = engine.retrieve(
+                    search_query,
+                    lane=lane.name,
+                    fee_kind=lane.fee_kind,
+                    content_kind=lane.content_kind,
+                    domain=lane.domain,
+                    academic_year=routing_decision.academic_year,
+                    top_n=lane.top_n,
+                    metadata_filter_enabled=True,
+                )
+                if not lane_docs:
+                    missing_lanes.append(lane.name)
+                for doc in lane_docs:
+                    doc.metadata = dict(doc.metadata)
+                    doc.metadata["retrieval_lane"] = lane.name
+                docs.extend(lane_docs)
+            docs = _deduplicate_documents(docs)
+            retrieval_instruction = build_answer_instruction(routing_decision)
+            lane_labels = {
+                "actual_tuition": "học phí thực tế",
+                "exemption_basis": "mức làm cơ sở tính miễn, giảm",
+                "exemption_policy": "chính sách miễn, giảm",
+                "scholarship": "tài liệu học bổng",
+                "student_loan": "tài liệu vay vốn sinh viên",
+                "default": "tài liệu phù hợp",
+            }
+            if missing_lanes:
+                missing_text = ", ".join(
+                    lane_labels.get(name, name) for name in missing_lanes
+                )
+                year_text = (
+                    f" cho năm học {routing_decision.academic_year}"
+                    if routing_decision.academic_year
+                    else ""
+                )
+                retrieval_instruction += (
+                    f" Hệ thống không tìm thấy {missing_text}{year_text}; "
+                    "phải nói rõ là không tìm thấy và không dùng loại khác thay thế."
+                )
+            if not docs and not structured_context_blocks:
+                year_text = (
+                    f" cho năm học {routing_decision.academic_year}"
+                    if routing_decision.academic_year
+                    else ""
+                )
+                requested_text = ", ".join(
+                    lane_labels.get(name, name) for name in missing_lanes
+                ) or "tài liệu phù hợp"
+                no_result_response = (
+                    f"Không tìm thấy {requested_text}{year_text} trong kho tài liệu đang hoạt động."
+                )
+        else:
+            docs = engine.retriever.invoke(search_query)
+            retrieval_instruction = (
+                "Metadata filter đang tắt trong giai đoạn rollout; trả lời theo ngữ cảnh và "
+                "vẫn phải phân biệt học phí thực tế với cơ sở tính miễn giảm."
+            )
+
+        logger.info(
+            "Định tuyến query intent=%s source=%s year=%s metadata_filter=%s docs=%s",
+            routing_decision.intent.value,
+            routing_decision.classified_from,
+            routing_decision.academic_year,
+            metadata_filter_enabled,
+            len(docs),
+        )
         
         # --- DEBUG LOG: Ghi lại 6 Parent Documents được Reranker chọn ---
         try:
@@ -128,9 +278,14 @@ Quy tắc BẮT BUỘC:
                 source = doc.metadata.get('source', 'N/A')
                 headers = {k: v for k, v in doc.metadata.items() if k.startswith("Header_")}
                 effective_date = doc.metadata.get('effective_date', 'N/A')
-                preview = doc.page_content[:700].replace('\n', ' ')
+                preview = doc.page_content[:1200].replace('\n', ' ')
                 
-                log_lines.append(f"  [{i+1}] Source: {source} | Date: {effective_date}")
+                log_lines.append(
+                    f"  [{i+1}] Source: {source} | Date: {effective_date} | "
+                    f"FeeKind: {doc.metadata.get('fee_kind', 'N/A')} | "
+                    f"Lane: {doc.metadata.get('retrieval_lane', 'default')} | "
+                    f"Index: {doc.metadata.get('index_version', 'N/A')}"
+                )
                 log_lines.append(f"      Headers: {headers}")
                 log_lines.append(f"      Preview: {preview}...")
                 log_lines.append(f"      Length: {len(doc.page_content)} chars")
@@ -151,25 +306,55 @@ Quy tắc BẮT BUỘC:
             logger.warning(f"⚠️ Debug log ghi thất bại (không ảnh hưởng hệ thống): {debug_err}")
         
         # Ghép nội dung và tiêm lại Header từ Metadata để LLM không bị mất bối cảnh ở các đoạn bị cắt ngang
-        context_blocks = []
+        context_blocks = list(structured_context_blocks)
         for doc in docs:
             headers = [str(v) for k, v in doc.metadata.items() if k.startswith("Header_")]
             header_prefix = "Chuyên mục: " + " > ".join(headers) + "\n" if headers else ""
-            context_blocks.append(f"[{doc.metadata.get('source', 'Tài liệu')}]\n{header_prefix}{doc.page_content}")
+            fee_kind_label = {
+                "actual_tuition": "HỌC PHÍ THỰC TẾ",
+                "exemption_basis": "CƠ SỞ TÍNH MIỄN GIẢM",
+                "not_applicable": "KHÔNG ÁP DỤNG LOẠI HỌC PHÍ",
+            }.get(doc.metadata.get("fee_kind"), "KHÔNG PHÂN LOẠI")
+            metadata_prefix = (
+                f"[LOẠI: {fee_kind_label} | "
+                f"NĂM HỌC: {doc.metadata.get('academic_year') or 'không xác định'} | "
+                f"NGUỒN: {doc.metadata.get('source', 'Tài liệu')}]\n"
+            )
+            context_blocks.append(f"{metadata_prefix}{header_prefix}{doc.page_content}")
+        if metadata_filter_enabled:
+            missing_context_labels = {
+                "actual_tuition": "HỌC PHÍ THỰC TẾ",
+                "exemption_basis": "CƠ SỞ TÍNH MIỄN GIẢM",
+                "exemption_policy": "CHÍNH SÁCH MIỄN GIẢM",
+                "scholarship": "HỌC BỔNG",
+                "student_loan": "VAY VỐN SINH VIÊN",
+                "default": "TÀI LIỆU PHÙ HỢP",
+            }
+            for lane_name in missing_lanes:
+                context_blocks.append(
+                    f"[LOẠI: {missing_context_labels.get(lane_name, lane_name)} | "
+                    f"NĂM HỌC: {routing_decision.academic_year or 'không xác định'}]\n"
+                    "KHÔNG TÌM THẤY DỮ LIỆU ĐÚNG LANE/NĂM HỌC."
+                )
             
         context_str = "\n\n---\n\n".join(context_blocks)
 
         # --- BƯỚC 3: GỌI LLM GEMINI VÀ XỬ LÝ TOOL ---
         chain_input = {
             "context": context_str,
+            "retrieval_instruction": retrieval_instruction,
             "chat_history": chat_history,
             "question": request.query # Lưu ý: Vẫn giữ lại câu hỏi gốc cho Gemini để nó phản hồi tự nhiên hơn
         }
         
-        rag_chain = chat_prompt | llm_with_tools
-        response_msg = await rag_chain.ainvoke(chain_input)
-        
-        if response_msg.tool_calls:
+        response_msg = None
+        if no_result_response is None:
+            rag_chain = chat_prompt | llm_with_tools
+            response_msg = await rag_chain.ainvoke(chain_input)
+
+        if no_result_response is not None:
+            ai_response = no_result_response
+        elif response_msg.tool_calls:
             logger.info(f"Gemini đã kích hoạt Tool: {response_msg.tool_calls}")
             
             prompt_value = await chat_prompt.ainvoke(chain_input)

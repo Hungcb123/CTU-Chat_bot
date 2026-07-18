@@ -4,11 +4,16 @@ import shutil
 from pathlib import Path
 from uuid import uuid4
 
-from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile
 
 from app.api.auth import require_admin
 from app.models.schema import User
 from app.services.ocr_service import LlamaParseAsyncClient
+from app.services.document_metadata import (
+    DocumentMetadataCatalog,
+    MetadataCatalogError,
+    normalize_document_class,
+)
 from app.utils.clean_md import clean_markdown_file
 
 router = APIRouter(prefix="/document", tags=["Document"])
@@ -98,16 +103,30 @@ def _move_without_overwrite(source: Path, destination: Path) -> None:
 async def upload_document(
     request: Request,
     file: UploadFile = File(...),
+    document_class: str = Form(...),
+    academic_year: str | None = Form(None),
     _admin: User = Depends(require_admin),
 ):
     """Upload, parse, clean, and ingest one admin-approved PDF document."""
     input_path: Path | None = None
     markdown_path: Path | None = None
     markdown_created = False
-    ingested = False
+    ingest_attempted = False
+    ingest_run_id = uuid4().hex
+    completed = False
+    catalog_entry_created = False
+    catalog: DocumentMetadataCatalog | None = None
+    normalized_metadata: dict | None = None
+    engine = None
 
     try:
         original_filename = _validate_pdf_filename(file.filename)
+
+        academic_year = (academic_year or "").strip() or None
+        try:
+            normalized_metadata = normalize_document_class(document_class, academic_year)
+        except (MetadataCatalogError, ValueError) as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from None
 
         media_type = _normalise_media_type(file.content_type)
         if media_type not in ALLOWED_PDF_MEDIA_TYPES:
@@ -157,13 +176,33 @@ async def upload_document(
             ) from None
         clean_markdown_file(markdown_path)
 
+        try:
+            catalog = DocumentMetadataCatalog.load()
+            metadata_entry = catalog.add_uploaded_document(
+                source=markdown_path.name,
+                document_class=document_class,
+                academic_year=academic_year,
+                original_filename=original_filename,
+                uploaded_by=str(_admin.username),
+            )
+            catalog_entry_created = True
+            normalized_metadata = metadata_entry.as_dict()
+        except MetadataCatalogError as exc:
+            raise HTTPException(
+                status_code=409 if "already exists" in str(exc).casefold() else 500,
+                detail=f"Không thể ghi metadata tài liệu: {exc}",
+            ) from None
+
         engine = request.app.state.engine
-        if not engine.ingest_markdown_document(str(markdown_path)):
+        ingest_attempted = True
+        if not engine.ingest_markdown_document(
+            str(markdown_path),
+            ingest_run_id=ingest_run_id,
+        ):
             raise HTTPException(
                 status_code=500,
                 detail="Không thể lưu tài liệu vào cơ sở dữ liệu vector.",
             )
-        ingested = True
 
         try:
             _move_without_overwrite(input_path, done_path)
@@ -174,9 +213,12 @@ async def upload_document(
             ) from None
 
         logger.info("Đã xử lý thành công tài liệu %s", original_filename)
+        completed = True
         return {
             "status": "success",
             "message": f"Tài liệu {original_filename} đã được xử lý và học thành công.",
+            "source": markdown_path.name,
+            "metadata": normalized_metadata,
         }
     except HTTPException:
         raise
@@ -192,5 +234,31 @@ async def upload_document(
         except Exception:
             logger.warning("Không thể đóng file upload", exc_info=True)
         _remove_file(input_path)
-        if markdown_created and not ingested:
+        if (
+            not completed
+            and ingest_attempted
+            and engine is not None
+            and markdown_path is not None
+        ):
+            try:
+                engine.purge_document(
+                    markdown_path.name,
+                    ingest_run_id=ingest_run_id,
+                )
+            except Exception:
+                logger.error(
+                    "Không thể rollback dữ liệu RAG của %s",
+                    markdown_path.name,
+                    exc_info=True,
+                )
+        if not completed and catalog_entry_created and catalog is not None and markdown_path is not None:
+            try:
+                catalog.remove_uploaded_document(markdown_path.name, missing_ok=True)
+            except Exception:
+                logger.error(
+                    "Không thể rollback metadata của %s",
+                    markdown_path.name,
+                    exc_info=True,
+                )
+        if markdown_created and not completed:
             _remove_file(markdown_path)

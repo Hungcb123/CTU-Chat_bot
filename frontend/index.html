@@ -47,8 +47,6 @@
 
                 <ul class="nav-links">
                     <li id="upload-pdf-nav" hidden>
-                        <input type="file" id="pdf-upload" accept=".pdf,application/pdf,application/x-pdf"
-                            style="display: none">
                         <a href="#" id="upload-pdf-btn">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
                                 fill="none">
@@ -152,6 +150,61 @@
                 </div>
                 <div class="auth-error" id="register-error"></div>
                 <button type="submit" class="auth-submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin PDF Upload Modal -->
+    <div class="modal-overlay" id="upload-modal" role="dialog" aria-modal="true"
+        aria-labelledby="upload-modal-title" aria-hidden="true">
+        <div class="modal-content upload-modal-content">
+            <button type="button" class="close-modal" id="close-upload-modal" aria-label="Đóng cửa sổ tải tài liệu">
+                &times;
+            </button>
+
+            <div class="upload-modal-header">
+                <h2 id="upload-modal-title">Tải tài liệu vào kho RAG</h2>
+                <p>Chỉ quản trị viên có thể tải tệp PDF, dung lượng tối đa 5 MiB.</p>
+            </div>
+
+            <form id="upload-form" class="upload-form" novalidate>
+                <div class="form-group">
+                    <label for="pdf-upload">Tệp PDF <span class="required-marker">*</span></label>
+                    <input type="file" id="pdf-upload" name="file"
+                        accept=".pdf,application/pdf,application/x-pdf" required>
+                    <small class="form-help">Định dạng PDF, tối đa 5 MiB.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="document-class">Loại tài liệu <span class="required-marker">*</span></label>
+                    <select id="document-class" name="document_class" required>
+                        <option value="">Chọn loại tài liệu</option>
+                        <option value="tuition_actual_rate">Mức học phí thực tế</option>
+                        <option value="tuition_exemption_basis">Mức làm cơ sở miễn, giảm học phí</option>
+                        <option value="tuition_exemption_policy">Chính sách miễn, giảm học phí</option>
+                        <option value="scholarship">Học bổng</option>
+                        <option value="student_loan">Vay vốn sinh viên</option>
+                        <option value="social_support">Trợ cấp, hỗ trợ xã hội</option>
+                        <option value="other">Tài liệu khác</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="academic-year-group" hidden>
+                    <label for="academic-year">Năm học <span class="required-marker">*</span></label>
+                    <input type="text" id="academic-year" name="academic_year" inputmode="numeric"
+                        autocomplete="off" placeholder="2025-2026" pattern="[0-9]{4}-[0-9]{4}"
+                        aria-describedby="academic-year-help">
+                    <small class="form-help" id="academic-year-help">Dùng định dạng YYYY-YYYY với hai năm liên tiếp.</small>
+                </div>
+
+                <div class="upload-error" id="upload-error" role="alert" aria-live="assertive"></div>
+
+                <div class="upload-actions">
+                    <button type="button" class="secondary-button" id="cancel-upload">Hủy</button>
+                    <button type="submit" class="upload-submit" id="submit-upload">
+                        <span id="submit-upload-text">Tải lên</span>
+                    </button>
+                </div>
             </form>
         </div>
     </div>

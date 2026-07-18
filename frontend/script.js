@@ -414,80 +414,289 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Upload PDF logic
+    // Admin PDF upload modal
     const uploadPdfBtn = document.getElementById('upload-pdf-btn');
-    const pdfUploadInput = document.getElementById('pdf-upload');
     const uploadText = document.getElementById('upload-text');
+    const uploadModal = document.getElementById('upload-modal');
+    const uploadForm = document.getElementById('upload-form');
+    const closeUploadModalBtn = document.getElementById('close-upload-modal');
+    const cancelUploadBtn = document.getElementById('cancel-upload');
+    const submitUploadBtn = document.getElementById('submit-upload');
+    const submitUploadText = document.getElementById('submit-upload-text');
+    const pdfUploadInput = document.getElementById('pdf-upload');
+    const documentClassSelect = document.getElementById('document-class');
+    const academicYearGroup = document.getElementById('academic-year-group');
+    const academicYearInput = document.getElementById('academic-year');
+    const uploadError = document.getElementById('upload-error');
     const maxPdfSizeBytes = 5 * 1024 * 1024;
+    const allowedPdfMimeTypes = new Set(['application/pdf', 'application/x-pdf']);
+    const allowedDocumentClasses = new Set([
+        'tuition_actual_rate',
+        'tuition_exemption_basis',
+        'tuition_exemption_policy',
+        'scholarship',
+        'student_loan',
+        'social_support',
+        'other'
+    ]);
+    const classesRequiringAcademicYear = new Set([
+        'tuition_actual_rate',
+        'tuition_exemption_basis'
+    ]);
+    let uploadInProgress = false;
 
-    if (uploadPdfBtn && pdfUploadInput) {
-        uploadPdfBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (!isAdminUser(currentUser)) {
+    if (
+        uploadPdfBtn && uploadModal && uploadForm && closeUploadModalBtn
+        && cancelUploadBtn && submitUploadBtn && pdfUploadInput
+        && documentClassSelect && academicYearGroup && academicYearInput && uploadError
+    ) {
+        function requiresAcademicYear(documentClass = documentClassSelect.value) {
+            return classesRequiringAcademicYear.has(documentClass);
+        }
+
+        function clearUploadError() {
+            uploadError.textContent = '';
+            pdfUploadInput.removeAttribute('aria-invalid');
+            documentClassSelect.removeAttribute('aria-invalid');
+            academicYearInput.removeAttribute('aria-invalid');
+        }
+
+        function showUploadError(message, field) {
+            uploadError.textContent = message;
+            if (field) {
+                field.setAttribute('aria-invalid', 'true');
+                field.focus();
+            }
+        }
+
+        function updateAcademicYearField() {
+            const isRequired = requiresAcademicYear();
+            academicYearGroup.hidden = !isRequired;
+            academicYearInput.required = isRequired;
+            academicYearInput.disabled = !isRequired || uploadInProgress;
+            academicYearInput.setAttribute('aria-required', String(isRequired));
+            academicYearInput.setCustomValidity('');
+
+            if (!isRequired) {
+                academicYearInput.value = '';
+                academicYearInput.removeAttribute('aria-invalid');
+            }
+        }
+
+        function resetUploadForm() {
+            uploadForm.reset();
+            clearUploadError();
+            updateAcademicYearField();
+        }
+
+        function setUploadLoading(isLoading) {
+            uploadInProgress = isLoading;
+            uploadForm.setAttribute('aria-busy', String(isLoading));
+            pdfUploadInput.disabled = isLoading;
+            documentClassSelect.disabled = isLoading;
+            submitUploadBtn.disabled = isLoading;
+            cancelUploadBtn.disabled = isLoading;
+            closeUploadModalBtn.disabled = isLoading;
+            uploadPdfBtn.setAttribute('aria-disabled', String(isLoading));
+
+            if (submitUploadText) {
+                submitUploadText.textContent = isLoading ? 'Đang xử lý...' : 'Tải lên';
+            }
+            if (uploadText) {
+                uploadText.textContent = isLoading ? 'Đang xử lý...' : 'Upload PDF';
+            }
+
+            updateAcademicYearField();
+        }
+
+        function openUploadModal() {
+            if (!isAdminUser(currentUser) || uploadInProgress) {
+                if (!isAdminUser(currentUser)) {
+                    alert('Chỉ tài khoản quản trị mới có thể tải tài liệu lên.');
+                }
                 return;
             }
-            // Chỉ định cho click, mở hộp thoại chọn file
-            pdfUploadInput.click();
-        });
 
-        pdfUploadInput.addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
+            resetUploadForm();
+            uploadModal.classList.add('active');
+            uploadModal.setAttribute('aria-hidden', 'false');
+            window.setTimeout(() => pdfUploadInput.focus(), 0);
+        }
 
-            if (!isAdminUser(currentUser)) {
-                alert('Chỉ tài khoản quản trị mới có thể tải tài liệu lên.');
-                pdfUploadInput.value = '';
+        function closeUploadModal(options = {}) {
+            const { force = false, reset = true } = options;
+            if (uploadInProgress && !force) {
                 return;
             }
 
-            const hasPdfExtension = file.name.toLowerCase().endsWith('.pdf');
-            const allowedPdfMimeTypes = new Set(['application/pdf', 'application/x-pdf']);
-            const hasPdfMimeType = allowedPdfMimeTypes.has(file.type.toLowerCase());
-            if (!hasPdfExtension || !hasPdfMimeType) {
-                alert('Vui lòng chọn file định dạng PDF.');
-                pdfUploadInput.value = ''; // Reset
-                return;
+            uploadModal.classList.remove('active');
+            uploadModal.setAttribute('aria-hidden', 'true');
+            if (reset) {
+                resetUploadForm();
+            }
+            uploadPdfBtn.focus();
+        }
+
+        function validateUploadForm() {
+            const file = pdfUploadInput.files && pdfUploadInput.files[0];
+            if (!file) {
+                return { message: 'Vui lòng chọn một tệp PDF.', field: pdfUploadInput };
+            }
+
+            const hasPdfExtension = typeof file.name === 'string' && file.name.toLowerCase().endsWith('.pdf');
+            const mimeType = typeof file.type === 'string' ? file.type.toLowerCase() : '';
+            if (!hasPdfExtension || !allowedPdfMimeTypes.has(mimeType)) {
+                return { message: 'Tệp phải có đuôi .pdf và MIME type hợp lệ.', field: pdfUploadInput };
+            }
+
+            if (file.size <= 0) {
+                return { message: 'Tệp PDF không được để trống.', field: pdfUploadInput };
             }
 
             if (file.size > maxPdfSizeBytes) {
-                alert('File PDF không được vượt quá 5 MiB.');
-                pdfUploadInput.value = '';
+                return { message: 'Tệp PDF không được vượt quá 5 MiB.', field: pdfUploadInput };
+            }
+
+            const documentClass = documentClassSelect.value;
+            if (!allowedDocumentClasses.has(documentClass)) {
+                return { message: 'Vui lòng chọn loại tài liệu hợp lệ.', field: documentClassSelect };
+            }
+
+            let academicYear = '';
+            if (requiresAcademicYear(documentClass)) {
+                academicYear = academicYearInput.value.trim();
+                const match = /^(\d{4})-(\d{4})$/.exec(academicYear);
+                if (!match || Number(match[2]) !== Number(match[1]) + 1) {
+                    return {
+                        message: 'Năm học phải có dạng YYYY-YYYY và gồm hai năm liên tiếp, ví dụ 2025-2026.',
+                        field: academicYearInput
+                    };
+                }
+            }
+
+            return { file, documentClass, academicYear };
+        }
+
+        async function readUploadResponse(response) {
+            const responseText = await response.text();
+            if (!responseText) {
+                return {};
+            }
+
+            try {
+                return JSON.parse(responseText);
+            } catch (error) {
+                console.error('Unable to parse upload response:', error);
+                return {};
+            }
+        }
+
+        function getUploadErrorMessage(result, fallback) {
+            const detail = result && result.detail;
+            if (typeof detail === 'string' && detail.trim()) {
+                return detail;
+            }
+            if (Array.isArray(detail)) {
+                const messages = detail
+                    .map(item => (item && typeof item.msg === 'string' ? item.msg : ''))
+                    .filter(Boolean);
+                if (messages.length) {
+                    return messages.join(' ');
+                }
+            }
+            return fallback;
+        }
+
+        uploadPdfBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            openUploadModal();
+        });
+
+        closeUploadModalBtn.addEventListener('click', () => closeUploadModal());
+        cancelUploadBtn.addEventListener('click', () => closeUploadModal());
+
+        uploadModal.addEventListener('click', (event) => {
+            if (event.target === uploadModal) {
+                closeUploadModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && uploadModal.classList.contains('active')) {
+                closeUploadModal();
+            }
+        });
+
+        documentClassSelect.addEventListener('change', () => {
+            clearUploadError();
+            updateAcademicYearField();
+        });
+        pdfUploadInput.addEventListener('change', clearUploadError);
+        academicYearInput.addEventListener('input', clearUploadError);
+
+        uploadForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (uploadInProgress) {
+                return;
+            }
+
+            clearUploadError();
+            if (!isAdminUser(currentUser)) {
+                showUploadError('Phiên đăng nhập quản trị không còn hợp lệ. Vui lòng đăng nhập lại.');
+                setAdminUploadVisibility(null);
+                return;
+            }
+
+            const validation = validateUploadForm();
+            if (validation.message) {
+                showUploadError(validation.message, validation.field);
                 return;
             }
 
             const formData = new FormData();
-            formData.append('file', file);
+            formData.append('file', validation.file);
+            formData.append('document_class', validation.documentClass);
+            if (validation.academicYear) {
+                formData.append('academic_year', validation.academicYear);
+            }
 
-            // Giao diện chuyển sang trạng thái loading
-            const originalText = uploadText.textContent;
-            uploadText.textContent = "Đang xử lý...";
-            uploadPdfBtn.style.opacity = '0.5';
-            uploadPdfBtn.style.pointerEvents = 'none';
+            let uploadSucceeded = false;
+            let successMessage = 'Tài liệu đã được tải lên.';
+            setUploadLoading(true);
 
             try {
                 const response = await fetch('/document/upload', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     body: formData
                 });
-
-                const result = await response.json();
+                const result = await readUploadResponse(response);
 
                 if (response.ok) {
-                    alert('Thành công: ' + result.message);
+                    uploadSucceeded = true;
+                    if (typeof result.message === 'string' && result.message.trim()) {
+                        successMessage = result.message;
+                    }
                 } else {
-                    alert('Lỗi: ' + (result.detail || 'Không thể xử lý file PDF.'));
+                    if (response.status === 401 || response.status === 403) {
+                        await checkAuth();
+                    }
+                    showUploadError(getUploadErrorMessage(result, 'Không thể xử lý tệp PDF.'));
                 }
             } catch (error) {
-                console.error("Upload error:", error);
-                alert('Lỗi hệ thống khi tải file lên.');
+                console.error('Upload error:', error);
+                showUploadError('Không thể kết nối tới máy chủ. Vui lòng thử lại.');
             } finally {
-                // Khôi phục giao diện
-                uploadText.textContent = originalText;
-                uploadPdfBtn.style.opacity = '1';
-                uploadPdfBtn.style.pointerEvents = 'auto';
-                pdfUploadInput.value = ''; // Reset input
+                setUploadLoading(false);
+            }
+
+            if (uploadSucceeded) {
+                closeUploadModal();
+                alert(`Thành công: ${successMessage}`);
             }
         });
+
+        updateAcademicYearField();
     }
 
 });
