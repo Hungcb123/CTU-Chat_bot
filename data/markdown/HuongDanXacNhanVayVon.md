@@ -1,4 +1,4 @@
-# HƯỚNG DẪN SINH VIÊN ĐĂNG KÝ MẪU XÁC NHẬN VAY VỐN TRỰC TUYẾN
+# Hướng dẫn — Đăng ký giấy xác nhận vay vốn trực tuyến — Sinh viên Trường Đại học Cần Thơ
 
 **Ngữ cảnh:** Tài liệu hướng dẫn chi tiết các bước để sinh viên tự đăng ký hoặc hủy đăng ký mẫu đơn xác nhận vay vốn trên hệ thống quản lý học tập của Trường Đại học Cần Thơ.
 

@@ -1,7 +1,10 @@
-# Mức học phí theo tín chỉ - Đại học chính quy chương trình đào tạo chuẩn (đại trà) - Khóa 52
+# Bảng học phí thực tế — Chương trình chuẩn Khóa 52 — Năm học 2026-2027
+
 **Ngữ cảnh:** Đây là PHỤ LỤC 2 của Văn bản số 423/ĐHCT-KHTC ngày 03/02/2026. Bảng dưới đây liệt kê mức học phí toàn khóa (triệu đồng/khóa) và mức học phí theo tín chỉ (đồng/tín chỉ) của khối kiến thức đại cương chung và chuyên ngành dành cho sinh viên đại học chính quy chương trình đào tạo chuẩn (đại trà), áp dụng cho Khóa 52 tại Trường Đại học Cần Thơ.
 
 **Lưu ý:** Mức học phí của khối kiến thức đại cương chung (tất cả các ngành Khóa 52): **695.000 đồng/tín chỉ**.
+
+Các mức học phí thực tế Khóa 52 thường được tra cứu gồm: Sư phạm Toán học **807.000 đồng/tín chỉ**; Khoa học máy tính **966.000 đồng/tín chỉ**; Kinh doanh nông nghiệp tại Hòa An **844.000 đồng/tín chỉ**; Quản trị kinh doanh **114,5 triệu đồng/toàn khóa**; Kiến trúc **165,6 triệu đồng/toàn khóa**.
 
 | STT | Mã ngành | Khối | Lĩnh vực | Ngành | Đơn vị | K52 Trđ/khóa | K52 Đồng/tín chỉ |
 | --- | -------- | ---- | -------- | ----- | ------ | ------------ | ----------------- |

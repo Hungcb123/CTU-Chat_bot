@@ -1,10 +1,12 @@
+# Thông báo — Học bổng Lương Văn Can — Năm học 2025-2026
+
 **PHÒNG CÔNG TÁC SINH VIÊN**
 
 
 
 *Cần Thơ, ngày 18 tháng 5 năm 2026*
 
-# THÔNG BÁO
+
 ## Về việc xét cấp học bổng Lương Văn Can, năm học 2026 – 2027
 
 - Thủ trưởng các đơn vị có liên quan;
@@ -21,6 +23,8 @@ Học bổng được xét lại từng học kỳ, nhằm đảm bảo tính mi
 Quá trình xét duyệt Học bổng gồm 02 vòng: vòng sơ tuyển (vòng 1), vòng phỏng vấn (vòng 2). Các ứng viên vượt qua vòng 2 sẽ được nhận học bổng. Số lượng học bổng cấp mới tùy thuộc vào chất lượng ứng viên từng năm.
 
 ## 2. Đối tượng cấp học bổng:
+
+Bảng dưới đây mô tả riêng tiêu chí dự tuyển Học bổng Lương Văn Can cho sinh viên đang học và tân sinh viên Khóa 52; ô trống là tiêu chí nguồn không quy định riêng cho nhóm đó.
 
 | Tiêu chí             | Đối tượng 1: Sinh viên đang học                                                                                          | Đối tượng 2: Tân sinh viên Khóa 52 Trúng tuyển ĐHCT năm 2026                                                                                     |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,10 @@
+# Thông báo — Học bổng Vallet — Năm 2026
+
 **PHÒNG CÔNG TÁC SINH VIÊN**
 
 *Cần Thơ, ngày 01 tháng 6 năm 2026*
 
-# THÔNG BÁO KHẨN
+
 ## Về việc xét cấp học bổng Vallet 2026
 ### Dành cho Sinh viên đại học và Học viên cao học
 
@@ -33,7 +35,7 @@ Theo Thông tin nhận được ngày 31/05/2026 của Ban Điều hành học b
 
 ## 4. Thời gian thực hiện và địa điểm nộp hồ sơ
 
-4.1. Thời gian đăng ký và nộp hồ sơ theo hình thức trực tuyến được thực hiện kể từ ngày nhận được thông báo <mark>**đến hết ngày 15/06/2026 (Thứ Hai)**</mark>. Cụ thể:
+4.1. Thời gian đăng ký và nộp hồ sơ theo hình thức trực tuyến được thực hiện kể từ ngày nhận được thông báo **đến hết ngày 15/06/2026 (Thứ Hai)**. Cụ thể:
 - Sinh viên đại học: https://forms.gle/YXrojGZ9SbWjFrPB6
 - Học viên Cao học: https://forms.gle/PqF5eQpcYqD3ZtVv7
 

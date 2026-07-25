@@ -1,8 +1,8 @@
-
+# Quyết định — Trợ cấp xã hội cho sinh viên — Học kỳ 2 năm học 2025-2026
 
 *Cần Thơ, ngày 24 tháng 4 năm 2026*
 
-# QUYẾT ĐỊNH
+
 ## Về việc Trợ cấp xã hội cho sinh viên
 
 ### HIỆU TRƯỞNG ĐẠI HỌC CẦN THƠ
@@ -18,6 +18,6 @@
 ## Điều 1. Trợ cấp xã hội cho 24 sinh viên Đại học Cần Thơ có tên sau đây thuộc diện hộ nghèo, con mồ côi cả cha lẫn mẹ, tàn tật >40%:
 *(Danh sách sinh viên kèm theo).*
 
-## Điều 2. Mức trợ cấp là 100.000đ/1SV/1tháng. Thời gian hưởng trợ cấp xã hội là học kỳ 2, năm học 2025 – 2026 (Từ tháng 01/2026 đến tháng 04/2026).
+## Điều 2. Mức trợ cấp là 100.000 đồng/sinh viên/tháng. Thời gian hưởng trợ cấp xã hội là học kỳ 2, năm học 2025 – 2026 (Từ tháng 01/2026 đến tháng 04/2026).
 
 ## Điều 3. Quyết định có hiệu lực kể từ ngày ký. Chánh Văn phòng Trường Đại học Cần Thơ; các Trưởng phòng: Công tác Sinh viên, Kế hoạch và Tài chính, Đào tạo và sinh viên có tên tại Điều 1 chịu trách nhiệm thi hành quyết định này./.

@@ -1,10 +1,15 @@
-# Mức học phí làm cơ sở để tính miễn, giảm học phí năm học 2025-2026 tại Đại học Cần Thơ (ĐHCT)
+# Bảng mức thu — Cơ sở tính miễn, giảm học phí — Năm học 2025-2026
+
+Các bảng trong tài liệu này là mức học phí dùng làm cơ sở tính miễn, giảm năm học 2025-2026, không phải mức học phí thực tế năm học 2026-2027.
+
 **Ngữ cảnh:** Tài liệu quy định về mức học phí làm cơ sở để tính miễn, giảm học phí cho năm học 2025-2026 dành cho sinh viên đại học chính quy tại Trường Đại học Cần Thơ (Căn cứ số 517/ĐHCT-TC ngày 18/02/2025).
 
 Căn cứ tiết b khoản 2 điều 20 Nghị định 81/2021/NĐ-CP ngày 27/08/2021 của Thủ tướng Chính phủ quy định về cơ chế thu, quản lý học phí đối với cơ sở giáo dục thuộc hệ thống giáo dục quốc dân và chính sách miễn, giảm học phí, hỗ trợ chi phí học tập; giá dịch vụ trong lĩnh vực giáo dục, đào tạo;
 Căn cứ Nghị định 97/2023/NĐ-CP ngày 31/12/2023 của Chính phủ về sửa đổi bổ sung một số điều của Nghị định 81/2021/NĐ-CP,
 
 Trường Đại học Cần Thơ quy định mức học phí là cơ sở tính miễn, giảm học phí năm học 2025-2026 như sau:
+
+Các mức cần tra cứu phổ biến gồm: học phần Giáo dục quốc phòng và An ninh và Khối ngành III là **451.000 đồng/tín chỉ**; Khối ngành IV là **487.000 đồng/tín chỉ**; Khối ngành VI là **753.000 đồng/tín chỉ**; chương trình Tiên tiến Khóa 47 trở về trước là **335.000 đồng/tín chỉ**. Đây đều là mức làm cơ sở tính miễn, giảm, không phải học phí thực tế.
 
 ## 2. Đại học hình thức chính quy chương trình đại trà
 ### 2.1 Mức miễn, giảm các học phần đại cương chung

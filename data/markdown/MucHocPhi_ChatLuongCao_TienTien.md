@@ -1,6 +1,10 @@
-# Mức học phí Đại học chính quy chương trình Chất lượng cao (CLC) và chương trình Tiên tiến tại Đại học Cần Thơ
+# Bảng học phí thực tế — Chương trình Chất lượng cao và Tiên tiến — Năm học 2026-2027
+
+Các bảng dưới đây là mức học phí thực tế theo tín chỉ của chương trình Chất lượng cao và chương trình Tiên tiến tại Đại học Cần Thơ năm học 2026-2027.
 
 **Ngữ cảnh:** Đây là PHỤ LỤC 3 của Văn bản số 423/ĐHCT-KHTC ngày 03/02/2026. Bảng dưới đây liệt kê mức học phí cố định theo từng khóa học cho các chương trình đào tạo Chất lượng cao (CLC) và Tiên tiến tại Trường Đại học Cần Thơ. Học phí được cố định theo khóa tuyển sinh.
+
+Các mức học phí thực tế thường được tra cứu gồm: Công nghệ thông tin Chất lượng cao Khóa 52 **44 triệu đồng/năm học**; Kinh doanh quốc tế Chất lượng cao Khóa 51 **40 triệu đồng/năm học**; Công nghệ thông tin Chất lượng cao Khóa 44 **25 triệu đồng/năm học**; Thú y Chất lượng cao Khóa 52 **1.553.000 đồng/tín chỉ**; Nuôi trồng thủy sản Tiên tiến Khóa 52 **1.564.000 đồng/tín chỉ**.
 
 ## I. Học phí cố định theo khóa học (triệu đồng/năm học)
 

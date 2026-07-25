@@ -22,6 +22,7 @@ class QueryIntent(str, Enum):
     AMBIGUOUS_TUITION = "ambiguous_tuition"
     SCHOLARSHIP = "scholarship"
     STUDENT_LOAN = "student_loan"
+    SOCIAL_SUPPORT = "social_support"
     OTHER = "other"
 
 
@@ -70,6 +71,7 @@ def _is_vague_follow_up(text: str | None) -> bool:
     inherit a tuition lane merely because the query rewriter mentioned tuition.
     """
 
+    raw_value = re.sub(r"\s+", " ", (text or "").strip().casefold())
     value = _normalise(text)
     if not value:
         return True
@@ -99,7 +101,19 @@ def _is_vague_follow_up(text: str | None) -> bool:
     )
     if _contains_any(value, reference_phrases):
         return True
-    return len(value.split()) <= 12 and value.startswith(("vay ", "con ", "the ", "neu "))
+    return len(value.split()) <= 12 and bool(
+        re.match(r"^(?:vậy|còn|thế)\b", raw_value)
+    )
+
+
+def should_rewrite_query(query: str, previous_user_query: str | None) -> bool:
+    """Only contextualize genuinely vague follow-ups with user-provided context."""
+
+    if not (previous_user_query or "").strip():
+        return False
+    if _classify_one(query) not in {QueryIntent.OTHER, QueryIntent.AMBIGUOUS_TUITION}:
+        return False
+    return _is_vague_follow_up(query)
 
 
 def _classify_one(text: str | None) -> QueryIntent:
@@ -116,6 +130,13 @@ def _classify_one(text: str | None) -> QueryIntent:
             "hoc bong",
             "khuyen khich hoc tap",
             "hoc bong vallet",
+            "scc",
+            "vallet",
+            "panasonic",
+            "luong van can",
+            "shinhan",
+            "scic",
+            "thap sang niem tin",
         ),
     ) or (
         _contains_any(value, ("gpa", "diem trung binh"))
@@ -127,6 +148,10 @@ def _classify_one(text: str | None) -> QueryIntent:
         (
             "vay von",
             "vay tien",
+            "cho vay",
+            "vay mua",
+            "vay toi da",
+            "khoan vay sinh vien",
             "vay stem",
             "chuong trinh vay",
             "nhcsxh",
@@ -139,6 +164,19 @@ def _classify_one(text: str | None) -> QueryIntent:
         ),
     ):
         return QueryIntent.STUDENT_LOAN
+    if _contains_any(
+        value,
+        (
+            "tro cap xa hoi",
+            "ho tro chi phi hoc tap",
+            "ho tro chi phi dao tao",
+            "ho tro sinh hoat phi",
+        ),
+    ) or (
+        "sinh vien su pham" in value
+        and _contains_any(value, ("boi hoan", "cong tac trong nganh giao duc", "chi tra"))
+    ):
+        return QueryIntent.SOCIAL_SUPPORT
 
     has_tuition = _contains_any(
         value,
@@ -159,6 +197,7 @@ def _classify_one(text: str | None) -> QueryIntent:
             "giam 70",
             "giam 50",
             "mien 100",
+            "duoc giam",
         ),
     )
     has_actual = _contains_any(
@@ -193,6 +232,52 @@ def _classify_one(text: str | None) -> QueryIntent:
         ),
     )
 
+    if "che do hoc phi" in value and _contains_any(
+        value,
+        ("duoc huong", "co duoc", "thuoc dien", "nhu the nao", "the nao"),
+    ):
+        return QueryIntent.EXEMPTION_POLICY
+
+    if (
+        has_exemption
+        and not _contains_any(
+            value,
+            ("con phai dong", "con dong bao nhieu", "sau mien giam", "tinh tien phai dong"),
+        )
+        and _contains_any(
+            value,
+            (
+                "duoc giam",
+                "co duoc xet",
+                "ky luat",
+                "nhieu dien",
+                "cung luc",
+                "het han",
+                "gia han",
+                "tiep tuc",
+                "lam gi",
+                "tinh nhu the nao",
+            ),
+        )
+    ):
+        return QueryIntent.EXEMPTION_POLICY
+
+    if _contains_any(
+        value,
+        (
+            "hoc lai",
+            "ngoai thoi gian thiet ke",
+            "ngoai gio hanh chinh",
+            "cham tien do",
+            "he so hoc phi",
+            "bo sung kien thuc",
+            "vua lam vua hoc",
+            "vlvh",
+            "dao tao tu xa",
+        ),
+    ) and (has_tuition or _contains_any(value, ("hoc lai", "he so"))):
+        return QueryIntent.ACTUAL_TUITION
+
     # Calculation and explicit comparisons need balanced retrieval from both
     # rate tables, so they take precedence over single-lane keywords.
     has_calculation = _contains_any(
@@ -206,6 +291,7 @@ def _classify_one(text: str | None) -> QueryIntent:
         ),
     ) or (
         has_tuition
+        and "may tinh hoc phi" not in value
         and _contains_any(
             value,
             ("tinh hoc phi", "tinh tien", "tinh so tien", "tinh giup"),
@@ -313,6 +399,133 @@ def _classify_one(text: str | None) -> QueryIntent:
     return QueryIntent.OTHER
 
 
+_PROTECTED_REWRITE_ENTITIES = (
+    ("nhcsxh", "ngan hang chinh sach xa hoi"),
+    ("vietinbank",),
+    ("clc", "chat luong cao"),
+    ("tien tien",),
+    ("dai tra", "chuong trinh chuan", "he chuan"),
+    ("mien giam", "co so tinh mien giam", "lam co so de tinh mien giam"),
+    ("khuyen khich hoc tap",),
+    ("hoc bong tai tro", "hoc bong doanh nghiep", "doanh nghiep ben ngoai"),
+    ("scc",),
+    ("vallet",),
+    ("panasonic",),
+    ("luong van can",),
+    ("shinhan",),
+    ("scic",),
+    ("thap sang niem tin",),
+)
+
+_REWRITE_META_PHRASES = (
+    "toi khong",
+    "xin loi",
+    "khong the",
+    "dua tren",
+    "cau tra loi",
+)
+
+_REWRITE_FILLER_TOKENS = {
+    "ai",
+    "bao",
+    "cai",
+    "cho",
+    "chuong",
+    "con",
+    "cua",
+    "do",
+    "duoc",
+    "gi",
+    "hay",
+    "khoa",
+    "la",
+    "mot",
+    "muc",
+    "nganh",
+    "nhieu",
+    "nhu",
+    "sao",
+    "the",
+    "thi",
+    "trinh",
+    "vay",
+    "ve",
+}
+
+
+def _contains_entity(text: str, aliases: tuple[str, ...]) -> bool:
+    return any(re.search(rf"(?:^| ){re.escape(alias)}(?: |$)", text) for alias in aliases)
+
+
+def _canonical_rewrite_tokens(text: str) -> set[str]:
+    value = _normalise(text)
+    replacements = (
+        (("cong nghe thong tin", "cntt"), "entitycntt"),
+        (("chat luong cao", "clc"), "entityclc"),
+        (("giao duc quoc phong va an ninh", "giao duc quoc phong", "gdqp"), "entitygdqp"),
+    )
+    for aliases, canonical in replacements:
+        for alias in aliases:
+            value = re.sub(rf"(?:^| ){re.escape(alias)}(?= |$)", f" {canonical}", value)
+    value = re.sub(r"\b(?:khoa|k)\s*([4-9]\d)\b", r" cohort\1 ", value)
+    return {
+        token
+        for token in value.split()
+        if token not in _REWRITE_FILLER_TOKENS and not token.isdigit()
+    }
+
+
+def validate_rewritten_query(
+    original_query: str,
+    rewritten_query: str,
+    previous_user_query: str | None,
+) -> tuple[bool, str]:
+    """Reject rewrites that add facts or change the user's business intent."""
+
+    candidate = rewritten_query.strip().strip('"').strip("'")
+    if not candidate:
+        return False, "empty"
+    if "\n" in candidate or "\r" in candidate:
+        return False, "multiline"
+    if len(candidate) > 320:
+        return False, "too_long"
+
+    candidate_normalised = _normalise(candidate)
+    if _contains_any(candidate_normalised, _REWRITE_META_PHRASES):
+        return False, "answer_or_meta_text"
+
+    allowed_text = " ".join(
+        part for part in (previous_user_query, original_query) if part
+    )
+    allowed_normalised = _normalise(allowed_text)
+    for aliases in _PROTECTED_REWRITE_ENTITIES:
+        if _contains_entity(candidate_normalised, aliases) and not _contains_entity(
+            allowed_normalised, aliases
+        ):
+            return False, f"added_entity:{aliases[0]}"
+
+    candidate_numbers = set(re.findall(r"\d+", candidate))
+    allowed_numbers = set(re.findall(r"\d+", allowed_text))
+    if not candidate_numbers.issubset(allowed_numbers):
+        return False, "added_number"
+
+    base_intent = _classify_one(original_query)
+    if base_intent in {QueryIntent.OTHER, QueryIntent.AMBIGUOUS_TUITION}:
+        base_intent = _classify_one(previous_user_query)
+    candidate_intent = _classify_one(candidate)
+    if (
+        base_intent not in {QueryIntent.OTHER, QueryIntent.AMBIGUOUS_TUITION}
+        and candidate_intent != base_intent
+    ):
+        return False, "changed_intent"
+
+    allowed_tokens = _canonical_rewrite_tokens(allowed_text)
+    added_tokens = _canonical_rewrite_tokens(candidate) - allowed_tokens
+    if added_tokens:
+        return False, f"added_terms:{','.join(sorted(added_tokens))}"
+    return True, "accepted"
+
+
 def classify_query_intent(
     original_query: str,
     rewritten_query: str | None = None,
@@ -393,6 +606,14 @@ def build_retrieval_lanes(decision: QueryRoutingDecision) -> tuple[RetrievalLane
                 top_n=6,
             ),
         )
+    if decision.intent == QueryIntent.SOCIAL_SUPPORT:
+        return (
+            RetrievalLane(
+                name="social_support",
+                domain="social_support",
+                top_n=6,
+            ),
+        )
     if decision.intent in {
         QueryIntent.CALCULATION,
         QueryIntent.BOTH,
@@ -424,6 +645,11 @@ def build_answer_instruction(decision: QueryRoutingDecision) -> str:
         return (
             "Chỉ dùng tài liệu thuộc nhóm VAY VỐN SINH VIÊN; phân biệt rõ nguồn vay, "
             "đối tượng, điều kiện, hạn mức và thủ tục nếu tài liệu có nêu."
+        )
+    if decision.intent == QueryIntent.SOCIAL_SUPPORT:
+        return (
+            "Chỉ dùng tài liệu thuộc nhóm TRỢ CẤP VÀ HỖ TRỢ SINH VIÊN; không lấy "
+            "học bổng, vay vốn hoặc bảng học phí để thay thế."
         )
     if decision.intent == QueryIntent.AMBIGUOUS_TUITION:
         return (

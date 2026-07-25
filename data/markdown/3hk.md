@@ -1,4 +1,4 @@
-# Thông báo triển khai giảng dạy và học tập 03 học kỳ chính trong một năm học
+# Thông báo — Triển khai ba học kỳ chính trong một năm học — Từ năm học 2025-2026
 
 *Cần Thơ, ngày 31 tháng 7 năm 2024*
 
@@ -20,9 +20,6 @@ c) Học kỳ 1 bắt đầu từ tuần thứ 37 đến tuần thứ 51 của n
 ## 2. Triển khai thực hiện
 
 - Các phòng, ban chức năng khẩn trưởng triển khai rà soát, điều chỉnh sửa đổi, bổ sung các quy định, quy chế, quy trình công tác liên quan đến việc giảng
-
-2
-
 dạy 03 học kỳ chính trong một năm học; triển khai thông tin đến toàn thể VC-NLĐ trong đơn vị.
 
 - Phòng Đào tạo, Phòng Công tác sinh viên, Khoa Sau đại học, Trung tâm Liên kết đào tạo, Phòng Tài chính, Trung tâm Thông tin - Quản trị mạng và các đơn vị liên quan phối hợp rà soát và nâng cấp hệ thống thông tin tích hợp và các phần mềm có liên quan, đảm bảo công tác chuyển sang 03 học kỳ chính được thực hiện đúng tiến độ và hệ thống vận hành thông suốt.

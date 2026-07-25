@@ -1,9 +1,11 @@
+# Thông báo — Học bổng Panasonic — Năm 2025
+
 **PHÒNG CÔNG TÁC SINH VIÊN**
 
 
 *Cần Thơ, ngày 03 tháng 4 năm 2026*
 
-# THÔNG BÁO
+
 ## Về việc xét cấp học bổng bậc đại học Panasonic năm 2026
 
 

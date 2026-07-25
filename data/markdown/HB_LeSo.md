@@ -1,8 +1,10 @@
+# Thông báo — Học bổng Lê Sơ — Năm học 2025-2026
+
 **PHÒNG CÔNG TÁC SINH VIÊN**
 
 *Cần Thơ, ngày 06 tháng 3 năm 2026*
 
-# THÔNG BÁO
+
 ## Về việc xét cấp học bổng Lê Sở Memorial Scholarship of Excellence
 
 

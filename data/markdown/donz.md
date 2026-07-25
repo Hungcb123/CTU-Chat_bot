@@ -1,4 +1,4 @@
-# Thông báo sinh viên nộp hồ sơ
+# Thông báo — Hồ sơ hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số — Đợt 3 năm 2025
 
 **PHÒNG CÔNG TÁC SINH VIÊN**
 

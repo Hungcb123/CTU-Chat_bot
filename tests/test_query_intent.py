@@ -4,6 +4,8 @@ from app.services.query_intent import (
     QueryIntent,
     build_retrieval_lanes,
     classify_query_intent,
+    should_rewrite_query,
+    validate_rewritten_query,
 )
 
 
@@ -108,6 +110,71 @@ class QueryIntentTests(unittest.TestCase):
     def test_scholarship_query_uses_scholarship_intent(self):
         self.assert_intent("Học bổng Vallet cần hồ sơ gì?", QueryIntent.SCHOLARSHIP)
 
+    def test_named_scholarship_without_generic_keyword_uses_scholarship_lane(self):
+        self.assert_intent("Mỗi suất SCC trị giá bao nhiêu?", QueryIntent.SCHOLARSHIP)
+
+    def test_social_support_does_not_fall_back_to_all_domains(self):
+        decision = classify_query_intent(
+            "Sinh viên sư phạm được hỗ trợ sinh hoạt phí bao nhiêu mỗi tháng?"
+        )
+        self.assertEqual(decision.intent, QueryIntent.SOCIAL_SUPPORT)
+        lanes = build_retrieval_lanes(decision)
+        self.assertEqual(len(lanes), 1)
+        self.assertEqual(lanes[0].domain, "social_support")
+
+    def test_pedagogy_tuition_is_not_mistaken_for_social_support(self):
+        self.assert_intent(
+            "Sinh viên Sư phạm Toán học K52 đóng học phí bao nhiêu một tín chỉ?",
+            QueryIntent.ACTUAL_TUITION,
+        )
+
+    def test_tuition_entitlement_routes_to_exemption_policy(self):
+        self.assert_intent(
+            "Trẻ bị bỏ rơi không có nguồn nuôi dưỡng được hưởng chế độ học phí thế nào?",
+            QueryIntent.EXEMPTION_POLICY,
+        )
+
+    def test_actual_tuition_rule_does_not_use_ambiguous_balanced_lanes(self):
+        self.assert_intent(
+            "Khóa 51 học lại ngoài thời gian thiết kế thì học phí nhân hệ số mấy?",
+            QueryIntent.ACTUAL_TUITION,
+        )
+
+    def test_actual_tuition_rule_without_hoc_phi_keyword(self):
+        self.assert_intent(
+            "Học lại môn ngoài thời gian thiết kế chương trình đối với Khóa 52 bị nhân hệ số bao nhiêu?",
+            QueryIntent.ACTUAL_TUITION,
+        )
+
+    def test_khoa_hoc_may_tinh_is_not_mistaken_for_calculation(self):
+        self.assert_intent(
+            "Khóa 52 ngành Khoa học máy tính học phí bao nhiêu 1 tín chỉ?",
+            QueryIntent.ACTUAL_TUITION,
+        )
+
+    def test_natural_student_loan_phrases_use_student_loan_lane(self):
+        queries = (
+            "Lãi suất cho vay mua máy tính học trực tuyến là bao nhiêu?",
+            "Thời hạn cho vay tối đa để mua máy tính học trực tuyến là bao lâu?",
+            "Sinh viên thuộc hộ nghèo có thể vay tối đa bao nhiêu tiền mỗi tháng để đi học?",
+            "Khoản vay sinh viên ngành STEM hỗ trợ tối đa bao nhiêu mỗi tháng?",
+        )
+        for query in queries:
+            with self.subTest(query=query):
+                self.assert_intent(query, QueryIntent.STUDENT_LOAN)
+
+    def test_exemption_entitlement_questions_use_policy_lane(self):
+        queries = (
+            "Sinh viên dân tộc thiểu số được giảm bao nhiêu phần trăm học phí?",
+            "Cha bị tai nạn lao động thì sinh viên được giảm bao nhiêu học phí?",
+            "Sinh viên bị kỷ luật có được xét miễn giảm học phí không?",
+            "Nếu thuộc nhiều diện miễn giảm cùng lúc thì tính như thế nào?",
+            "Sổ hộ nghèo hết hạn thì làm gì để tiếp tục miễn giảm học phí?",
+        )
+        for query in queries:
+            with self.subTest(query=query):
+                self.assert_intent(query, QueryIntent.EXEMPTION_POLICY)
+
     def test_scholarship_lane_filters_domain(self):
         decision = classify_query_intent("Điều kiện nhận học bổng khuyến khích học tập là gì?")
         lanes = build_retrieval_lanes(decision)
@@ -168,6 +235,96 @@ class QueryIntentTests(unittest.TestCase):
         lanes = build_retrieval_lanes(decision)
         self.assertEqual([lane.fee_kind for lane in lanes], ["actual_tuition", "exemption_basis"])
         self.assertEqual([lane.top_n for lane in lanes], [3, 3])
+
+    def test_clear_queries_skip_rewriter(self):
+        clear_queries = (
+            "Mức vay tối đa để mua máy tính học trực tuyến là bao nhiêu?",
+            "Mỗi suất học bổng SCC trị giá bao nhiêu?",
+            "Học phí tiến sĩ khóa 2026 là bao nhiêu?",
+            "Học phí đào tạo từ xa khóa 2027 là bao nhiêu?",
+            "Sinh viên sư phạm được hỗ trợ sinh hoạt phí bao nhiêu?",
+        )
+        for query in clear_queries:
+            with self.subTest(query=query):
+                self.assertFalse(should_rewrite_query(query, None))
+
+    def test_only_vague_follow_up_with_user_context_is_rewritten(self):
+        self.assertTrue(
+            should_rewrite_query(
+                "Vậy K52 thì sao?",
+                "Học phí ngành CNTT CLC K51 là bao nhiêu?",
+            )
+        )
+        self.assertFalse(should_rewrite_query("Vậy K52 thì sao?", None))
+
+    def test_clear_short_questions_do_not_inherit_history(self):
+        previous = "Học phí ngành CNTT CLC K51 là bao nhiêu?"
+        for query in (
+            "Nếu em chuyển ngành thì có phải bồi hoàn không?",
+            "Con liệt sĩ được miễn học phí không?",
+            "Vay vốn mua máy tính cần điều kiện gì?",
+            "Vậy học phí CNTT CLC K52 là bao nhiêu?",
+        ):
+            with self.subTest(query=query):
+                self.assertFalse(should_rewrite_query(query, previous))
+
+    def test_rewrite_rejects_unrelated_entities_numbers_and_intent(self):
+        cases = (
+            (
+                "Mức vay mua máy tính là bao nhiêu?",
+                None,
+                "Mức vay mua máy tính qua NHCSXH và VietinBank là bao nhiêu?",
+            ),
+            (
+                "Mỗi suất học bổng SCC trị giá bao nhiêu?",
+                None,
+                "Học bổng SCC và học bổng khuyến khích học tập trị giá bao nhiêu?",
+            ),
+            (
+                "Vậy K52 thì sao?",
+                "Học phí CNTT CLC K51 là bao nhiêu?",
+                "Học phí CNTT đại trà K52 là 966.000 đồng/tín chỉ?",
+            ),
+            (
+                "Vậy K52 thì sao?",
+                "Học phí CNTT CLC K51 là bao nhiêu?",
+                "Học phí ngành Khoa học máy tính CLC K52 là bao nhiêu?",
+            ),
+            (
+                "Vậy mức đó thì sao?",
+                "Mức miễn giảm học phí GDQP là bao nhiêu?",
+                "Học phí thực tế GDQP là bao nhiêu?",
+            ),
+        )
+        for original, previous, rewritten in cases:
+            with self.subTest(rewritten=rewritten):
+                accepted, _ = validate_rewritten_query(
+                    original_query=original,
+                    rewritten_query=rewritten,
+                    previous_user_query=previous,
+                )
+                self.assertFalse(accepted)
+
+    def test_rewrite_accepts_entity_preserving_follow_up(self):
+        accepted, reason = validate_rewritten_query(
+            original_query="Vậy K52 thì sao?",
+            rewritten_query="Học phí ngành Công nghệ thông tin chương trình chất lượng cao Khóa 52 là bao nhiêu?",
+            previous_user_query="Học phí ngành CNTT CLC K51 là bao nhiêu?",
+        )
+        self.assertTrue(accepted, reason)
+
+    def test_rewrite_rejects_multiline_or_answer_text(self):
+        for rewritten in (
+            "Học phí CNTT CLC K52 là bao nhiêu?\nThông tin bổ sung",
+            "Dựa trên thông tin trước đó, học phí CNTT CLC K52 là bao nhiêu?",
+        ):
+            with self.subTest(rewritten=rewritten):
+                accepted, _ = validate_rewritten_query(
+                    original_query="Vậy K52 thì sao?",
+                    rewritten_query=rewritten,
+                    previous_user_query="Học phí CNTT CLC K51 là bao nhiêu?",
+                )
+                self.assertFalse(accepted)
 
 
 if __name__ == "__main__":

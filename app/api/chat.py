@@ -20,6 +20,8 @@ from app.services.query_intent import (
     build_answer_instruction,
     build_retrieval_lanes,
     classify_query_intent,
+    should_rewrite_query,
+    validate_rewritten_query,
 )
 
 logger = logging.getLogger(__name__)
@@ -98,43 +100,69 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
                 
         logger.info(f"Đã nạp {len(chat_history)} tin nhắn lịch sử từ Redis.")
 
-        # --- BƯỚC 1.5: ĐỊNH HÌNH LẠI CÂU HỎI VÀ MỞ RỘNG TRUY VẤN (QUERY EXPANSION) BẰNG Llama ---
-        # Luôn chạy để đảm bảo các câu hỏi chung chung được mở rộng từ khóa, giúp Vector Search bắt trúng tài liệu
-        history_text = "Không có lịch sử."
-        if chat_history:
-            history_text = "\n".join([f"{'User' if isinstance(m, HumanMessage) else 'AI'}: {m.content}" for m in chat_history])
-            
-        rewrite_prompt = ChatPromptTemplate.from_messages([
-            ("system", """Bạn là một chuyên gia ngôn ngữ học và kỹ sư tối ưu tìm kiếm (Prompt Engineer). Nhiệm vụ của bạn là VIẾT LẠI câu hỏi của người dùng cho rõ nghĩa hơn và MỞ RỘNG TỪ KHÓA (Query Expansion) để hệ thống Vector Search tìm được tài liệu chính xác nhất.
-Quy tắc BẮT BUỘC:
-1. [NGỮ CẢNH ĐỘC QUYỀN]: Tất cả ngữ cảnh đều thuộc về "Trường Đại học Cần Thơ" (CTU). TUYỆT ĐỐI KHÔNG tự bịa đặt, suy diễn thêm tên các trường đại học khác (ví dụ: ĐHQGHN, Bách Khoa...).
-2. [BỔ SUNG NGỮ CẢNH]: Nếu câu hỏi bị cụt (ví dụ: "vậy còn ngành CNTT thì sao?"), hãy lấy ngữ cảnh từ Lịch sử Chat đắp vào.
-3. [MỞ RỘNG VAY VỐN]: Nếu người dùng hỏi chung chung về "vay vốn", "vay tiền học", "gia đình khó khăn", "thu nhập trung bình"... mà không nói rõ ngân hàng nào, BẮT BUỘC phải viết lại câu hỏi có chứa cụm từ: "vay vốn qua Ngân hàng Chính sách xã hội (NHCSXH) và vay tiền đóng học phí qua Ngân hàng thương mại VietinBank".
-4. [MỞ RỘNG HỌC BỔNG]: Nếu hỏi chung chung về "học bổng", hãy viết lại có chứa cụm từ: "Học bổng khuyến khích học tập (ngân sách nhà nước) và Học bổng tài trợ từ doanh nghiệp bên ngoài".
-5. Nếu câu hỏi đã nhắc đích danh một tên cụ thể (như VietinBank, học bổng Vallet), thì chỉ làm rõ câu hỏi, không cần nhét thêm các nguồn khác.
-6. [MỞ RỘNG KHÓA VÀ HỆ ĐÀO TẠO]: Nếu câu hỏi liên quan đến học phí, BẮT BUỘC phải làm rõ thông tin về "Khóa" (VD: K45 -> Khóa 45, K52 -> Khóa 52). Quan trọng:
-   - Nếu người dùng KHÔNG nhắc đến chữ "chất lượng cao", "clc", "tiên tiến", hãy BỔ SUNG cụm từ "Đại trà" vào truy vấn để tránh bị nhầm với hệ CLC.
-7. [MỞ RỘNG MIỄN GIẢM]: Nếu câu hỏi nhắc đến "miễn giảm", "trừ tiền học", "cơ sở tính miễn giảm", BẮT BUỘC phải BỔ SUNG cụm từ "làm cơ sở để tính miễn, giảm học phí" vào truy vấn.
-8. TUYỆT ĐỐI KHÔNG trả lời câu hỏi. CHỈ in ra 1 câu duy nhất là câu truy vấn đã được tối ưu.
-9. KHÔNG giải thích, KHÔNG nhắc đến các ví dụ trong hướng dẫn này."""),
-            ("human", "Lịch sử Chat:\n{history_text}\n\nCâu hỏi hiện tại: {question}\n\nViết lại và tối ưu câu truy vấn cho Đại học Cần Thơ:")
-        ])
-        
-        rewrite_chain = rewrite_prompt | rewrite_llm | StrOutputParser()
-        search_query = await rewrite_chain.ainvoke({
-            "history_text": history_text,
-            "question": request.query
-        })
-        
-        # Llama 3 hay bị "ảo tưởng" đang là chatbot nên hay trả lời từ chối
-        search_query_clean = search_query.strip().replace('"', '').replace("'", "")
-        bad_phrases = ["tôi không", "xin lỗi", "không thể", "không có", "không rõ", "là một ai"]
-        
-        if any(phrase in search_query_clean.lower() for phrase in bad_phrases):
-            logger.warning(f"⚠️ Llama viết lại thất bại ('{search_query}'). Fallback về câu gốc.")
-            search_query = request.query
-        else:
-            logger.info(f"🔍 Groq Llama đã viết lại (Query Expansion): '{request.query}' -> '{search_query}'")
+        # --- BƯỚC 1.5: CHỈ LÀM RÕ FOLLOW-UP THẬT SỰ MƠ HỒ ---
+        # Câu hỏi rõ được giữ nguyên. Không đưa câu trả lời AI vào rewriter vì
+        # nội dung sinh trước đó có thể truyền thêm thực thể sai sang retrieval.
+        previous_user_query = next(
+            (
+                message.content
+                for message in reversed(chat_history)
+                if isinstance(message, HumanMessage)
+            ),
+            None,
+        )
+        search_query = request.query
+        rewrite_status = "skipped"
+        rewrite_reason = "clear_original_query"
+
+        if should_rewrite_query(request.query, previous_user_query):
+            rewrite_prompt = ChatPromptTemplate.from_messages([
+                (
+                    "system",
+                    "Bạn chỉ làm rõ đại từ hoặc phần bị lược bỏ trong câu hỏi hiện tại "
+                    "bằng câu hỏi trước đó của người dùng. Không thêm ngân hàng, học bổng, "
+                    "chương trình đào tạo, ngành, khóa, năm học, chính sách, con số hoặc "
+                    "điều kiện không có trong hai câu. Không trả lời. Chỉ in một câu truy vấn.",
+                ),
+                (
+                    "human",
+                    "Câu hỏi trước của người dùng: {previous_user_query}\n"
+                    "Câu hỏi hiện tại: {question}\n"
+                    "Câu truy vấn độc lập:",
+                ),
+            ])
+            rewrite_chain = rewrite_prompt | rewrite_llm | StrOutputParser()
+            try:
+                candidate = await rewrite_chain.ainvoke({
+                    "previous_user_query": previous_user_query,
+                    "question": request.query,
+                })
+                candidate = candidate.strip().strip('"').strip("'")
+                accepted, rewrite_reason = validate_rewritten_query(
+                    original_query=request.query,
+                    rewritten_query=candidate,
+                    previous_user_query=previous_user_query,
+                )
+                if accepted:
+                    search_query = candidate
+                    rewrite_status = "accepted"
+                else:
+                    rewrite_status = "rejected"
+            except Exception as rewrite_error:
+                rewrite_status = "rejected"
+                rewrite_reason = f"rewriter_error:{type(rewrite_error).__name__}"
+                logger.warning(
+                    "Query rewriter lỗi; fallback về câu gốc (%s)",
+                    type(rewrite_error).__name__,
+                )
+
+        logger.info(
+            "Query rewrite status=%s reason=%s original=%r search=%r",
+            rewrite_status,
+            rewrite_reason,
+            request.query,
+            search_query,
+        )
 
         # --- BƯỚC 2: ĐỊNH TUYẾN Ý ĐỊNH & RÚT TRÍCH TÀI LIỆU ---
         routing_decision = classify_query_intent(request.query, search_query)
@@ -270,7 +298,8 @@ Quy tắc BẮT BUỘC:
             log_lines = []
             log_lines.append(f"\n{'='*80}")
             log_lines.append(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] QUERY GỐC: {request.query}")
-            log_lines.append(f"[SEARCH QUERY (sau Rewrite)]: {search_query}")
+            log_lines.append(f"[REWRITE STATUS]: {rewrite_status} ({rewrite_reason})")
+            log_lines.append(f"[SEARCH QUERY]: {search_query}")
             log_lines.append(f"[SỐ LƯỢNG DOCS TRẢ VỀ]: {len(docs)}")
             log_lines.append(f"{'-'*80}")
             

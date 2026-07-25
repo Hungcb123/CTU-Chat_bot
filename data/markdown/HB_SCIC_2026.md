@@ -1,6 +1,8 @@
+# Thông báo — Học bổng SCIC — Năm 2026
+
 **PHÒNG CÔNG TÁC SINH VIÊN Độc lập - Tự do - Hạnh phúc**
 
-# THÔNG BÁO KHẨN
+
 ## Về việc xét cấp học bổng "SCIC - Nâng bước tài năng trẻ" năm 2026
 
 

@@ -1,4 +1,6 @@
-# Quy định và hồ sơ xét miễn, giảm học phí cho sinh viên Trường Đại học Cần Thơ năm 2026
+# Quy định — Miễn, giảm học phí cho sinh viên Trường Đại học Cần Thơ — Năm 2026
+
+Các bảng dưới đây chỉ mô tả chính sách, đối tượng và hồ sơ miễn, giảm học phí; không phải bảng mức học phí thực tế phải đóng.
 
 *Cần Thơ, ngày 14 tháng 4 năm 2026*
 

@@ -1,165 +1,204 @@
-
 1. Ngữ cảnh: Miễn giảm học phí & Hỗ trợ chi phí học tập
-   Câu hỏi 1: Sinh viên mồ côi cả cha lẫn mẹ thuộc đối tượng hưởng trợ cấp xã hội hàng tháng (từ 16 đến 22 tuổi) được miễn bao nhiêu phần trăm học phí? Câu trả lời mong đợi: Sinh viên thuộc đối tượng này sẽ được miễn 100% học phí
-   . Tên file gốc: mghp.md
-   Câu hỏi 2: Sinh viên có cha hoặc mẹ bị tai nạn lao động, mắc bệnh nghề nghiệp được hưởng trợ cấp thường xuyên thì được giảm bao nhiêu học phí? Câu trả lời mong đợi: Sinh viên thuộc đối tượng này được giảm 50% học phí
-   . Tên file gốc: mghp.md
-   Câu hỏi 3: Hạn chót để nộp hồ sơ xin miễn, giảm học phí năm 2026 tại Phòng Công tác Sinh viên là ngày nào? Câu trả lời mong đợi: Hạn cuối cùng để nộp hồ sơ là hết ngày 29/4/2026 (trừ thứ Bảy, Chủ nhật và ngày lễ, Tết)
-   . Tên file gốc: mghp.md
-   Câu hỏi 4: Nếu sinh viên đang bị kỷ luật ngừng học hoặc học lưu ban thì có được xét miễn, giảm học phí không? Câu trả lời mong đợi: Không, chế độ miễn, giảm học phí không áp dụng trong thời gian sinh viên bị kỷ luật ngừng học, buộc thôi học, học lưu ban, học lại hoặc học bổ sung
-   . Tên file gốc: mghp.md
-   Câu hỏi 5: Sinh viên thuộc hộ nghèo nhưng chưa có Sổ hộ nghèo thì cần nộp giấy tờ gì để xin Trợ cấp xã hội? Câu trả lời mong đợi: Phải sử dụng Mẫu giấy chứng nhận học sinh, sinh viên thuộc hộ nghèo do UBND xã cấp và ghi đầy đủ thông tin theo quy định
-   . Tên file gốc: Tro_cap_XH.md
-   Câu hỏi 6: Mức học phí làm cơ sở tính miễn, giảm cho học phần Giáo dục quốc phòng và An ninh (Đại học chính quy đại trà) năm 2025-2026 là bao nhiêu? Câu trả lời mong đợi: Mức học phí làm cơ sở tính là 451.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_2526_MienGiam.md
-   Câu hỏi 7: Sinh viên khối ngành Khoa học sự sống, khoa học tự nhiên (Khối ngành IV) có mức học phí cơ sở để tính miễn giảm là bao nhiêu 1 tín chỉ? Câu trả lời mong đợi: Mức học phí cơ sở là 487.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_2526_MienGiam.md
-   Câu hỏi 8: Sinh viên chương trình Tiên tiến khóa 47 trở về trước có mức học phí làm cơ sở tính miễn, giảm là bao nhiêu? Câu trả lời mong đợi: Mức học phí làm cơ sở tính miễn, giảm là 335.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_2526_MienGiam.md
-   Câu hỏi 9: Mức hỗ trợ chi phí học tập đối với sinh viên dân tộc thiểu số thuộc hộ nghèo, cận nghèo theo Quyết định 66/2013/QĐ-TTg là bao nhiêu? Câu trả lời mong đợi: Mức hỗ trợ bằng 60% mức lương tối thiểu chung và được hưởng không quá 10 tháng/năm học/sinh viên
-   . Tên file gốc: 66_2013.md
-   Câu hỏi 10: Thời gian nhận hồ sơ hỗ trợ chi phí học tập đợt 3 năm 2025 diễn ra từ ngày nào? Câu trả lời mong đợi: Từ ngày 03/11/2025 đến hết ngày 14/11/2025
-   . Tên file gốc: donz.md, HoTroCp.md
-   Câu hỏi 11: Sinh viên đã được Hỗ trợ chi phí học tập năm 2024 cần nộp giấy tờ gì để xét nhận đợt 3 năm 2025? Câu trả lời mong đợi: Chỉ cần nộp bổ sung Bản sao có công chứng Giấy chứng nhận hộ nghèo, hộ cận nghèo năm 2025
-   . Tên file gốc: donz.md, HoTroCp.md
-   Câu hỏi 12: Hạn chót nộp hồ sơ xin hỗ trợ chi phí đào tạo theo Chương trình mục tiêu quốc gia phát triển kinh tế - xã hội vùng đồng bào dân tộc thiểu số giai đoạn 2021-2025 là khi nào? Câu trả lời mong đợi: Đến hết ngày 05/12/2025
-   . Tên file gốc: HTCPHT.md, Ho_tro.md
-   Câu hỏi 13: Hồ sơ xin hỗ trợ chi phí đào tạo theo Chương trình mục tiêu quốc gia nộp ở đâu? Câu trả lời mong đợi: Nộp trực tiếp tại Phòng Quản lý chất lượng, Sở Giáo dục và Đào tạo thành phố Cần Thơ
-   . Tên file gốc: HTCPHT.md, Ho_tro.md
-   Câu hỏi 14: Mức trợ cấp xã hội cho sinh viên hộ nghèo, con mồ côi, tàn tật là bao nhiêu tiền một tháng? Câu trả lời mong đợi: Mức trợ cấp là 100.000 đồng/1 sinh viên/1 tháng
-   . Tên file gốc: TCXH.md
-   Câu hỏi 15: Hạn chót nộp hồ sơ xin trợ cấp xã hội học kỳ 2 năm học 2025-2026 là ngày nào? Câu trả lời mong đợi: Hết ngày 10/04/2026
-   . Tên file gốc: Tro_cap_XH.md
-   Câu hỏi 16: Sinh viên mồ côi hoặc khuyết tật cần nộp hồ sơ xin trợ cấp xã hội mấy lần trong khóa học? Câu trả lời mong đợi: Chỉ cần nộp hồ sơ một lần để xét hưởng đến hết khóa học theo khung thời gian thiết kế của chương trình đào tạo
-   . Tên file gốc: Tro_cap_XH.md
-   Câu hỏi 17: Thời gian nộp hồ sơ Hỗ trợ chi phí học tập học kỳ 3 năm 2025-2026 là khi nào? Câu trả lời mong đợi: Từ ngày 24/6/2026 đến hết ngày 03/7/2026
-   . Tên file gốc: 02_246_23-06-2026.md
-   Câu hỏi 18: Giấy chứng nhận hộ nghèo, hộ cận nghèo phải do cơ quan nào cấp để được chấp nhận làm hồ sơ hỗ trợ chi phí học tập? Câu trả lời mong đợi: Do Ủy ban nhân dân xã, phường, thị trấn cấp
-   . Tên file gốc: 02_246_23-06-2026.md, HoTroCp.md, donz.md
-   Câu hỏi 19: Chính sách hỗ trợ chi phí học tập theo Quyết định 66/2013/QĐ-TTg có áp dụng cho sinh viên học văn bằng hai không? Câu trả lời mong đợi: Không áp dụng đối với sinh viên học văn bằng hai
-   . Tên file gốc: 66_2013.md
-   Câu hỏi 20: Nếu sinh viên thuộc diện miễn giảm học phí học cùng lúc nhiều ngành thì được hưởng chế độ thế nào? Câu trả lời mong đợi: Sinh viên chỉ được hưởng một chế độ ưu đãi duy nhất
-   . Tên file gốc: mghp.md
+Câu hỏi 1: Trẻ bị bỏ rơi không có nguồn nuôi dưỡng học đại học thì được hưởng chế độ học phí như thế nào? Câu trả lời mong đợi: Sinh viên thuộc diện này được miễn 100% học phí
+. Tên file gốc: mghp.md
+Câu hỏi 2: Sinh viên khuyết tật muốn xin miễn học phí thì cần chuẩn bị giấy tờ gì? Câu trả lời mong đợi: Cần nộp Đơn đề nghị miễn, giảm học phí (theo mẫu) và Giấy xác nhận khuyết tật do Ủy ban nhân dân xã, phường cấp
+. Tên file gốc: mghp.md
+Câu hỏi 3: Sinh viên người dân tộc thiểu số ở xã khu vực III vùng dân tộc và miền núi được giảm bao nhiêu phần trăm học phí? Câu trả lời mong đợi: Được giảm 70% học phí
+. Tên file gốc: mghp.md
+Câu hỏi 4: Con của bệnh binh được hưởng chế độ học phí như thế nào? Câu trả lời mong đợi: Được miễn 100% học phí
+. Tên file gốc: mghp.md
+Câu hỏi 5: Cha hoặc mẹ bị tai nạn lao động được hưởng trợ cấp thường xuyên thì sinh viên được giảm bao nhiêu học phí? Câu trả lời mong đợi: Được giảm 50% học phí
+. Tên file gốc: mghp.md
+Câu hỏi 6: Sinh viên đang bị kỷ luật ngừng học có được xét miễn, giảm học phí không? Câu trả lời mong đợi: Không áp dụng chế độ ưu đãi miễn, giảm học phí trong thời gian sinh viên bị kỷ luật ngừng học
+. Tên file gốc: mghp.md
+Câu hỏi 7: Nếu sinh viên thuộc nhiều diện miễn, giảm học phí cùng lúc thì tính như thế nào? Câu trả lời mong đợi: Chỉ được hưởng mức hỗ trợ cao nhất
+. Tên file gốc: mghp.md
+Câu hỏi 8: Sinh viên đang hưởng lương hoặc sinh hoạt phí khi đi học có được miễn giảm học phí không? Câu trả lời mong đợi: Không áp dụng miễn, giảm học phí đối với trường hợp đang hưởng lương hoặc sinh hoạt phí khi đi học
+. Tên file gốc: mghp.md
+Câu hỏi 9: Sổ hộ nghèo hết hạn thì làm gì để được tiếp tục miễn giảm học phí? Câu trả lời mong đợi: Bắt buộc phải nộp bổ sung giấy xác nhận mới khi giấy cũ hết hạn để được gia hạn chế độ
+. Tên file gốc: mghp.md
+Câu hỏi 10: Học phí làm cơ sở tính miễn, giảm cho môn Giáo dục quốc phòng và An ninh (đại trà) là bao nhiêu? Câu trả lời mong đợi: Là 451.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_2526_MienGiam.md
+Câu hỏi 11: Khối ngành III (Kinh doanh và quản lý, pháp luật) có mức học phí cơ sở để tính miễn giảm là bao nhiêu 1 tín chỉ? Câu trả lời mong đợi: Mức học phí cơ sở là 451.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_2526_MienGiam.md
+Câu hỏi 12: Khối ngành IV (Khoa học sự sống, khoa học tự nhiên) có mức học phí cơ sở để tính miễn giảm là bao nhiêu? Câu trả lời mong đợi: Mức học phí cơ sở là 487.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_2526_MienGiam.md
+Câu hỏi 13: Khối ngành VI (Sức khỏe) có mức học phí cơ sở để tính miễn giảm là bao nhiêu? Câu trả lời mong đợi: Mức học phí cơ sở là 753.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_2526_MienGiam.md
+Câu hỏi 14: Sinh viên chương trình tiên tiến khóa 47 trở về trước có học phí làm cơ sở tính miễn giảm là bao nhiêu? Câu trả lời mong đợi: Mức học phí là 335.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_2526_MienGiam.md
+Câu hỏi 15: Trợ cấp xã hội cho sinh viên hộ nghèo, tàn tật là bao nhiêu tiền một tháng? Câu trả lời mong đợi: Mức trợ cấp là 100.000 đồng/1 sinh viên/1 tháng
+. Tên file gốc: TCXH.md
+Câu hỏi 16: Em là sinh viên dân tộc thiểu số thuộc hộ nghèo thì được hỗ trợ chi phí học tập bao nhiêu? Câu trả lời mong đợi: Mức hỗ trợ bằng 60% mức lương tối thiểu chung
+. Tên file gốc: 66_2013.md
+Câu hỏi 17: Khoản hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số thuộc hộ nghèo được nhận tối đa mấy tháng trong một năm học? Câu trả lời mong đợi: Sinh viên được hưởng không quá 10 tháng/năm học
+. Tên file gốc: 66_2013.md
+Câu hỏi 18: Sinh viên học văn bằng hai có được nhận hỗ trợ chi phí học tập dành cho sinh viên dân tộc thiểu số thuộc hộ nghèo không? Câu trả lời mong đợi: Không áp dụng đối với sinh viên học văn bằng hai
+. Tên file gốc: 66_2013.md
+Câu hỏi 19: Ai là người ký xác nhận giấy chứng nhận hộ nghèo để sinh viên làm hồ sơ hỗ trợ chi phí học tập? Câu trả lời mong đợi: Giấy chứng nhận hộ nghèo phải do Ủy ban nhân dân xã, phường, thị trấn cấp
+. Tên file gốc: donz.md
+Câu hỏi 20: Nguồn tiền hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số thuộc hộ nghèo được lấy từ đâu? Câu trả lời mong đợi: Kinh phí được cân đối trong nguồn chi cho sự nghiệp giáo dục và đào tạo hằng năm theo phân cấp quản lý ngân sách nhà nước
+. Tên file gốc: 66_2013.md
+Câu hỏi 21: Em học sư phạm và đã được Nhà nước hỗ trợ học phí, sinh hoạt phí rồi thì có được nhận thêm hỗ trợ chi phí đào tạo dành cho sinh viên dân tộc thiểu số không? Câu trả lời mong đợi: Không, sinh viên sư phạm chưa được hưởng chính sách theo Nghị định 116 mới thuộc đối tượng này
+. Tên file gốc: Ho_tro.md
+Câu hỏi 22: Sinh viên dân tộc thiểu số thuộc hộ nghèo muốn nộp hồ sơ hỗ trợ chi phí học tập thì nộp trực tiếp ở đâu? Câu trả lời mong đợi: Nộp trực tiếp tại Văn phòng Phòng Công tác Sinh viên
+. Tên file gốc: donz.md
+Câu hỏi 23: Hồ sơ xin trợ cấp xã hội của sinh viên mồ côi cả cha lẫn mẹ cần giấy tờ gì? Câu trả lời mong đợi: Đơn xin hưởng trợ cấp, bản sao giấy chứng tử của cha mẹ hoặc giấy xác nhận của UBND cấp xã nơi cư trú là mồ côi cả cha lẫn mẹ
+. Tên file gốc: Tro_cap_XH.md
+Câu hỏi 24: Sinh viên mồ côi cần nộp hồ sơ xin trợ cấp xã hội mấy lần? Câu trả lời mong đợi: Chỉ cần nộp hồ sơ một lần để xét hưởng đến hết khóa học theo khung thời gian đào tạo
+. Tên file gốc: Tro_cap_XH.md
+Câu hỏi 25: Sinh viên được hỗ trợ chi phí đào tạo dành cho vùng đồng bào dân tộc thiểu số thì nộp hồ sơ ở đâu? Câu trả lời mong đợi: Nộp trực tiếp tại Phòng Quản lý chất lượng, Sở Giáo dục và Đào tạo thành phố Cần Thơ
+. Tên file gốc: Ho_tro.md
 2. Ngữ cảnh: Học phí
-   Câu hỏi 21: Học phí khối kiến thức đại cương chung đối với sinh viên Khóa 51 trở về trước (đại trà) là bao nhiêu một tín chỉ? Câu trả lời mong đợi: Mức học phí là 695.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 22: Học phí học lại ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất đối với Khóa 52 bị nhân hệ số bao nhiêu? Câu trả lời mong đợi: Mức học phí sẽ bị nhân với hệ số 1,3
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 23: Mức học phí theo tín chỉ của ngành Sư phạm Toán học Khóa 51 trở về trước (đại trà) là bao nhiêu? Câu trả lời mong đợi: Là 695.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md
-   Câu hỏi 24: Học phí toàn khóa của ngành Quản trị kinh doanh Khóa 52 (đại trà) là bao nhiêu? Câu trả lời mong đợi: Học phí toàn khóa là 114,5 triệu đồng
-   . Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
-   Câu hỏi 25: Ngành Khoa học máy tính Khóa 52 đại trà có mức học phí là bao nhiêu 1 tín chỉ? Câu trả lời mong đợi: Mức học phí là 966.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
-   Câu hỏi 26: Mức học phí của khối kiến thức đại cương chung đối với tất cả các ngành chương trình Chất lượng cao Khóa 52 là bao nhiêu? Câu trả lời mong đợi: Là 695.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
-   Câu hỏi 27: Mức học phí 1 năm đối với ngành Tài chính - Ngân hàng chương trình Chất lượng cao Khóa 51 là bao nhiêu? Câu trả lời mong đợi: Học phí cố định là 40 triệu đồng/năm học
-   . Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
-   Câu hỏi 28: Học phí 1 tín chỉ ngành Công nghệ sinh học chương trình Tiên tiến Khóa 52 là bao nhiêu? Câu trả lời mong đợi: Mức học phí là 1.499.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
-   Câu hỏi 29: Nếu học viên cao học tốt nghiệp chậm tiến độ thì phải đóng học phí trễ hạn với mức bao nhiêu? Câu trả lời mong đợi: Phải đóng học phí tốt nghiệp chậm tiến độ bằng 50% mức học phí của học kỳ trễ hạn
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 30: Học viên cao học học ngoài giờ hành chính sẽ bị nhân học phí với hệ số bao nhiêu? Câu trả lời mong đợi: Học phí sẽ nhân 1,5 lần (trừ học phần Luận văn tốt nghiệp, Đề án tốt nghiệp và Thực tập tốt nghiệp)
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 31: Mức học phí đối với Tiến sĩ (Nghiên cứu sinh) khóa tuyển sinh năm 2026 là bao nhiêu 1 năm? Câu trả lời mong đợi: Mức học phí là 56.300.000 đồng/năm học (tương ứng 1.876.000 đồng/tín chỉ)
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 32: Mức học phí của sinh viên học hình thức Đào tạo từ xa khóa tuyển sinh từ năm 2027 là bao nhiêu? Câu trả lời mong đợi: Mức học phí cố định là 574.300 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 33: Học phí ngành Kiến trúc Khóa 52 (đại trà) toàn khóa là bao nhiêu tiền? Câu trả lời mong đợi: Học phí toàn khóa là 165,6 triệu đồng
-   . Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
-   Câu hỏi 34: Sinh viên Khóa 51 ngành Kế toán (đại trà) có mức học phí bao nhiêu cho 1 tín chỉ chuyên ngành? Câu trả lời mong đợi: Là 727.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md
-   Câu hỏi 35: Học phí học sinh diện xét tuyển thẳng học bồi dưỡng kiến thức tại Khoa Dự bị Dân tộc là bao nhiêu 1 học kỳ? Câu trả lời mong đợi: Mức học phí là 6.000.000 đồng/học kỳ (hoặc 12.000.000 đồng/năm học)
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 36: Đối với sinh viên Vừa làm vừa học (VLVH), lớp có dưới 30 sinh viên sẽ bị điều chỉnh hệ số học phí tối đa bao nhiêu? Câu trả lời mong đợi: Thỏa thuận nhân hệ số điều chỉnh mức học phí nhưng không quá 1,5 mức học phí quy định
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 37: Mức học phí tối đa khi học bổ sung kiến thức dự thi tuyển sinh trình độ thạc sĩ là bao nhiêu? Câu trả lời mong đợi: Tối đa 695.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_QuyDinhChung.md
-   Câu hỏi 38: Học phí 1 tín chỉ của ngành Thú y chương trình Chất lượng cao Khóa 52 là bao nhiêu? Câu trả lời mong đợi: Là 1.553.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
-   Câu hỏi 39: Ngành Kinh doanh nông nghiệp - Hòa An Khóa 52 đại trà có học phí bao nhiêu 1 tín chỉ? Câu trả lời mong đợi: Mức học phí là 844.000 đồng/tín chỉ
-   . Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
-   Câu hỏi 40: Học phí 1 năm ngành Bảo vệ thực vật chất lượng cao Khóa 52 là bao nhiêu? Câu trả lời mong đợi: Học phí cố định là 44 triệu đồng/năm học
-   . Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
+Câu hỏi 26: Mức học phí đại cương chung đối với Khóa 51 trở về trước là bao nhiêu? Câu trả lời mong đợi: Mức học phí là 695.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 27: Mức học phí đại cương chung đối với Khóa 52 (đại trà) là bao nhiêu? Câu trả lời mong đợi: Mức học phí là 695.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
+Câu hỏi 28: Học lại môn ngoài thời gian thiết kế chương trình đối với Khóa 52 bị nhân hệ số bao nhiêu? Câu trả lời mong đợi: Bị nhân với hệ số 1,3
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 29: Khóa 51 học lại ngoài thời gian thiết kế thì học phí nhân hệ số mấy? Câu trả lời mong đợi: Bị nhân với hệ số 1,3
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 30: Mức học phí theo tín chỉ của ngành Sư phạm Toán học Khóa 51 trở về trước là bao nhiêu? Câu trả lời mong đợi: Mức học phí là 695.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md
+Câu hỏi 31: Khóa 52 ngành Sư phạm Toán học có học phí bao nhiêu 1 tín chỉ? Câu trả lời mong đợi: Mức học phí là 807.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
+Câu hỏi 32: Học phí toàn khóa ngành Quản trị kinh doanh đại trà Khóa 52 là bao nhiêu? Câu trả lời mong đợi: Học phí toàn khóa là 114,5 triệu đồng
+. Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
+Câu hỏi 33: Khóa 52 ngành Khoa học máy tính học phí bao nhiêu 1 tín chỉ? Câu trả lời mong đợi: Mức học phí là 966.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
+Câu hỏi 34: Ngành Kiến trúc Khóa 52 đại trà có học phí toàn khóa bao nhiêu? Câu trả lời mong đợi: Học phí toàn khóa là 165,6 triệu đồng
+. Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
+Câu hỏi 35: Ngành Công nghệ thông tin Chất lượng cao Khóa 52 có mức học phí cố định một năm là bao nhiêu? Câu trả lời mong đợi: Học phí là 44 triệu đồng/năm học
+. Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
+Câu hỏi 36: Ngành Kinh doanh quốc tế Chất lượng cao Khóa 51 có học phí một năm là bao nhiêu? Câu trả lời mong đợi: Học phí là 40 triệu đồng/năm học
+. Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
+Câu hỏi 37: Mức học phí môn Năng lực số đối với Khóa 51 trở về trước là bao nhiêu? Câu trả lời mong đợi: Là 695.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 38: Sinh viên Khóa 51 ngành Kế toán học phí bao nhiêu 1 tín chỉ chuyên ngành? Câu trả lời mong đợi: Mức học phí là 727.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md
+Câu hỏi 39: Khóa 52 ngành Kinh doanh nông nghiệp - Hòa An có học phí bao nhiêu một tín chỉ? Câu trả lời mong đợi: Học phí là 844.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_DaiHocChinhQuy_Khoa52.md
+Câu hỏi 40: Học phí Tiến sĩ khóa tuyển sinh năm 2026 là bao nhiêu một năm? Câu trả lời mong đợi: Mức học phí là 56.300.000 đồng/năm học
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 41: Học phí Thạc sĩ khóa tuyển sinh năm 2025 về trước là bao nhiêu một năm? Câu trả lời mong đợi: Mức học phí là 30.300.000 đồng/năm học
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 42: Học viên cao học học ngoài giờ hành chính sẽ bị nhân hệ số học phí như thế nào? Câu trả lời mong đợi: Bị nhân 1,5 lần đối với các học phần trừ luận văn, đề án và thực tập tốt nghiệp
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 43: Học phí tốt nghiệp chậm tiến độ thạc sĩ được tính như thế nào? Câu trả lời mong đợi: Đóng học phí bằng 50% mức học phí của học kỳ trễ hạn
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 44: Đào tạo từ xa khóa 2027 có học phí là bao nhiêu 1 tín chỉ? Câu trả lời mong đợi: Mức học phí cố định là 574.300 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 45: Hệ Vừa làm vừa học nếu lớp dưới 30 sinh viên có thể bị nhân hệ số học phí tối đa bao nhiêu? Câu trả lời mong đợi: Thỏa thuận nhân hệ số điều chỉnh nhưng không quá 1,5 mức học phí quy định
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 46: Học phí bồi dưỡng kiến thức tại Khoa Dự bị Dân tộc là bao nhiêu tiền một năm? Câu trả lời mong đợi: Mức học phí là 12.000.000 đồng/năm học
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 47: Mức học phí học bổ sung kiến thức dự thi trình độ thạc sĩ tối đa là bao nhiêu? Câu trả lời mong đợi: Tối đa là 695.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_QuyDinhChung.md
+Câu hỏi 48: Khóa 52 ngành Thú y Chất lượng cao có học phí bao nhiêu một tín chỉ? Câu trả lời mong đợi: Mức học phí là 1.553.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
+Câu hỏi 49: Khóa 44 ngành Công nghệ thông tin Chất lượng cao đóng học phí bao nhiêu một năm? Câu trả lời mong đợi: Mức học phí là 25 triệu đồng/năm học
+. Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
+Câu hỏi 50: Khóa 52 ngành Nuôi trồng thủy sản Tiên tiến có học phí theo tín chỉ là bao nhiêu? Câu trả lời mong đợi: Mức học phí là 1.564.000 đồng/tín chỉ
+. Tên file gốc: MucHocPhi_ChatLuongCao_TienTien.md
 3. Ngữ cảnh: Vay vốn
-   Câu hỏi 41: Theo chính sách vay vốn ưu đãi mua máy tính học trực tuyến, mức vay tối đa là bao nhiêu? Câu trả lời mong đợi: Mức vốn cho vay tối đa 10 triệu đồng/học sinh, sinh viên
-   . Tên file gốc: VayVonMuaMayTinh.md
-   Câu hỏi 42: Lãi suất cho vay mua máy tính học trực tuyến là bao nhiêu? Câu trả lời mong đợi: Lãi suất cho vay là 1,2%/năm
-   . Tên file gốc: VayVonMuaMayTinh.md
-   Câu hỏi 43: Thời hạn cho vay tối đa để mua máy tính học trực tuyến là bao lâu? Câu trả lời mong đợi: Thời hạn cho vay tối đa là 36 tháng
-   . Tên file gốc: VayVonMuaMayTinh.md
-   Câu hỏi 44: Điều kiện học lực để sinh viên năm thứ hai trở đi được vay vốn theo nhóm ngành STEM (Quyết định 29) là gì? Câu trả lời mong đợi: Phải có kết quả học tập trung bình các môn học đạt loại giỏi trở lên tại năm trước liền kề với năm đề nghị vay vốn
-   . Tên file gốc: NDCP_VayVonSVKT.md, Q_29_STEM_288.md
-   Câu hỏi 45: Lãi suất cho vay đối với sinh viên nhóm ngành STEM theo NĐ 29 là bao nhiêu? Câu trả lời mong đợi: Lãi suất cho vay là 4,8%/năm
-   . Tên file gốc: NDCP_VayVonSVKT.md, Q_29_STEM_288.md
-   Câu hỏi 46: Sinh viên nhóm ngành STEM vay vốn trên 500 triệu đồng có cần tài sản bảo đảm không? Câu trả lời mong đợi: Có, khách hàng vay vốn trên 500 triệu đồng/người học thì phải thực hiện bảo đảm thực hiện nghĩa vụ trả tiền vay bằng tài sản
-   . Tên file gốc: NDCP_VayVonSVKT.md, Q_29_STEM_288.md
-   Câu hỏi 47: Mức vay vốn tối đa mỗi tháng theo Quyết định sửa đổi số 05/2022/QĐ-TTg dành cho sinh viên hộ nghèo, cận nghèo là bao nhiêu? Câu trả lời mong đợi: Mức vay vốn tối đa là 4.000.000 đồng/tháng/học sinh, sinh viên
-   . Tên file gốc: QD_2022.md, VayVonSinhVien2022.md, quyet-dinh-05-2022-qd-ttg-thu-tuong-chinh-phu.md
-   Câu hỏi 48: VietinBank hỗ trợ vay thế chấp đóng học phí với thời hạn tối đa bao nhiêu năm? Câu trả lời mong đợi: Tối đa 15 năm kể từ ngày ký hợp đồng cho vay
-   . Tên file gốc: Vayvon_Viettinbank_2025_v2.md
-   Câu hỏi 49: Khách hàng vay vốn thế chấp tại VietinBank để đóng học phí giới hạn độ tuổi tối đa là bao nhiêu khi hết nghĩa vụ nợ? Câu trả lời mong đợi: Khách hàng không quá 70 tuổi tại thời điểm hết nghĩa vụ nợ
-   . Tên file gốc: Vayvon_Viettinbank_2025_v2.md
-   Câu hỏi 50: Lãi suất ưu đãi gói vay tín chấp đóng học phí tại VietinBank trong 12 tháng đầu là bao nhiêu? Câu trả lời mong đợi: Lãi suất ưu đãi 12 tháng đầu chỉ từ 9%/năm đối với Gói Tín chấp
-   . Tên file gốc: Vayvon_Viettinbank_2025_v2.md
-   Câu hỏi 51: Sinh viên đăng ký xin giấy xác nhận vay vốn trực tuyến qua mục nào trên hệ thống? Câu trả lời mong đợi: Chọn menu "Kết quả học tập", sau đó chuyển sang tab "Yêu cầu xác nhận"
-   . Tên file gốc: HuongDanXacNhanVayVon.md, QD29.md
-   Câu hỏi 52: Để xóa một mẫu đơn xác nhận vay vốn đã đăng ký nhầm, mẫu đơn đó phải ở trạng thái nào? Câu trả lời mong đợi: Chỉ xóa được đối với các đơn có trạng thái là "Chưa in"
-   . Tên file gốc: HuongDanXacNhanVayVon.md, QD29.md
-   Câu hỏi 53: Theo hướng dẫn vay vốn, lãi suất nợ quá hạn được tính bằng bao nhiêu so với lãi suất khi cho vay? Câu trả lời mong đợi: Lãi suất nợ quá hạn được tính bằng 130% lãi suất khi cho vay
-   . Tên file gốc: NDCP_VayVonSVKT.md, Q_29_STEM_288.md, VayVon.md
-   Câu hỏi 54: Sinh viên nhóm ngành Khoa học tự nhiên (mã ngành 744) có thuộc diện được vay vốn STEM theo Quyết định 29 không? Câu trả lời mong đợi: Có, đây là ngành thuộc danh mục được hỗ trợ vay vốn theo Quyết định 29
-   . Tên file gốc: VayVonChoSinhVienKyT.md
-   Câu hỏi 55: Học viên thạc sĩ, nghiên cứu sinh xin cấp giấy xác nhận vay vốn STEM ở đâu? Câu trả lời mong đợi: Thực hiện thủ tục cấp giấy xác nhận tại văn phòng Khoa Sau đại học
-   . Tên file gốc: VayVonChoSinhVienKyT.md
-   Câu hỏi 56: Sinh viên sư phạm sau khi tốt nghiệp nếu công tác trong ngành giáo dục thì có phải bồi hoàn tiền hỗ trợ sinh hoạt phí không? Câu trả lời mong đợi: Nếu công tác trong ngành giáo dục với thời gian công tác tối thiểu gấp hai lần thời gian đào tạo (trong vòng 2 năm kể từ khi tốt nghiệp) thì không phải bồi hoàn kinh phí
-   . Tên file gốc: VayVonChoSVSuPham.md
-   Câu hỏi 57: Trong thời gian sinh viên vay vốn STEM được trường cho phép bảo lưu kết quả học tập, Ngân hàng Chính sách xã hội có giải ngân không? Câu trả lời mong đợi: Không, ngân hàng không giải ngân vốn vay trong thời gian người học được bảo lưu kết quả học tập
-   . Tên file gốc: NDCP_VayVonSVKT.md, Q_29_STEM_288.md
-   Câu hỏi 58: Khách hàng vay vốn thông thường tại NHCSXH (nếu không mồ côi) ai là người đứng tên vay? Câu trả lời mong đợi: Đại diện hộ gia đình là người đứng tên vay vốn và giao dịch với Ngân hàng Chính sách xã hội
-   . Tên file gốc: NDCP_VayVonSVKT.md, Q_29_STEM_288.md, VayVon.md
-   Câu hỏi 59: Thời hạn trả nợ vay vốn của sinh viên (QĐ 157) tối đa là bao lâu đối với chương trình đào tạo trên 1 năm? Câu trả lời mong đợi: Thời gian trả nợ tối đa bằng thời hạn phát tiền vay
-   . Tên file gốc: VayVon.md
-   Câu hỏi 60: Nếu người vay vốn trả nợ trước hạn (kể từ khi ra trường) thì có bị phạt không? Câu trả lời mong đợi: Khách hàng vay vốn có thể trả nợ trước hạn mà không chịu lãi phạt trả nợ trước hạn
-   . Tên file gốc: NDCP_VayVonSVKT.md, QD_2022.md, Q_29_STEM_288.md
+Câu hỏi 51: Mức vay vốn ưu đãi tối đa để mua máy tính học trực tuyến là bao nhiêu? Câu trả lời mong đợi: Mức vốn vay tối đa là 10 triệu đồng/học sinh, sinh viên
+. Tên file gốc: VayVonMuaMayTinh.md
+Câu hỏi 52: Lãi suất cho vay mua máy tính học trực tuyến là bao nhiêu? Câu trả lời mong đợi: Lãi suất cho vay là 1,2%/năm
+. Tên file gốc: VayVonMuaMayTinh.md
+Câu hỏi 53: Thời hạn cho vay tối đa để mua máy tính học trực tuyến là bao lâu? Câu trả lời mong đợi: Thời hạn cho vay tối đa là 36 tháng
+. Tên file gốc: VayVonMuaMayTinh.md
+Câu hỏi 54: Sinh viên thuộc hộ gia đình khó khăn do bố hoặc mẹ mất vì Covid-19 có được vay mua máy tính không? Câu trả lời mong đợi: Có, sinh viên có bố hoặc mẹ mất do dịch Covid-19 thuộc đối tượng vay vốn
+. Tên file gốc: VayVonMuaMayTinh.md
+Câu hỏi 55: Sinh viên mua máy tính có thể trực tiếp đứng tên vay vốn trong trường hợp nào? Câu trả lời mong đợi: Khi đã đủ 18 tuổi và hộ gia đình không còn thành viên nào đủ 18 tuổi trở lên hoặc thành viên còn lại không còn đủ năng lực hành vi dân sự
+. Tên file gốc: VayVonMuaMayTinh.md
+Câu hỏi 56: Sinh viên thuộc hộ nghèo hoặc cận nghèo có thể vay tối đa bao nhiêu tiền mỗi tháng để đi học? Câu trả lời mong đợi: Mức vay vốn tối đa là 4.000.000 đồng/tháng/học sinh, sinh viên
+. Tên file gốc: QD_2022.md
+Câu hỏi 57: Khách hàng vay vốn VietinBank bằng tài sản thế chấp để đóng học phí được thời hạn tối đa bao lâu? Câu trả lời mong đợi: Tối đa là 15 năm kể từ ngày ký hợp đồng cho vay
+. Tên file gốc: Vayvon_Viettinbank_2025_v2.md
+Câu hỏi 58: Hạn mức vay VietinBank tín chấp để đóng học phí tối đa là bao nhiêu? Câu trả lời mong đợi: Tối đa 100% học phí nhưng không vượt quá 500 triệu đồng/khách hàng
+. Tên file gốc: Vayvon_Viettinbank_2025_v2.md
+Câu hỏi 59: Lãi suất ưu đãi 12 tháng đầu khi vay VietinBank thế chấp là bao nhiêu? Câu trả lời mong đợi: Lãi suất ưu đãi 12 tháng đầu chỉ từ 6%/năm
+. Tên file gốc: Vayvon_Viettinbank_2025_v2.md
+Câu hỏi 60: Vay tín chấp tại VietinBank đóng học phí có yêu cầu giới hạn độ tuổi không? Câu trả lời mong đợi: Khách hàng không quá 60 tuổi tại thời điểm hết nghĩa vụ nợ
+. Tên file gốc: Vayvon_Viettinbank_2025_v2.md
+Câu hỏi 61: Em học ngành STEM thì khoản vay sinh viên có thể dùng cho những chi phí nào và được hỗ trợ tối đa bao nhiêu mỗi tháng? Câu trả lời mong đợi: Trang trải toàn bộ tiền học phí phải đóng và chi phí sinh hoạt tối đa 5 triệu đồng/tháng
+. Tên file gốc: NDCP_VayVonSVKT.md
+Câu hỏi 62: Em học ngành STEM và muốn vay tiền đi học thì lãi suất mỗi năm là bao nhiêu? Câu trả lời mong đợi: Lãi suất cho vay là 4,8%/năm
+. Tên file gốc: NDCP_VayVonSVKT.md
+Câu hỏi 63: Sinh viên năm nhất muốn vay STEM cần điều kiện điểm cấp 3 thế nào? Câu trả lời mong đợi: Cần có học lực 3 năm trung học phổ thông đạt loại Khá trở lên hoặc điểm trung bình môn Toán, Lý, Hóa, Sinh lớp 12 từ 8 điểm trở lên
+. Tên file gốc: NDCP_VayVonSVKT.md
+Câu hỏi 64: Sinh viên vay vốn STEM trên 500 triệu đồng có cần tài sản bảo đảm không? Câu trả lời mong đợi: Có, khách hàng vay vốn trên 500 triệu đồng phải thực hiện bảo đảm nghĩa vụ trả tiền vay bằng tài sản
+. Tên file gốc: NDCP_VayVonSVKT.md
+Câu hỏi 65: Lãi suất nợ quá hạn của các chương trình vay vốn sinh viên là bao nhiêu? Câu trả lời mong đợi: Lãi suất nợ quá hạn được tính bằng 130% lãi suất khi cho vay
+. Tên file gốc: NDCP_VayVonSVKT.md
+Câu hỏi 66: Trong thời gian sinh viên bảo lưu kết quả học tập, Ngân hàng Chính sách xã hội có giải ngân vốn vay không? Câu trả lời mong đợi: Không giải ngân vốn vay trong thời gian người học được nhà trường cho phép bảo lưu kết quả
+. Tên file gốc: NDCP_VayVonSVKT.md
+Câu hỏi 67: Trả nợ vay vốn sinh viên trước hạn có bị phạt lãi không? Câu trả lời mong đợi: Khách hàng có thể trả nợ trước hạn mà không phải chịu lãi phạt
+. Tên file gốc: NDCP_VayVonSVKT.md
+Câu hỏi 68: Sinh viên ngành Khoa học tự nhiên có thuộc đối tượng được vay vốn STEM không? Câu trả lời mong đợi: Có, mã ngành Khoa học tự nhiên (744) thuộc danh mục được vay vốn
+. Tên file gốc: VayVonChoSinhVienKyT.md
+Câu hỏi 69: Sinh viên đăng ký in mẫu giấy xác nhận vay vốn trực tuyến ở đâu? Câu trả lời mong đợi: Đăng nhập vào hệ thống, chọn menu "Kết quả học tập", sau đó chuyển sang tab "Yêu cầu xác nhận"
+. Tên file gốc: HuongDanXacNhanVayVon.md
+Câu hỏi 70: Sinh viên có thể xóa mẫu yêu cầu xác nhận vay vốn trong trường hợp nào? Câu trả lời mong đợi: Khi mẫu đơn đó vẫn còn ở trạng thái "Chưa in"
+. Tên file gốc: HuongDanXacNhanVayVon.md
+Câu hỏi 71: Sinh viên sư phạm được Nhà nước hỗ trợ sinh hoạt phí bao nhiêu mỗi tháng? Câu trả lời mong đợi: Được nhà nước hỗ trợ 3,63 triệu đồng/tháng để chi trả sinh hoạt phí
+. Tên file gốc: VayVonChoSVSuPham.md
+Câu hỏi 72: Sinh viên sư phạm công tác trong ngành giáo dục với thời gian bao lâu thì không phải bồi hoàn kinh phí? Câu trả lời mong đợi: Có thời gian công tác tối thiểu gấp hai lần thời gian đào tạo
+. Tên file gốc: VayVonChoSVSuPham.md
+Câu hỏi 73: Sinh viên sư phạm đang học nhưng chuyển sang ngành khác có phải bồi hoàn tiền không? Câu trả lời mong đợi: Có, phải bồi hoàn toàn bộ kinh phí đã được nhà nước hỗ trợ
+. Tên file gốc: VayVonChoSVSuPham.md
+Câu hỏi 74: Đơn vị nào trực tiếp chi trả tiền hỗ trợ sinh hoạt phí cho sinh viên sư phạm? Câu trả lời mong đợi: Cơ sở đào tạo giáo viên có trách nhiệm chi trả thông qua tài khoản tiền gửi của sinh viên tại ngân hàng
+. Tên file gốc: VayVonChoSVSuPham.md
+Câu hỏi 75: Học sinh, sinh viên mồ côi cả cha lẫn mẹ muốn vay vốn thì ai là người đứng tên? Câu trả lời mong đợi: Sinh viên mồ côi cả cha lẫn mẹ sẽ được trực tiếp đứng tên vay vốn tại Ngân hàng Chính sách xã hội
+. Tên file gốc: VayVon.md
 4. Ngữ cảnh: Học bổng
-   Câu hỏi 61: Mức học bổng khuyến khích học tập bình quân của Khóa 51 học kỳ đầu tiên là bao nhiêu? Câu trả lời mong đợi: Mức học bổng bình quân là 5.000.000 đồng/học kỳ/sinh viên
-   . Tên file gốc: HB_K51_2026.md, Tài liệu phân bổ quỹ học bổng.md
-   Câu hỏi 62: Đối với sinh viên tuyển thẳng Khóa 51, học bổng khuyến khích học tập học kỳ đầu tiên là bao nhiêu? Câu trả lời mong đợi: Mức hưởng là 6.000.000 đồng/học kỳ
-   . Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
-   Câu hỏi 63: Khối ngành Sức khỏe (Khối ngành VI) có mức học bổng Khá là bao nhiêu 1 học kỳ? Câu trả lời mong đợi: Mức học bổng loại Khá là 7.540.000 đồng/học kỳ
-   . Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
-   Câu hỏi 64: Mức học bổng loại Xuất sắc của Khối ngành Kinh doanh và quản lý (Khối III) là bao nhiêu? Câu trả lời mong đợi: Là 9.240.000 đồng/học kỳ
-   . Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
-   Câu hỏi 65: Sinh viên chương trình Chất lượng cao khóa 51 đạt học bổng Xuất sắc sẽ nhận được bao nhiêu? Câu trả lời mong đợi: Sẽ nhận được mức 15.860.000 đồng/học kỳ
-   . Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
-   Câu hỏi 66: Điểm rèn luyện từ 80 đến dưới 90 điểm được phân loại gì để xét học bổng? Câu trả lời mong đợi: Được phân loại Tốt
-   . Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
-   Câu hỏi 67: Trị giá của học bổng Lê Sở Memorial Scholarship là bao nhiêu 1 năm? Câu trả lời mong đợi: Học bổng có giá trị tương đương khoảng 45 triệu đồng/năm
-   . Tên file gốc: HB_LeSo.md
-   Câu hỏi 68: Điều kiện điểm thi đầu vào đối với sinh viên Khóa 51 để xét học bổng Lê Sở là bao nhiêu? Câu trả lời mong đợi: Tổng điểm thi đạt từ 24/30 trở lên
-   . Tên file gốc: HB_LeSo.md
-   Câu hỏi 69: Điều kiện điểm trung bình tích lũy cho sinh viên đang học ứng tuyển học bổng Lương Văn Can là bao nhiêu? Câu trả lời mong đợi: Đạt từ 8.0 trở lên (theo thang điểm 10)
-   . Tên file gốc: HB_LuongVanCang.md
-   Câu hỏi 70: Hạn chót để nộp hồ sơ xin học bổng Lương Văn Can năm học 2026-2027 là ngày nào? Câu trả lời mong đợi: Đến ngày 17/07/2026 (Thứ Sáu)
-   . Tên file gốc: HB_LuongVanCang.md
-   Câu hỏi 71: Học bổng Panasonic năm 2026 có giá trị mỗi suất là bao nhiêu tiền? Câu trả lời mong đợi: Mỗi suất trị giá 30.000.000 đồng/năm học
-   . Tên file gốc: HB_Panasonic.md
-   Câu hỏi 72: Sinh viên có hoàn cảnh khó khăn cần đạt điểm trung bình tích lũy bao nhiêu (hệ 4) để xin học bổng Panasonic? Câu trả lời mong đợi: Cần đạt từ 2,5 trở lên (theo thang điểm 4)
-   . Tên file gốc: HB_Panasonic.md
-   Câu hỏi 73: Trị giá của học bổng SCC (Saigon Children’s Charity CIO) là bao nhiêu? Câu trả lời mong đợi: Trị giá 10.000.000 đồng/suất
-   . Tên file gốc: HB_SCC.md
-   Câu hỏi 74: Học bổng SCIC - Nâng bước tài năng trẻ dành riêng cho sinh viên trường nào của ĐH Cần Thơ? Câu trả lời mong đợi: Dành cho sinh viên Trường Công nghệ Thông tin & Truyền thông
-   . Tên file gốc: HB_SCIC_2026.md
-   Câu hỏi 75: Học bổng Shinhan Life S-cellence yêu cầu sinh viên phải làm bài luận dài bao nhiêu chữ? Câu trả lời mong đợi: Yêu cầu bài luận ngắn từ 500 - 800 chữ
-   . Tên file gốc: HB_Shihan.md
-   Câu hỏi 76: Học bổng Thắp sáng Niềm Tin năm 2026 dành cho đối tượng nào? Câu trả lời mong đợi: Dành cho học sinh lớp 12 (Tân sinh viên Khóa 52) có hoàn cảnh đặc biệt khó khăn
-   . Tên file gốc: HB_TanSinhVien_K52.md
-   Câu hỏi 77: Mức học bổng Hội Khuyến học tỉnh Tây Ninh là bao nhiêu 1 suất? Câu trả lời mong đợi: Trị giá 5.000.000 đồng/suất
-   . Tên file gốc: HB_TayNinh.md
-   Câu hỏi 78: Học bổng Vallet năm 2026 cho sinh viên đại học có mức thưởng là bao nhiêu? Câu trả lời mong đợi: 34.000.000 đồng/suất
-   . Tên file gốc: HB_Vallet.md, HB_Vallet_Chi_Tiet.md
-   Câu hỏi 79: Hạn nộp hồ sơ trực tuyến cho học bổng Vallet 2026 là ngày nào? Câu trả lời mong đợi: Đến hết ngày 15/06/2026
-   . Tên file gốc: HB_Vallet.md, HB_Vallet_Chi_Tiet.md
-   Câu hỏi 80: Sinh viên Sư phạm được hưởng sinh hoạt phí hàng tháng là bao nhiêu theo NĐ 116? Câu trả lời mong đợi: Được nhà nước hỗ trợ 3,63 triệu đồng/tháng
-   . Tên file gốc: VayVonChoSVSuPham.md
+Câu hỏi 76: Mức học bổng khuyến khích học tập bình quân của Khóa 51 học kỳ đầu tiên là bao nhiêu? Câu trả lời mong đợi: Mức học bổng bình quân là 5.000.000 đồng/sinh viên/học kỳ
+. Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
+Câu hỏi 77: Sinh viên tuyển thẳng Khóa 51 có mức học bổng khuyến khích học kỳ đầu tiên là bao nhiêu? Câu trả lời mong đợi: Mức hưởng học bổng là 6.000.000 đồng/học kỳ
+. Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
+Câu hỏi 78: Sinh viên có điểm rèn luyện từ 80 đến dưới 90 điểm được phân loại gì? Câu trả lời mong đợi: Được phân loại Tốt
+. Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
+Câu hỏi 79: Khối ngành VI (Sức khỏe) sinh viên đạt học bổng Xuất sắc được thưởng bao nhiêu? Câu trả lời mong đợi: Mức học bổng loại Xuất sắc là 10.560.000 đồng/học kỳ
+. Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
+Câu hỏi 80: Sinh viên Khối ngành III (Kinh doanh và quản lý, pháp luật) đạt học bổng Khá được thưởng bao nhiêu? Câu trả lời mong đợi: Mức học bổng loại Khá là 6.600.000 đồng/học kỳ
+. Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
+Câu hỏi 81: Sinh viên chương trình Chất lượng cao Khóa 51 đạt học bổng Giỏi nhận được mức bao nhiêu? Câu trả lời mong đợi: Sẽ nhận được mức học bổng là 13.600.000 đồng/học kỳ
+. Tên file gốc: Tài liệu phân bổ quỹ học bổng.md
+Câu hỏi 82: Giá trị của mỗi suất học bổng Vallet là bao nhiêu? Câu trả lời mong đợi: Mỗi suất học bổng trị giá 34.000.000 đồng
+. Tên file gốc: HB_Vallet_Chi_Tiet.md
+Câu hỏi 83: Sinh viên tính điểm hệ 4 cần đạt điểm trung bình tích lũy bao nhiêu để xét học bổng Vallet? Câu trả lời mong đợi: Cần đạt điểm trung bình từ 3,0 trở lên trong các học kỳ chính khóa
+. Tên file gốc: HB_Vallet_Chi_Tiet.md
+Câu hỏi 84: Bài báo nghiên cứu khoa học có được xét ưu tiên khi xin học bổng Vallet không? Câu trả lời mong đợi: Có, các công trình nghiên cứu khoa học được xem xét ưu tiên khi tuyển chọn
+. Tên file gốc: HB_Vallet_Chi_Tiet.md
+Câu hỏi 85: Mỗi suất học bổng Panasonic có giá trị bao nhiêu tiền? Câu trả lời mong đợi: Mỗi suất trị giá 30.000.000 đồng/năm học
+. Tên file gốc: HB_Panasonic.md
+Câu hỏi 86: Sinh viên có hoàn cảnh gia đình khó khăn cần đạt điểm trung bình hệ 4 bao nhiêu để xin học bổng Panasonic? Câu trả lời mong đợi: Yêu cầu đạt điểm trung bình từ 2,5 trở lên (theo thang điểm 4)
+. Tên file gốc: HB_Panasonic.md
+Câu hỏi 87: Có bao nhiêu suất học bổng SCC (Saigon Children’s Charity CIO) được trao? Câu trả lời mong đợi: Học bổng có tất cả 10 suất
+. Tên file gốc: HB_SCC.md
+Câu hỏi 88: Trị giá của học bổng SCC là bao nhiêu? Câu trả lời mong đợi: Mỗi suất trị giá 10.000.000 đồng
+. Tên file gốc: HB_SCC.md
+Câu hỏi 89: Điểm học tập yêu cầu để xét học bổng SCC là bao nhiêu? Câu trả lời mong đợi: Sinh viên phải đạt Điểm trung bình tích lũy từ 3.2 trở lên
+. Tên file gốc: HB_SCC.md
+Câu hỏi 90: Học bổng Lương Văn Can toàn phần bao gồm những chi phí nào? Câu trả lời mong đợi: Học bổng bao gồm học phí, sinh hoạt phí và/hoặc chi phí học ngoại ngữ
+. Tên file gốc: HB_LuongVanCang.md
+Câu hỏi 91: Điều kiện về điểm học tập đối với sinh viên đang học ứng tuyển học bổng Lương Văn Can là gì? Câu trả lời mong đợi: Yêu cầu Điểm trung bình tích lũy đạt từ 8.0 trở lên (theo thang điểm 10)
+. Tên file gốc: HB_LuongVanCang.md
+Câu hỏi 92: Học bổng Lê Sở Memorial Scholarship of Excellence trị giá bao nhiêu một năm? Câu trả lời mong đợi: Học bổng trị giá tương đương khoảng 45 triệu đồng/năm
+. Tên file gốc: HB_LeSo.md
+Câu hỏi 93: Tân sinh viên Khóa 51 phải đạt tổng điểm thi đầu vào bao nhiêu để dự tuyển học bổng Lê Sở? Câu trả lời mong đợi: Tổng điểm thi đại học phải đạt từ 24/30 trở lên
+. Tên file gốc: HB_LeSo.md
+Câu hỏi 94: Học bổng SCIC - Nâng bước tài năng trẻ năm 2026 dành cho sinh viên trường nào của Đại học Cần Thơ? Câu trả lời mong đợi: Dành riêng cho sinh viên Trường Công nghệ Thông tin & Truyền thông
+. Tên file gốc: HB_SCIC_2026.md
+Câu hỏi 95: Mỗi suất học bổng SCIC trị giá bao nhiêu? Câu trả lời mong đợi: Mỗi suất học bổng có giá trị 10.000.000 đồng
+. Tên file gốc: HB_SCIC_2026.md
+Câu hỏi 96: Hồ sơ xin học bổng Shinhan Life S-cellence có yêu cầu viết bài luận không? Câu trả lời mong đợi: Có, sinh viên cần nộp một bài luận ngắn từ 500 - 800 chữ (hoặc bài thuyết trình, video ngắn)
+. Tên file gốc: HB_Shihan.md
+Câu hỏi 97: Học bổng Thắp sáng Niềm Tin tài trợ mức tối đa là bao nhiêu một năm học? Câu trả lời mong đợi: Mức tài trợ tối đa là 30.000.000 đồng/năm học (gồm học phí và sinh hoạt phí)
+. Tên file gốc: HB_TanSinhVien_K52.md
+Câu hỏi 98: Yêu cầu về học lực đối với tân sinh viên ứng tuyển học bổng Thắp sáng Niềm Tin là gì? Câu trả lời mong đợi: Yêu cầu tối thiểu phải đạt danh hiệu học sinh tiên tiến 03 năm liền tại cấp Trung học phổ thông
+. Tên file gốc: HB_TanSinhVien_K52.md
+Câu hỏi 99: Mức thưởng của học bổng Hội Khuyến học tỉnh Tây Ninh là bao nhiêu một suất? Câu trả lời mong đợi: Mỗi suất học bổng có giá trị 5.000.000 đồng
+. Tên file gốc: HB_TayNinh.md
+Câu hỏi 100: Đăng ký hồ sơ dự tuyển học bổng Vallet được thực hiện qua hình thức nào? Câu trả lời mong đợi: Đăng ký hồ sơ theo hình thức trực tuyến (online)
+. Tên file gốc: HB_Vallet_Chi_Tiet.md

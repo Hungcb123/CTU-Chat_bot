@@ -132,14 +132,14 @@
       "content_kind": "announcement",
       "fee_kind": "not_applicable",
       "academic_year": null,
-      "status": "active"
+      "status": "inactive"
     },
     "HTCPHT.md": {
       "domain": "social_support",
       "content_kind": "announcement",
       "fee_kind": "not_applicable",
       "academic_year": null,
-      "status": "active"
+      "status": "inactive"
     },
     "HuongDanXacNhanVayVon.md": {
       "domain": "student_loan",
@@ -216,7 +216,7 @@
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
-      "status": "active"
+      "status": "inactive"
     },
     "QD_1227_TTg.md": {
       "domain": "social_support",
@@ -244,7 +244,7 @@
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
-      "status": "active"
+      "status": "inactive"
     },
     "SoTay.md": {
       "domain": "other",
@@ -314,14 +314,14 @@
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
-      "status": "active"
+      "status": "inactive"
     },
     "VayVonVoiNhomNganhKThuat - Copy.md": {
       "domain": "student_loan",
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
-      "status": "active"
+      "status": "inactive"
     }
   }
 }

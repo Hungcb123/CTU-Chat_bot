@@ -1,7 +1,8 @@
+# Quyết định — Định mức học bổng khuyến khích học tập — Năm học 2025-2026
 
 *Cần Thơ, ngày 31 tháng 7 năm 2025*
 
-# QUYẾT ĐỊNH
+
 ## Về việc định mức học bổng khuyến khích học tập áp dụng từ học kỳ 1, năm học 2025-2026
 
 ### QUYẾT ĐỊNH:
@@ -9,6 +10,8 @@
 #### Điều 1. Quy định Học bổng khuyến khích cho sinh viên đại học, học hình thức **chính quy** tại trường theo khối ngành như sau:
 
 *Dưới đây là bảng định mức chi tiết số tiền học bổng khuyến khích học tập 1 học kỳ cho tất cả các khối ngành (như Kinh doanh quản lý, Sức khỏe, CNTT, Khoa học tự nhiên, Sư phạm...) tương ứng với các loại Khá, Giỏi, Xuất sắc:*
+
+Một số mức học bổng khuyến khích học tập thường được tra cứu: Khối VI loại Xuất sắc là **10.560.000 đồng/học kỳ**; Khối III loại Khá là **6.600.000 đồng/học kỳ**; chương trình Chất lượng cao hoặc Tiên tiến Khóa 51 loại Giỏi là **13.600.000 đồng/học kỳ**.
 
 | STT | Khối ngành                                                                                   | Khối ngành                                                    | Mức học bổng (đồng/học kỳ) Khá | Mức học bổng (đồng/học kỳ) Giỏi | Mức học bổng (đồng/học kỳ) Xuất sắc |
 | --- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------- | ----------------------------------- | --------------------------------------- |

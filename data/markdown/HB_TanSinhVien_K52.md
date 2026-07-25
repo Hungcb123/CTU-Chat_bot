@@ -1,8 +1,10 @@
+# Thông báo — Học bổng Thắp sáng Niềm Tin cho tân sinh viên Khóa 52 — Năm học 2026-2027
+
 **PHÒNG CÔNG TÁC SINH VIÊN**
 
 *Cần Thơ, ngày 16 tháng 3 năm 2026*
 
-# THÔNG BÁO
+
 ## Về việc xét cấp học bổng Tân Sinh viên Khóa 52
 
 

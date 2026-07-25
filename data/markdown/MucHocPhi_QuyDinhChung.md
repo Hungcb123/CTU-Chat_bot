@@ -1,4 +1,7 @@
-# Quy định mức học phí năm học 2026-2027 tại Đại học Cần Thơ (ĐHCT)
+# Quy định — Học phí Trường Đại học Cần Thơ — Năm học 2026-2027
+
+Bảng dưới đây là mức học phí thực tế của khối kiến thức đại cương chung trong năm học 2026-2027; các hệ số được áp dụng theo đúng nhóm học phần được nêu trong từng mục.
+
 **Ngữ cảnh:** Căn cứ Nghị định 238/2025/NĐ-CP ngày 03/9/2025, Hiệu trưởng Đại học Cần Thơ quy định mức học phí năm học 2026-2027 áp dụng cho sinh viên, học viên và nghiên cứu sinh (Văn bản số 423/ĐHCT-KHTC ngày 03/02/2026).
 
 ## 1. Đại học hình thức chính quy chương trình đào tạo chuẩn (đại trà)
@@ -31,7 +34,7 @@ Là mức học phí mục a hoặc mục b nhân với hệ số 1,3.
 - Học ngoài thời gian thiết kế của chương trình đào tạo: là mức học phí tại PHỤ LỤC 3 nhân với hệ số 1,0 đối với Khoá 50 trở về trước, từ Khoá 51 trở về sau là mức học phí tại PHỤ LỤC 3 nhân với hệ số 1,3.
 
 ## 3. Học sinh diện xét tuyển thẳng, học bồi dưỡng kiến thức tại Khoa Dự bị Dân tộc
-Mức học phí: 12.000.000 đ/năm học; hoặc 6.000.000 đ/học kỳ; hoặc 300.000 đ/tín chỉ.
+Mức học phí bồi dưỡng kiến thức tại Khoa Dự bị Dân tộc là **12.000.000 đồng/năm học**; hoặc 6.000.000 đồng/học kỳ; hoặc 300.000 đồng/tín chỉ.
 
 ## 4. Mức học phí loại hình giáo dục thường xuyên
 

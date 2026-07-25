@@ -1,9 +1,8 @@
-
-
+# Quyết định — Ban hành Sổ tay sinh viên Trường Đại học Cần Thơ — Năm 2025
 
 *Cần Thơ, ngày 26 tháng 9 năm 2025*
 
-# QUYẾT ĐỊNH
+
 ## Ban hành Sổ tay sinh viên Trường Đại học Cần Thơ
 
 

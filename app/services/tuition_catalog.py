@@ -51,6 +51,16 @@ MAJOR_ALIASES = {
     "cnsh": "cong nghe sinh hoc",
 }
 
+COURSE_ALIASES = {
+    "gdqp": "giao duc quoc phong va an ninh",
+    "giao duc quoc phong": "giao duc quoc phong va an ninh",
+    "gdtc": "giao duc the chat",
+    "phap luat dai cuong": "phap luat dai cuong phap luat va quyen con nguoi",
+    "phap luat va quyen con nguoi": "phap luat dai cuong phap luat va quyen con nguoi",
+    "anh van can ban": "anh van hoac phap van can ban",
+    "phap van can ban": "anh van hoac phap van can ban",
+}
+
 
 @dataclass(frozen=True)
 class TuitionLookupResult:
@@ -66,14 +76,30 @@ class TuitionLookupResult:
 class TuitionRateCatalog:
     """Load validated JSON once and perform exact entity-based lookup."""
 
-    def __init__(self, records: Iterable[dict[str, Any]], *, source_path: Path):
+    def __init__(
+        self,
+        records: Iterable[dict[str, Any]],
+        *,
+        rules: Iterable[dict[str, Any]] = (),
+        source_path: Path,
+    ):
         self.source_path = source_path
         self.records = tuple(records)
+        self.rules = tuple(rules)
         self._major_names = sorted(
             {
                 normalize_text(str(record["major_name"])): str(record["major_name"])
                 for record in self.records
                 if record.get("major_name")
+            }.items(),
+            key=lambda item: len(item[0]),
+            reverse=True,
+        )
+        self._course_names = sorted(
+            {
+                normalize_text(str(record["course_name"])): str(record["course_name"])
+                for record in self.records
+                if record.get("course_name")
             }.items(),
             key=lambda item: len(item[0]),
             reverse=True,
@@ -107,7 +133,10 @@ class TuitionRateCatalog:
                 raise ValueError(f"record {record['id']} is not actual_tuition")
             if not isinstance(record["amount_vnd"], int) or record["amount_vnd"] <= 0:
                 raise ValueError(f"record {record['id']} has invalid amount_vnd")
-        return cls(records, source_path=path)
+        rules = payload.get("rules", [])
+        if not isinstance(rules, list):
+            raise ValueError("tuition_rates.json rules must be an array")
+        return cls(records, rules=rules, source_path=path)
 
     @staticmethod
     def _extract_program(query: str) -> str | None:
@@ -141,6 +170,17 @@ class TuitionRateCatalog:
                     return normalize_text(record["major_name"]), record["major_name"]
         return None, None
 
+    def _extract_course(self, query: str) -> tuple[str | None, str | None]:
+        for alias, canonical in COURSE_ALIASES.items():
+            if re.search(rf"\b{re.escape(alias)}\b", query):
+                for normalized, original in self._course_names:
+                    if normalized == canonical:
+                        return normalized, original
+        for normalized, original in self._course_names:
+            if re.search(rf"(?:^| ){re.escape(normalized)}(?: |$)", query):
+                return normalized, original
+        return None, None
+
     @staticmethod
     def _cohort_applies(record: dict[str, Any], cohort: int) -> bool:
         lower = record.get("cohort_min")
@@ -158,6 +198,77 @@ class TuitionRateCatalog:
                 "khoi kien thuc dai cuong chung",
             )
         )
+
+    @staticmethod
+    def _rule_phrase(query: str) -> str | None:
+        if "ngoai gio hanh chinh" in query:
+            return "ngoai gio hanh chinh"
+        if "cham tien do" in query:
+            return "cham tien do"
+        if "bo sung kien thuc" in query:
+            return "bo sung kien thuc"
+        if "duoi 30" in query and ("vua lam vua hoc" in query or "vlvh" in query):
+            return "duoi 30"
+        if "duoi 25" in query and "tu xa" in query:
+            return "duoi 25"
+        if "ngoai thoi gian thiet ke" in query or "hoc lai" in query:
+            return "ngoai thoi gian thiet ke"
+        return None
+
+    @staticmethod
+    def _education_level(query: str) -> str:
+        if "tien si" in query:
+            return "doctoral"
+        if "thac si" in query or "cao hoc" in query:
+            return "master"
+        return "undergraduate"
+
+    @staticmethod
+    def _study_mode(query: str) -> str:
+        if "vua lam vua hoc" in query or "vlvh" in query:
+            return "work_study"
+        if "tu xa" in query:
+            return "distance"
+        return "full_time"
+
+    def _lookup_rule(
+        self,
+        query: str,
+        cohort: int | None,
+        program: str | None,
+    ) -> TuitionLookupResult | None:
+        phrase = self._rule_phrase(query)
+        if phrase is None:
+            return None
+        education_level = self._education_level(query)
+        study_mode = self._study_mode(query)
+        matches = []
+        for rule in self.rules:
+            if phrase not in normalize_text(str(rule.get("description", ""))):
+                continue
+            if rule.get("education_level") != education_level:
+                continue
+            if rule.get("study_mode") != study_mode:
+                continue
+            if program is not None and rule.get("program_type") != program:
+                continue
+            if cohort is not None and not self._cohort_applies(rule, cohort):
+                continue
+            matches.append(rule)
+        if not matches:
+            return TuitionLookupResult("not_found", "Không tìm thấy quy tắc học phí phù hợp trong bảng chuẩn hóa.")
+
+        lines = ["[KẾT QUẢ TRA CỨU QUY TẮC HỌC PHÍ CẤU TRÚC - NGUỒN ƯU TIÊN]"]
+        for rule in matches:
+            value = rule["value"]
+            if isinstance(value, (int, float)) and value >= 10_000:
+                formatted = f"{value:,.0f} đồng".replace(",", ".")
+            else:
+                formatted = f"{value:g}".replace(".", ",") + " lần"
+            lines.append(f"- {rule['description']}: {formatted}")
+            lines.append(f"  Nguồn: {rule['source']} — {rule['source_section']}")
+        lines.append("Phải dùng quy tắc trên; không thay bằng kết quả vector search khác.")
+        return TuitionLookupResult("found", "\n".join(lines), tuple(matches))
 
     def rewrite_is_safe_for_lookup(self, original_query: str, rewritten_query: str) -> bool:
         """Allow a rewrite to fill omissions, never to replace explicit entities."""
@@ -185,6 +296,11 @@ class TuitionRateCatalog:
         if original_major is not None and rewritten_major != original_major:
             return False
 
+        original_course, _ = self._extract_course(original)
+        rewritten_course, _ = self._extract_course(rewritten)
+        if original_course is not None and rewritten_course != original_course:
+            return False
+
         if self._requests_general_common(original) and not self._requests_general_common(rewritten):
             return False
         return True
@@ -194,17 +310,22 @@ class TuitionRateCatalog:
         cohort = self._extract_cohort(query)
         program = self._extract_program(query)
         major_key, major_name = self._extract_major(query)
+        course_key, course_name = self._extract_course(query)
         general_common = self._requests_general_common(query)
+        rule_result = self._lookup_rule(query, cohort, program or "standard")
+        if rule_result is not None:
+            return rule_result
         looks_like_major_lookup = bool(
             cohort is not None
             or program is not None
             or "nganh" in query.split()
             or major_key is not None
+            or course_key is not None
             or general_common
         )
         if not looks_like_major_lookup:
             return TuitionLookupResult("not_applicable", "")
-        if major_key is None and not general_common:
+        if major_key is None and course_key is None and not general_common:
             return TuitionLookupResult(
                 "needs_clarification",
                 "Bạn vui lòng cho biết tên hoặc mã ngành cần tra cứu học phí.",
@@ -244,11 +365,22 @@ class TuitionRateCatalog:
                 record.get("entity_type") == "all_students"
                 and record.get("knowledge_scope") == "general_common"
             )
-            if is_major_record or (is_common_record and (general_common or major_key is not None)):
+            is_course_record = bool(
+                course_key
+                and record.get("course_name")
+                and normalize_text(record["course_name"]) == course_key
+            )
+            if is_major_record or is_course_record or (
+                is_common_record and (general_common or major_key is not None)
+            ):
                 matches.append(record)
 
         if not matches:
-            subject = "đại cương chung" if general_common else f"ngành {major_name}"
+            subject = (
+                f"môn {course_name}"
+                if course_name
+                else "đại cương chung" if general_common else f"ngành {major_name}"
+            )
             return TuitionLookupResult(
                 "not_found",
                 f"Không tìm thấy học phí thực tế {subject}, "
@@ -272,7 +404,9 @@ class TuitionRateCatalog:
         lines = [
             "[KẾT QUẢ TRA CỨU HỌC PHÍ CẤU TRÚC - NGUỒN ƯU TIÊN]",
             (
-                "Phạm vi: Khối kiến thức đại cương chung"
+                f"Môn học: {course_name}"
+                if course_name
+                else "Phạm vi: Khối kiến thức đại cương chung"
                 if general_common
                 else f"Ngành: {major_name}"
             ),

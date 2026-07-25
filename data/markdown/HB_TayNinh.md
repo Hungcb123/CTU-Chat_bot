@@ -1,16 +1,20 @@
+# Thông báo — Học bổng Khuyến học, Khuyến tài tỉnh Tây Ninh — Năm học 2025-2026
+
 **PHÒNG CÔNG TÁC SINH VIÊN**
 
 
 
 *Cần Thơ, ngày 12 tháng 3 năm 2026*
 
-# THÔNG BÁO KHẨN
+
 ## Về việc trao học bổng Hội Khuyến học tỉnh Tây Ninh năm học 2025-2026
 
 
 Thoe thông tin nhận được từ Hội Khuyến học tỉnh Tây Ninh về việc hỗ trợ các suất học bổng cho sinh viên, Phòng Công tác Sinh viên xin thông tin đến Thủ trưởng các đơn vị về chương trình học bổng, năm học 2025 – 2026 cho sinh viên Đại học Cần Thơ (ĐHCT) như sau:
 
 ## 1. Đối tượng, điều kiện xét cấp học bổng:
+
+Bảng dưới đây là điều kiện, giá trị, số suất và hồ sơ của Học bổng Khuyến học, Khuyến tài tỉnh Tây Ninh năm học 2025-2026.
 
 | STT | Tiêu chí                                                  | Diễn giải                                                                                                                                                                                                                                                                                                                  |
 | --- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

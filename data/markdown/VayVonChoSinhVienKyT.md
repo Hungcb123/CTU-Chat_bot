@@ -1,9 +1,8 @@
-
-
+# Thông báo — Vay vốn cho sinh viên ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025
 
 *Cần Thơ, ngày 30 tháng 9 năm 2025*
 
-# THÔNG BÁO
+
 ## Về việc triển khai Chương trình tín dụng đối với sinh viên, học viên thạc sĩ, nghiên cứu sinh học các ngành khoa học, công nghệ, kỹ thuật và toán
 
 

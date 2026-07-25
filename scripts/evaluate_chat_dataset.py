@@ -51,6 +51,7 @@ class DatasetCase:
 class ScoreResult:
     score: float
     passed: bool
+    abstained: bool
     content_recall: float
     numeric_recall: float
     expected_facts: tuple[str, ...]
@@ -69,10 +70,18 @@ QUESTION_RE = re.compile(
 VIETNAMESE_STOPWORDS = {
     "ai", "bao", "bi", "cac", "cach", "can", "cho", "co", "cua", "da",
     "dang", "day", "de", "den", "do", "duoc", "gi", "hay", "het", "khi",
-    "khong", "la", "lam", "luc", "ma", "mot", "muc", "nao", "nay", "neu",
+    "la", "lam", "luc", "ma", "mot", "muc", "nao", "nay", "neu",
     "nhieu", "nhung", "o", "phai", "qua", "ra", "sau", "se", "sinh", "tai",
     "the", "thi", "theo", "thoi", "trong", "tu", "va", "vao", "ve", "voi",
 }
+
+
+ABSTENTION_PATTERNS = (
+    re.compile(r"\bkhong tim thay (?:duoc )?(?:thong tin|tai lieu)\b"),
+    re.compile(r"\bkhong co (?:du )?thong tin\b"),
+    re.compile(r"\bthong tin .{0,50}\bkhong duoc neu\b"),
+    re.compile(r"\btai lieu .{0,50}\bkhong neu (?:ro|chi tiet)\b"),
+)
 
 
 def _normalise_text(value: str) -> str:
@@ -113,6 +122,9 @@ def _numeric_facts(value: str) -> set[str]:
     def free(start: int, end: int) -> bool:
         return not any(start < used_end and end > used_start for used_start, used_end in occupied)
 
+    def rate_denominator(start: int) -> bool:
+        return bool(re.search(r"/\s*$", lowered[:start]))
+
     date_re = re.compile(r"\b(\d{1,2})\s*[/.-]\s*(\d{1,2})\s*[/.-]\s*(20\d{2})\b")
     for match in date_re.finditer(lowered):
         facts.add(f"date:{int(match.group(1))}-{int(match.group(2))}-{int(match.group(3))}")
@@ -121,8 +133,24 @@ def _numeric_facts(value: str) -> set[str]:
     percent_re = re.compile(r"\b(\d+(?:[.,]\d+)?)\s*%")
     for match in percent_re.finditer(lowered):
         if free(*match.span()):
-            facts.add(f"num:{_decimal_number(match.group(1))}")
+            facts.add(f"percent:{_decimal_number(match.group(1))}")
             occupied.append(match.span())
+
+    money_re = re.compile(
+        r"\b(\d+(?:[.,]\d+)*)\s*(?:(triệu|trieu|tỷ|ty)\s*)?(?:đồng|dong)\b"
+    )
+    for match in money_re.finditer(lowered):
+        if not free(*match.span()):
+            continue
+        base = float(_decimal_number(match.group(1)))
+        unit = match.group(2)
+        multiplier = 1
+        if unit in {"tỷ", "ty"}:
+            multiplier = 1_000_000_000
+        elif unit in {"triệu", "trieu"}:
+            multiplier = 1_000_000
+        facts.add(f"money:{int(base * multiplier)}")
+        occupied.append(match.span())
 
     unit_re = re.compile(r"\b(\d+(?:[.,]\d+)?)\s*(triệu|trieu|tỷ|ty)\b")
     for match in unit_re.finditer(lowered):
@@ -130,15 +158,35 @@ def _numeric_facts(value: str) -> set[str]:
             continue
         base = float(_decimal_number(match.group(1)))
         multiplier = 1_000_000_000 if match.group(2) in {"tỷ", "ty"} else 1_000_000
-        facts.add(f"num:{int(base * multiplier)}")
+        facts.add(f"money:{int(base * multiplier)}")
+        occupied.append(match.span())
+
+    duration_re = re.compile(r"\b(\d+(?:[.,]\d+)?)\s*(tháng|thang|năm|nam)\b")
+    for match in duration_re.finditer(lowered):
+        if not free(*match.span()) or rate_denominator(match.start()):
+            continue
+        number = _decimal_number(match.group(1))
+        unit = "months" if match.group(2) in {"tháng", "thang"} else "years"
+        facts.add(f"duration_{unit}:{number}")
         occupied.append(match.span())
 
     number_re = re.compile(r"\b\d+(?:[.,]\d+)*\b")
     for match in number_re.finditer(lowered):
-        if free(*match.span()):
-            facts.add(f"num:{_decimal_number(match.group(0))}")
+        if not free(*match.span()) or rate_denominator(match.start()):
+            continue
+        number = _decimal_number(match.group(0))
+        # A standalone calendar year is normally context (academic year,
+        # publication year), not the answer fact. Full dates were captured above.
+        if number.isdigit() and 1900 <= int(number) <= 2100:
+            continue
+        facts.add(f"num:{number}")
 
     return facts
+
+
+def _is_abstention(value: str) -> bool:
+    normalised = _normalise_text(value)
+    return any(pattern.search(normalised) for pattern in ABSTENTION_PATTERNS)
 
 
 def score_answer(expected: str, actual: str, *, threshold: float = 0.55) -> ScoreResult:
@@ -157,18 +205,34 @@ def score_answer(expected: str, actual: str, *, threshold: float = 0.55) -> Scor
         len(matched_facts) / len(expected_facts) if expected_facts else 1.0
     )
 
+    # The dataset sometimes supplies equivalent values separated by "hoặc"
+    # (for example, a per-semester amount or its per-year equivalent).  One
+    # matching representation is sufficient in that case.
+    if " hoac " in f" {_normalise_text(expected)} " and matched_facts:
+        numeric_recall = 1.0
+        missing_facts = set()
+
     score = (
         0.6 * numeric_recall + 0.4 * content_recall
         if expected_facts
         else content_recall
     )
+    # A response may answer the requested numeric fact first and only abstain
+    # from a separate, additional detail.  Do not discard that complete answer.
+    has_complete_numeric_answer = bool(expected_facts) and numeric_recall == 1.0
+    abstained = _is_abstention(actual) and not has_complete_numeric_answer
+    if abstained:
+        # Query terms copied into an explicit "không tìm thấy thông tin"
+        # response must not be mistaken for a useful answer.
+        score *= 0.25
     # A response with numerical expectations must retain most expected facts;
     # high lexical overlap alone must not mark a wrong amount/date as correct.
     numeric_gate = numeric_recall >= 0.75 if expected_facts else True
-    passed = bool(score >= threshold and numeric_gate)
+    passed = bool(score >= threshold and numeric_gate and not abstained)
     return ScoreResult(
         score=round(score, 4),
         passed=passed,
+        abstained=abstained,
         content_recall=round(content_recall, 4),
         numeric_recall=round(numeric_recall, 4),
         expected_facts=tuple(sorted(expected_facts)),
@@ -284,7 +348,8 @@ def _write_markdown_report(
         f"- Ngưỡng pass: `{threshold}`",
         "",
         "> Cách chấm không gọi thêm LLM: 60% độ đúng dữ kiện số/ngày/%, "
-        "40% độ bao phủ từ nội dung. Với câu không có số, điểm bằng content recall.",
+        "40% độ bao phủ từ nội dung. Với câu không có số, điểm bằng content recall. "
+        "Câu trả lời từ chối/không tìm thấy thông tin bị trừ 75% điểm và không được pass.",
         "",
         "## Kết quả theo lĩnh vực",
         "",
@@ -306,6 +371,7 @@ def _write_markdown_report(
                 f"- Nguồn kỳ vọng: `{', '.join(record.get('expected_sources', []))}`",
                 f"- Numeric recall: `{float(record.get('numeric_recall', 0)):.4f}`",
                 f"- Content recall: `{float(record.get('content_recall', 0)):.4f}`",
+                f"- Từ chối trả lời: `{'có' if record.get('abstained') else 'không'}`",
                 f"- Dữ kiện số còn thiếu: `{', '.join(record.get('missing_facts', [])) or 'không'}`",
                 "",
                 "**Câu hỏi**",
@@ -356,6 +422,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--shared-session", action="store_true", help="Reuse one chat session; default isolates every case")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_LOG_DIR)
     parser.add_argument("--dry-run", action="store_true", help="Parse and list cases without API calls")
+    parser.add_argument(
+        "--rescore-jsonl",
+        type=Path,
+        help="Recompute scores from an existing JSONL without calling the API",
+    )
     parser.add_argument("--fail-under", type=float, default=0.0, help="Exit non-zero if accuracy is below this 0..1 value")
     return parser
 
@@ -370,6 +441,46 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("--limit must be at least 1")
 
     dataset_path = args.dataset.resolve()
+    if args.rescore_jsonl:
+        source_path = args.rescore_jsonl.resolve()
+        records = [
+            json.loads(line)
+            for line in source_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        for record in records:
+            scoring = score_answer(
+                str(record.get("expected_answer", "")),
+                str(record.get("actual_answer", "")),
+                threshold=args.threshold,
+            )
+            record.update(asdict(scoring))
+
+        args.output_dir.mkdir(parents=True, exist_ok=True)
+        started = datetime.now().astimezone()
+        stamp = started.strftime("%Y%m%d_%H%M%S")
+        stem = f"{source_path.stem}_rescored_{stamp}"
+        jsonl_path = args.output_dir / f"{stem}.jsonl"
+        report_path = args.output_dir / f"{stem}.md"
+        with jsonl_path.open("w", encoding="utf-8") as jsonl:
+            for record in records:
+                jsonl.write(json.dumps(record, ensure_ascii=False) + "\n")
+        _write_markdown_report(
+            report_path,
+            records=records,
+            dataset_path=dataset_path,
+            base_url=args.base_url,
+            threshold=args.threshold,
+            started_at=started.isoformat(),
+        )
+        passed = sum(bool(record.get("passed")) for record in records)
+        average = sum(float(record.get("score", 0)) for record in records) / len(records)
+        print(f"Rescored {len(records)} records from {source_path}")
+        print(f"Completed: {passed}/{len(records)} passed; average={average * 100:.2f}%")
+        print(f"JSONL evidence: {jsonl_path}")
+        print(f"Markdown report: {report_path}")
+        return 0
+
     cases = _filter_cases(parse_dataset(dataset_path), args)
     if not cases:
         raise SystemExit("No dataset cases matched the selected filters")
@@ -441,6 +552,7 @@ def main(argv: list[str] | None = None) -> int:
                 ) if actual_answer else ScoreResult(
                     score=0.0,
                     passed=False,
+                    abstained=False,
                     content_recall=0.0,
                     numeric_recall=0.0,
                     expected_facts=tuple(sorted(_numeric_facts(case.expected_answer))),

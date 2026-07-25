@@ -1,4 +1,4 @@
-# Thông báo nộp hồ sơ Trợ cấp xã hội
+# Thông báo — Hồ sơ trợ cấp xã hội cho sinh viên — Học kỳ 2 năm học 2025-2026
 
 **PHÒNG CÔNG TÁC SINH VIÊN Độc lập – Tự do – Hạnh phúc**
 học kỳ 2, năm học 2025 - 2026

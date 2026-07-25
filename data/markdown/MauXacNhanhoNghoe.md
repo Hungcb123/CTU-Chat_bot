@@ -1,4 +1,4 @@
-# Biểu mẫu: Giấy xác nhận hộ nghèo, hộ cận nghèo
+# Biểu mẫu — Giấy xác nhận hộ nghèo, hộ cận nghèo — Sinh viên Trường Đại học Cần Thơ
 
 **Ngữ cảnh:** Khi sinh viên cần nộp Giấy xác nhận hộ nghèo/cận nghèo để làm hồ sơ miễn giảm học phí, sinh viên cần xin xác nhận từ Ủy ban nhân dân xã/phường nơi cư trú.
 

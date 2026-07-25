@@ -1,4 +1,7 @@
-# Vay Học Phí CTU
+# Thông báo — Chương trình vay học phí VietinBank dành cho sinh viên Đại học Cần Thơ — Năm 2025
+
+Các bảng dưới đây mô tả quyền lợi, điều kiện, hạn mức, thời hạn và hồ sơ của riêng chương trình vay học phí VietinBank dành cho sinh viên Đại học Cần Thơ năm 2025; ô trống là nội dung nguồn không yêu cầu hoặc không quy định.
+
 VietinBank – Cùng bạn đầu tư cho tương lai xứng tầm
 
 ## TẠI SAO CHỌN VIETINBANK?
@@ -18,9 +21,7 @@ Giải ngân linh hoạt thủ tục nhanh gọn | Theo thông báo học phí c
 CN820-KBL@vietinbank.vn | 02923811564
 Phòng Bán Lẻ VietinBank Cần Thơ
 
-Toàn cảnh khuôn viên Đại học Cần Thơ với các tòa nhà hiện đại và cây xanh
 
-VietinBank logo
 
 **BẢN CHÀO CHÍNH SÁCH CHO VAY PHỤ HUYNH SINH VIÊN/HỌC VIÊN CAO HỌC/NGHIÊN CỨU SINH (KH) CHI TRẢ HỌC PHÍ THUỘC ĐẠI HỌC CẦN THƠ**
 
@@ -45,7 +46,7 @@ Sau đây, VietinBank xin trân trọng giới thiệu đến Ban lãnh đạo �
 | 6   | Đồng tiền cho vay        | VND                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | 7   | Giải ngân                | - Thời hạn giải ngân: tối đa bằng thời gian học của học viên                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
-# DANH MỤC HỒ SƠ CẦN CUNG CẤP
+## Danh mục hồ sơ cần cung cấp cho chương trình vay học phí VietinBank
 
 | STT | Trách nhiệm cung cấp | TÊN HỒ SƠ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Bắt buộc | Bổ sung (nếu có) | Ghi chú                                        |
 | --- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------------- | ---------------------------------------------- |

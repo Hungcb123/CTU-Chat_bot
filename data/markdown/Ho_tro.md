@@ -1,10 +1,12 @@
+# Thông báo — Hỗ trợ sinh viên dân tộc thiểu số thuộc Chương trình mục tiêu quốc gia — Giai đoạn 2021-2025
+
 **PHÒNG CÔNG TÁC SINH VIÊN**
 
 **Độc lập – Tự do – Hạnh phúc**
 
 *Cần Thơ, ngày 24 tháng 11 năm 2025*
 
-# THÔNG BÁO
+
 ## Về việc hỗ trợ chi phí đào tạo đại học theo Chương trình mục tiêu quốc gia phát triển kinh tế - xã hội vùng đồng bào dân tộc thiểu số và miền núi giai đoạn 2021-2025
 
 

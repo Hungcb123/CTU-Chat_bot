@@ -1,9 +1,11 @@
+# Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026
+
 RENCONTRES DU VIETNAM
 TỔ CHỨC KHOA HỌC & GIÁO DỤC GẶP GỠ VIỆT NAM
 RENCONTRES DU VIETNAM
 BAN ĐIỀU HÀNH HỌC BỔNG VALLET - KHU VỰC PHÍA NAM
 
-# THÔNG BÁO HỌC BỔNG VALLET 2026
+
 (Dành cho sinh viên Đại học)
 
 Tp. Hồ Chí Minh, ngày 31 tháng 5 năm 2026
@@ -28,9 +30,6 @@ Danh sách sinh viên và học viên cao học các Trường có thể nộp h
 | 3     | Trường Đại học Khoa học tự nhiên, Đại học Quốc gia TP.HCM Phòng Công tác Sinh viên (khối ĐH) hoặc Phòng Sau đại học (khối Sau ĐH) | HCMUS                   | 29                               | 10                                                     |
 | 4     | Trường Đại học Kinh tế TP.HCM Phòng Chăm sóc và Hỗ trợ người học                                                                  | UEH                     | 12                               | -                                                      |
 | 5     | Trường Đại học Kinh tế - Luật, Đại học Quốc gia TP.HCM                                                                                | UEL                     | 7                                | -                                                      |
-
-2
-
 | Số TT         | Tên trường đại học và đại diện liên hệ                                                                                                   | Tên viết tắt của trường | Số học bổng cho Sinh viên (SV)\* | Số học bổng cho học viên cao học (CH) và tương đương\* |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------------------------------- | ------------------------------------------------------ |
 | 6             | Phòng Công tác Sinh viên **Trường Đại học Sư phạm TP.HCM**                                                                           | HCMUE                   | 8                                | 1                                                      |
@@ -114,9 +113,6 @@ Thời gian và địa điểm trao học bổng (dự kiến): dự kiến vào
 * Khoa Môi trường và Tài nguyên
 * Khoa Kỹ thuật Địa chất và Dầu khí
 * Khoa Kỹ thuật Giao thông
-
-3
-
 *   Khoa Công nghệ Vật liệu
 
 ### 3. Trường Đại học Khoa học Tự nhiên, ĐHQG TP.HCM (ưu tiên các ngành tự Toán, Lý, Hóa, Sinh)
@@ -167,9 +163,6 @@ Thời gian và địa điểm trao học bổng (dự kiến): dự kiến vào
     *   Viện Đổi mới sáng tạo
     *   Viện Đô thị thông minh và quản lý
     *   TRƯỜNG TÀI NĂNG
-
-4
-
 2. **Trường ĐH Kinh tế Luật, ĐHQG TP.HCM**
 Địa chỉ:
 Đơn vị hỗ trợ sinh viên và học viên cao học:
@@ -219,9 +212,6 @@ Thông tin liên hệ:
 * Đơn vị hỗ trợ sinh viên và học viên cao học: Phòng Công tác sinh viên
 * Thông tin liên hệ: ctsv@ump.edu.vn SĐT: 02838537976
 Trưởng phòng: Huỳnh Hồ Ngọc Quỳnh (hhnquynhytcc@ump.edu.vn)
-
-5
-
 Phó Trưởng phòng: Phạm Tuấn Hiệp (tuanhiep@ump.edu.vn)
 *Các khoa của trường được tham gia chương trình học bổng:*
 * Trường Y
@@ -252,5 +242,3 @@ ThS. Nguyễn Thọ Sơn - Chuyên viên phòng Công tác người học - emai
 * Thông tin liên hệ:
 Phòng Công tác Sinh viên: Lê Đặng Quốc Thái - 0366.292.177 - Email: Thaildq@pnt.edu.vn
 Phòng Quản lý Đào tạo Sau Đại học: Ngô Minh Vinh - 0913653921
-
-6
