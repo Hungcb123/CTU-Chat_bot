@@ -23,7 +23,6 @@ load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
 from app.services.rag_engine import AdvancedChunkingEngine
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_groq import ChatGroq
 from app.tools.scholarship import tinh_tien_hoc_bong
 from app.tools.tuition import tinh_toan_hoc_phi
 from app.services.tuition_catalog import TuitionRateCatalog
@@ -63,13 +62,12 @@ async def lifespan(app: FastAPI):
         )
         
         # LLM CHÍNH (GEMINI): Dùng để sinh câu trả lời và sử dụng Tool
-        app.state.llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite", temperature=0.4)
+        app.state.llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite")
         
-        # LLM PHỤ (GROQ Llama): Dùng để viết lại câu hỏi (Rewriter) siêu tốc
-        app.state.rewrite_llm = ChatGroq(
-            model="llama-3.3-70b-versatile",
-            temperature=0.0, # Không cần sáng tạo, chỉ cần dịch đúng
-            api_key=os.getenv("GROQ_API_KEY")
+        # LLM PHỤ (GEMINI): Dùng để viết lại câu hỏi (Rewriter) siêu tốc
+        app.state.rewrite_llm = ChatGoogleGenerativeAI(
+            model="gemini-3.1-flash-lite",
+            temperature=0.0,
         )
         
         # --- CẤU HÌNH TOOL CALLING TÍCH HỢP ---

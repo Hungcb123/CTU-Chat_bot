@@ -1,8 +1,6 @@
 """Evaluate ``data/dataset.md`` through the real authenticated ``/chat`` API.
 
-The evaluator deliberately does not use another LLM as a judge.  It computes a
-deterministic score from expected numeric facts and Vietnamese content-token
-recall, then writes both JSONL evidence and a human-readable Markdown report.
+The evaluator uses Llama-3.3-70B via Groq as an LLM judge to evaluate answers, then writes both JSONL evidence and a human-readable Markdown report.
 
 Examples (run while FastAPI is already listening on port 8000):
 
@@ -22,12 +20,15 @@ import os
 import re
 import sys
 import time
-import unicodedata
 import urllib.error
 import urllib.request
 from collections import defaultdict
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
+from pydantic import BaseModel, Field
+from langchain_groq import ChatGroq
+from langchain_core.prompts import PromptTemplate
 from datetime import datetime
+from dotenv import load_dotenv
 from pathlib import Path
 from typing import Any, Iterable
 from urllib.parse import urljoin
@@ -36,6 +37,7 @@ from urllib.parse import urljoin
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATASET = PROJECT_ROOT / "data" / "dataset.md"
 DEFAULT_LOG_DIR = PROJECT_ROOT / "logs" / "dataset_evaluation"
+load_dotenv(PROJECT_ROOT / ".env")
 
 
 @dataclass(frozen=True)
@@ -47,16 +49,14 @@ class DatasetCase:
     expected_sources: tuple[str, ...]
 
 
-@dataclass(frozen=True)
-class ScoreResult:
-    score: float
-    passed: bool
-    abstained: bool
-    content_recall: float
-    numeric_recall: float
-    expected_facts: tuple[str, ...]
-    matched_facts: tuple[str, ...]
-    missing_facts: tuple[str, ...]
+class ScoreResult(BaseModel):
+    score: float = Field(
+        ge=0.0,
+        le=1.0,
+        description="Score from 0.0 to 1.0 based on how well the actual answer matches the expected answer.",
+    )
+    passed: bool = Field(description="True if the answer is considered correct and accurate, False otherwise.")
+    reasoning: str = Field(description="Brief reasoning for the score and pass/fail decision.")
 
 
 SECTION_RE = re.compile(r"(?m)^\s*\d+\.\s*Ngữ cảnh:\s*(.+?)\s*$")
@@ -67,178 +67,44 @@ QUESTION_RE = re.compile(
 )
 
 
-VIETNAMESE_STOPWORDS = {
-    "ai", "bao", "bi", "cac", "cach", "can", "cho", "co", "cua", "da",
-    "dang", "day", "de", "den", "do", "duoc", "gi", "hay", "het", "khi",
-    "la", "lam", "luc", "ma", "mot", "muc", "nao", "nay", "neu",
-    "nhieu", "nhung", "o", "phai", "qua", "ra", "sau", "se", "sinh", "tai",
-    "the", "thi", "theo", "thoi", "trong", "tu", "va", "vao", "ve", "voi",
-}
+def score_answer(
+    expected: str,
+    actual: str,
+    *,
+    llm: Any,
+    threshold: float = 0.55,
+) -> ScoreResult:
+    prompt = PromptTemplate.from_template(
+        """You are an expert judge evaluating an AI chatbot's response in Vietnamese.
 
+Expected Answer:
+{expected}
 
-ABSTENTION_PATTERNS = (
-    re.compile(r"\bkhong tim thay (?:duoc )?(?:thong tin|tai lieu)\b"),
-    re.compile(r"\bkhong co (?:du )?thong tin\b"),
-    re.compile(r"\bthong tin .{0,50}\bkhong duoc neu\b"),
-    re.compile(r"\btai lieu .{0,50}\bkhong neu (?:ro|chi tiet)\b"),
-)
+Actual Answer:
+{actual}
 
-
-def _normalise_text(value: str) -> str:
-    decomposed = unicodedata.normalize("NFD", value.casefold())
-    without_marks = "".join(
-        char for char in decomposed if unicodedata.category(char) != "Mn"
-    ).replace("đ", "d")
-    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", without_marks)).strip()
-
-
-def _content_tokens(value: str) -> set[str]:
-    return {
-        token
-        for token in _normalise_text(value).split()
-        if len(token) > 1 and not token.isdigit() and token not in VIETNAMESE_STOPWORDS
-    }
-
-
-def _decimal_number(value: str) -> str:
-    value = value.strip().replace(" ", "")
-    if re.fullmatch(r"\d{1,3}(?:[.,]\d{3})+", value):
-        return str(int(re.sub(r"[.,]", "", value)))
-    value = value.replace(",", ".")
+Evaluate the actual answer against the expected answer.
+Determine a score between 0.0 and 1.0 based on accuracy.
+Set passed to true only when the score is at least {threshold} and the answer
+captures the essential expected facts correctly.
+Output ONLY a valid JSON object with keys: 'score', 'passed', and 'reasoning'."""
+    )
+    chain = prompt | llm.with_structured_output(ScoreResult)
     try:
-        number = float(value)
-    except ValueError:
-        return value
-    return str(int(number)) if number.is_integer() else f"{number:.6f}".rstrip("0").rstrip(".")
-
-
-def _numeric_facts(value: str) -> set[str]:
-    """Extract comparable dates, percentages, money values and other numbers."""
-
-    lowered = value.casefold()
-    occupied: list[tuple[int, int]] = []
-    facts: set[str] = set()
-
-    def free(start: int, end: int) -> bool:
-        return not any(start < used_end and end > used_start for used_start, used_end in occupied)
-
-    def rate_denominator(start: int) -> bool:
-        return bool(re.search(r"/\s*$", lowered[:start]))
-
-    date_re = re.compile(r"\b(\d{1,2})\s*[/.-]\s*(\d{1,2})\s*[/.-]\s*(20\d{2})\b")
-    for match in date_re.finditer(lowered):
-        facts.add(f"date:{int(match.group(1))}-{int(match.group(2))}-{int(match.group(3))}")
-        occupied.append(match.span())
-
-    percent_re = re.compile(r"\b(\d+(?:[.,]\d+)?)\s*%")
-    for match in percent_re.finditer(lowered):
-        if free(*match.span()):
-            facts.add(f"percent:{_decimal_number(match.group(1))}")
-            occupied.append(match.span())
-
-    money_re = re.compile(
-        r"\b(\d+(?:[.,]\d+)*)\s*(?:(triệu|trieu|tỷ|ty)\s*)?(?:đồng|dong)\b"
-    )
-    for match in money_re.finditer(lowered):
-        if not free(*match.span()):
-            continue
-        base = float(_decimal_number(match.group(1)))
-        unit = match.group(2)
-        multiplier = 1
-        if unit in {"tỷ", "ty"}:
-            multiplier = 1_000_000_000
-        elif unit in {"triệu", "trieu"}:
-            multiplier = 1_000_000
-        facts.add(f"money:{int(base * multiplier)}")
-        occupied.append(match.span())
-
-    unit_re = re.compile(r"\b(\d+(?:[.,]\d+)?)\s*(triệu|trieu|tỷ|ty)\b")
-    for match in unit_re.finditer(lowered):
-        if not free(*match.span()):
-            continue
-        base = float(_decimal_number(match.group(1)))
-        multiplier = 1_000_000_000 if match.group(2) in {"tỷ", "ty"} else 1_000_000
-        facts.add(f"money:{int(base * multiplier)}")
-        occupied.append(match.span())
-
-    duration_re = re.compile(r"\b(\d+(?:[.,]\d+)?)\s*(tháng|thang|năm|nam)\b")
-    for match in duration_re.finditer(lowered):
-        if not free(*match.span()) or rate_denominator(match.start()):
-            continue
-        number = _decimal_number(match.group(1))
-        unit = "months" if match.group(2) in {"tháng", "thang"} else "years"
-        facts.add(f"duration_{unit}:{number}")
-        occupied.append(match.span())
-
-    number_re = re.compile(r"\b\d+(?:[.,]\d+)*\b")
-    for match in number_re.finditer(lowered):
-        if not free(*match.span()) or rate_denominator(match.start()):
-            continue
-        number = _decimal_number(match.group(0))
-        # A standalone calendar year is normally context (academic year,
-        # publication year), not the answer fact. Full dates were captured above.
-        if number.isdigit() and 1900 <= int(number) <= 2100:
-            continue
-        facts.add(f"num:{number}")
-
-    return facts
-
-
-def _is_abstention(value: str) -> bool:
-    normalised = _normalise_text(value)
-    return any(pattern.search(normalised) for pattern in ABSTENTION_PATTERNS)
-
-
-def score_answer(expected: str, actual: str, *, threshold: float = 0.55) -> ScoreResult:
-    expected_tokens = _content_tokens(expected)
-    actual_tokens = _content_tokens(actual)
-    matched_tokens = expected_tokens & actual_tokens
-    content_recall = (
-        len(matched_tokens) / len(expected_tokens) if expected_tokens else 1.0
-    )
-
-    expected_facts = _numeric_facts(expected)
-    actual_facts = _numeric_facts(actual)
-    matched_facts = expected_facts & actual_facts
-    missing_facts = expected_facts - actual_facts
-    numeric_recall = (
-        len(matched_facts) / len(expected_facts) if expected_facts else 1.0
-    )
-
-    # The dataset sometimes supplies equivalent values separated by "hoặc"
-    # (for example, a per-semester amount or its per-year equivalent).  One
-    # matching representation is sufficient in that case.
-    if " hoac " in f" {_normalise_text(expected)} " and matched_facts:
-        numeric_recall = 1.0
-        missing_facts = set()
-
-    score = (
-        0.6 * numeric_recall + 0.4 * content_recall
-        if expected_facts
-        else content_recall
-    )
-    # A response may answer the requested numeric fact first and only abstain
-    # from a separate, additional detail.  Do not discard that complete answer.
-    has_complete_numeric_answer = bool(expected_facts) and numeric_recall == 1.0
-    abstained = _is_abstention(actual) and not has_complete_numeric_answer
-    if abstained:
-        # Query terms copied into an explicit "không tìm thấy thông tin"
-        # response must not be mistaken for a useful answer.
-        score *= 0.25
-    # A response with numerical expectations must retain most expected facts;
-    # high lexical overlap alone must not mark a wrong amount/date as correct.
-    numeric_gate = numeric_recall >= 0.75 if expected_facts else True
-    passed = bool(score >= threshold and numeric_gate and not abstained)
-    return ScoreResult(
-        score=round(score, 4),
-        passed=passed,
-        abstained=abstained,
-        content_recall=round(content_recall, 4),
-        numeric_recall=round(numeric_recall, 4),
-        expected_facts=tuple(sorted(expected_facts)),
-        matched_facts=tuple(sorted(matched_facts)),
-        missing_facts=tuple(sorted(missing_facts)),
-    )
+        judgement = chain.invoke(
+            {
+                "expected": expected,
+                "actual": actual,
+                "threshold": threshold,
+            }
+        )
+        return ScoreResult(
+            score=judgement.score,
+            passed=bool(judgement.passed and judgement.score >= threshold),
+            reasoning=judgement.reasoning,
+        )
+    except Exception as e:
+        return ScoreResult(score=0.0, passed=False, reasoning=f"Error evaluating: {e}")
 
 
 def parse_dataset(path: Path) -> list[DatasetCase]:
@@ -343,13 +209,11 @@ def _write_markdown_report(
         f"- Số câu đã chạy: **{total}**",
         f"- Số câu đạt: **{passed}**",
         f"- Số lỗi HTTP/API: **{sum(bool(record.get('error')) for record in records)}**",
-        f"- Accuracy heuristic: **{accuracy * 100:.2f}%**",
+        f"- Accuracy LLM-as-a-judge: **{accuracy * 100:.2f}%**",
         f"- Điểm trung bình: **{average_score * 100:.2f}%**",
         f"- Ngưỡng pass: `{threshold}`",
         "",
-        "> Cách chấm không gọi thêm LLM: 60% độ đúng dữ kiện số/ngày/%, "
-        "40% độ bao phủ từ nội dung. Với câu không có số, điểm bằng content recall. "
-        "Câu trả lời từ chối/không tìm thấy thông tin bị trừ 75% điểm và không được pass.",
+        "> Cách chấm: Sử dụng Llama-3.3-70B-Versatile (via Groq) làm giám khảo (LLM-as-a-judge).",
         "",
         "## Kết quả theo lĩnh vực",
         "",
@@ -369,10 +233,7 @@ def _write_markdown_report(
                 f"- Lĩnh vực: {record['category']}",
                 f"- HTTP: `{record.get('http_status')}` · Thời gian: `{float(record.get('duration_seconds', 0)):.2f}s`",
                 f"- Nguồn kỳ vọng: `{', '.join(record.get('expected_sources', []))}`",
-                f"- Numeric recall: `{float(record.get('numeric_recall', 0)):.4f}`",
-                f"- Content recall: `{float(record.get('content_recall', 0)):.4f}`",
-                f"- Từ chối trả lời: `{'có' if record.get('abstained') else 'không'}`",
-                f"- Dữ kiện số còn thiếu: `{', '.join(record.get('missing_facts', [])) or 'không'}`",
+                f"- Lý do (Reasoning): {record.get('reasoning', '')}",
                 "",
                 "**Câu hỏi**",
                 "",
@@ -439,6 +300,8 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("--fail-under must be between 0 and 1")
     if args.limit is not None and args.limit < 1:
         raise SystemExit("--limit must be at least 1")
+    if not args.dry_run and not os.getenv("GROQ_API_KEY"):
+        raise SystemExit("GROQ_API_KEY is not set in the environment or project .env")
 
     dataset_path = args.dataset.resolve()
     if args.rescore_jsonl:
@@ -448,13 +311,19 @@ def main(argv: list[str] | None = None) -> int:
             for line in source_path.read_text(encoding="utf-8").splitlines()
             if line.strip()
         ]
+        llm = ChatGroq(
+            model="llama-3.3-70b-versatile",
+            temperature=0.0,
+            api_key=os.getenv("GROQ_API_KEY"),
+        )
         for record in records:
             scoring = score_answer(
                 str(record.get("expected_answer", "")),
                 str(record.get("actual_answer", "")),
+                llm=llm,
                 threshold=args.threshold,
             )
-            record.update(asdict(scoring))
+            record.update(scoring.model_dump())
 
         args.output_dir.mkdir(parents=True, exist_ok=True)
         started = datetime.now().astimezone()
@@ -515,6 +384,12 @@ def main(argv: list[str] | None = None) -> int:
     records: list[dict[str, Any]] = []
     shared_session_id: str | None = None
 
+    llm = ChatGroq(
+        model="llama-3.3-70b-versatile",
+        temperature=0.0,
+        api_key=os.getenv("GROQ_API_KEY"),
+    )
+
     print(f"Authenticated as {args.username}; running {len(cases)} /chat requests")
     print(f"JSONL evidence: {jsonl_path}")
     try:
@@ -548,16 +423,12 @@ def main(argv: list[str] | None = None) -> int:
                 scoring = score_answer(
                     case.expected_answer,
                     actual_answer,
+                    llm=llm,
                     threshold=args.threshold,
                 ) if actual_answer else ScoreResult(
                     score=0.0,
                     passed=False,
-                    abstained=False,
-                    content_recall=0.0,
-                    numeric_recall=0.0,
-                    expected_facts=tuple(sorted(_numeric_facts(case.expected_answer))),
-                    matched_facts=(),
-                    missing_facts=tuple(sorted(_numeric_facts(case.expected_answer))),
+                    reasoning="No actual answer was provided or an error occurred."
                 )
                 record = {
                     "case_id": case.case_id,
@@ -570,7 +441,7 @@ def main(argv: list[str] | None = None) -> int:
                     "session_id": response_session_id,
                     "duration_seconds": round(time.perf_counter() - started_case, 3),
                     "error": error,
-                    **asdict(scoring),
+                    **scoring.model_dump(),
                 }
                 records.append(record)
                 jsonl.write(json.dumps(record, ensure_ascii=False) + "\n")

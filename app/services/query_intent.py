@@ -1,9 +1,4 @@
-"""Deterministic routing for business-specific retrieval lanes.
-
-The router deliberately uses rules instead of another LLM call.  Its main job
-is not to understand every possible question, but to prevent a clearly stated
-tuition intent from being rewritten into the opposite retrieval lane.
-"""
+"""Hybrid contextual rewriting and deterministic business retrieval routing."""
 
 from __future__ import annotations
 
@@ -64,56 +59,15 @@ def _contains_any(text: str, phrases: tuple[str, ...]) -> bool:
     return any(phrase in text for phrase in phrases)
 
 
-def _is_vague_follow_up(text: str | None) -> bool:
-    """Return whether an otherwise unclassified question needs chat context.
-
-    A clear question about another domain (for example a scholarship) must not
-    inherit a tuition lane merely because the query rewriter mentioned tuition.
-    """
-
-    raw_value = re.sub(r"\s+", " ", (text or "").strip().casefold())
-    value = _normalise(text)
-    if not value:
-        return True
-    if _contains_any(
-        value,
-        (
-            "hoc bong",
-            "vay von",
-            "vay tien",
-            "tro cap",
-            "ho tro xa hoi",
-            "ren luyen",
-        ),
-    ):
-        return False
-    reference_phrases = (
-        "muc do",
-        "cai do",
-        "truong hop do",
-        "truong hop nay",
-        "nhu vay",
-        "nhu the",
-        "con cai nay",
-        "con muc nay",
-        "thi sao",
-        "the nao",
-    )
-    if _contains_any(value, reference_phrases):
-        return True
-    return len(value.split()) <= 12 and bool(
-        re.match(r"^(?:vậy|còn|thế)\b", raw_value)
-    )
-
-
 def should_rewrite_query(query: str, previous_user_query: str | None) -> bool:
-    """Only contextualize genuinely vague follow-ups with user-provided context."""
+    """Contextualize only queries the deterministic router cannot settle."""
 
     if not (previous_user_query or "").strip():
         return False
-    if _classify_one(query) not in {QueryIntent.OTHER, QueryIntent.AMBIGUOUS_TUITION}:
-        return False
-    return _is_vague_follow_up(query)
+    return _classify_one(query) in {
+        QueryIntent.OTHER,
+        QueryIntent.AMBIGUOUS_TUITION,
+    }
 
 
 def _classify_one(text: str | None) -> QueryIntent:
@@ -530,18 +484,11 @@ def classify_query_intent(
     original_query: str,
     rewritten_query: str | None = None,
 ) -> QueryRoutingDecision:
-    """Classify the original query, using the rewrite only as ambiguity help."""
+    """Prefer a clear original intent, otherwise classify a validated rewrite."""
 
     original_year = _extract_academic_year(original_query)
     original_intent = _classify_one(original_query)
     if original_intent not in {QueryIntent.AMBIGUOUS_TUITION, QueryIntent.OTHER}:
-        return QueryRoutingDecision(original_intent, original_year, "original")
-
-    may_use_rewrite = (
-        original_intent is QueryIntent.AMBIGUOUS_TUITION
-        or _is_vague_follow_up(original_query)
-    )
-    if not may_use_rewrite:
         return QueryRoutingDecision(original_intent, original_year, "original")
 
     rewritten_intent = _classify_one(rewritten_query)

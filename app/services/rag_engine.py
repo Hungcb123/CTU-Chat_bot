@@ -104,6 +104,7 @@ class RetrievalLane(str, Enum):
     EXEMPTION_POLICY = "exemption_policy"
     SCHOLARSHIP = "scholarship"
     STUDENT_LOAN = "student_loan"
+    SOCIAL_SUPPORT = "social_support"
 
 
 LANE_METADATA: Dict[RetrievalLane, Dict[str, str]] = {
@@ -126,6 +127,9 @@ LANE_METADATA: Dict[RetrievalLane, Dict[str, str]] = {
     },
     RetrievalLane.STUDENT_LOAN: {
         "domain": "student_loan",
+    },
+    RetrievalLane.SOCIAL_SUPPORT: {
+        "domain": "social_support",
     },
 }
 

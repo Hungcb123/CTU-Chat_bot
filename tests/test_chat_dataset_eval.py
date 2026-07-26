@@ -1,11 +1,30 @@
 import re
 import unittest
 
+from langchain_core.runnables import RunnableLambda
+
 from scripts.evaluate_chat_dataset import (
     DEFAULT_DATASET,
+    ScoreResult,
     parse_dataset,
     score_answer,
 )
+
+
+class FakeJudge:
+    def __init__(self, result: ScoreResult | None = None, error: Exception | None = None):
+        self.result = result
+        self.error = error
+        self.prompt = ""
+
+    def with_structured_output(self, _schema):
+        def judge(prompt):
+            self.prompt = prompt.to_string()
+            if self.error is not None:
+                raise self.error
+            return self.result
+
+        return RunnableLambda(judge)
 
 
 class ChatDatasetEvaluationTests(unittest.TestCase):
@@ -25,63 +44,33 @@ class ChatDatasetEvaluationTests(unittest.TestCase):
         violations = [case.case_id for case in cases if banned.search(case.question)]
         self.assertEqual(violations, [])
 
-    def test_correct_numeric_paraphrase_passes(self):
-        result = score_answer(
-            "Mức hưởng là 6.000.000 đồng/học kỳ",
-            "Sinh viên được nhận 6 triệu đồng cho mỗi học kỳ.",
+    def test_llm_judge_receives_answers_and_threshold_controls_pass(self):
+        judge = FakeJudge(
+            ScoreResult(score=0.8, passed=True, reasoning="Mostly correct")
         )
-        self.assertTrue(result.passed)
-        self.assertEqual(result.numeric_recall, 1.0)
 
-    def test_wrong_amount_fails_numeric_gate(self):
         result = score_answer(
-            "Mức học phí là 695.000 đồng/tín chỉ",
-            "Mức học phí là 451.000 đồng cho một tín chỉ.",
+            "Expected policy answer",
+            "Actual chatbot answer",
+            llm=judge,
+            threshold=0.9,
         )
+
+        self.assertEqual(result.score, 0.8)
         self.assertFalse(result.passed)
-        self.assertIn("money:695000", result.missing_facts)
+        self.assertIn("Expected policy answer", judge.prompt)
+        self.assertIn("Actual chatbot answer", judge.prompt)
 
-    def test_equivalent_date_formats_match(self):
+    def test_llm_judge_error_becomes_failed_score(self):
         result = score_answer(
-            "Hạn cuối là ngày 29/4/2026",
-            "Hồ sơ được nhận đến hết ngày 29-04-2026.",
+            "Expected",
+            "Actual",
+            llm=FakeJudge(error=RuntimeError("judge unavailable")),
         )
-        self.assertEqual(result.numeric_recall, 1.0)
 
-    def test_abstention_cannot_pass_from_query_term_overlap(self):
-        result = score_answer(
-            "Không áp dụng miễn giảm học phí khi sinh viên học lưu ban",
-            "Tôi không tìm thấy thông tin sinh viên học lưu ban có được miễn giảm "
-            "học phí hay không trong tài liệu hiện có.",
-        )
-        self.assertTrue(result.abstained)
+        self.assertEqual(result.score, 0.0)
         self.assertFalse(result.passed)
-
-    def test_equivalent_alternative_amount_passes(self):
-        result = score_answer(
-            "Mức học phí là 6.000.000 đồng/học kỳ "
-            "(hoặc 12.000.000 đồng/năm học)",
-            "Mức học phí là 6 triệu đồng cho mỗi học kỳ.",
-        )
-        self.assertEqual(result.numeric_recall, 1.0)
-        self.assertTrue(result.passed)
-
-    def test_correct_numeric_answer_survives_unrelated_abstention(self):
-        result = score_answer(
-            "Tối đa 695.000 đồng/tín chỉ",
-            "Mức tối đa là 695.000 đồng/tín chỉ. Tôi không tìm thấy thông tin "
-            "về mức làm cơ sở tính miễn giảm.",
-        )
-        self.assertFalse(result.abstained)
-        self.assertTrue(result.passed)
-
-    def test_context_year_does_not_hide_abstention(self):
-        result = score_answer(
-            "Chỉ cần giấy chứng nhận hộ nghèo năm 2025",
-            "Tôi không tìm thấy thông tin cụ thể về đợt năm 2025 trong tài liệu.",
-        )
-        self.assertTrue(result.abstained)
-        self.assertFalse(result.passed)
+        self.assertIn("judge unavailable", result.reasoning)
 
 
 if __name__ == "__main__":

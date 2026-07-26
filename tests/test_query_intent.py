@@ -257,16 +257,40 @@ class QueryIntentTests(unittest.TestCase):
         )
         self.assertFalse(should_rewrite_query("Vậy K52 thì sao?", None))
 
-    def test_clear_short_questions_do_not_inherit_history(self):
+    def test_uncertain_queries_with_history_use_rewriter(self):
         previous = "Học phí ngành CNTT CLC K51 là bao nhiêu?"
         for query in (
+            "ngành cntt á",
+            "k49",
             "Nếu em chuyển ngành thì có phải bồi hoàn không?",
-            "Con liệt sĩ được miễn học phí không?",
-            "Vay vốn mua máy tính cần điều kiện gì?",
-            "Vậy học phí CNTT CLC K52 là bao nhiêu?",
         ):
             with self.subTest(query=query):
-                self.assertFalse(should_rewrite_query(query, previous))
+                self.assertTrue(should_rewrite_query(query, previous))
+
+    def test_rewrite_resolves_slot_like_follow_ups(self):
+        cases = (
+            (
+                "ngành cntt á",
+                "Học phí của khối ngành đại cương là bao nhiêu?",
+                "Học phí ngành Công nghệ thông tin là bao nhiêu?",
+            ),
+            (
+                "k49",
+                "Học phí ngành CNTT là bao nhiêu?",
+                "Học phí ngành Công nghệ thông tin khóa K49 là bao nhiêu?",
+            ),
+        )
+        for original, previous, rewritten in cases:
+            with self.subTest(original=original):
+                accepted, reason = validate_rewritten_query(
+                    original_query=original,
+                    rewritten_query=rewritten,
+                    previous_user_query=previous,
+                )
+                self.assertTrue(accepted, reason)
+                decision = classify_query_intent(original, rewritten)
+                self.assertEqual(decision.intent, QueryIntent.ACTUAL_TUITION)
+                self.assertEqual(decision.classified_from, "rewrite")
 
     def test_rewrite_rejects_unrelated_entities_numbers_and_intent(self):
         cases = (
