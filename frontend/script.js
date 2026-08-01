@@ -1,4 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
+const MAX_USER_INPUT_HEIGHT = 144;
+
+function resizeUserInput(input) {
+    input.style.height = 'auto';
+    input.style.height = `${Math.min(input.scrollHeight, MAX_USER_INPUT_HEIGHT)}px`;
+    input.style.overflowY = input.scrollHeight > MAX_USER_INPUT_HEIGHT ? 'auto' : 'hidden';
+}
+
+function handleUserInputKeydown(event, form) {
+    if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
+        event.preventDefault();
+        form.requestSubmit();
+    }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { resizeUserInput, handleUserInputKeydown };
+}
+
+if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', () => {
     const chatForm = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
@@ -9,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentSessionId = null;
     let currentUser = null;
+
+    userInput.addEventListener('input', () => resizeUserInput(userInput));
+    userInput.addEventListener('keydown', (event) => handleUserInputKeydown(event, chatForm));
 
     // Configure marked.js when the CDN dependency is available. Bot output is
     // still treated as plain text unless DOMPurify is also available.
@@ -218,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Show user message
         appendMessage('user', query);
         userInput.value = '';
+        resizeUserInput(userInput);
 
         // 2. Show typing indicator
         showTypingIndicator();

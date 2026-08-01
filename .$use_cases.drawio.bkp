@@ -1,0 +1,49 @@
+<mxfile host="Electron" modified="2023-10-31T00:00:00.000Z" agent="Mozilla/5.0" version="22.0.8" type="device">
+  <diagram id="use_case_diagram" name="Primary Use Cases">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="PRIMARY USE CASES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#153450;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="student" value="Student" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#153450;strokeColor=#153450;strokeWidth=3;fontStyle=1;fontColor=#153450;" vertex="1" parent="1">
+          <mxGeometry x="80" y="240" width="40" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" value="Administrator" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#153450;strokeColor=#153450;strokeWidth=3;fontStyle=1;fontColor=#153450;" vertex="1" parent="1">
+          <mxGeometry x="680" y="240" width="40" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1" value="Register and authenticate" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f2f6f9;strokeColor=#153450;strokeWidth=1.5;fontStyle=1;fontSize=11;fontColor=#2d2d2d;" vertex="1" parent="1">
+          <mxGeometry x="250" y="100" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2" value="Ask policy questions and receive grounded answers" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f2f6f9;strokeColor=#153450;strokeWidth=1.5;fontStyle=1;fontSize=11;fontColor=#2d2d2d;" vertex="1" parent="1">
+          <mxGeometry x="250" y="180" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc3" value="Manage conversation history" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f2f6f9;strokeColor=#153450;strokeWidth=1.5;fontStyle=1;fontSize=11;fontColor=#2d2d2d;" vertex="1" parent="1">
+          <mxGeometry x="250" y="260" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc4" value="Calculate scholarship or payable tuition" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f2f6f9;strokeColor=#153450;strokeWidth=1.5;fontStyle=1;fontSize=11;fontColor=#2d2d2d;" vertex="1" parent="1">
+          <mxGeometry x="250" y="340" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc5" value="Upload and ingest a policy PDF" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f2f6f9;strokeColor=#153450;strokeWidth=1.5;fontStyle=1;fontSize=11;fontColor=#2d2d2d;" vertex="1" parent="1">
+          <mxGeometry x="250" y="420" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" style="edgeStyle=none;html=1;endArrow=none;endFill=0;strokeColor=#8095a0;strokeWidth=1.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="student" target="uc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" style="edgeStyle=none;html=1;endArrow=none;endFill=0;strokeColor=#8095a0;strokeWidth=1.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="student" target="uc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;strokeColor=#8095a0;strokeWidth=1.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="student" target="uc3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" style="edgeStyle=none;html=1;endArrow=none;endFill=0;strokeColor=#8095a0;strokeWidth=1.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="student" target="uc4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" style="edgeStyle=none;html=1;endArrow=none;endFill=0;strokeColor=#8095a0;strokeWidth=1.5;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="admin" target="uc5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

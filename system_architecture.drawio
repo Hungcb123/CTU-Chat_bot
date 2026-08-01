@@ -1,0 +1,103 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="0">
+    <mxGraphModel dx="1516" dy="673" grid="0" gridSize="10" guides="0" tooltips="0" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=24;fontColor=#1f4266;" value="&amp;nbsp;SYSTEM ARCHITECTURE" vertex="1">
+          <mxGeometry height="40" width="600" x="350" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="layer1" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#eef4f9;strokeColor=#1f4266;fontColor=#7894a8;fontStyle=1;startSize=30;rounded=1;arcSize=4;" value="Presentation" vertex="1">
+          <mxGeometry height="130" width="1200" x="50" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n1_web" parent="layer1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Web browser&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;HTML, CSS, JavaScript&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="260" x="80" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="n1_fastapi" parent="layer1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;FastAPI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Auth, chat, history, document APIs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="280" x="460" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="n1_admin" parent="layer1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Administrator&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Authenticated PDF upload&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="260" x="880" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="e1_web_fastapi" edge="1" parent="layer1" source="n1_web" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#555555;fontSize=11;labelBackgroundColor=#eef4f9;" target="n1_fastapi" value="HTTP/JSON">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1_admin_fastapi" edge="1" parent="layer1" source="n1_admin" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#555555;fontSize=11;labelBackgroundColor=#eef4f9;" target="n1_fastapi" value="PDF + metadata">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PUvMRH1ouZEbuWxGG6Y4-2" edge="1" parent="1" source="layer2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="n1_fastapi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="layer2" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#eef4f9;strokeColor=#1f4266;fontColor=#7894a8;fontStyle=1;startSize=30;rounded=1;arcSize=4;" value="Application and AI" vertex="1">
+          <mxGeometry height="130" width="1200" x="50" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="n2_intent" parent="layer2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Intent router&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Safe rewrite and metadata lanes&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="260" x="30" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="n2_rag" parent="layer2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;RAG engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Parent-child retrieval and reranking&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="260" x="320" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="n2_gemini" parent="layer2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Gemini&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Grounded generation and tools&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="260" x="610" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="n2_finance" parent="layer2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Tools&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: rgb(85, 85, 85);&quot;&gt;Scholarship and tuition&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="260" x="900" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="e2_intent_rag" edge="1" parent="layer2" source="n2_intent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;" target="n2_rag" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2_rag_gemini" edge="1" parent="layer2" source="n2_rag" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;" target="n2_gemini" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2_gemini_finance" edge="1" parent="layer2" source="n2_gemini" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#555555;fontSize=11;labelBackgroundColor=#eef4f9;" target="n2_finance" value="tool call">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="layer3" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#eef4f9;strokeColor=#1f4266;fontColor=#7894a8;fontStyle=1;startSize=30;rounded=1;arcSize=4;" value="Data and infrastructure" vertex="1">
+          <mxGeometry height="150" width="1200" x="50" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="n3_pg" parent="layer3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Users, sessions, messages,&lt;br&gt;parent documents&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="260" x="30" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="n3_redis" parent="layer3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Redis&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: rgb(85, 85, 85);&quot;&gt;Recent chat messages&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="260" x="320" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="n3_qdrant" parent="layer3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Qdrant&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Child vectors and metadata&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="260" x="610" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="n3_catalog" parent="layer3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Catalog and files&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Structured tuition data and&lt;br&gt;Markdown&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="260" x="900" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pg_intent" edge="1" parent="1" source="n3_pg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="211" y="435" />
+            </Array>
+            <mxPoint x="211" y="371" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_redis_rag" edge="1" parent="1" source="n3_redis" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="371" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_qdrant_gemini" edge="1" parent="1" source="n3_qdrant" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;exitX=0.493;exitY=0.013;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="788" y="371" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_catalog_finance" edge="1" parent="1" source="n3_catalog" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;exitX=0.49;exitY=0.009;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1078" y="436" />
+            </Array>
+            <mxPoint x="1078" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PUvMRH1ouZEbuWxGG6Y4-1" edge="1" parent="1" source="n1_fastapi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="layer2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

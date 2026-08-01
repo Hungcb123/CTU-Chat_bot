@@ -1,6 +1,7 @@
 """Evaluate ``data/dataset.md`` through the real authenticated ``/chat`` API.
 
-The evaluator uses Llama-3.3-70B via Groq as an LLM judge to evaluate answers, then writes both JSONL evidence and a human-readable Markdown report.
+The evaluator uses Gemini 3.1 Flash-Lite as an LLM judge to evaluate answers,
+then writes both JSONL evidence and a human-readable Markdown report.
 
 Examples (run while FastAPI is already listening on port 8000):
 
@@ -25,7 +26,7 @@ import urllib.request
 from collections import defaultdict
 from dataclasses import dataclass
 from pydantic import BaseModel, Field
-from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 from datetime import datetime
 from dotenv import load_dotenv
@@ -38,6 +39,10 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATASET = PROJECT_ROOT / "data" / "dataset.md"
 DEFAULT_LOG_DIR = PROJECT_ROOT / "logs" / "dataset_evaluation"
 load_dotenv(PROJECT_ROOT / ".env")
+
+
+def _build_judge() -> ChatGoogleGenerativeAI:
+    return ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite")
 
 
 @dataclass(frozen=True)
@@ -213,7 +218,7 @@ def _write_markdown_report(
         f"- Điểm trung bình: **{average_score * 100:.2f}%**",
         f"- Ngưỡng pass: `{threshold}`",
         "",
-        "> Cách chấm: Sử dụng Llama-3.3-70B-Versatile (via Groq) làm giám khảo (LLM-as-a-judge).",
+        "> Cách chấm: Sử dụng Gemini 3.1 Flash-Lite làm giám khảo (LLM-as-a-judge).",
         "",
         "## Kết quả theo lĩnh vực",
         "",
@@ -300,8 +305,8 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("--fail-under must be between 0 and 1")
     if args.limit is not None and args.limit < 1:
         raise SystemExit("--limit must be at least 1")
-    if not args.dry_run and not os.getenv("GROQ_API_KEY"):
-        raise SystemExit("GROQ_API_KEY is not set in the environment or project .env")
+    if not args.dry_run and not os.getenv("GOOGLE_API_KEY"):
+        raise SystemExit("GEMINI_API_KEY is not set in the environment or project .env")
 
     dataset_path = args.dataset.resolve()
     if args.rescore_jsonl:
@@ -311,11 +316,7 @@ def main(argv: list[str] | None = None) -> int:
             for line in source_path.read_text(encoding="utf-8").splitlines()
             if line.strip()
         ]
-        llm = ChatGroq(
-            model="llama-3.3-70b-versatile",
-            temperature=0.0,
-            api_key=os.getenv("GROQ_API_KEY"),
-        )
+        llm = _build_judge()
         for record in records:
             scoring = score_answer(
                 str(record.get("expected_answer", "")),
@@ -384,11 +385,7 @@ def main(argv: list[str] | None = None) -> int:
     records: list[dict[str, Any]] = []
     shared_session_id: str | None = None
 
-    llm = ChatGroq(
-        model="llama-3.3-70b-versatile",
-        temperature=0.0,
-        api_key=os.getenv("GROQ_API_KEY"),
-    )
+    llm = _build_judge()
 
     print(f"Authenticated as {args.username}; running {len(cases)} /chat requests")
     print(f"JSONL evidence: {jsonl_path}")

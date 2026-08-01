@@ -80,6 +80,8 @@ DEFAULT_COLLECTION_ALIAS = "ctu_scholarship_docs_current"
 VECTOR_SIZE = 768
 DEFAULT_SEARCH_K = 15
 DEFAULT_RERANK_TOP_N = 6
+DEFAULT_RERANKER_MODEL = "BAAI/bge-reranker-v2-m3"
+GTE_RERANKER_MODEL = "Alibaba-NLP/gte-multilingual-reranker-base"
 
 # LangChain's QdrantVectorStore nests Document.metadata under the `metadata`
 # payload key. Index and filter the fully-qualified paths below.
@@ -139,6 +141,16 @@ def _env_flag(name: str, default: bool = False) -> bool:
     if raw is None:
         return default
     return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _reranker_model_config() -> tuple[str, dict[str, object]]:
+    model_name = os.getenv("RAG_RERANKER_MODEL", DEFAULT_RERANKER_MODEL)
+    model_kwargs: dict[str, object] = {
+        "device": os.getenv("RAG_RERANKER_DEVICE", "cuda")
+    }
+    if model_name == GTE_RERANKER_MODEL:
+        model_kwargs["trust_remote_code"] = True
+    return model_name, model_kwargs
 
 class TemporalCrossEncoderReranker(CrossEncoderReranker):
     """Reranker có ưu tiên MỀM theo thời gian (tie-break).
@@ -443,10 +455,11 @@ class AdvancedChunkingEngine:
         self.cross_encoder = None
         self.reranker = None
         if load_reranker:
-            logger.info("Đang nạp mô hình Cross-Encoder (Re-ranker) vào hệ thống...")
+            reranker_model, reranker_model_kwargs = _reranker_model_config()
+            logger.info("Đang nạp mô hình Cross-Encoder %s...", reranker_model)
             self.cross_encoder = HuggingFaceCrossEncoder(
-                model_name="BAAI/bge-reranker-v2-m3",
-                model_kwargs={"device": os.getenv("RAG_RERANKER_DEVICE", "cuda")},
+                model_name=reranker_model,
+                model_kwargs=reranker_model_kwargs,
             )
             # BẮT BUỘC: Giới hạn số token đưa vào mô hình để tránh lỗi CUDA Out of Memory (GPU 4GB)
             self.cross_encoder.client.max_length = 512

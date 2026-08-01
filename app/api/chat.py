@@ -226,7 +226,7 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
                     fee_kind=lane.fee_kind,
                     content_kind=lane.content_kind,
                     domain=lane.domain,
-                    academic_year=routing_decision.academic_year,
+                    # academic_year=routing_decision.academic_year,
                     top_n=lane.top_n,
                     metadata_filter_enabled=True,
                 )

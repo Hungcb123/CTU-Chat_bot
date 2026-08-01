@@ -1,8 +1,10 @@
 import re
 import unittest
+from unittest.mock import patch
 
 from langchain_core.runnables import RunnableLambda
 
+from scripts import evaluate_chat_dataset
 from scripts.evaluate_chat_dataset import (
     DEFAULT_DATASET,
     ScoreResult,
@@ -28,6 +30,13 @@ class FakeJudge:
 
 
 class ChatDatasetEvaluationTests(unittest.TestCase):
+    @patch.object(evaluate_chat_dataset, "ChatGoogleGenerativeAI", create=True)
+    def test_build_judge_uses_gemini_31_flash_lite(self, gemini_class):
+        judge = evaluate_chat_dataset._build_judge()
+
+        gemini_class.assert_called_once_with(model="gemini-3.1-flash-lite")
+        self.assertIs(judge, gemini_class.return_value)
+
     def test_parse_all_100_cases(self):
         cases = parse_dataset(DEFAULT_DATASET)
         self.assertEqual(len(cases), 100)

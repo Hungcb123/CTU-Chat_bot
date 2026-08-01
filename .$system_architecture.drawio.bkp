@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="CURRENT SYSTEM ARCHITECTURE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=24;fontColor=#1f4266;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Containers -->
+        <mxCell id="layer1" value="Presentation" style="swimlane;whiteSpace=wrap;html=1;fillColor=#eef4f9;strokeColor=#1f4266;fontColor=#7894a8;fontStyle=1;startSize=30;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="50" y="90" width="1200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="layer2" value="Application and AI orchestration" style="swimlane;whiteSpace=wrap;html=1;fillColor=#eef4f9;strokeColor=#1f4266;fontColor=#7894a8;fontStyle=1;startSize=30;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="50" y="240" width="1200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="layer3" value="Data and infrastructure" style="swimlane;whiteSpace=wrap;html=1;fillColor=#eef4f9;strokeColor=#1f4266;fontColor=#7894a8;fontStyle=1;startSize=30;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="50" y="390" width="1200" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 1 Nodes -->
+        <mxCell id="n1_web" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Web browser&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;HTML, CSS, JavaScript&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer1">
+          <mxGeometry x="80" y="45" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="n1_fastapi" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;FastAPI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Auth, chat, history, document APIs&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer1">
+          <mxGeometry x="460" y="45" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="n1_admin" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Administrator&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Authenticated PDF upload&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer1">
+          <mxGeometry x="880" y="45" width="260" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 1 Edges -->
+        <mxCell id="e1_web_fastapi" value="HTTP/JSON" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#555555;fontSize=11;labelBackgroundColor=#eef4f9;" edge="1" parent="layer1" source="n1_web" target="n1_fastapi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1_admin_fastapi" value="PDF + metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#555555;fontSize=11;labelBackgroundColor=#eef4f9;" edge="1" parent="layer1" source="n1_admin" target="n1_fastapi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 2 Nodes -->
+        <mxCell id="n2_intent" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Intent router&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Safe rewrite and metadata lanes&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer2">
+          <mxGeometry x="30" y="45" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="n2_rag" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;RAG engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Parent-child retrieval and reranking&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer2">
+          <mxGeometry x="320" y="45" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="n2_gemini" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Gemini&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Grounded generation and tools&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer2">
+          <mxGeometry x="610" y="45" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="n2_finance" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Finance tools&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Scholarship and tuition&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer2">
+          <mxGeometry x="900" y="45" width="260" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 2 Edges -->
+        <mxCell id="e2_intent_rag" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;" edge="1" parent="layer2" source="n2_intent" target="n2_rag">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2_rag_gemini" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;" edge="1" parent="layer2" source="n2_rag" target="n2_gemini">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2_gemini_finance" value="tool call" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#555555;fontSize=11;labelBackgroundColor=#eef4f9;" edge="1" parent="layer2" source="n2_gemini" target="n2_finance">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Layer 3 Nodes -->
+        <mxCell id="n3_pg" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Users, sessions, messages,&lt;br&gt;parent documents&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer3">
+          <mxGeometry x="30" y="45" width="260" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="n3_redis" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Redis&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Five recent chat messages&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer3">
+          <mxGeometry x="320" y="45" width="260" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="n3_qdrant" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Qdrant&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Child vectors and metadata&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer3">
+          <mxGeometry x="610" y="45" width="260" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="n3_catalog" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;Catalog and files&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #555555;&quot;&gt;Structured tuition data and&lt;br&gt;Markdown&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1f4266;strokeWidth=1.5;fontColor=#111111;arcSize=10;" vertex="1" parent="layer3">
+          <mxGeometry x="900" y="45" width="260" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Vertical Edges (from layer 3 to layer 2) -->
+        <mxCell id="e_pg_intent" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="n3_pg" target="n2_intent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_redis_rag" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="n3_redis" target="n2_rag">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_qdrant_gemini" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="n3_qdrant" target="n2_gemini">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_catalog_finance" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4266;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="n3_catalog" target="n2_finance">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

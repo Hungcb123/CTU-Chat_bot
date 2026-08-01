@@ -58,6 +58,34 @@ class QueryIntentTests(unittest.TestCase):
             QueryIntent.CALCULATION,
         )
 
+    def test_explicit_discount_money_is_calculation(self):
+        queries = (
+            "Tôi thuộc dân tộc thiểu số và ở vùng đặc biệt khó khăn thì được giảm bao nhiêu tiền nếu học ngành CNTT K52?",
+            "Tôi thuộc dân tộc thiểu số thì được giảm baoo nhiêu tiền nếu học ngành CNTT K52?",
+            "Số tiền được giảm của sinh viên CNTT K52 là bao nhiêu?",
+        )
+        for query in queries:
+            with self.subTest(query=query):
+                self.assert_intent(query, QueryIntent.CALCULATION)
+
+    def test_calculation_retrieves_all_three_inputs(self):
+        decision = classify_query_intent(
+            "Sinh viên dân tộc thiểu số học CNTT K52 được giảm bao nhiêu tiền?"
+        )
+        lanes = build_retrieval_lanes(decision)
+        self.assertEqual(
+            [lane.name for lane in lanes],
+            ["actual_tuition", "exemption_basis", "exemption_policy"],
+        )
+        self.assertEqual(
+            [(lane.domain, lane.content_kind, lane.fee_kind) for lane in lanes],
+            [
+                ("tuition", "rate_table", "actual_tuition"),
+                ("tuition", "rate_table", "exemption_basis"),
+                ("tuition", "exemption_policy", "not_applicable"),
+            ],
+        )
+
     def test_explicit_tuition_calculation(self):
         self.assert_intent("Tính học phí cho 10 tín chỉ", QueryIntent.CALCULATION)
 

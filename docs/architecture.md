@@ -45,15 +45,15 @@ Backend chạy trên **host** (WSL/Windows). Ba dịch vụ dữ liệu (Postgre
 
 **Các endpoint:**
 
-| Method | Path | Chức năng |
-|---|---|---|
-| POST | `/auth/register` | Đăng ký (username unique, băm bcrypt) |
-| POST | `/auth/login` | Đăng nhập, set JWT cookie |
-| POST | `/auth/logout` | Xóa cookie |
-| GET | `/auth/me` | Thông tin user hiện tại |
-| POST | `/chat` | Chat RAG chính (cần auth), body `{query}` → `{answer}` |
-| POST | `/new-chat` | Xóa key lịch sử Redis của user |
-| POST | `/clear-history` | Tương tự (xóa lịch sử Redis) |
+| Method | Path               | Chức năng                                                  |
+| ------ | ------------------ | ------------------------------------------------------------ |
+| POST   | `/auth/register` | Đăng ký (username unique, băm bcrypt)                    |
+| POST   | `/auth/login`    | Đăng nhập, set JWT cookie                                 |
+| POST   | `/auth/logout`   | Xóa cookie                                                  |
+| GET    | `/auth/me`       | Thông tin user hiện tại                                   |
+| POST   | `/chat`          | Chat RAG chính (cần auth), body`{query}` → `{answer}` |
+| POST   | `/new-chat`      | Xóa key lịch sử Redis của user                           |
+| POST   | `/clear-history` | Tương tự (xóa lịch sử Redis)                           |
 
 > Lưu ý: **không có streaming** — `/chat` trả về một JSON duy nhất; UI chỉ giả lập hiệu ứng đang gõ.
 
@@ -64,12 +64,12 @@ Backend chạy trên **host** (WSL/Windows). Ba dịch vụ dữ liệu (Postgre
 
 **Các bảng ORM** (SQLAlchemy, khóa chính UUID dạng chuỗi) — xem [models/schema.py](models/schema.py):
 
-| Bảng | Cột chính | Vai trò |
-|---|---|---|
-| `users` | id, username (unique), hashed_password, role, created_at | Tài khoản |
-| `chat_sessions` | id, user_id (FK), title, created_at, updated_at | Phiên chat |
-| `chat_messages` | id, session_id (FK), role (`human`/`ai`), content, created_at | Tin nhắn |
-| `parent_documents` | id (map với vector Qdrant), content, **metadata_json (JSONB)**, created_at | DocStore của RAG |
+| Bảng                | Cột chính                                                                      | Vai trò          |
+| -------------------- | -------------------------------------------------------------------------------- | ----------------- |
+| `users`            | id, username (unique), hashed_password, role, created_at                         | Tài khoản       |
+| `chat_sessions`    | id, user_id (FK), title, created_at, updated_at                                  | Phiên chat       |
+| `chat_messages`    | id, session_id (FK), role (`human`/`ai`), content, created_at                | Tin nhắn         |
+| `parent_documents` | id (map với vector Qdrant), content,**metadata_json (JSONB)**, created_at | DocStore của RAG |
 
 ### 2.3. LLM & RAG — [LLM/](LLM/) và [Chunking/sematic_chunking_rerank.py](Chunking/sematic_chunking_rerank.py)
 
@@ -77,12 +77,12 @@ RAG sản xuất nằm trong `AdvancedChunkingEngine` (khởi tạo tại [main.
 
 **Các mô hình:**
 
-| Vai trò | Mô hình | Ghi chú |
-|---|---|---|
-| Sinh câu trả lời + tool calling | Google **Gemini** `gemini-3.1-flash-lite` | temp 0.4 |
-| Viết lại câu hỏi (Rewriter) | Groq **Llama** `llama-3.1-8b-instant` | temp 0.0, siêu tốc |
-| Embedding | `bkai-foundation-models/vietnamese-bi-encoder` | 768 chiều, cosine |
-| Re-ranking | `BAAI/bge-reranker-v2-m3` (CrossEncoder, CUDA) | max_length 512 |
+| Vai trò                           | Mô hình                                        | Ghi chú             |
+| ---------------------------------- | ------------------------------------------------ | -------------------- |
+| Sinh câu trả lời + tool calling | Google**Gemini** `gemini-3.1-flash-lite` | temp 0.4             |
+| Viết lại câu hỏi (Rewriter)    | Groq**Llama** `llama-3.1-8b-instant`     | temp 0.0, siêu tốc |
+| Embedding                          | `bkai-foundation-models/vietnamese-bi-encoder` | 768 chiều, cosine   |
+| Re-ranking                         | `BAAI/bge-reranker-v2-m3` (CrossEncoder, CUDA) | max_length 512       |
 
 **Kiến trúc truy xuất (Small-to-Big + Re-rank):**
 
@@ -93,6 +93,7 @@ RAG sản xuất nằm trong `AdvancedChunkingEngine` (khởi tạo tại [main.
 **Ưu tiên ngày gần nhất (tie-break mềm):** `TemporalCrossEncoderReranker` (kế thừa `CrossEncoderReranker`) vẫn xếp hạng chính theo điểm liên quan của Cross-Encoder. Chỉ khi hai parent có điểm **chênh ≤ `score_tolerance` (0.05)** — coi như "gần bằng nhau" — thì mới ưu tiên parent có `timestamp` mới hơn. Nhờ vậy văn bản cũ còn hiệu lực không bị loại oan, mà bản mới cùng chủ đề được đẩy lên trên. Văn bản mới nhưng lạc đề (điểm thấp) vẫn bị loại khỏi top 3.
 
 **Chiến lược chunking (Hướng A — bảo toàn bảng):**
+
 - Cắt theo header Markdown (`#`/`##`/`###`, giữ header).
 - Cắt cấp 2 giữ nguyên bảng: prose chặt ~2800 chars/overlap 100; **bảng giữ nguyên khối**, nếu quá dài mới cắt theo dòng và tiêm lại header cột + dòng phân cách vào mỗi mảnh (tránh mất tên cột).
 - Lọc rác < 50 chars chỉ áp cho prose, không áp cho bảng.
@@ -117,11 +118,11 @@ RAG sản xuất nằm trong `AdvancedChunkingEngine` (khởi tạo tại [main.
 
 Compose v3.8 định nghĩa **ba dịch vụ dữ liệu** (app chạy trên host, không trong compose):
 
-| Service | Image | Port | Volume |
-|---|---|---|---|
-| qdrant | `qdrant/qdrant:latest` | 6333 (HTTP), 6334 (gRPC) | `./qdrant_storage` |
-| redis | `redis:7-alpine` | 6379 | `./redis_data` |
-| postgres | `postgres:15-alpine` | 5432 | `postgres_data` (db `ctu_chatbot`) |
+| Service  | Image                    | Port                     | Volume                                 |
+| -------- | ------------------------ | ------------------------ | -------------------------------------- |
+| qdrant   | `qdrant/qdrant:latest` | 6333 (HTTP), 6334 (gRPC) | `./qdrant_storage`                   |
+| redis    | `redis:7-alpine`       | 6379                     | `./redis_data`                       |
+| postgres | `postgres:15-alpine`   | 5432                     | `postgres_data` (db `ctu_chatbot`) |
 
 Không có Dockerfile cho app ở gốc; không có `requirements.txt` ở gốc project (chỉ nằm trong `venv`/`wsl_venv`/`MinerU`). `start_env.sh` nạp `.env`. Chạy trên WSL (đường dẫn `/mnt/d/Project/Chatbot/...` hardcode trong script ingestion).
 

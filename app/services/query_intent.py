@@ -186,6 +186,15 @@ def _classify_one(text: str | None) -> QueryIntent:
         ),
     )
 
+    asks_discount_amount = bool(
+        re.search(r"\bduoc (?:mien )?giam bao+ nhieu (?:tien|dong)\b", value)
+    ) or _contains_any(
+        value,
+        ("so tien duoc giam", "tinh so tien mien giam", "tinh tien mien giam"),
+    )
+    if asks_discount_amount:
+        return QueryIntent.CALCULATION
+
     if "che do hoc phi" in value and _contains_any(
         value,
         ("duoc huong", "co duoc", "thuoc dien", "nhu the nao", "the nao"),
@@ -523,20 +532,19 @@ def build_retrieval_lanes(decision: QueryRoutingDecision) -> tuple[RetrievalLane
         fee_kind="exemption_basis",
         top_n=3,
     )
+    policy = RetrievalLane(
+        name="exemption_policy",
+        domain="tuition",
+        content_kind="exemption_policy",
+        fee_kind="not_applicable",
+        top_n=3,
+    )
     if decision.intent == QueryIntent.ACTUAL_TUITION:
         return (replace(actual, top_n=6),)
     if decision.intent == QueryIntent.EXEMPTION_BASIS:
         return (replace(basis, top_n=6),)
     if decision.intent == QueryIntent.EXEMPTION_POLICY:
-        return (
-            RetrievalLane(
-                name="exemption_policy",
-                domain="tuition",
-                content_kind="exemption_policy",
-                fee_kind="not_applicable",
-                top_n=6,
-            ),
-        )
+        return (replace(policy, top_n=6),)
     if decision.intent == QueryIntent.SCHOLARSHIP:
         return (
             RetrievalLane(
@@ -561,11 +569,9 @@ def build_retrieval_lanes(decision: QueryRoutingDecision) -> tuple[RetrievalLane
                 top_n=6,
             ),
         )
-    if decision.intent in {
-        QueryIntent.CALCULATION,
-        QueryIntent.BOTH,
-        QueryIntent.AMBIGUOUS_TUITION,
-    }:
+    if decision.intent == QueryIntent.CALCULATION:
+        return (actual, basis, policy)
+    if decision.intent in {QueryIntent.BOTH, QueryIntent.AMBIGUOUS_TUITION}:
         return (actual, basis)
     return (RetrievalLane(name="default", top_n=6),)
 

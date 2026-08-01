@@ -198,6 +198,7 @@ body {
 .chat-area {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -268,9 +269,11 @@ body {
 
 .message-content {
     max-width: 80%;
+    min-width: 0;
     padding: 14px 18px;
     font-size: 1rem;
     line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .message.bot .message-content {
@@ -369,7 +372,7 @@ body {
 
 #chat-form {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -405,9 +408,15 @@ body {
     border: none;
     padding: 10px 14px;
     font-size: 1rem;
+    font-family: inherit;
+    line-height: 24px;
     outline: none;
     color: var(--text-primary);
     background: transparent;
+    box-sizing: border-box;
+    max-height: 144px;
+    resize: none;
+    overflow-y: hidden;
 }
 
 #user-input::placeholder {
@@ -425,6 +434,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    flex-shrink: 0;
     transition: background-color 0.2s, transform 0.1s;
 }
 

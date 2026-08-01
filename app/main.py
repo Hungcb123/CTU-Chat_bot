@@ -86,7 +86,7 @@ async def lifespan(app: FastAPI):
             - Trả lời ngắn gọn, súc tích, đi thẳng vào trọng tâm.
             - NẾU người dùng CHỦ ĐỘNG cung cấp điểm GPA, điểm rèn luyện (ĐRL) và nhờ tính toán xem đạt học bổng loại gì, số tiền bao nhiêu: BẮT BUỘC gọi công cụ `tinh_tien_hoc_bong`.
             - NẾU người dùng CHỈ HỎI TRA CỨU thông tin chung (ví dụ: "Học bổng loại Khá khối Kinh doanh là bao nhiêu?", "Học bổng xuất sắc được bao nhiêu tiền?"): HÃY TÌM TRONG NGỮ CẢNH VÀ TRẢ LỜI TRỰC TIẾP, KHÔNG gọi công cụ tính toán.
-            - NẾU người dùng yêu cầu TÍNH SỐ TIỀN PHẢI ĐÓNG SAU MIỄN GIẢM (ví dụ hỏi sinh viên thuộc diện X thì còn đóng bao nhiêu tiền): BẮT BUỘC thực hiện 4 bước:
+            - NẾU người dùng yêu cầu TÍNH SỐ TIỀN PHẢI ĐÓNG SAU MIỄN GIẢM HOẶC SỐ TIỀN ĐƯỢC GIẢM (ví dụ hỏi sinh viên thuộc diện X thì còn đóng hoặc được giảm bao nhiêu tiền): BẮT BUỘC thực hiện 4 bước:
               Bước 1: Tìm "Mức học phí thực tế" của 1 tín chỉ (Dựa vào Ngành hoặc Học phần và Khóa học, trong file quy định mức học phí).
               Bước 2: Tìm "Mức học phí làm cơ sở tính miễn giảm" (Mức trần) của Khối ngành hoặc Học phần đại cương chung đó (trong file cơ sở tính miễn, giảm).
               Bước 3: Tìm "% được giảm" dựa vào diện đối tượng sinh viên.
