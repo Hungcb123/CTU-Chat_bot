@@ -390,7 +390,7 @@ class AdvancedChunkingEngine:
             strip_headers=False # GIỮ LẠI Header trong Text để LLM hiểu bối cảnh
         )
         
-        # 1.5 CẤU HÌNH PARENT SPLITTER CẤP 2 (Máy chém Double-Split)
+        # 2.1 CẤU HÌNH PARENT SPLITTER CẤP 2
         # Chỉ chặt block vượt ngưỡng; block nhỏ giữ nguyên vẹn (prose + bảng + header đi cùng nhau)
         self.parent_chunk_size = 2800
         self.parent_splitter = RecursiveCharacterTextSplitter(
@@ -399,7 +399,7 @@ class AdvancedChunkingEngine:
             separators=["\n\n", "\n", ".", " "]
         )
         
-        # 2. CẤU HÌNH CHILD SPLITTER (Độ phân giải Vector cao)
+        # 2.2 CẤU HÌNH CHILD SPLITTER (Độ phân giải Vector cao)
         # Chunk cực nhỏ (400 chars) để thuật toán Cosine Similarity đối sánh cực nhạy
         self.child_splitter = SmartChildSplitter(
             chunk_size=400,

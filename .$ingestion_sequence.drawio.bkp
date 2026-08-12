@@ -1,0 +1,337 @@
+<mxfile host="app.diagrams.net" agent="Codex Draw.io skill" version="26.0.16" pages="2">
+  <diagram id="page-admin-upload" name="01_Admin_Upload_Sequence">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2040" pageHeight="1580" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="admin_0" style="" />
+        <mxCell id="admin_1" parent="admin_0" style="" />
+        <mxCell id="admin_title" value="DOCUMENT INGESTION ? ADMIN UPLOAD SEQUENCE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#17365d;" vertex="1" parent="admin_1">
+          <mxGeometry x="20" y="5" width="2000" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_subtitle" value="Lu?ng POST /documents/upload theo app/api/document.py: ki?m tra, parse PDF, ingest, success v? rollback" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="admin_1">
+          <mxGeometry x="20" y="35" width="2000" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_success_bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fillOpacity=35;strokeColor=none;pointerEvents=0;" vertex="1" parent="admin_1">
+          <mxGeometry x="15" y="860" width="2010" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_failure_bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;fillOpacity=35;strokeColor=none;pointerEvents=0;" vertex="1" parent="admin_1">
+          <mxGeometry x="15" y="1070" width="2010" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_fragment" value="alt K?t qu? x? l?" style="swimlane;html=1;rounded=0;startSize=24;horizontal=1;fillColor=none;strokeColor=#666666;fontStyle=1;pointerEvents=0;" vertex="1" parent="admin_1">
+          <mxGeometry x="15" y="860" width="2010" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_success_label" value="[SUCCESS] thao t?c ho?n t?t" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontColor=#2e7d32;" vertex="1" parent="admin_1">
+          <mxGeometry x="30" y="885" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_failure_label" value="[ELSE] l?i v? rollback / cleanup" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontColor=#b71c1c;" vertex="1" parent="admin_1">
+          <mxGeometry x="30" y="1074" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_divider" value="" style="endArrow=none;dashed=1;strokeColor=#b85450;pointerEvents=0;" edge="1" parent="admin_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="15" y="1070" as="sourcePoint" />
+            <mxPoint x="2025" y="1070" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="admin_admin" value="Admin" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;participant=umlActor;verticalAlign=bottom;spacingBottom=-14;labelBackgroundColor=#ffffff;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="admin_1">
+          <mxGeometry x="40" y="120" width="100" height="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_api" value="Document API&#10;POST /documents/upload" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="admin_1">
+          <mxGeometry x="400" y="120" width="100" height="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_fs" value="File System&#10;data/input | markdown | done" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="admin_1">
+          <mxGeometry x="760" y="120" width="100" height="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_llama" value="LlamaParse&#10;LlamaParseAsyncClient" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="admin_1">
+          <mxGeometry x="1120" y="120" width="100" height="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_catalog" value="Metadata Catalog&#10;DocumentMetadataCatalog" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="admin_1">
+          <mxGeometry x="1480" y="120" width="100" height="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_rag" value="RAG Engine" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="admin_1">
+          <mxGeometry x="1840" y="120" width="100" height="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act0" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_fs">
+          <mxGeometry x="45" y="210" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act1" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_llama">
+          <mxGeometry x="45" y="310" width="10" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act2" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_fs">
+          <mxGeometry x="45" y="480" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_catalog">
+          <mxGeometry x="45" y="580" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act4" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_rag">
+          <mxGeometry x="45" y="680" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act5" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_fs">
+          <mxGeometry x="45" y="780" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act6" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_rag">
+          <mxGeometry x="45" y="990" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act7" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_catalog">
+          <mxGeometry x="45" y="1090" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act8" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_fs">
+          <mxGeometry x="45" y="1190" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_act9" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="admin_api">
+          <mxGeometry x="45" y="90" width="10" height="1200" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m0" value="POST /documents/upload (PDF, document_class, academic_year)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=0.5;exitY=0.0652;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_admin" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m1" value="require_admin + validate filename, metadata, MIME, API key, duplicates" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.0417;entryX=1;entryY=0.0667;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510" y="260" />
+              <mxPoint x="510" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="admin_m2" value="Ghi PDF tạm đã kiểm tra vào data/input" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.1;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m3" value="temp_pdf_path" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.1417;" edge="1" parent="admin_1" source="admin_act0" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m4" value="parse_pdf_to_markdown(temp_pdf_path)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.1833;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m5" value="upload job -&gt; poll/wait -&gt; fetch Markdown" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.4167;entryX=1;entryY=0.6667;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act1" target="admin_act1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1230" y="480" />
+              <mxPoint x="1230" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="admin_m6" value="Markdown" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.2833;" edge="1" parent="admin_1" source="admin_act1" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m7" value="Ghi và clean file Markdown trong data/markdown" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.325;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m8" value="markdown_path" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.3667;" edge="1" parent="admin_1" source="admin_act2" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m9" value="add_uploaded_document(...)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.4083;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m10" value="metadata đã chuẩn hóa" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.45;" edge="1" parent="admin_1" source="admin_act3" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m11" value="ingest_markdown_document(markdown_path, ingest_run_id)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.4917;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m12" value="True" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.5333;" edge="1" parent="admin_1" source="admin_act4" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m13" value="Di chuyển PDF gốc sang data/done" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.575;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m14" value="done_path" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.6167;" edge="1" parent="admin_1" source="admin_act5" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m15" value="HTTP 200 + payload thành công" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;exitX=0;exitY=0.6583;entryX=0.5;entryY=0.6377;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_admin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m17" value="purge_document(source, ingest_run_id) [nếu đã thử ingest]" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.75;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m18" value="đã purge / best effort" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.7917;" edge="1" parent="admin_1" source="admin_act6" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m19" value="remove_uploaded_document(source)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.8333;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m20" value="đã rollback catalog" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.875;" edge="1" parent="admin_1" source="admin_act7" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m21" value="Xóa Markdown sinh ra và PDF tạm" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.9167;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="admin_1" source="admin_act9" target="admin_act8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m22" value="đã cleanup" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.9583;" edge="1" parent="admin_1" source="admin_act8" target="admin_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_m23" value="HTTP error" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=0.5;entryY=0.9348;" edge="1" parent="admin_1" source="admin_act9" target="admin_admin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page-rag-ingestion" name="02_RAG_Ingestion_Sequence">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2520" pageHeight="1650" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="rag_0" style="" />
+        <mxCell id="rag_1" parent="rag_0" style="" />
+        <mxCell id="rag_title" value="DOCUMENT INGESTION ? RAG INTERNAL SEQUENCE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#17365d;" vertex="1" parent="rag_1">
+          <mxGeometry x="20" y="5" width="2480" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_subtitle" value="Lu?ng ingest_markdown_document() theo app/services/rag_engine.py: parent/child, PostgreSQL, embedding, Qdrant v? purge" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="rag_1">
+          <mxGeometry x="20" y="35" width="2480" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_success_bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fillOpacity=35;strokeColor=none;pointerEvents=0;" vertex="1" parent="rag_1">
+          <mxGeometry x="15" y="1140" width="2490" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_failure_bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;fillOpacity=35;strokeColor=none;pointerEvents=0;" vertex="1" parent="rag_1">
+          <mxGeometry x="15" y="1220" width="2490" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_fragment" value="alt K?t qu? x? l?" style="swimlane;html=1;rounded=0;startSize=24;horizontal=1;fillColor=none;strokeColor=#666666;fontStyle=1;pointerEvents=0;" vertex="1" parent="rag_1">
+          <mxGeometry x="15" y="1140" width="2490" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_success_label" value="[SUCCESS] thao t?c ho?n t?t" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontColor=#2e7d32;" vertex="1" parent="rag_1">
+          <mxGeometry x="30" y="1165" width="300" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_failure_label" value="[ELSE] l?i v? rollback / cleanup" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontColor=#b71c1c;" vertex="1" parent="rag_1">
+          <mxGeometry x="30" y="1224" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_divider" value="" style="endArrow=none;dashed=1;strokeColor=#b85450;pointerEvents=0;" edge="1" parent="rag_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="15" y="1220" as="sourcePoint" />
+            <mxPoint x="2505" y="1220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rag_api" value="Document API" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="rag_1">
+          <mxGeometry x="40" y="120" width="100" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_rag" value="RAG Engine&#10;ingest_markdown_document()" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="rag_1">
+          <mxGeometry x="420" y="120" width="100" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_catalog" value="Metadata Catalog" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="rag_1">
+          <mxGeometry x="800" y="120" width="100" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_split" value="Markdown Splitters&#10;header + parent + child" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="rag_1">
+          <mxGeometry x="1180" y="120" width="100" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_pg" value="PostgreSQL&#10;PostgresDocStore" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="rag_1">
+          <mxGeometry x="1560" y="120" width="100" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_embed" value="Embedding Model&#10;Vietnamese bi-encoder" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="rag_1">
+          <mxGeometry x="1940" y="120" width="100" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_qdrant" value="Qdrant&#10;768-D vectors" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;size=40;fillColor=#dae8fc;strokeColor=#4f81bd;fontColor=#1f2937;fontStyle=1;" vertex="1" parent="rag_1">
+          <mxGeometry x="2320" y="120" width="100" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act0" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_catalog">
+          <mxGeometry x="45" y="210" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act1" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_split">
+          <mxGeometry x="45" y="310" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act2" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_split">
+          <mxGeometry x="45" y="480" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_pg">
+          <mxGeometry x="45" y="700" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act4" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_embed">
+          <mxGeometry x="45" y="800" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act5" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_qdrant">
+          <mxGeometry x="45" y="900" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act6" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_split">
+          <mxGeometry x="45" y="580" width="10" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act7" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_qdrant">
+          <mxGeometry x="45" y="1160" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act8" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_pg">
+          <mxGeometry x="45" y="1260" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_act9" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#ffffff;fillColor=#eaf2f8;strokeColor=#4f81bd;" vertex="1" parent="rag_rag">
+          <mxGeometry x="45" y="90" width="10" height="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m0" value="ingest_markdown_document(markdown_path, ingest_run_id)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=0.5;exitY=0.0621;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_api" target="rag_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m1" value="Đọc UTF-8 + SHA-256 + resolve index_version + effective timestamp" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.0394;entryX=1;entryY=0.063;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_act9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="260" />
+              <mxPoint x="530" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rag_m2" value="Lấy business metadata theo source" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.0945;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_act0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m3" value="class, year, metadata_label, ..." style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.1339;" edge="1" parent="rag_1" source="rag_act0" target="rag_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m4" value="MarkdownHeaderTextSplitter.split_text(content)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.1732;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_act1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m5" value="first-level parent documents" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.2126;" edge="1" parent="rag_1" source="rag_act1" target="rag_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m6" value="Gắn business + technical metadata cho từng parent" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.252;entryX=1;entryY=0.2756;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_act9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="530" />
+              <mxPoint x="530" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rag_m7" value="_split_parent_preserving_tables(header_docs)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.3071;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_act2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m8" value="final parent chunks" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.3465;" edge="1" parent="rag_1" source="rag_act2" target="rag_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m9" value="ParentDocumentRetriever.add_documents(parent_docs)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.3858;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_act6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m10" value="Child splitter: 400 chars / 50 overlap" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.119;entryX=1;entryY=0.1905;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act6" target="rag_act6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290" y="750" />
+              <mxPoint x="1290" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rag_m11" value="PostgresDocStore.mset(parent_id, content, JSONB metadata)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.2857;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act6" target="rag_act3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m12" value="parents persisted" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.4048;" edge="1" parent="rag_1" source="rag_act3" target="rag_act6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m13" value="Embedding child chunks" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.5238;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act6" target="rag_act4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m14" value="Embedding 768-D" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.6429;" edge="1" parent="rag_1" source="rag_act4" target="rag_act6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m15" value="Qdrant upsert: vector + payload + parent_id" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.7619;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act6" target="rag_act5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m16" value="points stored" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.881;" edge="1" parent="rag_1" source="rag_act5" target="rag_act6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m17" value="add_documents hoàn tất" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.7165;" edge="1" parent="rag_1" source="rag_act6" target="rag_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m18" value="True" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;exitX=0;exitY=0.7559;entryX=0.5;entryY=0.7241;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m20" value="purge_document(): delete points by source + ingest_run_id" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.8425;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_act7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m21" value="Qdrant points deleted" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.8819;" edge="1" parent="rag_1" source="rag_act7" target="rag_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m22" value="Delete parent rows by source + ingest_run_id" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=0.9213;entryX=0;entryY=0.0;strokeColor=#4f81bd;fontColor=#1f4e79;" edge="1" parent="rag_1" source="rag_act9" target="rag_act8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m23" value="PostgreSQL parents deleted" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=1;entryY=0.9606;" edge="1" parent="rag_1" source="rag_act8" target="rag_act9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rag_m24" value="False" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;curved=0;rounded=0;strokeColor=#999999;fontColor=#999999;exitX=0;exitY=1.0;entryX=0.5;entryY=0.9379;" edge="1" parent="rag_1" source="rag_act9" target="rag_api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
