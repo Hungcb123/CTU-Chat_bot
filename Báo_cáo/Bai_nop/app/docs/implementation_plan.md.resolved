@@ -1,0 +1,31 @@
+# Kế hoạch Tối ưu Thuật toán Phân mảnh (Chunking Optimization)
+
+Mục tiêu của lần cập nhật này là giải quyết triệt để 2 vấn đề tử huyệt được phát hiện trong [Báo cáo Khảo sát Chất lượng Parent Documents](file:///home/hung/.gemini/antigravity/brain/f8cff5e9-6f68-4002-b152-455e6ed5e73c/parent_doc_survey_report.md):
+- Triệt tiêu các khối dữ liệu **cực kỳ rác** (chỉ có vài chữ).
+- Chống quá tải Token cho AI bằng cách băm nhỏ các khối dữ liệu **khổng lồ** (lên tới 50.000 ký tự).
+
+## User Review Required
+
+> [!IMPORTANT]  
+> Việc cập nhật này sẽ thay đổi cách hệ thống "hiểu" các tài liệu. Nếu bạn đồng ý, tôi sẽ phải xóa toàn bộ Database (`engine.clear_database()`) và nạp lại từ đầu (`ingest_all.py`). Vui lòng xác nhận để tôi bắt đầu!
+
+## Proposed Changes
+
+Tôi sẽ can thiệp vào `Chunking/sematic_chunking_rerank.py`, thiết lập một cơ chế **Chặt kép (Double-Split)**.
+
+#### [MODIFY] [sematic_chunking_rerank.py](file:///mnt/d/Project/Chatbot/Chunking/sematic_chunking_rerank.py)
+
+1. **Thêm Màng lọc cấp 2 (Parent Splitter):** 
+   Vẫn sử dụng `MarkdownHeaderTextSplitter` để ăn cắp (trích xuất) các Tiêu đề cực quý giá vào Metadata. Nhưng ngay sau đó, đưa toàn bộ kết quả vào một cái máy chém thứ 2 là `RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=200)`.
+   - Các khối dài 50,000 chữ sẽ bị máy chém 2 băm thành ~30 khối nhỏ (mỗi khối 1500 chữ), mà *vẫn giữ nguyên được Metadata Tiêu đề* của khối mẹ.
+
+2. **Màng lọc Rác (Sanitizer):**
+   Sau khi chặt kép xong, viết một dòng code duyệt qua toàn bộ danh sách, thẳng tay "xóa sổ" các khối văn bản có độ dài `< 50 ký tự`. AI sẽ không bao giờ phải đọc những câu cụt lủn vô nghĩa nữa.
+
+## Verification Plan
+
+1. Khởi chạy lại file `Chunking/ingest_all.py`.
+2. Khởi chạy lại tập lệnh khảo sát `survey_parent_docs.py` mà tôi vừa viết.
+3. Chắc chắn rằng bảng thống kê mới sẽ hiển thị: 
+   - Chiều dài Max không được vượt quá `~2000 chars`.
+   - Chiều dài Min phải lớn hơn `50 chars`.

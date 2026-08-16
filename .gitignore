@@ -10,6 +10,7 @@ postgres_data/
 qdrant_storage/
 redis_data/
 
+Báo_cáo/Bai_nop
 # Python cache
 __pycache__/
 *.pyc

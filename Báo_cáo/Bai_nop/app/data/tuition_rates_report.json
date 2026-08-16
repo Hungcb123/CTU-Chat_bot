@@ -1,0 +1,24 @@
+{
+  "valid": true,
+  "record_count": 553,
+  "rule_count": 12,
+  "issue_count": 1,
+  "records_by_source": {
+    "MucHocPhi_ChatLuongCao_TienTien.md": 237,
+    "MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md": 99,
+    "MucHocPhi_DaiHocChinhQuy_Khoa52.md": 197,
+    "MucHocPhi_QuyDinhChung.md": 20
+  },
+  "records_by_program_type": {
+    "high_quality": 206,
+    "advanced": 31,
+    "standard": 316
+  },
+  "records_by_rate_type": {
+    "per_academic_year": 114,
+    "per_credit": 341,
+    "per_full_course": 98
+  },
+  "duplicate_ids": [],
+  "failed_assertions": []
+}

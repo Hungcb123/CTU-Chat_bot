@@ -1,0 +1,32 @@
+# Thông báo — Hồ sơ hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số — Đợt 3 năm 2025
+
+**PHÒNG CÔNG TÁC SINH VIÊN**
+
+Hỗ trợ chi phí học tập đợt 3 năm 2025
+
+**Độc lập – Tự do – Hạnh phúc**
+
+*Cần Thơ, ngày 31 tháng 10 năm 2025*
+
+- Thủ trưởng các đơn vị;
+- Cố vấn học tập và sinh viên.
+
+Căn cứ Thông tư liên tịch số 35/2014/TTLT-BGDĐT-BTC hướng dẫn thực hiện Quyết định số 66/2013/QĐ-TTg ngày 11/11/2013 của Thủ tướng Chính phủ quy định chính sách hỗ trợ chi phí học tập đối với sinh viên là người dân tộc thiểu số học tại các cơ sở giáo dục đại học, Phòng Công tác Sinh viên thông báo đến các sinh viên về việc Hỗ trợ chi phí học tập đợt 3 năm 2025 như sau:
+
+## 1. Sinh viên đã được Hỗ trợ chi phí học tập năm 2024 chỉ cần nộp bổ sung Bản sao có công chứng Giấy chứng nhận hộ nghèo, hộ cận nghèo **năm 2025** để làm căn cứ xét hỗ trợ chi phí học tập đợt 3 năm 2025.
+
+## 2. Đối với sinh viên chưa hưởng Hỗ trợ chi phí học tập thuộc đối tượng dân tộc thiểu số thuộc hộ nghèo, hộ cận nghèo (*Lưu ý: trúng tuyển hệ chính quy; không áp dụng đối với sinh viên học đại học sau khi hoàn thành chương trình dự bị; liên thông từ trình độ Cao đẳng lên trình độ Đại học; bằng đại học thứ hai*) cần thực hiện hồ sơ như sau:
+
+- Đơn đề nghị hỗ trợ chi phí học tập (mẫu đơn theo phụ lục I);
+
+- Giấy chứng nhận hộ nghèo, hộ cận nghèo do Ủy ban nhân dân xã, phường, thị trấn cấp (Bản sao có công chứng) còn thời hạn sử dụng.
+
+- Giấy khai sinh (bản sao có công chứng).
+
+## 3. Thời gian và địa điểm nộp: Sinh viên hoàn tất hồ sơ và nộp trực tiếp tại Văn phòng Phòng Công tác Sinh viên (Khu nhà Điều hành) từ ngày **03/11/2025 đến hết ngày 14/11/2025** (Trừ thứ Bảy, Chủ nhật).
+
+**Phụ lục I**
+*(Kèm theo Thông tư liên tịch số 35 /2014/TTLT-BGDĐT-BTC ngày 15 tháng 10 năm 2014 của Liên Bộ Giáo dục và Đào tạo và Bộ Tài chính)*
+
+
+*(Lưu ý: Mẫu đơn đính kèm đã được ẩn để tối ưu dữ liệu, sinh viên vui lòng xem file gốc)*

@@ -218,6 +218,13 @@
       "academic_year": null,
       "status": "inactive"
     },
+    "QD29.md": {
+      "domain": "student_loan",
+      "content_kind": "procedure",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "QD_1227_TTg.md": {
       "domain": "social_support",
       "content_kind": "policy",
@@ -228,13 +235,6 @@
     "QD_2022.md": {
       "domain": "student_loan",
       "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "QD29.md": {
-      "domain": "student_loan",
-      "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -253,13 +253,6 @@
       "academic_year": null,
       "status": "active"
     },
-    "Tài liệu phân bổ quỹ học bổng.md": {
-      "domain": "scholarship",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
     "TCXH.md": {
       "domain": "social_support",
       "content_kind": "announcement",
@@ -267,9 +260,26 @@
       "academic_year": null,
       "status": "active"
     },
+    "test_upload.md": {
+      "domain": "other",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active",
+      "original_filename": "test_upload.pdf",
+      "uploaded_by": "hung",
+      "uploaded_at": "2026-08-14T17:52:28.207599+00:00"
+    },
     "Tro_cap_XH.md": {
       "domain": "social_support",
       "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "Tài liệu phân bổ quỹ học bổng.md": {
+      "domain": "scholarship",
+      "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"

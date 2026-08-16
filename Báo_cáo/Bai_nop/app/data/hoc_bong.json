@@ -1,0 +1,17 @@
+{
+  "dieu_kien": {
+    "Xuat_sac": { "gpa_min": 3.6, "drl_min": 90 },
+    "Gioi": { "gpa_min": 3.2, "drl_min": 80 },
+    "Kha": { "gpa_min": 2.5, "drl_min": 65 }
+  },
+  "bang_gia_tien": {
+    "I": { "ten": "KH GD và đào tạo giáo viên", "Kha": "6.290.000", "Gioi": "7.550.000", "Xuat_sac": "8.810.000" },
+    "III": { "ten": "Kinh doanh và quản lý, pháp luật", "Kha": "6.600.000", "Gioi": "7.920.000", "Xuat_sac": "9.240.000" },
+    "IV": { "ten": "Khoa học sự sống, khoa học tự nhiên", "Kha": "6.800.000", "Gioi": "8.160.000", "Xuat_sac": "9.520.000" },
+    "V": { "ten": "Toán, thống kê máy tính, CNTT, CNKT, kỹ thuật, SX và chế biến", "Kha": "7.540.000", "Gioi": "9.050.000", "Xuat_sac": "10.560.000" },
+    "VI": { "ten": "Sức khỏe", "Kha": "7.540.000", "Gioi": "9.050.000", "Xuat_sac": "10.560.000" },
+    "VII": { "ten": "Nhân văn, KHXH và hành vi, báo chí và TT, DVXH, DL, KS, TDTT.", "Kha": "6.600.000", "Gioi": "7.920.000", "Xuat_sac": "9.240.000" },
+    "CTTT_K50": { "ten": "Chương trình tiên tiến, chất lượng cao từ khóa 50 về trước", "Kha": "9.350.000", "Gioi": "11.220.000", "Xuat_sac": "13.090.000" },
+    "CTTT_K51": { "ten": "Chương trình tiên tiến, chất lượng cao khóa 51", "Kha": "11.330.000", "Gioi": "13.600.000", "Xuat_sac": "15.860.000" }
+  }
+}
