@@ -36,6 +36,26 @@
       "academic_year": null,
       "status": "active"
     },
+    "CVHT_2025.md": {
+      "domain": "other",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active",
+      "original_filename": "CVHT_2025.pdf",
+      "uploaded_by": "hung",
+      "uploaded_at": "2026-08-16T17:51:23.115891+00:00"
+    },
+    "CVHTv2007.md": {
+      "domain": "other",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active",
+      "original_filename": "CVHTv2007.pdf",
+      "uploaded_by": "hung",
+      "uploaded_at": "2026-08-16T17:50:41.506670+00:00"
+    },
     "donz.md": {
       "domain": "social_support",
       "content_kind": "announcement",
@@ -217,6 +237,16 @@
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "inactive"
+    },
+    "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.md": {
+      "domain": "other",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active",
+      "original_filename": "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.pdf",
+      "uploaded_by": "hung",
+      "uploaded_at": "2026-08-16T17:11:56.389159+00:00"
     },
     "QD29.md": {
       "domain": "student_loan",

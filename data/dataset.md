@@ -202,3 +202,9 @@
          . Tên file gốc: HB_TayNinh.md
          Câu hỏi 100: Đăng ký hồ sơ dự tuyển học bổng Vallet được thực hiện qua hình thức nào? Câu trả lời mong đợi: Đăng ký hồ sơ theo hình thức trực tuyến (online)
          . Tên file gốc: HB_Vallet_Chi_Tiet.md
+         Câu hỏi 101: Một năm học có bao nhiêu học kỳ chính? Câu trả lời mong đợi: 03 học kỳ chính
+         . Tên file gốc: 3hk.md
+         Câu hỏi 102: Học kỳ 1 bắt đầu từ tuần thứ mấy? Câu trả lời mong đợi: Bắt đầu từ tuần thứ 37 đến tuần thứ 51 của năm
+         . Tên file gốc: 3hk.md
+         Câu hỏi 103: Học kỳ 2 bắt đầu từ tuần nào và có bao gồm nghỉ Tết không? Câu trả lời mong đợi: Học kỳ 2 bắt đầu từ tuần thứ 01 đến tuần thứ 17, bao gồm 2 tuần nghỉ Tết.
+         . Tên file gốc: 3hk.md

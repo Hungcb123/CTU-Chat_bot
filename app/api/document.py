@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_ROOT = PROJECT_ROOT / "data"
-MAX_PDF_SIZE = 5 * 1024 * 1024
+MAX_PDF_SIZE = 30 * 1024 * 1024
 READ_CHUNK_SIZE = 1024 * 1024
 ALLOWED_PDF_MEDIA_TYPES = {"application/pdf", "application/x-pdf"}
 UNSAFE_FILENAME_CHARS = set('<>:"/\\|?*')

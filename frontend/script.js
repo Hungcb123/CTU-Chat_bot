@@ -451,7 +451,7 @@ if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded
     const academicYearGroup = document.getElementById('academic-year-group');
     const academicYearInput = document.getElementById('academic-year');
     const uploadError = document.getElementById('upload-error');
-    const maxPdfSizeBytes = 5 * 1024 * 1024;
+    const maxPdfSizeBytes = 30 * 1024 * 1024;
     const allowedPdfMimeTypes = new Set(['application/pdf', 'application/x-pdf']);
     const allowedDocumentClasses = new Set([
         'tuition_actual_rate',
