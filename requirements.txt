@@ -333,3 +333,5 @@ XMind==1.2.0
 xxhash==3.7.0
 yarl==1.24.2
 zstandard==0.25.0
+bm25s>=0.3.10
+pyvi>=0.1.1

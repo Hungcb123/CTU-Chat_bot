@@ -45,6 +45,7 @@ from langchain_community.cross_encoders import HuggingFaceCrossEncoder
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings 
 from langchain_qdrant import QdrantVectorStore
+from app.services.bm25_service import VietnameseBM25Index
 from qdrant_client import QdrantClient
 from qdrant_client.http.models import (
     Distance,
@@ -148,6 +149,16 @@ def _reranker_model_config() -> tuple[str, dict[str, object]]:
     model_kwargs: dict[str, object] = {
         "device": os.getenv("RAG_RERANKER_DEVICE", "cuda")
     }
+    # Tự động ưu tiên thư mục local nếu có
+    if not os.path.exists(model_name):
+        project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        local_candidate = os.path.join(project_root, "models", "bge-reranker-v2-m3")
+        if os.path.exists(local_candidate):
+            model_name = local_candidate
+
+    if os.path.exists(model_name):
+        model_kwargs["local_files_only"] = True
+
     if model_name == GTE_RERANKER_MODEL:
         model_kwargs["trust_remote_code"] = True
     return model_name, model_kwargs
@@ -433,10 +444,24 @@ class AdvancedChunkingEngine:
         self.ensure_payload_indexes()
 
         # Trỏ Vector Store về Qdrant
+        embedding_model_name = os.getenv("RAG_EMBEDDING_MODEL", "bkai-foundation-models/vietnamese-bi-encoder")
+        embedding_model_kwargs: dict[str, object] = {}
+        if not os.path.exists(embedding_model_name):
+            project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            local_emb_candidate = os.path.join(project_root, "models", "vietnamese-bi-encoder")
+            if os.path.exists(local_emb_candidate):
+                embedding_model_name = local_emb_candidate
+
+        if os.path.exists(embedding_model_name):
+            embedding_model_kwargs["local_files_only"] = True
+
         self.vector_store = QdrantVectorStore(
             client=self.qdrant_client,
             collection_name=self.collection_name,
-            embedding=HuggingFaceEmbeddings(model_name="bkai-foundation-models/vietnamese-bi-encoder"),
+            embedding=HuggingFaceEmbeddings(
+                model_name=embedding_model_name,
+                model_kwargs=embedding_model_kwargs,
+            ),
         )
         
         # 4. ORCHESTRATOR: BỘ ĐIỀU PHỐI PARENT-CHILD & RE-RANKING
@@ -477,6 +502,13 @@ class AdvancedChunkingEngine:
             )
             if self.reranker is not None
             else self.base_retriever
+        )
+
+        # 5. KHỞI TẠO BM25 INDEX (Sparse Lexical Search)
+        bm25_storage_dir = Path(self.persist_dir) / "bm25_index"
+        self.bm25_index = VietnameseBM25Index(
+            persist_dir=bm25_storage_dir,
+            index_version=self.index_version,
         )
 
     def ensure_payload_indexes(self) -> None:
@@ -569,6 +601,41 @@ class AdvancedChunkingEngine:
         )
         return Filter(must=must)
 
+    @staticmethod
+    def build_bm25_filter(
+        *,
+        lane: RetrievalLane | str | None = None,
+        fee_kind: Optional[str] = None,
+        content_kind: Optional[str] = None,
+        domain: Optional[str] = None,
+        academic_year: Optional[str] = None,
+        metadata_filter_enabled: bool = True,
+    ) -> Dict[str, Any]:
+        """Tạo bộ lọc metadata dạng dict cho BM25."""
+        filter_dict: Dict[str, Any] = {"status": "active"}
+        if not metadata_filter_enabled:
+            return filter_dict
+
+        resolved: Dict[str, Any] = {}
+        if lane is not None:
+            try:
+                lane_value = lane if isinstance(lane, RetrievalLane) else RetrievalLane(lane)
+                resolved.update(LANE_METADATA.get(lane_value, {}))
+            except ValueError:
+                pass
+
+        for key, value in (
+            ("domain", domain),
+            ("content_kind", content_kind),
+            ("fee_kind", fee_kind),
+            ("academic_year", academic_year),
+        ):
+            if value is not None:
+                resolved[key] = value
+
+        filter_dict.update(resolved)
+        return filter_dict
+
     def _request_retriever(
         self,
         *,
@@ -607,8 +674,9 @@ class AdvancedChunkingEngine:
         top_n: Optional[int] = None,
         metadata_filter_enabled: Optional[bool] = None,
         use_reranker: bool = True,
+        hybrid_search: bool = True,
     ) -> List[Document]:
-        """Retrieve documents with a filter isolated to this request."""
+        """Truy xuất tài liệu theo cơ chế Hybrid Search (Dense Vector + Sparse BM25) & Re-ranking."""
         if not query or not query.strip():
             return []
         enabled = (
@@ -619,6 +687,7 @@ class AdvancedChunkingEngine:
         result_limit = top_n or DEFAULT_RERANK_TOP_N
         if result_limit < 1:
             raise ValueError("top_n must be at least 1")
+
         qdrant_filter = self.build_filter(
             lane=lane,
             fee_kind=fee_kind,
@@ -627,13 +696,100 @@ class AdvancedChunkingEngine:
             academic_year=academic_year,
             metadata_filter_enabled=enabled,
         )
-        request_retriever = self._request_retriever(
-            qdrant_filter=qdrant_filter,
-            top_n=result_limit,
-            use_reranker=use_reranker,
+
+        # 1. Dense Vector Search (Qdrant -> Postgres Parent Docs)
+        base_retriever = ParentDocumentRetriever(
+            vectorstore=self.vector_store,
+            docstore=self.doc_store,
+            child_splitter=self.child_splitter,
+            search_kwargs={"k": DEFAULT_SEARCH_K, "filter": qdrant_filter},
         )
-        documents = list(request_retriever.invoke(query))
-        return documents[:result_limit]
+        try:
+            dense_docs = list(base_retriever.invoke(query))
+        except Exception as exc:
+            logger.warning(f"Dense Vector search lỗi: {exc}", exc_info=True)
+            dense_docs = []
+
+        # 2. Sparse Lexical Search (BM25 -> Postgres Parent Docs)
+        sparse_docs: List[Document] = []
+        if hybrid_search and self.bm25_index and self.bm25_index.is_indexed():
+            bm25_filter = self.build_bm25_filter(
+                lane=lane,
+                fee_kind=fee_kind,
+                content_kind=content_kind,
+                domain=domain,
+                academic_year=academic_year,
+                metadata_filter_enabled=enabled,
+            )
+            try:
+                bm25_matches = self.bm25_index.search(
+                    query=query,
+                    filter_dict=bm25_filter,
+                    top_k=DEFAULT_SEARCH_K,
+                )
+                if bm25_matches:
+                    parent_ids = [pid for pid, _ in bm25_matches]
+                    fetched = self.doc_store.mget(parent_ids)
+                    sparse_docs = [doc for doc in fetched if doc is not None]
+            except Exception as exc:
+                logger.warning(f"BM25 search lỗi: {exc}", exc_info=True)
+                sparse_docs = []
+
+        # 3. Reciprocal Rank Fusion (RRF)
+        candidate_parents: List[Document] = []
+        if dense_docs and sparse_docs:
+            RRF_K = 60
+            rrf_scores: Dict[str, float] = {}
+            doc_map: Dict[str, Document] = {}
+
+            def _get_key(d: Document) -> str:
+                return str(d.metadata.get("doc_id") or hashlib.sha256(d.page_content.encode("utf-8")).hexdigest())
+
+            dense_keys = set()
+            for rank, doc in enumerate(dense_docs):
+                k = _get_key(doc)
+                doc_map[k] = doc
+                dense_keys.add(k)
+                rrf_scores[k] = rrf_scores.get(k, 0.0) + (1.0 / (RRF_K + rank + 1))
+
+            sparse_keys = set()
+            for rank, doc in enumerate(sparse_docs):
+                k = _get_key(doc)
+                doc_map[k] = doc
+                sparse_keys.add(k)
+                rrf_scores[k] = rrf_scores.get(k, 0.0) + (1.0 / (RRF_K + rank + 1))
+
+            overlap_keys = dense_keys & sparse_keys
+            only_dense = dense_keys - sparse_keys
+            only_sparse = sparse_keys - dense_keys
+            logger.info(
+                f"[HybridSearch] Vector: {len(dense_docs)} docs ({len(only_dense)} unique) | "
+                f"BM25: {len(sparse_docs)} docs ({len(only_sparse)} unique) | "
+                f"Overlap: {len(overlap_keys)} | Total RRF candidates: {len(rrf_scores)}"
+            )
+
+            sorted_keys = sorted(rrf_scores.keys(), key=lambda k: rrf_scores[k], reverse=True)
+            candidate_parents = [doc_map[k] for k in sorted_keys[: max(result_limit * 3, DEFAULT_SEARCH_K)]]
+        elif dense_docs:
+            logger.info(f"[HybridSearch] Vector only: {len(dense_docs)} docs (BM25 returned 0)")
+            candidate_parents = dense_docs
+        elif sparse_docs:
+            logger.info(f"[HybridSearch] BM25 only: {len(sparse_docs)} docs (Vector returned 0)")
+            candidate_parents = sparse_docs
+        else:
+            logger.info("[HybridSearch] Cả Vector và BM25 đều không trả kết quả.")
+
+        # 4. Temporal Cross-Encoder Re-ranking
+        if self.cross_encoder is not None and use_reranker and candidate_parents:
+            compressor = TemporalCrossEncoderReranker(
+                model=self.cross_encoder,
+                top_n=result_limit,
+                score_tolerance=0.05,
+            )
+            final_docs = list(compressor.compress_documents(candidate_parents, query))
+            return final_docs[:result_limit]
+
+        return candidate_parents[:result_limit]
 
     def purge_document(
         self,
@@ -692,6 +848,23 @@ class AdvancedChunkingEngine:
                 source,
                 ingest_run_id,
             )
+
+        # Purge BM25
+        if self.bm25_index is not None:
+            try:
+                self.bm25_index.purge_by_source(
+                    source=source,
+                    ingest_run_id=ingest_run_id,
+                    auto_persist=True,
+                )
+            except Exception as exc:
+                rollback_errors.append(f"BM25: {exc}")
+                logger.exception(
+                    "Failed to purge BM25 records for source=%s run=%s",
+                    source,
+                    ingest_run_id,
+                )
+
         if rollback_errors:
             raise RuntimeError(
                 "Document rollback was incomplete: " + "; ".join(rollback_errors)
@@ -950,13 +1123,23 @@ class AdvancedChunkingEngine:
             if not parent_docs:
                 raise ValueError(f"No indexable content found in {source}")
 
-            # Bước C: Bơm vào Orchestrator
-            # Thằng này sẽ tự động: 
-            # 1. Băm Parent thành các Children bằng RecursiveCharacterTextSplitter.
-            # 2. Nhúng (Embed) Children vào Qdrant DB.
-            # 3. Lưu Parent vào LocalShelveStore và tạo Mapping ID (Link).
-            self.base_retriever.add_documents(parent_docs, ids=None)
+            # Bước C: Bơm vào Orchestrator (Vector DB + Postgres)
+            parent_ids = [str(uuid.uuid4()) for _ in parent_docs]
+            for i, doc in enumerate(parent_docs):
+                doc.metadata["doc_id"] = parent_ids[i]
+
+            self.base_retriever.add_documents(parent_docs, ids=parent_ids)
             logger.info("Hoàn tất nhúng Vector (Children) và lưu trữ nguyên bản (Parents).")
+
+            # Bước D: Bơm vào BM25 Index (Sparse Lexical Search)
+            if self.bm25_index is not None:
+                child_records = []
+                for pid, pdoc in zip(parent_ids, parent_docs):
+                    sub_docs = self.child_splitter.split_documents([pdoc])
+                    for sdoc in sub_docs:
+                        child_records.append((sdoc.page_content, pid, dict(sdoc.metadata)))
+                self.bm25_index.add_documents(child_records, auto_persist=True)
+                logger.info(f"Hoàn tất nạp {len(child_records)} Child Chunks vào BM25 Index.")
             
             return True
 
