@@ -31,9 +31,7 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Logs
-*.log
-logs/
+
 
 # IDEs
 .vscode/
