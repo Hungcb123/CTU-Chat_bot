@@ -9,41 +9,61 @@ load_dotenv()
 NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")
-DATA_DIR = Path(__file__).parent.parent / "data"
+# Trỏ tới thư mục chứa 114 file CTĐT
+DATA_DIR = Path(
+    os.getenv(
+        "GRAPH_DATA_DIR",
+        str(Path(__file__).resolve().parent.parent.parent / "data" / "markdown_graph"),
+    )
+)
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Static mappings (không có trong MD, phải hard-code theo kiến thức miền)
+# Static mappings — chỉ áp dụng cho ngành cụ thể (không có trong MD)
 # ─────────────────────────────────────────────────────────────────────────────
 
+# PEO→PLO mapping — key = mã ngành
 PEO_PLO_MAP = {
-    "PEO1": ["PLO1", "PLO2", "PLO3"],
-    "PEO2": ["PLO4", "PLO5", "PLO6", "PLO7", "PLO8"],
-    "PEO3": ["PLO3", "PLO10"],
-    "PEO4": ["PLO9", "PLO11"],
-    "PEO5": ["PLO11", "PLO12"],
+    "7480103C": {
+        "PEO1": ["PLO1", "PLO2", "PLO3"],
+        "PEO2": ["PLO4", "PLO5", "PLO6", "PLO7", "PLO8"],
+        "PEO3": ["PLO3", "PLO10"],
+        "PEO4": ["PLO9", "PLO11"],
+        "PEO5": ["PLO11", "PLO12"],
+    },
 }
 
+# Specialization tracks — key = mã ngành
 TRACK_COURSE_MAP = {
-    "Trí tuệ nhân tạo": ["CT223H", "CT226H", "CT227H"],
-    "Phần mềm nhúng và IoT": ["CT295H"],
-    "Phân tích dữ liệu lớn": ["CT224H"],
-    "Chung (chuyên sâu)": ["CT228H", "CT305H", "CT225H", "CT255H"],
+    "7480103C": {
+        "Trí tuệ nhân tạo": ["CT223H", "CT226H", "CT227H"],
+        "Phần mềm nhúng và IoT": ["CT295H"],
+        "Phân tích dữ liệu lớn": ["CT224H"],
+        "Chung (chuyên sâu)": ["CT228H", "CT305H", "CT225H", "CT255H"],
+    },
 }
 
-JOB_POSITIONS = [
-    "Kỹ sư phát triển / kiểm thử / phân tích / bảo trì phần mềm",
-    "Trưởng nhóm lập trình / Trưởng dự án phần mềm",
-    "Chủ doanh nghiệp sản xuất phần mềm",
-    "Cán bộ nghiên cứu và ứng dụng CNTT",
-    "Giảng viên CNTT (đại học, cao đẳng, trung cấp)",
-]
+# Job positions — key = mã ngành
+JOB_POSITIONS_MAP = {
+    "7480103C": [
+        "Kỹ sư phát triển / kiểm thử / phân tích / bảo trì phần mềm",
+        "Trưởng nhóm lập trình / Trưởng dự án phần mềm",
+        "Chủ doanh nghiệp sản xuất phần mềm",
+        "Cán bộ nghiên cứu và ứng dụng CNTT",
+        "Giảng viên CNTT (đại học, cao đẳng, trung cấp)",
+    ],
+}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Parser
 # ─────────────────────────────────────────────────────────────────────────────
 
-def parse_markdown(filepath: Path) -> dict:
+
+def parse_markdown(filepath: Path) -> dict | None:
+    """Parse một file markdown CTĐT thành dict có cấu trúc.
+
+    Returns None nếu file không phải CTĐT (ví dụ: quy chế học vụ).
+    """
     text = filepath.read_text(encoding="utf-8")
     lines = text.split("\n")
 
@@ -63,6 +83,11 @@ def parse_markdown(filepath: Path) -> dict:
             key, val = line.split(":", 1)
             metadata[key.strip()] = val.strip().strip('"')
 
+    # --- Kiểm tra loại tài liệu — bỏ qua file không phải CTĐT ---
+    loai_tai_lieu = metadata.get("loai_tai_lieu", "")
+    if loai_tai_lieu and "chương trình đào tạo" not in loai_tai_lieu.lower():
+        return None
+
     # --- Program node ---
     program = {
         "name": metadata.get("nganh_hoc", ""),
@@ -76,7 +101,12 @@ def parse_markdown(filepath: Path) -> dict:
         "training_forms": "",
     }
 
-    total_credits_m = re.search(r"TỔNG CỘNG CHƯƠNG TRÌNH:\s*(\d+)\s*TC", text)
+    # Tổng tín chỉ — hỗ trợ cả "TỔNG CỘNG CHƯƠNG TRÌNH:" và "### Tổng cộng:"
+    total_credits_m = re.search(
+        r"(?:TỔNG CỘNG CHƯƠNG TRÌNH|^###?\s+Tổng cộng):\s*(\d+)\s*TC",
+        text,
+        re.MULTILINE,
+    )
     if total_credits_m:
         program["total_credits"] = int(total_credits_m.group(1))
 
@@ -88,9 +118,9 @@ def parse_markdown(filepath: Path) -> dict:
     if degree_m:
         program["degree_type"] = degree_m.group(1).strip()
 
-    # Mã ngành từ nội dung nếu frontmatter không có
+    # Mã ngành từ nội dung nếu frontmatter không có — hỗ trợ **bold**
     if not program["code"]:
-        code_m = re.search(r"Mã ngành:\s*([\w]+)", text)
+        code_m = re.search(r"Mã ngành:\s*\**\s*([\w]+)\**", text)
         if code_m:
             program["code"] = code_m.group(1).strip()
 
@@ -99,29 +129,44 @@ def parse_markdown(filepath: Path) -> dict:
         program["training_forms"] = training_m.group(1).strip()
 
     # ─── Patterns ───
+
     # Block header:  ### Khối kiến thức Tiếng Anh tăng cường
     block_pattern = re.compile(r"^###\s+(.+?)$")
 
-    # Block total credits line:  **Tổng cộng:** 17 TC (Bắt buộc: 17 TC; Tự chọn: 0 TC)
+    # Block total credits:  **Tổng cộng:** 17 TC (Bắt buộc: 17 TC; Tự chọn: 0 TC)
+    # Colon sau "Bắt buộc"/"Tự chọn" là optional
     block_credits_pattern = re.compile(
-        r"\*\*Tổng cộng:\*\*\s*(\d+)\s*TC.*?Bắt buộc:\s*(\d+)\s*TC.*?Tự chọn:\s*(\d+)\s*TC"
+        r"\*\*Tổng cộng:\*\*\s*(\d+)\s*TC.*?"
+        r"Bắt buộc:?\s*(\d+)\s*TC.*?"
+        r"Tự chọn:?\s*(\d+)\s*TC"
     )
 
     # Course header:  * **Lập trình căn bản A (*)** (Mã số: CT054H)
-    # Captures: name (possibly ending with (*)), code
     course_pattern = re.compile(
         r"^\*\s+\*\*(.+?)\*\*\s*\(Mã số:\s*([\w-]+)\)"
     )
 
-    credit_pattern = re.compile(r"Số tín chỉ:\s*(\d+)\s*\((Bắt buộc|Tự chọn)\)")
-    tiet_pattern = re.compile(r"Số tiết:\s*(\d+)\s*LT,\s*(\d+)\s*TH")
+    # Số tín chỉ — loại (Bắt buộc/Tự chọn) giờ là optional
+    credit_pattern = re.compile(
+        r"Số tín chỉ:\s*(\d+)(?:\s*\((Bắt buộc|Tự chọn)\))?"
+    )
+
+    # Số tiết — tách riêng LT và TH để xử lý linh hoạt
+    tiet_lt_pattern = re.compile(r"(\d+)\s*LT")
+    tiet_th_pattern = re.compile(r"(\d+)\s*TH")
+
     prereq_pattern = re.compile(r"Học phần tiên quyết:\s*(.+)")
     parallel_pattern = re.compile(r"Học phần song hành:\s*(.+)")
 
-    # PLO line:  - a. Mô tả... (PLO1)
-    plo_line_pattern = re.compile(r"^\s*-\s+\w+\.\s+(.+?)\s+\(PLO(\d+)\)\s*$")
-    # PEO line:  - a. Mô tả... (PEO1)
-    peo_line_pattern = re.compile(r"^\s*-\s+\w+\.\s+(.+?)\s+\(PEO(\d+)\)\s*$")
+    # PLO/PEO line — cho phép khoảng trắng giữa PEO/PLO và số
+    # Ví dụ: (PLO1), (PLO 1), (PEO 2), (PEO2)
+    # Cũng cho phép dấu ; hoặc . ở cuối dòng
+    plo_line_pattern = re.compile(
+        r"^\s*-\s+\w+\.\s+(.+?)\s*\(PLO\s*(\d+)\)\s*[;.]*\s*$"
+    )
+    peo_line_pattern = re.compile(
+        r"^\s*-\s+\w+\.\s+(.+?)\s*\(PEO\s*(\d+)\)\s*[;.]*\s*$"
+    )
 
     # ─── Iterate lines ───
     blocks = []
@@ -138,8 +183,7 @@ def parse_markdown(filepath: Path) -> dict:
         block_m = block_pattern.match(line)
         if block_m:
             block_raw = block_m.group(1).strip()
-            # Skip non-block headings (## level handled by lower heading level)
-            # Only treat as block if starts with "Khối" or is known curriculum block
+            # Skip non-block headings
             is_curriculum_block = (
                 block_raw.startswith("Khối")
                 or "kỹ năng mềm" in block_raw.lower()
@@ -164,7 +208,7 @@ def parse_markdown(filepath: Path) -> dict:
                 current_block["tc_tu_chon"] = int(bc_m.group(3))
                 continue
 
-        # PLO line
+        # PLO line (có id trong ngoặc)
         plo_m = plo_line_pattern.match(line)
         if plo_m:
             plos.append({
@@ -173,7 +217,7 @@ def parse_markdown(filepath: Path) -> dict:
             })
             continue
 
-        # PEO line
+        # PEO line (có id trong ngoặc)
         peo_m = peo_line_pattern.match(line)
         if peo_m:
             peos.append({
@@ -186,7 +230,7 @@ def parse_markdown(filepath: Path) -> dict:
         course_m = course_pattern.match(line)
         if course_m and current_block is not None:
             raw_name = course_m.group(1).strip()
-            # MD escapes (*) as (\*) — normalize first
+            # MD escapes (*) as (\*) — normalize
             raw_name = raw_name.replace("(\\*)", "(*)").replace("\\*", "*")
             # Check dấu (*) — học phần điều kiện
             is_condition = raw_name.endswith("(*)")
@@ -210,17 +254,22 @@ def parse_markdown(filepath: Path) -> dict:
 
         # Sub-fields of current course
         if current_course is not None:
-            # Số tín chỉ: X (Bắt buộc|Tự chọn)
+            # Số tín chỉ: X (optional: Bắt buộc|Tự chọn)
             cr_m = credit_pattern.search(line)
             if cr_m:
                 current_course["credits"] = int(cr_m.group(1))
-                current_course["is_required"] = (cr_m.group(2) == "Bắt buộc")
+                if cr_m.group(2):
+                    current_course["is_required"] = cr_m.group(2) == "Bắt buộc"
+                # Nếu không ghi loại → giữ default is_required=True
 
-            # Số tiết: X LT, Y TH
-            tiet_m = tiet_pattern.search(line)
-            if tiet_m:
-                current_course["so_tiet_lt"] = int(tiet_m.group(1))
-                current_course["so_tiet_th"] = int(tiet_m.group(2))
+            # Số tiết — hỗ trợ chỉ LT, chỉ TH, hoặc cả hai
+            if "Số tiết:" in line:
+                lt_m = tiet_lt_pattern.search(line)
+                th_m = tiet_th_pattern.search(line)
+                if lt_m:
+                    current_course["so_tiet_lt"] = int(lt_m.group(1))
+                if th_m:
+                    current_course["so_tiet_th"] = int(th_m.group(1))
 
             # Học phần tiên quyết
             pre_m = prereq_pattern.search(line)
@@ -237,6 +286,56 @@ def parse_markdown(filepath: Path) -> dict:
                 parallels = [p.strip() for p in re.split(r"[,;]", raw) if p.strip()]
                 current_course["parallel"] = parallels
 
+    # ─── Fallback: PEO parsing cho ngành không ghi id (PEOx) ───
+    if not peos:
+        in_peo_section = False
+        peo_counter = 0
+        item_pattern = re.compile(r"^\s*-\s+\w+\.\s+(.+)")
+        for line in content_lines:
+            # Vào section 2.2 Mục tiêu đào tạo cụ thể
+            if re.match(r"^###\s+2\.2\b", line):
+                in_peo_section = True
+                continue
+            # Thoát khi gặp heading mới (## hoặc ### khác section)
+            if in_peo_section and re.match(r"^#{2,3}\s+(?!2\.2)", line):
+                break
+            if in_peo_section:
+                m = item_pattern.match(line)
+                if m:
+                    peo_counter += 1
+                    desc = m.group(1).strip().rstrip(";.")
+                    peos.append({
+                        "id": f"PEO{peo_counter}",
+                        "description": desc,
+                    })
+
+    # ─── Fallback: PLO parsing cho ngành không ghi id (PLOx) ───
+    if not plos:
+        in_plo_section = False
+        plo_counter = 0
+        item_pattern = re.compile(r"^\s*-\s+(?:\w+\.\s+)?(.+)")
+        for line in content_lines:
+            # Vào section 3. Chuẩn đầu ra
+            if re.match(r"^##\s+3\.\s+Chuẩn đầu ra", line):
+                in_plo_section = True
+                continue
+            # Thoát khi gặp section 4
+            if in_plo_section and re.match(r"^##\s+4\.", line):
+                break
+            # Bỏ qua heading con (###, ####) — chúng chỉ là label
+            if in_plo_section and re.match(r"^#{3,4}\s+", line):
+                continue
+            # Bỏ qua dòng trống hoặc paragraph (không bắt đầu bằng -)
+            if in_plo_section:
+                m = item_pattern.match(line)
+                if m:
+                    plo_counter += 1
+                    desc = m.group(1).strip().rstrip(";.")
+                    plos.append({
+                        "id": f"PLO{plo_counter}",
+                        "description": desc,
+                    })
+
     return {
         "program": program,
         "blocks": blocks,
@@ -250,14 +349,20 @@ def parse_markdown(filepath: Path) -> dict:
 # Neo4j Ingestion
 # ─────────────────────────────────────────────────────────────────────────────
 
+
+def clear_graph():
+    """Xóa toàn bộ graph — gọi MỘT LẦN trước khi ingest tất cả file."""
+    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
+    with driver.session() as session:
+        session.run("MATCH (n) DETACH DELETE n")
+    driver.close()
+    print("✓ Cleared existing graph")
+
+
 def ingest_to_neo4j(data: dict):
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 
     with driver.session() as session:
-        # Clear existing data
-        session.run("MATCH (n) DETACH DELETE n")
-        print("  ✓ Cleared existing graph")
-
         p = data["program"]
 
         # ── Program ──────────────────────────────────────────────────────────
@@ -278,10 +383,11 @@ def ingest_to_neo4j(data: dict):
         print(f"  ✓ Program: {p['name']} ({p['code']})")
 
         # ── Blocks ───────────────────────────────────────────────────────────
+        # MERGE key bao gồm prog_code để tránh xung đột giữa các ngành
         for block in data["blocks"]:
             session.run(
                 """
-                MERGE (b:Block {name: $name})
+                MERGE (b:Block {name: $name, prog_code: $prog_code})
                 SET b.total_credits = $total_credits,
                     b.tc_bat_buoc = $tc_bat_buoc,
                     b.tc_tu_chon = $tc_tu_chon
@@ -298,6 +404,7 @@ def ingest_to_neo4j(data: dict):
         print(f"  ✓ Blocks: {len(data['blocks'])}")
 
         # ── Courses ──────────────────────────────────────────────────────────
+        # Course MERGE trên code duy nhất — cùng một môn có thể thuộc nhiều ngành
         course_codes = set()
         for course in data["courses"]:
             session.run(
@@ -310,7 +417,7 @@ def ingest_to_neo4j(data: dict):
                     c.so_tiet_th = $so_tiet_th,
                     c.la_dieu_kien = $la_dieu_kien
                 WITH c
-                MATCH (b:Block {name: $block})
+                MATCH (b:Block {name: $block, prog_code: $prog_code})
                 MERGE (b)-[:CONTAINS]->(c)
                 """,
                 code=course["code"],
@@ -321,6 +428,7 @@ def ingest_to_neo4j(data: dict):
                 so_tiet_th=course["so_tiet_th"],
                 la_dieu_kien=course["la_dieu_kien"],
                 block=course["block"],
+                prog_code=p["code"],
             )
             course_codes.add(course["code"])
         print(f"  ✓ Courses: {len(data['courses'])}")
@@ -361,10 +469,11 @@ def ingest_to_neo4j(data: dict):
         print(f"  ✓ PARALLEL_WITH relationships: {par_count}")
 
         # ── PLOs ─────────────────────────────────────────────────────────────
+        # PLO key bao gồm prog_code — PLO1 của CNTT ≠ PLO1 của KHMT
         for plo in data["plos"]:
             session.run(
                 """
-                MERGE (plo:PLO {id: $id})
+                MERGE (plo:PLO {id: $id, prog_code: $prog_code})
                 SET plo.description = $description
                 WITH plo
                 MATCH (prog:Program {code: $prog_code})
@@ -380,7 +489,7 @@ def ingest_to_neo4j(data: dict):
         for peo in data["peos"]:
             session.run(
                 """
-                MERGE (peo:PEO {id: $id})
+                MERGE (peo:PEO {id: $id, prog_code: $prog_code})
                 SET peo.description = $description
                 WITH peo
                 MATCH (prog:Program {code: $prog_code})
@@ -392,61 +501,68 @@ def ingest_to_neo4j(data: dict):
             )
         print(f"  ✓ PEOs: {len(data['peos'])}")
 
-        # ── PEO → PLO relationships (REALIZED_BY) ────────────────────────────
-        rel_count = 0
-        for peo_id, plo_ids in PEO_PLO_MAP.items():
-            for plo_id in plo_ids:
+        # ── PEO → PLO relationships (REALIZED_BY) — chỉ cho ngành có mapping ─
+        peo_plo = PEO_PLO_MAP.get(p["code"], {})
+        if peo_plo:
+            rel_count = 0
+            for peo_id, plo_ids in peo_plo.items():
+                for plo_id in plo_ids:
+                    session.run(
+                        """
+                        MATCH (peo:PEO {id: $peo_id, prog_code: $prog_code})
+                        MATCH (plo:PLO {id: $plo_id, prog_code: $prog_code})
+                        MERGE (peo)-[:REALIZED_BY]->(plo)
+                        """,
+                        peo_id=peo_id,
+                        plo_id=plo_id,
+                        prog_code=p["code"],
+                    )
+                    rel_count += 1
+            print(f"  ✓ REALIZED_BY relationships (PEO→PLO): {rel_count}")
+
+        # ── SpecializationTrack — chỉ cho ngành có mapping ────────────────────
+        tracks = TRACK_COURSE_MAP.get(p["code"], {})
+        if tracks:
+            for track_name, course_list in tracks.items():
                 session.run(
                     """
-                    MATCH (peo:PEO {id: $peo_id})
-                    MATCH (plo:PLO {id: $plo_id})
-                    MERGE (peo)-[:REALIZED_BY]->(plo)
+                    MERGE (t:SpecializationTrack {name: $name, prog_code: $prog_code})
+                    WITH t
+                    MATCH (prog:Program {code: $prog_code})
+                    MERGE (prog)-[:HAS_TRACK]->(t)
                     """,
-                    peo_id=peo_id,
-                    plo_id=plo_id,
+                    name=track_name,
+                    prog_code=p["code"],
                 )
-                rel_count += 1
-        print(f"  ✓ REALIZED_BY relationships (PEO→PLO): {rel_count}")
+                for code in course_list:
+                    session.run(
+                        """
+                        MERGE (c:Course {code: $code})
+                        WITH c
+                        MATCH (t:SpecializationTrack {name: $track_name, prog_code: $prog_code})
+                        MERGE (c)-[:BELONGS_TO_TRACK]->(t)
+                        """,
+                        code=code,
+                        track_name=track_name,
+                        prog_code=p["code"],
+                    )
+            print(f"  ✓ SpecializationTrack nodes: {len(tracks)}")
 
-        # ── SpecializationTrack nodes ─────────────────────────────────────────
-        for track_name, course_list in TRACK_COURSE_MAP.items():
-            session.run(
-                """
-                MERGE (t:SpecializationTrack {name: $name})
-                WITH t
-                MATCH (prog:Program {code: $prog_code})
-                MERGE (prog)-[:HAS_TRACK]->(t)
-                """,
-                name=track_name,
-                prog_code=p["code"],
-            )
-            track_rel_count = 0
-            for code in course_list:
+        # ── JobPosition — chỉ cho ngành có mapping ────────────────────────────
+        positions = JOB_POSITIONS_MAP.get(p["code"], [])
+        if positions:
+            for position in positions:
                 session.run(
                     """
-                    MERGE (c:Course {code: $code})
-                    MATCH (t:SpecializationTrack {name: $track_name})
-                    MERGE (c)-[:BELONGS_TO_TRACK]->(t)
+                    MERGE (j:JobPosition {name: $name})
+                    WITH j
+                    MATCH (prog:Program {code: $prog_code})
+                    MERGE (prog)-[:HAS_JOB_POSITION]->(j)
                     """,
-                    code=code,
-                    track_name=track_name,
+                    name=position,
+                    prog_code=p["code"],
                 )
-                track_rel_count += 1
-        print(f"  ✓ SpecializationTrack nodes: {len(TRACK_COURSE_MAP)}")
-
-        # ── JobPosition nodes ─────────────────────────────────────────────────
-        for position in JOB_POSITIONS:
-            session.run(
-                """
-                MERGE (j:JobPosition {name: $name})
-                WITH j
-                MATCH (prog:Program {code: $prog_code})
-                MERGE (prog)-[:HAS_JOB_POSITION]->(j)
-                """,
-                name=position,
-                prog_code=p["code"],
-            )
-        print(f"  ✓ JobPosition nodes: {len(JOB_POSITIONS)}")
+            print(f"  ✓ JobPosition nodes: {len(positions)}")
 
     driver.close()
 
@@ -456,17 +572,39 @@ def ingest_to_neo4j(data: dict):
 # ─────────────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    md_files = list(DATA_DIR.glob("*.md"))
+    md_files = sorted(DATA_DIR.glob("*.md"))
     if not md_files:
         print(f"No .md files found in {DATA_DIR}")
+        exit(1)
+
+    print(f"Found {len(md_files)} markdown files in {DATA_DIR}")
+
+    # Xóa graph MỘT LẦN trước khi ingest tất cả file
+    clear_graph()
+
+    success = 0
+    skipped = 0
     for md_file in md_files:
         print(f"\n{'='*60}")
-        print(f"Ingesting: {md_file.name}")
-        print("="*60)
+        print(f"Processing: {md_file.name}")
+        print("=" * 60)
+
         data = parse_markdown(md_file)
-        print(f"  Parsed: {len(data['courses'])} courses, "
-              f"{len(data['blocks'])} blocks, "
-              f"{len(data['plos'])} PLOs, "
-              f"{len(data['peos'])} PEOs")
+        if data is None:
+            print("  ⏭ Skipped (not a CTĐT file)")
+            skipped += 1
+            continue
+
+        print(
+            f"  Parsed: {len(data['courses'])} courses, "
+            f"{len(data['blocks'])} blocks, "
+            f"{len(data['plos'])} PLOs, "
+            f"{len(data['peos'])} PEOs"
+        )
         ingest_to_neo4j(data)
+        success += 1
         print(f"\n✅ Done: {md_file.name}")
+
+    print(f"\n{'='*60}")
+    print(f"Summary: {success} programs ingested, {skipped} files skipped")
+    print("=" * 60)
