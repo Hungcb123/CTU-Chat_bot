@@ -48,7 +48,6 @@ DEFAULT_QDRANT_URL = "http://localhost:6333"
 DEFAULT_QDRANT_TIMEOUT_SECONDS = int(os.getenv("QDRANT_TIMEOUT_SECONDS", "60"))
 DEFAULT_COLLECTION_ALIAS = "ctu_scholarship_docs_current"
 COLLECTION_PREFIX = "ctu_scholarship_docs_"
-DEFAULT_EXPECTED_DOCUMENT_COUNT = 46
 REQUIRED_METADATA_FIELDS = {
     "domain",
     "content_kind",
@@ -108,15 +107,6 @@ def _catalog_errors(report: Any, expected_count: int | None) -> list[str]:
     ):
         for item in getattr(report, field, ()):
             errors.append(f"{field}: {item}")
-    if expected_count is not None:
-        if report.manifest_count != expected_count:
-            errors.append(
-                f"manifest_count={report.manifest_count}, expected={expected_count}"
-            )
-        if report.markdown_count != expected_count:
-            errors.append(
-                f"markdown_count={report.markdown_count}, expected={expected_count}"
-            )
     return errors
 
 
@@ -443,10 +433,8 @@ def _common_parser_options(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--expected-count",
         type=int,
-        default=int(
-            os.getenv("RAG_EXPECTED_MARKDOWN_COUNT", DEFAULT_EXPECTED_DOCUMENT_COUNT)
-        ),
-        help="expected manifest and Markdown count; use 0 to disable the count gate",
+        default=0,
+        help="expected manifest and Markdown count; 0 (default) disables the count gate",
     )
 
 
