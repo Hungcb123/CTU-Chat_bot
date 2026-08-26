@@ -108,6 +108,9 @@ class RetrievalLane(str, Enum):
     SCHOLARSHIP = "scholarship"
     STUDENT_LOAN = "student_loan"
     SOCIAL_SUPPORT = "social_support"
+    ACADEMIC_PROGRAM = "academic_program"
+    ACADEMIC_RULES = "academic_rules"
+    QUY_CHE_GENERAL = "quy_che_general"
 
 
 LANE_METADATA: Dict[RetrievalLane, Dict[str, str]] = {
@@ -133,6 +136,17 @@ LANE_METADATA: Dict[RetrievalLane, Dict[str, str]] = {
     },
     RetrievalLane.SOCIAL_SUPPORT: {
         "domain": "social_support",
+    },
+    RetrievalLane.ACADEMIC_PROGRAM: {
+        "domain": "academic_program",
+    },
+    RetrievalLane.ACADEMIC_RULES: {
+        "domain": "academic_regulation",
+        "content_kind": "quy_che_hoc_vu",
+    },
+    RetrievalLane.QUY_CHE_GENERAL: {
+        "domain": "academic_regulation",
+        "content_kind": "quy_dinh_chung",
     },
 }
 

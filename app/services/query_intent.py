@@ -18,6 +18,9 @@ class QueryIntent(str, Enum):
     SCHOLARSHIP = "scholarship"
     STUDENT_LOAN = "student_loan"
     SOCIAL_SUPPORT = "social_support"
+    ACADEMIC_PROGRAM = "academic_program"
+    ACADEMIC_RULES = "academic_rules"
+    QUY_CHE_GENERAL = "quy_che_general"
     OTHER = "other"
 
 
@@ -573,6 +576,32 @@ def build_retrieval_lanes(decision: QueryRoutingDecision) -> tuple[RetrievalLane
         return (actual, basis, policy)
     if decision.intent in {QueryIntent.BOTH, QueryIntent.AMBIGUOUS_TUITION}:
         return (actual, basis)
+    if decision.intent == QueryIntent.ACADEMIC_PROGRAM:
+        return (
+            RetrievalLane(
+                name="academic_program",
+                domain="academic_program",
+                top_n=6,
+            ),
+        )
+    if decision.intent == QueryIntent.ACADEMIC_RULES:
+        return (
+            RetrievalLane(
+                name="academic_rules",
+                domain="academic_regulation",
+                content_kind="quy_che_hoc_vu",
+                top_n=6,
+            ),
+        )
+    if decision.intent == QueryIntent.QUY_CHE_GENERAL:
+        return (
+            RetrievalLane(
+                name="quy_che_general",
+                domain="academic_regulation",
+                content_kind="quy_dinh_chung",
+                top_n=6,
+            ),
+        )
     return (RetrievalLane(name="default", top_n=6),)
 
 
@@ -614,5 +643,15 @@ def build_answer_instruction(decision: QueryRoutingDecision) -> str:
         return (
             "Giữ học phí thực tế và cơ sở tính miễn giảm thành hai đại lượng riêng. "
             "Nêu nhãn và năm học của từng mức trước khi so sánh hoặc tính toán."
+        )
+    if decision.intent == QueryIntent.ACADEMIC_PROGRAM:
+        return (
+            "Chỉ dùng tài liệu chương trình đào tạo của ngành được hỏi. "
+            "Trả lời đúng ngành, nêu rõ mã ngành, số tín chỉ, thời gian đào tạo nếu có trong tài liệu."
+        )
+    if decision.intent in {QueryIntent.ACADEMIC_RULES, QueryIntent.QUY_CHE_GENERAL}:
+        return (
+            "Chỉ dùng tài liệu quy chế học vụ hoặc quy định đào tạo; "
+            "trích dẫn điều khoản cụ thể nếu có."
         )
     return "Áp dụng ngữ cảnh truy xuất phù hợp và không suy diễn ngoài tài liệu."

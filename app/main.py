@@ -25,7 +25,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from app.tools.scholarship import tinh_tien_hoc_bong
 from app.tools.tuition import tinh_toan_hoc_phi
+from app.tools.academic_program import tra_cuu_nganh, so_sanh_nganh, tim_nganh
 from app.services.tuition_catalog import TuitionRateCatalog
+from app.services.llm_classifier import LLMIntentClassifier
 
 # Import controllers
 from app.api.chat import router as chat_router
@@ -71,13 +73,28 @@ async def lifespan(app: FastAPI):
         )
         
         # --- CẤU HÌNH TOOL CALLING TÍCH HỢP ---
-        app.state.tools = [tinh_tien_hoc_bong, tinh_toan_hoc_phi]
+        app.state.tools = [
+            tinh_tien_hoc_bong, tinh_toan_hoc_phi,
+            tra_cuu_nganh, so_sanh_nganh, tim_nganh,
+        ]
         app.state.llm_with_tools = app.state.llm.bind_tools(app.state.tools)
+        
+        # --- LLM CLASSIFIER (Primary: LLM, Fallback: Rule-base) ---
+        app.state.llm_classifier = LLMIntentClassifier(
+            llm=app.state.rewrite_llm,  # Dùng chung Gemini Flash Lite
+            confidence_threshold=float(os.environ.get("LLM_CLASSIFIER_THRESHOLD", "0.8")),
+            timeout_seconds=float(os.environ.get("LLM_CLASSIFIER_TIMEOUT", "5.0")),
+        )
+        logger.info(
+            "✅ LLM Classifier initialized (threshold=%.2f, timeout=%.1fs)",
+            app.state.llm_classifier.confidence_threshold,
+            app.state.llm_classifier.timeout_seconds,
+        )
         
         app.state.chat_prompt = ChatPromptTemplate.from_messages([
             ("system", """Bạn là một trợ lý thông minh của Trường Đại học Cần Thơ.
-            Chuyên môn của bạn là giải đáp các vấn đề về Tài chính Sinh viên: Mức học phí, Học bổng, Miễn giảm học phí, Trợ cấp xã hội, và Vay vốn.
-            Nếu người dùng hỏi những chủ đề hoàn toàn không liên quan đến học phí hoặc chính sách sinh viên (ví dụ: nấu ăn, giải trí, chính trị...), hãy từ chối khéo léo.
+            Chuyên môn của bạn là giải đáp các vấn đề về: Tài chính Sinh viên (học phí, học bổng, miễn giảm, trợ cấp, vay vốn), Chương trình đào tạo các ngành, và Quy chế học vụ.
+            Nếu người dùng hỏi những chủ đề hoàn toàn không liên quan (ví dụ: nấu ăn, giải trí, chính trị...), hãy từ chối khéo léo.
             
             Hãy sử dụng các đoạn ngữ cảnh (Context) sau đây HOẶC kết quả từ các Công cụ (Tools) để trả lời câu hỏi của người dùng.
             Nếu trong Context và kết quả Công cụ đều không có thông tin, hãy trả lời là "Tôi không tìm thấy thông tin này trong tài liệu", tuyệt đối không bịa đặt.
@@ -95,6 +112,7 @@ async def lifespan(app: FastAPI):
               + CHÚ Ý CỰC KỲ QUAN TRỌNG: "Mức học phí thực tế" và "Mức học phí làm cơ sở tính miễn giảm" là 2 bảng giá hoàn toàn KHÁC NHAU. 
               + NẾU câu hỏi nhắc đến "miễn giảm", TUYỆT ĐỐI CHỈ lấy số liệu từ tài liệu có tiêu đề "Mức học phí làm cơ sở để tính miễn, giảm". (Ví dụ: môn Giáo dục quốc phòng và an ninh có mức cơ sở miễn giảm là 451.000 đồng/tín chỉ, KHÔNG PHẢI 695.000 đồng).
             - Nếu Context có nhãn `KẾT QUẢ TRA CỨU HỌC PHÍ CẤU TRÚC - NGUỒN ƯU TIÊN`, phải dùng đúng các mức trong khối đó. Không được thay bằng mức từ vector search.
+            - NẾU người dùng HỎI VỀ NGÀNH HỌC, CHƯƠNG TRÌNH ĐÀO TẠO, MÔN HỌC CỦA NGÀNH: Gọi công cụ `tra_cuu_nganh` để tra cứu. Nếu cần so sánh 2 ngành, gọi `so_sanh_nganh`. Nếu cần tìm ngành theo tiêu chí, gọi `tim_nganh`.
 
             CHỈ DẪN ĐỊNH TUYẾN CHO CÂU HỎI HIỆN TẠI:
             {retrieval_instruction}

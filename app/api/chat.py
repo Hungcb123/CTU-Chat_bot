@@ -9,6 +9,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from app.models.pydantic import ChatRequest, ChatResponse
 from app.tools.scholarship import tinh_tien_hoc_bong
 from app.tools.tuition import tinh_toan_hoc_phi
+from app.tools.academic_program import tra_cuu_nganh, so_sanh_nganh, tim_nganh
 
 # Imports cho PostgreSQL
 from app.core.database import AsyncSessionLocal
@@ -165,7 +166,19 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
         )
 
         # --- BƯỚC 2: ĐỊNH TUYẾN Ý ĐỊNH & RÚT TRÍCH TÀI LIỆU ---
-        routing_decision = classify_query_intent(request.query, search_query)
+        # Primary: LLM Classifier | Fallback: Rule-base
+        llm_classifier = fast_req.app.state.llm_classifier
+        classifier_result = await llm_classifier.classify_with_fallback(search_query)
+        routing_decision = llm_classifier.to_routing_decision(
+            classifier_result, request.query
+        )
+        logger.info(
+            "LLM Classifier: lane=%s conf=%.2f source=%s params=%s",
+            classifier_result.lane,
+            classifier_result.confidence,
+            classifier_result.source,
+            classifier_result.params,
+        )
         metadata_filter_enabled = _env_flag("RAG_METADATA_FILTER_ENABLED", default=False)
         no_result_response = None
         missing_lanes = []
@@ -400,6 +413,27 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
                     ))
                 elif tool_call["name"] == "tinh_toan_hoc_phi":
                     tool_result_str = tinh_toan_hoc_phi.invoke(tool_call["args"])
+                    messages.append(ToolMessage(
+                        content=tool_result_str,
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
+                elif tool_call["name"] == "tra_cuu_nganh":
+                    tool_result_str = tra_cuu_nganh.invoke(tool_call["args"])
+                    messages.append(ToolMessage(
+                        content=tool_result_str,
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
+                elif tool_call["name"] == "so_sanh_nganh":
+                    tool_result_str = so_sanh_nganh.invoke(tool_call["args"])
+                    messages.append(ToolMessage(
+                        content=tool_result_str,
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
+                elif tool_call["name"] == "tim_nganh":
+                    tool_result_str = tim_nganh.invoke(tool_call["args"])
                     messages.append(ToolMessage(
                         content=tool_result_str,
                         tool_call_id=tool_call["id"],
