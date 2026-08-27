@@ -89,9 +89,16 @@ def parse_markdown(filepath: Path) -> dict | None:
         return None
 
     # --- Program node ---
+    # Ưu tiên mã ngành từ tên file (có suffix C cho CLC)
+    # Format tên file: "66_7480201_CongNgheThongTin.md" hoặc "67_7480201C_CongNgheThongTin_CTCLC.md"
+    filename_code = ""
+    fname_m = re.match(r"\d+_(\d{7}C?)_", filepath.name)
+    if fname_m:
+        filename_code = fname_m.group(1)
+
     program = {
         "name": metadata.get("nganh_hoc", ""),
-        "code": metadata.get("ma_nganh", ""),
+        "code": filename_code or metadata.get("ma_nganh", ""),
         "level": metadata.get("trinh_do", ""),
         "unit": metadata.get("don_vi", ""),
         "year": int(metadata.get("nam_ban_hanh", 0)),
@@ -118,7 +125,7 @@ def parse_markdown(filepath: Path) -> dict | None:
     if degree_m:
         program["degree_type"] = degree_m.group(1).strip()
 
-    # Mã ngành từ nội dung nếu frontmatter không có — hỗ trợ **bold**
+    # Mã ngành từ nội dung nếu vẫn chưa có — hỗ trợ **bold**
     if not program["code"]:
         code_m = re.search(r"Mã ngành:\s*\**\s*([\w]+)\**", text)
         if code_m:

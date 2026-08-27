@@ -782,13 +782,29 @@ class AdvancedChunkingEngine:
                 f"Overlap: {len(overlap_keys)} | Total RRF candidates: {len(rrf_scores)}"
             )
 
+            # Gắn retrieval_source vào metadata
+            for k, doc in doc_map.items():
+                doc.metadata = dict(doc.metadata)
+                if k in overlap_keys:
+                    doc.metadata["retrieval_source"] = "vector+bm25"
+                elif k in only_dense:
+                    doc.metadata["retrieval_source"] = "vector"
+                else:
+                    doc.metadata["retrieval_source"] = "bm25"
+
             sorted_keys = sorted(rrf_scores.keys(), key=lambda k: rrf_scores[k], reverse=True)
             candidate_parents = [doc_map[k] for k in sorted_keys[: max(result_limit * 3, DEFAULT_SEARCH_K)]]
         elif dense_docs:
             logger.info(f"[HybridSearch] Vector only: {len(dense_docs)} docs (BM25 returned 0)")
+            for doc in dense_docs:
+                doc.metadata = dict(doc.metadata)
+                doc.metadata["retrieval_source"] = "vector"
             candidate_parents = dense_docs
         elif sparse_docs:
             logger.info(f"[HybridSearch] BM25 only: {len(sparse_docs)} docs (Vector returned 0)")
+            for doc in sparse_docs:
+                doc.metadata = dict(doc.metadata)
+                doc.metadata["retrieval_source"] = "bm25"
             candidate_parents = sparse_docs
         else:
             logger.info("[HybridSearch] Cả Vector và BM25 đều không trả kết quả.")

@@ -9,7 +9,10 @@ from langchain_core.prompts import ChatPromptTemplate
 from app.models.pydantic import ChatRequest, ChatResponse
 from app.tools.scholarship import tinh_tien_hoc_bong
 from app.tools.tuition import tinh_toan_hoc_phi
-from app.tools.academic_program import tra_cuu_nganh, so_sanh_nganh, tim_nganh
+from app.tools.academic_program import (
+    tra_cuu_nganh, so_sanh_nganh, tim_nganh,
+    xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
+)
 
 # Imports cho PostgreSQL
 from app.core.database import AsyncSessionLocal
@@ -272,7 +275,11 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
                     f" Hệ thống không tìm thấy {missing_text}{year_text}; "
                     "phải nói rõ là không tìm thấy và không dùng loại khác thay thế."
                 )
-            if not docs and not structured_context_blocks:
+            if (
+                not docs
+                and not structured_context_blocks
+                and routing_decision.intent != QueryIntent.ACADEMIC_PROGRAM
+            ):
                 year_text = (
                     f" cho năm học {routing_decision.academic_year}"
                     if routing_decision.academic_year
@@ -320,13 +327,15 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
                 source = doc.metadata.get('source', 'N/A')
                 headers = {k: v for k, v in doc.metadata.items() if k.startswith("Header_")}
                 effective_date = doc.metadata.get('effective_date', 'N/A')
+                retrieval_source = doc.metadata.get('retrieval_source', 'unknown')
                 preview = doc.page_content[:1200].replace('\n', ' ')
                 
                 log_lines.append(
                     f"  [{i+1}] Source: {source} | Date: {effective_date} | "
                     f"FeeKind: {doc.metadata.get('fee_kind', 'N/A')} | "
                     f"Lane: {doc.metadata.get('retrieval_lane', 'default')} | "
-                    f"Index: {doc.metadata.get('index_version', 'N/A')}"
+                    f"Index: {doc.metadata.get('index_version', 'N/A')} | "
+                    f"RetrievedBy: {retrieval_source}"
                 )
                 log_lines.append(f"      Headers: {headers}")
                 log_lines.append(f"      Preview: {preview}...")
@@ -336,10 +345,22 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
             log_lines.append(f"{'='*80}\n")
             log_text = "\n".join(log_lines)
             
-            # Ghi ra console log
+            # Ghi ra console log — hiển thị nguồn retrieval
+            source_icons = {"vector": "🔵", "bm25": "🟢", "vector+bm25": "🟡", "graph": "🔴"}
             logger.info(f"📄 Retrieved {len(docs)} Parent Docs cho query: '{request.query}'")
+            
+            # Thống kê theo nguồn
+            src_counts: dict = {}
+            for doc in docs:
+                rs = doc.metadata.get('retrieval_source', 'unknown')
+                src_counts[rs] = src_counts.get(rs, 0) + 1
+            src_summary = " | ".join(f"{source_icons.get(s, '⚪')}{s}: {c}" for s, c in src_counts.items())
+            logger.info(f"📊 Nguồn retrieval: {src_summary}")
+            
             for i, doc in enumerate(docs):
-                logger.info(f"  Doc [{i+1}]: {doc.metadata.get('source', '?')} | {doc.page_content[:120]}...")
+                rs = doc.metadata.get('retrieval_source', 'unknown')
+                icon = source_icons.get(rs, '⚪')
+                logger.info(f"  {icon} Doc [{i+1}] [{rs}]: {doc.metadata.get('source', '?')} | {doc.page_content[:120]}...")
             
             # Ghi ra file (append mode)
             with open(log_file, "a", encoding="utf-8") as f:
@@ -403,7 +424,17 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
             messages = prompt_value.to_messages()
             messages.append(response_msg) 
             
+            # Phân loại nguồn tool
+            GRAPH_TOOLS = {"tra_cuu_nganh", "so_sanh_nganh", "tim_nganh",
+                           "xem_chuoi_tien_quyet", "mon_chung_giua_nganh", "tim_nganh_co_mon"}
+            CALC_TOOLS = {"tinh_tien_hoc_bong", "tinh_toan_hoc_phi"}
+            
             for tool_call in response_msg.tool_calls:
+                tool_name = tool_call["name"]
+                tool_source = "🔴graph" if tool_name in GRAPH_TOOLS else "🔧calc" if tool_name in CALC_TOOLS else "⚪unknown"
+                logger.info(
+                    f"  {tool_source} Tool [{tool_name}] args={tool_call['args']}"
+                )
                 if tool_call["name"] == "tinh_tien_hoc_bong":
                     tool_result_str = tinh_tien_hoc_bong.invoke(tool_call["args"])
                     messages.append(ToolMessage(
@@ -439,22 +470,59 @@ async def chat_endpoint(request: ChatRequest, fast_req: Request, background_task
                         tool_call_id=tool_call["id"],
                         name=tool_call["name"]
                     ))
+                elif tool_call["name"] == "xem_chuoi_tien_quyet":
+                    tool_result_str = xem_chuoi_tien_quyet.invoke(tool_call["args"])
+                    messages.append(ToolMessage(
+                        content=tool_result_str,
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
+                elif tool_call["name"] == "mon_chung_giua_nganh":
+                    tool_result_str = mon_chung_giua_nganh.invoke(tool_call["args"])
+                    messages.append(ToolMessage(
+                        content=tool_result_str,
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
+                elif tool_call["name"] == "tim_nganh_co_mon":
+                    tool_result_str = tim_nganh_co_mon.invoke(tool_call["args"])
+                    messages.append(ToolMessage(
+                        content=tool_result_str,
+                        tool_call_id=tool_call["id"],
+                        name=tool_call["name"]
+                    ))
                 else:
                     messages.append(ToolMessage(
                         content="Lỗi: Không tìm thấy công cụ này.",
                         tool_call_id=tool_call["id"],
                         name=tool_call["name"]
                     ))
+            # Thu thập kết quả tool để dùng làm fallback nếu LLM trả rỗng
+            tool_results_text = []
+            for msg in messages:
+                if isinstance(msg, ToolMessage):
+                    tool_results_text.append(msg.content)
             
             final_response = await llm.ainvoke(messages)
             
+            # Parse response content
             if isinstance(final_response.content, list):
-                ai_response = " ".join(block.get("text", "") for block in final_response.content if isinstance(block, dict) and block.get("type") == "text")
+                ai_response = " ".join(
+                    block.get("text", "") for block in final_response.content
+                    if isinstance(block, dict) and block.get("type") == "text"
+                )
+                if not ai_response.strip():
+                    ai_response = " ".join(
+                        str(block) for block in final_response.content
+                        if isinstance(block, str)
+                    )
             else:
                 ai_response = str(final_response.content)
-                
+            
+            # Fallback: nếu LLM trả rỗng, dùng trực tiếp kết quả tool
             if not ai_response.strip():
-                ai_response = "Hệ thống đã tính toán xong nhưng gặp lỗi khi diễn đạt."
+                logger.warning("⚠️ Final LLM trả về rỗng, dùng tool result trực tiếp.")
+                ai_response = "\n\n".join(tool_results_text) if tool_results_text else "Hệ thống đã xử lý xong nhưng không thể tạo câu trả lời."
         else:
             if isinstance(response_msg.content, list):
                 ai_response = " ".join(block.get("text", "") for block in response_msg.content if isinstance(block, dict) and block.get("type") == "text")

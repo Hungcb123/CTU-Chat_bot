@@ -25,9 +25,14 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from app.tools.scholarship import tinh_tien_hoc_bong
 from app.tools.tuition import tinh_toan_hoc_phi
-from app.tools.academic_program import tra_cuu_nganh, so_sanh_nganh, tim_nganh
+from app.tools.academic_program import (
+    tra_cuu_nganh, so_sanh_nganh, tim_nganh,
+    xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
+    set_graph_service,
+)
 from app.services.tuition_catalog import TuitionRateCatalog
 from app.services.llm_classifier import LLMIntentClassifier
+from app.services.graph_service import AcademicGraphService
 
 # Import controllers
 from app.api.chat import router as chat_router
@@ -62,6 +67,18 @@ async def lifespan(app: FastAPI):
             "✅ Đã nạp %d mức học phí có cấu trúc.",
             len(app.state.tuition_catalog.records),
         )
+
+        # KHỞI TẠO NEO4J GRAPH SERVICE
+        logger.info("📡 Đang kết nối tới Neo4j Graph Database...")
+        neo4j_uri = os.environ.get("NEO4J_URI", "bolt://localhost:7687")
+        neo4j_user = os.environ.get("NEO4J_USER", "neo4j")
+        neo4j_password = os.environ.get("NEO4J_PASSWORD", "password")
+        app.state.graph_service = AcademicGraphService(
+            uri=neo4j_uri, user=neo4j_user, password=neo4j_password,
+        )
+        app.state.graph_service.ensure_data_loaded()
+        set_graph_service(app.state.graph_service)
+        logger.info("✅ Neo4j Graph Service sẵn sàng!")
         
         # LLM CHÍNH (GEMINI): Dùng để sinh câu trả lời và sử dụng Tool
         app.state.llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite")
@@ -76,6 +93,7 @@ async def lifespan(app: FastAPI):
         app.state.tools = [
             tinh_tien_hoc_bong, tinh_toan_hoc_phi,
             tra_cuu_nganh, so_sanh_nganh, tim_nganh,
+            xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
         ]
         app.state.llm_with_tools = app.state.llm.bind_tools(app.state.tools)
         
@@ -113,6 +131,9 @@ async def lifespan(app: FastAPI):
               + NẾU câu hỏi nhắc đến "miễn giảm", TUYỆT ĐỐI CHỈ lấy số liệu từ tài liệu có tiêu đề "Mức học phí làm cơ sở để tính miễn, giảm". (Ví dụ: môn Giáo dục quốc phòng và an ninh có mức cơ sở miễn giảm là 451.000 đồng/tín chỉ, KHÔNG PHẢI 695.000 đồng).
             - Nếu Context có nhãn `KẾT QUẢ TRA CỨU HỌC PHÍ CẤU TRÚC - NGUỒN ƯU TIÊN`, phải dùng đúng các mức trong khối đó. Không được thay bằng mức từ vector search.
             - NẾU người dùng HỎI VỀ NGÀNH HỌC, CHƯƠNG TRÌNH ĐÀO TẠO, MÔN HỌC CỦA NGÀNH: Gọi công cụ `tra_cuu_nganh` để tra cứu. Nếu cần so sánh 2 ngành, gọi `so_sanh_nganh`. Nếu cần tìm ngành theo tiêu chí, gọi `tim_nganh`.
+            - NẾU người dùng HỎI VỀ CHUỖI TIÊN QUYẾT ("muốn học môn X cần học gì trước?"): Gọi công cụ `xem_chuoi_tien_quyet` với mã hoặc tên môn.
+            - NẾU người dùng HỎI VỀ MÔN CHUNG GIỮA 2 NGÀNH: Gọi công cụ `mon_chung_giua_nganh`.
+            - NẾU người dùng HỎI "ngành nào có môn X?" hoặc "môn X thuộc ngành nào?": Gọi công cụ `tim_nganh_co_mon`.
 
             CHỈ DẪN ĐỊNH TUYẾN CHO CÂU HỎI HIỆN TẠI:
             {retrieval_instruction}
@@ -133,6 +154,9 @@ async def lifespan(app: FastAPI):
         logger.critical(f"Lỗi khởi tạo hệ thống: {str(e)}")
         raise e
     finally:
+        if hasattr(app.state, "graph_service"):
+            app.state.graph_service.close()
+            logger.info("🔒 Đã đóng kết nối Neo4j an toàn.")
         if hasattr(app.state, "redis_client"):
             await app.state.redis_client.close()
             logger.info("🔒 Đã đóng kết nối Redis an toàn.")

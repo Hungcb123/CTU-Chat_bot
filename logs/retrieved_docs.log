@@ -36423,3 +36423,181 @@
 [SỐ LƯỢNG DOCS TRẢ VỀ]: 0
 --------------------------------------------------------------------------------
 ================================================================================
+
+================================================================================
+[2026-08-27 14:48:52] QUERY GỐC: có mấy loại vay vốn
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: có mấy loại vay vốn
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 6
+--------------------------------------------------------------------------------
+  [1] Source: VayVon.md | Date: 2007-10-02 | FeeKind: not_applicable | Lane: student_loan | Index: fix_llm_ingest_v5
+      Headers: {'Header_3_NguoiKy': '6. Phương thức cho vay: NHCSXH áp dụng theo 2 phương thức cho vay:', 'Header_1_QuyetDinh': 'Hướng dẫn — Quy trình vay vốn học sinh, sinh viên theo Quyết định 157/2007/QĐ-TTg — Có cập nhật mức vay năm 2022', 'Header_2_ChuyenMuc': 'I. Một số nội dung được hiểu và thực hiện thống nhất trong văn bản hướng dẫn:'}
+      Preview: [METADATA | CHỦ ĐỀ: VAY VỐN SINH VIÊN | NỘI DUNG: CHÍNH SÁCH | NGUỒN: VayVon.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Hướng dẫn — Quy trình vay vốn học sinh, sinh viên theo Quyết định 157/2007/QĐ-TTg — Có cập nhật mức vay năm 2022 Header_2_ChuyenMuc: I. Một số nội dung được hiểu và thực hiện thống nhất trong văn bản hướng dẫn: Header_3_NguoiKy: 6. Phương thức cho vay: NHCSXH áp dụng theo 2 phương thức cho vay: Nội dung chi tiết: ### 6. Phương thức cho vay: NHCSXH áp dụng theo 2 phương thức cho vay:   6.1. HSSV vay vốn thông qua hộ gia đình:   - Đại diện hộ gia đình là người trực tiếp vay vốn và có trách nhiệm trả nợ NHCSXH.   - Người vay không phải thế chấp tài sản nhưng phải gia nhập và là thành viên Tổ Tiết kiệm và vay vốn (TK&VV) tại thôn, ấp, bản, buôn (gọi chung là thôn) nơi hộ gia đình đang sinh sống, được Tổ bình xét đủ điều kiện vay vốn, lập thành danh sách đề nghị vay vốn NHCSXH gửi UBND cấp xã xác nhận.   - Việc cho vay của NHCSXH được thực hiện uỷ thác từng phần qua các tổ chức chính trị - xã hội theo cơ chế hiện hành của NHCSXH.   6.2. Đối với HSSV mồ côi cả cha lẫn mẹ hoặc chỉ mồ côi cha hoặc mẹ nhưng người còn lại không có khả năng lao động được vay vốn và trả nợ t...
+      Length: 1255 chars
+
+  [2] Source: NDCP_VayVonSVKT.md | Date: 2025-08-28 | FeeKind: not_applicable | Lane: student_loan | Index: fix_llm_ingest_v5
+      Headers: {'Header_1_QuyetDinh': 'Quyết định 29/2025/QĐ-TTg — Tín dụng cho người học ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025', 'Header_2_ChuyenMuc': 'Điều 14. Phân loại nợ và xử lý nợ bị rủi ro'}
+      Preview: [METADATA | CHỦ ĐỀ: VAY VỐN SINH VIÊN | NỘI DUNG: CHÍNH SÁCH | NGUỒN: NDCP_VayVonSVKT.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Quyết định 29/2025/QĐ-TTg — Tín dụng cho người học ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025 Header_2_ChuyenMuc: Điều 14. Phân loại nợ và xử lý nợ bị rủi ro Nội dung chi tiết: ## Điều 14. Phân loại nợ và xử lý nợ bị rủi ro   Việc phân loại nợ và xử lý nợ bị rủi ro đối với các khoản vay theo quy định tại Quyết định này được thực hiện theo quy định của pháp luật về phân loại nợ và xử lý nợ bị rủi ro tại Ngân hàng Chính sách xã hội....
+      Length: 576 chars
+
+  [3] Source: NDCP_VayVonSVKT.md | Date: 2025-08-28 | FeeKind: not_applicable | Lane: student_loan | Index: fix_llm_ingest_v5
+      Headers: {'Header_3_NguoiKy': '1. Ngân hàng Chính sách xã hội thực hiện cho vay thông qua hộ gia đình. Đại diện hộ gia đình của người học là người đứng tên vay vốn và giao dịch với Ngân hàng Chính sách xã hội.', 'Header_1_QuyetDinh': 'Quyết định 29/2025/QĐ-TTg — Tín dụng cho người học ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025', 'Header_2_ChuyenMuc': 'Điều 6. Phương thức cho vay'}
+      Preview: [METADATA | CHỦ ĐỀ: VAY VỐN SINH VIÊN | NỘI DUNG: CHÍNH SÁCH | NGUỒN: NDCP_VayVonSVKT.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Quyết định 29/2025/QĐ-TTg — Tín dụng cho người học ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025 Header_2_ChuyenMuc: Điều 6. Phương thức cho vay Header_3_NguoiKy: 1. Ngân hàng Chính sách xã hội thực hiện cho vay thông qua hộ gia đình. Đại diện hộ gia đình của người học là người đứng tên vay vốn và giao dịch với Ngân hàng Chính sách xã hội. Nội dung chi tiết: ## Điều 6. Phương thức cho vay   ### 1. Ngân hàng Chính sách xã hội thực hiện cho vay thông qua hộ gia đình. Đại diện hộ gia đình của người học là người đứng tên vay vốn và giao dịch với Ngân hàng Chính sách xã hội....
+      Length: 715 chars
+
+  [4] Source: NDCP_VayVonSVKT.md | Date: 2025-08-28 | FeeKind: not_applicable | Lane: student_loan | Index: fix_llm_ingest_v5
+      Headers: {'Header_3_NguoiKy': '2. Thời hạn giải ngân vốn vay là khoảng thời gian tính từ ngày khách hàng vay vốn nhận khoản vay đầu tiên cho đến ngày người học kết thúc khóa học, kể cả thời gian người học được các trường cho phép nghỉ học tạm thời và được bảo lưu kết quả học tập (nếu có):', 'Header_1_QuyetDinh': 'Quyết định 29/2025/QĐ-TTg — Tín dụng cho người học ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025', 'Header_2_ChuyenMuc': 'Điều 10. Thời hạn cho vay'}
+      Preview: [METADATA | CHỦ ĐỀ: VAY VỐN SINH VIÊN | NỘI DUNG: CHÍNH SÁCH | NGUỒN: NDCP_VayVonSVKT.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Quyết định 29/2025/QĐ-TTg — Tín dụng cho người học ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025 Header_2_ChuyenMuc: Điều 10. Thời hạn cho vay Header_3_NguoiKy: 2. Thời hạn giải ngân vốn vay là khoảng thời gian tính từ ngày khách hàng vay vốn nhận khoản vay đầu tiên cho đến ngày người học kết thúc khóa học, kể cả thời gian người học được các trường cho phép nghỉ học tạm thời và được bảo lưu kết quả học tập (nếu có): Nội dung chi tiết: ### 2. Thời hạn giải ngân vốn vay là khoảng thời gian tính từ ngày khách hàng vay vốn nhận khoản vay đầu tiên cho đến ngày người học kết thúc khóa học, kể cả thời gian người học được các trường cho phép nghỉ học tạm thời và được bảo lưu kết quả học tập (nếu có): a) Thời hạn giải ngân vốn vay được chia thành các kỳ hạn giải ngân vốn vay do Ngân hàng Chính sách xã hội quy định hoặc thỏa thuận với khách hàng vay vốn;   b) Ngân hàng Chính sách xã hội không giải ngân vốn vay trong thời gian người học được các trường cho phép nghỉ học tạm thời và được bảo lưu kết quả học tập (nếu có);   c) Trong thời hạn giải ngân vốn va...
+      Length: 1250 chars
+
+  [5] Source: VayVon.md | Date: 2007-10-02 | FeeKind: not_applicable | Lane: student_loan | Index: fix_llm_ingest_v5
+      Headers: {'Header_3_NguoiKy': '5. Định kỳ hạn trả nợ, thu nợ, thu lãi tiền vay:', 'Header_1_QuyetDinh': 'Hướng dẫn — Quy trình vay vốn học sinh, sinh viên theo Quyết định 157/2007/QĐ-TTg — Có cập nhật mức vay năm 2022', 'Header_2_ChuyenMuc': 'I. Một số nội dung được hiểu và thực hiện thống nhất trong văn bản hướng dẫn:'}
+      Preview: [METADATA | CHỦ ĐỀ: VAY VỐN SINH VIÊN | NỘI DUNG: CHÍNH SÁCH | NGUỒN: VayVon.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Hướng dẫn — Quy trình vay vốn học sinh, sinh viên theo Quyết định 157/2007/QĐ-TTg — Có cập nhật mức vay năm 2022 Header_2_ChuyenMuc: I. Một số nội dung được hiểu và thực hiện thống nhất trong văn bản hướng dẫn: Header_3_NguoiKy: 5. Định kỳ hạn trả nợ, thu nợ, thu lãi tiền vay: Nội dung chi tiết: ### 5. Định kỳ hạn trả nợ, thu nợ, thu lãi tiền vay:   5.1. Định kỳ hạn trả nợ:   a. Khi giải ngân số tiền cho vay của kỳ học cuối cùng, NHCSXH nơi cho vay cùng người vay thoả thuận việc định kỳ hạn trả nợ của toàn bộ số tiền cho vay. Người vay phải trả nợ gốc và lãi tiền vay lần đầu tiên khi HSSV có việc làm, có thu nhập nhưng không quá 12 tháng kể từ ngày HSSV kết thúc khoá học. Số tiền cho vay được phân kỳ trả nợ tối đa 6 tháng 1 lần, phù hợp với khả năng trả nợ của người vay do Ngân hàng và người vay thoả thuận ghi vào Khế ước nhận nợ.   b. Trường hợp người vay vốn cho nhiều HSSV cùng một lúc, nhưng thời hạn ra trường của từng HSSV khác nhau, thì việc định kỳ hạn trả nợ được thực hiện khi giải ngân số tiền cho vay kỳ học cuối của HSSV ra trường sau cùng.   5.2. Thu nợ...
+      Length: 2230 chars
+
+  [6] Source: VayVon.md | Date: 2007-10-02 | FeeKind: not_applicable | Lane: student_loan | Index: fix_llm_ingest_v5
+      Headers: {'Header_3_NguoiKy': '3. Thời hạn cho vay:', 'Header_1_QuyetDinh': 'Hướng dẫn — Quy trình vay vốn học sinh, sinh viên theo Quyết định 157/2007/QĐ-TTg — Có cập nhật mức vay năm 2022', 'Header_2_ChuyenMuc': 'I. Một số nội dung được hiểu và thực hiện thống nhất trong văn bản hướng dẫn:'}
+      Preview: [METADATA | CHỦ ĐỀ: VAY VỐN SINH VIÊN | NỘI DUNG: CHÍNH SÁCH | NGUỒN: VayVon.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Hướng dẫn — Quy trình vay vốn học sinh, sinh viên theo Quyết định 157/2007/QĐ-TTg — Có cập nhật mức vay năm 2022 Header_2_ChuyenMuc: I. Một số nội dung được hiểu và thực hiện thống nhất trong văn bản hướng dẫn: Header_3_NguoiKy: 3. Thời hạn cho vay: Nội dung chi tiết: ### 3. Thời hạn cho vay: **3.1. Thời hạn cho vay:** Là khoảng thời gian được tính từ ngày người vay nhận món vay đầu tiên cho đến ngày trả hết nợ gốc và lãi được thoả thuận trong Khế ước nhận nợ. Thời hạn cho vay bao gồm thời hạn phát tiền vay và thời hạn trả nợ. a. Thời hạn phát tiền vay: Là khoảng thời gian tính từ ngày người vay nhận món vay đầu tiên cho đến ngày học sinh, sinh viên (sau đây viết tắt là HSSV) kết thúc khoá học, kể cả thời gian HSSV được nhà trường cho phép nghỉ học có thời hạn và được bảo lưu kết quả học tập (nếu có). Trong thời hạn phát tiền vay, người vay chưa phải trả nợ gốc và lãi tiền vay; lãi tiền vay được tính kể từ ngày người vay nhận món vay đầu tiên đến ngày trả hết nợ gốc. b. Thời hạn trả nợ: Là khoảng thời gian được tính từ ngày người vay trả món nợ đầu tiên đến ngày ...
+      Length: 1805 chars
+
+================================================================================
+
+================================================================================
+[2026-08-27 14:49:58] QUERY GỐC: ngành kỹ thuật phần mềm như thế nào
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: ngành kỹ thuật phần mềm như thế nào
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 6
+--------------------------------------------------------------------------------
+  [1] Source: test_upload.md | Date: 2026-06-12 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5
+      Headers: {'Header_1_QuyetDinh': 'VĂN BẰNG, CHỨNG CHỈ CỦA ĐẠI HỌC CẦN THƠ', 'Header_2_ChuyenMuc': 'QUY ĐỊNH CHUNG'}
+      Preview: [METADATA | CHỦ ĐỀ: TÀI LIỆU KHÁC | NỘI DUNG: NỘI DUNG KHÁC | NGUỒN: test_upload.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: VĂN BẰNG, CHỨNG CHỈ CỦA ĐẠI HỌC CẦN THƠ Header_2_ChuyenMuc: QUY ĐỊNH CHUNG Nội dung chi tiết: ## QUY ĐỊNH CHUNG   **Điều 1. Phạm vi điều chỉnh và đối tượng áp dụng**   1. Quy chế này quy định về việc quản lý văn bằng giáo dục đại học và các loại chứng chỉ do Đại học Cần Thơ hoặc các đơn vị trực thuộc có thẩm quyền cấp (sau đây gọi là đơn vị có thẩm quyền), bao gồm: nguyên tắc quản lý, phân công trách nhiệm quản lý; lập số hiệu, ký hiệu nhận dạng; mẫu văn bằng, chứng chỉ, mẫu phụ lục văn bằng; cấp, cấp lại, chỉnh sửa, thu hồi, hủy bỏ và cấp bản sao từ sổ gốc; lập và lưu trữ hồ sơ quản lý văn bằng, chứng chỉ; xử lý vi phạm.   2. Quy chế này áp dụng đối với các đơn vị thuộc và trực thuộc Đại học Cần Thơ; các tổ chức, cá nhân có liên quan đến hoạt động quản lý, cấp, sử dụng văn bằng, chứng chỉ do Đại học Cần Thơ hoặc đơn vị có thẩm quyền cấp.   **Điều 2. Nguyên tắc quản lý, cấp văn bằng, chứng chỉ**   1. Việc quản lý, cấp văn bằng, chứng chỉ của Đại học Cần Thơ được thực hiện theo quy định của Thông tư số 10/2026/TT-BGDĐT ngày 26 tháng 02 năm 2026 của Bộ trưởng B...
+      Length: 2236 chars
+
+  [2] Source: test_upload.md | Date: 2026-06-12 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5
+      Headers: {'Header_1_QuyetDinh': 'VĂN BẰNG, CHỨNG CHỈ CỦA ĐẠI HỌC CẦN THƠ'}
+      Preview: [METADATA | CHỦ ĐỀ: TÀI LIỆU KHÁC | NỘI DUNG: NỘI DUNG KHÁC | NGUỒN: test_upload.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: VĂN BẰNG, CHỨNG CHỈ CỦA ĐẠI HỌC CẦN THƠ Nội dung chi tiết: # VĂN BẰNG, CHỨNG CHỈ CỦA ĐẠI HỌC CẦN THƠ *(Kèm theo Quyết định số 2962/QĐ-ĐHCT ngày 12 tháng 6 năm 2026 của Giám đốc Đại học Cần Thơ)*...
+      Length: 319 chars
+
+  [3] Source: HB_Vallet_Chi_Tiet.md | Date: 2026-05-31 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5
+      Headers: {'Header_3_NguoiKy': 'I. Đối tượng nộp hồ sơ', 'Header_1_QuyetDinh': 'Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC BỔNG | NỘI DUNG: THÔNG BÁO | NGUỒN: HB_Vallet_Chi_Tiet.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026 Header_3_NguoiKy: I. Đối tượng nộp hồ sơ Nội dung chi tiết: ### I. Đối tượng nộp hồ sơ Áp dụng cho sinh viên từ năm thứ 2 trở lên, có nhiều tiến bộ trong học tập, chưa được nhận bất cứ học bổng nào trong năm (nếu sinh viên đã được nhận học bổng thì cần kê khai cụ thể tên học bổng, số tiền học bổng khi nộp hồ sơ). Thành tích học tập cụ thể như sau: - Điểm trung bình từ 7,5 trở lên trong các học kỳ chính khóa đối với sinh viên các trường tính điểm theo hệ 10,0 - Điểm trung bình từ 3,0 trở lên trong các học kỳ chính khóa đối với sinh viên các trường tính điểm theo hệ 4,0   Các thành tích khác cũng được xem xét ưu tiên khi tuyển chọn: chứng chỉ ngoại ngữ, các công trình nghiên cứu khoa học về Khoa học Tự nhiên và Kỹ thuật, Công nghệ đã được công bố từ năm 2024 (trên các tạp chí thuộc danh mục Web of science, SCOPUS hoặc tạp chí trong nước được tính điểm của Hội đồng Giáo sư ngành, liên ngành năm 2025).   Danh sách sinh viên và học viên cao học các Trường có thể nộp hồ sơ xin học bổng:...
+      Length: 1176 chars
+
+  [4] Source: HB_Vallet_Chi_Tiet.md | Date: 2026-05-31 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5
+      Headers: {'Header_1_QuyetDinh': 'Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026', 'Header_2_ChuyenMuc': '2. Phạm Thị Kim Phượng - Chuyên viên Phòng Công tác sinh viên: kimphuongctct@hcmut.edu.vn'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC BỔNG | NỘI DUNG: THÔNG BÁO | NGUỒN: HB_Vallet_Chi_Tiet.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026 Header_2_ChuyenMuc: 2. Phạm Thị Kim Phượng - Chuyên viên Phòng Công tác sinh viên: kimphuongctct@hcmut.edu.vn Nội dung chi tiết: ## 2. Phạm Thị Kim Phượng - Chuyên viên Phòng Công tác sinh viên: kimphuongctct@hcmut.edu.vn   *Các khoa của trường được tham gia chương trình học bổng:* * Khoa Khoa học và Kỹ thuật máy tính * Khoa Kỹ thuật Hóa học * Khoa Cơ khí * Khoa Điện - Điện tử * Khoa Kỹ thuật Xây dựng * Khoa Khoa học Ứng dụng * Khoa Môi trường và Tài nguyên * Khoa Kỹ thuật Địa chất và Dầu khí * Khoa Kỹ thuật Giao thông *   Khoa Công nghệ Vật liệu...
+      Length: 733 chars
+
+  [5] Source: HB_Vallet_Chi_Tiet.md | Date: 2026-05-31 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5
+      Headers: {'Header_1_QuyetDinh': 'Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026', 'Header_2_ChuyenMuc': '2. Phạm Thị Thanh Hà - Chuyên viên Phòng CTCT&HSSV: haptt@hcmue.edu.vn'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC BỔNG | NỘI DUNG: THÔNG BÁO | NGUỒN: HB_Vallet_Chi_Tiet.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026 Header_2_ChuyenMuc: 2. Phạm Thị Thanh Hà - Chuyên viên Phòng CTCT&HSSV: haptt@hcmue.edu.vn Nội dung chi tiết: ## 2. Phạm Thị Thanh Hà - Chuyên viên Phòng CTCT&HSSV: haptt@hcmue.edu.vn *Các khoa của trường được tham gia chương trình học bổng:* * Khoa Toán – Tin học * Khoa Công nghệ Thông tin * Khoa Vật lý * Khoa Hóa học * Khoa Sinh học   3. **Trường Đại học Công nghệ Kỹ thuật TP.HCM (*tên cũ: Trường Đại học sư phạm kỹ thuật TP.HCM*)** * Địa chỉ: Số 01 Võ Văn Ngân, Phường Thủ Đức, Thành phố Hồ Chí Minh * Đơn vị hỗ trợ sinh viên: Phòng Công tác sinh viên (sinh viên) và Viện Sau đại học (học viên cao học) * Thông tin liên hệ:...
+      Length: 810 chars
+
+  [6] Source: HB_Vallet_Chi_Tiet.md | Date: 2026-05-31 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5
+      Headers: {'Header_1_QuyetDinh': 'Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC BỔNG | NỘI DUNG: THÔNG BÁO | NGUỒN: HB_Vallet_Chi_Tiet.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026 Nội dung chi tiết: # Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026   RENCONTRES DU VIETNAM TỔ CHỨC KHOA HỌC & GIÁO DỤC GẶP GỠ VIỆT NAM RENCONTRES DU VIETNAM BAN ĐIỀU HÀNH HỌC BỔNG VALLET - KHU VỰC PHÍA NAM   (Dành cho sinh viên Đại học)   Tp. Hồ Chí Minh, ngày 31 tháng 5 năm 2026   Học bổng Vallet được ra đời từ hơn 25 năm nay nhằm giúp đỡ các học sinh, sinh viên và các học viên sau đại học Việt Nam có tài năng hoặc xuất sắc trong học tập và nghiên cứu. Học bổng được tài trợ bởi Tổ chức Khoa học & Giáo dục Gặp gỡ Việt Nam (Rencontres du Vietnam) cùng Giáo sư Odon Vallet. Việc xét học bổng thường niên được thực hiện căn cứ vào QUI ĐỊNH VỀ TIÊU CHÍ xét Học bổng Vallet toàn quốc năm 2022 và cập nhật năm 2024.   Quy trình đăng ký, nộp hồ sơ đến quá trình xét tuyển và công bố kết quả của Học bổng Vallet 2026 như sau:...
+      Length: 1016 chars
+
+================================================================================
+
+================================================================================
+[2026-08-27 15:20:52] QUERY GỐC: ngành kỹ thuật phần mềm học gì, có gì khác so với công nghệ thông tin
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: ngành kỹ thuật phần mềm học gì, có gì khác so với công nghệ thông tin
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 15:31:24] QUERY GỐC: ngành kỹ thuật phần mềm khác gì ngành công nghệ thông tin
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: ngành kỹ thuật phần mềm khác gì ngành công nghệ thông tin
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 15:33:49] QUERY GỐC: không phải ngành clc, là 2 ngành đại trà hết
+[REWRITE STATUS]: accepted (accepted)
+[SEARCH QUERY]: Ngành kỹ thuật phần mềm đại trà khác gì ngành công nghệ thông tin đại trà?
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 15:34:25] QUERY GỐC: không phải ngành clc, là 2 ngành đại trà hết
+[REWRITE STATUS]: rejected (added_terms:hai,nao,nhung)
+[SEARCH QUERY]: không phải ngành clc, là 2 ngành đại trà hết
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 15:39:22] QUERY GỐC: không phải ngành clc, là 2 ngành đại trà hết
+[REWRITE STATUS]: rejected (added_terms:hai,nao,nhung)
+[SEARCH QUERY]: không phải ngành clc, là 2 ngành đại trà hết
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 15:45:59] QUERY GỐC: không phải ngành clc, là 2 ngành đại trà hết
+[REWRITE STATUS]: rejected (added_terms:hai,nao,nhung)
+[SEARCH QUERY]: không phải ngành clc, là 2 ngành đại trà hết
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 15:46:32] QUERY GỐC: ngành kỹ thuật phần mềm khác gì ngành công nghệ thông tin
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: ngành kỹ thuật phần mềm khác gì ngành công nghệ thông tin
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 6
+--------------------------------------------------------------------------------
+  [1] Source: NDCP_VayVonSVKT.md | Date: 2025-08-28 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5 | RetrievedBy: vector+bm25
+      Headers: {'Header_3_NguoiKy': '2. Các ngành khoa học, công nghệ, kỹ thuật và toán quy định tại Quyết định này bao gồm các ngành, lĩnh vực đào tạo cụ thể sau: khoa học sự sống, khoa học tự nhiên, máy tính và công nghệ thông tin, công nghệ kỹ thuật, kỹ thuật, kiến trúc và xây dựng, sản xuất và chế biến, toán và thống kê, công nghệ tài chính theo quy định của Thủ tướng Chính phủ về việc ban hành Danh mục giáo dục, đào tạo của hệ thống giáo dục quốc dân và các văn bản quy phạm pháp luật hướng dẫn liên quan; các ngành đào tạo công nghệ then chốt khác theo quy định của pháp luật.', 'Header_1_QuyetDinh': 'Quyết định 29/2025/QĐ-TTg — Tín dụng cho người học ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025', 'Header_2_ChuyenMuc': 'Điều 1. Phạm vi điều chỉnh'}
+      Preview: [METADATA | CHỦ ĐỀ: VAY VỐN SINH VIÊN | NỘI DUNG: CHÍNH SÁCH | NGUỒN: NDCP_VayVonSVKT.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Quyết định 29/2025/QĐ-TTg — Tín dụng cho người học ngành khoa học, công nghệ, kỹ thuật và toán — Năm 2025 Header_2_ChuyenMuc: Điều 1. Phạm vi điều chỉnh Header_3_NguoiKy: 2. Các ngành khoa học, công nghệ, kỹ thuật và toán quy định tại Quyết định này bao gồm các ngành, lĩnh vực đào tạo cụ thể sau: khoa học sự sống, khoa học tự nhiên, máy tính và công nghệ thông tin, công nghệ kỹ thuật, kỹ thuật, kiến trúc và xây dựng, sản xuất và chế biến, toán và thống kê, công nghệ tài chính theo quy định của Thủ tướng Chính phủ về việc ban hành Danh mục giáo dục, đào tạo của hệ thống giáo dục quốc dân và các văn bản quy phạm pháp luật hướng dẫn liên quan; các ngành đào tạo công nghệ then chốt khác theo quy định của pháp luật. Nội dung chi tiết: ### 2. Các ngành khoa học, công nghệ, kỹ thuật và toán quy định tại Quyết định này bao gồm các ngành, lĩnh vực đào tạo cụ thể sau: khoa học sự sống, khoa học tự nhiên, máy tính và công nghệ thông tin, công nghệ kỹ thuật, kỹ thuật, kiến trúc và xây dựng, sản xuất và chế biến, toán và thống kê, công nghệ tài chính theo quy định củ...
+      Length: 1423 chars
+
+  [2] Source: MucHocPhi_DaiHocChinhQuy_Khoa52.md | Date: 2026-02-03 | FeeKind: actual_tuition | Lane: default | Index: fix_llm_ingest_v5 | RetrievedBy: bm25
+      Headers: {'Header_1_QuyetDinh': 'Bảng học phí thực tế — Chương trình chuẩn Khóa 52 — Năm học 2026-2027'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC PHÍ | NỘI DUNG: BẢNG MỨC THU | LOẠI MỨC: HỌC PHÍ THỰC TẾ | NĂM HỌC: 2026-2027 | NGUỒN: MucHocPhi_DaiHocChinhQuy_Khoa52.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Bảng học phí thực tế — Chương trình chuẩn Khóa 52 — Năm học 2026-2027 Nội dung chi tiết: | STT | Mã ngành | Khối | Lĩnh vực | Ngành | Đơn vị | K52 Trđ/khóa | K52 Đồng/tín chỉ | | --- | -------- | ---- | -------- | ----- | ------ | ------------ | ----------------- | | 38 | 7480102 | V | 748 | Mạng máy tính & truyền thông dữ liệu | DI | 150,3 | 966.000 | | 39 | 7480103 | V | 748 | Kỹ thuật phần mềm | DI | 150,3 | 966.000 | | 40 | 7480104 | V | 748 | Hệ thống thông tin | DI | 150,3 | 966.000 | | 41 | 7480106 | V | 748 | KT máy tính - Thiết kế vi mạch bán dẫn | TN | 150,3 | 966.000 | | 42 | 7480107 | V | 748 | Trí tuệ nhân tạo | DI | 150,3 | 966.000 | | 43 | 7480201 | V | 748 | Công nghệ thông tin | DI | 150,3 | 966.000 | | 44 | 7480202 | V | 748 | An toàn thông tin | DI | 150,3 | 966.000 | | 45 | 7510401 | V | 751 | Công nghệ kỹ thuật hóa học | TN | 150,3 | 966.000 | | 46 | 7510601 | V | 751 | Quản lý công nghiệp | TN | 150,3 | 966.000 | | 47 | 7510605 | V | 751 | Logistics và Quản lý chuỗi cung ứng |...
+      Length: 3042 chars
+
+  [3] Source: test_upload.md | Date: 2026-06-12 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5 | RetrievedBy: vector
+      Headers: {'Header_1_QuyetDinh': 'SỐ HIỆU, KÝ HIỆU NHẬN DẠNG VÀ MẪU VĂN BẰNG, CHỨNG CHỈ', 'Header_2_ChuyenMuc': 'Điều 4. Số hiệu văn bằng, chứng chỉ'}
+      Preview: [METADATA | CHỦ ĐỀ: TÀI LIỆU KHÁC | NỘI DUNG: NỘI DUNG KHÁC | NGUỒN: test_upload.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: SỐ HIỆU, KÝ HIỆU NHẬN DẠNG VÀ MẪU VĂN BẰNG, CHỨNG CHỈ Header_2_ChuyenMuc: Điều 4. Số hiệu văn bằng, chứng chỉ Nội dung chi tiết: # SỐ HIỆU, KÝ HIỆU NHẬN DẠNG VÀ MẪU VĂN BẰNG, CHỨNG CHỈ   ## Điều 4. Số hiệu văn bằng, chứng chỉ   Cách ghi số hiệu văn bằng, chứng chỉ được thực hiện theo quy định tại khoản 1 Điều 3 Thông tư số 10/2026/TT-BGDĐT, cụ thể:   1. Mỗi văn bằng, chứng chỉ được cấp một số hiệu duy nhất, không trùng lặp để quản lý. Số hiệu gồm các thành phần theo thứ tự:   a) Ký hiệu loại văn bằng, chứng chỉ:   - Ký hiệu loại văn bằng: + CN: Cử nhân + KS: Kỹ sư + KT: Kiến trúc sư + BS: Bác sĩ thú y + CH: Thạc sĩ + TS: Tiến sĩ   - Ký hiệu loại chứng chỉ: + CB: Chứng chỉ ứng dụng công nghệ thông tin cơ bản + NC: Chứng chỉ ứng dụng công nghệ thông tin nâng cao + TA: Chứng chỉ ngoại ngữ (tiếng Anh) theo Khung năng lực ngoại ngữ dùng cho Việt Nam + NT: Chứng chỉ bồi dưỡng nghiệp vụ sư phạm tiểu học + NS: Chứng chỉ bồi dưỡng nghiệp vụ sư phạm trung học cơ sở + NP: Chứng chỉ bồi dưỡng nghiệp vụ sư phạm trung học phổ thông + GĐ: Chứng chỉ bồi dưỡng theo tiêu chuẩn...
+      Length: 1488 chars
+
+  [4] Source: test_upload.md | Date: 2026-06-12 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5 | RetrievedBy: vector
+      Headers: {'Header_1_QuyetDinh': 'VĂN BẰNG, CHỨNG CHỈ CỦA ĐẠI HỌC CẦN THƠ', 'Header_2_ChuyenMuc': 'QUY ĐỊNH CHUNG'}
+      Preview: [METADATA | CHỦ ĐỀ: TÀI LIỆU KHÁC | NỘI DUNG: NỘI DUNG KHÁC | NGUỒN: test_upload.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: VĂN BẰNG, CHỨNG CHỈ CỦA ĐẠI HỌC CẦN THƠ Header_2_ChuyenMuc: QUY ĐỊNH CHUNG Nội dung chi tiết: ## QUY ĐỊNH CHUNG   **Điều 1. Phạm vi điều chỉnh và đối tượng áp dụng**   1. Quy chế này quy định về việc quản lý văn bằng giáo dục đại học và các loại chứng chỉ do Đại học Cần Thơ hoặc các đơn vị trực thuộc có thẩm quyền cấp (sau đây gọi là đơn vị có thẩm quyền), bao gồm: nguyên tắc quản lý, phân công trách nhiệm quản lý; lập số hiệu, ký hiệu nhận dạng; mẫu văn bằng, chứng chỉ, mẫu phụ lục văn bằng; cấp, cấp lại, chỉnh sửa, thu hồi, hủy bỏ và cấp bản sao từ sổ gốc; lập và lưu trữ hồ sơ quản lý văn bằng, chứng chỉ; xử lý vi phạm.   2. Quy chế này áp dụng đối với các đơn vị thuộc và trực thuộc Đại học Cần Thơ; các tổ chức, cá nhân có liên quan đến hoạt động quản lý, cấp, sử dụng văn bằng, chứng chỉ do Đại học Cần Thơ hoặc đơn vị có thẩm quyền cấp.   **Điều 2. Nguyên tắc quản lý, cấp văn bằng, chứng chỉ**   1. Việc quản lý, cấp văn bằng, chứng chỉ của Đại học Cần Thơ được thực hiện theo quy định của Thông tư số 10/2026/TT-BGDĐT ngày 26 tháng 02 năm 2026 của Bộ trưởng B...
+      Length: 2236 chars
+
+  [5] Source: HB_Vallet_Chi_Tiet.md | Date: 2026-05-31 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5 | RetrievedBy: vector
+      Headers: {'Header_1_QuyetDinh': 'Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026', 'Header_2_ChuyenMuc': '2. Phạm Thị Thanh Hà - Chuyên viên Phòng CTCT&HSSV: haptt@hcmue.edu.vn'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC BỔNG | NỘI DUNG: THÔNG BÁO | NGUỒN: HB_Vallet_Chi_Tiet.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026 Header_2_ChuyenMuc: 2. Phạm Thị Thanh Hà - Chuyên viên Phòng CTCT&HSSV: haptt@hcmue.edu.vn Nội dung chi tiết: ## 2. Phạm Thị Thanh Hà - Chuyên viên Phòng CTCT&HSSV: haptt@hcmue.edu.vn *Các khoa của trường được tham gia chương trình học bổng:* * Khoa Toán – Tin học * Khoa Công nghệ Thông tin * Khoa Vật lý * Khoa Hóa học * Khoa Sinh học   3. **Trường Đại học Công nghệ Kỹ thuật TP.HCM (*tên cũ: Trường Đại học sư phạm kỹ thuật TP.HCM*)** * Địa chỉ: Số 01 Võ Văn Ngân, Phường Thủ Đức, Thành phố Hồ Chí Minh * Đơn vị hỗ trợ sinh viên: Phòng Công tác sinh viên (sinh viên) và Viện Sau đại học (học viên cao học) * Thông tin liên hệ:...
+      Length: 810 chars
+
+  [6] Source: HB_Vallet_Chi_Tiet.md | Date: 2026-05-31 | FeeKind: not_applicable | Lane: default | Index: fix_llm_ingest_v5 | RetrievedBy: vector
+      Headers: {'Header_3_NguoiKy': 'I. Đối tượng nộp hồ sơ', 'Header_1_QuyetDinh': 'Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC BỔNG | NỘI DUNG: THÔNG BÁO | NGUỒN: HB_Vallet_Chi_Tiet.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Thông báo — Học bổng Vallet dành cho sinh viên — Năm 2026 Header_3_NguoiKy: I. Đối tượng nộp hồ sơ Nội dung chi tiết: ### I. Đối tượng nộp hồ sơ Áp dụng cho sinh viên từ năm thứ 2 trở lên, có nhiều tiến bộ trong học tập, chưa được nhận bất cứ học bổng nào trong năm (nếu sinh viên đã được nhận học bổng thì cần kê khai cụ thể tên học bổng, số tiền học bổng khi nộp hồ sơ). Thành tích học tập cụ thể như sau: - Điểm trung bình từ 7,5 trở lên trong các học kỳ chính khóa đối với sinh viên các trường tính điểm theo hệ 10,0 - Điểm trung bình từ 3,0 trở lên trong các học kỳ chính khóa đối với sinh viên các trường tính điểm theo hệ 4,0   Các thành tích khác cũng được xem xét ưu tiên khi tuyển chọn: chứng chỉ ngoại ngữ, các công trình nghiên cứu khoa học về Khoa học Tự nhiên và Kỹ thuật, Công nghệ đã được công bố từ năm 2024 (trên các tạp chí thuộc danh mục Web of science, SCOPUS hoặc tạp chí trong nước được tính điểm của Hội đồng Giáo sư ngành, liên ngành năm 2025).   Danh sách sinh viên và học viên cao học các Trường có thể nộp hồ sơ xin học bổng:...
+      Length: 1176 chars
+
+================================================================================
+
+================================================================================
+[2026-08-27 15:47:23] QUERY GỐC: 2 ngành đều là đại trà, không phải chất lượng cao
+[REWRITE STATUS]: rejected (added_terms:nhau,va)
+[SEARCH QUERY]: 2 ngành đều là đại trà, không phải chất lượng cao
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 15:59:33] QUERY GỐC: ngành kỹ thuật phần mềm khác gì ngành công nghệ thông tin
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: ngành kỹ thuật phần mềm khác gì ngành công nghệ thông tin
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================

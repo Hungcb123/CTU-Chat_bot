@@ -577,13 +577,9 @@ def build_retrieval_lanes(decision: QueryRoutingDecision) -> tuple[RetrievalLane
     if decision.intent in {QueryIntent.BOTH, QueryIntent.AMBIGUOUS_TUITION}:
         return (actual, basis)
     if decision.intent == QueryIntent.ACADEMIC_PROGRAM:
-        return (
-            RetrievalLane(
-                name="academic_program",
-                domain="academic_program",
-                top_n=6,
-            ),
-        )
+        # Dữ liệu CTĐT nằm trong Neo4j Graph → truy vấn qua LLM Tool Calling
+        # Không cần retrieval lane từ Qdrant/BM25
+        return ()
     if decision.intent == QueryIntent.ACADEMIC_RULES:
         return (
             RetrievalLane(
