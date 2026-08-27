@@ -36601,3 +36601,89 @@
 [SỐ LƯỢNG DOCS TRẢ VỀ]: 0
 --------------------------------------------------------------------------------
 ================================================================================
+
+================================================================================
+[2026-08-27 16:18:07] QUERY GỐC: học phí ngành kỹ thuật phần mềm clc là bao nhiêu
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: học phí ngành kỹ thuật phần mềm clc là bao nhiêu
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 16:18:16] QUERY GỐC: k49
+[REWRITE STATUS]: accepted (accepted)
+[SEARCH QUERY]: Học phí ngành kỹ thuật phần mềm chương trình chất lượng cao khóa 49 là bao nhiêu?
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 16:18:58] QUERY GỐC: còn đại trà thì sao
+[REWRITE STATUS]: accepted (accepted)
+[SEARCH QUERY]: k49 đại trà thì sao?
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 6
+--------------------------------------------------------------------------------
+  [1] Source: MucHocPhi_ChatLuongCao_TienTien.md | Date: 2026-02-03 | FeeKind: actual_tuition | Lane: actual_tuition | Index: fix_llm_ingest_v5 | RetrievedBy: bm25
+      Headers: {'Header_3_NguoiKy': 'Chương trình Chất lượng cao (đồng/tín chỉ)', 'Header_1_QuyetDinh': 'Bảng học phí thực tế — Chương trình Chất lượng cao và Tiên tiến — Năm học 2026-2027', 'Header_2_ChuyenMuc': 'II. Học phí cố định tính theo tín chỉ (đồng/tín chỉ)'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC PHÍ | NỘI DUNG: BẢNG MỨC THU | LOẠI MỨC: HỌC PHÍ THỰC TẾ | NĂM HỌC: 2026-2027 | NGUỒN: MucHocPhi_ChatLuongCao_TienTien.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Bảng học phí thực tế — Chương trình Chất lượng cao và Tiên tiến — Năm học 2026-2027 Header_2_ChuyenMuc: II. Học phí cố định tính theo tín chỉ (đồng/tín chỉ) Header_3_NguoiKy: Chương trình Chất lượng cao (đồng/tín chỉ) Nội dung chi tiết: | TT | Ngành                                        | K44     | K45     | K46     | K47       | K48       | K49       | K50       | K51       | K52       | | -- | --------------------------------------------- | ------- | ------- | ------- | --------- | --------- | --------- | --------- | --------- | --------- | | 1  | Công nghệ thông tin                        | 882.000 | 914.000 | 989.000 | 1.064.000 | 1.161.000 | 1.254.000 | 1.181.000 | 1.308.000 | 1.438.000 | | 2  | Kinh doanh quốc tế                          | 770.000 | 839.000 | 951.000 | 1.064.000 | 1.161.000 | 1.254.000 | 1.230.000 | 1.363.000 | 1.499.000 | | 3  | Công nghệ kỹ thuật hóa học              | 882.000 | 876.000 | 989.000 | 1.064.000 | 1.161.000 | 1.254.000 | 1.181.000 | 1.308.000 | 1.438.000 | | 4...
+      Length: 3187 chars
+
+  [2] Source: MucHocPhi_ChatLuongCao_TienTien.md | Date: 2026-02-03 | FeeKind: actual_tuition | Lane: actual_tuition | Index: fix_llm_ingest_v5 | RetrievedBy: bm25
+      Headers: {'Header_3_NguoiKy': 'Chương trình Chất lượng cao', 'Header_1_QuyetDinh': 'Bảng học phí thực tế — Chương trình Chất lượng cao và Tiên tiến — Năm học 2026-2027', 'Header_2_ChuyenMuc': 'I. Học phí cố định theo khóa học (triệu đồng/năm học)'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC PHÍ | NỘI DUNG: BẢNG MỨC THU | LOẠI MỨC: HỌC PHÍ THỰC TẾ | NĂM HỌC: 2026-2027 | NGUỒN: MucHocPhi_ChatLuongCao_TienTien.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Bảng học phí thực tế — Chương trình Chất lượng cao và Tiên tiến — Năm học 2026-2027 Header_2_ChuyenMuc: I. Học phí cố định theo khóa học (triệu đồng/năm học) Header_3_NguoiKy: Chương trình Chất lượng cao Nội dung chi tiết: | TT | Ngành                                        | K44 | K45 | K46 | K47 | K48 | K49 | K50 | K51 | K52 | | -- | --------------------------------------------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 1  | Công nghệ thông tin                        | 25  | 26  | 28  | 30  | 33  | 36  | 36  | 40  | 44  | | 2  | Kinh doanh quốc tế                          | 22  | 24  | 27  | 30  | 33  | 36  | 36  | 40  | 44  | | 3  | Công nghệ kỹ thuật hóa học              | 25  | 25  | 28  | 30  | 33  | 36  | 36  | 40  | 44  | | 4  | Kỹ thuật điện                             | 25  | 25  | 28  | 30  | 33  | 33  | 36  | 40  | 44  | | 5  | Công nghệ thực phẩm                       | 25  | 25  | 28  | 30  | 33  | 33  | 36  | 40  | 44  | | 6  | Ngôn ngữ Anh                            ...
+      Length: 2414 chars
+
+  [3] Source: MucHocPhi_ChatLuongCao_TienTien.md | Date: 2026-02-03 | FeeKind: actual_tuition | Lane: actual_tuition | Index: fix_llm_ingest_v5 | RetrievedBy: bm25
+      Headers: {'Header_3_NguoiKy': 'Chương trình Tiên tiến', 'Header_1_QuyetDinh': 'Bảng học phí thực tế — Chương trình Chất lượng cao và Tiên tiến — Năm học 2026-2027', 'Header_2_ChuyenMuc': 'I. Học phí cố định theo khóa học (triệu đồng/năm học)'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC PHÍ | NỘI DUNG: BẢNG MỨC THU | LOẠI MỨC: HỌC PHÍ THỰC TẾ | NĂM HỌC: 2026-2027 | NGUỒN: MucHocPhi_ChatLuongCao_TienTien.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Bảng học phí thực tế — Chương trình Chất lượng cao và Tiên tiến — Năm học 2026-2027 Header_2_ChuyenMuc: I. Học phí cố định theo khóa học (triệu đồng/năm học) Header_3_NguoiKy: Chương trình Tiên tiến Nội dung chi tiết: | TT | Ngành                  | K44 | K45 | K46 | K47 | K48 | K49 | K50 | K51 | K52 | | -- | ----------------------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 1  | Nuôi trồng thủy sản |     |     |     |     | 33  | 36  | 36  | 40  | 44  | | 2  | Công nghệ sinh học   |     |     |     |     | 33  | 36  | 36  | 36  | 44  |...
+      Length: 744 chars
+
+  [4] Source: MucHocPhi_2526_MienGiam.md | Date: 2025-02-18 | FeeKind: exemption_basis | Lane: exemption_basis | Index: fix_llm_ingest_v5 | RetrievedBy: vector+bm25
+      Headers: {'Header_3_NguoiKy': '2.2 Mức miễn, giảm học phần khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành', 'Header_1_QuyetDinh': 'Bảng mức thu — Cơ sở tính miễn, giảm học phí — Năm học 2025-2026', 'Header_2_ChuyenMuc': '2. Đại học hình thức chính quy chương trình đại trà'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC PHÍ | NỘI DUNG: BẢNG MỨC THU | LOẠI MỨC: CƠ SỞ TÍNH MIỄN GIẢM | NĂM HỌC: 2025-2026 | NGUỒN: MucHocPhi_2526_MienGiam.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Bảng mức thu — Cơ sở tính miễn, giảm học phí — Năm học 2025-2026 Header_2_ChuyenMuc: 2. Đại học hình thức chính quy chương trình đại trà Header_3_NguoiKy: 2.2 Mức miễn, giảm học phần khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành Nội dung chi tiết: | STT | Khối ngành | Mức học phí một tín chỉ | | --- | --- | --- | | 1 | Khối ngành I: Khoa học giáo dục và đào tạo giáo viên (chỉ áp dụng cho sinh viên không hưởng chính sách theo Nghị định 116/2020/NĐ-CP) | 451.000 | | 2 | Khối ngành III: Kinh doanh và quản lý, pháp luật | 451.000 | | 3 | Khối ngành IV: Khoa học sự sống, khoa học tự nhiên | 487.000 | | 4 | Khối ngành V: Toán và thống kê, máy tính và CN thông tin, CN kỹ thuật, kỹ thuật, sản xuất và chế biến, kiến trúc và xây dựng, nông lâm nghiệp và thủy sản, thú y | 538.000 | | 5 | Khối ngành VI. Các khối ngành sức khỏe khác | 753.000 | | 6 | Khối ngành VII: Nhân văn, khoa học xã hội và hành vi, báo chí và thông tin, dịch vụ xã hội, du lịch, khách sạn, thể dục thể thao, dịch vụ vận tải, môi trư...
+      Length: 1236 chars
+
+  [5] Source: MucHocPhi_2526_MienGiam.md | Date: 2025-02-18 | FeeKind: exemption_basis | Lane: exemption_basis | Index: fix_llm_ingest_v5 | RetrievedBy: vector+bm25
+      Headers: {'Header_3_NguoiKy': '2.1 Mức miễn, giảm các học phần đại cương chung', 'Header_1_QuyetDinh': 'Bảng mức thu — Cơ sở tính miễn, giảm học phí — Năm học 2025-2026', 'Header_2_ChuyenMuc': '2. Đại học hình thức chính quy chương trình đại trà'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC PHÍ | NỘI DUNG: BẢNG MỨC THU | LOẠI MỨC: CƠ SỞ TÍNH MIỄN GIẢM | NĂM HỌC: 2025-2026 | NGUỒN: MucHocPhi_2526_MienGiam.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Bảng mức thu — Cơ sở tính miễn, giảm học phí — Năm học 2025-2026 Header_2_ChuyenMuc: 2. Đại học hình thức chính quy chương trình đại trà Header_3_NguoiKy: 2.1 Mức miễn, giảm các học phần đại cương chung Nội dung chi tiết: | TT | Học phần                       | Số tín chỉ | Mức học phí một tín chỉ | | -- | ------------------------------ | ---------- | ----------------------- | | 1  | Giáo dục quốc phòng và An ninh | 8          | 451.000                 | | 2  | Giáo dục thể chất              | 3          |                         | | 3  | Khoa học chính trị             | 11         |                         | | 4  | Pháp luật đại cương            | 2          |                         | | 5  | Học phần xã hội                | 2          |                         | | 6  | Tin học căn bản                | 3          |                         | | 7  | Anh văn hoặc Pháp văn căn bản  | 10         |                         |...
+      Length: 1116 chars
+
+  [6] Source: MucHocPhi_2526_MienGiam.md | Date: 2025-02-18 | FeeKind: exemption_basis | Lane: exemption_basis | Index: fix_llm_ingest_v5 | RetrievedBy: vector+bm25
+      Headers: {'Header_3_NguoiKy': '2.2 Mức miễn, giảm học phần khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành', 'Header_1_QuyetDinh': 'Bảng mức thu — Cơ sở tính miễn, giảm học phí — Năm học 2025-2026', 'Header_2_ChuyenMuc': '2. Đại học hình thức chính quy chương trình đại trà'}
+      Preview: [METADATA | CHỦ ĐỀ: HỌC PHÍ | NỘI DUNG: BẢNG MỨC THU | LOẠI MỨC: CƠ SỞ TÍNH MIỄN GIẢM | NĂM HỌC: 2025-2026 | NGUỒN: MucHocPhi_2526_MienGiam.md] Ngữ cảnh tài liệu - Header_1_QuyetDinh: Bảng mức thu — Cơ sở tính miễn, giảm học phí — Năm học 2025-2026 Header_2_ChuyenMuc: 2. Đại học hình thức chính quy chương trình đại trà Header_3_NguoiKy: 2.2 Mức miễn, giảm học phần khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành Nội dung chi tiết: ### 2.2 Mức miễn, giảm học phần khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành...
+      Length: 533 chars
+
+================================================================================
+
+================================================================================
+[2026-08-27 16:19:45] QUERY GỐC: học phí ngành kỹ thuật phần mềm là bao nhiêu
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: học phí ngành kỹ thuật phần mềm là bao nhiêu
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 16:19:56] QUERY GỐC: k49
+[REWRITE STATUS]: accepted (accepted)
+[SEARCH QUERY]: Học phí ngành kỹ thuật phần mềm khóa 49 là bao nhiêu?
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 16:21:17] QUERY GỐC: học phí môn đại cương kỹ thuật phần mềm clc k49 là bao nhiêu
+[REWRITE STATUS]: skipped (clear_original_query)
+[SEARCH QUERY]: học phí môn đại cương kỹ thuật phần mềm clc k49 là bao nhiêu
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
+
+================================================================================
+[2026-08-27 16:22:46] QUERY GỐC: ngành kỹ thuật phần mềm khác gì ngành công nghệ thông
+[REWRITE STATUS]: rejected (changed_intent)
+[SEARCH QUERY]: ngành kỹ thuật phần mềm khác gì ngành công nghệ thông
+[SỐ LƯỢNG DOCS TRẢ VỀ]: 0
+--------------------------------------------------------------------------------
+================================================================================
