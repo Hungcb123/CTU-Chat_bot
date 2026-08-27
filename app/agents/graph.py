@@ -43,6 +43,17 @@ from app.services.query_intent import (
 
 logger = logging.getLogger(__name__)
 
+def _parse_llm_content(content: Any) -> str:
+    """Helper to parse Gemini list content format into a single string."""
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return " ".join(
+            block.get("text", "") for block in content
+            if isinstance(block, dict) and block.get("type") == "text"
+        )
+    return str(content)
+
 # ─────────────────────────────────────────────────────────────────────
 # 1. STATE DEFINITION
 # ─────────────────────────────────────────────────────────────────────
@@ -329,7 +340,7 @@ def build_agent_graph(
 
         # Lấy message cuối cùng từ ReAct agent
         final_msg = result["messages"][-1]
-        response = final_msg.content if isinstance(final_msg.content, str) else str(final_msg.content)
+        response = _parse_llm_content(final_msg.content)
 
         logger.info("🔵 Academic Agent hoàn thành: %d chars", len(response))
         return {"response": response}
@@ -358,7 +369,7 @@ def build_agent_graph(
         })
 
         final_msg = result["messages"][-1]
-        response = final_msg.content if isinstance(final_msg.content, str) else str(final_msg.content)
+        response = _parse_llm_content(final_msg.content)
 
         logger.info("🟡 Financial Agent hoàn thành: %d chars", len(response))
         return {"response": response}
@@ -387,7 +398,7 @@ def build_agent_graph(
         })
 
         final_msg = result["messages"][-1]
-        response = final_msg.content if isinstance(final_msg.content, str) else str(final_msg.content)
+        response = _parse_llm_content(final_msg.content)
 
         logger.info("🟣 Scholarship Agent hoàn thành: %d chars", len(response))
         return {"response": response}
@@ -415,6 +426,7 @@ def build_agent_graph(
             "chat_history": chat_history,
             "question": query,
         })
+        response = _parse_llm_content(response)
 
         logger.info("🟠 General Agent hoàn thành: %d chars", len(response))
         return {"response": response}
