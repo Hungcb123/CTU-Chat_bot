@@ -75,10 +75,34 @@ class AcademicGraphService:
             logger.info(
                 "✅ Neo4j đã có %d Programs, bỏ qua ingest.", count
             )
-            return True
+        else:
+            logger.info("⚠️ Neo4j rỗng, bắt đầu ingest từ %s...", data_dir)
+            if not self._run_ingest(data_dir):
+                return False
 
-        logger.info("⚠️ Neo4j rỗng, bắt đầu ingest từ %s...", data_dir)
-        return self._run_ingest(data_dir)
+        # Check tuition data
+        self._ensure_tuition_loaded()
+        return True
+
+    def _ensure_tuition_loaded(self) -> None:
+        """Kiểm tra và tự động ingest TuitionFee nếu chưa có."""
+        with self._driver.session() as session:
+            result = session.run("MATCH (t:TuitionFee) RETURN count(t) AS cnt")
+            count = result.single()["cnt"]
+
+        if count > 0:
+            logger.info("✅ Neo4j đã có %d TuitionFee, bỏ qua ingest học phí.", count)
+            return
+
+        logger.info("⚠️ Chưa có TuitionFee, bắt đầu ingest học phí...")
+        try:
+            import sys
+            ingest_path = PROJECT_ROOT / "Graph_DB" / "app"
+            sys.path.insert(0, str(ingest_path))
+            from ingest_tuition import run_tuition_ingest
+            run_tuition_ingest()
+        except Exception as exc:
+            logger.error("❌ Tuition ingest thất bại: %s", exc, exc_info=True)
 
     def _run_ingest(self, data_dir: Path) -> bool:
         """Gọi ingest script để parse markdown → Neo4j."""
@@ -515,3 +539,118 @@ class AcademicGraphService:
                 })
 
             return results
+
+    # ------------------------------------------------------------------
+    # 7. lookup_tuition — tra cứu học phí theo ngành + khóa
+    # ------------------------------------------------------------------
+
+    def lookup_tuition(
+        self, query: str, khoa: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """Tra cứu học phí của ngành theo tên/mã ngành, có thể lọc theo khóa."""
+        norm = _normalize(query)
+
+        with self._driver.session() as session:
+            # Strategy 1: Tìm qua Program → HAS_TUITION → TuitionFee
+            cypher = """
+                MATCH (p:Program)-[:HAS_TUITION]->(tf:TuitionFee)
+                WHERE p.code = $query
+                   OR toLower(p.name) CONTAINS $norm
+            """
+            params: Dict[str, Any] = {"query": query.strip(), "norm": norm}
+
+            if khoa:
+                cypher += "    AND tf.khoa = $khoa\n"
+                params["khoa"] = khoa.strip()
+
+            cypher += """
+                RETURN tf.id AS id, tf.ma_nganh AS ma_nganh, tf.khoa AS khoa,
+                       tf.nam_hoc AS nam_hoc, tf.loai_ct AS loai_ct,
+                       tf.don_vi_tinh AS don_vi_tinh, tf.muc_hp AS muc_hp,
+                       tf.ten_nganh AS ten_nganh, p.name AS program_name,
+                       p.code AS program_code
+                ORDER BY tf.khoa, tf.don_vi_tinh
+            """
+
+            result = session.run(cypher, **params)
+            matches = [dict(r) for r in result]
+
+            # Strategy 2: Tìm trực tiếp trên TuitionFee (cho CLC/TT không link Program)
+            if not matches:
+                cypher2 = """
+                    MATCH (tf:TuitionFee)
+                    WHERE toLower(tf.ten_nganh) CONTAINS $norm
+                """
+                params2: Dict[str, Any] = {"norm": norm}
+
+                if khoa:
+                    cypher2 += "    AND tf.khoa = $khoa\n"
+                    params2["khoa"] = khoa.strip()
+
+                cypher2 += """
+                    RETURN tf.id AS id, tf.ma_nganh AS ma_nganh, tf.khoa AS khoa,
+                           tf.nam_hoc AS nam_hoc, tf.loai_ct AS loai_ct,
+                           tf.don_vi_tinh AS don_vi_tinh, tf.muc_hp AS muc_hp,
+                           tf.ten_nganh AS ten_nganh,
+                           '' AS program_name, '' AS program_code
+                    ORDER BY tf.khoa, tf.don_vi_tinh
+                """
+                result = session.run(cypher2, **params2)
+                matches = [dict(r) for r in result]
+
+            # Strategy 3: Token overlap fallback
+            if not matches:
+                result = session.run(
+                    "MATCH (tf:TuitionFee) RETURN tf"
+                )
+                query_tokens = set(norm.split())
+                scored = []
+                for row in result:
+                    tf = dict(row["tf"])
+                    tf_norm = _normalize(tf.get("ten_nganh", ""))
+                    tf_tokens = set(tf_norm.split())
+                    overlap = len(query_tokens & tf_tokens)
+                    if overlap > 0:
+                        scored.append((overlap, tf))
+                scored.sort(key=lambda x: x[0], reverse=True)
+                matches = [item for _, item in scored[:20]]
+
+        return matches
+
+    # ------------------------------------------------------------------
+    # 8. get_tuition_policies — lấy danh sách quy định học phí
+    # ------------------------------------------------------------------
+
+    def get_tuition_policies(
+        self, doi_tuong: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """Lấy tất cả TuitionPolicy, có thể lọc theo đối tượng."""
+        with self._driver.session() as session:
+            if doi_tuong:
+                norm = _normalize(doi_tuong)
+                result = session.run(
+                    """
+                    MATCH (tp:TuitionPolicy)
+                    WHERE toLower(tp.doi_tuong) CONTAINS $norm
+                       OR toLower(tp.mo_ta) CONTAINS $norm
+                    RETURN tp.id AS id, tp.loai AS loai, tp.mo_ta AS mo_ta,
+                           tp.he_so AS he_so, tp.muc_hp AS muc_hp,
+                           tp.don_vi_tinh AS don_vi_tinh,
+                           tp.doi_tuong AS doi_tuong, tp.nam_hoc AS nam_hoc
+                    ORDER BY tp.id
+                    """,
+                    norm=norm,
+                )
+            else:
+                result = session.run(
+                    """
+                    MATCH (tp:TuitionPolicy)
+                    RETURN tp.id AS id, tp.loai AS loai, tp.mo_ta AS mo_ta,
+                           tp.he_so AS he_so, tp.muc_hp AS muc_hp,
+                           tp.don_vi_tinh AS don_vi_tinh,
+                           tp.doi_tuong AS doi_tuong, tp.nam_hoc AS nam_hoc
+                    ORDER BY tp.id
+                    """
+                )
+
+            return [dict(r) for r in result]
