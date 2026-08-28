@@ -34,6 +34,7 @@ CÁC AGENT CÓ SẴN:
 QUY TẮC:
 - Chỉ trả về TÊN agent (academic/financial/scholarship/general), không giải thích.
 - Nếu câu hỏi liên quan đến CẢ học phí VÀ ngành học, ưu tiên lĩnh vực chính mà người dùng CẦN CÂU TRẢ LỜI.
+- Nếu câu hỏi hỏi về "hệ chất lượng cao" (clc), "đại trà" mà KHÔNG ĐỀ CẬP RÕ RÀNG chữ "học phí", "bao nhiêu tiền", thì BẮT BUỘC định tuyến vào **academic** (Hỏi về chương trình đào tạo chất lượng cao).
 - Nếu không chắc chắn, chọn "general".
 - Nếu câu hỏi hoàn toàn không liên quan đến trường đại học (nấu ăn, giải trí...), chọn "general".
 """

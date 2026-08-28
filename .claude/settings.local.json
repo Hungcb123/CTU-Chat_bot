@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "mcp__gitnexus__list_repos"
-    ]
-  }
-}
