@@ -109,6 +109,7 @@ def build_agent_graph(
     rewrite_llm,
     engine,
     tuition_catalog,
+    graph_service,
     academic_tools: list,
     financial_tools: list,
     scholarship_tools: list,
@@ -120,6 +121,7 @@ def build_agent_graph(
         rewrite_llm: LLM phụ dùng cho query rewrite.
         engine: RAG engine (Qdrant + BM25).
         tuition_catalog: Catalog tra cứu học phí cấu trúc.
+        graph_service: AcademicGraphService instance (Neo4j).
         academic_tools: Danh sách tools cho Academic Agent.
         financial_tools: Danh sách tools cho Financial Agent.
         scholarship_tools: Danh sách tools cho Scholarship Agent.
@@ -229,8 +231,24 @@ def build_agent_graph(
         retrieval_instruction = build_answer_instruction(routing_decision)
 
         # ── Tra cứu học phí cấu trúc (nếu financial) ──
+        # Ưu tiên: Neo4j graph → JSON TuitionRateCatalog fallback
         lookup_result = None
-        if next_agent == "financial":
+        graph_found = False
+        if next_agent == "financial" and graph_service is not None:
+            try:
+                graph_results = graph_service.lookup_tuition(query)
+                if not graph_results and search_query.strip() != query.strip():
+                    graph_results = graph_service.lookup_tuition(search_query)
+                if graph_results:
+                    from app.tools.tuition_graph import _format_graph_results
+                    structured_context_blocks.append(_format_graph_results(graph_results))
+                    logger.info("Tra cứu học phí từ graph thành công: %d kết quả", len(graph_results))
+                    graph_found = True
+            except Exception as e:
+                logger.warning("Graph tuition lookup lỗi, fallback JSON: %s", e)
+
+        # Fallback: JSON TuitionRateCatalog nếu graph không tìm thấy
+        if next_agent == "financial" and not graph_found:
             lookup_result = tuition_catalog.lookup(query)
             if (
                 lookup_result.status in {"needs_clarification", "not_found"}
@@ -242,7 +260,7 @@ def build_agent_graph(
                     lookup_result = rewritten_lookup
             if lookup_result.status == "found":
                 structured_context_blocks.append(lookup_result.message)
-                logger.info("Tra cứu học phí cấu trúc thành công records=%d", len(lookup_result.records))
+                logger.info("Tra cứu học phí từ JSON fallback thành công records=%d", len(lookup_result.records))
 
         # ── RAG Retrieval ──
         lanes = build_retrieval_lanes(routing_decision)

@@ -30,6 +30,10 @@ from app.tools.academic_program import (
     xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
     set_graph_service,
 )
+from app.tools.tuition_graph import (
+    tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi,
+    set_tuition_graph_service, set_tuition_catalog,
+)
 from app.services.tuition_catalog import TuitionRateCatalog
 from app.services.graph_service import AcademicGraphService
 from app.agents.graph import build_agent_graph
@@ -78,6 +82,8 @@ async def lifespan(app: FastAPI):
         )
         app.state.graph_service.ensure_data_loaded()
         set_graph_service(app.state.graph_service)
+        set_tuition_graph_service(app.state.graph_service)
+        set_tuition_catalog(app.state.tuition_catalog)
         logger.info("✅ Neo4j Graph Service sẵn sàng!")
         
         # LLM CHÍNH (GEMINI): Dùng để sinh câu trả lời và sử dụng Tool
@@ -94,7 +100,7 @@ async def lifespan(app: FastAPI):
             tra_cuu_nganh, so_sanh_nganh, tim_nganh,
             xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
         ]
-        financial_tools = [tinh_toan_hoc_phi]
+        financial_tools = [tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi, tinh_toan_hoc_phi]
         scholarship_tools = [tinh_tien_hoc_bong]
 
         app.state.agent_graph = build_agent_graph(
@@ -102,6 +108,7 @@ async def lifespan(app: FastAPI):
             rewrite_llm=app.state.rewrite_llm,
             engine=app.state.engine,
             tuition_catalog=app.state.tuition_catalog,
+            graph_service=app.state.graph_service,
             academic_tools=academic_tools,
             financial_tools=financial_tools,
             scholarship_tools=scholarship_tools,
