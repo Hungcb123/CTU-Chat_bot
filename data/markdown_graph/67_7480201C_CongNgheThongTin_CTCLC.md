@@ -1,11 +1,3 @@
----
-loai_tai_lieu: "Chương trình đào tạo"
-trinh_do: "Đại học"
-don_vi: "Khoa Công nghệ thông tin, Trường Công nghệ Thông tin và Truyền thông"
-nganh_hoc: "Công nghệ thông tin (chất lượng cao)"
-nam_ban_hanh: 2025
----
-
 # CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC
 
 *(Ban hành theo Quyết định số 3922/QĐ-ĐHCT ngày 15 tháng 8 năm 2025 của Hiệu trưởng Trường Đại học Cần Thơ)*

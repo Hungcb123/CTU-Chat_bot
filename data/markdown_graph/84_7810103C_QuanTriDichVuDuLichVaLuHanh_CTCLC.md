@@ -1,11 +1,3 @@
----
-loai_tai_lieu: "Chương trình đào tạo"
-trinh_do: "Đại học"
-don_vi: "Khoa Quản trị Dịch vụ Du lịch & Lữ hành, Trường Kinh tế"
-nganh_hoc: "Quản trị dịch vụ du lịch và lữ hành - Chương trình chất lượng cao"
-nam_ban_hanh: 2025
----
-
 # CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC
 
 *(Ban hành theo Quyết định số 3922/QĐ-ĐHCT ngày 15 tháng 8 năm 2025 của Hiệu trưởng Trường Đại học Cần Thơ)*
