@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "name": "EA-GraphRAG Benchmark",
+    "version": "0.1",
+    "status": "draft",
+    "corpus_snapshot": null
+  },
+  "cases": [
+    {
+      "id": "Q001",
+      "question": "Chuẩn đầu ra (PLO) thuộc phần \"Khối kiến thức giáo dục đại cương\" của ngành Công nghệ thông tin gồm những nội dung gì?",
+      "language": "vi",
+      "category": "training_program",
+      "topic": "chuan_dau_ra",
+      "query_type": "fact_lookup",
+      "difficulty": "easy",
+      "complexity": "single_hop",
+      "answer_date": null,
+      "audience": "student",
+      "answerable": true,
+      "expected_document_keys": [
+        "66_7480201_CongNgheThongTin"
+      ],
+      "expected_version_keys": [],
+      "gold_chunk_keys": [],
+      "gold_evidence_contains": [
+        "Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin",
+        "Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội"
+      ],
+      "required_facts": [
+        {
+          "id": "F1",
+          "fact": "Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin.",
+          "label": "PLO 1",
+          "supporting_chunk_keys": []
+        },
+        {
+          "id": "F2",
+          "fact": "Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội.",
+          "label": "PLO 2",
+          "supporting_chunk_keys": []
+        }
+      ],
+      "reference_answer": "Chuẩn đầu ra thuộc khối kiến thức giáo dục đại cương gồm: (1) PLO 1 - Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin; (2) PLO 2 - Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội.",
+      "gold_entities": [],
+      "gold_graph_paths": [],
+      "expected_agent": "training_program",
+      "expected_tool": null,
+      "requires_clarification": false,
+      "expected_behavior": "answer"
+    }
+  ]
+}

@@ -1,0 +1,3329 @@
+# A/B Test: Soft Tie-break Reranker vs Plain Cross-Encoder Reranker
+
+- Thời điểm: `2026-08-16T18:13:56.217710+07:00`
+- Dataset: `/mnt/d/Project/Chatbot/data/dataset.md`
+- Collection: `ctu_scholarship_docs_current` (1303 points)
+- Reranker model: `BAAI/bge-reranker-v2-m3`
+- score_tolerance: `0.05`
+- Số câu tổng: **100**
+- Số câu có RAG retrieval (không bypass): **80**
+- Số câu bypass catalog exact: **20**
+
+> Độ đo: expected source (tên file gốc trong dataset) có xuất hiện trong docs sau rerank + dedup hay không (hit), và vị trí rank (1-based) đầu tiên của nó.
+
+## Tổng quan
+
+| Chỉ số | Tie-break (A) | Plain (B) |
+|---|---:|---:|
+| Hit (có expected source trong top docs) | 80/80 (**100.00%**) | 80/80 (**100.00%**) |
+| Avg rank của expected source (khi hit) | 1.27 | 1.18 |
+| Số câu thay đổi thứ tự docs | 40 (chung) |
+| Chỉ A thắng / chỉ B thắng / cả hai hit / cả hai miss | 0 / 0 / 80 / 0 |
+| Khi cả hai hit: A rank tốt hơn / B rank tốt hơn / bằng | 1 / 6 / 73 |
+
+## Kết quả theo nhóm
+
+| Lĩnh vực | Tổng | Active | Hit A | Hit B |
+|---|---:|---:|---:|---:|
+| Học bổng | 25 | 25 | 25/25 (100.0%) | 25/25 (100.0%) |
+| Học phí | 25 | 5 | 5/5 (100.0%) | 5/5 (100.0%) |
+| Miễn giảm học phí & Hỗ trợ chi phí học tập | 25 | 25 | 25/25 (100.0%) | 25/25 (100.0%) |
+| Vay vốn | 25 | 25 | 25/25 (100.0%) | 25/25 (100.0%) |
+
+## Phân bố kết quả từng câu
+
+| Kết quả | Số câu |
+|---|---:|
+| Cả hai đều truy xuất được | 80 |
+| Chỉ tie-break truy xuất được | 0 |
+| Chỉ plain truy xuất được | 0 |
+| Cả hai đều miss | 0 |
+| Bypass (catalog exact) | 20 |
+
+## Chi tiết từng câu
+
+### Câu 1 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Trẻ bị bỏ rơi không có nguồn nuôi dưỡng học đại học thì được hưởng chế độ học phí như thế nào?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 2 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên khuyết tật muốn xin miễn học phí thì cần chuẩn bị giấy tờ gì?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 3 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên người dân tộc thiểu số ở xã khu vực III vùng dân tộc và miền núi được giảm bao nhiêu phần trăm học phí?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 4 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Con của bệnh binh được hưởng chế độ học phí như thế nào?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 5 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Cha hoặc mẹ bị tai nạn lao động được hưởng trợ cấp thường xuyên thì sinh viên được giảm bao nhiêu học phí?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 6 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên đang bị kỷ luật ngừng học có được xét miễn, giảm học phí không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 7 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Nếu sinh viên thuộc nhiều diện miễn, giảm học phí cùng lúc thì tính như thế nào?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 8 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên đang hưởng lương hoặc sinh hoạt phí khi đi học có được miễn giảm học phí không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 9 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_policy` | Lanes: `exemption_policy` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `mghp.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sổ hộ nghèo hết hạn thì làm gì để được tiếp tục miễn giảm học phí?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] mghp.md (exemption_policy, 2026-04-14)
+2. [*] mghp.md (exemption_policy, 2026-04-14)
+3. [*] mghp.md (exemption_policy, 2026-04-14)
+4. [*] mghp.md (exemption_policy, 2026-04-14)
+5. [*] mghp.md (exemption_policy, 2026-04-14)
+6. [*] mghp.md (exemption_policy, 2026-04-14)
+
+---
+
+### Câu 10 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_basis` | Lanes: `exemption_basis` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `MucHocPhi_2526_MienGiam.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Học phí làm cơ sở tính miễn, giảm cho môn Giáo dục quốc phòng và An ninh (đại trà) là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+---
+
+### Câu 11 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_basis` | Lanes: `exemption_basis` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `MucHocPhi_2526_MienGiam.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khối ngành III (Kinh doanh và quản lý, pháp luật) có mức học phí cơ sở để tính miễn giảm là bao nhiêu 1 tín chỉ?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+---
+
+### Câu 12 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_basis` | Lanes: `exemption_basis` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `MucHocPhi_2526_MienGiam.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khối ngành IV (Khoa học sự sống, khoa học tự nhiên) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+---
+
+### Câu 13 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_basis` | Lanes: `exemption_basis` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `MucHocPhi_2526_MienGiam.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khối ngành VI (Sức khỏe) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+---
+
+### Câu 14 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `exemption_basis` | Lanes: `exemption_basis` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `MucHocPhi_2526_MienGiam.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên chương trình tiên tiến khóa 47 trở về trước có học phí làm cơ sở tính miễn giảm là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+2. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+3. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+4. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+5. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+6. [*] MucHocPhi_2526_MienGiam.md (exemption_basis, 2025-02-18)
+
+---
+
+### Câu 15 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `TCXH.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Trợ cấp xã hội cho sinh viên hộ nghèo, tàn tật là bao nhiêu tiền một tháng?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] TCXH.md (social_support, 2026-04-24)
+2. [*] TCXH.md (social_support, 2026-04-24)
+3. [ ] Ho_tro.md (social_support, 2025-11-24)
+4. [ ] nd116.md (social_support, 2025-03-03)
+5. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] TCXH.md (social_support, 2026-04-24)
+2. [*] TCXH.md (social_support, 2026-04-24)
+3. [ ] Tro_cap_XH.md (social_support, 1998-08-25)
+4. [ ] Ho_tro.md (social_support, 2025-11-24)
+5. [ ] 66_2013.md (social_support, 2013-11-11)
+6. [ ] 66_2013.md (social_support, 2013-11-11)
+
+---
+
+### Câu 16 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `66_2013.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Em là sinh viên dân tộc thiểu số thuộc hộ nghèo thì được hỗ trợ chi phí học tập bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] Ho_tro.md (social_support, 2025-11-24)
+2. [*] 66_2013.md (social_support, 2013-11-11)
+3. [ ] donz.md (social_support, 2025-10-31)
+4. [ ] Ho_tro.md (social_support, 2025-11-24)
+5. [ ] donz.md (social_support, 2025-10-31)
+6. [ ] donz.md (social_support, 2025-10-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] 66_2013.md (social_support, 2013-11-11)
+2. [ ] Ho_tro.md (social_support, 2025-11-24)
+3. [ ] donz.md (social_support, 2025-10-31)
+4. [ ] donz.md (social_support, 2025-10-31)
+5. [ ] Ho_tro.md (social_support, 2025-11-24)
+6. [ ] donz.md (social_support, 2025-10-31)
+
+---
+
+### Câu 17 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `66_2013.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khoản hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số thuộc hộ nghèo được nhận tối đa mấy tháng trong một năm học?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] 66_2013.md (social_support, 2013-11-11)
+2. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+3. [ ] Ho_tro.md (social_support, 2025-11-24)
+4. [ ] donz.md (social_support, 2025-10-31)
+5. [ ] donz.md (social_support, 2025-10-31)
+6. [ ] donz.md (social_support, 2025-10-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] 66_2013.md (social_support, 2013-11-11)
+2. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+3. [ ] Ho_tro.md (social_support, 2025-11-24)
+4. [ ] donz.md (social_support, 2025-10-31)
+5. [ ] donz.md (social_support, 2025-10-31)
+6. [ ] donz.md (social_support, 2025-10-31)
+
+---
+
+### Câu 18 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `66_2013.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên học văn bằng hai có được nhận hỗ trợ chi phí học tập dành cho sinh viên dân tộc thiểu số thuộc hộ nghèo không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 6
+
+1. [ ] Ho_tro.md (social_support, 2025-11-24)
+2. [ ] donz.md (social_support, 2025-10-31)
+3. [ ] Ho_tro.md (social_support, 2025-11-24)
+4. [ ] donz.md (social_support, 2025-10-31)
+5. [ ] donz.md (social_support, 2025-10-31)
+6. [*] 66_2013.md (social_support, 2013-11-11)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 5
+
+1. [ ] donz.md (social_support, 2025-10-31)
+2. [ ] Ho_tro.md (social_support, 2025-11-24)
+3. [ ] Ho_tro.md (social_support, 2025-11-24)
+4. [ ] donz.md (social_support, 2025-10-31)
+5. [*] 66_2013.md (social_support, 2013-11-11)
+6. [ ] donz.md (social_support, 2025-10-31)
+
+---
+
+### Câu 19 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `donz.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Ai là người ký xác nhận giấy chứng nhận hộ nghèo để sinh viên làm hồ sơ hỗ trợ chi phí học tập?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] MauXacNhanhoNghoe.md (social_support, 1970-01-01)
+2. [*] donz.md (social_support, 2025-10-31)
+3. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+4. [*] donz.md (social_support, 2025-10-31)
+5. [ ] Tro_cap_XH.md (social_support, 1998-08-25)
+6. [ ] Tro_cap_XH.md (social_support, 1998-08-25)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] MauXacNhanhoNghoe.md (social_support, 1970-01-01)
+2. [*] donz.md (social_support, 2025-10-31)
+3. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+4. [*] donz.md (social_support, 2025-10-31)
+5. [ ] Tro_cap_XH.md (social_support, 1998-08-25)
+6. [ ] Tro_cap_XH.md (social_support, 1998-08-25)
+
+---
+
+### Câu 20 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `66_2013.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Nguồn tiền hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số thuộc hộ nghèo được lấy từ đâu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] 66_2013.md (social_support, 2013-11-11)
+2. [*] 66_2013.md (social_support, 2013-11-11)
+3. [ ] Ho_tro.md (social_support, 2025-11-24)
+4. [ ] donz.md (social_support, 2025-10-31)
+5. [*] 66_2013.md (social_support, 2013-11-11)
+6. [ ] Ho_tro.md (social_support, 2025-11-24)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] 66_2013.md (social_support, 2013-11-11)
+2. [*] 66_2013.md (social_support, 2013-11-11)
+3. [ ] donz.md (social_support, 2025-10-31)
+4. [*] 66_2013.md (social_support, 2013-11-11)
+5. [ ] Ho_tro.md (social_support, 2025-11-24)
+6. [ ] Ho_tro.md (social_support, 2025-11-24)
+
+---
+
+### Câu 21 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Ho_tro.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Em học sư phạm và đã được Nhà nước hỗ trợ học phí, sinh hoạt phí rồi thì có được nhận thêm hỗ trợ chi phí đào tạo dành cho sinh viên dân tộc thiểu số không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Ho_tro.md (social_support, 2025-11-24)
+2. [*] Ho_tro.md (social_support, 2025-11-24)
+3. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+4. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Ho_tro.md (social_support, 2025-11-24)
+2. [*] Ho_tro.md (social_support, 2025-11-24)
+3. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+4. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [ ] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+---
+
+### Câu 22 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `donz.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên dân tộc thiểu số thuộc hộ nghèo muốn nộp hồ sơ hỗ trợ chi phí học tập thì nộp trực tiếp ở đâu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 3
+
+1. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+2. [ ] Ho_tro.md (social_support, 2025-11-24)
+3. [*] donz.md (social_support, 2025-10-31)
+4. [*] donz.md (social_support, 2025-10-31)
+5. [ ] Ho_tro.md (social_support, 2025-11-24)
+6. [*] donz.md (social_support, 2025-10-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] donz.md (social_support, 2025-10-31)
+2. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+3. [ ] Ho_tro.md (social_support, 2025-11-24)
+4. [*] donz.md (social_support, 2025-10-31)
+5. [ ] Ho_tro.md (social_support, 2025-11-24)
+6. [*] donz.md (social_support, 2025-10-31)
+
+---
+
+### Câu 23 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Tro_cap_XH.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Hồ sơ xin trợ cấp xã hội của sinh viên mồ côi cả cha lẫn mẹ cần giấy tờ gì?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+2. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+3. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+4. [ ] Ho_tro.md (social_support, 2025-11-24)
+5. [ ] MauXacNhanhoNghoe.md (social_support, 1970-01-01)
+6. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+2. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+3. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+4. [ ] Ho_tro.md (social_support, 2025-11-24)
+5. [ ] MauXacNhanhoNghoe.md (social_support, 1970-01-01)
+6. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+
+---
+
+### Câu 24 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Tro_cap_XH.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên mồ côi cần nộp hồ sơ xin trợ cấp xã hội mấy lần?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+2. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+3. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+4. [ ] Ho_tro.md (social_support, 2025-11-24)
+5. [ ] Ho_tro.md (social_support, 2025-11-24)
+6. [ ] donz.md (social_support, 2025-10-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+2. [*] Tro_cap_XH.md (social_support, 1998-08-25)
+3. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+4. [ ] MauXacNhanhoNghoe.md (social_support, 1970-01-01)
+5. [ ] donz.md (social_support, 2025-10-31)
+6. [ ] Ho_tro.md (social_support, 2025-11-24)
+
+---
+
+### Câu 25 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Miễn giảm học phí & Hỗ trợ chi phí học tập
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Ho_tro.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên được hỗ trợ chi phí đào tạo dành cho vùng đồng bào dân tộc thiểu số thì nộp hồ sơ ở đâu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+2. [*] Ho_tro.md (social_support, 2025-11-24)
+3. [*] Ho_tro.md (social_support, 2025-11-24)
+4. [ ] donz.md (social_support, 2025-10-31)
+5. [ ] donz.md (social_support, 2025-10-31)
+6. [ ] donz.md (social_support, 2025-10-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] donz.md (social_support, 2025-10-31)
+2. [*] Ho_tro.md (social_support, 2025-11-24)
+3. [*] Ho_tro.md (social_support, 2025-11-24)
+4. [ ] 02_246_23-06-2026.md (social_support, 2026-06-23)
+5. [ ] donz.md (social_support, 2025-10-31)
+6. [ ] donz.md (social_support, 2025-10-31)
+
+---
+
+### Câu 26 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `not_found`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Mức học phí đại cương chung của ngành CNTT đối với Khóa 49 là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 6
+
+1. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+2. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+3. [ ] MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md (actual_tuition, 2026-02-03)
+4. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+5. [ ] MucHocPhi_ChatLuongCao_TienTien.md (actual_tuition, 2026-02-03)
+6. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 3
+
+1. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+2. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+3. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+4. [ ] MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md (actual_tuition, 2026-02-03)
+5. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+6. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+
+---
+
+### Câu 27 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_DaiHocChinhQuy_Khoa52.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Mức học phí đại cương chung đối với Khóa 52 (đại trà) là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 28 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Học lại môn ngoài thời gian thiết kế chương trình đối với Khóa 52 bị nhân hệ số bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 29 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khóa 51 học lại ngoài thời gian thiết kế thì học phí nhân hệ số mấy?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 30 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Mức học phí theo tín chỉ của ngành Sư phạm Toán học Khóa 51 trở về trước là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 31 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_DaiHocChinhQuy_Khoa52.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khóa 52 ngành Sư phạm Toán học có học phí bao nhiêu 1 tín chỉ?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 32 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_DaiHocChinhQuy_Khoa52.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Học phí toàn khóa ngành Quản trị kinh doanh đại trà Khóa 52 là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 33 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_DaiHocChinhQuy_Khoa52.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khóa 52 ngành Khoa học máy tính học phí bao nhiêu 1 tín chỉ?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 34 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_DaiHocChinhQuy_Khoa52.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Ngành Kiến trúc Khóa 52 đại trà có học phí toàn khóa bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 35 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_ChatLuongCao_TienTien.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Ngành Công nghệ thông tin Chất lượng cao Khóa 52 có mức học phí cố định một năm là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 36 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_ChatLuongCao_TienTien.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Ngành Kinh doanh quốc tế Chất lượng cao Khóa 51 có học phí một năm là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 37 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Mức học phí môn Năng lực số đối với Khóa 51 trở về trước là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 38 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên Khóa 51 ngành Kế toán học phí bao nhiêu 1 tín chỉ chuyên ngành?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 39 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_DaiHocChinhQuy_Khoa52.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khóa 52 ngành Kinh doanh nông nghiệp - Hòa An có học phí bao nhiêu một tín chỉ?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 40 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Học phí Tiến sĩ khóa tuyển sinh năm 2026 là bao nhiêu một năm?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+2. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+3. [ ] MucHocPhi_ChatLuongCao_TienTien.md (actual_tuition, 2026-02-03)
+4. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+5. [ ] MucHocPhi_ChatLuongCao_TienTien.md (actual_tuition, 2026-02-03)
+6. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+2. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+3. [ ] MucHocPhi_ChatLuongCao_TienTien.md (actual_tuition, 2026-02-03)
+4. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+5. [ ] MucHocPhi_ChatLuongCao_TienTien.md (actual_tuition, 2026-02-03)
+6. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+
+---
+
+### Câu 41 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Học phí Thạc sĩ khóa tuyển sinh năm 2025 về trước là bao nhiêu một năm?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+2. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+3. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+4. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+5. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+6. [ ] MucHocPhi_ChatLuongCao_TienTien.md (actual_tuition, 2026-02-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+2. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+3. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+4. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+5. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+6. [ ] MucHocPhi_ChatLuongCao_TienTien.md (actual_tuition, 2026-02-03)
+
+---
+
+### Câu 42 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Học viên cao học học ngoài giờ hành chính sẽ bị nhân hệ số học phí như thế nào?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 43 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Học phí tốt nghiệp chậm tiến độ thạc sĩ được tính như thế nào?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 44 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Đào tạo từ xa khóa 2027 có học phí là bao nhiêu 1 tín chỉ?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+2. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+3. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+4. [ ] MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md (actual_tuition, 2026-02-03)
+5. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+6. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+2. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+3. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+4. [ ] MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md (actual_tuition, 2026-02-03)
+5. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+6. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+
+---
+
+### Câu 45 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Hệ Vừa làm vừa học nếu lớp dưới 30 sinh viên có thể bị nhân hệ số học phí tối đa bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 46 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Học phí bồi dưỡng kiến thức tại Khoa Dự bị Dân tộc là bao nhiêu tiền một năm?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+2. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+3. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+4. [ ] MucHocPhi_ChatLuongCao_TienTien.md (actual_tuition, 2026-02-03)
+5. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+6. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+2. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+3. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+4. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+5. [*] MucHocPhi_QuyDinhChung.md (actual_tuition, 2025-09-03)
+6. [ ] MucHocPhi_DaiHocChinhQuy_Khoa52.md (actual_tuition, 2026-02-03)
+
+---
+
+### Câu 47 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_QuyDinhChung.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Mức học phí học bổ sung kiến thức dự thi trình độ thạc sĩ tối đa là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 48 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_ChatLuongCao_TienTien.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khóa 52 ngành Thú y Chất lượng cao có học phí bao nhiêu một tín chỉ?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 49 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_ChatLuongCao_TienTien.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khóa 44 ngành Công nghệ thông tin Chất lượng cao đóng học phí bao nhiêu một năm?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 50 · Bypass (catalog exact)
+
+- Lĩnh vực: Học phí
+- Intent: `actual_tuition` | Lanes: `actual_tuition` | Catalog: `found`
+- Nguồn kỳ vọng: `MucHocPhi_ChatLuongCao_TienTien.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Khóa 52 ngành Nuôi trồng thủy sản Tiên tiến có học phí theo tín chỉ là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+**Plain (B)**
+
+- Hit: **FAIL** | Rank: -
+
+(không có docs — bypass catalog)
+
+---
+
+### Câu 51 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `VayVonMuaMayTinh.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Mức vay vốn ưu đãi tối đa để mua máy tính học trực tuyến là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [ ] QD_2022.md (student_loan, 2022-03-23)
+4. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+5. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+6. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [ ] QD_2022.md (student_loan, 2022-03-23)
+4. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+5. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+6. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+---
+
+### Câu 52 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `VayVonMuaMayTinh.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Lãi suất cho vay mua máy tính học trực tuyến là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+4. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+5. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+4. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+5. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+---
+
+### Câu 53 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `VayVonMuaMayTinh.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Thời hạn cho vay tối đa để mua máy tính học trực tuyến là bao lâu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+5. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+5. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+---
+
+### Câu 54 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `VayVonMuaMayTinh.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên thuộc hộ gia đình khó khăn do bố hoặc mẹ mất vì Covid-19 có được vay mua máy tính không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] QD_2022.md (student_loan, 2022-03-23)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] QD_2022.md (student_loan, 2022-03-23)
+
+---
+
+### Câu 55 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `VayVonMuaMayTinh.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên mua máy tính có thể trực tiếp đứng tên vay vốn trong trường hợp nào?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+2. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [*] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+---
+
+### Câu 56 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `QD_2022.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên thuộc hộ nghèo hoặc cận nghèo có thể vay tối đa bao nhiêu tiền mỗi tháng để đi học?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] QD_2022.md (student_loan, 2022-03-23)
+2. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [*] QD_2022.md (student_loan, 2022-03-23)
+5. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+6. [*] QD_2022.md (student_loan, 2022-03-23)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] QD_2022.md (student_loan, 2022-03-23)
+2. [ ] VayVon.md (student_loan, 2007-10-02)
+3. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+4. [*] QD_2022.md (student_loan, 2022-03-23)
+5. [*] QD_2022.md (student_loan, 2022-03-23)
+6. [*] QD_2022.md (student_loan, 2022-03-23)
+
+---
+
+### Câu 57 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Vayvon_Viettinbank_2025_v2.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Khách hàng vay vốn VietinBank bằng tài sản thế chấp để đóng học phí được thời hạn tối đa bao lâu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+2. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+2. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+---
+
+### Câu 58 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Vayvon_Viettinbank_2025_v2.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Hạn mức vay VietinBank tín chấp để đóng học phí tối đa là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+3. [ ] QD_2022.md (student_loan, 2022-03-23)
+4. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+5. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+3. [ ] QD_2022.md (student_loan, 2022-03-23)
+4. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+5. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+---
+
+### Câu 59 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `other` | Lanes: `default` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Vayvon_Viettinbank_2025_v2.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Lãi suất 12 tháng đầu ghi vay viettinbank là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Vayvon_Viettinbank_2025_v2.md (default, 1970-01-01)
+2. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+3. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+4. [ ] VayVon.md (default, 2007-10-02)
+5. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+6. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Vayvon_Viettinbank_2025_v2.md (default, 1970-01-01)
+2. [ ] VayVon.md (default, 2007-10-02)
+3. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+4. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+5. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+6. [ ] VayVon.md (default, 2007-10-02)
+
+---
+
+### Câu 60 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Vayvon_Viettinbank_2025_v2.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Vay tín chấp tại VietinBank đóng học phí có yêu cầu giới hạn độ tuổi không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+2. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+3. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+4. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+5. [ ] QD_2022.md (student_loan, 2022-03-23)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+2. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+3. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+4. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+5. [*] Vayvon_Viettinbank_2025_v2.md (student_loan, 1970-01-01)
+6. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+---
+
+### Câu 61 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `other` | Lanes: `default` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `NDCP_VayVonSVKT.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Em học ngành STEM thì được vay bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (default, 2025-08-28)
+2. [ ] QD_2022.md (default, 2022-03-23)
+3. [ ] VayVonMuaMayTinh.md (default, 1970-01-01)
+4. [ ] VayVonChoSinhVienKyT.md (default, 2025-09-30)
+5. [*] NDCP_VayVonSVKT.md (default, 2025-08-28)
+6. [ ] QD_2022.md (default, 2022-03-23)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (default, 2025-08-28)
+2. [ ] QD_2022.md (default, 2022-03-23)
+3. [ ] VayVonMuaMayTinh.md (default, 1970-01-01)
+4. [ ] VayVon.md (default, 2007-10-02)
+5. [*] NDCP_VayVonSVKT.md (default, 2025-08-28)
+6. [ ] VayVonMuaMayTinh.md (default, 1970-01-01)
+
+---
+
+### Câu 62 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `NDCP_VayVonSVKT.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Lãi khi vay vốn cho học phí ngành kỹ thuật là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+6. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+6. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+
+---
+
+### Câu 63 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `NDCP_VayVonSVKT.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên năm nhất muốn vay STEM cần điều kiện điểm cấp 3 thế nào?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+3. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+4. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+3. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+---
+
+### Câu 64 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `NDCP_VayVonSVKT.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên vay vốn STEM trên 500 triệu đồng có cần tài sản bảo đảm không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+5. [ ] QD_2022.md (student_loan, 2022-03-23)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+
+---
+
+### Câu 65 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `NDCP_VayVonSVKT.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Lãi suất nợ quá hạn của các chương trình vay vốn sinh viên là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [ ] VayVon.md (student_loan, 2007-10-02)
+3. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [ ] QD_2022.md (student_loan, 2022-03-23)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] VayVon.md (student_loan, 2007-10-02)
+2. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [ ] QD_2022.md (student_loan, 2022-03-23)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+---
+
+### Câu 66 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `NDCP_VayVonSVKT.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Trong thời gian sinh viên bảo lưu kết quả học tập, Ngân hàng Chính sách xã hội có giải ngân vốn vay không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [ ] VayVon.md (student_loan, 2007-10-02)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [ ] VayVon.md (student_loan, 2007-10-02)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+---
+
+### Câu 67 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `NDCP_VayVonSVKT.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Trả nợ vay vốn sinh viên trước hạn có bị phạt lãi không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [ ] QD_2022.md (student_loan, 2022-03-23)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+2. [ ] QD_2022.md (student_loan, 2022-03-23)
+3. [ ] VayVon.md (student_loan, 2007-10-02)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+---
+
+### Câu 68 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `VayVonChoSinhVienKyT.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên ngành Khoa học tự nhiên có thuộc đối tượng được vay vốn STEM không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+2. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+4. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+5. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+6. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+2. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+3. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+4. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+5. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+6. [*] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+
+---
+
+### Câu 69 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HuongDanXacNhanVayVon.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên đăng ký in mẫu giấy xác nhận vay vốn trực tuyến ở đâu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HuongDanXacNhanVayVon.md (student_loan, 1970-01-01)
+2. [ ] QD29.md (student_loan, 1970-01-01)
+3. [*] HuongDanXacNhanVayVon.md (student_loan, 1970-01-01)
+4. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+5. [*] HuongDanXacNhanVayVon.md (student_loan, 1970-01-01)
+6. [ ] QD29.md (student_loan, 1970-01-01)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HuongDanXacNhanVayVon.md (student_loan, 1970-01-01)
+2. [ ] QD29.md (student_loan, 1970-01-01)
+3. [*] HuongDanXacNhanVayVon.md (student_loan, 1970-01-01)
+4. [ ] VayVonChoSinhVienKyT.md (student_loan, 2025-09-30)
+5. [*] HuongDanXacNhanVayVon.md (student_loan, 1970-01-01)
+6. [ ] QD29.md (student_loan, 1970-01-01)
+
+---
+
+### Câu 70 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HuongDanXacNhanVayVon.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên có thể xóa mẫu yêu cầu xác nhận vay vốn trong trường hợp nào?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] QD29.md (student_loan, 1970-01-01)
+2. [*] HuongDanXacNhanVayVon.md (student_loan, 1970-01-01)
+3. [ ] QD29.md (student_loan, 1970-01-01)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [ ] NDCP_VayVonSVKT.md (student_loan, 2025-08-28)
+6. [ ] VayVon.md (student_loan, 2007-10-02)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] QD29.md (student_loan, 1970-01-01)
+2. [*] HuongDanXacNhanVayVon.md (student_loan, 1970-01-01)
+3. [ ] QD29.md (student_loan, 1970-01-01)
+4. [ ] VayVon.md (student_loan, 2007-10-02)
+5. [ ] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+---
+
+### Câu 71 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `VayVonChoSVSuPham.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên sư phạm được Nhà nước hỗ trợ sinh hoạt phí bao nhiêu mỗi tháng?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+2. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+3. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+4. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+2. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+3. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+4. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+---
+
+### Câu 72 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `VayVonChoSVSuPham.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên sư phạm công tác trong ngành giáo dục với thời gian bao lâu thì không phải bồi hoàn kinh phí?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+2. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+3. [ ] nd116.md (social_support, 2025-03-03)
+4. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+2. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+3. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+4. [ ] nd116.md (social_support, 2025-03-03)
+5. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+---
+
+### Câu 73 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `VayVonChoSVSuPham.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên sư phạm đang học nhưng chuyển sang ngành khác có phải bồi hoàn tiền không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+2. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+3. [ ] nd116.md (social_support, 2025-03-03)
+4. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+2. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+3. [ ] nd116.md (social_support, 2025-03-03)
+4. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+---
+
+### Câu 74 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `social_support` | Lanes: `social_support` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `VayVonChoSVSuPham.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Đơn vị nào trực tiếp chi trả tiền hỗ trợ sinh hoạt phí cho sinh viên sư phạm?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+2. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+3. [ ] nd116.md (social_support, 2025-03-03)
+4. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+2. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+3. [ ] nd116.md (social_support, 2025-03-03)
+4. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+5. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+6. [*] VayVonChoSVSuPham.md (social_support, 2020-09-25)
+
+---
+
+### Câu 75 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Vay vốn
+- Intent: `student_loan` | Lanes: `student_loan` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `VayVon.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Học sinh, sinh viên mồ côi cả cha lẫn mẹ muốn vay vốn thì ai là người đứng tên?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVon.md (student_loan, 2007-10-02)
+2. [*] VayVon.md (student_loan, 2007-10-02)
+3. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+4. [*] VayVon.md (student_loan, 2007-10-02)
+5. [*] VayVon.md (student_loan, 2007-10-02)
+6. [ ] QD_2022.md (student_loan, 2022-03-23)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] VayVon.md (student_loan, 2007-10-02)
+2. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+3. [*] VayVon.md (student_loan, 2007-10-02)
+4. [*] VayVon.md (student_loan, 2007-10-02)
+5. [*] VayVon.md (student_loan, 2007-10-02)
+6. [ ] VayVonMuaMayTinh.md (student_loan, 1970-01-01)
+
+---
+
+### Câu 76 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `Tài liệu phân bổ quỹ học bổng.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Mức học bổng khuyến khích học tập bình quân của Khóa 51 học kỳ đầu tiên là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+4. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+5. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+6. [ ] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+4. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+5. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+6. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+
+---
+
+### Câu 77 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `Tài liệu phân bổ quỹ học bổng.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên tuyển thẳng Khóa 51 có mức học bổng khuyến khích học kỳ đầu tiên là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+4. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+5. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+6. [ ] HB_LuongVanCang.md (scholarship, 2026-05-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+4. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+5. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+6. [ ] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+
+---
+
+### Câu 78 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `other` | Lanes: `default` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `Tài liệu phân bổ quỹ học bổng.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên có điểm rèn luyện từ 80 đến dưới 90 điểm được phân loại gì?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tài liệu phân bổ quỹ học bổng.md (default, 2025-07-31)
+2. [ ] HB_Vallet_Chi_Tiet.md (default, 2026-05-31)
+3. [ ] HB_Panasonic.md (default, 2026-04-03)
+4. [ ] VayVonChoSinhVienKyT.md (default, 2025-09-30)
+5. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+6. [ ] nd116.md (default, 2025-03-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tài liệu phân bổ quỹ học bổng.md (default, 2025-07-31)
+2. [ ] 03_6175KHTH_10-12-2024.md (default, 2024-12-10)
+3. [ ] HB_Panasonic.md (default, 2026-04-03)
+4. [ ] QD_2022.md (default, 2022-03-23)
+5. [ ] NDCP_VayVonSVKT.md (default, 2025-08-28)
+6. [ ] HB_Vallet_Chi_Tiet.md (default, 2026-05-31)
+
+---
+
+### Câu 79 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `Tài liệu phân bổ quỹ học bổng.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Khối ngành VI (Sức khỏe) sinh viên đạt học bổng Xuất sắc được thưởng bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+2. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+5. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+6. [ ] HB_LuongVanCang.md (scholarship, 2026-05-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+4. [ ] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+5. [ ] HB_SCC.md (scholarship, 2026-03-03)
+6. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+
+---
+
+### Câu 80 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `Tài liệu phân bổ quỹ học bổng.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên Khối ngành III (Kinh doanh và quản lý, pháp luật) đạt học bổng Khá được thưởng bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+4. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+5. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+4. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+5. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+
+---
+
+### Câu 81 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `Tài liệu phân bổ quỹ học bổng.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Sinh viên chương trình Chất lượng cao Khóa 51 đạt học bổng Giỏi nhận được mức bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+4. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+5. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+2. [*] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+4. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+5. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+6. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+---
+
+### Câu 82 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_Vallet_Chi_Tiet.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Giá trị của mỗi suất học bổng Vallet là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+2. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+6. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+2. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+5. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+---
+
+### Câu 83 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_Vallet_Chi_Tiet.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên tính điểm hệ 4 cần đạt điểm trung bình tích lũy bao nhiêu để xét học bổng Vallet?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+2. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+4. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+2. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+4. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+---
+
+### Câu 84 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_Vallet_Chi_Tiet.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Bài báo nghiên cứu khoa học có được xét ưu tiên khi xin học bổng Vallet không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+2. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+5. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+6. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+2. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+5. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+6. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+---
+
+### Câu 85 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_Panasonic.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Mỗi suất học bổng Panasonic có giá trị bao nhiêu tiền?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+2. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+3. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+4. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+5. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+2. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+3. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+4. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+5. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+6. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+
+---
+
+### Câu 86 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_Panasonic.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Sinh viên có hoàn cảnh gia đình khó khăn cần đạt điểm trung bình hệ 4 bao nhiêu để xin học bổng Panasonic?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+2. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+3. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+4. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+5. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+6. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+2. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+3. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+4. [*] HB_Panasonic.md (scholarship, 2026-04-03)
+5. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+6. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+---
+
+### Câu 87 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_SCC.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Có bao nhiêu suất học bổng SCC (Saigon Children’s Charity CIO) được trao?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCC.md (scholarship, 2026-03-03)
+2. [*] HB_SCC.md (scholarship, 2026-03-03)
+3. [*] HB_SCC.md (scholarship, 2026-03-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCC.md (scholarship, 2026-03-03)
+2. [*] HB_SCC.md (scholarship, 2026-03-03)
+3. [*] HB_SCC.md (scholarship, 2026-03-03)
+
+---
+
+### Câu 88 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_SCC.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Trị giá của học bổng SCC là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCC.md (scholarship, 2026-03-03)
+2. [*] HB_SCC.md (scholarship, 2026-03-03)
+3. [*] HB_SCC.md (scholarship, 2026-03-03)
+4. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+5. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCC.md (scholarship, 2026-03-03)
+2. [*] HB_SCC.md (scholarship, 2026-03-03)
+3. [*] HB_SCC.md (scholarship, 2026-03-03)
+4. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+5. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+
+---
+
+### Câu 89 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_SCC.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Điểm học tập yêu cầu để xét học bổng SCC là bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCC.md (scholarship, 2026-03-03)
+2. [*] HB_SCC.md (scholarship, 2026-03-03)
+3. [*] HB_SCC.md (scholarship, 2026-03-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCC.md (scholarship, 2026-03-03)
+2. [*] HB_SCC.md (scholarship, 2026-03-03)
+3. [*] HB_SCC.md (scholarship, 2026-03-03)
+
+---
+
+### Câu 90 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_LuongVanCang.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Học bổng Lương Văn Can toàn phần bao gồm những chi phí nào?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+2. [ ] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+3. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+4. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+5. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+6. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+2. [ ] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+3. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+4. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+5. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+6. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+
+---
+
+### Câu 91 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_LuongVanCang.md`
+- Thay đổi thứ tự giữa A và B: **không**
+
+**Câu hỏi**
+
+> Điều kiện về điểm học tập đối với sinh viên đang học ứng tuyển học bổng Lương Văn Can là gì?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+2. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+3. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+4. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+5. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+6. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+2. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+3. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+4. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+5. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+6. [*] HB_LuongVanCang.md (scholarship, 2026-05-18)
+
+---
+
+### Câu 92 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_LeSo.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Học bổng Lê Sở Memorial Scholarship of Excellence trị giá bao nhiêu một năm?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_LeSo.md (scholarship, 2026-03-06)
+2. [*] HB_LeSo.md (scholarship, 2026-03-06)
+3. [*] HB_LeSo.md (scholarship, 2026-03-06)
+4. [*] HB_LeSo.md (scholarship, 2026-03-06)
+5. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+6. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_LeSo.md (scholarship, 2026-03-06)
+2. [*] HB_LeSo.md (scholarship, 2026-03-06)
+3. [*] HB_LeSo.md (scholarship, 2026-03-06)
+4. [*] HB_LeSo.md (scholarship, 2026-03-06)
+5. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+6. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+
+---
+
+### Câu 93 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `needs_clarification`
+- Nguồn kỳ vọng: `HB_LeSo.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Tân sinh viên Khóa 51 phải đạt tổng điểm thi đầu vào bao nhiêu để dự tuyển học bổng Lê Sở?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_LeSo.md (scholarship, 2026-03-06)
+2. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [*] HB_LeSo.md (scholarship, 2026-03-06)
+4. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+5. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+6. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_LeSo.md (scholarship, 2026-03-06)
+2. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+3. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+4. [*] HB_LeSo.md (scholarship, 2026-03-06)
+5. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+6. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+
+---
+
+### Câu 94 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_SCIC_2026.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Học bổng SCIC - Nâng bước tài năng trẻ năm 2026 dành cho sinh viên trường nào của Đại học Cần Thơ?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+2. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+3. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+4. [ ] HB_SCC.md (scholarship, 2026-03-03)
+5. [ ] HB_LuongVanCang.md (scholarship, 2026-05-18)
+6. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+2. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [ ] HB_SCC.md (scholarship, 2026-03-03)
+4. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+5. [ ] HB_LuongVanCang.md (scholarship, 2026-05-18)
+6. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+
+---
+
+### Câu 95 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_SCIC_2026.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Mỗi suất học bổng SCIC trị giá bao nhiêu?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+2. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+3. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+4. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+6. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+2. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+3. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+4. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+5. [*] HB_SCIC_2026.md (scholarship, 2026-05-18)
+6. [ ] HB_LeSo.md (scholarship, 2026-03-06)
+
+---
+
+### Câu 96 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_Shihan.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Hồ sơ xin học bổng Shinhan Life S-cellence có yêu cầu viết bài luận không?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Shihan.md (scholarship, 2026-03-16)
+2. [*] HB_Shihan.md (scholarship, 2026-03-16)
+3. [*] HB_Shihan.md (scholarship, 2026-03-16)
+4. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Shihan.md (scholarship, 2026-03-16)
+2. [*] HB_Shihan.md (scholarship, 2026-03-16)
+3. [*] HB_Shihan.md (scholarship, 2026-03-16)
+4. [*] HB_Shihan.md (scholarship, 2026-03-16)
+5. [*] HB_Shihan.md (scholarship, 2026-03-16)
+6. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+
+---
+
+### Câu 97 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_TanSinhVien_K52.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Học bổng Thắp sáng Niềm Tin tài trợ mức tối đa là bao nhiêu một năm học?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+2. [*] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+3. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+4. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+5. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+6. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+2. [*] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+3. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+4. [ ] Tài liệu phân bổ quỹ học bổng.md (scholarship, 2025-07-31)
+5. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+6. [ ] HB_K51_2026.md (scholarship, 2025-10-16)
+
+---
+
+### Câu 98 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_TanSinhVien_K52.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Yêu cầu về học lực đối với tân sinh viên ứng tuyển học bổng Thắp sáng Niềm Tin là gì?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+2. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+3. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [ ] HB_LuongVanCang.md (scholarship, 2026-05-18)
+5. [ ] HB_LuongVanCang.md (scholarship, 2026-05-18)
+6. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+2. [ ] HB_LuongVanCang.md (scholarship, 2026-05-18)
+3. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+4. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [ ] HB_Shihan.md (scholarship, 2026-03-16)
+6. [ ] HB_LuongVanCang.md (scholarship, 2026-05-18)
+
+---
+
+### Câu 99 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_TayNinh.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Số tiền sinh viên được nhận của học bổng Hội Khuyến học tỉnh Tây Ninh là bao nhiêu một suất?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_TayNinh.md (scholarship, 2026-03-12)
+2. [*] HB_TayNinh.md (scholarship, 2026-03-12)
+3. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [ ] HB_SCIC_2026.md (scholarship, 2026-05-18)
+5. [ ] HB_Panasonic.md (scholarship, 2026-04-03)
+6. [ ] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_TayNinh.md (scholarship, 2026-03-12)
+2. [*] HB_TayNinh.md (scholarship, 2026-03-12)
+3. [*] HB_TayNinh.md (scholarship, 2026-03-12)
+4. [ ] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [*] HB_TayNinh.md (scholarship, 2026-03-12)
+6. [ ] HB_TanSinhVien_K52.md (scholarship, 2026-03-16)
+
+---
+
+### Câu 100 · Cả hai đều truy xuất được
+
+- Lĩnh vực: Học bổng
+- Intent: `scholarship` | Lanes: `scholarship` | Catalog: `not_applicable`
+- Nguồn kỳ vọng: `HB_Vallet_Chi_Tiet.md`
+- Thay đổi thứ tự giữa A và B: **có**
+
+**Câu hỏi**
+
+> Đăng ký hồ sơ dự tuyển học bổng Vallet được thực hiện qua hình thức nào?
+
+**Tie-break (A)**
+
+- Hit: **PASS** | Rank: 2
+
+1. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+2. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+3. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+**Plain (B)**
+
+- Hit: **PASS** | Rank: 1
+
+1. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+2. [ ] HB_Vallet.md (scholarship, 2026-06-01)
+3. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+4. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+5. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+6. [*] HB_Vallet_Chi_Tiet.md (scholarship, 2026-05-31)
+
+---
