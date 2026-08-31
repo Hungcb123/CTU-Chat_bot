@@ -409,6 +409,6 @@ Dự án được xây dựng phục vụ nghiên cứu và hỗ trợ sinh viê
 
 <div align="center">
 
-*Phát triển với ❤️ dành cho sinh viên Trường Đại học Cần Thơ*
+*Built with ❤️ for students of Can Tho University*
 
 </div>
