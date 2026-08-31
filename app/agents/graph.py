@@ -82,22 +82,24 @@ class AgentState(TypedDict):
 # ─────────────────────────────────────────────────────────────────────
 
 class RouteDecision(BaseModel):
-    """Structured output cho Supervisor routing."""
+    """Structured output cho Supervisor routing — agent + intent."""
     next_agent: Literal["academic", "financial", "scholarship", "general"] = Field(
         description="Tên agent chuyên môn sẽ xử lý câu hỏi này"
     )
+    intent: Literal[
+        "actual_tuition", "exemption_basis", "exemption_policy",
+        "calculation", "both", "ambiguous_tuition",
+        "scholarship",
+        "student_loan", "social_support",
+        "academic_program", "academic_rules", "quy_che_general",
+        "other",
+    ] = Field(
+        description="Phân loại chi tiết nội dung câu hỏi để chọn đúng loại tài liệu retrieval"
+    )
 
 
-# ─────────────────────────────────────────────────────────────────────
-# 3. AGENT INTENT → ROUTING DECISION MAPPING
-# ─────────────────────────────────────────────────────────────────────
-
-AGENT_TO_INTENT = {
-    "academic": QueryIntent.ACADEMIC_PROGRAM,
-    "financial": QueryIntent.ACTUAL_TUITION,
-    "scholarship": QueryIntent.SCHOLARSHIP,
-    "general": QueryIntent.OTHER,
-}
+# Mapping intent string → QueryIntent enum
+_INTENT_MAP: dict[str, QueryIntent] = {e.value: e for e in QueryIntent}
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -200,8 +202,8 @@ def build_agent_graph(
             logger.warning("Supervisor routing lỗi, fallback general: %s", e)
             next_agent = "general"
 
-        # ── Map agent → QueryRoutingDecision (cho retrieval) ──
-        intent = AGENT_TO_INTENT.get(next_agent, QueryIntent.OTHER)
+        # ── Intent (từ LLM structured output) → QueryRoutingDecision ──
+        intent = _INTENT_MAP.get(route.intent, QueryIntent.OTHER)
         routing_decision = QueryRoutingDecision(intent=intent)
 
         logger.info(
