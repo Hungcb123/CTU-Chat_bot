@@ -1,4 +1,4 @@
-<![CDATA[# 🎓 CTU Academic Chatbot — Multi-Agent RAG System
+# 🎓 CTU Academic Chatbot — Multi-Agent RAG System
 
 <div align="center">
 
@@ -412,4 +412,3 @@ Dự án được xây dựng phục vụ nghiên cứu và hỗ trợ sinh viê
 *Phát triển với ❤️ dành cho sinh viên Trường Đại học Cần Thơ*
 
 </div>
-]]>
