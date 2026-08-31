@@ -7,12 +7,17 @@ from uuid import uuid4
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile
 
 from app.api.auth import require_admin
+from app.core.database import SyncSessionLocal
 from app.models.schema import User
 from app.services.ocr_service import LlamaParseAsyncClient
 from app.services.document_metadata import (
     DocumentMetadataCatalog,
     MetadataCatalogError,
     normalize_document_class,
+)
+from app.services.document_metadata_pg import (
+    upsert_document_metadata as _pg_upsert_metadata,
+    delete_document_metadata as _pg_delete_metadata,
 )
 from app.utils.clean_md import clean_markdown_file
 
@@ -115,6 +120,7 @@ async def upload_document(
     ingest_run_id = uuid4().hex
     completed = False
     catalog_entry_created = False
+    pg_metadata_created = False
     catalog: DocumentMetadataCatalog | None = None
     normalized_metadata: dict | None = None
     engine = None
@@ -193,6 +199,23 @@ async def upload_document(
                 detail=f"Không thể ghi metadata tài liệu: {exc}",
             ) from None
 
+        # Đồng bộ metadata vào PostgreSQL
+        try:
+            with SyncSessionLocal() as pg_session:
+                _pg_upsert_metadata(
+                    pg_session,
+                    source=markdown_path.name,
+                    metadata_dict=normalized_metadata,
+                )
+                pg_session.commit()
+            pg_metadata_created = True
+        except Exception as exc:
+            logger.error(
+                "Không thể lưu metadata vào PostgreSQL cho %s: %s",
+                markdown_path.name, exc, exc_info=True,
+            )
+            # Không raise — cho phép upload tiếp; PG metadata sẽ được sync khi re-index
+
         engine = request.app.state.engine
         ingest_attempted = True
         if not engine.ingest_markdown_document(
@@ -256,7 +279,18 @@ async def upload_document(
                 catalog.remove_uploaded_document(markdown_path.name, missing_ok=True)
             except Exception:
                 logger.error(
-                    "Không thể rollback metadata của %s",
+                    "Không thể rollback metadata JSON của %s",
+                    markdown_path.name,
+                    exc_info=True,
+                )
+        if not completed and pg_metadata_created and markdown_path is not None:
+            try:
+                with SyncSessionLocal() as pg_session:
+                    _pg_delete_metadata(pg_session, markdown_path.name, missing_ok=True)
+                    pg_session.commit()
+            except Exception:
+                logger.error(
+                    "Không thể rollback metadata PostgreSQL của %s",
                     markdown_path.name,
                     exc_info=True,
                 )

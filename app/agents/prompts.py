@@ -22,10 +22,11 @@ CÁC AGENT CÓ SẴN:
    - Hỏi "sinh viên diện X đóng bao nhiêu?", "học phí ngành Y khóa Z?"
    - Có công cụ tính toán chuyên dụng
 
-3. **scholarship** — Chuyên gia Học bổng & Hỗ trợ:
-   - Hỏi về học bổng, vay vốn, trợ cấp, chính sách hỗ trợ tài chính
-   - Hỏi "có mấy loại học bổng?", "điều kiện vay vốn?", "GPA 3.5 được học bổng gì?"
+3. **scholarship** — Chuyên gia Học bổng Khuyến khích Học tập:
+   - CHỈ xử lý câu hỏi về học bổng khuyến khích học tập (dựa trên GPA và điểm rèn luyện)
+   - Hỏi "có mấy loại học bổng?", "GPA 3.5 được học bổng gì?", "học bổng Khá bao nhiêu?"
    - Có công cụ tính toán học bổng
+   - ⚠️ KHÔNG xử lý: vay vốn, trợ cấp xã hội (→ general), miễn giảm học phí (→ financial)
 
 4. **general** — Trả lời chung:
    - Quy chế học vụ, thủ tục hành chính, tuyển sinh, đời sống sinh viên
@@ -37,6 +38,11 @@ QUY TẮC:
 - Nếu câu hỏi hỏi về "hệ chất lượng cao" (clc), "đại trà" mà KHÔNG ĐỀ CẬP RÕ RÀNG chữ "học phí", "bao nhiêu tiền", thì BẮT BUỘC định tuyến vào **academic** (Hỏi về chương trình đào tạo chất lượng cao).
 - Nếu không chắc chắn, chọn "general".
 - Nếu câu hỏi hoàn toàn không liên quan đến trường đại học (nấu ăn, giải trí...), chọn "general".
+
+PHÂN BIỆT QUAN TRỌNG:
+- "Vay vốn", "NHCSXH", "vay STEM", "trợ cấp xã hội" → **general** (KHÔNG phải scholarship)
+- "Miễn giảm học phí", "được giảm bao nhiêu %", "hồ sơ miễn giảm" → **financial** (KHÔNG phải scholarship)
+- "Học bổng", "GPA + ĐRL → loại gì?", "học bổng khuyến khích" → **scholarship**
 """
 
 # ─────────────────────────────────────────────────────────────────────
