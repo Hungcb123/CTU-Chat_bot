@@ -26,7 +26,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST_PATH = PROJECT_ROOT / "data" / "document_metadata.json"
 DEFAULT_MARKDOWN_DIR = PROJECT_ROOT / "data" / "markdown"
 METADATA_SCHEMA_VERSION = 1
-INITIAL_CORPUS_SOURCE_COUNT = 46
+INITIAL_CORPUS_SOURCE_COUNT = 244
 
 _ACADEMIC_YEAR_PATTERN = re.compile(r"^(?P<start>\d{4})-(?P<end>\d{4})$")
 _T = TypeVar("_T")
@@ -37,12 +37,16 @@ class Domain(str, Enum):
     SCHOLARSHIP = "scholarship"
     STUDENT_LOAN = "student_loan"
     SOCIAL_SUPPORT = "social_support"
+    ACADEMIC_PROGRAM = "academic_program"
+    ACADEMIC_REGULATION = "academic_regulation"
     OTHER = "other"
 
 
 class ContentKind(str, Enum):
     RATE_TABLE = "rate_table"
     EXEMPTION_POLICY = "exemption_policy"
+    CHUONG_TRINH_DAO_TAO = "chuong_trinh_dao_tao"
+    QUY_CHE_HOC_VU = "quy_che_hoc_vu"
     POLICY = "policy"
     PROCEDURE = "procedure"
     ANNOUNCEMENT = "announcement"
@@ -170,6 +174,20 @@ class DocumentMetadata(BaseModel):
             FeeKind.ACTUAL_TUITION,
             FeeKind.EXEMPTION_BASIS,
         }
+        if self.domain is Domain.ACADEMIC_PROGRAM:
+            if self.content_kind is not ContentKind.CHUONG_TRINH_DAO_TAO:
+                raise ValueError(
+                    "academic_program requires content_kind=chuong_trinh_dao_tao"
+                )
+            if self.fee_kind is not FeeKind.NOT_APPLICABLE:
+                raise ValueError(
+                    "academic_program requires fee_kind=not_applicable"
+                )
+        elif self.domain is Domain.ACADEMIC_REGULATION:
+            if self.fee_kind is not FeeKind.NOT_APPLICABLE:
+                raise ValueError(
+                    "academic_regulation requires fee_kind=not_applicable"
+                )
         if is_tuition_rate:
             if self.domain is not Domain.TUITION:
                 raise ValueError("tuition fee kinds require domain=tuition")

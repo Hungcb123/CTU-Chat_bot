@@ -27,17 +27,17 @@ Hệ thống được xây dựng trên kiến trúc **Hybrid RAG tiên tiến**
 flowchart TD
     UserQuery([Câu hỏi người dùng]) --> Rewriter[Query Rewriter & Intent Classifier]
     Rewriter --> Router{Phân loại tác vụ}
-    
+
     Router -->|Tra cứu chung / RAG| Hybrid[Hybrid Search Engine]
     Router -->|Tính toán trực tiếp| Tools[Tool Calling Engine]
-    
+
     subgraph Hybrid Search Pipeline
         Hybrid --> Vector[Dense Vector Search\nQdrant + Bi-Encoder]
         Hybrid --> BM25[Sparse Lexical Search\nBM25s + PyVi]
         Vector & BM25 --> RRF[Reciprocal Rank Fusion\nRRF k=60]
         RRF --> Rerank[Temporal Cross-Encoder Reranker\nbge-reranker-v2-m3]
     end
-    
+
     Rerank --> Context[Context Builder + Tuition Catalog]
     Context --> LLM[Google Gemini 1.5/2.0 Flash]
     Tools --> LLM
@@ -71,6 +71,10 @@ python3 -m venv wsl_venv
 
 # Kích hoạt môi trường ảo
 source wsl_venv/bin/activate
+or
+wsl_venv\Scripts\activate.bat
+or with powershell
+cmd /k "wsl_venv\Scripts\activate.bat"
 ```
 
 ---
@@ -126,10 +130,12 @@ docker compose up -d
 ```
 
 Kiểm tra trạng thái các container:
+
 ```bash
 docker compose ps
 ```
-*(Đảm bảo cả 3 container `chatbot-qdrant`, `ctu-chatbot-postgres`, `ctu-chatbot-redis` đều ở trạng thái `running` / `Up`).*
+
+_(Đảm bảo cả 3 container `chatbot-qdrant`, `ctu-chatbot-postgres`, `ctu-chatbot-redis` đều ở trạng thái `running` / `Up`)._
 
 ---
 
@@ -160,7 +166,7 @@ Hệ thống cung cấp các file markdown quy chế mẫu sẵn tại `data/mar
    ```
 2. **Nạp và tạo chỉ mục Vector trong Qdrant**:
    ```bash
-   python scripts/reindex_all.py build --alias-name ctu_scholarship_docs_current
+   python scripts/reindex_all.py build --index-version 2026-08-31-v1
    ```
 
 ---
@@ -168,16 +174,19 @@ Hệ thống cung cấp các file markdown quy chế mẫu sẵn tại `data/mar
 ### Bước 7: Khởi Động Ứng Dụng (Start Backend & UI)
 
 Chạy ứng dụng thông qua script khởi động:
+
 ```bash
 ./start_env.sh
 ```
 
 Hoặc chạy trực tiếp bằng Python:
+
 ```bash
 python app/main.py
 ```
 
 Hoặc chạy qua máy chủ Uvicorn:
+
 ```bash
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --reload-dir app
 ```
@@ -240,12 +249,12 @@ Sau khi máy chủ báo `🚀 Toàn bộ Engine đã sẵn sàng tiếp nhận R
 
 ## 🛠️ Bộ Lệnh Dòng Lệnh Tiện Ích (CLI Tools)
 
-| Lệnh | Mô Tả |
-| :--- | :--- |
-| `python scripts/build_bm25_index.py` | Quét 50 văn bản Markdown và tái tạo chỉ mục BM25 |
-| `python scripts/reindex_all.py build --alias-name ctu_scholarship_docs_current` | Nạp toàn bộ dữ liệu vào collection mới của Qdrant |
+| Lệnh                                                                                                                              | Mô Tả                                                       |
+| :-------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------- |
+| `python scripts/build_bm25_index.py`                                                                                              | Quét 244 văn bản Markdown và tái tạo chỉ mục BM25           |
+| `python scripts/reindex_all.py build --index-version 2026-08-31-v1`                                                              | Nạp toàn bộ dữ liệu vào collection mới của Qdrant           |
 | `python scripts/reindex_all.py swap --alias-name ctu_scholarship_docs_current --target-collection ctu_scholarship_docs_<version>` | Chuyển đổi Alias Qdrant sang collection mới (Zero-downtime) |
-| `docker compose logs -f` | Xem log trực tiếp của các container hạ tầng |
+| `docker compose logs -f`                                                                                                          | Xem log trực tiếp của các container hạ tầng                 |
 
 ---
 
@@ -254,4 +263,5 @@ Sau khi máy chủ báo `🚀 Toàn bộ Engine đã sẵn sàng tiếp nhận R
 Dự án được xây dựng phục vụ nghiên cứu và hỗ trợ sinh viên Trường Đại học Cần Thơ. Mọi đóng góp (Pull Request, Báo lỗi Issue) đều được chào đón!
 
 ---
-*Phát triển với ❤️ dành cho sinh viên Trường Đại học Cần Thơ.*
+
+_Phát triển với ❤️ dành cho sinh viên Trường Đại học Cần Thơ._
