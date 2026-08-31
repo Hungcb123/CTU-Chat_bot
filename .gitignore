@@ -54,3 +54,4 @@ output/
 # Draw.io Backups
 .$*.drawio.bkp
 ~*.drawio.bkp
+docs/
