@@ -1,35 +1,3 @@
----
-document_key: ctu-ctsv-16-giay-xac-nhan-vay-von
-version_key: ctu-ctsv-16-giay-xac-nhan-vay-von-8bc3cddc5f51
-title: "GIẤY XÁC NHẬN"
-document_type: giay
-domain: hoc_phi
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/CTSV/16_giay_xac_nhan_vay_von.docx"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/CTSV/16_giay_xac_nhan_vay_von_llp.md"
-file_type: docx
-accessed_date: 2026-05-31
-language: vi
-checksum: 8bc3cddc5f51423d1f0441f764695057b8401a81841931fe852e952978bd9f81
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T09:48:13+07:00"
-updated_at: "2026-07-09T09:48:13+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

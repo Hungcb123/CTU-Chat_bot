@@ -621,20 +621,19 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     if args.embed_device and args.embed_device != "cuda":
-        from langchain_community.embeddings import HuggingFaceEmbeddings
+        from langchain_google_genai import GoogleGenerativeAIEmbeddings
         from langchain_qdrant import QdrantVectorStore
 
-        print(f"Chuyển embedding model sang device={args.embed_device} (giải phóng GPU)...")
+        print(f"Chuyển embedding model sang Gemini API (embed_device={args.embed_device} bỏ qua)...")
         engine.vector_store = QdrantVectorStore(
             client=engine.qdrant_client,
             collection_name=engine.collection_name,
-            embedding=HuggingFaceEmbeddings(
-                model_name="bkai-foundation-models/vietnamese-bi-encoder",
-                model_kwargs={"device": args.embed_device},
+            embedding=GoogleGenerativeAIEmbeddings(
+                model="models/text-embedding-004",
             ),
         )
         # engine.__init__ giữ tham chiếu vector_store cũ qua base_retriever/retriever;
-        # thả chúng để bản embedding cũ trên GPU được thu hồi.
+        # thả chúng để bản embedding cũ được thu hồi.
         engine.base_retriever = None
         engine.retriever = None
         import gc

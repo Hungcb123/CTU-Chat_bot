@@ -1,35 +1,3 @@
----
-document_key: ctu-ctsv-7-don-de-nghi-chuyen-ctdt
-version_key: ctu-ctsv-7-don-de-nghi-chuyen-ctdt-09bbf96b64b8
-title: "ĐƠN ĐỀ NGHỊ CHUYỂN CHƯƠNG TRÌNH, NGÀNH ĐÀO TẠO"
-document_type: don
-domain: dao_tao
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/CTSV/7_don_de_nghi_chuyen_ctdt.docx"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/CTSV/7_don_de_nghi_chuyen_ctdt_llp.md"
-file_type: docx
-accessed_date: 2026-05-31
-language: vi
-checksum: 09bbf96b64b85276af65905147587bb99683ddc9e2c86bd5e07abefa0253e764
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T09:51:51+07:00"
-updated_at: "2026-07-09T09:51:51+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

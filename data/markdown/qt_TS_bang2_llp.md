@@ -1,37 +1,3 @@
----
-document_key: ctu-pdt-qt-ts-bang2
-version_key: ctu-pdt-qt-ts-bang2-8fd263ec1dce
-title: "QUY TRÌNH TUYỂN SINH BẰNG ĐẠI HỌC THỨ HAI HỆ CHÍNH QUY"
-document_type: quy_trinh
-domain: tuyen_sinh
-issuing_authority: "Đại học Cần Thơ"
-responsible_department: 
-- PDT
-- PCTSV
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/QuyTrinh/qt_TS_bang2.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/QuyTrinh/qt_TS_bang2.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 8fd263ec1dce7ed3d1b7729041d0140fdf09283b5baea24fe9e8d8393ad91556
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T09:37:36+07:00"
-updated_at: "2026-07-07T09:37:36+07:00"
-notes: "Không có ngày ký và ngày áp dụng, không có tên người ký"
----
 1
 
 <!-- page: 1 -->

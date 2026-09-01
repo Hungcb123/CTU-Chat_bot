@@ -1,38 +1,3 @@
----
-document_key: ctu-pdt-qt-xet-nhan-bangtn
-version_key: ctu-pdt-qt-xet-nhan-bangtn-8f2f5766c37f
-title: "QUY TRÌNH XÉT TỐT NGHIỆP VÀ NHẬN BẰNG ĐẠI HỌC, CAO ĐẲNG"
-document_type: quy_trinh
-domain: sinh_vien
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- PCTSV
-- PDT
-- DVQLN
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/QuyTrinh/qt_xet_nhan_bangTN.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/QuyTrinh/qt_xet_nhan_bangTN.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 8f2f5766c37f5c93f1d4aeb537c4798b50e13b61c0a2d4110c79da181e3f49be
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T09:39:28+07:00"
-updated_at: "2026-07-07T09:39:28+07:00"
-notes: "Không có ngày ký và ngày áp dụng, không có tên người ký"
----
 1
 
 <!-- page: 1 -->

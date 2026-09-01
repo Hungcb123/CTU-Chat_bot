@@ -1,37 +1,3 @@
----
-document_key: ctu-ctsv-quytrinh4-congtacsinhvien
-version_key: ctu-ctsv-quytrinh4-congtacsinhvien-98baa49b3463
-title: "LĨNH VỰC CÔNG TÁC SINH VIÊN"
-document_type: quy_trinh
-domain: sinh_vien
-issuing_authority: "Đại học Cần Thơ"
-responsible_department: 
-- PCTSV
-- PDT
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2025-01-01
-effective_date: 2025-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/QuyTrinh/QuyTrinh4-Congtacsinhvien.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/QuyTrinh/QuyTrinh4-Congtacsinhvien.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 98baa49b3463fd8eaf81041177f63986bca26294127e4533da74fd253192630b
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T00:13:34+07:00"
-updated_at: "2026-07-07T00:13:34+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

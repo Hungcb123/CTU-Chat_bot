@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-maudon-diemi
-version_key: ctu-pdt-maudon-diemi-f528b397edc8
-title: "ĐƠN XIN PHÉP VẮNG THI KẾT THÚC HỌC PHẦN"
-document_type: don
-domain: nghi_hoc
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/MauDon_diemI.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/MauDon_diemI_llp.md"
-file_type: doc
-accessed_date: 2026-05-31
-language: vi
-checksum: f528b397edc82035b96121308dbfd0aa5f37f9d489d4738835c81d32685bf802
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:14:39+07:00"
-updated_at: "2026-07-09T10:14:39+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

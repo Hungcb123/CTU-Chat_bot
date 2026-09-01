@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-mau-phieu-thanh-toan-ra-truong
-version_key: ctu-pdt-mau-phieu-thanh-toan-ra-truong-4d90f76c671b
-title: "PHIẾU THANH TOÁN RA TRƯỜNG"
-document_type: giay
-domain: hoc_phi
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/Mau_phieu_thanh_toan_ra_truong.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/Mau_phieu_thanh_toan_ra_truong_llp.md"
-file_type: doc
-accessed_date: 2026-05-31
-language: vi
-checksum: 4d90f76c671b9a52894714bfb2ea9a5324ae9b4cd7df6dd8e4d343de302150ad
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:13:41+07:00"
-updated_at: "2026-07-09T10:13:41+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

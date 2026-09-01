@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-qt-mothem-lophp-ngoai-kehoach-new
-version_key: ctu-pdt-qt-mothem-lophp-ngoai-kehoach-new-5e981c5accb4
-title: "ĐƠN ĐỀ NGHỊ MỞ LỚP HỌC PHẦN"
-document_type: don
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/QT_MoThem_LopHP_Ngoai_KeHoach_New.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/QT_MoThem_LopHP_Ngoai_KeHoach_New_llp.md"
-file_type: doc
-accessed_date: 2026-05-31
-language: vi
-checksum: 5e981c5accb4ab2f0295925567eb55b9304b5379f3f9ed771933cf46deb7af20
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:15:59+07:00"
-updated_at: "2026-07-09T10:15:59+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

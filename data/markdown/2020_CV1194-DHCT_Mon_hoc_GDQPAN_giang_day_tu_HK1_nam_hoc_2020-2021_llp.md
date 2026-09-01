@@ -1,36 +1,3 @@
----
-document_key: ctu-pdt-2020-cv1194-dhct-mon-hoc-gdqpan-giang-day-tu-hk1-nam-hoc-2020-2021
-version_key: ctu-pdt-2020-cv1194-dhct-mon-hoc-gdqpan-giang-day-tu-hk1-nam-hoc-2020-2021-14d7fcacaba2
-title: "V/v môn học Giáo dục quốc phòng và an ninh giảng dạy từ học kỳ 1, năm học 2020 - 2021"
-document_type: cong_van
-domain: dao_tao
-issuing_authority: "Đại học Cần Thơ"
-responsible_department: 
-- PDt
-signer_name: "HT Hà Thanh Toàn"
-audience:
-  - sinh_vien
-code: "1194 /ĐHCT"
-issued_date: 2020-06-11
-effective_date: 2020-06-11
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/QuyetDinh/2020_CV1194-DHCT_Mon_hoc_GDQPAN_giang_day_tu_HK1_nam_hoc_2020-2021.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/QuyetDinh/2020_CV1194-DHCT_Mon_hoc_GDQPAN_giang_day_tu_HK1_nam_hoc_2020-2021.md"
-file_type: pdf
-accessed_date:
-language: vi
-checksum: 14d7fcacaba20dca8e2f4903cf5aa096c2a5c36f381be4bf7efef0b91e63ff97
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T00:54:43+07:00"
-updated_at: "2026-07-07T00:54:43+07:00"
-notes: "Áp dụng năm 2020-2021"
----
 1
 
 <!-- page: 1 -->

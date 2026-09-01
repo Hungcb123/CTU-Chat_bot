@@ -1,35 +1,3 @@
----
-document_key: ctu-ctsv-6-don-xin-thoi-hoc
-version_key: ctu-ctsv-6-don-xin-thoi-hoc-a31e7cb9d83d
-title: "ĐƠN XIN THÔI HỌC"
-document_type: don
-domain: nghi_hoc
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/CTSV/6_don_xin_thoi_hoc.docx"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/CTSV/6_don_xin_thoi_hoc_llp.md"
-file_type: docx
-accessed_date: 2026-05-31
-language: vi
-checksum: a31e7cb9d83dc274c835f8f1e32f7c84221abdafc98cd4ffcd0cf1b310083aa7
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T09:51:20+07:00"
-updated_at: "2026-07-09T09:51:20+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

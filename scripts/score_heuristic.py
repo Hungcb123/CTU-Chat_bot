@@ -7,8 +7,8 @@ from datetime import datetime
 from rouge_score import rouge_scorer
 import re
 
-# Use HuggingFace embeddings directly
-from langchain_community.embeddings import HuggingFaceEmbeddings
+# Use Gemini Embedding API
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from sklearn.metrics.pairwise import cosine_similarity
 
 def compute_similarity(emb_model, text1, text2):
@@ -48,9 +48,9 @@ def score_heuristic(json_path: Path):
     # Init Scorer
     scorer = rouge_scorer.RougeScorer(['rougeL'], use_stemmer=False)
     
-    # Init Embeddings (vietnamese-bi-encoder)
-    print("Đang nạp mô hình nhúng (vietnamese-bi-encoder) để chấm điểm...")
-    emb_model = HuggingFaceEmbeddings(model_name="bkai-foundation-models/vietnamese-bi-encoder")
+    # Init Embeddings (Gemini text-embedding-004)
+    print("Đang kết nối Gemini Embedding API để chấm điểm...")
+    emb_model = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
     
     results = []
     

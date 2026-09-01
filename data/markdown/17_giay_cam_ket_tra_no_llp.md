@@ -1,35 +1,3 @@
----
-document_key: ctu-ctsv-17-giay-cam-ket-tra-no
-version_key: ctu-ctsv-17-giay-cam-ket-tra-no-263744615dae
-title: "GIẤY CAM KẾT TRẢ NỢ"
-document_type: giay
-domain: hoc_phi
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/CTSV/17_giay_cam_ket_tra_no.docx"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/CTSV/17_giay_cam_ket_tra_no_llp.md"
-file_type: docx
-accessed_date: 2026-05-31
-language: vi
-checksum: 263744615dae4224fe2ee7c5650709e5d0d1fea095e2e883f0ec0be9ee4b9f7f
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T09:48:38+07:00"
-updated_at: "2026-07-09T09:48:38+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

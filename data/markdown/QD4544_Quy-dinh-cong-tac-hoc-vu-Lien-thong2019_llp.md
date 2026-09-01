@@ -1,36 +1,3 @@
----
-document_key: ctu-ctsv-qd4544-quy-dinh-cong-tac-hoc-vu-lien-thong2019
-version_key: ctu-ctsv-qd4544-quy-dinh-cong-tac-hoc-vu-lien-thong2019-0235a44b5d10
-title: "QUYẾT ĐỊNH Ban hành Quy định công tác học vụ dành cho sinh viên liên thông từ trình độ cao đẳng lên trình độ đại học hệ chính quy"
-document_type: quyet_dinh
-domain: dao_tao
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- PCTSV
-signer_name: "HT Hà Thanh Toàn"
-audience:
-  - sinh_vien
-code: "4544/QĐ-ĐHCT"
-issued_date: 2019-10-14
-effective_date: 2019-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/QuyetDinh/QD4544_Quy-dinh-cong-tac-hoc-vu-Lien-thong2019.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/QuyetDinh/QD4544_Quy-dinh-cong-tac-hoc-vu-Lien-thong2019.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 0235a44b5d102d605f5bcf3e4d467dffdf227d73a44843dd95b2121ce359dcec
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T00:29:53+07:00"
-updated_at: "2026-07-07T00:29:53+07:00"
-notes: "Áp dụng từ HK1 năm 2019-2020"
----
 1
 
 <!-- page: 1 -->

@@ -1,11 +1,3 @@
----
-loai_tai_lieu: "Quy chế học vụ"
-trinh_do: "Đại học"
-don_vi: "Đại Học Cần Thơ"
-nganh_hoc: "Quy chế học vụ"
-nam_ban_hanh: 2024
----
-
 # QUY ĐỊNH CÔNG TÁC HỌC VỤ DÀNH CHO SINH VIÊN TRÌNH ĐỘ ĐẠI HỌC HÌNH THỨC CHÍNH QUY
 
 *(Ban hành kèm theo Quyết định số 3266/QĐ-ĐHCT ngày 15 tháng 8 năm 2024 của Hiệu trưởng Trường Đại học Cần Thơ)*

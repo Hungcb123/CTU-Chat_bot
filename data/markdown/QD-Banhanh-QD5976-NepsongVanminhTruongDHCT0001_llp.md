@@ -1,37 +1,3 @@
----
-document_key: ctu-ctsv-qd-banhanh-qd5976-nepsongvanminhtruongdhct0001
-version_key: ctu-ctsv-qd-banhanh-qd5976-nepsongvanminhtruongdhct0001-0eff4f3290ac
-title: "QUYẾT ĐỊNH Ban hành Quy định về thực hiện nếp sống văn minh trong Trường Đại học Cần Thơ"
-document_type: quyet_dinh
-domain: ne_nep
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- PTCCB
-signer_name: "HT Hà Thanh Toàn"
-audience:
-  - sinh_vien
-code: "5976 /QĐ-ĐHCT"
-issued_date: 2023-12-23
-effective_date: 2023-12-23
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/QuyetDinh/QD-Banhanh-QD5976-NepsongVanminhTruongDHCT0001.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/QuyetDinh/QD-Banhanh-QD5976-NepsongVanminhTruongDHCT0001.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 0eff4f3290accee0ce86873011d572c2c7010d91b31419f847aead5190d9612b
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T00:28:54+07:00"
-updated_at: "2026-07-07T00:28:54+07:00"
-notes: ""
----
-
 1
 
 <!-- page: 1 -->

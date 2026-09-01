@@ -1,35 +1,3 @@
----
-document_key: ctu-ctsv-8-don-xin-chuyen-truong
-version_key: ctu-ctsv-8-don-xin-chuyen-truong-eed1689be696
-title: "ĐƠN XIN CHUYỂN TRƯỜNG"
-document_type: dao_tao
-domain: ""
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/CTSV/8_don_xin_chuyen_truong.docx"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/CTSV/8_don_xin_chuyen_truong_llp.md"
-file_type: docx
-accessed_date: 2026-05-31
-language: vi
-checksum: eed1689be696aa712b8e0e44150c115137775408e5a015295bd1185be8fcb823
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T09:52:15+07:00"
-updated_at: "2026-07-09T09:52:15+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

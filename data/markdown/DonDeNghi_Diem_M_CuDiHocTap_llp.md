@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-dondenghi-diem-m-cudihoctap
-version_key: ctu-pdt-dondenghi-diem-m-cudihoctap-8333bedfef1b
-title: "ĐƠN ĐỀ NGHỊ XÉT MIỄN VÀ CÔNG NHẬN ĐIỂM HỌC PHẦN do đã được Hiệu trưởng Trường ĐHCT cử đi học tập"
-document_type: don
-domain: hhoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/DonDeNghi_Diem_M_CuDiHocTap.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/DonDeNghi_Diem_M_CuDiHocTap_llp.md"
-file_type: doc
-accessed_date: 2026-05-31
-language: vi
-checksum: 8333bedfef1be787257de731e152378c97b8c5cda9801c1b4ea4eb2cf0675bcf
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:12:43+07:00"
-updated_at: "2026-07-09T10:12:43+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

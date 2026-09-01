@@ -1,36 +1,3 @@
----
-document_key: ctu-ctsv-hd-capnhat-ttsv-18-04-2021
-version_key: ctu-ctsv-hd-capnhat-ttsv-18-04-2021-9126e3804c00
-title: "HƯỚNG DẪN SỬ DỤNG CHO SINH VIÊN CẬP NHẬT THÔNG TIN"
-document_type: quy_trinh
-domain: sinh_vien
-issuing_authority: "Đại học Cần Thơ"
-responsible_department: 
-- PCTSV
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2021-04-18 
-effective_date: 2021-04-18 
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/QuyTrinh/HD_Capnhat-TTSV_18-04-2021.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/QuyTrinh/HD_Capnhat-TTSV_18-04-2021.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 9126e3804c004821e5d3d9e75a2c76b784f36a34417932b7e90e645fa3a152ec
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T00:13:24+07:00"
-updated_at: "2026-07-07T00:13:24+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

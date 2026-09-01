@@ -1,35 +1,3 @@
----
-document_key: ctu-ctsv-15-to-khai-thong-tin-cua-nguoi-khuyet-tat
-version_key: ctu-ctsv-15-to-khai-thong-tin-cua-nguoi-khuyet-tat-7f00f3b1650a
-title: "TỜ KHAI THÔNG TIN CỦA NGƯỜI KHUYẾT TẬT"
-document_type: giay
-domain: hoc_phi
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/CTSV/15_to_khai_thong_tin_cua_nguoi_khuyet_tat.docx"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/CTSV/15_to_khai_thong_tin_cua_nguoi_khuyet_tat_llp.md"
-file_type: docx
-accessed_date: 2026-05-31
-language: vi
-checksum: 7f00f3b1650ade6a199cb95401aeb1fea0b087750ddac596e38ed94f4566da97
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T09:47:49+07:00"
-updated_at: "2026-07-09T09:47:49+07:00"
-notes: "Không rõ thuộc domain nào"
----
 1
 
 <!-- page: 1 -->

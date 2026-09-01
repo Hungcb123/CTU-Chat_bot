@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-phieu-de-nghi-cap-ban-sao-cap-lai-chinh-sua-ndvb
-version_key: ctu-pdt-phieu-de-nghi-cap-ban-sao-cap-lai-chinh-sua-ndvb-90a29d02bccd
-title: "PHIẾU ĐỀ NGHỊ Cấp bản sao từ sổ gốc/cấp lại/ chỉnh sửa nội dung văn bằng"
-document_type: giay
-domain: 
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: "HT Hà Thanh Toàn"
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/Phieu_De_nghi_cap_ban_sao_cap_lai_chinh_sua_NDVB.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/Phieu_De_nghi_cap_ban_sao_cap_lai_chinh_sua_NDVB_llp.md"
-file_type: doc
-accessed_date:
-language: vi
-checksum: 90a29d02bccdd602907c4df631b27b65555516f5af45bcd87dd7bb70eaef2642
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:15:34+07:00"
-updated_at: "2026-07-09T10:15:34+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

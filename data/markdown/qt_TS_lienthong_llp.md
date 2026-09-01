@@ -1,36 +1,3 @@
----
-document_key: ctu-pdt-qt-ts-lienthong
-version_key: ctu-pdt-qt-ts-lienthong-18cd0bc0e0b0
-title: "QUY TRÌNH TUYỂN SINH LIÊN THÔNG CAO ĐẲNG LÊN ĐẠI HỌC HỆ CHÍNH QUY"
-document_type: quy_trinh
-domain: tuyen_sinh
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- PDT
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/QuyTrinh/qt_TS_lienthong.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/QuyTrinh/qt_TS_lienthong.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 18cd0bc0e0b07d9d0dca9f6ca060be2d3a72dd4e230240761c838d07119412c7
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T09:38:00+07:00"
-updated_at: "2026-07-07T09:38:00+07:00"
-notes: "Không có ngày ký và ngày áp dụng, không có tên người ký"
----
 1
 
 <!-- page: 1 -->

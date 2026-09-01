@@ -40,10 +40,10 @@ from langchain_core.stores import InMemoryStore, BaseStore
 from langchain_classic.retrievers import ContextualCompressionRetriever
 from langchain_classic.retrievers.document_compressors import CrossEncoderReranker
 from langchain_community.cross_encoders import HuggingFaceCrossEncoder
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
-# Giả lập Vector DB và Embedding Model cho môi trường Local
+# Embedding & Vector DB
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings 
 from langchain_qdrant import QdrantVectorStore
 from app.services.bm25_service import VietnameseBM25Index
 from qdrant_client import QdrantClient
@@ -61,18 +61,20 @@ from qdrant_client.http.models import (
 # Cấu hình Logging cấp độ Enterprise
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - [CHUNKING_ENGINE] - %(levelname)s - %(message)s'
+    format='%(asctime)s - [%(name)s] - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger("SemanticChunker")
 
 import os
 import sys
+import httpx
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import operator
 from collections.abc import Sequence as AbcSequence
 from langchain_core.callbacks import Callbacks
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 DEFAULT_QDRANT_URL = "http://localhost:6333"
 DEFAULT_QDRANT_TIMEOUT_SECONDS = int(os.getenv("QDRANT_TIMEOUT_SECONDS", "60"))
@@ -81,8 +83,19 @@ DEFAULT_COLLECTION_ALIAS = "ctu_scholarship_docs_current"
 VECTOR_SIZE = 768
 DEFAULT_SEARCH_K = 15
 DEFAULT_RERANK_TOP_N = 6
-DEFAULT_RERANKER_MODEL = "BAAI/bge-reranker-v2-m3"
-GTE_RERANKER_MODEL = "Alibaba-NLP/gte-multilingual-reranker-base"
+DEFAULT_LOCAL_EMBEDDING_PATH = PROJECT_ROOT / "models" / "vietnamese-bi-encoder"
+DEFAULT_EMBEDDING_MODEL = (
+    str(DEFAULT_LOCAL_EMBEDDING_PATH)
+    if DEFAULT_LOCAL_EMBEDDING_PATH.exists()
+    else "bkai-foundation-models/vietnamese-bi-encoder"
+)
+DEFAULT_LOCAL_RERANKER_PATH = PROJECT_ROOT / "models" / "bge-reranker-v2-m3"
+DEFAULT_RERANKER_MODEL = (
+    str(DEFAULT_LOCAL_RERANKER_PATH)
+    if DEFAULT_LOCAL_RERANKER_PATH.exists()
+    else "BAAI/bge-reranker-v2-m3"
+)
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 # LangChain's QdrantVectorStore nests Document.metadata under the `metadata`
 # payload key. Index and filter the fully-qualified paths below.
@@ -110,7 +123,6 @@ class RetrievalLane(str, Enum):
     SOCIAL_SUPPORT = "social_support"
     ACADEMIC_PROGRAM = "academic_program"
     ACADEMIC_RULES = "academic_rules"
-    QUY_CHE_GENERAL = "quy_che_general"
 
 
 LANE_METADATA: Dict[RetrievalLane, Dict[str, str]] = {
@@ -142,11 +154,6 @@ LANE_METADATA: Dict[RetrievalLane, Dict[str, str]] = {
     },
     RetrievalLane.ACADEMIC_RULES: {
         "domain": "academic_regulation",
-        "content_kind": "quy_che_hoc_vu",
-    },
-    RetrievalLane.QUY_CHE_GENERAL: {
-        "domain": "academic_regulation",
-        "content_kind": "quy_dinh_chung",
     },
 }
 
@@ -158,24 +165,99 @@ def _env_flag(name: str, default: bool = False) -> bool:
     return raw.strip().lower() in {"1", "true", "yes", "on"}
 
 
-def _reranker_model_config() -> tuple[str, dict[str, object]]:
-    model_name = os.getenv("RAG_RERANKER_MODEL", DEFAULT_RERANKER_MODEL)
-    model_kwargs: dict[str, object] = {
-        "device": os.getenv("RAG_RERANKER_DEVICE", "cuda")
-    }
-    # Tự động ưu tiên thư mục local nếu có
-    if not os.path.exists(model_name):
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        local_candidate = os.path.join(project_root, "models", "bge-reranker-v2-m3")
-        if os.path.exists(local_candidate):
-            model_name = local_candidate
+DEFAULT_OPENROUTER_RERANKER_MODEL = "nvidia/llama-nemotron-rerank-v1:free"
 
-    if os.path.exists(model_name):
-        model_kwargs["local_files_only"] = True
 
-    if model_name == GTE_RERANKER_MODEL:
-        model_kwargs["trust_remote_code"] = True
-    return model_name, model_kwargs
+class OpenRouterCrossEncoder:
+    """Cross-Encoder proxy gọi NVIDIA Nemotron Rerank V1 qua OpenRouter API.
+
+    API tùy chọn tại https://openrouter.ai
+    """
+
+    def __init__(
+        self,
+        model_name: str = DEFAULT_OPENROUTER_RERANKER_MODEL,
+        api_key: str | None = None,
+        base_url: str = OPENROUTER_BASE_URL,
+        timeout: float = 30.0,
+    ):
+        self.model_name = model_name
+        self.api_key = api_key or os.getenv("OPENROUTER_API_KEY", "")
+        self.base_url = base_url.rstrip("/")
+        self.timeout = timeout
+        if not self.api_key:
+            logger.warning(
+                "OPENROUTER_API_KEY chưa được cấu hình. Reranker sẽ không hoạt động."
+            )
+
+    def score(self, sentence_pairs: list[tuple[str, str]]) -> list[float]:
+        """Chấm điểm từng cặp (query, document) qua OpenRouter API.
+
+        Tương thích interface với HuggingFaceCrossEncoder.score().
+        """
+        if not self.api_key:
+            logger.warning("Bỏ qua reranking vì thiếu OPENROUTER_API_KEY.")
+            return [0.0] * len(sentence_pairs)
+
+        if not sentence_pairs:
+            return []
+
+        query = sentence_pairs[0][0]  # Tất cả pairs chung 1 query
+        documents = [doc for _, doc in sentence_pairs]
+
+        try:
+            # Sử dụng OpenRouter ranking endpoint
+            headers = {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://ctu-chatbot.app",
+                "X-Title": "CTU Scholarship Chatbot",
+            }
+
+            # Dùng chat completions API với prompt chấm điểm
+            scores = []
+            with httpx.Client(timeout=self.timeout) as client:
+                for doc_text in documents:
+                    # Truncate document để tránh vượt context limit
+                    truncated_doc = doc_text[:2000] if len(doc_text) > 2000 else doc_text
+                    payload = {
+                        "model": self.model_name,
+                        "messages": [
+                            {
+                                "role": "user",
+                                "content": (
+                                    f"Query: {query}\n\n"
+                                    f"Document: {truncated_doc}\n\n"
+                                    "Rate the relevance of the document to the query "
+                                    "on a scale of 0 to 1. Reply with ONLY a number."
+                                ),
+                            }
+                        ],
+                        "max_tokens": 10,
+                        "temperature": 0.0,
+                    }
+                    resp = client.post(
+                        f"{self.base_url}/chat/completions",
+                        headers=headers,
+                        json=payload,
+                    )
+                    resp.raise_for_status()
+                    content = resp.json()["choices"][0]["message"]["content"].strip()
+                    try:
+                        score = float(content)
+                        scores.append(max(0.0, min(1.0, score)))
+                    except ValueError:
+                        # Nếu không parse được, cho điểm trung bình
+                        scores.append(0.5)
+
+            return scores
+
+        except Exception as exc:
+            logger.warning(
+                "OpenRouter reranker lỗi: %s. Trả về điểm mặc định.",
+                exc,
+            )
+            return [0.5] * len(sentence_pairs)
 
 class TemporalCrossEncoderReranker(CrossEncoderReranker):
     """Reranker có ưu tiên MỀM theo thời gian (tie-break).
@@ -372,6 +454,7 @@ class AdvancedChunkingEngine:
         load_reranker: bool = True,
         metadata_filter_enabled: Optional[bool] = None,
         metadata_catalog_path: Optional[str] = None,
+        enable_bm25: bool = True,
     ):
         self.persist_dir = persist_dir
         configured_index_version = index_version or os.getenv("RAG_INDEX_VERSION")
@@ -457,25 +540,19 @@ class AdvancedChunkingEngine:
             )
         self.ensure_payload_indexes()
 
-        # Trỏ Vector Store về Qdrant
-        embedding_model_name = os.getenv("RAG_EMBEDDING_MODEL", "bkai-foundation-models/vietnamese-bi-encoder")
-        embedding_model_kwargs: dict[str, object] = {}
-        if not os.path.exists(embedding_model_name):
-            project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            local_emb_candidate = os.path.join(project_root, "models", "vietnamese-bi-encoder")
-            if os.path.exists(local_emb_candidate):
-                embedding_model_name = local_emb_candidate
-
-        if os.path.exists(embedding_model_name):
-            embedding_model_kwargs["local_files_only"] = True
-
+        # Trỏ Vector Store về Qdrant — sử dụng vietnamese-bi-encoder (Local 768 dims)
+        embedding_model = os.getenv("RAG_EMBEDDING_MODEL", DEFAULT_EMBEDDING_MODEL)
+        import torch
+        emb_device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.embeddings = HuggingFaceEmbeddings(
+            model_name=embedding_model,
+            model_kwargs={"device": emb_device},
+            encode_kwargs={"normalize_embeddings": True},
+        )
         self.vector_store = QdrantVectorStore(
             client=self.qdrant_client,
             collection_name=self.collection_name,
-            embedding=HuggingFaceEmbeddings(
-                model_name=embedding_model_name,
-                model_kwargs=embedding_model_kwargs,
-            ),
+            embedding=self.embeddings,
         )
         
         # 4. ORCHESTRATOR: BỘ ĐIỀU PHỐI PARENT-CHILD & RE-RANKING
@@ -490,23 +567,42 @@ class AdvancedChunkingEngine:
             }
         )
 
-        # Bước 7 (Theo lý thuyết): Xếp hạng lại (Re-ranking) bằng Cross-Encoder
+        # Bước 7 (Theo lý thuyết): Xếp hạng lại (Re-ranking) bằng Local Cross-Encoder BAAI/bge-reranker-v2-m3
         self.cross_encoder = None
         self.reranker = None
         if load_reranker:
-            reranker_model, reranker_model_kwargs = _reranker_model_config()
-            logger.info("Đang nạp mô hình Cross-Encoder %s...", reranker_model)
-            self.cross_encoder = HuggingFaceCrossEncoder(
-                model_name=reranker_model,
-                model_kwargs=reranker_model_kwargs,
-            )
-            # BẮT BUỘC: Giới hạn số token đưa vào mô hình để tránh lỗi CUDA Out of Memory (GPU 4GB)
-            self.cross_encoder.client.max_length = 512
-            self.reranker = TemporalCrossEncoderReranker(
-                model=self.cross_encoder,
-                top_n=DEFAULT_RERANK_TOP_N,
-                score_tolerance=0.05,
-            )
+            reranker_model = os.getenv("RAG_RERANKER_MODEL", DEFAULT_RERANKER_MODEL)
+            # Nếu người dùng cấu hình model OpenRouter API
+            if reranker_model.startswith("nvidia/") or reranker_model.startswith("openrouter/"):
+                openrouter_key = os.getenv("OPENROUTER_API_KEY", "")
+                if openrouter_key:
+                    logger.info("Đang khởi tạo Reranker API: %s (OpenRouter)", reranker_model)
+                    self.cross_encoder = OpenRouterCrossEncoder(
+                        model_name=reranker_model,
+                        api_key=openrouter_key,
+                    )
+                else:
+                    logger.warning("OPENROUTER_API_KEY chưa cấu hình. Reranker bị tắt.")
+            else:
+                # Mặc định: Nạp mô hình Local Cross-Encoder (BAAI/bge-reranker-v2-m3)
+                logger.info("Đang nạp Local Cross-Encoder Reranker: %s", reranker_model)
+                try:
+                    import torch
+                    device = "cuda" if torch.cuda.is_available() else "cpu"
+                    self.cross_encoder = HuggingFaceCrossEncoder(
+                        model_name=reranker_model,
+                        model_kwargs={"device": device},
+                    )
+                    logger.info("✅ Đã nạp thành công Local Reranker trên thiết bị: %s", device)
+                except Exception as e:
+                    logger.warning("Không thể nạp Local Reranker (%s): %s. Reranker bị tắt.", reranker_model, e)
+
+            if self.cross_encoder is not None:
+                self.reranker = TemporalCrossEncoderReranker(
+                    model=self.cross_encoder,
+                    top_n=DEFAULT_RERANK_TOP_N,
+                    score_tolerance=0.05,
+                )
 
         # Nối Base Retriever và Reranker lại thành một Pipeline truy xuất hoàn chỉnh
         self.retriever = (
@@ -519,11 +615,14 @@ class AdvancedChunkingEngine:
         )
 
         # 5. KHỞI TẠO BM25 INDEX (Sparse Lexical Search)
-        bm25_storage_dir = Path(self.persist_dir) / "bm25_index"
-        self.bm25_index = VietnameseBM25Index(
-            persist_dir=bm25_storage_dir,
-            index_version=self.index_version,
-        )
+        if enable_bm25:
+            bm25_storage_dir = Path(self.persist_dir) / "bm25_index"
+            self.bm25_index = VietnameseBM25Index(
+                persist_dir=bm25_storage_dir,
+                index_version=self.index_version,
+            )
+        else:
+            self.bm25_index = None
 
     def ensure_payload_indexes(self) -> None:
         """Create the keyword indexes used by all business metadata filters."""
@@ -1173,7 +1272,10 @@ class AdvancedChunkingEngine:
             
             return True
 
-        except Exception:
+        except Exception as exc:
+            # Re-raise rate limit errors so caller can retry
+            if "429" in str(exc) or "RESOURCE_EXHAUSTED" in str(exc):
+                raise
             logger.critical("Engine Chunking sụp đổ trong quá trình Ingestion!", exc_info=True)
             self.purge_document(source, run_id)
             return False

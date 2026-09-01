@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-dondenghi-diem-m-chungchinn-ngoaidanhmuc
-version_key: ctu-pdt-dondenghi-diem-m-chungchinn-ngoaidanhmuc-fd5b547f11d9
-title: "ĐƠN ĐỀ NGHỊ XÉT MIỄN VÀ CÔNG NHẬN ĐIỂM M do có chứng chỉ ngoại ngữ chưa có tên trong danh mục chứng chỉ được xét miễn học phần ngoại ngữ căn bản của Trường ĐHCT"
-document_type: don
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/DonDeNghi_Diem_M_ChungchiNN_ngoaidanhmuc.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/DonDeNghi_Diem_M_ChungchiNN_ngoaidanhmuc_llp.md"
-file_type: doc
-accessed_date: 2026-05-31
-language: vi
-checksum: fd5b547f11d9b13b32524ab0c09290224ce9033b87b61c2e82d17a8dc9b8e681
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:12:16+07:00"
-updated_at: "2026-07-09T10:12:16+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->
