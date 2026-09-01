@@ -196,6 +196,26 @@ def run_build(args: argparse.Namespace) -> bool:
             "%s was left intact for diagnosis.",
             collection_name,
         )
+    else:
+        # Đồng bộ document metadata từ JSON manifest vào PostgreSQL
+        try:
+            from app.services.document_metadata_pg import sync_metadata_from_json
+            from app.core.database import SyncSessionLocal
+
+            with SyncSessionLocal() as session:
+                count = sync_metadata_from_json(session, manifest_path=args.manifest)
+                session.commit()
+            logger.info(
+                "Đã đồng bộ %d document metadata records vào PostgreSQL.", count
+            )
+            result["metadata_synced"] = count
+        except Exception:
+            logger.exception(
+                "Không thể đồng bộ metadata vào PostgreSQL; "
+                "Qdrant collection %s vẫn hợp lệ.",
+                collection_name,
+            )
+            result["metadata_sync_error"] = True
     return not failures
 
 

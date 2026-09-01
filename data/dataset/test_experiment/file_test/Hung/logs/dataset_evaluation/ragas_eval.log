@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/mnt/d/Project/Chatbot/scripts/evaluate_ragas.py", line 8, in <module>
+    from ragas import evaluate
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/ragas/__init__.py", line 5, in <module>
+    from ragas.evaluation import aevaluate, evaluate
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/ragas/evaluation.py", line 31, in <module>
+    from ragas.llms import llm_factory
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/ragas/llms/__init__.py", line 1, in <module>
+    from ragas.llms.base import (
+  File "/mnt/d/Project/Chatbot/wsl_venv/lib/python3.10/site-packages/ragas/llms/base.py", line 12, in <module>
+    from langchain_community.chat_models.vertexai import ChatVertexAI
+ModuleNotFoundError: No module named 'langchain_community.chat_models.vertexai'
