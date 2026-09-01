@@ -275,7 +275,9 @@ class TemporalCrossEncoderReranker(CrossEncoderReranker):
         query: str,
         callbacks: Callbacks | None = None,
     ) -> AbcSequence[Document]:
-        scores = self.model.score([(query, doc.page_content) for doc in documents])
+        # Tối ưu: Cắt ngắn nội dung chấm điểm xuống 1000 ký tự để giảm tải ma trận Attention O(L^2)
+        # Tài liệu Document thực tế trả về cho LLM vẫn giữ nguyên 100% full content
+        scores = self.model.score([(query, (doc.page_content or "")[:1000]) for doc in documents])
         docs_with_scores = list(zip(documents, scores))
         # Sắp theo (điểm liên quan giảm dần, timestamp giảm dần) để tie-break sơ bộ
         ranked = sorted(
@@ -570,7 +572,8 @@ class AdvancedChunkingEngine:
         # Bước 7 (Theo lý thuyết): Xếp hạng lại (Re-ranking) bằng Local Cross-Encoder BAAI/bge-reranker-v2-m3
         self.cross_encoder = None
         self.reranker = None
-        if load_reranker:
+        use_reranker_env = os.getenv("RAG_USE_RERANKER", "true").lower() in ("true", "1", "yes")
+        if load_reranker and use_reranker_env:
             reranker_model = os.getenv("RAG_RERANKER_MODEL", DEFAULT_RERANKER_MODEL)
             # Nếu người dùng cấu hình model OpenRouter API
             if reranker_model.startswith("nvidia/") or reranker_model.startswith("openrouter/"):
@@ -593,7 +596,9 @@ class AdvancedChunkingEngine:
                         model_name=reranker_model,
                         model_kwargs={"device": device},
                     )
-                    logger.info("✅ Đã nạp thành công Local Reranker trên thiết bị: %s", device)
+                    if device == "cuda" and hasattr(self.cross_encoder, "client") and hasattr(self.cross_encoder.client, "model"):
+                        self.cross_encoder.client.model.half()
+                    logger.info("✅ Đã nạp thành công Local Reranker trên thiết bị: %s (FP16: %s)", device, device == "cuda")
                 except Exception as e:
                     logger.warning("Không thể nạp Local Reranker (%s): %s. Reranker bị tắt.", reranker_model, e)
 
@@ -892,7 +897,8 @@ class AdvancedChunkingEngine:
                     doc.metadata["retrieval_source"] = "bm25"
 
             sorted_keys = sorted(rrf_scores.keys(), key=lambda k: rrf_scores[k], reverse=True)
-            candidate_parents = [doc_map[k] for k in sorted_keys[: max(result_limit * 3, DEFAULT_SEARCH_K)]]
+            candidate_limit = min(len(sorted_keys), max(result_limit * 2, 8))
+            candidate_parents = [doc_map[k] for k in sorted_keys[:candidate_limit]]
         elif dense_docs:
             logger.info(f"[HybridSearch] Vector only: {len(dense_docs)} docs (BM25 returned 0)")
             for doc in dense_docs:
