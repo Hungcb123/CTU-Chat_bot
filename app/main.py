@@ -64,7 +64,7 @@ async def lifespan(app: FastAPI):
             await conn.run_sync(Base.metadata.create_all)
         logger.info("✅ Tạo bảng PostgreSQL thành công!")
 
-        logger.info("🤖 Khởi tạo Vector DB và LLM Gemini + Qwen Local...")
+        logger.info("🤖 Khởi tạo Vector DB (Qdrant) và LLM Gemini API...")
         app.state.engine = AdvancedChunkingEngine(persist_dir=os.path.join(PROJECT_ROOT, "qdrant_storage"))
         app.state.tuition_catalog = TuitionRateCatalog.load()
         logger.info(

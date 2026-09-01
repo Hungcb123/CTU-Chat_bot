@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-dondenghi-diem-m-chungchi
-version_key: ctu-pdt-dondenghi-diem-m-chungchi-4e1e63dde294
-title: "ĐƠN ĐỀ NGHỊ XÉT MIỄN VÀ CÔNG NHẬN ĐIỂM M do có chứng chỉ Ngoại ngữ, Tin học, GDQP, GDTC"
-document_type: don
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/DonDeNghi_Diem_M_Chungchi.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/DonDeNghi_Diem_M_Chungchi_llp.md"
-file_type: doc
-accessed_date: 2026-05-31
-language: vi
-checksum: 4e1e63dde2944684fc452fcdc08c3c70ad0a60bccbc3cf92e0a406267f065946
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:11:51+07:00"
-updated_at: "2026-07-09T10:11:51+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

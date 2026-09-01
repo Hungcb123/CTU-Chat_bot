@@ -1,38 +1,3 @@
----
-document_key: ctu-ctsv-17-qd-ban-hanh-sv5t-dhct-giai-doan-2025-2028-signed
-version_key: ctu-ctsv-17-qd-ban-hanh-sv5t-dhct-giai-doan-2025-2028-signed-d56b91b979c1
-title: "QUYẾT ĐỊNH Về việc Ban hành Quy định tiêu chuẩn xét chọn danh hiệu “Sinh viên 5 tốt” và “Tập thể Sinh viên 5 tốt” Đại học Cần Thơ, giai đoạn 2025-2028"
-document_type: quyet_dinh
-domain: sinh_vien
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- VPTr
-- HSV
-signer_name: "CT Huỳnh Phúc Lộc"
-audience:
-  - sinh_vien
-code: "17/QĐ-HSV"
-issued_date: 2026-03-04
-effective_date: 2026-03-04
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/QuyetDinh/17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/QuyetDinh/17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md"
-file_type: pdf
-accessed_date: 2026-08-13
-language: vi
-checksum: d56b91b979c1e609fc7ac2a1c43bc1cccd94a8a3fb9e2d2525615ed06f1e18f9
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-08-13T15:00:21+07:00"
-updated_at: "2026-08-13T15:00:21+07:00"
-notes: ""
----
-
 1
 
 <!-- page: 1 -->

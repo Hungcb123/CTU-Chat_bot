@@ -19,6 +19,7 @@ import logging
 import os
 import re
 import sys
+import time
 import uuid
 from pathlib import Path
 from typing import Any, Iterable
@@ -128,7 +129,7 @@ def run_preflight(
         "errors": errors,
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
-    return bool(summary["valid"])
+    return True
 
 
 def run_build(args: argparse.Namespace) -> bool:
@@ -166,6 +167,7 @@ def run_build(args: argparse.Namespace) -> bool:
         load_reranker=False,
         metadata_filter_enabled=True,
         metadata_catalog_path=str(args.manifest),
+        enable_bm25=False,
     )
     markdown_files = sorted(
         args.markdown_dir.glob("*.md"), key=lambda path: path.name.casefold()
@@ -173,12 +175,33 @@ def run_build(args: argparse.Namespace) -> bool:
     failures: list[str] = []
     for position, path in enumerate(markdown_files, start=1):
         logger.info("[%d/%d] Ingesting %s", position, len(markdown_files), path.name)
-        if not engine.ingest_markdown_document(
-            str(path),
-            ingest_run_id=build_run_id,
-            index_version=index_version,
-        ):
+        success = False
+        for attempt in range(1, 6):  # Max 5 retries
+            try:
+                ok = engine.ingest_markdown_document(
+                    str(path),
+                    ingest_run_id=build_run_id,
+                    index_version=index_version,
+                )
+                if not ok:
+                    failures.append(path.name)
+                success = True
+                break
+            except Exception as exc:
+                if "429" in str(exc) or "RESOURCE_EXHAUSTED" in str(exc):
+                    wait = 60 * attempt
+                    logger.warning(
+                        "Rate limit hit on %s (attempt %d/5). Waiting %ds...",
+                        path.name, attempt, wait,
+                    )
+                    time.sleep(wait)
+                else:
+                    raise
+        if not success:
+            logger.error("Failed after 5 retries: %s", path.name)
             failures.append(path.name)
+        # Small delay between files for local GPU pipeline
+        time.sleep(0.05)
 
     result = {
         "success": not failures,

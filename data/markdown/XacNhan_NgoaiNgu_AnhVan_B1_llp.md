@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-xacnhan-ngoaingu-anhvan-b1
-version_key: ctu-pdt-xacnhan-ngoaingu-anhvan-b1-93e3b4ba9ca7
-title: "ĐƠN ĐỀ NGHỊ XÁC NHẬN TRÌNH ĐỘ NGOẠI NGỮ"
-document_type: don
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/XacNhan_NgoaiNgu_AnhVan_B1.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/XacNhan_NgoaiNgu_AnhVan_B1_llp.md"
-file_type: doc
-accessed_date: 2026-05-31
-language: vi
-checksum: 93e3b4ba9ca74d29144f9cf0078d3a0da9bc16c8059b44a64f666b2ee13ce37a
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:18:14+07:00"
-updated_at: "2026-07-09T10:18:14+07:00"
-notes: "Xác nhận hoàn thành các học phần Anh văn căn bản trong chương trình đào tạo"
----
 1
 
 <!-- page: 1 -->

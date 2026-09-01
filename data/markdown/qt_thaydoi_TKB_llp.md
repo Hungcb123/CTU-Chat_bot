@@ -1,36 +1,3 @@
----
-document_key: ctu-pdt-qt-thaydoi-tkb
-version_key: ctu-pdt-qt-thaydoi-tkb-30d96fbb2ccb
-title: "QUY TRÌNH ĐỀ NGHỊ THAY ĐỔI THỜI KHÓA BIỂU LỚP HỌC PHẦN"
-document_type: quy_trinh
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- PDT
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/QuyTrinh/qt_thaydoi_TKB.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/QuyTrinh/qt_thaydoi_TKB.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 30d96fbb2ccb12b87ed07a808ab9e9ee04a80e2e93f209d2faeef28d29736401
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T09:37:12+07:00"
-updated_at: "2026-07-07T09:37:12+07:00"
-notes: "Không có ngày ký và ngày áp dụng, không có tên người ký"
----
 1
 
 <!-- page: 1 -->

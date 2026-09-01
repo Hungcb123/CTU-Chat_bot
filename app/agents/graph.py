@@ -91,7 +91,7 @@ class RouteDecision(BaseModel):
         "calculation", "both", "ambiguous_tuition",
         "scholarship",
         "student_loan", "social_support",
-        "academic_program", "academic_rules", "quy_che_general",
+        "academic_program", "academic_rules",
         "other",
     ] = Field(
         description="Phân loại chi tiết nội dung câu hỏi để chọn đúng loại tài liệu retrieval"

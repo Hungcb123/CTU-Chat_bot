@@ -572,7 +572,7 @@ class AcademicGraphService:
                 ORDER BY tf.khoa, tf.don_vi_tinh
             """
 
-            result = session.run(cypher, **params)
+            result = session.run(cypher, parameters=params)
             matches = [dict(r) for r in result]
 
             # Strategy 2: Tìm trực tiếp trên TuitionFee (cho CLC/TT không link Program)

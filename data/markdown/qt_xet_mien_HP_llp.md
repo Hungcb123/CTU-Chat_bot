@@ -1,37 +1,3 @@
----
-document_key: ctu-pdt-qt-xet-mien-hp
-version_key: ctu-pdt-qt-xet-mien-hp-89c5dc3c4f57
-title: "QUY TRÌNH XÉT MIỄN VÀ CÔNG NHẬN ĐIỂM HỌC PHẦN"
-document_type: quy_trinh
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department: 
-- PDT
-- DVQLN
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/QuyTrinh/qt_xet_mien_HP.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/QuyTrinh/qt_xet_mien_HP.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 89c5dc3c4f579075e15932985f2ca1c23d8ca676171fea8c099ca7040d647fea
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T09:38:58+07:00"
-updated_at: "2026-07-07T09:38:58+07:00"
-notes: "Không có ngày ký và ngày áp dụng, không có tên người ký"
----
 1
 
 <!-- page: 1 -->

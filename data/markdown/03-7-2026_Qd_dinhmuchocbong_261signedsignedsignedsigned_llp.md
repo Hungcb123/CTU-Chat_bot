@@ -1,36 +1,3 @@
----
-document_key: ctu-ctsv-03-7-2026-qd-dinhmuchocbong-261signedsignedsignedsigned
-version_key: ctu-ctsv-03-7-2026-qd-dinhmuchocbong-261signedsignedsignedsigned-87ed5dd274e6
-title: "QUYẾT ĐỊNH Về việc định mức học bổng khuyến khích học tập áp dụng từ học kỳ 1, năm học 2026-2027"
-document_type: quyet_dinh
-domain: hoc_bong
-issuing_authority: "Đại học Cần Thơ"
-responsible_department: 
-- PCTSV
-signer_name: "GD Trần Trung Tính"
-audience:
-  - sinh_vien
-code: "3609 /QĐ-ĐHCT"
-issued_date: 2026-07-07
-effective_date: 2026-07-07
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/QuyetDinh/03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/QuyetDinh/03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md"
-file_type: pdf
-accessed_date: 2026-08-12
-language: vi
-checksum: 87ed5dd274e6ed8e7e7f3968aa2b1a0e7fe24d18c03725ce234e27bf169f5ac0
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-08-12T19:52:16+07:00"
-updated_at: "2026-08-12T19:52:16+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

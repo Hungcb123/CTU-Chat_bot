@@ -25,9 +25,11 @@ langgraph==1.2.2
 # chromadb==1.5.9
 bm25s>=0.3.10
 pyvi>=0.1.1
-sentence-transformers==5.5.1
-huggingface_hub==0.36.2
-pydantic==2.13.4
+# sentence-transformers và huggingface_hub đã được thay bằng API:
+# - Embedding: Google Gemini text-embedding-004 (dùng langchain-google-genai)
+# - Reranker: NVIDIA Nemotron qua OpenRouter (dùng httpx)
+
+pydantic==2.1
 typing_extensions==4.15.0
 
 # Authentication and HTTP

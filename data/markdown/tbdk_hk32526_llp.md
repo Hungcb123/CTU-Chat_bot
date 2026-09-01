@@ -1,37 +1,3 @@
----
-document_key: ctu-ctsv-tbdk-hk32526
-version_key: ctu-ctsv-tbdk-hk32526-a42b92f1401a
-title: "THÔNG BÁO Đăng ký ở Ký túc xá học kỳ 3 năm học 2025-2026"
-document_type: thong_bao
-domain: ktx
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- PKHTC
-- PCTSV
-signer_name: "TP Nguyễn Thanh Tường"
-audience:
-  - sinh_vien
-code: "88 /TB-CTSV"
-issued_date: 2026-03-26
-effective_date: 2025-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/KTX/tbdk_hk32526.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/KTX/tbdk_hk32526.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: a42b92f1401a28f702e8c9d849508375fe7391b09ab3016e5d0a8031ff2c2e4f
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-06T23:22:35+07:00"
-updated_at: "2026-07-06T23:22:35+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

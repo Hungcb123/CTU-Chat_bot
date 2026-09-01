@@ -1,11 +1,3 @@
----
-loai_tai_lieu: "Chương trình đào tạo"
-trinh_do: "Đại học"
-don_vi: "Bộ môn Ngôn ngữ và Văn hóa Pháp, Khoa Ngoại ngữ"
-nganh_hoc: "Ngôn ngữ Pháp"
-nam_ban_hanh: 2025
----
-
 # CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC
 
 *(Ban hành theo Quyết định số 3922/QĐ-ĐHCT ngày 15 tháng 8 năm 2025 của Hiệu trưởng Trường Đại học Cần Thơ)*

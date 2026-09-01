@@ -42,7 +42,6 @@ VALID_LANES: set[str] = {
     "SOCIAL_SUPPORT",
     "ACADEMIC_PROGRAM",
     "ACADEMIC_RULES",
-    "QUY_CHE_GENERAL",
     "AMBIGUOUS_TUITION",
     "OTHER",
 }
@@ -98,15 +97,14 @@ Phân tích câu hỏi và trả về **duy nhất** một JSON object (không g
 | STUDENT_LOAN | Hỏi về vay vốn sinh viên | |
 | SOCIAL_SUPPORT | Hỏi về trợ cấp xã hội | |
 | ACADEMIC_PROGRAM | Hỏi về ngành học, chương trình đào tạo, môn học, tín chỉ của ngành | ten_nganh, loai_thong_tin |
-| ACADEMIC_RULES | Hỏi quy chế học vụ (đăng ký môn, rút môn, tín chỉ tối thiểu/tối đa) | |
-| QUY_CHE_GENERAL | Hỏi quy định chung về đào tạo (thi, điểm, học lại, bảo lưu, thôi học) | |
+| ACADEMIC_RULES | Hỏi quy chế học vụ, quy định đào tạo, thi, điểm, học lại, bảo lưu, chuyển ngành, thôi học (không gồm Sinh viên 5 tốt) | |
 | AMBIGUOUS_TUITION | Hỏi học phí nhưng không rõ loại nào | nam_hoc |
-| OTHER | Không thuộc domain nào ở trên | |
+| OTHER | Hỏi về Sinh viên 5 tốt (SV5T: 5 tiêu chuẩn, minh chứng, ĐRL xét SV5T...), Ký túc xá, đời sống SV hoặc không thuộc domain nào ở trên | |
 
 ### Quy tắc:
 1. Nếu câu hỏi nhắc đến tên ngành, chương trình đào tạo, môn học của ngành, khung chương trình → ACADEMIC_PROGRAM.
-2. Nếu câu hỏi nhắc đến quy chế đăng ký, rút môn, số tín chỉ tối thiểu/tối đa mỗi học kỳ → ACADEMIC_RULES.
-3. Nếu câu hỏi nhắc đến thi, điểm, học lại, cải thiện điểm, bảo lưu, thôi học → QUY_CHE_GENERAL.
+2. Nếu câu hỏi nhắc đến quy chế học vụ, đăng ký môn, rút môn, thi cử, điểm số, học lại, bảo lưu, chuyển ngành, thôi học, tốt nghiệp (không phải SV5T) → ACADEMIC_RULES.
+3. Nếu câu hỏi liên quan đến danh hiệu "Sinh viên 5 tốt" (SV5T: tiêu chuẩn đạo đức, học tập, thể lực, tình nguyện, hội nhập, quy đổi ngoại ngữ/tin học xét SV5T, minh chứng SV5T) → OTHER.
 4. Nếu câu hỏi yêu cầu "tính", "tính giúp", "tính tiền", "còn đóng bao nhiêu" → CALCULATION.
 5. Nếu câu hỏi nhắc đến "học phí" nhưng thiếu ngữ cảnh loại → AMBIGUOUS_TUITION.
 6. confidence = 1.0 khi chắc chắn, < 0.8 khi mơ hồ.
@@ -117,7 +115,7 @@ Phân tích câu hỏi và trả về **duy nhất** một JSON object (không g
 - "Học phí ngành CNTT khóa 49 bao nhiêu?" → {{"lane": "ACTUAL_TUITION", "confidence": 0.92, "params": {{"nganh": "Công nghệ thông tin", "khoa": "K49"}}}}
 - "Điều kiện miễn giảm 70% cho hộ nghèo?" → {{"lane": "EXEMPTION_POLICY", "confidence": 0.95, "params": {{"doi_tuong": "hộ nghèo"}}}}
 - "GPA 3.5 ĐRL 85 được học bổng gì?" → {{"lane": "SCHOLARSHIP", "confidence": 0.97, "params": {{"gpa": 3.5, "drl": 85}}}}
-- "Quy chế thi cuối kỳ?" → {{"lane": "QUY_CHE_GENERAL", "confidence": 0.90, "params": {{}}}}
+- "Quy chế thi cuối kỳ và chuyển ngành?" → {{"lane": "ACADEMIC_RULES", "confidence": 0.90, "params": {{}}}}
 - "So sánh ngành CNTT và AI" → {{"lane": "ACADEMIC_PROGRAM", "confidence": 0.93, "params": {{"ten_nganh": "CNTT và AI", "loai_thong_tin": "so_sanh"}}}}
 """
 

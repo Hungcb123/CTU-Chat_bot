@@ -1,36 +1,3 @@
----
-document_key: ctu-ctsv-29-19052020-nghi-quyet-ve-qui-che-tc-va-hoat-dong-ctu-toan-van-dong-dau
-version_key: ctu-ctsv-29-19052020-nghi-quyet-ve-qui-che-tc-va-hoat-dong-ctu-toan-van-dong-dau-60a9438758dd
-title: "NGHỊ QUYẾT Ban hành Quy chế Tổ chức và hoạt động của Trường Đại học Cần Thơ"
-document_type: quyet_dinh
-domain: sinh_vien
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- HDT
-signer_name: "CT Nguyễn Thanh Phương"
-audience:
-  - sinh_vien
-code: "29/NQ-HĐT"
-issued_date: 2020-05-19
-effective_date: 2020-05-19
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/QuyetDinh/29_19052020-Nghi-quyet-ve-Qui-che-TC-va-Hoat-dong-CTU-toan-van-dong-dau.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/QuyetDinh/29_19052020-Nghi-quyet-ve-Qui-che-TC-va-Hoat-dong-CTU-toan-van-dong-dau.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 60a9438758dd72af9347fe0e1586782594724bd78adb5fcda299ad3a76cbaf6c
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T00:28:21+07:00"
-updated_at: "2026-07-07T00:28:21+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

@@ -1,37 +1,3 @@
----
-document_key: ctu-pdt-thgtu-04-2011-bgddt
-version_key: ctu-pdt-thgtu-04-2011-bgddt-0e586c05aaa3
-title: "THÔNG TƯ Ban hành Quy định việc biên soạn, lựa chọn, thẩm định, duyệt và sử dụng giáo trình giáo dục đại học"
-document_type: thong_tu
-domain: dao_tao
-issuing_authority: "BGDDT"
-responsible_department:
-- VP
-- VGDDH
-signer_name: "TT Bùi Văn Ga"
-audience:
-  - sinh_vien
-code: "04 /2011/TT-BGDĐT"
-issued_date: 2011-01-28
-effective_date: 2011-03-15
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/ThongTu/ThgTu_04_2011_BGDDT.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/ThongTu/ThgTu_04_2011_BGDDT.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 0e586c05aaa30f2a861bc8c4226ca5556dd6d2dd0d3d91c5a4a0029d4335d5d2
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T09:47:05+07:00"
-updated_at: "2026-07-07T09:47:05+07:00"
-notes: "Không có ngày ký và ngày áp dụng, không có tên người ký"
----
 1
 
 <!-- page: 1 -->
