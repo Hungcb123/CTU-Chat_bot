@@ -1,36 +1,3 @@
----
-document_key: ctu-pdt-qt-xep-tkb
-version_key: ctu-pdt-qt-xep-tkb-44f48e6b7883
-title: "QUY TRÌNH PHỐI HỢP XẾP THỜI KHÓA BIỂU HỌC KỲ"
-document_type: quy_trinh
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- PDT
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/QuyTrinh/qt_xep_TKB.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/QuyTrinh/qt_xep_TKB.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 44f48e6b78834bc5c603dbfde3ed3b65846b13fd20c5ce6355ed06ecf07d0cfe
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T09:38:19+07:00"
-updated_at: "2026-07-07T09:38:19+07:00"
-notes: "Không có ngày ký và ngày áp dụng, không có tên người ký"
----
 1
 
 <!-- page: 1 -->

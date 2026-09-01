@@ -1,35 +1,3 @@
----
-document_key: ctu-pdt-2021-dondenghi-diem-baoluu
-version_key: ctu-pdt-2021-dondenghi-diem-baoluu-c6862ad640d3
-title: "ĐƠN ĐỀ NGHỊ XÉT MIỄN VÀ CÔNG NHẬN ĐIỂM HỌC PHẦN"
-document_type: don
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: "" 
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/PDT/2021_DonDeNghi_Diem_BaoLuu.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/PDT/2021_DonDeNghi_Diem_BaoLuu_llp.md"
-file_type: doc
-accessed_date: 2026-05-31
-language: vi
-checksum: c6862ad640d3cbc3198359626963f8ecd76614f02c1fdef4b9b3c2ed91205861
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:11:25+07:00"
-updated_at: "2026-07-09T10:11:25+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

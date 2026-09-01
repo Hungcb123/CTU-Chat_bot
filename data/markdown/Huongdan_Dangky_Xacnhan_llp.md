@@ -1,36 +1,3 @@
----
-document_key: ctu-ctsv-huongdan-dangky-xacnhan
-version_key: ctu-ctsv-huongdan-dangky-xacnhan-6a3ebe378075
-title: "HƯỚNG DẪN SINH VIÊN ĐĂNG KÝ MẪU XÁC NHẬN"
-document_type: quy_trinh
-domain: sinh_vien
-issuing_authority: "Đại học Cần Thơ"
-responsible_department: 
-- PCTSV
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2021-01-01
-effective_date: 2021-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/QuyTrinh/Huongdan_Dangky_Xacnhan.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/QuyTrinh/Huongdan_Dangky_Xacnhan.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 6a3ebe378075c14ca7b88421e1d0fe333f98417a0cc9a1f011c63227d9619d71
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T00:13:28+07:00"
-updated_at: "2026-07-07T00:13:28+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

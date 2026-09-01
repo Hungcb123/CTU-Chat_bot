@@ -1,36 +1,3 @@
----
-document_key: ctu-pdt-qt-mothem-lop-ngoai-kh
-version_key: ctu-pdt-qt-mothem-lop-ngoai-kh-2fa072999f88
-title: "QUY TRÌNH MỞ THÊM LỚP HỌC PHẦN NGOÀI KẾ HOẠCH"
-document_type: quy_trinh
-domain: hoc_vu
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-- PDT
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/PDT/QuyTrinh/qt_mothem_lop_ngoai_kh.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_PDT/QuyTrinh/qt_mothem_lop_ngoai_kh.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: 2fa072999f884952f0bab836166c1640f66cdd1ed0cbbb454393d094b9a5c317
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-07T09:36:26+07:00"
-updated_at: "2026-07-07T09:36:26+07:00"
-notes: "Không có ngày ký và ngày áp dụng, không có tên người ký"
----
 1
 
 <!-- page: 1 -->

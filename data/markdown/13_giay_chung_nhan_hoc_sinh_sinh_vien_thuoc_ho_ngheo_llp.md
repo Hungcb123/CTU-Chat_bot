@@ -1,35 +1,3 @@
----
-document_key: ctu-ctsv-13-giay-chung-nhan-hoc-sinh-sinh-vien-thuoc-ho-ngheo
-version_key: ctu-ctsv-13-giay-chung-nhan-hoc-sinh-sinh-vien-thuoc-ho-ngheo-a094ffac14a0
-title: "GIẤY CHỨNG NHẬN HỌC SINH, SINH VIÊN THUỘC HỘ NGHÈO"
-document_type: giay
-domain: hoc_phi
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date: 2015-01-01
-effective_date: 2015-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/CTSV/13_giay_chung_nhan_hoc_sinh_sinh_vien_thuoc_ho_ngheo.docx"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/CTSV/13_giay_chung_nhan_hoc_sinh_sinh_vien_thuoc_ho_ngheo_llp.md"
-file_type: docx
-accessed_date: 2026-05-31
-language: vi
-checksum: a094ffac14a0c5d73686e520090cc88cbc2bba1483d0fc4500bddf53c24df12a
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T09:46:42+07:00"
-updated_at: "2026-07-09T09:46:42+07:00"
-notes: ""
----
 1
 
 <!-- page: 1 -->

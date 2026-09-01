@@ -121,11 +121,17 @@ def main(argv: list[str] | None = None) -> int:
     bm25 = VietnameseBM25Index(index_version=index_version)
     bm25.build_index(records)
     bm25.save(args.output_dir)
+    
+    # Đồng bộ sang cả parent_doc_storage/bm25_index để đảm bảo tính tương thích
+    alt_output_dir = str(PROJECT_ROOT / "parent_doc_storage" / "bm25_index")
+    if Path(args.output_dir).resolve() != Path(alt_output_dir).resolve():
+        bm25.save(alt_output_dir)
 
     logger.info(
-        "✅ BM25 index rebuilt: %d records, saved to %s",
+        "✅ BM25 index rebuilt: %d records, saved to %s (and %s)",
         len(records),
         args.output_dir,
+        alt_output_dir,
     )
     return 0
 

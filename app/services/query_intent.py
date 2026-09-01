@@ -20,7 +20,6 @@ class QueryIntent(str, Enum):
     SOCIAL_SUPPORT = "social_support"
     ACADEMIC_PROGRAM = "academic_program"
     ACADEMIC_RULES = "academic_rules"
-    QUY_CHE_GENERAL = "quy_che_general"
     OTHER = "other"
 
 
@@ -585,16 +584,6 @@ def build_retrieval_lanes(decision: QueryRoutingDecision) -> tuple[RetrievalLane
             RetrievalLane(
                 name="academic_rules",
                 domain="academic_regulation",
-                content_kind="quy_che_hoc_vu",
-                top_n=6,
-            ),
-        )
-    if decision.intent == QueryIntent.QUY_CHE_GENERAL:
-        return (
-            RetrievalLane(
-                name="quy_che_general",
-                domain="academic_regulation",
-                content_kind="quy_dinh_chung",
                 top_n=6,
             ),
         )
@@ -645,7 +634,7 @@ def build_answer_instruction(decision: QueryRoutingDecision) -> str:
             "Chỉ dùng tài liệu chương trình đào tạo của ngành được hỏi. "
             "Trả lời đúng ngành, nêu rõ mã ngành, số tín chỉ, thời gian đào tạo nếu có trong tài liệu."
         )
-    if decision.intent in {QueryIntent.ACADEMIC_RULES, QueryIntent.QUY_CHE_GENERAL}:
+    if decision.intent == QueryIntent.ACADEMIC_RULES:
         return (
             "Chỉ dùng tài liệu quy chế học vụ hoặc quy định đào tạo; "
             "trích dẫn điều khoản cụ thể nếu có."

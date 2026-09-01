@@ -12,7 +12,7 @@ load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
 
 from qdrant_client import QdrantClient
 from qdrant_client.http.models import Filter, FieldCondition, MatchValue
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_qdrant import QdrantVectorStore
 
 print("=" * 60)
@@ -37,7 +37,7 @@ if sample[0]:
 print("\n" + "=" * 60)
 print("BƯỚC 1: Vector Search trực tiếp (KHÔNG có filter)")
 print("=" * 60)
-embeddings = HuggingFaceEmbeddings(model_name="bkai-foundation-models/vietnamese-bi-encoder")
+embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
 query = "Học phí ngành Công nghệ thông tin chương trình chất lượng cao"
 query_vector = embeddings.embed_query(query)
 

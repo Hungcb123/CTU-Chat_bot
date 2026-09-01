@@ -1,36 +1,3 @@
----
-document_key: ctu-ctsv-15
-version_key: ctu-ctsv-15-d665a90a7e1d
-title: ""
-document_type: unknown
-domain: ""
-issuing_authority: "Đại học Cần Thơ"
-responsible_department:
-signer_name: "HT Hà Thanh Toàn"
-audience:
-  - student
-code: ""
-issued_date:
-effective_date:
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/DOCX/CTSV/QuyetDinh/15.doc"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/DOCX/CTSV/QuyetDinh/15_llp.md"
-file_type: doc
-accessed_date:
-language: vi
-checksum: d665a90a7e1dae52aeca1fce61b96208bec836123f0ec9d10402cdde558a05fd
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-09T10:07:52+07:00"
-updated_at: "2026-07-09T10:07:52+07:00"
-notes: ""
----
-
 1
 
 <!-- page: 1 -->

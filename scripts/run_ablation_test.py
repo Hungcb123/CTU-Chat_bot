@@ -187,8 +187,7 @@ def run_fixed_route(cases: list[TestCase]) -> list[CaseResult]:
         QueryIntent.STUDENT_LOAN: "general",
         QueryIntent.SOCIAL_SUPPORT: "general",
         QueryIntent.ACADEMIC_PROGRAM: "academic",
-        QueryIntent.ACADEMIC_RULES: "academic",
-        QueryIntent.QUY_CHE_GENERAL: "general",
+        QueryIntent.ACADEMIC_RULES: "general",
         QueryIntent.OTHER: "general",
     }
 

@@ -1,36 +1,27 @@
+  
+
 # 🎓 CTU Academic Chatbot — Multi-Agent RAG System
 
 <div align="center">
-
-**Hệ thống Chatbot AI đa tác nhân hỗ trợ sinh viên Trường Đại học Cần Thơ (CTU)**
-
-Trả lời chính xác mọi câu hỏi về **chương trình đào tạo**, **học phí & miễn giảm**, **học bổng**, và **quy chế học vụ** — được xây dựng trên kiến trúc **Multi-Agent LangGraph** kết hợp **Hybrid RAG** và **Neo4j Knowledge Graph**.
-
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![LangGraph](https://img.shields.io/badge/LangGraph-Supervisor_Pattern-1C3C3C?logo=langchain&logoColor=white)](https://langchain-ai.github.io/langgraph/)
-[![Neo4j](https://img.shields.io/badge/Neo4j-5.20-4581C3?logo=neo4j&logoColor=white)](https://neo4j.com)
-[![Qdrant](https://img.shields.io/badge/Qdrant-v1.18-DC382D?logo=qdrant&logoColor=white)](https://qdrant.tech)
-[![Gemini](https://img.shields.io/badge/Gemini-3.5_Flash-4285F4?logo=google&logoColor=white)](https://ai.google.dev)
-
-</div>
 
 ---
 
 ## 🌟 Tính Năng Nổi Bật
 
 ### 🤖 Multi-Agent System (LangGraph)
+
 Kiến trúc **Supervisor Pattern** với 4 Agent chuyên biệt, mỗi agent được trang bị bộ tools riêng:
 
-| Agent | Chuyên môn | Tools |
-|:------|:-----------|:------|
-| 🎯 **Supervisor** | Phân tích intent, query rewrite, routing | Structured Output (Gemini) |
-| 📚 **Academic Agent** | Chương trình đào tạo, ngành học, môn học | 6 Neo4j Graph Tools (ReAct) |
-| 💰 **Financial Agent** | Học phí, miễn giảm, tính toán tài chính | 3 Tools (Graph + JSON + Calc) |
-| 🏆 **Scholarship Agent** | Học bổng khuyến khích học tập | 1 Calculator Tool |
-| 📋 **General Agent** | Quy chế học vụ, thủ tục, tuyển sinh | RAG Context only |
+| Agent                         | Chuyên môn                                       | Tools                         |
+| :---------------------------- | :------------------------------------------------- | :---------------------------- |
+| 🎯**Supervisor**        | Phân tích intent, query rewrite, routing         | Structured Output (Gemini)    |
+| 📚**Academic Agent**    | Chương trình đào tạo, ngành học, môn học | 6 Neo4j Graph Tools (ReAct)   |
+| 💰**Financial Agent**   | Học phí, miễn giảm, tính toán tài chính    | 3 Tools (Graph + JSON + Calc) |
+| 🏆**Scholarship Agent** | Học bổng khuyến khích học tập                | 1 Calculator Tool             |
+| 📋**General Agent**     | Quy chế học vụ, thủ tục, tuyển sinh          | RAG Context only              |
 
 ### 🔍 Hybrid RAG Pipeline
+
 - **Dense Vector Search**: Qdrant DB + Vietnamese Bi-Encoder (`bkai-foundation-models/vietnamese-bi-encoder`)
 - **Sparse Lexical Search**: BM25s + tách từ tiếng Việt với PyVi
 - **Reciprocal Rank Fusion (RRF)**: Kết hợp kết quả từ cả hai kênh (k=60)
@@ -38,60 +29,64 @@ Kiến trúc **Supervisor Pattern** với 4 Agent chuyên biệt, mỗi agent đ
 - **Parent-Child Chunking**: Small-to-Big retrieval, Child tìm kiếm (400 chars) → Parent trả context đầy đủ
 
 ### 🕸️ Neo4j Knowledge Graph
+
 - Lưu trữ **toàn bộ chương trình đào tạo** dưới dạng đồ thị: `Program → Block → Course`, quan hệ tiên quyết `REQUIRES`
 - **Lazy auto-ingest**: Khởi động tự kiểm tra và nạp dữ liệu nếu graph rỗng
 - **6 Academic Tools**: Tra cứu ngành, so sánh ngành, tìm ngành, chuỗi tiên quyết, môn chung, tìm ngành theo môn
 - **2 Tuition Tools**: Tra cứu học phí từ graph (ưu tiên) với JSON fallback, tra cứu quy định học phí
 
 ### 🧠 LLM-powered Intent Classification
+
 - **Gemini Flash Lite** phân loại intent với structured output (`lane`, `confidence`, `params`)
 - **Rule-based fallback**: Hệ thống từ khóa deterministic dự phòng khi LLM unavailable
-- **12 intent lanes**: ACTUAL_TUITION, EXEMPTION_BASIS, EXEMPTION_POLICY, CALCULATION, SCHOLARSHIP, ACADEMIC_PROGRAM, ACADEMIC_RULES, ...
+- **11 intent lanes**: ACTUAL_TUITION, EXEMPTION_BASIS, EXEMPTION_POLICY, CALCULATION, BOTH, AMBIGUOUS_TUITION, SCHOLARSHIP, STUDENT_LOAN, SOCIAL_SUPPORT, ACADEMIC_PROGRAM, ACADEMIC_RULES, OTHER
 
 ### ⚡ Bộ Công Cụ Tính Toán (11 LangChain Tools)
 
 <details>
 <summary><b>📚 Academic Tools (6)</b> — Neo4j Graph-backed</summary>
 
-| Tool | Mô tả |
-|:-----|:-------|
-| `tra_cuu_nganh` | Tra cứu chi tiết 1 ngành (danh sách môn, tín chỉ, khối kiến thức) |
-| `so_sanh_nganh` | So sánh 2 ngành side-by-side (môn chung, môn riêng) |
-| `tim_nganh` | Tìm ngành theo tiêu chí tự do (khoa, tín chỉ, bằng cấp) |
-| `xem_chuoi_tien_quyet` | Chuỗi môn tiên quyết (variable-length path traversal) |
-| `mon_chung_giua_nganh` | Môn học chung giữa 2 ngành (graph intersection) |
-| `tim_nganh_co_mon` | Tìm ngành nào có dạy môn X (reverse traversal) |
+| Tool                     | Mô tả                                                                     |
+| :----------------------- | :-------------------------------------------------------------------------- |
+| `tra_cuu_nganh`        | Tra cứu chi tiết 1 ngành (danh sách môn, tín chỉ, khối kiến thức) |
+| `so_sanh_nganh`        | So sánh 2 ngành side-by-side (môn chung, môn riêng)                    |
+| `tim_nganh`            | Tìm ngành theo tiêu chí tự do (khoa, tín chỉ, bằng cấp)            |
+| `xem_chuoi_tien_quyet` | Chuỗi môn tiên quyết (variable-length path traversal)                   |
+| `mon_chung_giua_nganh` | Môn học chung giữa 2 ngành (graph intersection)                         |
+| `tim_nganh_co_mon`     | Tìm ngành nào có dạy môn X (reverse traversal)                        |
 
 </details>
 
 <details>
 <summary><b>💰 Financial Tools (3)</b> — Graph + JSON + Calculator</summary>
 
-| Tool | Mô tả |
-|:-----|:-------|
-| `tra_cuu_hoc_phi_graph` | Tra cứu học phí theo ngành + khóa từ Neo4j (ưu tiên), JSON fallback |
+| Tool                         | Mô tả                                                                             |
+| :--------------------------- | :---------------------------------------------------------------------------------- |
+| `tra_cuu_hoc_phi_graph`    | Tra cứu học phí theo ngành + khóa từ Neo4j (ưu tiên), JSON fallback         |
 | `tra_cuu_quy_dinh_hoc_phi` | Tra cứu quy định chung (hệ số ngoài giờ, VLVH, từ xa, thạc sĩ, tiến sĩ) |
-| `tinh_toan_hoc_phi` | Tính số tiền thực đóng sau miễn giảm |
+| `tinh_toan_hoc_phi`        | Tính số tiền thực đóng sau miễn giảm                                        |
 
 </details>
 
 <details>
 <summary><b>🏆 Scholarship Tools (2)</b> — Calculator</summary>
 
-| Tool | Mô tả |
-|:-----|:-------|
+| Tool                   | Mô tả                                                                                |
+| :--------------------- | :------------------------------------------------------------------------------------- |
 | `tinh_tien_hoc_bong` | Tính loại học bổng (Xuất sắc / Giỏi / Khá) và số tiền dựa trên GPA + ĐRL |
-| `tuition_lookup` | Tra cứu nhanh mức học phí theo ngành |
+| `tuition_lookup`     | Tra cứu nhanh mức học phí theo ngành                                              |
 
 </details>
 
 ### 🗄️ Quản Lý Session & Lưu Trữ Đa Tầng
+
 - **Redis**: Session cache ngắn hạn, chat buffer siêu tốc
 - **PostgreSQL**: Lịch sử trò chuyện dài hạn, quản lý tài khoản, Parent Document Store
 - **Qdrant**: Vector embeddings cho Dense Search
 - **Neo4j**: Knowledge Graph chương trình đào tạo & học phí
 
 ### 📄 Nạp Tài Liệu Tự Động
+
 - **LlamaParse OCR**: Trích xuất bảng biểu từ PDF → Markdown chuẩn
 - **Parent-Child Indexing**: Lập chỉ mục 2 cấp độ cho retrieval chất lượng cao
 - **BM25 Vietnamese Tokenizer**: Tách từ tiếng Việt với PyVi cho lexical search
@@ -149,13 +144,13 @@ START → supervisor (Query Rewrite + Intent Routing)
 
 ## 📋 Yêu Cầu Môi Trường
 
-| Thành phần | Yêu cầu |
-|:-----------|:---------|
-| **OS** | Linux (Ubuntu 20.04/22.04 LTS) hoặc Windows 10/11 với WSL 2 |
-| **Python** | 3.10 hoặc 3.11 |
-| **Docker** | Docker Engine + Docker Compose (4 containers) |
-| **RAM** | Tối thiểu 8 GB · Khuyên dùng 16 GB |
-| **GPU** | *Tùy chọn* — NVIDIA CUDA cho Embedding & Cross-Encoder (hỗ trợ CPU) |
+| Thành phần     | Yêu cầu                                                                  |
+| :--------------- | :------------------------------------------------------------------------- |
+| **OS**     | Linux (Ubuntu 20.04/22.04 LTS) hoặc Windows 10/11 với WSL 2              |
+| **Python** | 3.10 hoặc 3.11                                                            |
+| **Docker** | Docker Engine + Docker Compose (4 containers)                              |
+| **RAM**    | Tối thiểu 8 GB · Khuyên dùng 16 GB                                    |
+| **GPU**    | *Tùy chọn* — NVIDIA CUDA cho Embedding & Cross-Encoder (hỗ trợ CPU) |
 
 ---
 
@@ -223,12 +218,12 @@ Kiểm tra tất cả 4 container đã chạy:
 docker compose ps
 ```
 
-| Container | Service | Port |
-|:----------|:--------|:-----|
-| `chatbot-qdrant` | Qdrant Vector DB | `6333`, `6334` |
-| `ctu-chatbot-postgres` | PostgreSQL 15 | `5432` |
-| `ctu-chatbot-redis` | Redis 7 | `6379` |
-| `ctu-chatbot-neo4j` | Neo4j 5.20 + APOC | `7474` (Browser), `7687` (Bolt) |
+| Container                | Service           | Port                                |
+| :----------------------- | :---------------- | :---------------------------------- |
+| `chatbot-qdrant`       | Qdrant Vector DB  | `6333`, `6334`                  |
+| `ctu-chatbot-postgres` | PostgreSQL 15     | `5432`                            |
+| `ctu-chatbot-redis`    | Redis 7           | `6379`                            |
+| `ctu-chatbot-neo4j`    | Neo4j 5.20 + APOC | `7474` (Browser), `7687` (Bolt) |
 
 ### Bước 5: Tải Mô Hình AI Offline
 
@@ -359,16 +354,16 @@ CTU-Chat_bot/
 
 ## 🛠️ Bộ Lệnh CLI
 
-| Lệnh | Mô Tả |
-|:------|:-------|
-| `python scripts/build_bm25_index.py` | Quét 244 văn bản Markdown và tái tạo chỉ mục BM25 |
-| `python scripts/reindex_all.py build --index-version 2026-08-31-v1` | Nạp toàn bộ dữ liệu vào Qdrant collection mới |
-| `python scripts/reindex_all.py swap --alias-name ctu_scholarship_docs_current --target-collection ctu_scholarship_docs_<version>` | Blue-Green swap Qdrant alias (zero-downtime) |
-| `python scripts/ingest_academic_programs.py` | Nạp chương trình đào tạo vào Neo4j Graph |
-| `python scripts/batch_process.py` | Batch OCR hàng loạt PDF |
-| `python scripts/evaluate_chat_dataset.py` | Đánh giá chất lượng chatbot trên dataset |
-| `python scripts/run_ablation_test.py` | Ablation test cho từng component RAG |
-| `docker compose logs -f` | Xem log trực tiếp các container |
+| Lệnh                                                                                                                               | Mô Tả                                                   |
+| :---------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------- |
+| `python scripts/build_bm25_index.py`                                                                                              | Quét 244 văn bản Markdown và tái tạo chỉ mục BM25 |
+| `python scripts/reindex_all.py build --index-version 2026-08-31-v1`                                                               | Nạp toàn bộ dữ liệu vào Qdrant collection mới      |
+| `python scripts/reindex_all.py swap --alias-name ctu_scholarship_docs_current --target-collection ctu_scholarship_docs_<version>` | Blue-Green swap Qdrant alias (zero-downtime)              |
+| `python scripts/ingest_academic_programs.py`                                                                                      | Nạp chương trình đào tạo vào Neo4j Graph          |
+| `python scripts/batch_process.py`                                                                                                 | Batch OCR hàng loạt PDF                                 |
+| `python scripts/evaluate_chat_dataset.py`                                                                                         | Đánh giá chất lượng chatbot trên dataset           |
+| `python scripts/run_ablation_test.py`                                                                                             | Ablation test cho từng component RAG                     |
+| `docker compose logs -f`                                                                                                          | Xem log trực tiếp các container                        |
 
 ---
 
@@ -387,21 +382,21 @@ python -m pytest tests/test_finance_tools.py -v
 
 ## ⚙️ Tech Stack
 
-| Layer | Công nghệ |
-|:------|:----------|
-| **LLM** | Google Gemini 3.5 Flash Lite (chính), Gemini 3.1 Flash Lite (rewriter) |
-| **Orchestration** | LangGraph (Supervisor Pattern), LangChain |
-| **Knowledge Graph** | Neo4j 5.20 + APOC |
-| **Vector DB** | Qdrant v1.18.1 |
-| **Embedding** | `bkai-foundation-models/vietnamese-bi-encoder` |
-| **Reranker** | `BAAI/bge-reranker-v2-m3` (Cross-Encoder) |
-| **Lexical Search** | BM25s + PyVi (Vietnamese Tokenizer) |
-| **Backend** | FastAPI + Uvicorn |
-| **Database** | PostgreSQL 15 (SQLAlchemy Async) |
-| **Cache** | Redis 7 |
-| **OCR** | LlamaParse (LlamaCloud) |
-| **Frontend** | HTML5, CSS3, Vanilla JavaScript (SPA) |
-| **Auth** | JWT Token |
+| Layer                     | Công nghệ                                                             |
+| :------------------------ | :---------------------------------------------------------------------- |
+| **LLM**             | Google Gemini 3.5 Flash Lite (chính), Gemini 3.1 Flash Lite (rewriter) |
+| **Orchestration**   | LangGraph (Supervisor Pattern), LangChain                               |
+| **Knowledge Graph** | Neo4j 5.20 + APOC                                                       |
+| **Vector DB**       | Qdrant v1.18.1                                                          |
+| **Embedding**       | `bkai-foundation-models/vietnamese-bi-encoder`                        |
+| **Reranker**        | `BAAI/bge-reranker-v2-m3` (Cross-Encoder)                             |
+| **Lexical Search**  | BM25s + PyVi (Vietnamese Tokenizer)                                     |
+| **Backend**         | FastAPI + Uvicorn                                                       |
+| **Database**        | PostgreSQL 15 (SQLAlchemy Async)                                        |
+| **Cache**           | Redis 7                                                                 |
+| **OCR**             | LlamaParse (LlamaCloud)                                                 |
+| **Frontend**        | HTML5, CSS3, Vanilla JavaScript (SPA)                                   |
+| **Auth**            | JWT Token                                                               |
 
 ---
 
@@ -418,7 +413,3 @@ Dự án được xây dựng phục vụ nghiên cứu và hỗ trợ sinh viê
 ---
 
 <div align="center">
-
-*Built with ❤️ for students of Can Tho University*
-
-</div>

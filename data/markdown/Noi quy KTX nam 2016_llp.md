@@ -1,37 +1,3 @@
----
-document_key: ctu-ctsv-noi-quy-ktx-nam-2016
-version_key: ctu-ctsv-noi-quy-ktx-nam-2016-d47b59a9e082
-title: "NỘI QUY Về công tác nội trú tại Ký túc xá Trường Đại học Cần Thơ"
-document_type: noi_quy
-domain: ktx
-issuing_authority: "Đại học Cần Thơ"
-responsible_department: 
-- TTPVSV
-signer_name: ""
-audience:
-  - sinh_vien
-code: ""
-issued_date:
-effective_date: 2016-01-01
-is_latest: true
-ocr_status: done
-review_status: approved
-rag_status: not_indexed
-status_note: ""
-source_url: ""
-source_path: "../Dataset/02_Attachments/PDFs/CTSV/KTX/Noi quy KTX nam 2016.pdf"
-canonical_markdown_path: "../Dataset/06_Processing/01_OCR_Output/PDFs_CTSV/KTX/Noi quy KTX nam 2016.md"
-file_type: pdf
-accessed_date: 2026-05-31
-language: vi
-checksum: d47b59a9e082af1c0471b4e88432d51afd111e456f21c8a12a9791909a0f33d9
-parser: llamaparse_postprocessed
-ocr_engine: "LlamaParse API"
-created_at: "2026-07-06T23:22:31+07:00"
-updated_at: "2026-07-06T23:22:31+07:00"
-notes: "Áp dụng năm 2016-2017, không có ngày ban hành cụ thể"
----
-
 1
 
 <!-- page: 1 -->
