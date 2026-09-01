@@ -97,17 +97,18 @@ Phân tích câu hỏi và trả về **duy nhất** một JSON object (không g
 | STUDENT_LOAN | Hỏi về vay vốn sinh viên | |
 | SOCIAL_SUPPORT | Hỏi về trợ cấp xã hội | |
 | ACADEMIC_PROGRAM | Hỏi về ngành học, chương trình đào tạo, môn học, tín chỉ của ngành | ten_nganh, loai_thong_tin |
-| ACADEMIC_RULES | Hỏi quy chế học vụ, quy định đào tạo, thi, điểm, học lại, bảo lưu, chuyển ngành, thôi học | |
+| ACADEMIC_RULES | Hỏi quy chế học vụ, quy định đào tạo, thi, điểm, học lại, bảo lưu, chuyển ngành, thôi học (không gồm Sinh viên 5 tốt) | |
 | AMBIGUOUS_TUITION | Hỏi học phí nhưng không rõ loại nào | nam_hoc |
-| OTHER | Không thuộc domain nào ở trên | |
+| OTHER | Hỏi về Sinh viên 5 tốt (SV5T: 5 tiêu chuẩn, minh chứng, ĐRL xét SV5T...), Ký túc xá, đời sống SV hoặc không thuộc domain nào ở trên | |
 
 ### Quy tắc:
 1. Nếu câu hỏi nhắc đến tên ngành, chương trình đào tạo, môn học của ngành, khung chương trình → ACADEMIC_PROGRAM.
-2. Nếu câu hỏi nhắc đến quy chế học vụ, đăng ký môn, rút môn, thi cử, điểm số, học lại, bảo lưu, chuyển ngành, thôi học, tốt nghiệp → ACADEMIC_RULES.
-3. Nếu câu hỏi yêu cầu "tính", "tính giúp", "tính tiền", "còn đóng bao nhiêu" → CALCULATION.
-4. Nếu câu hỏi nhắc đến "học phí" nhưng thiếu ngữ cảnh loại → AMBIGUOUS_TUITION.
-5. confidence = 1.0 khi chắc chắn, < 0.8 khi mơ hồ.
-6. Chỉ trích xuất params nếu thông tin CÓ TRONG câu hỏi, không bịa.
+2. Nếu câu hỏi nhắc đến quy chế học vụ, đăng ký môn, rút môn, thi cử, điểm số, học lại, bảo lưu, chuyển ngành, thôi học, tốt nghiệp (không phải SV5T) → ACADEMIC_RULES.
+3. Nếu câu hỏi liên quan đến danh hiệu "Sinh viên 5 tốt" (SV5T: tiêu chuẩn đạo đức, học tập, thể lực, tình nguyện, hội nhập, quy đổi ngoại ngữ/tin học xét SV5T, minh chứng SV5T) → OTHER.
+4. Nếu câu hỏi yêu cầu "tính", "tính giúp", "tính tiền", "còn đóng bao nhiêu" → CALCULATION.
+5. Nếu câu hỏi nhắc đến "học phí" nhưng thiếu ngữ cảnh loại → AMBIGUOUS_TUITION.
+6. confidence = 1.0 khi chắc chắn, < 0.8 khi mơ hồ.
+7. Chỉ trích xuất params nếu thông tin CÓ TRONG câu hỏi, không bịa.
 
 ### Ví dụ:
 - "Ngành CNTT học những gì?" → {{"lane": "ACADEMIC_PROGRAM", "confidence": 0.95, "params": {{"ten_nganh": "Công nghệ thông tin", "loai_thong_tin": "mon_hoc"}}}}
