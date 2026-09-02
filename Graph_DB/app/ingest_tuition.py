@@ -658,6 +658,107 @@ def parse_tuition_policies(filepath: Path) -> List[Dict[str, Any]]:
     return policies
 
 
+def parse_exemption_basis(filepath: Path) -> List[Dict[str, Any]]:
+    """Parse MucHocPhi_2526_MienGiam.md → list of ExemptionBasisRate dicts.
+
+    Bao gồm:
+    - Bảng 2.1: GDQP-AN (451.000 đ/TC)
+    - Bảng 2.2: Các Khối ngành I, III, IV, V, VI, VII
+    - Mục 4: Tiên tiến Khóa 47 trở về trước (335.000 đ/TC)
+    """
+    NAM_MIEN_GIAM = "2025-2026"
+    rates: List[Dict[str, Any]] = []
+
+    # 1. Bảng 2.1 Đại cương chung - GDQP-AN
+    rates.append({
+        "id": "exemption_basis_gdqp_an_2025_2026",
+        "khoi": "GDQP_AN",
+        "ten_khoi": "Học phần Giáo dục quốc phòng và An ninh (8 tín chỉ)",
+        "muc_hp": 451000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "dai_cuong_chung",
+        "ghi_chu": "Mức miễn, giảm học phần Giáo dục quốc phòng và An ninh (8 tín chỉ)",
+    })
+
+    # 2. Bảng 2.2 Các khối ngành
+    rates.append({
+        "id": "exemption_basis_khoi_i_2025_2026",
+        "khoi": "I",
+        "ten_khoi": "Khối ngành I: Khoa học giáo dục và đào tạo giáo viên",
+        "muc_hp": 451000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "Chỉ áp dụng cho sinh viên không hưởng chính sách theo Nghị định 116/2020/NĐ-CP",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_iii_2025_2026",
+        "khoi": "III",
+        "ten_khoi": "Khối ngành III: Kinh doanh và quản lý, pháp luật",
+        "muc_hp": 451000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_iv_2025_2026",
+        "khoi": "IV",
+        "ten_khoi": "Khối ngành IV: Khoa học sự sống, khoa học tự nhiên",
+        "muc_hp": 487000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_v_2025_2026",
+        "khoi": "V",
+        "ten_khoi": "Khối ngành V: Toán và thống kê, máy tính và CN thông tin, CN kỹ thuật, kỹ thuật, sản xuất và chế biến, kiến trúc và xây dựng, nông lâm nghiệp và thủy sản, thú y",
+        "muc_hp": 538000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_vi_2025_2026",
+        "khoi": "VI",
+        "ten_khoi": "Khối ngành VI: Các khối ngành sức khỏe khác",
+        "muc_hp": 753000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_vii_2025_2026",
+        "khoi": "VII",
+        "ten_khoi": "Khối ngành VII: Nhân văn, khoa học xã hội và hành vi, báo chí và thông tin, dịch vụ xã hội, du lịch, khách sạn, thể dục thể thao, dịch vụ vận tải, môi trường và bảo vệ môi trường",
+        "muc_hp": 479000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+
+    # 3. Mục 4: Tiên tiến Khóa 47 trở về trước
+    rates.append({
+        "id": "exemption_basis_tien_tien_k47_2025_2026",
+        "khoi": "TIEN_TIEN_K47",
+        "ten_khoi": "Chương trình Tiên tiến Khóa 47 trở về trước",
+        "muc_hp": 335000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "tien_tien",
+        "ghi_chu": "Khoá 47 trở về trước: 335.000 đ/tín chỉ. Khoá 48 trở đi: tính theo Khối ngành tương ứng.",
+    })
+
+    logger.info("  Parsed exemption basis: %d ExemptionBasisRate nodes", len(rates))
+    return rates
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # CLC/TT → Program mapping
 # ─────────────────────────────────────────────────────────────────────────────
@@ -900,6 +1001,85 @@ def link_fees_to_policies():
     logger.info("  ✓ GOVERNED_BY relationships created")
 
 
+def ingest_exemption_basis_rates(rates: List[Dict[str, Any]]) -> int:
+    """Ingest ExemptionBasisRate nodes + HAS_EXEMPTION_BASIS relationships.
+
+    Returns count of nodes created/updated.
+    """
+    driver = _get_driver()
+    count = 0
+
+    with driver.session() as session:
+        for rate in rates:
+            session.run(
+                """
+                MERGE (e:ExemptionBasisRate {id: $id})
+                SET e.khoi = $khoi,
+                    e.ten_khoi = $ten_khoi,
+                    e.muc_hp = $muc_hp,
+                    e.don_vi_tinh = $don_vi_tinh,
+                    e.nam_hoc = $nam_hoc,
+                    e.loai_ct = $loai_ct,
+                    e.ghi_chu = $ghi_chu
+                """,
+                **rate,
+            )
+            count += 1
+
+        # Link Program -> ExemptionBasisRate via TuitionFee khoi property
+        khoi_map = {
+            "Khối I": "I",
+            "Khối 1": "I",
+            "Khối III": "III",
+            "Khối 3": "III",
+            "Khối IV": "IV",
+            "Khối 4": "IV",
+            "Khối V": "V",
+            "Khối 5": "V",
+            "Khối VI": "VI",
+            "Khối 6": "VI",
+            "Khối VII": "VII",
+            "Khối 7": "VII",
+        }
+        for tf_khoi, target_khoi in khoi_map.items():
+            session.run(
+                """
+                MATCH (p:Program)-[:HAS_TUITION]->(tf:TuitionFee)
+                WHERE tf.khoi = $tf_khoi
+                WITH DISTINCT p
+                MATCH (e:ExemptionBasisRate {khoi: $target_khoi, loai_ct: 'chuan'})
+                MERGE (p)-[:HAS_EXEMPTION_BASIS]->(e)
+                """,
+                tf_khoi=tf_khoi,
+                target_khoi=target_khoi,
+            )
+
+        # Fallback linking for programs without HAS_TUITION by code prefix regex
+        prefix_map = [
+            ("^714", "I"),
+            ("^73[148]", "III"),
+            ("^74[246]", "IV"),
+            ("^7(48|51|52|54|58|62|64|84)", "V"),
+            ("^772", "VI"),
+            ("^7(21|22|32|76|81|85)", "VII"),
+        ]
+        for pattern, target_khoi in prefix_map:
+            session.run(
+                """
+                MATCH (p:Program)
+                WHERE p.code =~ $pattern AND NOT (p)-[:HAS_EXEMPTION_BASIS]->()
+                MATCH (e:ExemptionBasisRate {khoi: $target_khoi, loai_ct: 'chuan'})
+                MERGE (p)-[:HAS_EXEMPTION_BASIS]->(e)
+                """,
+                pattern=pattern,
+                target_khoi=target_khoi,
+            )
+
+    driver.close()
+    logger.info("  ✓ HAS_EXEMPTION_BASIS relationships created")
+    return count
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Public API — called from graph_service.py
 # ─────────────────────────────────────────────────────────────────────────────
@@ -960,6 +1140,15 @@ def run_tuition_ingest(data_dir: Path | None = None) -> bool:
 
         # 5. Link fees → policies
         link_fees_to_policies()
+
+        # 6. Cơ sở tính miễn giảm học phí → ExemptionBasisRate
+        exemption_file = data_dir / "MucHocPhi_2526_MienGiam.md"
+        if exemption_file.exists():
+            exemption_rates = parse_exemption_basis(exemption_file)
+            exemption_count = ingest_exemption_basis_rates(exemption_rates)
+            print(f"  ✓ Exemption Basis: {exemption_count} ExemptionBasisRate nodes")
+        else:
+            print(f"  ⚠ File not found: {exemption_file.name}")
 
         print(f"\n{'='*60}")
         print(f"✅ Tuition ingest complete: {total} TuitionFee nodes total")

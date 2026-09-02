@@ -212,3 +212,61 @@ def tra_cuu_quy_dinh_hoc_phi(doi_tuong: str = "") -> str:
         results = []
 
     return _format_policy_results(results)
+
+
+def _format_exemption_results(results: list[dict]) -> str:
+    """Format exemption basis lookup results into a readable string."""
+    if not results:
+        return "Không tìm thấy thông tin mức trần cơ sở miễn giảm học phí phù hợp trong Graph."
+
+    lines = ["[KẾT QUẢ TRA CỨU CƠ SỞ TÍNH MIỄN GIẢM HỌC PHÍ TỪ GRAPH - NGUỒN ƯU TIÊN]"]
+    lines.append("LƯU Ý: Đây là MỨC HỌC PHÍ TRẦN làm cơ sở tính miễn, giảm theo Nghị định 81/2021/NĐ-CP & NĐ 97/2023/NĐ-CP (Năm học 2025-2026), KHÔNG PHẢI mức học phí thực tế.")
+
+    for item in results:
+        prog_name = item.get("program_name")
+        prog_code = item.get("program_code")
+        ten_khoi = item.get("ten_khoi") or item.get("khoi")
+        muc_hp = item.get("muc_hp", 0)
+        don_vi = item.get("don_vi_tinh", "dong/tin_chi")
+        ghi_chu = item.get("ghi_chu", "")
+        formatted_muc_hp = f"{int(muc_hp):,} {don_vi}".replace(",", ".")
+
+        if prog_name:
+            lines.append(f"\n- Ngành: {prog_name} (Mã ngành: {prog_code})")
+            lines.append(f"  + Thuộc: {ten_khoi}")
+        else:
+            lines.append(f"\n- Đối tượng / Khối ngành: {ten_khoi}")
+
+        lines.append(f"  + Mức trần cơ sở miễn giảm: {formatted_muc_hp}")
+        if ghi_chu:
+            lines.append(f"  + Ghi chú: {ghi_chu}")
+
+    lines.append("\nNăm học: 2025-2026")
+    lines.append("Căn cứ: Số 517/ĐHCT-TC ngày 18/02/2025, NĐ 81/2021/NĐ-CP & NĐ 97/2023/NĐ-CP")
+    return "\n".join(lines)
+
+
+@tool
+def tra_cuu_co_so_mien_giam_graph(
+    ten_nganh_hoac_khoi: str = "",
+    khoa: str = "",
+) -> str:
+    """Tra cứu MỨC HỌC PHÍ LÀM CƠ SỞ ĐỂ TÍNH MIỄN, GIẢM HỌC PHÍ (mức trần quy định theo Nghị định 81/2021/NĐ-CP và NĐ 97/2023/NĐ-CP, Năm học 2025-2026) từ Neo4j Graph.
+
+    Đầu vào:
+    - ten_nganh_hoac_khoi: Tên ngành, mã ngành hoặc tên khối ngành (Ví dụ: "Công nghệ thông tin", "7480201", "Luật", "Khối V", "Khối 5", "GDQP", "Tiên tiến K47"). Để trống để xem tất cả.
+    - khoa: Khóa tuyển sinh (Ví dụ: "K47", "K52").
+
+    Trả về mức trần tính miễn giảm (đồng/tín chỉ), khối ngành và ghi chú căn cứ.
+    """
+    service = _get_graph_service()
+    query_clean = ten_nganh_hoac_khoi.strip() if ten_nganh_hoac_khoi else None
+
+    try:
+        results = service.lookup_exemption_basis(query=query_clean)
+    except Exception as e:
+        logger.error("Graph lookup_exemption_basis lỗi: %s", e)
+        results = []
+
+    return _format_exemption_results(results)
+
