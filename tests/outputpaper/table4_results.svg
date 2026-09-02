@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+<title id="title">Table 4 E1-E5 retrieval comparison</title>
+<desc id="desc">Grouped bar chart for P at 5, Recall at 5, and MRR.</desc>
+<rect width="100%" height="100%" fill="white"/>
+<text x="90" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="700">Table 4: E1-E5 Retrieval Comparison</text>
+<line x1="90" y1="505.0" x2="965" y2="505.0" stroke="#d1d5db"/>
+<text x="78" y="510.0" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">0.00</text>
+<line x1="90" y1="392.5" x2="965" y2="392.5" stroke="#d1d5db"/>
+<text x="78" y="397.5" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">0.25</text>
+<line x1="90" y1="280.0" x2="965" y2="280.0" stroke="#d1d5db"/>
+<text x="78" y="285.0" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">0.50</text>
+<line x1="90" y1="167.5" x2="965" y2="167.5" stroke="#d1d5db"/>
+<text x="78" y="172.5" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">0.75</text>
+<line x1="90" y1="55.0" x2="965" y2="55.0" stroke="#d1d5db"/>
+<text x="78" y="60.0" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">1.00</text>
+<line x1="90" y1="55" x2="90" y2="505" stroke="#111827"/>
+<line x1="90" y1="505" x2="965" y2="505" stroke="#111827"/>
+<text x="22" y="280.0" transform="rotate(-90 22 280.0)" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Score</text>
+<text x="177.5" y="533" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">E1</text>
+<rect x="121.5" y="505.0" width="34.0" height="0.0" fill="#2563eb" rx="2"/>
+<text x="138.5" y="499.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.000</text>
+<rect x="160.5" y="505.0" width="34.0" height="0.0" fill="#16a34a" rx="2"/>
+<text x="177.5" y="499.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.000</text>
+<rect x="199.5" y="505.0" width="34.0" height="0.0" fill="#f59e0b" rx="2"/>
+<text x="216.5" y="499.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.000</text>
+<text x="352.5" y="533" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">E2</text>
+<rect x="296.5" y="443.8" width="34.0" height="61.2" fill="#2563eb" rx="2"/>
+<text x="313.5" y="437.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.136</text>
+<rect x="335.5" y="199.0" width="34.0" height="306.0" fill="#16a34a" rx="2"/>
+<text x="352.5" y="193.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.680</text>
+<rect x="374.5" y="249.2" width="34.0" height="255.8" fill="#f59e0b" rx="2"/>
+<text x="391.5" y="243.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.568</text>
+<text x="527.5" y="533" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">E3</text>
+<rect x="471.5" y="443.8" width="34.0" height="61.2" fill="#2563eb" rx="2"/>
+<text x="488.5" y="437.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.136</text>
+<rect x="510.5" y="199.0" width="34.0" height="306.0" fill="#16a34a" rx="2"/>
+<text x="527.5" y="193.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.680</text>
+<rect x="549.5" y="249.2" width="34.0" height="255.8" fill="#f59e0b" rx="2"/>
+<text x="566.5" y="243.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.568</text>
+<text x="702.5" y="533" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">E4</text>
+<rect x="646.5" y="443.8" width="34.0" height="61.2" fill="#2563eb" rx="2"/>
+<text x="663.5" y="437.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.136</text>
+<rect x="685.5" y="199.0" width="34.0" height="306.0" fill="#16a34a" rx="2"/>
+<text x="702.5" y="193.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.680</text>
+<rect x="724.5" y="249.2" width="34.0" height="255.8" fill="#f59e0b" rx="2"/>
+<text x="741.5" y="243.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.568</text>
+<text x="877.5" y="533" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">E5</text>
+<rect x="821.5" y="443.8" width="34.0" height="61.2" fill="#2563eb" rx="2"/>
+<text x="838.5" y="437.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.136</text>
+<rect x="860.5" y="199.0" width="34.0" height="306.0" fill="#16a34a" rx="2"/>
+<text x="877.5" y="193.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.680</text>
+<rect x="899.5" y="249.2" width="34.0" height="255.8" fill="#f59e0b" rx="2"/>
+<text x="916.5" y="243.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">0.568</text>
+<rect x="730" y="33" width="12" height="12" fill="#2563eb"/>
+<text x="746" y="44" font-family="Arial, sans-serif" font-size="12">P@5</text>
+<rect x="812" y="33" width="12" height="12" fill="#16a34a"/>
+<text x="828" y="44" font-family="Arial, sans-serif" font-size="12">Recall@5</text>
+<rect x="894" y="33" width="12" height="12" fill="#f59e0b"/>
+<text x="910" y="44" font-family="Arial, sans-serif" font-size="12">MRR</text>
+<text x="90" y="585" font-family="Arial, sans-serif" font-size="12" fill="#4b5563">P@5, Recall@5, MRR average answerable cases; unanswerable cases are reported separately.</text>
+</svg>

@@ -1,6 +1,6 @@
 """Run the E1--E5 retrieval ablation used by Table 4.
 
-The benchmark reads ``tests/data/dataset.xlsx`` and reports document-level
+The benchmark reads ``tests/data/dataset.xlsx`` or a compatible CSV and reports document-level
 P@5, Recall@5, and MRR.  It uses the same query set for every variant:
 
     E1 BM25
@@ -9,23 +9,28 @@ P@5, Recall@5, and MRR.  It uses the same query set for every variant:
     E4 BM25 + Dense + RRF + Graph
     E5 BM25 + Dense + RRF + Graph + Agent
 
-Only rows with a local Markdown gold source are evaluated.  The ``Retrieval``
-rows in the workbook use source/version IDs from another deployment and are
-reported as skipped unless a local source mapping is added.
+Rows with a local Markdown gold source contribute P@5, Recall@5, and MRR.
+CSV rows without a gold source are retained as unanswerable cases and report
+whether retrieval returned any source.  The ``Retrieval`` rows in the workbook
+use source/version IDs from another deployment and are reported as skipped
+unless a local source mapping is added.
 
 Examples::
 
     python tests/benchmarkpaper/benchmark_table4.py --dry-run
-    python tests/benchmarkpaper/benchmark_table4.py
+    python tests/benchmarkpaper/benchmark_table4.py --dataset tests/data/100.csv
 
 Services required for a real run: PostgreSQL, Qdrant, and Neo4j.  Results are
 written to ``tests/outputpaper/table4_results.json`` and the chart to
-``tests/outputpaper/table4_results.svg``.
+``tests/outputpaper/table4_results.svg``. A checkpoint is written after each
+completed case and resumed automatically on the next run.
 """
 
 from __future__ import annotations
 
 import argparse
+import csv
+import hashlib
 import html
 import json
 import os
@@ -42,6 +47,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATASET_PATH = PROJECT_ROOT / "tests" / "data" / "dataset.xlsx"
 DEFAULT_OUTPUT = PROJECT_ROOT / "tests" / "outputpaper" / "table4_results.json"
 DEFAULT_CHART = PROJECT_ROOT / "tests" / "outputpaper" / "table4_results.svg"
+DEFAULT_CHECKPOINT = PROJECT_ROOT / "tests" / "outputpaper" / "table4_checkpoint.json"
 GRAPH_DATA_DIR = PROJECT_ROOT / "data" / "markdown_graph"
 TOP_K = 5
 RRF_K = 60
@@ -57,6 +63,7 @@ class Case:
     group: str
     question: str
     gold_sources: tuple[str, ...]
+    category: str = ""
 
 
 def _column_number(cell_ref: str) -> int:
@@ -138,6 +145,12 @@ def read_xlsx_rows(path: Path, sheet_name: str = "Master Dataset") -> list[dict[
     ]
 
 
+def read_csv_rows(path: Path) -> list[dict[str, Any]]:
+    """Read UTF-8 CSV rows using only the standard library."""
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
 def _text(value: Any) -> str:
     return "" if value is None else str(value).strip()
 
@@ -157,6 +170,8 @@ def _parse_source_list(value: Any) -> list[str]:
 
 
 def _gold_sources(row: dict[str, Any], group: str) -> list[str]:
+    if group == "CSV":
+        return _parse_source_list(row.get("Source"))
     if group == "RAGAS":
         source = _text(row.get("Source"))
         match = re.search(r"\(([^()]+\.md)\)\s*$", source)
@@ -169,19 +184,21 @@ def _gold_sources(row: dict[str, Any], group: str) -> list[str]:
 
 
 def load_cases(path: Path, groups: Sequence[str], limit: int | None = None) -> tuple[list[Case], dict[str, int]]:
-    rows = read_xlsx_rows(path)
+    is_csv = path.suffix.casefold() == ".csv"
+    rows = read_csv_rows(path) if is_csv else read_xlsx_rows(path)
+    selected_groups = ("CSV",) if is_csv else groups
     selected: list[Case] = []
     skipped = Counter()
     for row in rows:
-        group = _text(row.get("Dataset Group"))
-        if group not in groups:
+        group = "CSV" if is_csv else _text(row.get("Dataset Group"))
+        if group not in selected_groups:
             continue
         question = _text(row.get("Master Question")) or _text(row.get("Question"))
         gold = tuple(dict.fromkeys(_gold_sources(row, group)))
         if not question:
             skipped["missing_question"] += 1
             continue
-        if not gold:
+        if not gold and not is_csv:
             skipped["unmapped_gold_source"] += 1
             continue
         selected.append(
@@ -190,6 +207,7 @@ def load_cases(path: Path, groups: Sequence[str], limit: int | None = None) -> t
                 group=group,
                 question=question,
                 gold_sources=gold,
+                category=_text(row.get("Category")),
             )
         )
         if limit is not None and len(selected) >= limit:
@@ -217,9 +235,19 @@ def _rrf(lanes: Sequence[Sequence[str]], limit: int = TOP_K) -> list[str]:
     return ranked[:limit]
 
 
-def _metrics(retrieved: Sequence[str], gold: Sequence[str]) -> dict[str, float | int | None]:
+def _metrics(retrieved: Sequence[str], gold: Sequence[str]) -> dict[str, Any]:
     top = _unique_sources(retrieved)[:TOP_K]
     gold_set = set(gold)
+    if not gold_set:
+        return {
+            "precision_at_5": None,
+            "recall_at_5": None,
+            "mrr": None,
+            "first_relevant_rank": None,
+            "retrieved": top,
+            "gold_available": False,
+            "retrieval_nonempty": bool(top),
+        }
     hits = [index + 1 for index, source in enumerate(top) if source in gold_set]
     assert TOP_K == 5  # Table 4's fixed cutoff.
     return {
@@ -228,6 +256,8 @@ def _metrics(retrieved: Sequence[str], gold: Sequence[str]) -> dict[str, float |
         "mrr": 1.0 / hits[0] if hits else 0.0,
         "first_relevant_rank": hits[0] if hits else None,
         "retrieved": top,
+        "gold_available": True,
+        "retrieval_nonempty": bool(top),
     }
 
 
@@ -330,9 +360,66 @@ def _variant_sources(lanes: dict[str, list[str]], graph: list[str], question: st
     }
 
 
-def _mean(rows: list[dict[str, Any]], key: str) -> float:
+def _mean(rows: list[dict[str, Any]], key: str) -> float | None:
     values = [float(row[key]) for row in rows if row.get(key) is not None]
-    return sum(values) / len(values) if values else 0.0
+    return sum(values) / len(values) if values else None
+
+
+def _format_metric(value: Any) -> str:
+    return "NA" if value is None else f"{float(value):.4f}"
+
+
+def _checkpoint_identity(
+    dataset_path: Path,
+    groups: Sequence[str],
+    limit: int | None,
+    cases: Sequence[Case],
+) -> dict[str, Any]:
+    return {
+        "schema": 1,
+        "dataset": str(dataset_path.resolve()),
+        "dataset_sha256": hashlib.sha256(dataset_path.read_bytes()).hexdigest(),
+        "groups": list(groups),
+        "limit": limit,
+        "case_ids": [case.case_id for case in cases],
+    }
+
+
+def _load_checkpoint(path: Path, identity: dict[str, Any]) -> tuple[dict[str, list[dict[str, Any]]], list[dict[str, str]]] | None:
+    if not path.exists():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(payload, dict) or payload.get("identity") != identity:
+            return None
+        saved_variants = payload.get("per_variant", {})
+        if not isinstance(saved_variants, dict):
+            return None
+        variants = {
+            f"E{index}": list(saved_variants.get(f"E{index}", []))
+            for index in range(1, 6)
+        }
+        errors = [item for item in payload.get("errors", []) if isinstance(item, dict)]
+        return variants, errors
+    except (OSError, TypeError, ValueError, json.JSONDecodeError):
+        return None
+
+
+def _save_checkpoint(
+    path: Path,
+    identity: dict[str, Any],
+    per_variant: dict[str, list[dict[str, Any]]],
+    errors: list[dict[str, str]],
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "identity": identity,
+        "per_variant": per_variant,
+        "errors": errors,
+    }
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary.replace(path)
 
 
 def write_chart(summary: dict[str, dict[str, Any]], output_path: Path) -> None:
@@ -370,8 +457,12 @@ def write_chart(summary: dict[str, dict[str, Any]], output_path: Path) -> None:
         parts.append(f'<text x="{center:.1f}" y="{height-bottom+28}" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">{variant}</text>')
         values = summary.get(variant, {})
         for metric_index, (metric, color) in enumerate(zip(metric_names, colors)):
-            value = float(values.get(metric, 0.0) or 0.0)
+            raw_value = values.get(metric)
             x = center + (metric_index - 1) * (bar_width + 5) - bar_width / 2
+            if raw_value is None:
+                parts.append(f'<text x="{x + bar_width/2:.1f}" y="{height-bottom-8}" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#6b7280">NA</text>')
+                continue
+            value = float(raw_value)
             yy = y(value)
             parts.append(f'<rect x="{x:.1f}" y="{yy:.1f}" width="{bar_width:.1f}" height="{height-bottom-yy:.1f}" fill="{color}" rx="2"/>')
             parts.append(f'<text x="{x + bar_width/2:.1f}" y="{max(top+15, yy-6):.1f}" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#111827">{value:.3f}</text>')
@@ -381,7 +472,7 @@ def write_chart(summary: dict[str, dict[str, Any]], output_path: Path) -> None:
         x = legend_x + index * 82
         parts.append(f'<rect x="{x}" y="{top-22}" width="12" height="12" fill="{color}"/>')
         parts.append(f'<text x="{x+16}" y="{top-11}" font-family="Arial, sans-serif" font-size="12">{html.escape(label)}</text>')
-    parts.append('<text x="90" y="585" font-family="Arial, sans-serif" font-size="12" fill="#4b5563">Values are macro averages at document/source level; pending values render as 0 until a run completes.</text>')
+    parts.append('<text x="90" y="585" font-family="Arial, sans-serif" font-size="12" fill="#4b5563">P@5, Recall@5, MRR average answerable cases; unanswerable cases are reported separately.</text>')
     parts.append('</svg>')
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text("\n".join(parts) + "\n", encoding="utf-8")
@@ -394,15 +485,20 @@ def run_benchmark(
     groups: Sequence[str],
     limit: int | None = None,
     dry_run: bool = False,
+    checkpoint_path: Path = DEFAULT_CHECKPOINT,
+    resume: bool = True,
 ) -> int:
     cases, skipped = load_cases(dataset_path, groups, limit)
+    effective_groups = ["CSV"] if dataset_path.suffix.casefold() == ".csv" else list(groups)
     if dry_run:
         payload = {
             "status": "dry_run",
             "dataset": str(dataset_path),
-            "groups": list(groups),
+            "groups": effective_groups,
             "cases": len(cases),
+            "unanswerable_cases": sum(not case.gold_sources for case in cases),
             "skipped": skipped,
+            "categories": dict(Counter(case.category for case in cases if case.category)),
             "gold_groups": dict(Counter(case.group for case in cases)),
         }
         print(json.dumps(payload, ensure_ascii=False, indent=2))
@@ -444,27 +540,44 @@ def run_benchmark(
         graph_error = f"{type(exc).__name__}: {exc}"
 
     file_by_code = _graph_file_map()
-    per_variant: dict[str, list[dict[str, Any]]] = {f"E{index}": [] for index in range(1, 6)}
-    errors: list[dict[str, str]] = []
+    identity = _checkpoint_identity(dataset_path, effective_groups, limit, cases)
+    checkpoint = _load_checkpoint(checkpoint_path, identity) if resume else None
+    if checkpoint:
+        per_variant, errors = checkpoint
+        completed_case_ids = {row.get("case_id") for row in per_variant["E1"]}
+        print(f"Resuming checkpoint: {len(completed_case_ids)}/{len(cases)} cases already complete")
+    else:
+        per_variant = {f"E{index}": [] for index in range(1, 6)}
+        errors = []
+        completed_case_ids = set()
+
     for case in cases:
+        if case.case_id in completed_case_ids:
+            continue
+        errors = [item for item in errors if item.get("case_id") != case.case_id]
         try:
             lanes = _retrieve_lanes(engine, case.question)
             graph = _graph_sources(graph_service, case.question, file_by_code)
+            case_rows: dict[str, dict[str, Any]] = {}
             for variant, (retrieved, route) in _variant_sources(lanes, graph, case.question).items():
                 metric = _metrics(retrieved, case.gold_sources)
-                per_variant[variant].append(
-                    {
-                        "case_id": case.case_id,
-                        "group": case.group,
-                        "question": case.question,
-                        "gold_sources": list(case.gold_sources),
-                        "graph_sources": graph,
-                        "agent_route": route,
-                        **metric,
-                    }
-                )
+                case_rows[variant] = {
+                    "case_id": case.case_id,
+                    "group": case.group,
+                    "category": case.category,
+                    "question": case.question,
+                    "gold_sources": list(case.gold_sources),
+                    "graph_sources": graph,
+                    "agent_route": route,
+                    **metric,
+                }
+            for variant, row in case_rows.items():
+                per_variant[variant].append(row)
         except Exception as exc:
             errors.append({"case_id": case.case_id, "error": f"{type(exc).__name__}: {exc}"})
+        else:
+            completed_case_ids.add(case.case_id)
+        _save_checkpoint(checkpoint_path, identity, per_variant, errors)
 
     summary: dict[str, Any] = {}
     labels = {
@@ -476,10 +589,24 @@ def run_benchmark(
     }
     for variant, rows in per_variant.items():
         config, purpose = labels[variant]
+        unanswerable_rows = [row for row in rows if not row.get("gold_available")]
         summary[variant] = {
             "configuration": config,
             "purpose": purpose,
             "cases": len(rows),
+            "scored_cases": sum(bool(row.get("gold_available")) for row in rows),
+            "unanswerable_cases": sum(not bool(row.get("gold_available")) for row in rows),
+            "retrieval_nonempty_rate": (
+                sum(bool(row.get("retrieval_nonempty")) for row in rows) / len(rows)
+                if rows
+                else 0.0
+            ),
+            "unanswerable_retrieval_nonempty_rate": (
+                sum(bool(row.get("retrieval_nonempty")) for row in unanswerable_rows)
+                / len(unanswerable_rows)
+                if unanswerable_rows
+                else None
+            ),
             "precision_at_5": _mean(rows, "precision_at_5"),
             "recall_at_5": _mean(rows, "recall_at_5"),
             "mrr": _mean(rows, "mrr"),
@@ -490,7 +617,7 @@ def run_benchmark(
         "status": "completed" if not errors else "completed_with_errors",
         "benchmark": "Table 4 E1-E5",
         "dataset": str(dataset_path),
-        "groups": list(groups),
+        "groups": effective_groups,
         "top_k": TOP_K,
         "rrf_k": RRF_K,
         "cases_loaded": len(cases),
@@ -498,17 +625,21 @@ def run_benchmark(
         "errors": errors,
         "graph": {"available": graph_service is not None and graph_error is None, "error": graph_error},
         "chart": str(chart_path),
+        "checkpoint": str(checkpoint_path),
         "variants": summary,
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     write_chart(summary, chart_path)
+    if not errors:
+        checkpoint_path.unlink(missing_ok=True)
     print(json.dumps({key: value for key, value in payload.items() if key != "variants"}, ensure_ascii=False, indent=2))
     for variant, result in summary.items():
         print(
-            f"{variant}: P@5={result['precision_at_5']:.4f} "
-            f"Recall@5={result['recall_at_5']:.4f} MRR={result['mrr']:.4f} "
-            f"n={result['cases']}"
+            f"{variant}: P@5={_format_metric(result['precision_at_5'])} "
+            f"Recall@5={_format_metric(result['recall_at_5'])} "
+            f"MRR={_format_metric(result['mrr'])} n={result['cases']} "
+            f"unanswerable_retrieval={_format_metric(result['unanswerable_retrieval_nonempty_rate'])}"
         )
     return 0 if not errors else 1
 
@@ -518,11 +649,22 @@ def main() -> int:
     parser.add_argument("--dataset", type=Path, default=DATASET_PATH)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--chart", type=Path, default=DEFAULT_CHART)
-    parser.add_argument("--groups", nargs="+", default=["RAGAS", "E2E"], choices=["RAGAS", "E2E", "Retrieval"])
+    parser.add_argument("--checkpoint", type=Path, default=DEFAULT_CHECKPOINT)
+    parser.add_argument("--groups", nargs="+", default=["RAGAS", "E2E"], choices=["RAGAS", "E2E", "Retrieval", "CSV"])
     parser.add_argument("--limit", type=int)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--no-resume", action="store_true", help="ignore any existing checkpoint")
     args = parser.parse_args()
-    return run_benchmark(args.dataset, args.output, args.chart, args.groups, args.limit, args.dry_run)
+    return run_benchmark(
+        args.dataset,
+        args.output,
+        args.chart,
+        args.groups,
+        args.limit,
+        args.dry_run,
+        args.checkpoint,
+        not args.no_resume,
+    )
 
 
 if __name__ == "__main__":

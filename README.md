@@ -249,10 +249,16 @@ Hệ thống cung cấp các file markdown quy chế mẫu sẵn tại `data/mar
 python scripts/build_bm25_index.py
 
 # Vector Index (Qdrant)
-python scripts/reindex_all.py build --index-version 2026-08-31-v1
+python scripts/reindex_all.py build --index-version 2026-09-02-v1
+
+# Kiểm tra collection trước khi kích hoạt
+python scripts/reindex_all.py validate --index-version 2026-09-02-v1
+
+# Kích hoạt alias live cho ứng dụng và benchmark
+python scripts/reindex_all.py activate --index-version 2026-09-02-v1 --alias ctu_scholarship_docs_current
 ```
 
-> **📝 Note:** Neo4j Knowledge Graph sẽ tự động được nạp dữ liệu (lazy init) khi ứng dụng khởi động lần đầu. Bạn cũng có thể nạp thủ công bằng `python scripts/ingest_academic_programs.py`.
+> **📝 Note:** Neo4j Knowledge Graph sẽ tự động được nạp dữ liệu (lazy init) khi ứng dụng khởi động lần đầu. Có thể nạp thủ công bằng `python Graph_DB/app/ingest.py`.
 
 ---
 
@@ -331,7 +337,7 @@ CTU-Chat_bot/
 ├── scripts/                            # 🛠️ CLI Tools & Evaluation
 │   ├── build_bm25_index.py             #   Build BM25 lexical index
 │   ├── reindex_all.py                  #   Blue-Green reindexing (Qdrant)
-│   ├── ingest_academic_programs.py     #   Nạp chương trình đào tạo vào Neo4j
+│   ├── ingest_academic_programs.py     #   Nạp chunk CTĐT vào Qdrant
 │   ├── batch_process.py                #   Batch OCR tài liệu PDF
 │   ├── evaluate_chat_dataset.py        #   Đánh giá chất lượng chatbot
 │   ├── run_ablation_test.py            #   Ablation testing RAG components
@@ -357,9 +363,10 @@ CTU-Chat_bot/
 | Lệnh                                                                                                                               | Mô Tả                                                   |
 | :---------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------- |
 | `python scripts/build_bm25_index.py`                                                                                              | Quét 244 văn bản Markdown và tái tạo chỉ mục BM25 |
-| `python scripts/reindex_all.py build --index-version 2026-08-31-v1`                                                               | Nạp toàn bộ dữ liệu vào Qdrant collection mới      |
-| `python scripts/reindex_all.py swap --alias-name ctu_scholarship_docs_current --target-collection ctu_scholarship_docs_<version>` | Blue-Green swap Qdrant alias (zero-downtime)              |
-| `python scripts/ingest_academic_programs.py`                                                                                      | Nạp chương trình đào tạo vào Neo4j Graph          |
+| `python scripts/reindex_all.py build --index-version 2026-09-02-v1`                                                               | Nạp toàn bộ dữ liệu vào Qdrant collection mới      |
+| `python scripts/reindex_all.py validate --index-version 2026-09-02-v1`                                                           | Kiểm tra collection Qdrant trước khi activate      |
+| `python scripts/reindex_all.py activate --index-version 2026-09-02-v1 --alias ctu_scholarship_docs_current`                     | Kích hoạt alias Qdrant cho ứng dụng (zero-downtime) |
+| `python Graph_DB/app/ingest.py`                                                                                                  | Nạp chương trình đào tạo vào Neo4j Graph          |
 | `python scripts/batch_process.py`                                                                                                 | Batch OCR hàng loạt PDF                                 |
 | `python scripts/evaluate_chat_dataset.py`                                                                                         | Đánh giá chất lượng chatbot trên dataset           |
 | `python scripts/run_ablation_test.py`                                                                                             | Ablation test cho từng component RAG                     |
