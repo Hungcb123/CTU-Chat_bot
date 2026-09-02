@@ -1,6 +1,20 @@
 {
   "schema_version": 1,
   "documents": {
+    "01_7140206_GiaoDucTheChat.md": {
+      "domain": "academic_program",
+      "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "02_1470KHTH_06-05-2024_llp.md": {
+      "domain": "other",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "02_246_23-06-2026.md": {
       "domain": "social_support",
       "content_kind": "announcement",
@@ -8,364 +22,23 @@
       "academic_year": null,
       "status": "active"
     },
-    "03_6175KHTH_10-12-2024.md": {
-      "domain": "other",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "116.md": {
-      "domain": "social_support",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "3hk.md": {
-      "domain": "other",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "66_2013.md": {
-      "domain": "social_support",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "CVHT_2025.md": {
-      "domain": "other",
-      "content_kind": "other",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active",
-      "original_filename": "CVHT_2025.pdf",
-      "uploaded_by": "hung",
-      "uploaded_at": "2026-08-16T17:51:23.115891+00:00"
-    },
-    "CVHTv2007.md": {
-      "domain": "other",
-      "content_kind": "other",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active",
-      "original_filename": "CVHTv2007.pdf",
-      "uploaded_by": "hung",
-      "uploaded_at": "2026-08-16T17:50:41.506670+00:00"
-    },
-    "donz.md": {
-      "domain": "social_support",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_K51_2026.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_LeSo.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_LuongVanCang.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_Panasonic.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_SCC.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_SCIC_2026.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_Shihan.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_TanSinhVien_K52.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_TayNinh.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_Vallet.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HB_Vallet_Chi_Tiet.md": {
-      "domain": "scholarship",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "Ho_tro.md": {
-      "domain": "social_support",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "HoTroCp.md": {
-      "domain": "social_support",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "inactive"
-    },
-    "HTCPHT.md": {
-      "domain": "social_support",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "inactive"
-    },
-    "HuongDanXacNhanVayVon.md": {
-      "domain": "student_loan",
+    "02_2930KHTH_12-08-2025_llp.md": {
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
-    "MauXacNhanhoNghoe.md": {
-      "domain": "social_support",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "mghp.md": {
-      "domain": "tuition",
-      "content_kind": "exemption_policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "MucHocPhi_2526_MienGiam.md": {
-      "domain": "tuition",
-      "content_kind": "rate_table",
-      "fee_kind": "exemption_basis",
-      "academic_year": "2025-2026",
-      "status": "active"
-    },
-    "MucHocPhi_ChatLuongCao_TienTien.md": {
-      "domain": "tuition",
-      "content_kind": "rate_table",
-      "fee_kind": "actual_tuition",
-      "academic_year": "2026-2027",
-      "status": "active"
-    },
-    "MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md": {
-      "domain": "tuition",
-      "content_kind": "rate_table",
-      "fee_kind": "actual_tuition",
-      "academic_year": "2026-2027",
-      "status": "active"
-    },
-    "MucHocPhi_DaiHocChinhQuy_Khoa52.md": {
-      "domain": "tuition",
-      "content_kind": "rate_table",
-      "fee_kind": "actual_tuition",
-      "academic_year": "2026-2027",
-      "status": "active"
-    },
-    "MucHocPhi_QuyDinhChung.md": {
-      "domain": "tuition",
-      "content_kind": "rate_table",
-      "fee_kind": "actual_tuition",
-      "academic_year": "2026-2027",
-      "status": "active"
-    },
-    "nd116.md": {
-      "domain": "social_support",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "NDCP_VayVonSVKT.md": {
-      "domain": "student_loan",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "Q_29_STEM_288.md": {
-      "domain": "student_loan",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "inactive"
-    },
-    "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.md": {
-      "domain": "other",
-      "content_kind": "other",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active",
-      "original_filename": "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.pdf",
-      "uploaded_by": "hung",
-      "uploaded_at": "2026-08-16T17:11:56.389159+00:00"
-    },
-    "QD29.md": {
-      "domain": "student_loan",
+    "02_3175KHTH_30-08-2023_llp.md": {
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
-    "QD_1227_TTg.md": {
-      "domain": "social_support",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "QD_2022.md": {
-      "domain": "student_loan",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "quyet-dinh-05-2022-qd-ttg-thu-tuong-chinh-phu.md": {
-      "domain": "student_loan",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "inactive"
-    },
-    "SoTay.md": {
-      "domain": "other",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "TCXH.md": {
-      "domain": "social_support",
+    "02_3924KHTH_23-10-2023_llp.md": {
+      "domain": "academic_rules",
       "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "test_upload.md": {
-      "domain": "other",
-      "content_kind": "other",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active",
-      "original_filename": "test_upload.pdf",
-      "uploaded_by": "hung",
-      "uploaded_at": "2026-08-14T17:52:28.207599+00:00"
-    },
-    "Tro_cap_XH.md": {
-      "domain": "social_support",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "Tài liệu phân bổ quỹ học bổng.md": {
-      "domain": "scholarship",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "VayVon.md": {
-      "domain": "student_loan",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "Vayvon_Viettinbank_2025_v2.md": {
-      "domain": "student_loan",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "VayVonChoSinhVienKyT.md": {
-      "domain": "student_loan",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "VayVonChoSVSuPham.md": {
-      "domain": "social_support",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "VayVonMuaMayTinh.md": {
-      "domain": "student_loan",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "VayVonSinhVien2022.md": {
-      "domain": "student_loan",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "inactive"
-    },
-    "VayVonVoiNhomNganhKThuat - Copy.md": {
-      "domain": "student_loan",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "inactive"
-    },
-    "01_7140206_GiaoDucTheChat.md": {
-      "domain": "academic_program",
-      "content_kind": "chuong_trinh_dao_tao",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -377,9 +50,37 @@
       "academic_year": null,
       "status": "active"
     },
+    "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md": {
+      "domain": "scholarship",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "03_1041KHTH_29-03-2024_HoTroSucKhoe_llp.md": {
+      "domain": "social_support",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "03_6175KHTH_10-12-2024.md": {
+      "domain": "academic_rules",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "03_7229001_TrietHoc.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "03_77KHTH_15-01-2021_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -401,6 +102,13 @@
     "06_7460112_ToanUngDung.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "072026_tb_dk1_2627_llp.md": {
+      "domain": "other",
+      "content_kind": "announcement",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -503,6 +211,13 @@
       "academic_year": null,
       "status": "active"
     },
+    "10_don_xin_xet_tro_cap_kho_khan_dot_xuat_llp.md": {
+      "domain": "social_support",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "110_7340122_ThuongMaiDienTu.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
@@ -545,9 +260,23 @@
       "academic_year": null,
       "status": "active"
     },
+    "116.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "11_7320201_ThongTin-ThuVien.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "11_don_xin_xet_tro_cap_xa_hoi_llp.md": {
+      "domain": "social_support",
+      "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -559,9 +288,23 @@
       "academic_year": null,
       "status": "active"
     },
+    "12_don_de_nghi_mien_giam_hoc_phi_llp.md": {
+      "domain": "exemption_policy",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "13_7810101_DuLich.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "13_giay_chung_nhan_hoc_sinh_sinh_vien_thuoc_ho_ngheo_llp.md": {
+      "domain": "social_support",
+      "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -573,9 +316,37 @@
       "academic_year": null,
       "status": "active"
     },
+    "14_giay_chung_nhan_hoc_sinh_sinh_vien_thuoc_ho_can_ngheo_llp.md": {
+      "domain": "social_support",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "14_llp.md": {
+      "domain": "other",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "15_7320101_BaoChi.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "15_llp.md": {
+      "domain": "other",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "15_to_khai_thong_tin_cua_nguoi_khuyet_tat_llp.md": {
+      "domain": "social_support",
+      "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -587,9 +358,93 @@
       "academic_year": null,
       "status": "active"
     },
+    "16_giay_xac_nhan_vay_von_llp.md": {
+      "domain": "student_loan",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md": {
+      "domain": "other",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "17_giay_cam_ket_tra_no_llp.md": {
+      "domain": "student_loan",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "18_don_xin_xac_nhan_tam_hoan_nghia_vu_quan_su_llp.md": {
+      "domain": "other",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "19_7380107_LuatKinhTe.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "19_don_xin_xac_nhan_llp.md": {
+      "domain": "other",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "2015_777_QD_DHCT_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "2020_CV1194-DHCT_Mon_hoc_GDQPAN_giang_day_tu_HK1_nam_hoc_2020-2021_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "2020_QD407_BH_mau_van_bang_Truong_DHCT_llp.md": {
+      "domain": "other",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "2021_DonDeNghi_Diem_BaoLuu_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "2022_QD2624_Quy-dinh-bien-soan-lua-chon-tham-dinh-va-su-dung-GTTL-tham-khao_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "2023_QD6772-DHCT_QD_ban_hanh_Quy_dinh_dao_tao_CLC_va_dao_tao_TT_trinh_do_DH_ap_dung_tu_K50_tro_ve_sau_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -604,6 +459,13 @@
     "21_7850101_QuanLyTaiNguyenVaMoiTruong.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "21_letter_of_verification_llp.md": {
+      "domain": "other",
+      "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -657,9 +519,23 @@
       "academic_year": null,
       "status": "active"
     },
+    "29_19052020-Nghi-quyet-ve-Qui-che-TC-va-Hoat-dong-CTU-toan-van-dong-dau_llp.md": {
+      "domain": "other",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "29_7220203_NgonNguPhap.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "3064_TB-DHCT_1882023_llp.md": {
+      "domain": "other",
+      "content_kind": "announcement",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -730,6 +606,20 @@
     "39_7140210_SuPhamTinHoc.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "3_don_xin_hoc_lai_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "3hk.md": {
+      "domain": "academic_rules",
+      "content_kind": "announcement",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -874,6 +764,13 @@
       "academic_year": null,
       "status": "active"
     },
+    "5_don_xin_tam_nghi_hoc_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "60_7520309_KyThuatVatLieu.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
@@ -916,6 +813,13 @@
       "academic_year": null,
       "status": "active"
     },
+    "66_2013.md": {
+      "domain": "social_support",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "66_7480201_CongNgheThongTin.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
@@ -940,6 +844,13 @@
     "69_7480104C_HeThongThongTin_CTCLC.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "6_don_xin_thoi_hoc_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -1014,6 +925,13 @@
       "academic_year": null,
       "status": "active"
     },
+    "7_don_de_nghi_chuyen_ctdt_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "80_7620115_KinhTeNongNghiep.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
@@ -1080,6 +998,13 @@
     "89_7620105_ChanNuoi.md": {
       "domain": "academic_program",
       "content_kind": "chuong_trinh_dao_tao",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "8_don_xin_chuyen_truong_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -1154,265 +1079,6 @@
       "academic_year": null,
       "status": "active"
     },
-    "quychehocvu.md": {
-      "domain": "academic_regulation",
-      "content_kind": "quy_che_hoc_vu",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "02_1470KHTH_06-05-2024_llp.md": {
-      "domain": "other",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "02_2930KHTH_12-08-2025_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "procedure",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "02_3175KHTH_30-08-2023_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "procedure",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "02_3924KHTH_23-10-2023_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md": {
-      "domain": "scholarship",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "03_1041KHTH_29-03-2024_HoTroSucKhoe_llp.md": {
-      "domain": "social_support",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "03_77KHTH_15-01-2021_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "072026_tb_dk1_2627_llp.md": {
-      "domain": "other",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "10_don_xin_xet_tro_cap_kho_khan_dot_xuat_llp.md": {
-      "domain": "social_support",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "11_don_xin_xet_tro_cap_xa_hoi_llp.md": {
-      "domain": "social_support",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "12_don_de_nghi_mien_giam_hoc_phi_llp.md": {
-      "domain": "tuition",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "13_giay_chung_nhan_hoc_sinh_sinh_vien_thuoc_ho_ngheo_llp.md": {
-      "domain": "social_support",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "14_giay_chung_nhan_hoc_sinh_sinh_vien_thuoc_ho_can_ngheo_llp.md": {
-      "domain": "social_support",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "14_llp.md": {
-      "domain": "other",
-      "content_kind": "other",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "15_llp.md": {
-      "domain": "other",
-      "content_kind": "other",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "15_to_khai_thong_tin_cua_nguoi_khuyet_tat_llp.md": {
-      "domain": "social_support",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "16_giay_xac_nhan_vay_von_llp.md": {
-      "domain": "student_loan",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md": {
-      "domain": "other",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "17_giay_cam_ket_tra_no_llp.md": {
-      "domain": "student_loan",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "18_don_xin_xac_nhan_tam_hoan_nghia_vu_quan_su_llp.md": {
-      "domain": "other",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "19_don_xin_xac_nhan_llp.md": {
-      "domain": "other",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "2015_777_QD_DHCT_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "2020_CV1194-DHCT_Mon_hoc_GDQPAN_giang_day_tu_HK1_nam_hoc_2020-2021_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "2020_QD407_BH_mau_van_bang_Truong_DHCT_llp.md": {
-      "domain": "other",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "2021_DonDeNghi_Diem_BaoLuu_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "2022_QD2624_Quy-dinh-bien-soan-lua-chon-tham-dinh-va-su-dung-GTTL-tham-khao_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "2023_QD6772-DHCT_QD_ban_hanh_Quy_dinh_dao_tao_CLC_va_dao_tao_TT_trinh_do_DH_ap_dung_tu_K50_tro_ve_sau_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "21_letter_of_verification_llp.md": {
-      "domain": "other",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "29_19052020-Nghi-quyet-ve-Qui-che-TC-va-Hoat-dong-CTU-toan-van-dong-dau_llp.md": {
-      "domain": "other",
-      "content_kind": "policy",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "3064_TB-DHCT_1882023_llp.md": {
-      "domain": "other",
-      "content_kind": "announcement",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "3_don_xin_hoc_lai_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "5_don_xin_tam_nghi_hoc_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "6_don_xin_thoi_hoc_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "7_don_de_nghi_chuyen_ctdt_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
-    "8_don_xin_chuyen_truong_llp.md": {
-      "domain": "academic_regulation",
-      "content_kind": "form",
-      "fee_kind": "not_applicable",
-      "academic_year": null,
-      "status": "active"
-    },
     "9_don_de_nghi_ho_tro_chi_phi_hoc_tap_llp.md": {
       "domain": "social_support",
       "content_kind": "form",
@@ -1420,29 +1086,154 @@
       "academic_year": null,
       "status": "active"
     },
+    "CVHT_2025.md": {
+      "domain": "academic_rules",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active",
+      "original_filename": "CVHT_2025.pdf",
+      "uploaded_by": "hung",
+      "uploaded_at": "2026-08-16T17:51:23.115891+00:00"
+    },
+    "CVHTv2007.md": {
+      "domain": "academic_rules",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active",
+      "original_filename": "CVHTv2007.pdf",
+      "uploaded_by": "hung",
+      "uploaded_at": "2026-08-16T17:50:41.506670+00:00"
+    },
     "DonDeNghi_Diem_M_ChungchiNN_ngoaidanhmuc_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "DonDeNghi_Diem_M_Chungchi_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "DonDeNghi_Diem_M_CuDiHocTap_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_K51_2026.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_LeSo.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_LuongVanCang.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_Panasonic.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_SCC.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_SCIC_2026.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_Shihan.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_TanSinhVien_K52.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_TayNinh.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_Vallet.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HB_Vallet_Chi_Tiet.md": {
+      "domain": "scholarship",
+      "content_kind": "announcement",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "HD_Capnhat-TTSV_18-04-2021_llp.md": {
       "domain": "other",
+      "content_kind": "procedure",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HTCPHT.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "inactive"
+    },
+    "HoTroCp.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "inactive"
+    },
+    "Ho_tro.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "HuongDanXacNhanVayVon.md": {
+      "domain": "student_loan",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
@@ -1456,7 +1247,14 @@
       "status": "active"
     },
     "MauDon_diemI_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
+      "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "MauXacNhanhoNghoe.md": {
+      "domain": "social_support",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
@@ -1470,7 +1268,7 @@
       "status": "active"
     },
     "Mau_phieu_thanh_toan_ra_truong_llp.md": {
-      "domain": "tuition",
+      "domain": "other",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
@@ -1484,8 +1282,50 @@
       "status": "active"
     },
     "Maudon_Quydoidiem10_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "MucHocPhi_2526_MienGiam.md": {
+      "domain": "exemption_basis",
+      "content_kind": "rate_table",
+      "fee_kind": "exemption_basis",
+      "academic_year": "2025-2026",
+      "status": "active"
+    },
+    "MucHocPhi_ChatLuongCao_TienTien.md": {
+      "domain": "actual_tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "actual_tuition",
+      "academic_year": "2026-2027",
+      "status": "active"
+    },
+    "MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md": {
+      "domain": "actual_tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "actual_tuition",
+      "academic_year": "2026-2027",
+      "status": "active"
+    },
+    "MucHocPhi_DaiHocChinhQuy_Khoa52.md": {
+      "domain": "actual_tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "actual_tuition",
+      "academic_year": "2026-2027",
+      "status": "active"
+    },
+    "MucHocPhi_QuyDinhChung.md": {
+      "domain": "actual_tuition",
+      "content_kind": "rate_table",
+      "fee_kind": "actual_tuition",
+      "academic_year": "2026-2027",
+      "status": "active"
+    },
+    "NDCP_VayVonSVKT.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
@@ -1505,7 +1345,7 @@
       "status": "active"
     },
     "QD-3627-Muc_tieu_giao_duc_cua_Truong_DHCT_281020_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
@@ -1518,47 +1358,85 @@
       "academic_year": null,
       "status": "active"
     },
+    "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.md": {
+      "domain": "academic_rules",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active",
+      "original_filename": "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.pdf",
+      "uploaded_by": "hung",
+      "uploaded_at": "2026-08-16T17:11:56.389159+00:00"
+    },
     "QD2457_Quy_dinh_xet_mien_va_cong_nhan_diem_HP_hinh_thuc_CQ_nam_2024_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "QD25_Quy-dinh-dao-tao-truc-tuyen-cua-Truong-DHCT_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
+    "QD29.md": {
+      "domain": "student_loan",
+      "content_kind": "procedure",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "QD4544_Quy-dinh-cong-tac-hoc-vu-Lien-thong2019_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "QD_1227_TTg.md": {
+      "domain": "social_support",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "QD_2022.md": {
+      "domain": "student_loan",
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "QT_MoThem_LopHP_Ngoai_KeHoach_New_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "QT_PhucHoi_LopHP_TKB_Xoa_New_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "QT_THAYDOI_TKB_NEW_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
+    },
+    "Q_29_STEM_288.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "inactive"
     },
     "QuyTrinh4-Congtacsinhvien_llp.md": {
       "domain": "other",
@@ -1567,71 +1445,169 @@
       "academic_year": null,
       "status": "active"
     },
-    "ThgTu_04_2011_BGDDT_llp.md": {
-      "domain": "academic_regulation",
+    "SoTay.md": {
+      "domain": "other",
       "content_kind": "policy",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
+    "TCXH.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "ThgTu_04_2011_BGDDT_llp.md": {
+      "domain": "academic_rules",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "Tro_cap_XH.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "Tài liệu phân bổ quỹ học bổng.md": {
+      "domain": "scholarship",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVon.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonChoSVSuPham.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonChoSinhVienKyT.md": {
+      "domain": "student_loan",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonMuaMayTinh.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "VayVonSinhVien2022.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "inactive"
+    },
+    "VayVonVoiNhomNganhKThuat - Copy.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "inactive"
+    },
+    "Vayvon_Viettinbank_2025_v2.md": {
+      "domain": "student_loan",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "XacNhan_NgoaiNgu_AnhVan_B1_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "XacNhan_NgoaiNgu_AnhVan_CDR_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "XacNhan_NgoaiNgu_AnhVan_TT_CLC_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "XacNhan_NgoaiNgu_AnhVan_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "XacNhan_NgoaiNgu_PhapVan_B1_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "XacNhan_NgoaiNgu_PhapVan_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "Xacnhan_GDTC_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "form",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
+    "donz.md": {
+      "domain": "social_support",
+      "content_kind": "announcement",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "mghp.md": {
+      "domain": "exemption_policy",
+      "content_kind": "exemption_policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "nd116.md": {
+      "domain": "social_support",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
     "qt_TS_bang2_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "qt_TS_lienthong_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
@@ -1645,56 +1621,56 @@
       "status": "active"
     },
     "qt_hoc_2_CTDT_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "qt_mo_nganh_Dh_Sdh_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "qt_mothem_lop_ngoai_kh_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "qt_phuchoi_lop_TKB_xoa_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "qt_thaydoi_TKB_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "qt_xep_TKB_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "qt_xet_hp_tuongduong_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
     },
     "qt_xet_mien_HP_llp.md": {
-      "domain": "academic_regulation",
+      "domain": "academic_rules",
       "content_kind": "procedure",
       "fee_kind": "not_applicable",
       "academic_year": null,
@@ -1706,6 +1682,20 @@
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
+    },
+    "quychehocvu.md": {
+      "domain": "academic_rules",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active"
+    },
+    "quyet-dinh-05-2022-qd-ttg-thu-tuong-chinh-phu.md": {
+      "domain": "student_loan",
+      "content_kind": "policy",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "inactive"
     },
     "quytrinh_DRL_tructuyen_llp.md": {
       "domain": "other",
@@ -1720,6 +1710,16 @@
       "fee_kind": "not_applicable",
       "academic_year": null,
       "status": "active"
+    },
+    "test_upload.md": {
+      "domain": "other",
+      "content_kind": "other",
+      "fee_kind": "not_applicable",
+      "academic_year": null,
+      "status": "active",
+      "original_filename": "test_upload.pdf",
+      "uploaded_by": "hung",
+      "uploaded_at": "2026-08-14T17:52:28.207599+00:00"
     }
   }
 }
