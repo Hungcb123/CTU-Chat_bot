@@ -85,24 +85,31 @@ class AcademicGraphService:
         return True
 
     def _ensure_tuition_loaded(self) -> None:
-        """Kiểm tra và tự động ingest TuitionFee nếu chưa có."""
+        """Kiểm tra và tự động ingest TuitionFee & ExemptionBasisRate nếu chưa có."""
         with self._driver.session() as session:
-            result = session.run("MATCH (t:TuitionFee) RETURN count(t) AS cnt")
-            count = result.single()["cnt"]
+            result_tf = session.run("MATCH (t:TuitionFee) RETURN count(t) AS cnt")
+            count_tf = result_tf.single()["cnt"]
+            result_eb = session.run("MATCH (e:ExemptionBasisRate) RETURN count(e) AS cnt")
+            count_eb = result_eb.single()["cnt"]
 
-        if count > 0:
-            logger.info("✅ Neo4j đã có %d TuitionFee, bỏ qua ingest học phí.", count)
+        if count_tf > 0 and count_eb > 0:
+            logger.info(
+                "✅ Neo4j đã có %d TuitionFee và %d ExemptionBasisRate, bỏ qua ingest học phí.",
+                count_tf,
+                count_eb,
+            )
             return
 
-        logger.info("⚠️ Chưa có TuitionFee, bắt đầu ingest học phí...")
+        logger.info("⚠️ Bắt đầu ingest học phí và cơ sở miễn giảm...")
         try:
             import sys
             ingest_path = PROJECT_ROOT / "Graph_DB" / "app"
-            sys.path.insert(0, str(ingest_path))
+            if str(ingest_path) not in sys.path:
+                sys.path.insert(0, str(ingest_path))
             from ingest_tuition import run_tuition_ingest
             run_tuition_ingest()
         except Exception as exc:
-            logger.error("❌ Tuition ingest thất bại: %s", exc, exc_info=True)
+            logger.error("❌ Tuition & Exemption ingest thất bại: %s", exc, exc_info=True)
 
     def _run_ingest(self, data_dir: Path) -> bool:
         """Gọi ingest script để parse markdown → Neo4j."""
@@ -654,3 +661,127 @@ class AcademicGraphService:
                 )
 
             return [dict(r) for r in result]
+
+    # ------------------------------------------------------------------
+    # 9. lookup_exemption_basis — tra cứu mức trần cơ sở miễn giảm học phí
+    # ------------------------------------------------------------------
+
+    def lookup_exemption_basis(
+        self,
+        query: Optional[str] = None,
+        khoi: Optional[str] = None,
+        loai_ct: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        """Tra cứu mức học phí làm cơ sở tính miễn, giảm học phí theo ngành, khối ngành hoặc chương trình.
+
+        query: Tên ngành hoặc mã ngành (e.g. "Công nghệ thông tin", "7480201", "Luật")
+        khoi: Tên hoặc số khối ngành (e.g. "V", "Khối V", "Khối 5", "GDQP_AN", "TIEN_TIEN_K47")
+        loai_ct: "chuan", "tien_tien", "clc", "dai_cuong_chung"
+        """
+        results: List[Dict[str, Any]] = []
+
+        with self._driver.session() as session:
+            # 1. Nếu query theo khối ngành cụ thể
+            if khoi:
+                norm_k = khoi.upper().replace("KHỐI", "").replace("KHOI", "").strip()
+                arabic_to_roman = {
+                    "1": "I", "I": "I",
+                    "3": "III", "III": "III",
+                    "4": "IV", "IV": "IV",
+                    "5": "V", "V": "V",
+                    "6": "VI", "VI": "VI",
+                    "7": "VII", "VII": "VII",
+                }
+                target_k = arabic_to_roman.get(norm_k, norm_k)
+
+                cypher_k = """
+                    MATCH (e:ExemptionBasisRate)
+                    WHERE e.khoi = $khoi
+                       OR e.khoi CONTAINS $khoi
+                       OR toUpper(e.ten_khoi) CONTAINS $khoi_raw
+                    RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
+                           e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
+                           e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
+                           e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                    ORDER BY e.khoi
+                """
+                res = session.run(cypher_k, khoi=target_k, khoi_raw=khoi.strip().upper())
+                results = [dict(r) for r in res]
+                if results:
+                    return results
+
+            # 2. Nếu query theo ngành / mã ngành / từ khóa
+            if query:
+                norm = _normalize(query)
+                # Kiểm tra xem query có phải là GDQP-AN không
+                if any(kw in norm for kw in ["giao duc quoc phong", "gdqp", "quoc phong"]):
+                    res = session.run(
+                        """
+                        MATCH (e:ExemptionBasisRate {khoi: 'GDQP_AN'})
+                        RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
+                               e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
+                               e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
+                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                        """
+                    )
+                    return [dict(r) for r in res]
+
+                # Kiểm tra xem query có phải Tiên tiến K47 không
+                if "tien tien" in norm and any(k in norm for k in ["k47", "khoa 47", "47"]):
+                    res = session.run(
+                        """
+                        MATCH (e:ExemptionBasisRate {khoi: 'TIEN_TIEN_K47'})
+                        RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
+                               e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
+                               e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
+                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                        """
+                    )
+                    return [dict(r) for r in res]
+
+                # Strategy A: Program -> HAS_EXEMPTION_BASIS -> ExemptionBasisRate
+                cypher_prog = """
+                    MATCH (p:Program)-[:HAS_EXEMPTION_BASIS]->(e:ExemptionBasisRate)
+                    WHERE p.code = $query
+                       OR toLower(p.name) CONTAINS $norm
+                    RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
+                           e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
+                           e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
+                           e.ghi_chu AS ghi_chu, p.name AS program_name,
+                           p.code AS program_code
+                    ORDER BY p.name
+                """
+                res = session.run(cypher_prog, query=query.strip(), norm=norm)
+                results = [dict(r) for r in res]
+
+                # Strategy B: Tìm theo tên khối ngành trực tiếp
+                if not results:
+                    cypher_eb = """
+                        MATCH (e:ExemptionBasisRate)
+                        WHERE toLower(e.ten_khoi) CONTAINS $norm
+                           OR toLower(e.ghi_chu) CONTAINS $norm
+                        RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
+                               e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
+                               e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
+                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                        ORDER BY e.khoi
+                    """
+                    res = session.run(cypher_eb, norm=norm)
+                    results = [dict(r) for r in res]
+
+            # 3. Nếu không có query cụ thể, trả về tất cả các mức trần
+            if not results and not query and not khoi:
+                res = session.run(
+                    """
+                    MATCH (e:ExemptionBasisRate)
+                    RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
+                           e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
+                           e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
+                           e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                    ORDER BY e.khoi
+                    """
+                )
+                results = [dict(r) for r in res]
+
+        return results
+
