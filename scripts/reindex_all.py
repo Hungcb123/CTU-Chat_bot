@@ -141,6 +141,13 @@ def run_build(args: argparse.Namespace) -> bool:
         logger.error("Preflight failed; no collection was created.")
         return False
 
+    # Parent chunks and metadata are written during ingestion; ensure their
+    # PostgreSQL tables exist when this standalone CLI runs before the API.
+    from app.core.database import sync_engine
+    from app.models.schema import Base
+
+    Base.metadata.create_all(bind=sync_engine)
+
     # Heavy ML/Qdrant imports are intentionally deferred until build.
     from qdrant_client import QdrantClient
     from app.services.rag_engine import AdvancedChunkingEngine
