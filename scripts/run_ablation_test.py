@@ -314,7 +314,7 @@ async def run_full_system(cases: list[TestCase]) -> list[CaseResult]:
         set_graph_service,
     )
     from app.tools.tuition_graph import (
-        tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi,
+        tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi, tra_cuu_co_so_mien_giam_graph,
         set_tuition_graph_service, set_tuition_catalog,
     )
     from app.agents.graph import build_agent_graph
@@ -343,7 +343,12 @@ async def run_full_system(cases: list[TestCase]) -> list[CaseResult]:
         tra_cuu_nganh, so_sanh_nganh, tim_nganh,
         xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
     ]
-    financial_tools = [tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi, tinh_toan_hoc_phi]
+    financial_tools = [
+        tra_cuu_hoc_phi_graph,
+        tra_cuu_co_so_mien_giam_graph,
+        tra_cuu_quy_dinh_hoc_phi,
+        tinh_toan_hoc_phi,
+    ]
     scholarship_tools = [tinh_tien_hoc_bong]
 
     agent_graph = build_agent_graph(

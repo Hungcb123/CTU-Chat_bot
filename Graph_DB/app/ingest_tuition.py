@@ -1,10 +1,6 @@
 """Ingest học phí từ markdown vào Neo4j graph.
 
-Parse 4 file markdown học phí:
-- MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md
-- MucHocPhi_DaiHocChinhQuy_Khoa52.md
-- MucHocPhi_ChatLuongCao_TienTien.md
-- MucHocPhi_QuyDinhChung.md
+Discovers tuition rate-table files through ``data/document_metadata.json``.
 
 Tạo node TuitionFee + TuitionPolicy, kết nối với Program hiện có.
 Sử dụng MERGE → idempotent, chạy lại không duplicate.
@@ -12,6 +8,7 @@ Sử dụng MERGE → idempotent, chạy lại không duplicate.
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import logging
@@ -31,6 +28,7 @@ NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 MARKDOWN_DIR = PROJECT_ROOT / "data" / "markdown"
+MANIFEST_PATH = PROJECT_ROOT / "data" / "document_metadata.json"
 
 NAM_HOC = "2026-2027"
 
@@ -109,6 +107,50 @@ def _make_tuition_id(
 ) -> str:
     """Generate unique ID for TuitionFee node."""
     return f"{ma_nganh}_{khoa}_{loai_ct}_{don_vi}".lower().replace("/", "_")
+
+
+def _manifest_tuition_sources(data_dir: Path) -> List[tuple[Path, Dict[str, Any]]]:
+    """Find graph-supported tuition files from the canonical metadata manifest."""
+    manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    documents = manifest.get("documents", {})
+    if not isinstance(documents, dict):
+        raise ValueError("document_metadata.json: documents must be an object")
+
+    sources: List[tuple[Path, Dict[str, Any]]] = []
+    for source, metadata in sorted(documents.items(), key=lambda item: item[0].casefold()):
+        if not isinstance(metadata, dict):
+            continue
+        if metadata.get("domain") != "tuition":
+            continue
+        if metadata.get("content_kind") != "rate_table":
+            continue
+        path = data_dir / source
+        if not path.is_file():
+            logger.warning("Tuition source listed in manifest but missing: %s", path)
+            continue
+        sources.append((path, metadata))
+    return sources
+
+
+def _tuition_parser_kind(filepath: Path, metadata: Dict[str, Any]) -> str:
+    """Select a parser from metadata plus the table signature, never filename."""
+    fee_kind = metadata.get("fee_kind")
+    if fee_kind == "exemption_basis":
+        return "exemption_basis"
+    if fee_kind != "actual_tuition":
+        raise ValueError(f"Unsupported tuition fee_kind={fee_kind!r}: {filepath.name}")
+
+    text = filepath.read_text(encoding="utf-8")
+    folded = text.casefold()
+    if re.search(r"\|\s*k52\s+trđ/khóa\s*\|", text, re.IGNORECASE):
+        return "k52"
+    if re.search(r"\|\s*mức hp 26-27/tc\s*\|", text, re.IGNORECASE):
+        return "k51"
+    if re.search(r"^###\s+chương trình\s+(?:chất lượng cao|tiên tiến)", folded, re.MULTILINE):
+        return "clc_tt"
+    if "quy định" in folded and "hệ số" in folded:
+        return "policy"
+    raise ValueError(f"Unsupported tuition table format: {filepath.name}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -658,6 +700,107 @@ def parse_tuition_policies(filepath: Path) -> List[Dict[str, Any]]:
     return policies
 
 
+def parse_exemption_basis(filepath: Path) -> List[Dict[str, Any]]:
+    """Parse MucHocPhi_2526_MienGiam.md → list of ExemptionBasisRate dicts.
+
+    Bao gồm:
+    - Bảng 2.1: GDQP-AN (451.000 đ/TC)
+    - Bảng 2.2: Các Khối ngành I, III, IV, V, VI, VII
+    - Mục 4: Tiên tiến Khóa 47 trở về trước (335.000 đ/TC)
+    """
+    NAM_MIEN_GIAM = "2025-2026"
+    rates: List[Dict[str, Any]] = []
+
+    # 1. Bảng 2.1 Đại cương chung - GDQP-AN
+    rates.append({
+        "id": "exemption_basis_gdqp_an_2025_2026",
+        "khoi": "GDQP_AN",
+        "ten_khoi": "Học phần Giáo dục quốc phòng và An ninh (8 tín chỉ)",
+        "muc_hp": 451000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "dai_cuong_chung",
+        "ghi_chu": "Mức miễn, giảm học phần Giáo dục quốc phòng và An ninh (8 tín chỉ)",
+    })
+
+    # 2. Bảng 2.2 Các khối ngành
+    rates.append({
+        "id": "exemption_basis_khoi_i_2025_2026",
+        "khoi": "I",
+        "ten_khoi": "Khối ngành I: Khoa học giáo dục và đào tạo giáo viên",
+        "muc_hp": 451000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "Chỉ áp dụng cho sinh viên không hưởng chính sách theo Nghị định 116/2020/NĐ-CP",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_iii_2025_2026",
+        "khoi": "III",
+        "ten_khoi": "Khối ngành III: Kinh doanh và quản lý, pháp luật",
+        "muc_hp": 451000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_iv_2025_2026",
+        "khoi": "IV",
+        "ten_khoi": "Khối ngành IV: Khoa học sự sống, khoa học tự nhiên",
+        "muc_hp": 487000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_v_2025_2026",
+        "khoi": "V",
+        "ten_khoi": "Khối ngành V: Toán và thống kê, máy tính và CN thông tin, CN kỹ thuật, kỹ thuật, sản xuất và chế biến, kiến trúc và xây dựng, nông lâm nghiệp và thủy sản, thú y",
+        "muc_hp": 538000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_vi_2025_2026",
+        "khoi": "VI",
+        "ten_khoi": "Khối ngành VI: Các khối ngành sức khỏe khác",
+        "muc_hp": 753000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+    rates.append({
+        "id": "exemption_basis_khoi_vii_2025_2026",
+        "khoi": "VII",
+        "ten_khoi": "Khối ngành VII: Nhân văn, khoa học xã hội và hành vi, báo chí và thông tin, dịch vụ xã hội, du lịch, khách sạn, thể dục thể thao, dịch vụ vận tải, môi trường và bảo vệ môi trường",
+        "muc_hp": 479000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "chuan",
+        "ghi_chu": "",
+    })
+
+    # 3. Mục 4: Tiên tiến Khóa 47 trở về trước
+    rates.append({
+        "id": "exemption_basis_tien_tien_k47_2025_2026",
+        "khoi": "TIEN_TIEN_K47",
+        "ten_khoi": "Chương trình Tiên tiến Khóa 47 trở về trước",
+        "muc_hp": 335000,
+        "don_vi_tinh": "dong/tin_chi",
+        "nam_hoc": NAM_MIEN_GIAM,
+        "loai_ct": "tien_tien",
+        "ghi_chu": "Khoá 47 trở về trước: 335.000 đ/tín chỉ. Khoá 48 trở đi: tính theo Khối ngành tương ứng.",
+    })
+
+    logger.info("  Parsed exemption basis: %d ExemptionBasisRate nodes", len(rates))
+    return rates
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # CLC/TT → Program mapping
 # ─────────────────────────────────────────────────────────────────────────────
@@ -900,6 +1043,85 @@ def link_fees_to_policies():
     logger.info("  ✓ GOVERNED_BY relationships created")
 
 
+def ingest_exemption_basis_rates(rates: List[Dict[str, Any]]) -> int:
+    """Ingest ExemptionBasisRate nodes + HAS_EXEMPTION_BASIS relationships.
+
+    Returns count of nodes created/updated.
+    """
+    driver = _get_driver()
+    count = 0
+
+    with driver.session() as session:
+        for rate in rates:
+            session.run(
+                """
+                MERGE (e:ExemptionBasisRate {id: $id})
+                SET e.khoi = $khoi,
+                    e.ten_khoi = $ten_khoi,
+                    e.muc_hp = $muc_hp,
+                    e.don_vi_tinh = $don_vi_tinh,
+                    e.nam_hoc = $nam_hoc,
+                    e.loai_ct = $loai_ct,
+                    e.ghi_chu = $ghi_chu
+                """,
+                **rate,
+            )
+            count += 1
+
+        # Link Program -> ExemptionBasisRate via TuitionFee khoi property
+        khoi_map = {
+            "Khối I": "I",
+            "Khối 1": "I",
+            "Khối III": "III",
+            "Khối 3": "III",
+            "Khối IV": "IV",
+            "Khối 4": "IV",
+            "Khối V": "V",
+            "Khối 5": "V",
+            "Khối VI": "VI",
+            "Khối 6": "VI",
+            "Khối VII": "VII",
+            "Khối 7": "VII",
+        }
+        for tf_khoi, target_khoi in khoi_map.items():
+            session.run(
+                """
+                MATCH (p:Program)-[:HAS_TUITION]->(tf:TuitionFee)
+                WHERE tf.khoi = $tf_khoi
+                WITH DISTINCT p
+                MATCH (e:ExemptionBasisRate {khoi: $target_khoi, loai_ct: 'chuan'})
+                MERGE (p)-[:HAS_EXEMPTION_BASIS]->(e)
+                """,
+                tf_khoi=tf_khoi,
+                target_khoi=target_khoi,
+            )
+
+        # Fallback linking for programs without HAS_TUITION by code prefix regex
+        prefix_map = [
+            ("^714", "I"),
+            ("^73[148]", "III"),
+            ("^74[246]", "IV"),
+            ("^7(48|51|52|54|58|62|64|84)", "V"),
+            ("^772", "VI"),
+            ("^7(21|22|32|76|81|85)", "VII"),
+        ]
+        for pattern, target_khoi in prefix_map:
+            session.run(
+                """
+                MATCH (p:Program)
+                WHERE p.code =~ $pattern AND NOT (p)-[:HAS_EXEMPTION_BASIS]->()
+                MATCH (e:ExemptionBasisRate {khoi: $target_khoi, loai_ct: 'chuan'})
+                MERGE (p)-[:HAS_EXEMPTION_BASIS]->(e)
+                """,
+                pattern=pattern,
+                target_khoi=target_khoi,
+            )
+
+    driver.close()
+    logger.info("  ✓ HAS_EXEMPTION_BASIS relationships created")
+    return count
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Public API — called from graph_service.py
 # ─────────────────────────────────────────────────────────────────────────────
@@ -918,48 +1140,41 @@ def run_tuition_ingest(data_dir: Path | None = None) -> bool:
         print("=" * 60)
 
         total = 0
+        exemption_sources: List[Path] = []
 
-        # 1. K51 trở về trước
-        k51_file = data_dir / "MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md"
-        if k51_file.exists():
-            fees = parse_tuition_k51(k51_file)
-            count = ingest_tuition_fees(fees)
-            print(f"  ✓ K51 trở về trước: {count} TuitionFee nodes")
-            total += count
-        else:
-            print(f"  ⚠ File not found: {k51_file.name}")
+        # Dispatch by manifest metadata and document/table signatures.
+        for filepath, metadata in _manifest_tuition_sources(data_dir):
+            parser_kind = _tuition_parser_kind(filepath, metadata)
+            if parser_kind == "exemption_basis":
+                exemption_sources.append(filepath)
+                continue
+            if parser_kind == "k51":
+                count = ingest_tuition_fees(parse_tuition_k51(filepath))
+                print(f"  ✓ {filepath.name}: {count} TuitionFee nodes")
+                total += count
+            elif parser_kind == "k52":
+                count = ingest_tuition_fees(parse_tuition_k52(filepath))
+                print(f"  ✓ {filepath.name}: {count} TuitionFee nodes")
+                total += count
+            elif parser_kind == "clc_tt":
+                count = ingest_clc_tt_fees(parse_tuition_clc_tt(filepath))
+                print(f"  ✓ {filepath.name}: {count} TuitionFee nodes")
+                total += count
+            elif parser_kind == "policy":
+                count = ingest_tuition_policies(parse_tuition_policies(filepath))
+                print(f"  ✓ {filepath.name}: {count} TuitionPolicy nodes")
+            elif parser_kind == "exemption_basis":
+                count = ingest_exemption_basis_rates(parse_exemption_basis(filepath))
+                print(f"  ✓ {filepath.name}: {count} ExemptionBasisRate nodes")
 
-        # 2. K52
-        k52_file = data_dir / "MucHocPhi_DaiHocChinhQuy_Khoa52.md"
-        if k52_file.exists():
-            fees = parse_tuition_k52(k52_file)
-            count = ingest_tuition_fees(fees)
-            print(f"  ✓ K52: {count} TuitionFee nodes")
-            total += count
-        else:
-            print(f"  ⚠ File not found: {k52_file.name}")
-
-        # 3. CLC/Tiên tiến
-        clc_file = data_dir / "MucHocPhi_ChatLuongCao_TienTien.md"
-        if clc_file.exists():
-            fees = parse_tuition_clc_tt(clc_file)
-            count = ingest_clc_tt_fees(fees)
-            print(f"  ✓ CLC/TT: {count} TuitionFee nodes")
-            total += count
-        else:
-            print(f"  ⚠ File not found: {clc_file.name}")
-
-        # 4. Quy định chung → TuitionPolicy
-        policy_file = data_dir / "MucHocPhi_QuyDinhChung.md"
-        if policy_file.exists():
-            policies = parse_tuition_policies(policy_file)
-            count = ingest_tuition_policies(policies)
-            print(f"  ✓ Policies: {count} TuitionPolicy nodes")
-        else:
-            print(f"  ⚠ File not found: {policy_file.name}")
-
-        # 5. Link fees → policies
+        # Link fees → policies after all tuition rates are present.
         link_fees_to_policies()
+
+        # Exemption links can use the TuitionFee khối mapping, so ingest them
+        # only after all actual tuition tables have been loaded.
+        for filepath in exemption_sources:
+            count = ingest_exemption_basis_rates(parse_exemption_basis(filepath))
+            print(f"  ✓ {filepath.name}: {count} ExemptionBasisRate nodes")
 
         print(f"\n{'='*60}")
         print(f"✅ Tuition ingest complete: {total} TuitionFee nodes total")

@@ -31,7 +31,7 @@ from app.tools.academic_program import (
     set_graph_service,
 )
 from app.tools.tuition_graph import (
-    tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi,
+    tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi, tra_cuu_co_so_mien_giam_graph,
     set_tuition_graph_service, set_tuition_catalog,
 )
 from app.services.tuition_catalog import TuitionRateCatalog
@@ -66,14 +66,12 @@ async def lifespan(app: FastAPI):
 
         logger.info("🤖 Khởi tạo Vector DB (Qdrant) và LLM Gemini API...")
         app.state.engine = AdvancedChunkingEngine(persist_dir=os.path.join(PROJECT_ROOT, "qdrant_storage"))
+        logger.info("✅ Khởi tạo PostgreSQL RAG Engine thành công!")
+        
+        # --- CẤU HÌNH JSON FALLBACK & NEO4J GRAPH CHO HỌC PHÍ ---
         app.state.tuition_catalog = TuitionRateCatalog.load()
-        logger.info(
-            "✅ Đã nạp %d mức học phí có cấu trúc.",
-            len(app.state.tuition_catalog.records),
-        )
-
-        # KHỞI TẠO NEO4J GRAPH SERVICE
-        logger.info("📡 Đang kết nối tới Neo4j Graph Database...")
+        set_tuition_catalog(app.state.tuition_catalog)
+        
         neo4j_uri = os.environ.get("NEO4J_URI", "bolt://localhost:7687")
         neo4j_user = os.environ.get("NEO4J_USER", "neo4j")
         neo4j_password = os.environ.get("NEO4J_PASSWORD", "password")
@@ -83,10 +81,8 @@ async def lifespan(app: FastAPI):
         app.state.graph_service.ensure_data_loaded()
         set_graph_service(app.state.graph_service)
         set_tuition_graph_service(app.state.graph_service)
-        set_tuition_catalog(app.state.tuition_catalog)
-        logger.info("✅ Neo4j Graph Service sẵn sàng!")
         
-        # LLM CHÍNH (GEMINI): Dùng để sinh câu trả lời và sử dụng Tool
+        # LLM CHÍNH (GEMINI): Dùng cho Agents (hỗ trợ tool calling)
         app.state.llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite")
         
         # LLM PHỤ (GEMINI): Dùng để viết lại câu hỏi (Rewriter) siêu tốc
@@ -100,7 +96,12 @@ async def lifespan(app: FastAPI):
             tra_cuu_nganh, so_sanh_nganh, tim_nganh,
             xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
         ]
-        financial_tools = [tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi, tinh_toan_hoc_phi]
+        financial_tools = [
+            tra_cuu_hoc_phi_graph,
+            tra_cuu_co_so_mien_giam_graph,
+            tra_cuu_quy_dinh_hoc_phi,
+            tinh_toan_hoc_phi,
+        ]
         scholarship_tools = [tinh_tien_hoc_bong]
 
         app.state.agent_graph = build_agent_graph(

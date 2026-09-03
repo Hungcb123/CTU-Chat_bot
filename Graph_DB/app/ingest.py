@@ -96,8 +96,28 @@ def parse_markdown(filepath: Path) -> dict | None:
     if fname_m:
         filename_code = fname_m.group(1)
 
+    # Most CTĐT files store the Vietnamese program name in the body instead
+    # of YAML frontmatter: ``- Ngành: **...** (English name)``.
+    name_match = re.search(
+        r"^\s*-\s*Ngành:\s*\*\*(.+?)\*\*",
+        text,
+        re.MULTILINE,
+    )
+    if name_match:
+        body_name = name_match.group(1).strip()
+    else:
+        line_match = re.search(
+            r"^\s*-\s*Ngành:\s*(.+?)\s*$",
+            text,
+            re.MULTILINE,
+        )
+        body_name = ""
+        if line_match:
+            body_name = re.sub(r"\*\*", "", line_match.group(1)).strip()
+            body_name = body_name.split(" (", 1)[0].strip()
+
     program = {
-        "name": metadata.get("nganh_hoc", ""),
+        "name": metadata.get("nganh_hoc", "").strip() or body_name,
         "code": filename_code or metadata.get("ma_nganh", ""),
         "level": metadata.get("trinh_do", ""),
         "unit": metadata.get("don_vi", ""),
@@ -134,6 +154,10 @@ def parse_markdown(filepath: Path) -> dict | None:
     training_m = re.search(r"Hình thức đào tạo:\s*(.+)", text)
     if training_m:
         program["training_forms"] = training_m.group(1).strip()
+
+    # Non-CTĐT Markdown (for example quychehocvu.md) has no program identity.
+    if not program["code"] or not program["name"]:
+        return None
 
     # ─── Patterns ───
 
