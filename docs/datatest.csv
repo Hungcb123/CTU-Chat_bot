@@ -1,0 +1,985 @@
+Original ID,Master Question,Category,Ground Truth,Answer,Source,has_ground_truth
+Q001,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Công nghệ thông tin gồm những nội dung gì?",academic_program,"Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin (PLO 1); Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội (PLO 2);","Chào bạn, dựa trên chương trình đào tạo ngành Công nghệ thông tin (mã ngành 7480201), chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm các nội dung sau:
+
+- **a. PLO 1:** Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin.
+- **b. PLO 2:** Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội.
+
+---
+📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q002,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Kỹ thuật Phần mềm gồm những nội dung gì?",academic_program,"Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân. (PLO1) Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm. (PLO2) Ứng dụng kiến thức về công nghệ số (bậc 4 theo Khung năng lực số) và ngoại ngữ (tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn. (PLO3)","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, tôi xin giải đáp thắc mắc của bạn về chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Kỹ thuật Phần mềm như sau:
+
+Chuẩn đầu ra (PLO) về kiến thức thuộc khối giáo dục đại cương bao gồm các nội dung sau:
+
+- **PLO1:** Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân.
+- **PLO2:** Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm.
+- **PLO3:** Ứng dụng kiến thức về công nghệ số (bậc 4 theo Khung năng lực số) và ngoại ngữ (tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn.
+
+---
+📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q003,"Học phần ""Kinh tế chính trị Mác - Lênin"" (ngành Công nghệ thông tin (chất lượng cao)) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Kinh tế chính trị Mác - Lênin"" yêu cầu học phần tiên quyết: ML014.","Học phần ""Kinh tế chính trị Mác - Lênin"" (mã số: ML016) trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) yêu cầu học phần tiên quyết là: **Triết học Mác - Lênin** (mã số: ML014).
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q004,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Công nghệ thông tin (chất lượng cao) gồm những nội dung gì?",academic_program,"Áp dụng sâu rộng kiến thức về tính toán và toán học để giải quyết các vấn đề phức tạp và đòi hỏi sự sáng tạo trong lĩnh vực công nghệ thông tin (PLO 1); Hiểu rõ và vận dụng các chuẩn mực và trách nhiệm nghề nghiệp ở tầm quốc tế, chính trị, đạo đức, pháp lý, văn hóa và xã hội, có ý thức trách nhiệm công dân toàn cầu (PLO 2);","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, mình xin giải đáp thắc mắc của bạn về chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Công nghệ thông tin (chất lượng cao) như sau:
+
+Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm các nội dung sau:
+
+*   **a. (PLO 1):** Áp dụng sâu rộng kiến thức về tính toán và toán học để giải quyết các vấn đề phức tạp và đòi hỏi sự sáng tạo trong lĩnh vực công nghệ thông tin.
+*   **b. (PLO 2):** Hiểu rõ và vận dụng các chuẩn mực và trách nhiệm nghề nghiệp ở tầm quốc tế, chính trị, đạo đức, pháp lý, văn hóa và xã hội, có ý thức trách nhiệm công dân toàn cầu.
+
+---
+📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q005,"Sau khi tốt nghiệp, sinh viên ngành Công nghệ thông tin (chất lượng cao) có thể đảm nhận những vị trí việc làm nào?",academic_program,"Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân. Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân. Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học. Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.","Sau khi tốt nghiệp chương trình đào tạo chất lượng cao ngành Công nghệ thông tin tại Trường Đại học Cần Thơ, sinh viên có thể đảm nhận các vị trí việc làm sau:
+
+* Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.
+* Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.
+* Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học.
+* Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q006,"Học phần ""Kiểm chứng mô hình"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Kiểm chứng mô hình có mã số CT287, số tín chỉ là 3 (Bắt buộc), số tiết là 30 LT, 30 TH.","Học phần ""Kiểm chứng mô hình"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có thông tin như sau:
+
+- Mã số: CT287
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q007,"Học phần ""Mạng máy tính"" (ngành Khoa học máy tính) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Mạng máy tính"" yêu cầu học phần tiên quyết: CT178.","Học phần ""Mạng máy tính"" (mã số: CT112) trong chương trình đào tạo ngành Khoa học máy tính yêu cầu học phần tiên quyết là: **Nguyên lý hệ điều hành** (mã số: CT178).
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức cơ sở ngành](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q008,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Hệ thống thông tin gồm những nội dung gì?",academic_program,"Vận dụng được các kiến thức cơ bản về khoa học chính trị, khoa học tự nhiên, khoa học xã hội và pháp luật trong quá trình hoạt động nghề nghiệp trong lĩnh vực HTTT (PLO1); Vận dụng được các kiến thức cơ bản về giáo dục thể chất, quốc phòng và an ninh để rèn luyện thể chất, ý thức kỷ luật và thực hiện nghĩa vụ công dân trong học tập và môi trường nghề nghiệp (PLO2).","Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Hệ thống thông tin bao gồm các nội dung sau:
+
+- **PLO1:** Vận dụng được các kiến thức cơ bản về khoa học chính trị, khoa học tự nhiên, khoa học xã hội và pháp luật trong quá trình hoạt động nghề nghiệp trong lĩnh vực HTTT.
+- **PLO2:** Vận dụng được các kiến thức cơ bản về giáo dục thể chất, quốc phòng và an ninh để rèn luyện thể chất, ý thức kỷ luật và thực hiện nghĩa vụ công dân trong học tập và môi trường nghề nghiệp.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/3. Chuẩn đầu ra của chương trình đào tạo/3.1 Kiến thức/]( /api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q009,Mã ngành của chương trình đào tạo Trí tuệ nhân tạo là gì?,academic_program,Mã ngành của ngành Trí tuệ nhân tạo là: 7480107.,"Mã ngành của chương trình đào tạo Trí tuệ nhân tạo là: **7480107**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True
+Q010,Mã ngành của chương trình đào tạo Kỹ thuật Phần mềm – Chương trình chất lượng cao là gì?,academic_program,Mã ngành của ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao là: 7480103C.,"Mã ngành của chương trình đào tạo Kỹ thuật Phần mềm – Chương trình chất lượng cao là: **7480103C**.
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q011,"Sau khi tốt nghiệp, sinh viên ngành Công nghệ thông tin có thể đảm nhận những vị trí việc làm nào?",academic_program,"Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân. Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân. Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học. Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.","Sau khi tốt nghiệp ngành Công nghệ thông tin tại Trường Đại học Cần Thơ, sinh viên có thể đảm nhận các vị trí việc làm sau:
+
+*   Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.
+*   Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.
+*   Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học.
+*   Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.
+
+---
+📌 **Nguồn tham khảo:** [4. Vị trí việc làm của người tốt nghiệp](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q012,"Học phần ""Phân tích và thiết kế thuật toán"" (ngành Kỹ thuật Phần mềm) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Phân tích và thiết kế thuật toán"" yêu cầu học phần tiên quyết: CT177.","Chào bạn, dựa trên thông tin chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao (mã ngành 7480103C), học phần **""Phân tích và thiết kế thuật toán""** (Mã số: CT109H) có yêu cầu học phần tiên quyết là:
+
+* **Cấu trúc dữ liệu** (Mã số: CT177H)
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q013,Ngành Công nghệ thông tin được đào tạo theo những hình thức nào?,academic_program,"Hình thức đào tạo của ngành Công nghệ thông tin là: Chính quy, Vừa làm vừa học, Đào tạo từ xa.","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, mình xin giải đáp thắc mắc của bạn về các hình thức đào tạo của ngành Công nghệ thông tin như sau:
+
+Hiện nay, ngành Công nghệ thông tin (mã ngành 7480201) tại Trường Đại học Cần Thơ được tổ chức đào tạo theo các hình thức sau:
+
+*   **Chính quy**
+*   **Vừa làm vừa học**
+*   **Đào tạo từ xa**
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q014,"Trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao, học phần có mã số XH028 tên là gì?",academic_program,"Học phần có mã số XH028 là ""Xã hội học đại cương"".","Học phần có mã số XH028 trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có tên là: **Xã hội học đại cương**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo/](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q015,"Trong chương trình đào tạo ngành Kỹ thuật Phần mềm, học phần có mã số XH032 tên là gì?",academic_program,"Học phần có mã số XH032 là ""Anh văn tăng cường 2 (*)"".","Học phần có mã số XH032 trong chương trình đào tạo ngành Kỹ thuật Phần mềm có tên là: **Anh văn tăng cường 2**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q016,"Học phần ""Phát triển ứng dụng trên Linux"" (ngành Công nghệ thông tin (chất lượng cao)) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Phát triển ứng dụng trên Linux"" yêu cầu học phần tiên quyết: CT108H, CT110H.","Học phần ""Phát triển ứng dụng trên Linux"" (mã số: CT211H) trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) yêu cầu các học phần tiên quyết sau:
+
+*   Lập trình hướng đối tượng (CT108H)
+*   Cơ sở dữ liệu (CT110H)
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q017,"Học phần ""Tiểu luận tốt nghiệp - CNTT"" (ngành Công nghệ thông tin) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Tiểu luận tốt nghiệp - CNTT"" yêu cầu học phần tiên quyết: ≥120TC.","Hiện tại dữ liệu được cung cấp chưa có thông tin về học phần ""Tiểu luận tốt nghiệp - CNTT"".
+
+Tuy nhiên, trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao), học phần tương ứng ở giai đoạn cuối khóa là **""Luận văn tốt nghiệp - CNTTCLC""** (Mã số: CT550H). Học phần này yêu cầu học phần tiên quyết là: **> 120 TC**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",66_7480201_CongNgheThongTin.md,True
+Q018,"Học phần ""Mạng máy tính"" (ngành Trí tuệ nhân tạo) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Mạng máy tính"" yêu cầu học phần tiên quyết: CT178.","Học phần ""Mạng máy tính"" (mã số: CT112) trong chương trình đào tạo ngành Trí tuệ nhân tạo yêu cầu học phần tiên quyết là: **Nguyên lý hệ điều hành** (mã số: CT178).
+
+---
+📌 **Nguồn tham khảo:** [Khung chương trình đào tạo](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True
+Q019,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" của ngành Mạng máy tính và truyền thông dữ liệu: 56 TC (Bắt buộc: 41 TC; Tự chọn: 15 TC).","Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có tổng cộng 56 tín chỉ (trong đó bao gồm 41 tín chỉ bắt buộc và 15 tín chỉ tự chọn).
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức Giáo dục đại cương](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q020,"Học phần ""Đổi mới sáng tạo và khởi nghiệp"" trong chương trình đào tạo ngành Hệ thống thông tin có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Đổi mới sáng tạo và khởi nghiệp có mã số KN002E, số tín chỉ là 2, số tiết là 20 LT, 20 TH.","Học phần ""Đổi mới sáng tạo và khởi nghiệp"" trong chương trình đào tạo ngành Hệ thống thông tin có thông tin như sau:
+
+- Mã số: KN002E
+- Số tín chỉ: 2 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q021,"Học phần ""Anh văn căn bản 3 (*)"" trong chương trình đào tạo ngành Công nghệ thông tin có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Anh văn căn bản 3 (*) có mã số XH025, số tín chỉ là 3, số tiết là 45 LT.","Học phần ""Anh văn căn bản 3 (*)"" trong chương trình đào tạo ngành Công nghệ thông tin có thông tin chi tiết như sau:
+
+- **Mã số:** XH025
+- **Số tín chỉ:** 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q022,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" của ngành Công nghệ thông tin (chất lượng cao): 44 TC (Bắt buộc: 39 TC; Tự chọn: 5 TC).","Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có tổng cộng 44 tín chỉ (trong đó bao gồm 39 tín chỉ bắt buộc và 5 tín chỉ tự chọn).
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q023,"Thời gian học tập tối đa để hoàn thành chương trình đào tạo thiết kế 4,5 năm là bao lâu?",academic_rules,"Sinh viên theo học chương trình đào tạo có thời gian thiết kế 4,5 năm được học tập tối đa 9 năm để hoàn thành chương trình.","Thời gian học tập tối đa để hoàn thành chương trình đào tạo có thời gian thiết kế 4,5 năm là 9 năm.",quychehocvu.md,True
+Q024,Ngành Khoa học máy tính được đào tạo theo những hình thức nào?,academic_program,"Hình thức đào tạo của ngành Khoa học máy tính là: Chính quy, Vừa làm vừa học, Đào tạo từ xa.","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, mình xin giải đáp thắc mắc của bạn về hình thức đào tạo ngành Khoa học máy tính như sau:
+
+Ngành Khoa học máy tính (mã ngành 7480101) tại Trường Đại học Cần Thơ được đào tạo theo các hình thức sau:
+*   Chính quy
+*   Vừa làm vừa học
+*   Đào tạo từ xa
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q025,"Học phần ""Nguyên lý xây dựng phần mềm"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Nguyên lý xây dựng phần mềm có mã số CT240E, số tín chỉ là 3 (Bắt buộc), số tiết là 45 LT, 0 TH.","Học phần ""Nguyên lý xây dựng phần mềm"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có thông tin như sau:
+
+- Mã số: CT240E
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q026,"Học phần ""Lý Thuyết đồ thị"" (ngành Hệ thống thông tin) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Lý Thuyết đồ thị"" yêu cầu học phần tiên quyết: CT177.","Hiện tại dữ liệu được cung cấp chưa có thông tin về học phần ""Lý Thuyết đồ thị"" trong chương trình đào tạo ngành Hệ thống thông tin.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/69_7480104C_HeThongThongTin_CTCLC.pdf)",68_7480104_HeThongThongTin.md,True
+Q027,"Sau khi tốt nghiệp, sinh viên ngành Hệ thống thông tin có thể đảm nhận những vị trí việc làm nào?",academic_program,"Lập trình viên trong các công ty, tập đoàn sản xuất, gia công phần mềm. Chuyên viên phân tích dữ liệu, tư vấn, thiết kế giải pháp hệ thống, tổ chức lập dự án, hoạch định chính sách phát triển Hệ thống thông tin cho các tổ chức và doanh nghiệp. Chuyên viên phân tích thiết kế hệ thống trong các công ty, tập đoàn sản xuất phần mềm. Cán bộ quản lý dự án phần mềm, giám đốc thông tin (CIO). Giảng viên/giáo viên CNTT tại các trường Đại học, Cao đẳng, THPT, THCS, tiểu học.","Sau khi tốt nghiệp ngành Hệ thống thông tin tại Trường Đại học Cần Thơ, sinh viên có thể đảm nhận các vị trí việc làm sau:
+
+* Lập trình viên trong các công ty, tập đoàn sản xuất, gia công phần mềm.
+* Chuyên viên phân tích dữ liệu, tư vấn, thiết kế giải pháp hệ thống, tổ chức lập dự án, hoạch định chính sách phát triển Hệ thống thông tin cho các tổ chức và doanh nghiệp.
+* Chuyên viên phân tích thiết kế hệ thống trong các công ty, tập đoàn sản xuất phần mềm.
+* Cán bộ quản lý dự án phần mềm, giám đốc thông tin (CIO).
+* Giảng viên/giáo viên CNTT tại các trường Đại học, Cao đẳng, THPT, THCS, tiểu học.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q028,"Học phần ""Lập trình web"" trong chương trình đào tạo ngành Trí tuệ nhân tạo có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Lập trình web có mã số CT428, số tín chỉ là 3 (Bắt buộc), số tiết là 30 LT, 30 TH.","Học phần ""Lập trình web"" trong chương trình đào tạo ngành Trí tuệ nhân tạo có thông tin như sau:
+
+- Mã số: CT428
+- Số tín chỉ: 3
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức chuyên ngành](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True
+Q029,"Trong chương trình đào tạo ngành Công nghệ thông tin, học phần có mã số FL001 tên là gì?",academic_program,"Học phần có mã số FL001 là ""Pháp văn căn bản 1 (*)"".","Trong chương trình đào tạo ngành Công nghệ thông tin, học phần có mã số FL001 có tên là: **Pháp văn căn bản 1**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo/](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q030,"Học phần ""Phân tích yêu cầu phần mềm"" (ngành Kỹ thuật Phần mềm) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Phân tích yêu cầu phần mềm"" yêu cầu học phần tiên quyết: CT113, CT182.","Hiện tại dữ liệu được cung cấp chưa có thông tin về học phần ""Phân tích yêu cầu phần mềm"". Trong chương trình đào tạo ngành Kỹ thuật Phần mềm (mã ngành 7480103C), các học phần liên quan đến phân tích hệ thống/phần mềm được liệt kê trong ngữ cảnh bao gồm:
+
+*   **Phân tích và thiết kế hệ thống** (Mã số: CT112H): Học phần tiên quyết là CT110H.
+*   **Phân tích và Thiết kế phần mềm** (Mã số: CT582H): Học phần tiên quyết là CT114H.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q031,Mã ngành của chương trình đào tạo Mạng máy tính và truyền thông dữ liệu là gì?,academic_program,Mã ngành của ngành Mạng máy tính và truyền thông dữ liệu là: 7480102.,"Mã ngành của chương trình đào tạo Mạng máy tính và truyền thông dữ liệu là: **7480102**.
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q032,Học phần được đánh giá dựa trên những thành phần điểm nào?,academic_rules,"Việc đánh giá học phần thường gồm các thành phần điểm như điểm chuyên cần/quá trình, điểm giữa kỳ và điểm cuối kỳ, với trọng số được quy định trong đề cương chi tiết học phần, theo Điều 21 của Quy định công tác học vụ.","Đối với học phần lý thuyết hoặc học phần lý thuyết kết hợp thực hành, điểm học phần được đánh giá qua tối thiểu hai điểm thành phần, bao gồm: điểm bài tập, điểm kiểm tra giữa kỳ, điểm thực hành, điểm đánh giá nhận thức, điểm tham gia thảo luận, điểm chuyên cần, điểm đồ án,... và điểm thi kết thúc học phần.
+
+Đối với học phần thực hành, điểm học phần được tính bằng điểm trung bình của các bài thực hành.
+
+Ngoài ra, đối với các học phần có khối lượng nhỏ hơn 02 tín chỉ, có thể chỉ có điểm của một loại hình đánh giá. Phương pháp đánh giá cụ thể cho từng học phần sẽ được công bố trong đề cương chi tiết học phần.",quychehocvu.md,True
+Q033,"Trong chương trình đào tạo ngành Trí tuệ nhân tạo, học phần có mã số CT199 tên là gì?",academic_program,"Học phần có mã số CT199 là ""Quy hoạch tuyến tính"".","Trong chương trình đào tạo ngành Trí tuệ nhân tạo, học phần có mã số CT199 có tên là: **Quy hoạch tuyến tính**.
+
+---
+📌 **Nguồn tham khảo:** [Khung chương trình đào tạo](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True
+Q034,Hạng tốt nghiệp của sinh viên được xếp dựa trên tiêu chí nào?,academic_rules,"Hạng tốt nghiệp (Xuất sắc, Giỏi, Khá, Trung bình...) được xếp chủ yếu dựa trên điểm trung bình chung tích lũy toàn khóa, có thể bị điều chỉnh giảm một mức nếu sinh viên bị kỷ luật hoặc thi lại/học lại quá số lần quy định, theo Điều 34 của Quy định công tác học vụ.","Hạng tốt nghiệp của sinh viên được xác định căn cứ vào điểm trung bình chung tích lũy (ĐTBCTL) theo các mức cụ thể như sau:
+
+*   **Loại xuất sắc:** từ 3,60 đến 4,00.
+*   **Loại giỏi:** từ 3,20 đến 3,59.
+*   **Loại khá:** từ 2,50 đến 3,19.
+*   **Loại trung bình:** từ 2,00 đến 2,49.
+
+Ngoài ra, hạng tốt nghiệp loại xuất sắc và loại giỏi sẽ bị giảm một mức nếu sinh viên thuộc một trong các trường hợp sau:
+1. Có khối lượng các học phần bị điểm F vượt quá 5% so với tổng số tín chỉ quy định của chương trình đào tạo (không tính khối lượng học phần học cải thiện điểm bị điểm F).
+2. Đã bị kỷ luật từ mức cảnh cáo cấp Trường trở lên trong thời gian học.",quychehocvu.md,True
+Q035,Mục tiêu đào tạo chung của ngành Công nghệ thông tin là gì?,academic_program,"Mục tiêu của ngành Công nghệ thông tin (CNTT) là đào tạo kỹ sư CNTT có sức khỏe, phẩm chất đạo đức, kiến thức vững chắc và kỹ năng thuần thục để có khả năng vận dụng các giải pháp và sản phẩm CNTT, đảm nhận vị trí nghề nghiệp trong lĩnh vực CNTT, thăng tiến đến vị trí lãnh đạo, tham gia nghiên cứu hoặc tiếp tục học cao hơn trong lĩnh vực này.","Mục tiêu đào tạo chung của ngành Công nghệ thông tin (CNTT) là đào tạo kỹ sư CNTT có sức khỏe, phẩm chất đạo đức, kiến thức vững chắc và kỹ năng thuần thục để có khả năng vận dụng các giải pháp và sản phẩm CNTT, đảm nhận vị trí nghề nghiệp trong lĩnh vực CNTT, thăng tiến đến vị trí lãnh đạo, tham gia nghiên cứu hoặc tiếp tục học cao hơn trong lĩnh vực này.
+
+---
+📌 **Nguồn tham khảo:** [2. Mục tiêu đào tạo](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q036,"Học phần ""Nghiệp vụ thông minh"" (ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Nghiệp vụ thông minh"" yêu cầu học phần tiên quyết: CT112H.","Chào bạn, dựa trên thông tin chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao (mã ngành 7480103C), học phần ""Nghiệp vụ thông minh"" (mã số: CT255H) có yêu cầu học phần tiên quyết là:
+
+* **Phân tích và thiết kế hệ thống** (mã số: CT112H)
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q037,"Trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao), học phần có mã số FL100H tên là gì?",academic_program,"Học phần có mã số FL100H là ""Thi đánh giá năng lực tiếng Anh (*)"".","Học phần có mã số FL100H trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có tên là: **Thi đánh giá năng lực tiếng Anh**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q038,Mã ngành của chương trình đào tạo Hệ thống thông tin là gì?,academic_program,Mã ngành của ngành Hệ thống thông tin là: 7480104.,"Mã ngành của chương trình đào tạo Hệ thống thông tin tại Trường Đại học Cần Thơ như sau:
+
+*   **Trình độ Đại học:** 7480104
+*   **Trình độ Thạc sĩ:** 8480104
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/68_7480104_HeThongThongTin.pdf) · [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ THẠC SĨ](/api/pdfs/S8480104.pdf)",68_7480104_HeThongThongTin.md,True
+Q039,"Học phần ""Nghiệp vụ thông minh"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Nghiệp vụ thông minh có mã số CT255H, số tín chỉ là 3 (Tự chọn), số tiết là 30 LT, 30 TH.","Học phần ""Nghiệp vụ thông minh"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có thông tin như sau:
+
+- Mã số: CT255H
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q040,"Học phần ""Phân tích và thiết kế hệ thống thông tin"" (ngành Hệ thống thông tin) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Phân tích và thiết kế hệ thống thông tin"" yêu cầu học phần tiên quyết: CT180.","Học phần ""Phân tích và thiết kế hệ thống"" (Mã số: CT112H) trong chương trình đào tạo ngành Hệ thống thông tin yêu cầu học phần tiên quyết là: **Cơ sở dữ liệu** (Mã số: CT110H).
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo/](/api/pdfs/69_7480104C_HeThongThongTin_CTCLC.pdf)",68_7480104_HeThongThongTin.md,True
+Q041,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Mạng máy tính và truyền thông dữ liệu gồm những nội dung gì?",academic_program,"Áp dụng các nguyên tắc chính trị, xã hội, pháp luật, quốc phòng - an ninh, rèn luyện thể chất, đạo đức và trách nhiệm nghề nghiệp theo các quy định hiện hành (PLO1) Vận dụng kiến thức nền tảng về toán học, năng lực số vào giải quyết bài toán kỹ thuật mạng (PLO2) Sử dụng tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ của Việt Nam (B1 theo khung tham chiếu Châu Âu) (PLO3)","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, tôi xin giải đáp thắc mắc của bạn về các chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Mạng máy tính và truyền thông dữ liệu như sau:
+
+Các chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm:
+
+- **PLO1:** Áp dụng các nguyên tắc chính trị, xã hội, pháp luật, quốc phòng - an ninh, rèn luyện thể chất, đạo đức và trách nhiệm nghề nghiệp theo các quy định hiện hành.
+- **PLO2:** Vận dụng kiến thức nền tảng về toán học, năng lực số vào giải quyết bài toán kỹ thuật mạng.
+- **PLO3:** Sử dụng tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ của Việt Nam (B1 theo khung tham chiếu Châu Âu).
+
+---
+📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q042,"Trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu, học phần có mã số XH024 tên là gì?",academic_program,"Học phần có mã số XH024 là ""Anh văn căn bản 2 (*)"".","Học phần có mã số XH024 trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có tên là: **Anh văn căn bản 2**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf) · [Khung chương trình đào tạo](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q043,"Khối kiến thức ""Khối kiến thức Tiếng Anh tăng cường"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức Tiếng Anh tăng cường"" của ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao: 17 TC (Bắt buộc: 17 TC; Tự chọn: 0 TC).","Khối kiến thức ""Khối kiến thức Tiếng Anh tăng cường"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có tổng cộng 17 tín chỉ (tất cả đều là tín chỉ bắt buộc).
+
+Chi tiết các học phần trong khối này bao gồm:
+* **Nghe nói và ngữ âm thực hành (*)** (Mã số: FL010H): 4 tín chỉ
+* **Đọc hiểu (*)** (Mã số: FL011H): 3 tín chỉ
+* **Viết (*)** (Mã số: FL012H): 3 tín chỉ
+* **Ngữ pháp ứng dụng (*)** (Mã số: FL013H): 2 tín chỉ
+* **Kỹ năng thuyết trình (*)** (Mã số: FL014H): 3 tín chỉ
+* **Thi đánh giá năng lực tiếng Anh (*)** (Mã số: FL100H): 2 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf) · [Khung chương trình đào tạo](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q044,"Học phần ""Đồ họa máy tính"" trong chương trình đào tạo ngành Khoa học máy tính có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Đồ họa máy tính có mã số CT203E, số tín chỉ là 3 (Tự chọn), số tiết là 30 LT, 30 TH.","Học phần ""Đồ họa máy tính"" trong chương trình đào tạo ngành Khoa học máy tính có thông tin như sau:
+
+- Mã số: CT203E
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q045,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức cơ sở ngành"" của ngành Khoa học máy tính gồm những nội dung gì?",academic_program,Đề xuất phương pháp giải quyết những bài toán được khái quát hóa từ những vấn đề thực tế dựa trên kiến thức nền tảng về công nghệ thông tin và toán ứng dụng trong khoa học máy tính (PLO3) Vận dụng các kiến thức cơ bản về máy tính và các kỹ thuật lập trình để xây dựng ứng dụng công nghệ thông tin. (PLO4),"Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, mình xin giải đáp thắc mắc của bạn về chuẩn đầu ra (PLO) thuộc khối kiến thức cơ sở ngành của ngành Khoa học máy tính như sau:
+
+Chuẩn đầu ra (PLO) thuộc khối kiến thức cơ sở ngành bao gồm các nội dung cụ thể sau:
+
+*   **PLO3:** Đề xuất phương pháp giải quyết những bài toán được khái quát hóa từ những vấn đề thực tế dựa trên kiến thức nền tảng về công nghệ thông tin và toán ứng dụng trong khoa học máy tính.
+*   **PLO4:** Vận dụng các kiến thức cơ bản về máy tính và các kỹ thuật lập trình để xây dựng ứng dụng công nghệ thông tin.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/3. Chuẩn đầu ra (PLOs)/3.1 Kiến thức/3.1.2 Khối kiến thức cơ sở ngành](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q046,"Học phần ""Nền tảng An ninh mạng"" (ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Nền tảng An ninh mạng"" yêu cầu học phần tiên quyết: CT106H.","Chào bạn, dựa trên thông tin về chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao (mã ngành 7480103C), học phần **""Nền tảng An ninh mạng""** (mã số: CT228H) có yêu cầu học phần tiên quyết là:
+
+* **Mạng máy tính** (mã số: CT106H)
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q047,"Trong chương trình đào tạo ngành Công nghệ thông tin, học phần có mã số CT202 tên là gì?",academic_program,"Học phần có mã số CT202 là ""Nguyên lý máy học"".","Trong chương trình đào tạo ngành Công nghệ thông tin, học phần có mã số **CT202** có tên là: **Nguyên lý máy học**.
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức chuyên ngành](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q048,Mục tiêu đào tạo chung của ngành Khoa học máy tính là gì?,academic_program,"Chương trình Khoa học máy tính trình độ đại học đào tạo những kỹ sư có kiến thức tổng quát về khoa học máy tính, kỹ năng lập trình đa dạng và vận dụng chúng vào các vấn đề thực tiễn đáp ứng yêu cầu phục vụ và phát triển kinh tế - xã hội; có kiến thức về khoa học chính trị, xã hội, pháp luật, giáo dục thể chất, kiến thức về quốc phòng và an ninh và năng lực ngoại ngữ. Kỹ sư Khoa học máy tính có kiến thức cốt lõi ngành Khoa học máy tính và kiến thức chuyên sâu để trở thành những chuyên gia về khoa học dữ liệu: phân tích số liệu và khai thác dữ liệu; chuyên gia xử lý ảnh và thị giác máy tính; chuyên gia tư vấn thiết kế các giải pháp liên quan đến công nghệ thông tin nói chung. Ngoài ra, sinh viên sau khi ra trường có đủ kiến thức và kỹ năng cần thiết để thích ứng với sự thay đổi của công nghệ mới, có năng lực làm việc nhóm, làm việc hợp tác, có năng lực tự học, tự nghiên cứu, phản biện các vấn đề chuyên sâu thuộc lĩnh vực công nghệ thông tin và ứng dụng liên quan cũng như có thể tiếp tục học tập ở bậc đào tạo sau đại học.","Mục tiêu đào tạo chung của ngành Khoa học máy tính trình độ đại học tại Trường Đại học Cần Thơ như sau:
+
+Chương trình đào tạo những kỹ sư có kiến thức tổng quát về khoa học máy tính, kỹ năng lập trình đa dạng và vận dụng chúng vào các vấn đề thực tiễn đáp ứng yêu cầu phục vụ và phát triển kinh tế - xã hội; có kiến thức về khoa học chính trị, xã hội, pháp luật, giáo dục thể chất, kiến thức về quốc phòng và an ninh và năng lực ngoại ngữ.
+
+Kỹ sư Khoa học máy tính có kiến thức cốt lõi ngành Khoa học máy tính và kiến thức chuyên sâu để trở thành những chuyên gia về khoa học dữ liệu: phân tích số liệu và khai thác dữ liệu; chuyên gia xử lý ảnh và thị giác máy tính; chuyên gia tư vấn thiết kế các giải pháp liên quan đến công nghệ thông tin nói chung. Ngoài ra, sinh viên sau khi ra trường có đủ kiến thức và kỹ năng cần thiết để thích ứng với sự thay đổi của công nghệ mới, có năng lực làm việc nhóm, làm việc hợp tác, có năng lực tự học, tự nghiên cứu, phản biện các vấn đề chuyên sâu thuộc lĩnh vực công nghệ thông tin và ứng dụng liên quan cũng như có thể tiếp tục học tập ở bậc đào tạo sau đại học.
+
+---
+📌 **Nguồn tham khảo:** [2. Mục tiêu đào tạo]( /api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q049,"Học phần ""Nền tảng công nghệ số"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Nền tảng công nghệ số có mã số CT005, số tín chỉ là 4 (Bắt buộc), số tiết là 30 LT, 60 TH.","Học phần ""Nền tảng công nghệ số"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có thông tin như sau:
+
+- Mã số: CT005
+- Số tín chỉ: 4 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [Khung chương trình đào tạo](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q050,Xếp loại học lực của sinh viên được chia thành những mức nào?,academic_rules,"Xếp loại học lực của sinh viên được chia theo các mức dựa trên điểm trung bình chung, ví dụ: Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém, theo quy định tại Điều 26 của Quy định công tác học vụ.","Xếp loại học lực của sinh viên được chia thành các mức sau:
+
+*   **Loại xuất sắc:** Điểm trung bình chung học kỳ (ĐTBCHK) hoặc điểm trung bình chung năm học (ĐTBCNH) đạt từ 3,60 đến 4,00.
+*   **Loại giỏi:** ĐTBCHK/ĐTBCNH đạt từ 3,20 đến 3,59.
+*   **Loại khá:** ĐTBCHK/ĐTBCNH đạt từ 2,50 đến 3,19.
+*   **Loại trung bình:** ĐTBCHK/ĐTBCNH đạt từ 2,00 đến 2,49.
+*   **Loại yếu:** ĐTBCHK/ĐTBCNH đạt từ 1,00 đến 1,99.
+*   **Loại kém:** ĐTBCHK/ĐTBCNH đạt dưới 1,00.",quychehocvu.md,True
+Q051,"Học phần ""Lập trình hướng đối tượng"" (ngành Mạng máy tính và truyền thông dữ liệu) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Lập trình hướng đối tượng"" yêu cầu học phần tiên quyết: CT101.","Học phần ""Lập trình hướng đối tượng"" (mã số: CT108H) trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu chất lượng cao yêu cầu học phần tiên quyết là: **Lập trình căn bản A** (mã số: CT054H).
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức cơ sở ngành](/api/pdfs/109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q052,Mã ngành của chương trình đào tạo Công nghệ thông tin là gì?,academic_program,Mã ngành của ngành Công nghệ thông tin là: 7480201.,"Mã ngành của chương trình đào tạo Công nghệ thông tin tại Trường Đại học Cần Thơ như sau:
+
+*   **Trình độ Đại học:** 7480201
+*   **Trình độ Thạc sĩ:** 8480201
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/66_7480201_CongNgheThongTin.pdf) · [Mã ngành](/api/pdfs/S8480201.pdf)",66_7480201_CongNgheThongTin.md,True
+Q053,"Học phần ""Quản trị cơ sở dữ liệu"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Quản trị cơ sở dữ liệu có mã số CT205, số tín chỉ là 3 (Tự chọn), số tiết là 30 LT, 30 TH.","Học phần ""Quản trị cơ sở dữ liệu"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có thông tin như sau:
+
+- Mã số: CT205
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [Khung chương trình đào tạo](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q054,"Học phần ""Quản trị hệ thống"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Quản trị hệ thống có mã số CT105H, số tín chỉ là 3 (Bắt buộc), số tiết là 30 LT, 30 TH.","Học phần ""Quản trị hệ thống"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có thông tin chi tiết như sau:
+
+- Mã số: CT105H
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q055,Ngành Công nghệ thông tin (chất lượng cao) được đào tạo theo những hình thức nào?,academic_program,"Hình thức đào tạo của ngành Công nghệ thông tin (chất lượng cao) là: Chính quy, Vừa làm vừa học, Đào tạo từ xa.","Chào bạn, cảm ơn bạn đã quan tâm đến chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) tại Trường Đại học Cần Thơ.
+
+Theo thông tin chương trình đào tạo, ngành Công nghệ thông tin (chất lượng cao) được đào tạo theo các hình thức sau:
+
+*   Chính quy
+*   Vừa làm vừa học
+*   Đào tạo từ xa
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q056,"Trong chương trình đào tạo ngành Hệ thống thông tin, học phần có mã số XH031 tên là gì?",academic_program,"Học phần có mã số XH031 là ""Anh văn tăng cường 1 (*)"".","Trong chương trình đào tạo ngành Hệ thống thông tin, học phần có mã số XH031 có tên là: **Anh văn tăng cường 1**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q057,"Học phần ""Nền tảng An ninh mạng"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Nền tảng An ninh mạng có mã số CT228H, số tín chỉ là 3 (Tự chọn), số tiết là 30 LT, 30 TH.","Học phần ""Nền tảng An ninh mạng"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có thông tin như sau:
+
+- Mã số: CT228H
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q058,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức cơ sở ngành"" của ngành Trí tuệ nhân tạo gồm những nội dung gì?",academic_program,"Đề xuất phương pháp giải quyết những bài toán được khái quát hóa từ những vấn đề thực tế dựa trên kiến thức nền tảng về khoa học máy tính, trí tuệ nhân tạo và toán ứng dụng trong khoa học máy tính (PLO3) Vận dụng các kiến thức cơ bản về khoa học máy tính và các kỹ thuật lập trình để xây dựng ứng dụng công nghệ thông tin (PLO4)","Chào bạn, dựa trên chương trình đào tạo ngành Trí tuệ nhân tạo, chuẩn đầu ra (PLO) thuộc khối kiến thức cơ sở ngành bao gồm các nội dung sau:
+
+*   **PLO3:** Đề xuất phương pháp giải quyết những bài toán được khái quát hóa từ những vấn đề thực tế dựa trên kiến thức nền tảng về khoa học máy tính, trí tuệ nhân tạo và toán ứng dụng trong khoa học máy tính.
+*   **PLO4:** Vận dụng các kiến thức cơ bản về khoa học máy tính và các kỹ thuật lập trình để xây dựng ứng dụng công nghệ thông tin.
+
+---
+📌 **Nguồn tham khảo:** [3.1.2 Khối kiến thức cơ sở ngành](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True
+Q059,"Học phần ""Tiểu luận tốt nghiệp - CNTT"" trong chương trình đào tạo ngành Công nghệ thông tin có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Tiểu luận tốt nghiệp - CNTT có mã số CT501E, số tín chỉ là 6, số tiết là 180 TH.","Học phần ""Tiểu luận tốt nghiệp - CNTT"" trong chương trình đào tạo đại học ngành Công nghệ thông tin có thông tin chi tiết như sau:
+
+*   **Mã số:** CT501E
+*   **Số tín chỉ:** 6 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo/](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q060,"Khối kiến thức ""Khối kiến thức giáo dục đại cương"" trong chương trình đào tạo ngành Hệ thống thông tin có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức giáo dục đại cương"" của ngành Hệ thống thông tin: 56 TC (Bắt buộc 41 TC; Tự chọn: 15 TC).","Khối kiến thức ""Khối kiến thức giáo dục đại cương"" trong chương trình đào tạo ngành Hệ thống thông tin có tổng cộng 56 tín chỉ (trong đó bao gồm 41 tín chỉ bắt buộc và 15 tín chỉ tự chọn).
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q061,"Học phần ""Phân tích và thiết kế thuật toán"" (ngành Công nghệ thông tin) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Phân tích và thiết kế thuật toán"" yêu cầu học phần tiên quyết: CT177.","Học phần ""Phân tích và thiết kế thuật toán"" (mã số: CT109H) thuộc khối kiến thức cơ sở ngành của chương trình đào tạo Công nghệ thông tin chất lượng cao yêu cầu học phần tiên quyết là: **Cấu trúc dữ liệu** (mã số: CT102H).
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",66_7480201_CongNgheThongTin.md,True
+Q062,Ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao được đào tạo theo những hình thức nào?,academic_program,"Hình thức đào tạo của ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao là: Chính quy, Vừa làm vừa học, Đào tạo từ xa.","Chào bạn, cảm ơn bạn đã quan tâm đến chương trình đào tạo tại Trường Đại học Cần Thơ.
+
+Ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao (mã ngành: 7480103C) được đào tạo theo các hình thức sau:
+
+*   Chính quy
+*   Vừa làm vừa học
+*   Đào tạo từ xa
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q063,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Công nghệ thông tin có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" của ngành Công nghệ thông tin: 56 TC (Bắt buộc 41 TC; Tự chọn: 15 TC).","Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Công nghệ thông tin có tổng cộng 56 tín chỉ (trong đó bao gồm 41 tín chỉ bắt buộc và 15 tín chỉ tự chọn).
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức Giáo dục đại cương](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q064,"Học phần ""Pháp văn tăng cường 3 (*)"" (ngành Mạng máy tính và truyền thông dữ liệu) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Pháp văn tăng cường 3 (*)"" yêu cầu học phần tiên quyết: FL008.","Hiện tại dữ liệu được cung cấp chưa có thông tin về học phần ""Pháp văn tăng cường 3 (*)"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu (Chương trình chất lượng cao).
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q065,"Trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao), học phần có mã số CT206H tên là gì?",academic_program,"Học phần có mã số CT206H là ""Nguyên lý hệ quản trị cơ sở dữ liệu"".","Học phần có mã số **CT206H** trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có tên là: **Nguyên lý hệ quản trị cơ sở dữ liệu**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q066,Mục tiêu đào tạo chung của ngành Công nghệ thông tin (chất lượng cao) là gì?,academic_program,"Mục tiêu của ngành Công nghệ thông tin (CNTT) chất lượng cao là đào tạo kỹ sư CNTT có đầy đủ sức khỏe, phẩm chất đạo đức, kiến thức nền tảng chuyên sâu và kỹ năng kỹ thuật vượt trội. Chương trình nhằm trang bị cho người học khả năng vận dụng sáng tạo các giải pháp và sản phẩm CNTT tiên tiến, đảm nhận các vị trí chuyên gia, lãnh đạo, nghiên cứu và đổi mới sáng tạo trong bối cảnh hội nhập quốc tế. Sinh viên tốt nghiệp sẽ là nguồn nhân lực có tính cạnh tranh cao trên thị trường lao động toàn cầu, có khả năng thích nghi, dẫn dắt và phát triển liên tục thông qua học tập suốt đời để tiếp tục học lên các trình độ cao hơn trong lĩnh vực này.","Mục tiêu đào tạo chung của ngành Công nghệ thông tin (chất lượng cao) là đào tạo kỹ sư CNTT có đầy đủ sức khỏe, phẩm chất đạo đức, kiến thức nền tảng chuyên sâu và kỹ năng kỹ thuật vượt trội. Chương trình nhằm trang bị cho người học khả năng vận dụng sáng tạo các giải pháp và sản phẩm CNTT tiên tiến, đảm nhận các vị trí chuyên gia, lãnh đạo, nghiên cứu và đổi mới sáng tạo trong bối cảnh hội nhập quốc tế. Sinh viên tốt nghiệp sẽ là nguồn nhân lực có tính cạnh tranh cao trên thị trường lao động toàn cầu, có khả năng thích nghi, dẫn dắt và phát triển liên tục thông qua học tập suốt đời để tiếp tục học lên các trình độ cao hơn trong lĩnh vực này.
+
+---
+📌 **Nguồn tham khảo:** [2.1 Mục tiêu đào tạo chung](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q067,"Học phần ""Hệ thống thông tin địa lý"" trong chương trình đào tạo ngành Hệ thống thông tin có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Hệ thống thông tin địa lý có mã số CT080ET, số tín chỉ là 3, số tiết là 30 LT, 30 TH.","Học phần ""Hệ thống thông tin địa lý"" trong chương trình đào tạo ngành Hệ thống thông tin có thông tin chi tiết như sau:
+
+- Mã số học phần: CT080ET
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q068,Ngành Hệ thống thông tin được đào tạo theo những hình thức nào?,academic_program,"Hình thức đào tạo của ngành Hệ thống thông tin là: Chính quy, Vừa làm vừa học, Đào tạo từ xa.","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, tôi xin giải đáp thắc mắc của bạn về hình thức đào tạo ngành Hệ thống thông tin như sau:
+
+Đối với trình độ đại học, ngành Hệ thống thông tin (mã ngành 7480104) được đào tạo theo các hình thức sau:
+- Chính quy
+- Vừa làm vừa học
+- Đào tạo từ xa
+
+Đối với trình độ thạc sĩ, ngành Hệ thống thông tin (mã ngành 8480104) được đào tạo theo hình thức:
+- Chính quy
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/68_7480104_HeThongThongTin.pdf) · [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ THẠC SĨ](/api/pdfs/S8480104.pdf)",68_7480104_HeThongThongTin.md,True
+Q069,"Học phần ""Blockchain"" trong chương trình đào tạo ngành Công nghệ thông tin có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Blockchain có mã số CT279, số tín chỉ là 3, số tiết là 30 LT, 30 TH.","Học phần ""Blockchain"" trong chương trình đào tạo ngành Công nghệ thông tin có thông tin như sau:
+
+*   **Mã số:** CT279
+*   **Số tín chỉ:** 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q070,Mục tiêu đào tạo chung của ngành Hệ thống thông tin là gì?,academic_program,"Chương trình Hệ thống thông tin (HTTT) trình độ đại học đào tạo những kỹ sư trình độ cao, có kiến thức cơ bản về năng lực số, khoa học chính trị, xã hội, pháp luật, giáo dục thể chất, quốc phòng và an ninh; có kiến thức chuyên môn toàn diện để giải quyết những vấn đề về HTTT thông minh và HTTT quản lý; có khả năng sử dụng ngoại ngữ trong công việc; có năng lực tự chủ và trách nhiệm, có khả năng học tập suốt đời và tác phong làm việc chuyên nghiệp để thích ứng với môi trường hội nhập quốc tế.","Mục tiêu đào tạo chung của chương trình Hệ thống thông tin (HTTT) trình độ đại học là đào tạo những kỹ sư trình độ cao, có các đặc điểm và năng lực sau:
+
+*   Có kiến thức cơ bản về năng lực số, khoa học chính trị, xã hội, pháp luật, giáo dục thể chất, quốc phòng và an ninh.
+*   Có kiến thức chuyên môn toàn diện để giải quyết những vấn đề về HTTT thông minh và HTTT quản lý.
+*   Có khả năng sử dụng ngoại ngữ trong công việc.
+*   Có năng lực tự chủ và trách nhiệm, có khả năng học tập suốt đời và tác phong làm việc chuyên nghiệp để thích ứng với môi trường hội nhập quốc tế.
+
+---
+📌 **Nguồn tham khảo:** [2.1 Mục tiêu đào tạo chung](/api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q071,Mã ngành của chương trình đào tạo Công nghệ thông tin (chất lượng cao) là gì?,academic_program,Mã ngành của ngành Công nghệ thông tin (chất lượng cao) là: 7480201.,"Mã ngành của chương trình đào tạo Công nghệ thông tin (chất lượng cao) tại Trường Đại học Cần Thơ là: **7480201**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q072,"Học phần ""Kỹ năng thuyết trình (*)"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Kỹ năng thuyết trình (*) có mã số FL014H, số tín chỉ là 3 (Bắt buộc), số tiết là 45 LT, 0 TH.","Học phần ""Kỹ năng thuyết trình (*)"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có thông tin như sau:
+
+- Mã số: FL014H
+- Số tín chỉ: 3 (Bắt buộc)
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức Tiếng Anh tăng cường](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q073,Mã ngành của chương trình đào tạo Khoa học máy tính là gì?,academic_program,Mã ngành của ngành Khoa học máy tính là: 7480101.,"Mã ngành của chương trình đào tạo Khoa học máy tính tại Trường Đại học Cần Thơ như sau:
+
+*   **Trình độ Đại học:** 7480101
+*   **Trình độ Thạc sĩ:** 8480101
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf) · [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ THẠC SĨ](/api/pdfs/S8480101.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q074,Mã ngành của chương trình đào tạo Kỹ thuật Phần mềm là gì?,academic_program,Mã ngành của ngành Kỹ thuật Phần mềm là: 7480103.,"Mã ngành của chương trình đào tạo Kỹ thuật Phần mềm là **7480103**.
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q075,"Học phần ""Công nghệ và dịch vụ Web"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Công nghệ và dịch vụ Web có mã số CT313H, số tín chỉ là 3, số tiết là 30 LT, 30 TH.","Học phần ""Công nghệ và dịch vụ Web"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có thông tin như sau:
+
+- Mã số: CT313H
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo]( /api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q076,"Sinh viên vi phạm quy định về thi, kiểm tra có thể bị xử lý bằng những hình thức nào?",academic_rules,"Tùy mức độ vi phạm, sinh viên vi phạm quy định về thi và kiểm tra có thể bị khiển trách, cảnh cáo, đình chỉ thi/học phần, hoặc hình thức kỷ luật nặng hơn theo quy định tại Điều 28 của Quy định công tác học vụ.","Sinh viên vi phạm các quy định về thi và kiểm tra có thể bị xử lý bằng các hình thức kỷ luật sau đây:
+
+1. **Khiển trách:** Áp dụng đối với các lỗi như nhìn bài của người khác hoặc trao đổi, thảo luận với người khác. Sinh viên bị khiển trách sẽ bị trừ 25% điểm số của lần thi/kiểm tra đó. Nếu bị khiển trách 2 lần trong một năm học, sinh viên sẽ bị kỷ luật cảnh cáo toàn đơn vị đào tạo.
+
+2. **Cảnh cáo:** Áp dụng đối với các lỗi như đã bị khiển trách một lần nhưng vẫn tiếp tục vi phạm trong cùng buổi thi; trao đổi giấy nháp; chép bài hoặc để người khác chép bài; không chấp hành sự quản lý hoặc có thái độ thiếu tôn trọng cán bộ coi thi. Sinh viên bị cảnh cáo sẽ bị trừ 50% điểm số của lần thi/kiểm tra đó. Nếu bị cảnh cáo 2 lần trong một năm học, sinh viên sẽ bị kỷ luật cảnh cáo toàn Trường.
+
+3. **Đình chỉ thi:** Áp dụng đối với các lỗi như đã bị cảnh cáo một lần nhưng vẫn tiếp tục vi phạm; mang vật dụng không được phép vào phòng thi; sử dụng giấy nháp hoặc bài làm của người khác; đưa đề thi ra ngoài hoặc nhận bài giải từ ngoài vào; có hành động gây rối hoặc đe dọa cán bộ coi thi/sinh viên khác. Sinh viên bị đình chỉ thi sẽ nhận điểm 0 cho lần thi/kiểm tra đó. Nếu bị đình chỉ thi 2 lần trong một năm học, sinh viên sẽ bị đình chỉ học tập 1 năm; nếu tái phạm sẽ bị buộc thôi học.
+
+4. **Xử lý thi hộ:** Áp dụng cho cả người thi hộ và người nhờ thi hộ.
+   - Vi phạm lần thứ nhất: Người nhờ thi hộ nhận điểm 0 học phần đó và bị đình chỉ học tập 1 năm; người thi hộ bị đình chỉ học tập 1 năm.
+   - Vi phạm lần thứ hai (trong cả khóa học): Buộc thôi học.
+
+Ngoài ra, tùy theo mức độ vi phạm, các trường hợp khác sẽ do Hội đồng kỷ luật của Trường xem xét và quyết định hình thức xử lý cụ thể.",quychehocvu.md,True
+Q077,"Học phần ""Lập trình trò chơi"" trong chương trình đào tạo ngành Khoa học máy tính có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Lập trình trò chơi có mã số CT290E, số tín chỉ là 3 (Tự chọn), số tiết là 30 LT, 30 TH.","Học phần ""Lập trình trò chơi"" trong chương trình đào tạo ngành Khoa học máy tính có thông tin như sau:
+
+- Mã số: CT290E
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo/](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q078,Ngành Mạng máy tính và truyền thông dữ liệu được đào tạo theo những hình thức nào?,academic_program,"Hình thức đào tạo của ngành Mạng máy tính và truyền thông dữ liệu là: Chính quy, Vừa làm vừa học, Đào tạo từ xa.","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, mình xin giải đáp thắc mắc của bạn như sau:
+
+Ngành **Mạng máy tính và truyền thông dữ liệu** (mã ngành: 7480102) được tổ chức đào tạo theo các hình thức sau:
+
+*   Chính quy
+*   Vừa làm vừa học
+*   Đào tạo từ xa
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q079,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao gồm những nội dung gì?",academic_program,"Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân. (PLO1) Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm. (PLO2) Ứng dụng kiến thức về công nghệ số (bậc 4 Khung năng lực số) và tiếng Anh (bậc 4 Khung năng lực ngoại ngữ của Việt Nam - tương đương trình độ B2 Khung tham chiếu Châu Âu) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn. (PLO3)","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, tôi xin giải đáp thắc mắc của bạn về các chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao như sau:
+
+Các chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm:
+
+*   **PLO1:** Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân.
+*   **PLO2:** Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm.
+*   **PLO3:** Ứng dụng kiến thức về công nghệ số (bậc 4 Khung năng lực số) và tiếng Anh (bậc 4 Khung năng lực ngoại ngữ của Việt Nam - tương đương trình độ B2 Khung tham chiếu Châu Âu) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q080,"Học phần ""Anh văn tăng cường 3 (*)"" trong chương trình đào tạo ngành Khoa học máy tính có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Anh văn tăng cường 3 (*) có mã số XH033, số tín chỉ là 3 (Tự chọn), số tiết là 45 LT, 0 TH.","Học phần ""Anh văn tăng cường 3 (*)"" trong chương trình đào tạo ngành Khoa học máy tính có thông tin như sau:
+
+- Mã số: XH033
+- Số tín chỉ: 3 tín chỉ (Tự chọn)
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q081,"Học phần ""Anh văn căn bản 3 (*)"" trong chương trình đào tạo ngành Trí tuệ nhân tạo có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Anh văn căn bản 3 (*) có mã số XH025, số tín chỉ là 3 (Tự chọn), số tiết là 45 LT, 0 TH.","Học phần ""Anh văn căn bản 3 (*)"" trong chương trình đào tạo ngành Trí tuệ nhân tạo có thông tin như sau:
+
+- Mã số: XH025
+- Số tín chỉ: 3 (Tự chọn)
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True
+Q082,"Học phần ""Phát triển ứng dụng Trí tuệ nhân tạo"" trong chương trình đào tạo ngành Trí tuệ nhân tạo có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Phát triển ứng dụng Trí tuệ nhân tạo có mã số CT549, số tín chỉ là 3 (Tự chọn), số tiết là 30 LT, 30 TH.","Học phần ""Phát triển ứng dụng Trí tuệ nhân tạo"" trong chương trình đào tạo ngành Trí tuệ nhân tạo có thông tin như sau:
+
+- Mã số: CT549
+- Số tín chỉ: 3
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/108_7480107_TriTueNhanTao.pdf) · [7. Khung chương trình đào tạo](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True
+Q083,"Học phần ""Tiểu luận tốt nghiệp - HTTT"" trong chương trình đào tạo ngành Hệ thống thông tin có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Tiểu luận tốt nghiệp - HTTT có mã số CT503E, số tín chỉ là 6, số tiết là 180 TH.","Học phần ""Tiểu luận tốt nghiệp - HTTT"" trong chương trình đào tạo ngành Hệ thống thông tin có thông tin chi tiết như sau:
+
+- Mã số: CT503E
+- Số tín chỉ: 6 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q084,"Học phần ""Anh văn căn bản 1 (*)"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Anh văn căn bản 1 (*) có mã số XH023, số tín chỉ là 4 (Tự chọn), số tiết là 60 LT, 0 TH.","Học phần ""Anh văn căn bản 1 (*)"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có thông tin như sau:
+
+- Mã số: XH023
+- Số tín chỉ: 4 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo/](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q085,"Học phần ""Cơ sở dữ liệu"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Cơ sở dữ liệu có mã số CT110H, số tín chỉ là 3 (Bắt buộc), số tiết là 30 LT, 30 TH.","Chào bạn, dựa trên thông tin chương trình đào tạo ngành Kỹ thuật Phần mềm – Chương trình chất lượng cao, học phần ""Cơ sở dữ liệu"" có thông tin chi tiết như sau:
+
+*   **Mã số:** CT110H
+*   **Số tín chỉ:** 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/71_7480103C_KyThuatPhanMem_CTCLC.pdf)",71_7480103C_KyThuatPhanMem_CTCLC.md,True
+Q086,"Trong chương trình đào tạo ngành Khoa học máy tính, học phần có mã số CT209 tên là gì?",academic_program,"Học phần có mã số CT209 là ""Đồ họa nâng cao"".","Trong chương trình đào tạo ngành Khoa học máy tính, học phần có mã số CT209 có tên là: **Đồ họa nâng cao**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q087,"Học phần ""Tin học lý thuyết"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Tin học lý thuyết có mã số CT121, số tín chỉ là 3 (Tự chọn), số tiết là 30 LT, 30 TH.","Học phần ""Tin học lý thuyết"" trong chương trình đào tạo ngành Mạng máy tính và truyền thông dữ liệu có thông tin như sau:
+
+- Mã số: CT121
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/72_7480102_MangMayTinhVaTruyenThongDuLieu.pdf)",72_7480102_MangMayTinhVaTruyenThongDuLieu.md,True
+Q088,"Học phần ""Đọc hiểu (*)"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Đọc hiểu (*) có mã số FL011H, số tín chỉ là 3 (Bắt buộc), số tiết là 45 LT.","Học phần ""Đọc hiểu (*)"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có thông tin chi tiết như sau:
+
+- Mã số: FL011H
+- Số tín chỉ: 3 tín chỉ (Bắt buộc)
+
+---
+📌 **Nguồn tham khảo:** [Tiếng Anh tăng cường](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q089,"Khối kiến thức ""Khối kiến thức cơ sở ngành"" trong chương trình đào tạo ngành Công nghệ thông tin có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức cơ sở ngành"" của ngành Công nghệ thông tin: 46 TC (Bắt buộc 46 TC; Tự chọn: 0 TC).","Khối kiến thức ""Khối kiến thức cơ sở ngành"" trong chương trình đào tạo trình độ đại học ngành Công nghệ thông tin có tổng cộng **46 tín chỉ** (tất cả đều là tín chỉ bắt buộc).
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức cơ sở ngành]( /api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q090,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" của ngành Kỹ thuật Phần mềm: 56 TC (Bắt buộc: 41 TC; Tự chọn: 15 TC).","Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có tổng cộng 56 tín chỉ (trong đó bao gồm 41 tín chỉ bắt buộc và 15 tín chỉ tự chọn).
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức Giáo dục đại cương](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q091,"Học phần ""Hệ thống chịu lỗi"" trong chương trình đào tạo ngành Công nghệ thông tin có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Hệ thống chịu lỗi có mã số CT283, số tín chỉ là 3, số tiết là 30 LT, 30 TH.","Học phần ""Hệ thống chịu lỗi"" trong chương trình đào tạo ngành Công nghệ thông tin có thông tin chi tiết như sau:
+
+*   **Mã số:** CT283
+*   **Số tín chỉ:** 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo]( /api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True
+Q092,"Học phần ""Phân tích yêu cầu phần mềm"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Phân tích yêu cầu phần mềm có mã số CT241, số tín chỉ là 3 (Bắt buộc), số tiết là 30 LT, 30 TH.","Học phần ""Phân tích yêu cầu phần mềm"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có thông tin như sau:
+
+- Mã số: CT241
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q093,Ngành Kỹ thuật Phần mềm được đào tạo theo những hình thức nào?,academic_program,"Hình thức đào tạo của ngành Kỹ thuật Phần mềm là: Chính quy, Vừa làm vừa học, Đào tạo từ xa.","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, mình xin giải đáp thắc mắc của bạn về hình thức đào tạo của ngành Kỹ thuật Phần mềm như sau:
+
+Ngành Kỹ thuật Phần mềm (mã ngành: 7480103) được tổ chức đào tạo theo các hình thức sau:
+- Chính quy
+- Vừa làm vừa học
+- Đào tạo từ xa
+
+---
+📌 **Nguồn tham khảo:** [Thông tin chung về chương trình đào tạo](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True
+Q094,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Trí tuệ nhân tạo có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" của ngành Trí tuệ nhân tạo: 56 TC (Bắt buộc: 41 TC; Tự chọn: 15 TC).","Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Trí tuệ nhân tạo có tổng cộng 56 tín chỉ (trong đó bao gồm 41 tín chỉ bắt buộc và 15 tín chỉ tự chọn).
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức Giáo dục đại cương](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True
+Q095,"Học phần ""Lập trình mạng"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Lập trình mạng có mã số CT305H, số tín chỉ là 3, số tiết là 30 LT, 30 TH.","Học phần ""Lập trình mạng"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có thông tin chi tiết như sau:
+
+- Mã số: CT305H
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo/](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q096,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" trong chương trình đào tạo ngành Khoa học máy tính có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Khối kiến thức Giáo dục đại cương"" của ngành Khoa học máy tính: 56 TC (Bắt buộc: 41 TC; Tự chọn: 15 TC).","Khối kiến thức ""Giáo dục đại cương"" trong chương trình đào tạo ngành Khoa học máy tính có tổng cộng 56 tín chỉ (trong đó bao gồm 41 tín chỉ bắt buộc và 15 tín chỉ tự chọn).
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo]( /api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q097,"Học phần ""Hệ cơ sở dữ liệu đa phương tiện"" trong chương trình đào tạo ngành Hệ thống thông tin có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Hệ cơ sở dữ liệu đa phương tiện có mã số CT265, số tín chỉ là 3, số tiết là 30 LT, 30 TH.","Học phần ""Hệ cơ sở dữ liệu đa phương tiện"" trong chương trình đào tạo ngành Hệ thống thông tin có thông tin chi tiết như sau:
+
+- Mã số: CT265
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True
+Q098,"Khối kiến thức ""Tiếng Anh tăng cường"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có tổng cộng bao nhiêu tín chỉ?",academic_program,"Khối kiến thức ""Tiếng Anh tăng cường"" của ngành Công nghệ thông tin (chất lượng cao): 17 TC (Bắt buộc: 17 TC; Tự chọn: 0 TC).","Khối kiến thức ""Tiếng Anh tăng cường"" trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) có tổng cộng 17 tín chỉ (tất cả đều là tín chỉ bắt buộc).
+
+Chi tiết các học phần trong khối này bao gồm:
+* **Nghe nói và ngữ âm thực hành (\*)** (Mã số: FL010H): 4 tín chỉ
+* **Đọc hiểu (\*)** (Mã số: FL011H): 3 tín chỉ
+* **Viết (\*)** (Mã số: FL012H): 3 tín chỉ
+* **Ngữ pháp ứng dụng (\*)** (Mã số: FL013H): 2 tín chỉ
+* **Kỹ năng thuyết trình (\*)** (Mã số: FL014H): 3 tín chỉ
+* **Thi đánh giá năng lực tiếng Anh (\*)** (Mã số: FL100H): 2 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True
+Q099,"Học phần ""Niên luận cơ sở ngành Khoa học máy tính"" trong chương trình đào tạo ngành Khoa học máy tính có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Niên luận cơ sở ngành Khoa học máy tính có mã số CT201E, số tín chỉ là 3 (Bắt buộc), số tiết là 0 LT, 90 TH.","Học phần ""Niên luận cơ sở ngành Khoa học máy tính"" trong chương trình đào tạo ngành Khoa học máy tính có thông tin như sau:
+
+- Mã số: CT201E
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo]( /api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+Q100,"Học phần ""Niên luận cơ sở ngành Khoa học máy tính"" (ngành Khoa học máy tính) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Niên luận cơ sở ngành Khoa học máy tính"" yêu cầu học phần tiên quyết: CT174, CT176.","Học phần ""Niên luận cơ sở ngành Khoa học máy tính"" (mã số: CT201E) yêu cầu các học phần tiên quyết sau:
+
+*   Phân tích và thiết kế thuật toán (CT174)
+*   Lập trình hướng đối tượng (CT176)
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True
+R01,Học kỳ 3 năm học 2025-2026 sinh viên được ở KTX trong khoảng thời gian nào?,other,"Thời gian ở KTX của học kỳ 3 năm học 2025-2026 là **3,5 tháng**, tính từ ngày 04/5/2026 đến 21/8/2026.",,tbdk_hk32526_llp.md,True
+R02,Sinh viên phải đóng phí KTX học kỳ 3 năm học 2025-2026 khi nào?,other,"- Sinh viên nộp phí **từ ngày 23/4 đến 29/4/2026**, SV nộp phí cho cả kỳ ở.",,tbdk_hk32526_llp.md,True
+R03,"Khi chuyển khoản tiền KTX học kỳ 3, nội dung chuyển khoản phải ghi theo cú pháp nào?",other,+ Nội dung ghi cú pháp: ***Mã số SV – Tên SV – Số điện thoại - KTX.***,,tbdk_hk32526_llp.md,True
+R04,Hạn đăng ký ở KTX học kỳ 3 năm học 2025-2026 là ngày nào?,other,- Sinh viên đăng ký ở KTX tập trung đầu kỳ *(kể cả SV đang ở KTX)* qua **Hệ thống Quản lý KTX** của Trường bằng tài khoản SV từ ngày phát hành thông báo đến **ngày 10/4/2026.**,,tbdk_hk32526_llp.md,True
+R05,Sinh viên đăng ký mới ở KTX học kỳ 3 năm học 2025-2026 có thể nhận chỗ từ ngày nào?,other,- Đối với SV đăng ký mới có thể nhận chỗ ở từ ngày 04/5/2026.,,tbdk_hk32526_llp.md,True
+R06,Thời gian ở KTX học kỳ 1 năm học 2026-2027 kéo dài từ ngày nào đến ngày nào?,other,"**1. Thời gian ở KTX** của học kỳ 1 năm học 2026-2027 là **3,5 tháng**, tính từ ngày 07/9/2026 đến 18/12/2026.",,072026_tb_dk1_2627_llp.md,True
+R07,Học kỳ 1 năm học 2026-2027 phải nộp phí KTX trong thời gian nào?,other,"- Sinh viên nộp phí **từ ngày 04/8 đến 07/8/2026**, SV nộp phí cho cả kỳ ở.",,072026_tb_dk1_2627_llp.md,True
+R08,Sinh viên đã ở KTX từ học kỳ 3 năm học 2025-2026 có phải đăng ký lại cho học kỳ 1 năm học 2026-2027 không?,other,"- Đối với SV đang ở cũ *(HK3, năm học 2025-2026)* **không cần phải đăng ký lại**, chỉ thực hiện nộp phí theo thời gian nêu ở **mục 2**, trong thông báo này.",,072026_tb_dk1_2627_llp.md,True
+R09,Phí gửi xe KTX học kỳ 1 năm học 2026-2027 được nộp trong khoảng thời gian nào?,other,"+ Sinh viên nộp phí gửi xe của học kỳ tại Văn phòng KTX, bao gồm: xe máy, xe điện và xe đạp *(miễn phí)*, từ ngày 04/8 đến 14/8/2026. Sau thời gian trên SV nộp từ 15 giờ đến 16 giờ *(thứ 2 đến thứ 6)*. Đối với xe không có đăng ký phải di chuyển ra khỏi nhà xe nhường lại khoảng trống để sắp xếp xe đã đăng ký.",,072026_tb_dk1_2627_llp.md,True
+R10,Sinh viên đăng ký mới KTX học kỳ 1 năm học 2026-2027 được nhận chỗ từ ngày nào?,other,- Đối với SV đăng ký ở mới có thể nhận chỗ ở từ ngày 07/9/2026.,,072026_tb_dk1_2627_llp.md,True
+R11,Học sinh xét tuyển thẳng phải học bổ sung kiến thức trong bao lâu?,academic_rules,"1. Học sinh được xét tuyển thẳng phải học bổ sung kiến thức một năm. Năm học bao gồm 2 học kỳ (gồm học kỳ I và học kỳ II). Mỗi học kỳ, học sinh phải học 4 môn học như sau:",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+R12,Chương trình bổ sung kiến thức cho học sinh xét tuyển thẳng gồm bao nhiêu tín chỉ?,academic_rules,| Tổng cộng | Tổng cộng | 300 | 300 | 600 | 40 |,,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+R13,Nếu học sinh nghỉ quá 20% số tiết của một môn thì có được thi cuối học kỳ môn đó không?,academic_rules,b) Tổng số thời gian nghỉ học có lý do và không có lý do vượt quá 20% số tiết ở môn học nào thì không được dự thi môn học đó trong học kỳ.,,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+R14,Điểm tổng kết môn học của học sinh xét tuyển thẳng được tính với hệ số kiểm tra và thi như thế nào?,academic_rules,"1. Cuối năm học, mỗi môn học có một điểm tổng kết. Điểm tổng kết môn học là điểm trung bình chung của 2 lần kiểm tra (hệ số 1) và 2 lần thi (hệ số 2).",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+R15,Điều kiện để học sinh sau năm bổ sung kiến thức được xét tuyển vào đại học là gì?,academic_rules,"a) Thi đủ 4 môn cuối mỗi học kỳ;
+b) Điểm trung bình chung năm học đạt từ **5,0 điểm** trở lên và Điểm tổng kết môn học đạt trên **1,0 điểm**.
+c) Xếp loại rèn luyện cả năm đạt từ **Khá** trở lên.",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+R16,Sinh viên được vay vốn theo Quyết định 29 để chi trả những khoản nào?,student_loan,"Người học vay vốn để trang trải học phí, sinh hoạt phí và chi phí học tập khác trong thời gian theo học các ngành khoa học, công nghệ, kỹ thuật và toán được ban hành theo Quyết định 29",,Q_29_STEM_288.md,True
+R17,Sinh viên ngành máy tính và công nghệ thông tin có thuộc đối tượng của chương trình tín dụng theo Quyết định 29 không?,student_loan,| 3 | Máy tính và công nghệ thông tin | 748 | 848 | 948 |,,Q_29_STEM_288.md,True
+R18,Sinh viên năm nhất muốn vay vốn theo Quyết định 29 phải đáp ứng điều kiện học tập nào?,student_loan,"(1) Có đồng thời cả ba năm học trung học phổ thông được đánh giá kết quả học tập đạt từ mức khá trở lên;**Hoặc**(2) Đạt điểm trung bình môn lớp 12 của các môn toán, vật lý, hóa học, sinh học từ 8 điểm trở lên",,Q_29_STEM_288.md,True
+R19,Sinh viên từ năm thứ hai trở đi cần kết quả học tập thế nào để vay vốn?,student_loan,Có kết quả học tập trung bình các môn học đạt loại giỏi trở lên theo quy định của pháp luật tại năm trước liền kề với năm đề nghị vay vốn.,,Q_29_STEM_288.md,True
+R20,Sinh viên chính quy xin giấy xác nhận vay vốn ở đâu?,student_loan,- Sinh viên hình thức chính quy thực hiện thủ tục cấp giấy xác nhận tại văn phòng Phòng Công tác Sinh viên (theo đường dẫn: [https://dsa.ctu.edu.vn/images/upload/vbanply/2021/HotroOnline/Huongdan_Dangky_Xacnhan.pdf](https://dsa.ctu.edu.vn/images/upload/vbanply/2021/HotroOnline/Huongdan_Dangky_Xacnhan.pdf)) ;,,Q_29_STEM_288.md,True
+R21,Đại học Cần Thơ bắt đầu tổ chức 3 học kỳ chính từ thời điểm nào?,academic_rules,"Nhằm giúp người học có thể rút ngắn thời gian học tập, hỗ trợ sinh viên ra trường đúng tiến độ, khai thác hiệu quả quỹ phòng học cho hoạt động giảng dạy và học tập và đảm bảo giờ nghĩa vụ của giảng viên, ngày 05 tháng 7 năm 2024, Hội đồng trường Trường Đại học Cần Thơ (ĐHCT) đã ban hành Nghị quyết số 189/NQ-HĐT phê duyệt kế hoạch tổ chức giảng dạy và học tập từ Học kỳ 2 năm học 2024 - 2025. Theo đó, từ Học kỳ 2 năm học 2024 - 2025, Trường ĐHCT sẽ tổ chức giảng dạy và học tập 03 học kỳ chính trong một năm học.",,3hk.md,True
+R22,Một học kỳ chính theo kế hoạch 3 học kỳ của CTU kéo dài bao nhiêu tuần?,academic_rules,"b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",,3hk.md,True
+R23,15 tuần của một học kỳ chính được phân bổ như thế nào?,academic_rules,"b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",,3hk.md,True
+R24,"Học kỳ 1, 2 và 3 của CTU tương ứng với các khoảng tuần nào trong năm?",academic_rules,"c) Học kỳ 1 bắt đầu từ tuần thứ 37 đến tuần thứ 51 của năm; Học kỳ 2 bắt đầu từ tuần thứ 01 đến tuần thứ 17 của năm (_bao gồm 2 tuần nghỉ Tết Nguyên Đán_); Học kỳ 3 bắt đầu từ tuần thứ 20 đến tuần thứ 34 của năm. Tuần nghỉ giữa các học kỳ là tuần thứ 18, 19, 35, 36, 52 và tuần thứ 53 (_nếu có_) của năm.",,3hk.md,True
+R25,Sinh viên đại học đang học được khuyến nghị không đăng ký quá bao nhiêu tín chỉ mỗi học kỳ?,academic_rules,"- Thủ trưởng các đơn vị có đào tạo triển khai thông tin đến toàn thể giảng viên, VC-NLĐ và người học do đơn vị quản lý; chỉ đạo trưởng các Khoa/Bộ môn và cố vấn học tập rà soát, hướng dẫn người học điều chỉnh kế hoạch học tập toàn khóa đối với các khóa đang học (không quá 20 tín chỉ/học kỳ đối với trình độ đại học); xây dựng bản mô tả chương trình đào tạo và chương trình dạy học kịp thời áp dụng đối với các khóa tuyển sinh từ năm 2024.",,3hk.md,True
+R26,Kế hoạch 1470 của CTU hướng đến mục tiêu gì trong phòng chống bạo lực học đường?,other,"- Tăng cường trách nhiệm của các cấp, các ngành, nâng cao hiệu quả công tác phối hợp giữa nhà trường, gia đình và xã hội trong phòng chống bạo lực học đường, phòng ngừa tội phạm và tệ nạn xã hội trong học sinh, sinh viên, qua đó góp phần xây dựng thế hệ trẻ có lý tưởng cách mạng, bản lĩnh vững vàng, giàu lòng yêu nước, có tri thức, văn hóa, có ý thức tuân thủ pháp luật, trách nhiệm với cộng đồng, có ước mơ, hoài bão, khát vọng và trau dồi kiến thức khoa học kỹ thuật trên ghế nhà trường, đồng thời tiếp thu kỹ năng hội nhập quốc tế trong kỷ nguyên số cho học sinh, sinh viên.
+- Tăng cường các điều kiện về vật chất và tinh thần trong các nhà trường, tạo môi trường giáo dục an toàn, lành mạnh, thân thiện; cán bộ quản lý, giáo viên, nhân viên, học sinh, sinh viên có lối sống lành mạnh, ứng xử văn hóa góp phần giữ gìn an ninh trật tự trường học; đồng thời giáo dục thế hệ trẻ sống, lao động, học tập, làm việc theo pháp luật. Học sinh, sinh viên được tôn trọng, đối xử công bằng, bình đẳng và nhân ái, được phát huy dân chủ và tạo điều kiện để phát triển phẩm chất và năng lực.",,02_1470KHTH_06-05-2024_llp.md,True
+R27,CTU sử dụng những hình thức nào để tuyên truyền và giáo dục phòng chống bạo lực học đường?,other,"- Đa dạng hóa và lồng ghép các hình thức tuyên truyền, giáo dục thông qua các hoạt động giáo dục trong các hội nghị, hội thảo, triển lãm; các phương tiện trực quan; các cuộc thi tìm hiểu văn hóa, lịch sử dân tộc, lịch sử Đảng, Đoàn, Hội; các cuộc thi về lý tưởng cách mạng, về Chủ tịch Hồ Chí Minh; vinh danh, tuyên dương, khen thưởng các tấm gương tiêu biểu trong học tập và rèn luyện.
+- Quản lý nội dung và khai thác hiệu quả hệ thống truyền thông, văn hóa, thể thao sẵn có và tăng cường ứng dụng thành tựu khoa học và công nghệ, internet, mạng xã hội để phục vụ cho công tác tuyên truyền.",,02_1470KHTH_06-05-2024_llp.md,True
+R28,Nhà trường yêu cầu phối hợp những lực lượng nào trong công tác phòng chống bạo lực học đường và tệ nạn xã hội?,other,"- Triển khai các hoạt động phối hợp giữa nhà trường, gia đình và xã hội trong phòng chống bạo lực học đường, tội phạm, tệ nạn xã hội.",,02_1470KHTH_06-05-2024_llp.md,True
+R29,Công nghệ thông tin và chuyển đổi số được sử dụng như thế nào để phòng chống bạo lực học đường?,other,"- Tăng cường chuyển đổi số gắn với giải pháp cụ thể để hỗ trợ các bên liên quan trong việc quản lý sử dụng internet, mạng xã hội an toàn cho học sinh, sinh viên.
+- Triển khai và hỗ trợ ứng dụng công nghệ thông tin nhằm tăng cường kết nối thường xuyên, liên tục, đảm bảo an toàn giữa nhà trường, gia đình và các lực lượng xã hội; tăng cường kiểm soát các luồng thông tin không chính thống có tính chất kích động bạo lực, lôi kéo tham gia hành vi phạm tội và các tệ nạn xã hội.",,02_1470KHTH_06-05-2024_llp.md,True
+R30,"Phòng Công tác Sinh viên có trách nhiệm tổ chức, kiểm tra, giám sát và đánh giá công tác phối hợp nào trong Kế hoạch 1470?",other,"- Tổ chức thực hiện, kiểm tra, giám sát, đánh giá công tác phối hợp giữa nhà trường, gia đình, xã hội trong phòng chống bạo lực học đường, phòng ngừa tội phạm và tệ nạn xã hội trong học sinh, sinh viên.",,02_1470KHTH_06-05-2024_llp.md,True
+R31,Quyết định 17/QĐ-HSV về tiêu chuẩn Sinh viên 5 tốt có hiệu lực thi hành kể từ năm học nào?,other,#### Điều 2. Quyết định có hiệu lực thi hành kể từ năm học 2025-2026.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R32,Tiêu chuẩn Đạo đức tốt yêu cầu điểm rèn luyện trung bình cộng đạt từ bao nhiêu điểm?,other,"(1.1) Điểm rèn luyện trung bình cộng của học kỳ 3 năm học trước, học kỳ 1 và 2 năm học xét đạt từ 85 điểm trở lên.",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R33,"Đối với sinh viên năm nhất, tiêu chí điểm rèn luyện của Đạo đức tốt xét những học kỳ nào?",other,"\*Lưu ý: Đối với sinh viên năm nhất, tiêu chí **(1.1)** chỉ xét điểm của học kỳ 1 và 2 năm học xét.",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R34,Tiêu chuẩn Học tập tốt yêu cầu điểm trung bình cộng đạt từ mức nào?,other,"**2. Tiêu chuẩn Học tập tốt:** Điểm trung bình cộng của học kỳ 3 năm học trước, học kỳ 1 và 2 năm học xét đạt từ 3.0 trở lên.",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R35,"Để đáp ứng lưu ý của tiêu chuẩn Học tập tốt, mỗi học kỳ sinh viên cần học ít nhất bao nhiêu tín chỉ?",other,"- \+ Số tín chỉ trong mỗi học kỳ bằng hoặc lớn hơn 12 tín chỉ. Đối với những trường hợp đặc biệt, hội đồng xét Đại học Cần Thơ sẽ ghi nhận và xem xét.",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R36,Sinh viên có thể đạt tiêu chuẩn Thể lực tốt thông qua học phần Giáo dục thể chất với điều kiện nào?,other,**(3.1)** Trong năm học phải học ít nhất 01 học phần Giáo dục thể chất (học phần có rèn luyện thể lực) và đạt điểm B trở lên.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R37,Một cách để đạt tiêu chuẩn Tình nguyện tốt là tham gia ít nhất bao nhiêu ngày tình nguyện?,other,**(4.2)** Tham gia ít nhất 03 ngày tình nguyện,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R38,"Theo bảng quy đổi ngoại ngữ, sinh viên năm 1 và 2 cần IELTS hoặc TOEIC ở mức nào?",other,"| Sinh viên năm 1, 2 | A2 | 4.0 | 400 | 96 CBT,<br/>30 iBT,<br/>360 ITP | DELF A2 | HSK cấp 2 | TOPIK 2 | JLPT N5 |",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R39,Chứng chỉ tin học quốc tế nào được chấp nhận trong tiêu chuẩn Tin học của Sinh viên 5 tốt?,other,"(5.2.2) Đạt chứng chỉ tin học quốc tế IC3 hoặc MOS (Word, Excel, Powerpoint).",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R40,Thành tích và minh chứng dùng xét danh hiệu Sinh viên 5 tốt được ghi nhận trong khoảng thời gian nào?,other,- Tất cả các thành tích xét trao các danh hiệu và minh chứng kèm theo được ghi nhận từ ngày 01/8 năm trước tới 01/8 năm xét trao danh hiệu.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R41,Phiếu đăng ký ở Ký túc xá này dành cho đối tượng sinh viên nào?,other,,,,False
+R42,Phiếu đăng ký KTX yêu cầu sinh viên cung cấp những thông tin liên hệ nào?,other,,,,False
+R43,Người đăng ký KTX cam kết điều gì trên phiếu đăng ký?,other,,,,False
+R44,Quy trình xét miễn và công nhận điểm học phần được thực hiện vào khoảng thời gian nào trong học kỳ?,academic_rules,- Thời gian thực hiện quy trình này là khi bắt đầu học kỳ đến khi sắp kết thúc mỗi học kỳ.,,qt_xet_mien_HP_llp.md,True
+R45,Quy trình xét miễn và công nhận điểm học phần áp dụng cho những sinh viên nào?,academic_rules,- Áp dụng cho tất cả sinh viên có nhu cầu xét miễn và công nhận điểm học phần. (Đối với học kỳ đầu của tân sinh viên sẽ có thông báo hướng dẫn riêng).,,qt_xet_mien_HP_llp.md,True
+R46,"Trong quy trình xét miễn học phần, chữ viết tắt TXMHP có nghĩa là gì?",academic_rules,- TXMHP : Tổ xét miễn học phần,,qt_xet_mien_HP_llp.md,True
+R47,"Ở bước đầu của quy trình xét miễn và công nhận điểm học phần, sinh viên nộp đơn cho ai và đơn được chuyển đến đâu?",academic_rules,- SV nộp đơn đề nghị xét miễn và công nhận điểm học phần (*mẫu 1 hoặc 2*) cho CVHT. CVHT tập hợp đơn và chuyển TXMHP của ĐVQLN.,,qt_xet_mien_HP_llp.md,True
+R48,Tổ xét miễn học phần phải làm gì sau khi kiểm tra và xét duyệt hồ sơ?,academic_rules,"- TXMHP kiểm tra, xét duyệt; gửi biên bản (*mẫu 3*), hồ sơ có liên quan và danh sách được xét miễn và công nhận điểm học phần (*kèm e-file*) về PĐT.",,qt_xet_mien_HP_llp.md,True
+R49,Phòng Đào tạo thực hiện những công việc nào trước khi sinh viên kiểm tra kết quả xét miễn học phần?,academic_rules,"- PĐT kiểm tra và phản hồi về ĐVQLN.
+- PĐT cập nhật kết quả vào hệ thống quản lý.",,qt_xet_mien_HP_llp.md,True
+R50,"Theo lưu đồ, sinh viên nộp đơn xét miễn và công nhận điểm học phần trong khoảng tuần nào của học kỳ chính?",academic_rules,"| 1                                                                | Gửi yêu cầu                                                      | Nộp đơn xét miễn và công nhận điểm học phần                         | Sinh viên, CVHT                                                              | Tuần 01 đến tuần 08 của học kỳ chính                                     | Mẫu 1 hoặc Mẫu 2                                                |",,qt_xet_mien_HP_llp.md,True
+R51,"Nếu xin xét miễn do đã tích lũy học phần ở một cơ sở đào tạo đại học trước đây, sinh viên nộp đơn qua ai và phải đính kèm giấy tờ gì?",academic_rules,"- Sinh viên nộp đơn này cho Khoa/Viện/Bộ môn thông qua Quý Thầy, Cô là cố vấn học tập của lớp.
+- Đơn có đính kèm theo bản sao chứng chỉ và bảng điểm của cơ sở đào tạo bậc đại học trước đây (*có thị thực*).",,qt_xet_mien_HP_llp.md,True
+R52,Sinh viên xin phép vắng thi kết thúc học phần được đề nghị bảo lưu kết quả nào và nhận điểm gì?,academic_rules,"Tôi kính đơn này đến Ban Chủ nhiệm Khoa, Phòng Đào tạo và quý Thầy/Cô giảng dạy học phần: 								Mã số HP: , cho phép tôi không thi kết thúc học phần, được bảo lưu kết quả đánh giá giữa kỳ và nhận điểm I cho học phần này trong học kỳ ......, năm học: ............. Trong thời hạn 1 năm tiếp theo, tôi sẽ dự thi để hoàn tất điểm học phần. Nếu quá thời hạn trên, tôi không hoàn tất điểm học phần này thì điểm I sẽ được chuyển **thành điểm F.**",,MauDon_diemI_llp.md,True
+R53,"Sau khi được nhận điểm I do vắng thi, sinh viên có tối đa bao lâu để dự thi hoàn tất điểm học phần?",academic_rules,"Tôi kính đơn này đến Ban Chủ nhiệm Khoa, Phòng Đào tạo và quý Thầy/Cô giảng dạy học phần: 								Mã số HP: , cho phép tôi không thi kết thúc học phần, được bảo lưu kết quả đánh giá giữa kỳ và nhận điểm I cho học phần này trong học kỳ ......, năm học: ............. Trong thời hạn 1 năm tiếp theo, tôi sẽ dự thi để hoàn tất điểm học phần. Nếu quá thời hạn trên, tôi không hoàn tất điểm học phần này thì điểm I sẽ được chuyển **thành điểm F.**",,MauDon_diemI_llp.md,True
+R54,Nếu quá thời hạn một năm mà sinh viên chưa hoàn tất học phần có điểm I thì điểm đó được xử lý thế nào?,academic_rules,"-Khi SV hoàn thành và có điểm của học phần, CBGD gửi điểm cho Giáo vụ đơn vị để tổng hợp vào cuối mỗi học kỳ, nếu quá thời hạn 1 năm điểm sẽ không được công nhận và điểm I sẽ được chuyển thành điểm F.",,MauDon_diemI_llp.md,True
+R55,"Khi nêu lý do vắng thi, sinh viên phải đính kèm gì?",academic_rules,"*Lý do vắng thi:*
+*(đính kèm giấy xác nhận minh chứng lý do).*",,MauDon_diemI_llp.md,True
+R56,Đơn đề nghị xét và công nhận điểm M này áp dụng cho các loại chứng chỉ nào?,academic_rules,"## do có chứng chỉ Ngoại ngữ, Tin học, GDQP, GDTC",,DonDeNghi_Diem_M_Chungchi_llp.md,True
+R57,Sinh viên nộp đơn xét điểm M kèm bản photo chứng chỉ cho ai?,academic_rules,"- Sinh viên nộp đơn có đính kèm theo bản photo Chứng chỉ *(không cần công chứng)* cho Trợ lý giáo vụ của đơn vị đào tạo. SV lưu ý mang theo Bản chính chứng chỉ để đối chiếu khi nộp đơn. - Sau khi Thủ trưởng đơn vị đào tạo ký duyệt, đơn có đính kèm theo bản photo Chứng chỉ được đơn vị đào tạo chuyển cho Phòng Đào tạo để nhập điểm M cho các học phần tương ứng.",,DonDeNghi_Diem_M_Chungchi_llp.md,True
+R58,Bản photo chứng chỉ nộp kèm đơn xét điểm M có cần công chứng không và sinh viên phải mang theo gì để đối chiếu?,academic_rules,- Sinh viên nộp đơn có đính kèm theo bản photo Chứng chỉ *(không cần công chứng)* cho Trợ lý giáo vụ của đơn vị đào tạo. SV lưu ý mang theo Bản chính chứng chỉ để đối chiếu khi nộp đơn.,,DonDeNghi_Diem_M_Chungchi_llp.md,True
+R59,"Sau khi thủ trưởng đơn vị đào tạo ký duyệt, hồ sơ xét điểm M được chuyển đến đâu để nhập điểm?",academic_rules,"- Sau khi Thủ trưởng đơn vị đào tạo ký duyệt, đơn có đính kèm theo bản photo Chứng chỉ được đơn vị đào tạo chuyển cho Phòng Đào tạo để nhập điểm M cho các học phần tương ứng.",,DonDeNghi_Diem_M_Chungchi_llp.md,True
+R60,Tiêu chuẩn chung của Tập thể Sinh viên 5 tốt yêu cầu bao nhiêu phần trăm sinh viên tham gia phong trào “Sinh viên 5 tốt”?,other,- 80% sinh viên tham gia phong trào “Sinh viên 5 tốt”.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R61,Tập thể Sinh viên 5 tốt phải có ít nhất bao nhiêu sinh viên đạt danh hiệu “Sinh viên 5 tốt” cấp Thành phố trở lên?,other,- Ít nhất 01 sinh viên đạt danh hiệu “Sinh viên 5 tốt” cấp Thành phố trở lên.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R62,"Liên chi hội, Chi hội và các CLB, Đội Nhóm trực thuộc Hội Sinh viên Việt Nam Đại học Cần Thơ cần có ít nhất bao nhiêu phần trăm sinh viên đạt danh hiệu “Sinh viên 5 tốt” Đại học Cần Thơ?",other,"| Liên chi hội, Chi hội và các CLB, Đội Nhóm trực thuộc Hội Sinh viên Việt Nam Đại học Cần Thơ. | Có ít nhất 30% sinh viên đạt danh hiệu “Sinh viên 5 tốt” Đại học Cần Thơ. |",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R63,Cá nhân đạt danh hiệu “Sinh viên 5 tốt” Đại học Cần Thơ trong 03 năm học trở lên sẽ được đề xuất nhận hình thức khen thưởng nào?,other,- Đối với các cá nhân đạt Danh hiệu “Sinh viên 5 tốt” Đại học Cần Thơ trong 03 năm học trở lên sẽ được đề xuất nhận Giấy khen của Hiệu trưởng Đại học Cần Thơ.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+R64,Một điều kiện về số tín chỉ để sinh viên được xét học bổng khuyến khích học tập là gì?,academic_rules,- Có số TC đăng ký tối thiểu trong HK trước đó là 12 TC (*trừ trường hợp do Trường bố trí*);,,quychehocvu.md,True
+R65,"Khi gặp khó khăn đột xuất về kinh tế, sinh viên cần làm gì để được Hiệu trưởng xem xét hỗ trợ từ Quỹ hỗ trợ sinh viên?",academic_rules,"3. Quỹ hỗ trợ SV: khi gặp khó khăn đột xuất về kinh tế, SV có thể làm đơn trình bày rõ hoàn cảnh khó khăn, có xác nhận của CVHT và trưởng đơn vị đào tạo để Hiệu trưởng xem xét.",,quychehocvu.md,True
+R66,"Theo Quy định công tác học vụ, những nhóm sinh viên nào thuộc đối tượng được hưởng trợ cấp xã hội?",academic_rules,4. Trợ cấp xã hội: đối tượng được hưởng trợ cấp xã hội là SV dân tộc ít người ở vùng cao; SV mồ côi cả cha lẫn mẹ; SV tàn tật trên 41%; SV thuộc hộ nghèo theo quy định.,,quychehocvu.md,True
+R67,Học phí của sinh viên được tính theo căn cứ nào trong mỗi học kỳ và mức học phí do ai quyết định?,academic_rules,1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.,,quychehocvu.md,True
+R68,Mỗi sinh viên chính quy của Trường Đại học Cần Thơ được cấp những tài khoản hoặc định danh nào để sử dụng trong quá trình học?,academic_rules,"Sinh viên hình thức chính quy của Trường ĐHCT là những người đã trúng tuyển kỳ thi tuyển sinh hoặc được xét tuyển và có quyết định thu nhận vào học hình thức chính quy của Trường. Mỗi SV sẽ được cấp một mã số SV, thẻ SV, tài khoản máy tính và địa chỉ thư điện tử (*email*) để sử dụng trong suốt quá trình theo học tại Trường.",,quychehocvu.md,True
+R69,Tổng khối lượng chương trình đào tạo được thực hiện bằng phương thức trực tuyến thông thường không được vượt quá bao nhiêu phần trăm?,academic_rules,"Một số học phần thuộc CTĐT có thể được tổ chức lớp học bằng phương thức dạy và học trực tuyến một phần hoặc toàn bộ học phần khi đáp ứng các quy định hiện hành. Những nội dung dạy và học trực tuyến được ghi trong đề cương chi tiết học phần. Tổng khối lượng (tính theo TC) được thực hiện bằng phương thức dạy và học trực tuyến không quá 30% khối lượng của CTĐT. Trong trường hợp thiên tai, dịch bệnh phức tạp và các trường hợp bất khả kháng khác, Trường ĐHCT có thể thực hiện việc dạy và học bằng phương thức trực tuyến theo yêu cầu và hướng dẫn của Nhà nước.",,quychehocvu.md,True
+R70,"Với chương trình đào tạo có thời gian thiết kế 4 năm, thời gian học tập tối đa để hoàn thành chương trình là bao lâu?",academic_rules,| 4 năm | 8 năm |,,quychehocvu.md,True
+R71,"Theo Quy định công tác học vụ, mỗi năm học của sinh viên chính quy được tổ chức thành mấy học kỳ và gọi là gì?",academic_rules,"1. Mỗi năm học được tổ chức thành 03 HK gọi là Học kỳ 1, Học kỳ 2 và Học kỳ 3.",,quychehocvu.md,True
+R72,Học phần tiên quyết được định nghĩa như thế nào?,academic_rules,4. Học phần tiên quyết của học phần HPxxx là học phần mà SV phải tích lũy mới được đăng ký học học phần HPxxx.,,quychehocvu.md,True
+R73,Những học phần điều kiện nào được nêu trong quy định và kết quả của chúng có được tính vào ĐTBCTL không?,academic_rules,"6. Học phần điều kiện (*bao gồm các học phần Giáo dục Quốc phòng và An ninh (GDQP&AN), Giáo dục thể chất (GDTC), Ngoại ngữ căn bản, Tin học căn bản*) là học phần mà SV phải hoàn thành nhưng kết quả học phần không dùng để tính điểm trung bình chung tích lũy (ĐTBCTL); ngoài ra, điểm học phần GDTC không dùng để tính điểm trung bình chung học kỳ (ĐTBCHK) và điểm trung bình chung năm học (ĐTBCNH).",,quychehocvu.md,True
+R74,Một tín chỉ tương đương bao nhiêu giờ học tập định mức của sinh viên?,academic_rules,"a) Một (01) TC được tính tương đương 50 giờ học tập định mức của SV, bao gồm cả thời gian dự giờ giảng, giờ học có hướng dẫn, tự học, nghiên cứu, trải nghiệm và dự kiểm tra, đánh giá.",,quychehocvu.md,True
+R75,Sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ?,academic_rules,1. Sinh viên được đăng ký học tối đa 20 TC/HK.,,quychehocvu.md,True
+R76,"Nếu thấy việc học khó khăn, sinh viên được rút bớt học phần chậm nhất vào thời điểm nào và học phần rút nhận điểm gì?",academic_rules,"- Chậm nhất là tuần lễ thứ 6 của HK nếu thấy việc học khó khăn có thể dẫn đến kết quả kém, SV có thể rút bớt học phần đã đăng ký nhưng không được trả lại học phí. Muốn rút bớt học phần, SV vào hệ thống quản lý trực tuyến của Trường ĐHCT để thực hiện. Những học phần đã rút sẽ nhận điểm W trong bảng điểm của HK đó.",,quychehocvu.md,True
+R77,"Lớp học phần có ít hơn bao nhiêu sinh viên đăng ký sẽ bị Trường xóa, trừ trường hợp đặc biệt?",academic_rules,"1. Xóa lớp học phần: Trường ĐHCT sẽ xóa những lớp học phần có số lượng đăng ký ít hơn 20 SV, những trường hợp đặc biệt do Hiệu trưởng quyết định. Trong tuần đầu HK, những SV đã đăng ký các học phần bị xóa do không đủ điều kiện mở lớp được phép đăng ký học phần khác để thay thế (*trừ các học phần thực hành, thí nghiệm, thực tập tại cơ sở, GDQP&AN, GDTC*).",,quychehocvu.md,True
+R78,Nếu một học phần bắt buộc bị điểm F thì sinh viên phải xử lý thế nào?,academic_rules,"1. Các học phần có điểm F sẽ không được tích lũy. Nếu là học phần bắt buộc SV phải đăng ký học lại những học phần này; nếu là học phần tự chọn, SV có thể đăng ký học lại hoặc chọn học phần tự chọn khác.",,quychehocvu.md,True
+R79,Sinh viên xin nghỉ học tạm thời vì lý do cá nhân phải đáp ứng điều kiện gì?,academic_rules,"d) Vì lý do cá nhân (*hoàn cảnh gia đình neo đơn, việc riêng,...*). Trường hợp này chỉ giải quyết khi SV đã học ít nhất 1 HK ở Trường ĐHCT, không thuộc các trường hợp bị xem xét buộc thôi học hoặc xem xét kỷ luật. Thời gian nghỉ học tạm thời trong trường hợp này được tính vào thời gian học tập tối đa để hoàn thành CTĐT theo quy định tại Điều 5 của Quy định này.",,quychehocvu.md,True
+R80,Sinh viên bị cảnh báo học tập khi ĐTBCHK dưới mức nào ở học kỳ đầu và các học kỳ tiếp theo?,academic_rules,"a) Có ĐTBCHK đạt dưới 0,80 đối với HK đầu của khóa học, dưới 1,00 đối với các HK tiếp theo.",,quychehocvu.md,True
+R81,"Đối với học phần lý thuyết hoặc lý thuyết kết hợp thực hành, thi kết thúc học phần có bắt buộc không?",academic_rules,"1. Học phần lý thuyết hoặc học phần lý thuyết kết hợp thực hành: điểm học phần được đánh giá qua tối thiểu hai điểm thành phần như: điểm bài tập, điểm kiểm tra giữa kỳ, điểm thực hành, điểm đánh giá nhận thức, điểm tham gia thảo luận, điểm chuyên cần, điểm đồ án,... và điểm thi kết thúc học phần. Thi kết thúc học phần là bắt buộc. Phương pháp đánh giá học phần được công bố trong đề cương chi tiết học phần. Tổ chức kỳ thi kết thúc học phần; đề thi và đáp án đề thi kết thúc học phần thực hiện theo hướng dẫn và quy định hiện hành của Trường ĐHCT.",,quychehocvu.md,True
+R82,Đánh giá trực tuyến thông thường được đóng góp tối đa bao nhiêu phần trăm trọng số tổng điểm học phần?,academic_rules,"4. Hình thức đánh giá trực tuyến được áp dụng khi đảm bảo trung thực, công bằng và khách quan như đánh giá trực tiếp, đồng thời đóng góp không quá 50% trọng số tổng điểm học phần; riêng việc tổ chức bảo vệ và đánh giá luận văn tốt nghiệp được thực hiện trực tuyến với trọng số cao hơn khi đáp ứng thêm các điều kiện sau đây:",,quychehocvu.md,True
+R83,Học phần được tính tích lũy khi đạt từ điểm chữ nào trở lên?,academic_rules,3. Học phần chỉ được tính tích lũy khi đạt từ điểm D trở lên.,,quychehocvu.md,True
+R84,"Điểm M có được tính vào ĐTBCHK và ĐTBCTL không, và số tín chỉ của học phần điểm M có được tính tích lũy không?",academic_rules,"a) Điểm M (*tương đương điểm R của Thông tư 08/2021/TT-BGDĐT*): dùng để xác nhận học phần SV được miễn học do đã tích lũy được bằng các hình thức khác. Điểm M không được tính vào ĐTBCHK và ĐTBCTL. Số TC của học phần có điểm M được tính vào tổng số TC tích lũy. Để nhận điểm M, SV phải làm đơn có ý kiến của trưởng đơn vị đào tạo xem xét theo từng HK, kèm theo giấy tờ hợp lệ.",,quychehocvu.md,True
+R85,Điểm I phải được bổ sung trong thời hạn tối đa bao lâu và nếu quá hạn chưa hoàn thành thi thì nhận điểm gì?,academic_rules,"b) Điểm I: chỉ áp dụng cho đánh giá kết thúc học phần. Dành cho các trường hợp SV đã dự học, dự các lần kiểm tra giữa HK, đã thực hiện các hoạt động liên quan đến học phần như thí nghiệm, thực hành nhưng vì lý do bất khả kháng như ốm đau, tai nạn,... đã vắng mặt trong buổi thi kết thúc học phần và được GV phụ trách học phần chấp thuận cho bổ sung điểm. Điểm I không được tính vào ĐTBCHK ở HK đó. Để nhận được điểm I, SV phải làm đơn kèm theo hồ sơ hợp lệ nộp cho GV giảng dạy học phần xem xét và trình trưởng đơn vị đào tạo duyệt. Thời hạn bổ sung điểm của học phần do GV quy định nhưng không quá 1 năm kể từ ngày thi lần trước. Quá thời hạn trên, nếu SV không hoàn thành thi học phần thì sẽ nhận điểm F.",,quychehocvu.md,True
+R86,Kỳ thi kết thúc học phần được tổ chức bao nhiêu lần?,academic_rules,1. Kỳ thi kết thúc học phần được tổ chức 1 lần.,,quychehocvu.md,True
+R87,"Điều kiện học tập chính để được xét công nhận tốt nghiệp gồm những gì về tín chỉ, ĐTBCTL và chuẩn đầu ra?",academic_rules,"a) Tích lũy đủ các học phần và số TC quy định trong CTĐT; ĐTBCTL của các học phần đạt từ 2,00 trở lên (*theo thang điểm 4*), đạt chuẩn đầu ra của CTĐT (*kể cả chuẩn đầu ra về ngoại ngữ và công nghệ thông tin*).
+b) Hoàn thành các học phần điều kiện. Ngoài ra, điểm trung bình chung các học phần GDQP&AN phải đạt từ 5,0 trở lên (*theo thang điểm 10*). Riêng đối với SV chương trình chất lượng cao và chương trình tiên tiến phải có xác nhận đã tham gia nghiên cứu khoa học của Phòng Quản lý khoa học.",,quychehocvu.md,True
+R88,"Nếu sau 2 ngày làm việc hệ thống chưa cập nhật đã đóng phí KTX học kỳ 3, sinh viên phải gửi gì đến đâu?",other,"Sinh viên **chuyển đúng số tài khoản thu phí KTX** *(chuyển nhầm SV tự đề nghị ngân hàng xử lý)*. Kiểm tra chính xác cú pháp *(mã số SV, số điện thoại)* trước khi thực hiện thao tác gửi. Nếu **sau 2 ngày làm việc**, hệ thống chưa cập nhật trạng thái **đã đóng phí** thì chụp biên lai đã chuyển khoản thành công gửi về Phòng Kế hoạch và Tài chính qua email: ptc@ctu.edu.vn để được cập nhật trạng thái đã đóng phí.",,tbdk_hk32526_llp.md,True
+R89,Sinh viên muốn chuyển đổi chỗ KTX học kỳ 3 sau khi có kết quả sắp chỗ thì kết quả chuyển đổi được phản hồi trước ngày nào?,other,- Sau khi có **kết quả sắp chỗ từ 23/4/2026**. SV có thể xin chuyển đổi chỗ nếu chỗ ở chưa thích hợp. SV quét mã QR và điền thông tin chuyển đổi chỗ vào mẫu. Kết quả sẽ được phản hồi trước này 04/5/2026. QR code for room change,,tbdk_hk32526_llp.md,True
+R90,Trường hợp nào trả chỗ KTX trước hạn có thể được hoàn phí?,other,- Sinh viên trả chỗ trước hạn **sẽ không được hoàn trả phí ở**. Chỉ hoàn trả phí cho trường hợp SV trả chỗ ở trong vòng 07 ngày kể từ ngày duyệt chỗ ở qua Hệ thống Quản lý KTX (*phải có lý do chính đáng*);,,tbdk_hk32526_llp.md,True
+R91,"Khi đăng ký KTX theo nhóm ở học kỳ 1 năm học 2026-2027, các thành viên phải ghi nguyện vọng theo cú pháp nào?",other,"- Sau khi thực hiện thao tác đăng ký thành công qua HTQL, SV có thể ghi ngắn gọn nguyện vọng ở vào ô **Nguyện vọng ở** (*nhu cầu về chỗ ở, loại phòng, …*); Trường hợp SV đăng ký ở theo nhóm thì các thành viên trong nhóm ghi nguyện vọng ở theo cú pháp giống nhau (*để phân biệt nhóm*): **Mã SV đại diện nhóm – nhu cầu về chỗ ở.**",,072026_tb_dk1_2627_llp.md,True
+R92,Sinh viên đăng ký mới KTX học kỳ 1 năm học 2026-2027 có thể đăng ký qua những kênh nào?,other,"- Đối với SV đăng ký mới *(SV chuyển từ trọ vào KTX)*. SV thực hiện đăng ký ở qua HTQL KTX của Trường bằng tài khoản SV tính từ ngày **phát hành thông báo hoặc khi có nhu cầu về chỗ ở** thì thực hiện đăng ký
+có thể đăng ký qua email ktx@ctu.edu.vn hoặc trực tiếp tại Văn phòng Trung tâm Phục vụ Sinh viên *(TT. PVSV)*",,072026_tb_dk1_2627_llp.md,True
+R93,"Những sinh viên đã nghỉ học, tạm ngừng học, tốt nghiệp, chuẩn bị xét tốt nghiệp hoặc không nộp phí phải trả chỗ trước ngày nào?",other,"- Sinh viên đã nghỉ học, tạm ngừng học, tốt nghiệp, chuẩn bị xét tốt nghiệp, SV không nộp phí ở theo thời gian thông báo **phải thực hiện trả chỗ trước ngày 21/8/2026.** SV tự làm vệ sinh giường, phòng ở trước khi trả chỗ hoặc thuê người dọn vệ sinh, tự thanh toán chi phí và báo về Văn phòng KTX trả chỗ, thanh toán các phí (*nếu có*).",,072026_tb_dk1_2627_llp.md,True
+R94,Kết quả kiểm tra và thi cuối học kỳ của học sinh xét tuyển thẳng được chấm theo thang điểm nào và lấy số lẻ đến mức nào?,academic_rules,"a) Kết quả kiểm tra và thi cuối học kỳ được đánh giá theo thang điểm 10 và chỉ lấy số lẻ đến 0,5 điểm.",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+R95,Bốn môn trong chương trình bổ sung kiến thức là những môn nào và mỗi môn có bao nhiêu tín chỉ?,academic_rules,"| 1 | Toán học | 90 | 90 | 180 | 12 |
+| 2 | Ngữ văn | 90 | 90 | 180 | 12 |
+| 3 | Tiếng Anh | 60 | 60 | 120 | 8 |
+| 4 | Tin học | 60 | 60 | 120 | 8 |",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+R96,"Khi vay vốn lần đầu và các năm tiếp theo, người học sử dụng mẫu phụ lục nào?",student_loan,| Thực hiện mẫu Phụ lục I | Thực hiện mẫu Phụ lục II |,,Q_29_STEM_288.md,True
+R97,Học viên thạc sĩ và nghiên cứu sinh xin giấy xác nhận vay vốn tại đâu?,student_loan,"- Học viên thạc sĩ, nghiên cứu sinh thực hiện thủ tục cấp giấy xác nhận tại văn phòng Khoa Sau đại học.",,Q_29_STEM_288.md,True
+R98,Những đơn vị đào tạo nào được nêu là ngoại lệ khi CTU tổ chức thống nhất 3 học kỳ chính?,academic_rules,"a) Một năm học được tổ chức thành 03 học kỳ chính gọi là Học kỳ 1, Học kỳ 2, Học kỳ 3. Việc tổ chức một năm học gồm 03 học kỳ chính được thực hiện thống nhất cho tất cả các trình độ đào tạo và hình thức đào tạo của Trường Đại học Cần Thơ (ngoại trừ đào tạo tại Trường THPT Thực hành Sư phạm và Khoa Dự bị Dân tộc).",,3hk.md,True
+R99,Kinh phí thực hiện Kế hoạch 1470 được lấy từ nguồn nào?,other,- Kinh phí thường xuyên của các đơn vị.,,02_1470KHTH_06-05-2024_llp.md,True
+R100,Cố vấn học tập có trách nhiệm gì khi sinh viên vi phạm nội quy hoặc có tình huống vượt khả năng xử lý?,other,"- Thường xuyên quan tâm, nhắc nhở ý thức của sinh viên trong việc vi phạm các nội quy. Kịp thời báo cáo các cấp quản lý trực tiếp khi có tình huống xảy ra vượt quá khả năng xử lý.",,02_1470KHTH_06-05-2024_llp.md,True
+E001,Học kỳ 3 năm học 2025-2026 sinh viên được ở KTX trong khoảng thời gian nào?,other,"Thời gian ở KTX của học kỳ 3 năm học 2025-2026 là 3,5 tháng, tính từ ngày 04/5/2026 đến 21/8/2026.",,tbdk_hk32526_llp.md,True
+E002,Sinh viên phải đóng phí KTX học kỳ 3 năm học 2025-2026 khi nào?,other,"Sinh viên nộp phí từ ngày 23/4 đến 29/4/2026, SV nộp phí cho cả kỳ ở.",,tbdk_hk32526_llp.md,True
+E003,Sinh viên đăng ký mới ở KTX học kỳ 3 năm học 2025-2026 có thể nhận chỗ từ ngày nào?,other,Đối với SV đăng ký mới có thể nhận chỗ ở từ ngày 04/5/2026.,,tbdk_hk32526_llp.md,True
+E004,Học kỳ 1 năm học 2026-2027 phải nộp phí KTX trong thời gian nào?,other,"Sinh viên nộp phí từ ngày 04/8 đến 07/8/2026, SV nộp phí cho cả kỳ ở.",,072026_tb_dk1_2627_llp.md,True
+E005,Sinh viên đã ở KTX từ học kỳ 3 năm học 2025-2026 có phải đăng ký lại cho học kỳ 1 năm học 2026-2027 không?,other,"Đối với SV đang ở cũ (HK3, năm học 2025-2026) không cần phải đăng ký lại, chỉ thực hiện nộp phí theo thời gian nêu ở mục 2, trong thông báo này.",,072026_tb_dk1_2627_llp.md,True
+E006,Sinh viên đăng ký mới KTX học kỳ 1 năm học 2026-2027 được nhận chỗ từ ngày nào?,other,Đối với SV đăng ký ở mới có thể nhận chỗ ở từ ngày 07/9/2026.,,072026_tb_dk1_2627_llp.md,True
+E007,"Nếu sau 2 ngày làm việc hệ thống chưa cập nhật đã đóng phí KTX học kỳ 3, sinh viên phải gửi gì đến đâu?",other,"Sinh viên chuyển đúng số tài khoản thu phí KTX (chuyển nhầm SV tự đề nghị ngân hàng xử lý). Kiểm tra chính xác cú pháp (mã số SV, số điện thoại) trước khi thực hiện thao tác gửi. Nếu sau 2 ngày làm việc, hệ thống chưa cập nhật trạng thái đã đóng phí thì chụp biên lai đã chuyển khoản thành công gửi về Phòng Kế hoạch và Tài chính qua email: ptc@ctu.edu.vn để được cập nhật trạng thái đã đóng phí.",,tbdk_hk32526_llp.md,True
+E008,Trường hợp nào trả chỗ KTX trước hạn có thể được hoàn phí?,other,Sinh viên trả chỗ trước hạn sẽ không được hoàn trả phí ở. Chỉ hoàn trả phí cho trường hợp SV trả chỗ ở trong vòng 07 ngày kể từ ngày duyệt chỗ ở qua Hệ thống Quản lý KTX (phải có lý do chính đáng);,,tbdk_hk32526_llp.md,True
+E009,Sinh viên đăng ký mới KTX học kỳ 1 năm học 2026-2027 có thể đăng ký qua những kênh nào?,other,"Đối với SV đăng ký mới (SV chuyển từ trọ vào KTX). SV thực hiện đăng ký ở qua HTQL KTX của Trường bằng tài khoản SV tính từ ngày phát hành thông báo hoặc khi có nhu cầu về chỗ ở thì thực hiện đăng ký, có thể đăng ký qua email ktx@ctu.edu.vn hoặc trực tiếp tại Văn phòng Trung tâm Phục vụ Sinh viên (TT. PVSV), TT. PVSV sẽ phản hồi kết quả sắp chỗ qua email SV trong ngày làm việc tính từ thời gian bắt đầu của học kỳ mới.",,072026_tb_dk1_2627_llp.md,True
+E010,"Những sinh viên đã nghỉ học, tạm ngừng học, tốt nghiệp, chuẩn bị xét tốt nghiệp hoặc không nộp phí phải trả chỗ trước ngày nào?",other,"Sinh viên đã nghỉ học, tạm ngừng học, tốt nghiệp, chuẩn bị xét tốt nghiệp, SV không nộp phí ở theo thời gian thông báo phải thực hiện trả chỗ trước ngày 21/8/2026. SV tự làm vệ sinh giường, phòng ở trước khi trả chỗ hoặc thuê người dọn vệ sinh, tự thanh toán chi phí và báo về Văn phòng KTX trả chỗ, thanh toán các phí (nếu có).",,072026_tb_dk1_2627_llp.md,True
+E011,Học sinh xét tuyển thẳng phải học bổ sung kiến thức trong bao lâu?,academic_rules,"1. Học sinh được xét tuyển thẳng phải học bổ sung kiến thức một năm. Năm học bao gồm 2 học kỳ (gồm học kỳ I và học kỳ II). Mỗi học kỳ, học sinh phải học 4 môn học như sau:",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+E012,Nếu học sinh nghỉ quá 20% số tiết của một môn thì có được thi cuối học kỳ môn đó không?,academic_rules,b) Tổng số thời gian nghỉ học có lý do và không có lý do vượt quá 20% số tiết ở môn học nào thì không được dự thi môn học đó trong học kỳ.,,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+E013,Điểm tổng kết môn học của học sinh xét tuyển thẳng được tính với hệ số kiểm tra và thi như thế nào?,academic_rules,"1. Cuối năm học, mỗi môn học có một điểm tổng kết. Điểm tổng kết môn học là điểm trung bình chung của 2 lần kiểm tra (hệ số 1) và 2 lần thi (hệ số 2).",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+E014,Điều kiện để học sinh sau năm bổ sung kiến thức được xét tuyển vào đại học là gì?,academic_rules,"a) Thi đủ 4 môn cuối mỗi học kỳ;
+b) Điểm trung bình chung năm học đạt từ 5,0 điểm trở lên và Điểm tổng kết môn học đạt trên 1,0 điểm.
+c) Xếp loại rèn luyện cả năm đạt từ Khá trở lên.",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+E015,Kết quả kiểm tra và thi cuối học kỳ của học sinh xét tuyển thẳng được chấm theo thang điểm nào và lấy số lẻ đến mức nào?,academic_rules,"a) Kết quả kiểm tra và thi cuối học kỳ được đánh giá theo thang điểm 10 và chỉ lấy số lẻ đến 0,5 điểm.",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+E016,Bốn môn trong chương trình bổ sung kiến thức là những môn nào và mỗi môn có bao nhiêu tín chỉ?,academic_rules,"| 1 | Toán học | 90 | 90 | 180 | 12 |
+| 2 | Ngữ văn | 90 | 90 | 180 | 12 |
+| 3 | Tiếng Anh | 60 | 60 | 120 | 8 |
+| 4 | Tin học | 60 | 60 | 120 | 8 |",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True
+E017,Sinh viên được vay vốn theo Quyết định 29 để chi trả những khoản nào?,student_loan,"Người học vay vốn để trang trải học phí, sinh hoạt phí và chi phí học tập khác trong thời gian theo học các ngành khoa học, công nghệ, kỹ thuật và toán được ban hành theo Quyết định 29",,Q_29_STEM_288.md,True
+E018,Sinh viên ngành máy tính và công nghệ thông tin có thuộc đối tượng của chương trình tín dụng theo Quyết định 29 không?,student_loan,| 3 | Máy tính và công nghệ thông tin | 748 | 848 | 948 |,,Q_29_STEM_288.md,True
+E019,Sinh viên năm nhất muốn vay vốn theo Quyết định 29 phải đáp ứng điều kiện học tập nào?,student_loan,"(1) Có đồng thời cả ba năm học trung học phổ thông được đánh giá kết quả học tập đạt từ mức khá trở lên; Hoặc (2) Đạt điểm trung bình môn lớp 12 của các môn toán, vật lý, hóa học, sinh học từ 8 điểm trở lên",,Q_29_STEM_288.md,True
+E020,Sinh viên từ năm thứ hai trở đi cần kết quả học tập thế nào để vay vốn?,student_loan,Có kết quả học tập trung bình các môn học đạt loại giỏi trở lên theo quy định của pháp luật tại năm trước liền kề với năm đề nghị vay vốn.,,Q_29_STEM_288.md,True
+E021,Sinh viên chính quy xin giấy xác nhận vay vốn ở đâu?,student_loan,Sinh viên hình thức chính quy thực hiện thủ tục cấp giấy xác nhận tại văn phòng Phòng Công tác Sinh viên (theo đường dẫn: https://dsa.ctu.edu.vn/images/upload/vbanply/2021/HotroOnline/Huongdan_Dangky_Xacnhan.pdf) ;,,Q_29_STEM_288.md,True
+E022,"Khi vay vốn lần đầu và các năm tiếp theo, người học sử dụng mẫu phụ lục nào?",student_loan,| Thực hiện mẫu Phụ lục I | Thực hiện mẫu Phụ lục II |,,Q_29_STEM_288.md,True
+E023,Học viên thạc sĩ và nghiên cứu sinh xin giấy xác nhận vay vốn tại đâu?,student_loan,"Học viên thạc sĩ, nghiên cứu sinh thực hiện thủ tục cấp giấy xác nhận tại văn phòng Khoa Sau đại học.",,Q_29_STEM_288.md,True
+E024,Đại học Cần Thơ bắt đầu tổ chức 3 học kỳ chính từ thời điểm nào?,academic_rules,"Nhằm giúp người học có thể rút ngắn thời gian học tập, hỗ trợ sinh viên ra trường đúng tiến độ, khai thác hiệu quả quỹ phòng học cho hoạt động giảng dạy và học tập và đảm bảo giờ nghĩa vụ của giảng viên, ngày 05 tháng 7 năm 2024, Hội đồng trường Trường Đại học Cần Thơ (ĐHCT) đã ban hành Nghị quyết số 189/NQ-HĐT phê duyệt kế hoạch tổ chức giảng dạy và học tập từ Học kỳ 2 năm học 2024 - 2025. Theo đó, từ Học kỳ 2 năm học 2024 - 2025, Trường ĐHCT sẽ tổ chức giảng dạy và học tập 03 học kỳ chính trong một năm học.",,3hk.md,True
+E025,Một học kỳ chính theo kế hoạch 3 học kỳ của CTU kéo dài bao nhiêu tuần?,academic_rules,"b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",,3hk.md,True
+E026,15 tuần của một học kỳ chính được phân bổ như thế nào?,academic_rules,"b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",,3hk.md,True
+E027,"Học kỳ 1, 2 và 3 của CTU tương ứng với các khoảng tuần nào trong năm?",academic_rules,"c) Học kỳ 1 bắt đầu từ tuần thứ 37 đến tuần thứ 51 của năm; Học kỳ 2 bắt đầu từ tuần thứ 01 đến tuần thứ 17 của năm (_bao gồm 2 tuần nghỉ Tết Nguyên Đán_); Học kỳ 3 bắt đầu từ tuần thứ 20 đến tuần thứ 34 của năm. Tuần nghỉ giữa các học kỳ là tuần thứ 18, 19, 35, 36, 52 và tuần thứ 53 (_nếu có_) của năm.",,3hk.md,True
+E028,Sinh viên đại học đang học được khuyến nghị không đăng ký quá bao nhiêu tín chỉ mỗi học kỳ?,academic_rules,"Thủ trưởng các đơn vị có đào tạo triển khai thông tin đến toàn thể giảng viên, VC-NLĐ và người học do đơn vị quản lý; chỉ đạo trưởng các Khoa/Bộ môn và cố vấn học tập rà soát, hướng dẫn người học điều chỉnh kế hoạch học tập toàn khóa đối với các khóa đang học (không quá 20 tín chỉ/học kỳ đối với trình độ đại học); xây dựng bản mô tả chương trình đào tạo và chương trình dạy học kịp thời áp dụng đối với các khóa tuyển sinh từ năm 2024.",,3hk.md,True
+E029,Những đơn vị đào tạo nào được nêu là ngoại lệ khi CTU tổ chức thống nhất 3 học kỳ chính?,academic_rules,"a) Một năm học được tổ chức thành 03 học kỳ chính gọi là Học kỳ 1, Học kỳ 2, Học kỳ 3. Việc tổ chức một năm học gồm 03 học kỳ chính được thực hiện thống nhất cho tất cả các trình độ đào tạo và hình thức đào tạo của Trường Đại học Cần Thơ (ngoại trừ đào tạo tại Trường THPT Thực hành Sư phạm và Khoa Dự bị Dân tộc).",,3hk.md,True
+E030,Kế hoạch 1470 của CTU hướng đến mục tiêu gì trong phòng chống bạo lực học đường?,other,"Tăng cường trách nhiệm của các cấp, các ngành, nâng cao hiệu quả công tác phối hợp giữa nhà trường, gia đình và xã hội trong phòng chống bạo lực học đường, phòng ngừa tội phạm và tệ nạn xã hội trong học sinh, sinh viên, qua đó góp phần xây dựng thế hệ trẻ có lý tưởng cách mạng, bản lĩnh vững vàng, giàu lòng yêu nước, có tri thức, văn hóa, có ý thức tuân thủ pháp luật, trách nhiệm với cộng đồng, có ước mơ, hoài bão, khát vọng và trau dồi kiến thức khoa học kỹ thuật trên ghế nhà trường, đồng thời tiếp thu kỹ năng hội nhập quốc tế trong kỷ nguyên số cho học sinh, sinh viên.
+Tăng cường các điều kiện về vật chất và tinh thần trong các nhà trường, tạo môi trường giáo dục an toàn, lành mạnh, thân thiện; cán bộ quản lý, giáo viên, nhân viên, học sinh, sinh viên có lối sống lành mạnh, ứng xử văn hóa góp phần giữ gìn an ninh trật tự trường học; đồng thời giáo dục thế hệ trẻ sống, lao động, học tập, làm việc theo pháp luật. Học sinh, sinh viên được tôn trọng, đối xử công bằng, bình đẳng và nhân ái, được phát huy dân chủ và tạo điều kiện để phát triển phẩm chất và năng lực.",,02_1470KHTH_06-05-2024_llp.md,True
+E031,CTU sử dụng những hình thức nào để tuyên truyền và giáo dục phòng chống bạo lực học đường?,other,"Đa dạng hóa và lồng ghép các hình thức tuyên truyền, giáo dục thông qua các hoạt động giáo dục trong các hội nghị, hội thảo, triển lãm; các phương tiện trực quan; các cuộc thi tìm hiểu văn hóa, lịch sử dân tộc, lịch sử Đảng, Đoàn, Hội; các cuộc thi về lý tưởng cách mạng, về Chủ tịch Hồ Chí Minh; vinh danh, tuyên dương, khen thưởng các tấm gương tiêu biểu trong học tập và rèn luyện.
+Quản lý nội dung và khai thác hiệu quả hệ thống truyền thông, văn hóa, thể thao sẵn có và tăng cường ứng dụng thành tựu khoa học và công nghệ, internet, mạng xã hội để phục vụ cho công tác tuyên truyền.",,02_1470KHTH_06-05-2024_llp.md,True
+E032,Nhà trường yêu cầu phối hợp những lực lượng nào trong công tác phòng chống bạo lực học đường và tệ nạn xã hội?,other,"Triển khai các hoạt động phối hợp giữa nhà trường, gia đình và xã hội trong phòng chống bạo lực học đường, tội phạm, tệ nạn xã hội.",,02_1470KHTH_06-05-2024_llp.md,True
+E033,Công nghệ thông tin và chuyển đổi số được sử dụng như thế nào để phòng chống bạo lực học đường?,other,"Tăng cường chuyển đổi số gắn với giải pháp cụ thể để hỗ trợ các bên liên quan trong việc quản lý sử dụng internet, mạng xã hội an toàn cho học sinh, sinh viên.
+Triển khai và hỗ trợ ứng dụng công nghệ thông tin nhằm tăng cường kết nối thường xuyên, liên tục, đảm bảo an toàn giữa nhà trường, gia đình và các lực lượng xã hội; tăng cường kiểm soát các luồng thông tin không chính thống có tính chất kích động bạo lực, lôi kéo tham gia hành vi phạm tội và các tệ nạn xã hội.",,02_1470KHTH_06-05-2024_llp.md,True
+E034,Phòng Công tác Sinh viên có trách nhiệm gì trong việc triển khai kế hoạch phòng chống bạo lực học đường?,other,"Tổ chức thực hiện, kiểm tra, giám sát, đánh giá công tác phối hợp giữa nhà trường, gia đình, xã hội trong phòng chống bạo lực học đường, phòng ngừa tội phạm và tệ nạn xã hội trong học sinh, sinh viên.
+Thực hiện chế độ giao ban công tác an ninh, trật tự, an toàn trường học giữa nhà trường và công an địa phương. Biểu dương khen thưởng, nhân rộng mô hình phối hợp tiêu biểu, hiệu quả của nhà trường và các ban ngành, tổ chức, đoàn thể tại địa phương.",,02_1470KHTH_06-05-2024_llp.md,True
+E035,Kinh phí thực hiện Kế hoạch 1470 được lấy từ nguồn nào?,other,Kinh phí thường xuyên của các đơn vị.,,02_1470KHTH_06-05-2024_llp.md,True
+E036,Cố vấn học tập có trách nhiệm gì khi sinh viên vi phạm nội quy hoặc có tình huống vượt khả năng xử lý?,other,"Thường xuyên quan tâm, nhắc nhở ý thức của sinh viên trong việc vi phạm các nội quy. Kịp thời báo cáo các cấp quản lý trực tiếp khi có tình huống xảy ra vượt quá khả năng xử lý.",,02_1470KHTH_06-05-2024_llp.md,True
+E037,Quyết định 17/QĐ-HSV về tiêu chuẩn Sinh viên 5 tốt có hiệu lực thi hành kể từ năm học nào?,other,Điều 2. Quyết định có hiệu lực thi hành kể từ năm học 2025-2026.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+E038,Tiêu chuẩn Đạo đức tốt yêu cầu điểm rèn luyện trung bình cộng đạt từ bao nhiêu điểm?,other,"(1.1) Điểm rèn luyện trung bình cộng của học kỳ 3 năm học trước, học kỳ 1 và 2 năm học xét đạt từ 85 điểm trở lên.",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+E039,Tiêu chuẩn Học tập tốt yêu cầu điểm trung bình cộng đạt từ mức nào?,other,"2. Tiêu chuẩn Học tập tốt: Điểm trung bình cộng của học kỳ 3 năm học trước, học kỳ 1 và 2 năm học xét đạt từ 3.0 trở lên.",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+E040,Sinh viên có thể đạt tiêu chuẩn Thể lực tốt thông qua học phần Giáo dục thể chất với điều kiện nào?,other,(3.1) Trong năm học phải học ít nhất 01 học phần Giáo dục thể chất (học phần có rèn luyện thể lực) và đạt điểm B trở lên.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+E041,Một cách để đạt tiêu chuẩn Tình nguyện tốt là tham gia ít nhất bao nhiêu ngày tình nguyện?,other,(4.2) Tham gia ít nhất 03 ngày tình nguyện,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+E042,"Theo bảng quy đổi ngoại ngữ, sinh viên năm 1 và 2 cần IELTS hoặc TOEIC ở mức nào?",other,"| Sinh viên năm 1, 2 | A2 | 4.0 | 400 | 96 CBT,<br/>30 iBT,<br/>360 ITP | DELF A2 | HSK cấp 2 | TOPIK 2 | JLPT N5 |",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+E043,Chứng chỉ tin học quốc tế nào được chấp nhận trong tiêu chuẩn Tin học của Sinh viên 5 tốt?,other,"(5.2.2) Đạt chứng chỉ tin học quốc tế IC3 hoặc MOS (Word, Excel, Powerpoint).",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+E044,Thành tích và minh chứng dùng xét danh hiệu Sinh viên 5 tốt được ghi nhận trong khoảng thời gian nào?,other,Tất cả các thành tích xét trao các danh hiệu và minh chứng kèm theo được ghi nhận từ ngày 01/8 năm trước tới 01/8 năm xét trao danh hiệu.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True
+E045,Phiếu đăng ký ở Ký túc xá này dành cho đối tượng sinh viên nào?,other,,,,False
+E046,Phiếu đăng ký KTX yêu cầu sinh viên cung cấp những thông tin liên hệ nào?,other,,,,False
+E047,Người đăng ký KTX cam kết điều gì trên phiếu đăng ký?,other,,,,False
+E048,Quy trình xét miễn và công nhận điểm học phần được thực hiện vào khoảng thời gian nào trong học kỳ?,academic_rules,Thời gian thực hiện quy trình này là khi bắt đầu học kỳ đến khi sắp kết thúc mỗi học kỳ.,,qt_xet_mien_HP_llp.md,True
+E049,Quy trình xét miễn và công nhận điểm học phần áp dụng cho những sinh viên nào?,academic_rules,Áp dụng cho tất cả sinh viên có nhu cầu xét miễn và công nhận điểm học phần. (Đối với học kỳ đầu của tân sinh viên sẽ có thông báo hướng dẫn riêng).,,qt_xet_mien_HP_llp.md,True
+E050,"Ở bước đầu của quy trình xét miễn và công nhận điểm học phần, sinh viên nộp đơn cho ai và đơn được chuyển đến đâu?",academic_rules,SV nộp đơn đề nghị xét miễn và công nhận điểm học phần (mẫu 1 hoặc 2) cho CVHT. CVHT tập hợp đơn và chuyển TXMHP của ĐVQLN.,,qt_xet_mien_HP_llp.md,True
+E051,Phòng Đào tạo thực hiện những công việc nào trước khi sinh viên kiểm tra kết quả xét miễn học phần?,academic_rules,"PĐT kiểm tra và phản hồi về ĐVQLN.
+PĐT cập nhật kết quả vào hệ thống quản lý.",,qt_xet_mien_HP_llp.md,True
+E052,"Theo lưu đồ, sinh viên nộp đơn xét miễn và công nhận điểm học phần trong khoảng tuần nào của học kỳ chính?",academic_rules,"| 1 | Gửi yêu cầu | Nộp đơn xét miễn và công nhận điểm học phần | Sinh viên, CVHT | Tuần 01 đến tuần 08 của học kỳ chính | Mẫu 1 hoặc Mẫu 2 |",,qt_xet_mien_HP_llp.md,True
+E053,"Nếu xin xét miễn do đã tích lũy học phần ở một cơ sở đào tạo đại học trước đây, sinh viên nộp đơn qua ai và phải đính kèm giấy tờ gì?",academic_rules,"Sinh viên nộp đơn này cho Khoa/Viện/Bộ môn thông qua Quý Thầy, Cô là cố vấn học tập của lớp.
+Đơn có đính kèm theo bản sao chứng chỉ và bảng điểm của cơ sở đào tạo bậc đại học trước đây (có thị thực).",,qt_xet_mien_HP_llp.md,True
+E054,Sinh viên xin phép vắng thi kết thúc học phần được đề nghị bảo lưu kết quả nào và nhận điểm gì?,academic_rules,"Tôi kính đơn này đến Ban Chủ nhiệm Khoa, Phòng Đào tạo và quý Thầy/Cô giảng dạy học phần: Mã số HP: , cho phép tôi không thi kết thúc học phần, được bảo lưu kết quả đánh giá giữa kỳ và nhận điểm I cho học phần này trong học kỳ ......, năm học: ............. Trong thời hạn 1 năm tiếp theo, tôi sẽ dự thi để hoàn tất điểm học phần. Nếu quá thời hạn trên, tôi không hoàn tất điểm học phần này thì điểm I sẽ được chuyển thành điểm F.",,MauDon_diemI_llp.md,True
+E055,"Sau khi được nhận điểm I do vắng thi, sinh viên có tối đa bao lâu để dự thi hoàn tất điểm học phần?",academic_rules,"Tôi kính đơn này đến Ban Chủ nhiệm Khoa, Phòng Đào tạo và quý Thầy/Cô giảng dạy học phần: Mã số HP: , cho phép tôi không thi kết thúc học phần, được bảo lưu kết quả đánh giá giữa kỳ và nhận điểm I cho học phần này trong học kỳ ......, năm học: ............. Trong thời hạn 1 năm tiếp theo, tôi sẽ dự thi để hoàn tất điểm học phần. Nếu quá thời hạn trên, tôi không hoàn tất điểm học phần này thì điểm I sẽ được chuyển thành điểm F.",,MauDon_diemI_llp.md,True
+E056,Nếu quá thời hạn một năm mà sinh viên chưa hoàn tất học phần có điểm I thì điểm đó được xử lý thế nào?,academic_rules,"-Khi SV hoàn thành và có điểm của học phần, CBGD gửi điểm cho Giáo vụ đơn vị để tổng hợp vào cuối mỗi học kỳ, nếu quá thời hạn 1 năm điểm sẽ không được công nhận và điểm I sẽ được chuyển thành điểm F.",,MauDon_diemI_llp.md,True
+E057,"Khi nêu lý do vắng thi, sinh viên phải đính kèm gì?",academic_rules,"Lý do vắng thi:
+(đính kèm giấy xác nhận minh chứng lý do).",,MauDon_diemI_llp.md,True
+E058,Đơn đề nghị xét và công nhận điểm M này áp dụng cho các loại chứng chỉ nào?,academic_rules,"do có chứng chỉ Ngoại ngữ, Tin học, GDQP, GDTC",,DonDeNghi_Diem_M_Chungchi_llp.md,True
+E059,Sinh viên nộp đơn xét điểm M kèm bản photo chứng chỉ cho ai?,academic_rules,"Sinh viên nộp đơn có đính kèm theo bản photo Chứng chỉ (không cần công chứng) cho Trợ lý giáo vụ của đơn vị đào tạo. SV lưu ý mang theo Bản chính chứng chỉ để đối chiếu khi nộp đơn. - Sau khi Thủ trưởng đơn vị đào tạo ký duyệt, đơn có đính kèm theo bản photo Chứng chỉ được đơn vị đào tạo chuyển cho Phòng Đào tạo để nhập điểm M cho các học phần tương ứng.",,DonDeNghi_Diem_M_Chungchi_llp.md,True
+E060,Bản photo chứng chỉ nộp kèm đơn xét điểm M có cần công chứng không và sinh viên phải mang theo gì để đối chiếu?,academic_rules,Sinh viên nộp đơn có đính kèm theo bản photo Chứng chỉ (không cần công chứng) cho Trợ lý giáo vụ của đơn vị đào tạo. SV lưu ý mang theo Bản chính chứng chỉ để đối chiếu khi nộp đơn.,,DonDeNghi_Diem_M_Chungchi_llp.md,True
+E061,"Sau khi thủ trưởng đơn vị đào tạo ký duyệt, hồ sơ xét điểm M được chuyển đến đâu để nhập điểm?",academic_rules,"Sau khi Thủ trưởng đơn vị đào tạo ký duyệt, đơn có đính kèm theo bản photo Chứng chỉ được đơn vị đào tạo chuyển cho Phòng Đào tạo để nhập điểm M cho các học phần tương ứng.",,DonDeNghi_Diem_M_Chungchi_llp.md,True
+E062,Mỗi sinh viên chính quy của Trường Đại học Cần Thơ được cấp những tài khoản hoặc định danh nào để sử dụng trong quá trình học?,academic_rules,"Sinh viên hình thức chính quy của Trường ĐHCT là những người đã trúng tuyển kỳ thi tuyển sinh hoặc được xét tuyển và có quyết định thu nhận vào học hình thức chính quy của Trường. Mỗi SV sẽ được cấp một mã số SV, thẻ SV, tài khoản máy tính và địa chỉ thư điện tử (email) để sử dụng trong suốt quá trình theo học tại Trường.",,quychehocvu.md,True
+E063,Tổng khối lượng chương trình đào tạo được thực hiện bằng phương thức trực tuyến thông thường không được vượt quá bao nhiêu phần trăm?,academic_rules,"Một số học phần thuộc CTĐT có thể được tổ chức lớp học bằng phương thức dạy và học trực tuyến một phần hoặc toàn bộ học phần khi đáp ứng các quy định hiện hành. Những nội dung dạy và học trực tuyến được ghi trong đề cương chi tiết học phần. Tổng khối lượng (tính theo TC) được thực hiện bằng phương thức dạy và học trực tuyến không quá 30% khối lượng của CTĐT. Trong trường hợp thiên tai, dịch bệnh phức tạp và các trường hợp bất khả kháng khác, Trường ĐHCT có thể thực hiện việc dạy và học bằng phương thức trực tuyến theo yêu cầu và hướng dẫn của Nhà nước.",,quychehocvu.md,True
+E064,"Với chương trình đào tạo có thời gian thiết kế 4 năm, thời gian học tập tối đa để hoàn thành chương trình là bao lâu?",academic_rules,| 4 năm | 8 năm |,,quychehocvu.md,True
+E065,"Theo Quy định công tác học vụ, mỗi năm học của sinh viên chính quy được tổ chức thành mấy học kỳ và gọi là gì?",academic_rules,"1. Mỗi năm học được tổ chức thành 03 HK gọi là Học kỳ 1, Học kỳ 2 và Học kỳ 3.",,quychehocvu.md,True
+E066,Học phần tiên quyết được định nghĩa như thế nào?,academic_rules,4. Học phần tiên quyết của học phần HPxxx là học phần mà SV phải tích lũy mới được đăng ký học học phần HPxxx.,,quychehocvu.md,True
+E067,Những học phần điều kiện nào được nêu trong quy định và kết quả của chúng có được tính vào ĐTBCTL không?,academic_rules,"6. Học phần điều kiện (bao gồm các học phần Giáo dục Quốc phòng và An ninh (GDQP&AN), Giáo dục thể chất (GDTC), Ngoại ngữ căn bản, Tin học căn bản) là học phần mà SV phải hoàn thành nhưng kết quả học phần không dùng để tính điểm trung bình chung tích lũy (ĐTBCTL); ngoài ra, điểm học phần GDTC không dùng để tính điểm trung bình chung học kỳ (ĐTBCHK) và điểm trung bình chung năm học (ĐTBCNH).",,quychehocvu.md,True
+E068,Một tín chỉ tương đương bao nhiêu giờ học tập định mức của sinh viên?,academic_rules,"a) Một (01) TC được tính tương đương 50 giờ học tập định mức của SV, bao gồm cả thời gian dự giờ giảng, giờ học có hướng dẫn, tự học, nghiên cứu, trải nghiệm và dự kiểm tra, đánh giá.",,quychehocvu.md,True
+E069,Sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ?,academic_rules,1. Sinh viên được đăng ký học tối đa 20 TC/HK.,,quychehocvu.md,True
+E070,"Nếu thấy việc học khó khăn, sinh viên được rút bớt học phần chậm nhất vào thời điểm nào và học phần rút nhận điểm gì?",academic_rules,"Chậm nhất là tuần lễ thứ 6 của HK nếu thấy việc học khó khăn có thể dẫn đến kết quả kém, SV có thể rút bớt học phần đã đăng ký nhưng không được trả lại học phí. Muốn rút bớt học phần, SV vào hệ thống quản lý trực tuyến của Trường ĐHCT để thực hiện. Những học phần đã rút sẽ nhận điểm W trong bảng điểm của HK đó.",,quychehocvu.md,True
+E071,Nếu một học phần bắt buộc bị điểm F thì sinh viên phải xử lý thế nào?,academic_rules,"1. Các học phần có điểm F sẽ không được tích lũy. Nếu là học phần bắt buộc SV phải đăng ký học lại những học phần này; nếu là học phần tự chọn, SV có thể đăng ký học lại hoặc chọn học phần tự chọn khác.",,quychehocvu.md,True
+E072,Sinh viên xin nghỉ học tạm thời vì lý do cá nhân phải đáp ứng điều kiện gì?,academic_rules,"d) Vì lý do cá nhân (hoàn cảnh gia đình neo đơn, việc riêng,...). Trường hợp này chỉ giải quyết khi SV đã học ít nhất 1 HK ở Trường ĐHCT, không thuộc các trường hợp bị xem xét buộc thôi học hoặc xem xét kỷ luật. Thời gian nghỉ học tạm thời trong trường hợp này được tính vào thời gian học tập tối đa để hoàn thành CTĐT theo quy định tại Điều 5 của Quy định này.",,quychehocvu.md,True
+E073,Sinh viên bị cảnh báo học tập khi ĐTBCHK dưới mức nào ở học kỳ đầu và các học kỳ tiếp theo?,academic_rules,"a) Có ĐTBCHK đạt dưới 0,80 đối với HK đầu của khóa học, dưới 1,00 đối với các HK tiếp theo.",,quychehocvu.md,True
+E074,Đánh giá trực tuyến thông thường được đóng góp tối đa bao nhiêu phần trăm trọng số tổng điểm học phần?,academic_rules,"4. Hình thức đánh giá trực tuyến được áp dụng khi đảm bảo trung thực, công bằng và khách quan như đánh giá trực tiếp, đồng thời đóng góp không quá 50% trọng số tổng điểm học phần; riêng việc tổ chức bảo vệ và đánh giá luận văn tốt nghiệp được thực hiện trực tuyến với trọng số cao hơn khi đáp ứng thêm các điều kiện sau đây:",,quychehocvu.md,True
+E075,"Điểm M có được tính vào ĐTBCHK và ĐTBCTL không, và số tín chỉ của học phần điểm M có được tính tích lũy không?",academic_rules,"a) Điểm M (tương đương điểm R của Thông tư 08/2021/TT-BGDĐT): dùng để xác nhận học phần SV được miễn học do đã tích lũy được bằng các hình thức khác. Điểm M không được tính vào ĐTBCHK và ĐTBCTL. Số TC của học phần có điểm M được tính vào tổng số TC tích lũy. Để nhận điểm M, SV phải làm đơn có ý kiến của trưởng đơn vị đào tạo xem xét theo từng HK, kèm theo giấy tờ hợp lệ.",,quychehocvu.md,True
+E076,So sánh thời gian nộp phí KTX của học kỳ 3 năm học 2025-2026 và học kỳ 1 năm học 2026-2027.,other,"Sinh viên nộp phí từ ngày 23/4 đến 29/4/2026, SV nộp phí cho cả kỳ ở.
+Sinh viên nộp phí từ ngày 04/8 đến 07/8/2026, SV nộp phí cho cả kỳ ở.",,"tbdk_hk32526_llp.md, 072026_tb_dk1_2627_llp.md",True
+E077,Sinh viên đăng ký mới KTX được nhận chỗ từ ngày nào ở học kỳ 3 năm học 2025-2026 và học kỳ 1 năm học 2026-2027?,other,"Đối với SV đăng ký mới có thể nhận chỗ ở từ ngày 04/5/2026.
+Đối với SV đăng ký ở mới có thể nhận chỗ ở từ ngày 07/9/2026.",,"tbdk_hk32526_llp.md, 072026_tb_dk1_2627_llp.md",True
+E078,Quy định đăng ký KTX đối với sinh viên đang ở cũ thay đổi thế nào từ học kỳ 3 năm học 2025-2026 sang học kỳ 1 năm học 2026-2027?,other,"Sinh viên đăng ký ở KTX tập trung đầu kỳ (kể cả SV đang ở KTX) qua Hệ thống Quản lý KTX của Trường bằng tài khoản SV từ ngày phát hành thông báo đến ngày 10/4/2026.
+Đối với SV đang ở cũ (HK3, năm học 2025-2026) không cần phải đăng ký lại, chỉ thực hiện nộp phí theo thời gian nêu ở mục 2, trong thông báo này.",,"tbdk_hk32526_llp.md, 072026_tb_dk1_2627_llp.md",True
+E079,Văn bản triển khai 3 học kỳ chính và Quy định công tác học vụ có thống nhất về số học kỳ trong năm và thời lượng mỗi học kỳ không?,academic_rules,"b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.
+1. Mỗi năm học được tổ chức thành 03 HK gọi là Học kỳ 1, Học kỳ 2 và Học kỳ 3.",,"3hk.md, quychehocvu.md",True
+E080,Quy định về điểm I trong mẫu đơn vắng thi và Quy định công tác học vụ có thống nhất về thời hạn hoàn tất học phần và hậu quả nếu quá hạn không?,academic_rules,"Tôi kính đơn này đến Ban Chủ nhiệm Khoa, Phòng Đào tạo và quý Thầy/Cô giảng dạy học phần: Mã số HP: , cho phép tôi không thi kết thúc học phần, được bảo lưu kết quả đánh giá giữa kỳ và nhận điểm I cho học phần này trong học kỳ ......, năm học: ............. Trong thời hạn 1 năm tiếp theo, tôi sẽ dự thi để hoàn tất điểm học phần. Nếu quá thời hạn trên, tôi không hoàn tất điểm học phần này thì điểm I sẽ được chuyển thành điểm F.
+-Khi SV hoàn thành và có điểm của học phần, CBGD gửi điểm cho Giáo vụ đơn vị để tổng hợp vào cuối mỗi học kỳ, nếu quá thời hạn 1 năm điểm sẽ không được công nhận và điểm I sẽ được chuyển thành điểm F.
+b) Điểm I: chỉ áp dụng cho đánh giá kết thúc học phần. Dành cho các trường hợp SV đã dự học, dự các lần kiểm tra giữa HK, đã thực hiện các hoạt động liên quan đến học phần như thí nghiệm, thực hành nhưng vì lý do bất khả kháng như ốm đau, tai nạn,... đã vắng mặt trong buổi thi kết thúc học phần và được GV phụ trách học phần chấp thuận cho bổ sung điểm. Điểm I không được tính vào ĐTBCHK ở HK đó. Để nhận được điểm I, SV phải làm đơn kèm theo hồ sơ hợp lệ nộp cho GV giảng dạy học phần xem xét và trình trưởng đơn vị đào tạo duyệt. Thời hạn bổ sung điểm của học phần do GV quy định nhưng không quá 1 năm kể từ ngày thi lần trước. Quá thời hạn trên, nếu SV không hoàn thành thi học phần thì sẽ nhận điểm F.",,"MauDon_diemI_llp.md, quychehocvu.md",True
+E081,"Học kỳ 3 năm học 2025-2026, mức phí ở KTX cụ thể là bao nhiêu đồng?",other,,,,False
+E082,"Học kỳ 1 năm học 2026-2027, mức phí ở KTX cụ thể là bao nhiêu đồng?",other,,,,False
+E083,Mật khẩu Wi-Fi dành cho sinh viên ở KTX Đại học Cần Thơ là gì?,other,,,,False
+E084,KTX có những loại phòng nào và giá cụ thể của từng loại phòng là bao nhiêu?,other,,,,False
+E085,Sinh viên trả chỗ KTX trong vòng 07 ngày kể từ ngày duyệt chỗ thì được hoàn bao nhiêu phần trăm phí ở?,other,,,,False
+E086,Văn phòng KTX mở cửa từ mấy giờ đến mấy giờ mỗi ngày?,other,,,,False
+E087,Mức học phí chính xác cho mỗi tín chỉ hiện tại của sinh viên chính quy là bao nhiêu đồng?,actual_tuition,,,,False
+E088,Mức tiền học bổng khuyến khích học tập loại xuất sắc là bao nhiêu đồng?,scholarship,,,,False
+E089,Quỹ hỗ trợ sinh viên gặp khó khăn đột xuất hỗ trợ tối đa bao nhiêu tiền cho một sinh viên?,social_support,,,,False
+E090,Trợ cấp xã hội được chi bao nhiêu tiền mỗi tháng cho từng nhóm sinh viên thuộc diện hưởng?,social_support,,,,False
+E091,"Nộp hồ sơ xét miễn và công nhận điểm học phần có phải đóng lệ phí không, nếu có thì mức lệ phí là bao nhiêu?",exemption_policy,,,,False
+E092,"Sau khi nộp đơn xét điểm M, chính xác bao nhiêu ngày thì điểm M được cập nhật trên hệ thống?",academic_rules,,,,False
+E093,"Sau khi được nhận điểm I do vắng thi, ngày thi bù cụ thể sẽ được tổ chức vào ngày nào?",academic_rules,,,,False
+E094,Hạn cuối nộp hồ sơ đăng ký xét danh hiệu Sinh viên 5 tốt Đại học Cần Thơ là ngày nào?,academic_rules,,,,False
+E095,Cá nhân đạt danh hiệu Sinh viên 5 tốt Đại học Cần Thơ được thưởng chính xác bao nhiêu tiền?,academic_rules,,,,False
+E096,Tiêu chuẩn Tình nguyện tốt yêu cầu tối thiểu bao nhiêu giờ tình nguyện?,academic_rules,,,,False
+E097,Lãi suất vay theo Quyết định 29 là bao nhiêu phần trăm mỗi năm?,student_loan,,,,False
+E098,Mức vay tối đa theo Quyết định 29 là bao nhiêu tiền mỗi tháng?,student_loan,,,,False
+E099,Thời hạn trả nợ khoản vay theo Quyết định 29 là bao nhiêu năm?,student_loan,,,,False
+E100,Ngày giải ngân đầu tiên của khoản vay theo Quyết định 29 là ngày nào?,student_loan,,,,False
+1,Trẻ bị bỏ rơi không có nguồn nuôi dưỡng học đại học thì được hưởng chế độ học phí như thế nào?,exemption_policy,Sinh viên thuộc diện này được miễn 100% học phí,Sinh viên thuộc diện này được miễn 100% học phí,mghp.md,True
+2,Sinh viên khuyết tật muốn xin miễn học phí thì cần chuẩn bị giấy tờ gì?,exemption_policy,"Cần nộp Đơn đề nghị miễn, giảm học phí (theo mẫu) và Giấy xác nhận khuyết tật do Ủy ban nhân dân xã, phường cấp","Cần nộp Đơn đề nghị miễn, giảm học phí (theo mẫu) và Giấy xác nhận khuyết tật do Ủy ban nhân dân xã, phường cấp",mghp.md,True
+3,Sinh viên người dân tộc thiểu số ở xã khu vực III vùng dân tộc và miền núi được giảm bao nhiêu phần trăm học phí?,exemption_policy,Được giảm 70% học phí,Được giảm 70% học phí,mghp.md,True
+4,Con của bệnh binh được hưởng chế độ học phí như thế nào?,exemption_policy,Được miễn 100% học phí,Được miễn 100% học phí,mghp.md,True
+5,Cha hoặc mẹ bị tai nạn lao động được hưởng trợ cấp thường xuyên thì sinh viên được giảm bao nhiêu học phí?,exemption_policy,Được giảm 50% học phí,Được giảm 50% học phí,mghp.md,True
+6,"Sinh viên đang bị kỷ luật ngừng học có được xét miễn, giảm học phí không?",exemption_policy,"Không áp dụng chế độ ưu đãi miễn, giảm học phí trong thời gian sinh viên bị kỷ luật ngừng học","Không áp dụng chế độ ưu đãi miễn, giảm học phí trong thời gian sinh viên bị kỷ luật ngừng học",mghp.md,True
+7,"Nếu sinh viên thuộc nhiều diện miễn, giảm học phí cùng lúc thì tính như thế nào?",exemption_policy,Chỉ được hưởng mức hỗ trợ cao nhất,Chỉ được hưởng mức hỗ trợ cao nhất,mghp.md,True
+8,Sinh viên đang hưởng lương hoặc sinh hoạt phí khi đi học có được miễn giảm học phí không?,exemption_policy,"Không áp dụng miễn, giảm học phí đối với trường hợp đang hưởng lương hoặc sinh hoạt phí khi đi học","Không áp dụng miễn, giảm học phí đối với trường hợp đang hưởng lương hoặc sinh hoạt phí khi đi học",mghp.md,True
+9,Sổ hộ nghèo hết hạn thì làm gì để được tiếp tục miễn giảm học phí?,exemption_policy,Bắt buộc phải nộp bổ sung giấy xác nhận mới khi giấy cũ hết hạn để được gia hạn chế độ,Bắt buộc phải nộp bổ sung giấy xác nhận mới khi giấy cũ hết hạn để được gia hạn chế độ,mghp.md,True
+10,"Học phí làm cơ sở tính miễn, giảm cho môn Giáo dục quốc phòng và An ninh (đại trà) là bao nhiêu?",exemption_basis,Là 451.000 đồng/tín chỉ,Là 451.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True
+11,"Khối ngành III (Kinh doanh và quản lý, pháp luật) có mức học phí cơ sở để tính miễn giảm là bao nhiêu 1 tín chỉ?",exemption_basis,Mức học phí cơ sở là 451.000 đồng/tín chỉ,Mức học phí cơ sở là 451.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True
+12,"Khối ngành IV (Khoa học sự sống, khoa học tự nhiên) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?",exemption_basis,Mức học phí cơ sở là 487.000 đồng/tín chỉ,Mức học phí cơ sở là 487.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True
+13,Khối ngành VI (Sức khỏe) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?,exemption_basis,Mức học phí cơ sở là 753.000 đồng/tín chỉ,Mức học phí cơ sở là 753.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True
+14,Sinh viên chương trình tiên tiến khóa 47 trở về trước có học phí làm cơ sở tính miễn giảm là bao nhiêu?,exemption_basis,Mức học phí là 335.000 đồng/tín chỉ,Mức học phí là 335.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True
+15,"Trợ cấp xã hội cho sinh viên hộ nghèo, tàn tật là bao nhiêu tiền một tháng?",social_support,Mức trợ cấp là 100.000 đồng/1 sinh viên/1 tháng,Mức trợ cấp là 100.000 đồng/1 sinh viên/1 tháng,TCXH.md,True
+16,Em là sinh viên dân tộc thiểu số thuộc hộ nghèo thì được hỗ trợ chi phí học tập bao nhiêu?,social_support,Mức hỗ trợ bằng 60% mức lương tối thiểu chung,Mức hỗ trợ bằng 60% mức lương tối thiểu chung,66_2013.md,True
+17,Khoản hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số thuộc hộ nghèo được nhận tối đa mấy tháng trong một năm học?,social_support,Sinh viên được hưởng không quá 10 tháng/năm học,Sinh viên được hưởng không quá 10 tháng/năm học,66_2013.md,True
+18,Sinh viên học văn bằng hai có được nhận hỗ trợ chi phí học tập dành cho sinh viên dân tộc thiểu số thuộc hộ nghèo không?,social_support,Không áp dụng đối với sinh viên học văn bằng hai,Không áp dụng đối với sinh viên học văn bằng hai,66_2013.md,True
+19,Ai là người ký xác nhận giấy chứng nhận hộ nghèo để sinh viên làm hồ sơ hỗ trợ chi phí học tập?,social_support,"Giấy chứng nhận hộ nghèo phải do Ủy ban nhân dân xã, phường, thị trấn cấp","Giấy chứng nhận hộ nghèo phải do Ủy ban nhân dân xã, phường, thị trấn cấp",donz.md,True
+20,Nguồn tiền hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số thuộc hộ nghèo được lấy từ đâu?,social_support,Kinh phí được cân đối trong nguồn chi cho sự nghiệp giáo dục và đào tạo hằng năm theo phân cấp quản lý ngân sách nhà nước,Kinh phí được cân đối trong nguồn chi cho sự nghiệp giáo dục và đào tạo hằng năm theo phân cấp quản lý ngân sách nhà nước,66_2013.md,True
+21,"Em học sư phạm và đã được Nhà nước hỗ trợ học phí, sinh hoạt phí rồi thì có được nhận thêm hỗ trợ chi phí đào tạo dành cho sinh viên dân tộc thiểu số không?",social_support,"Không, sinh viên sư phạm chưa được hưởng chính sách theo Nghị định 116 mới thuộc đối tượng này","Không, sinh viên sư phạm chưa được hưởng chính sách theo Nghị định 116 mới thuộc đối tượng này",Ho_tro.md,True
+22,Sinh viên dân tộc thiểu số thuộc hộ nghèo muốn nộp hồ sơ hỗ trợ chi phí học tập thì nộp trực tiếp ở đâu?,social_support,Nộp trực tiếp tại Văn phòng Phòng Công tác Sinh viên,Nộp trực tiếp tại Văn phòng Phòng Công tác Sinh viên,donz.md,True
+23,Hồ sơ xin trợ cấp xã hội của sinh viên mồ côi cả cha lẫn mẹ cần giấy tờ gì?,social_support,"Đơn xin hưởng trợ cấp, bản sao giấy chứng tử của cha mẹ hoặc giấy xác nhận của UBND cấp xã nơi cư trú là mồ côi cả cha lẫn mẹ","Đơn xin hưởng trợ cấp, bản sao giấy chứng tử của cha mẹ hoặc giấy xác nhận của UBND cấp xã nơi cư trú là mồ côi cả cha lẫn mẹ",Tro_cap_XH.md,True
+24,Sinh viên mồ côi cần nộp hồ sơ xin trợ cấp xã hội mấy lần?,social_support,Chỉ cần nộp hồ sơ một lần để xét hưởng đến hết khóa học theo khung thời gian đào tạo,Chỉ cần nộp hồ sơ một lần để xét hưởng đến hết khóa học theo khung thời gian đào tạo,Tro_cap_XH.md,True
+25,Sinh viên được hỗ trợ chi phí đào tạo dành cho vùng đồng bào dân tộc thiểu số thì nộp hồ sơ ở đâu?,social_support,"Nộp trực tiếp tại Phòng Quản lý chất lượng, Sở Giáo dục và Đào tạo thành phố Cần Thơ","Nộp trực tiếp tại Phòng Quản lý chất lượng, Sở Giáo dục và Đào tạo thành phố Cần Thơ",Ho_tro.md,True
+26,Mức học phí đại cương chung của ngành CNTT đối với Khóa 49 là bao nhiêu?,actual_tuition,Mức học phí là 695.000 đồng/tín chỉ,Mức học phí là 695.000 đồng/tín chỉ,MucHocPhi_QuyDinhChung.md,True
+27,Mức học phí đại cương chung đối với Khóa 52 (đại trà) là bao nhiêu?,actual_tuition,Mức học phí là 695.000 đồng/tín chỉ,Mức học phí là 695.000 đồng/tín chỉ,MucHocPhi_DaiHocChinhQuy_Khoa52.md,True
+28,Học lại môn ngoài thời gian thiết kế chương trình đối với Khóa 52 bị nhân hệ số bao nhiêu?,actual_tuition,"Bị nhân với hệ số 1,3","Bị nhân với hệ số 1,3",MucHocPhi_QuyDinhChung.md,True
+29,Khóa 51 học lại ngoài thời gian thiết kế thì học phí nhân hệ số mấy?,actual_tuition,"Bị nhân với hệ số 1,3","Bị nhân với hệ số 1,3",MucHocPhi_QuyDinhChung.md,True
+30,Mức học phí theo tín chỉ của ngành Sư phạm Toán học Khóa 51 trở về trước là bao nhiêu?,actual_tuition,Mức học phí là 695.000 đồng/tín chỉ,Mức học phí là 695.000 đồng/tín chỉ,MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md,True
+31,Khóa 52 ngành Sư phạm Toán học có học phí bao nhiêu 1 tín chỉ?,actual_tuition,Mức học phí là 807.000 đồng/tín chỉ,Mức học phí là 807.000 đồng/tín chỉ,MucHocPhi_DaiHocChinhQuy_Khoa52.md,True
+32,Học phí toàn khóa ngành Quản trị kinh doanh đại trà Khóa 52 là bao nhiêu?,actual_tuition,"Học phí toàn khóa là 114,5 triệu đồng","Học phí toàn khóa là 114,5 triệu đồng",MucHocPhi_DaiHocChinhQuy_Khoa52.md,True
+33,Khóa 52 ngành Khoa học máy tính học phí bao nhiêu 1 tín chỉ?,actual_tuition,Mức học phí là 966.000 đồng/tín chỉ,Mức học phí là 966.000 đồng/tín chỉ,MucHocPhi_DaiHocChinhQuy_Khoa52.md,True
+34,Ngành Kiến trúc Khóa 52 đại trà có học phí toàn khóa bao nhiêu?,actual_tuition,"Học phí toàn khóa là 165,6 triệu đồng","Học phí toàn khóa là 165,6 triệu đồng",MucHocPhi_DaiHocChinhQuy_Khoa52.md,True
+35,Ngành Công nghệ thông tin Chất lượng cao Khóa 52 có mức học phí cố định một năm là bao nhiêu?,actual_tuition,Học phí là 44 triệu đồng/năm học,Học phí là 44 triệu đồng/năm học,MucHocPhi_ChatLuongCao_TienTien.md,True
+36,Ngành Kinh doanh quốc tế Chất lượng cao Khóa 51 có học phí một năm là bao nhiêu?,actual_tuition,Học phí là 40 triệu đồng/năm học,Học phí là 40 triệu đồng/năm học,MucHocPhi_ChatLuongCao_TienTien.md,True
+37,Mức học phí môn Năng lực số đối với Khóa 51 trở về trước là bao nhiêu?,actual_tuition,Là 695.000 đồng/tín chỉ,Là 695.000 đồng/tín chỉ,MucHocPhi_QuyDinhChung.md,True
+38,Sinh viên Khóa 51 ngành Kế toán học phí bao nhiêu 1 tín chỉ chuyên ngành?,actual_tuition,Mức học phí là 727.000 đồng/tín chỉ,Mức học phí là 727.000 đồng/tín chỉ,MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md,True
+39,Khóa 52 ngành Kinh doanh nông nghiệp - Hòa An có học phí bao nhiêu một tín chỉ?,actual_tuition,Học phí là 844.000 đồng/tín chỉ,Học phí là 844.000 đồng/tín chỉ,MucHocPhi_DaiHocChinhQuy_Khoa52.md,True
+40,Học phí Tiến sĩ khóa tuyển sinh năm 2026 là bao nhiêu một năm?,actual_tuition,Mức học phí là 56.300.000 đồng/năm học,Mức học phí là 56.300.000 đồng/năm học,MucHocPhi_QuyDinhChung.md,True
+41,Học phí Thạc sĩ khóa tuyển sinh năm 2025 về trước là bao nhiêu một năm?,actual_tuition,Mức học phí là 30.300.000 đồng/năm học,Mức học phí là 30.300.000 đồng/năm học,MucHocPhi_QuyDinhChung.md,True
+42,Học viên cao học học ngoài giờ hành chính sẽ bị nhân hệ số học phí như thế nào?,actual_tuition,"Bị nhân 1,5 lần đối với các học phần trừ luận văn, đề án và thực tập tốt nghiệp","Bị nhân 1,5 lần đối với các học phần trừ luận văn, đề án và thực tập tốt nghiệp",MucHocPhi_QuyDinhChung.md,True
+43,Học phí tốt nghiệp chậm tiến độ thạc sĩ được tính như thế nào?,actual_tuition,Đóng học phí bằng 50% mức học phí của học kỳ trễ hạn,Đóng học phí bằng 50% mức học phí của học kỳ trễ hạn,MucHocPhi_QuyDinhChung.md,True
+44,Đào tạo từ xa khóa 2027 có học phí là bao nhiêu 1 tín chỉ?,actual_tuition,Mức học phí cố định là 574.300 đồng/tín chỉ,Mức học phí cố định là 574.300 đồng/tín chỉ,MucHocPhi_QuyDinhChung.md,True
+45,Hệ Vừa làm vừa học nếu lớp dưới 30 sinh viên có thể bị nhân hệ số học phí tối đa bao nhiêu?,actual_tuition,"Thỏa thuận nhân hệ số điều chỉnh nhưng không quá 1,5 mức học phí quy định","Thỏa thuận nhân hệ số điều chỉnh nhưng không quá 1,5 mức học phí quy định",MucHocPhi_QuyDinhChung.md,True
+46,Học phí bồi dưỡng kiến thức tại Khoa Dự bị Dân tộc là bao nhiêu tiền một năm?,actual_tuition,Mức học phí là 12.000.000 đồng/năm học,Mức học phí là 12.000.000 đồng/năm học,MucHocPhi_QuyDinhChung.md,True
+47,Mức học phí học bổ sung kiến thức dự thi trình độ thạc sĩ tối đa là bao nhiêu?,actual_tuition,Tối đa là 695.000 đồng/tín chỉ,Tối đa là 695.000 đồng/tín chỉ,MucHocPhi_QuyDinhChung.md,True
+48,Khóa 52 ngành Thú y Chất lượng cao có học phí bao nhiêu một tín chỉ?,actual_tuition,Mức học phí là 1.553.000 đồng/tín chỉ,Mức học phí là 1.553.000 đồng/tín chỉ,MucHocPhi_ChatLuongCao_TienTien.md,True
+49,Khóa 44 ngành Công nghệ thông tin Chất lượng cao đóng học phí bao nhiêu một năm?,actual_tuition,Mức học phí là 25 triệu đồng/năm học,Mức học phí là 25 triệu đồng/năm học,MucHocPhi_ChatLuongCao_TienTien.md,True
+50,Khóa 52 ngành Nuôi trồng thủy sản Tiên tiến có học phí theo tín chỉ là bao nhiêu?,actual_tuition,Mức học phí là 1.564.000 đồng/tín chỉ,Mức học phí là 1.564.000 đồng/tín chỉ,MucHocPhi_ChatLuongCao_TienTien.md,True
+51,Mức vay vốn ưu đãi tối đa để mua máy tính học trực tuyến là bao nhiêu?,student_loan,"Mức vốn vay tối đa là 10 triệu đồng/học sinh, sinh viên","Mức vốn vay tối đa là 10 triệu đồng/học sinh, sinh viên",VayVonMuaMayTinh.md,True
+52,Lãi suất cho vay mua máy tính học trực tuyến là bao nhiêu?,student_loan,"Lãi suất cho vay là 1,2%/năm","Lãi suất cho vay là 1,2%/năm",VayVonMuaMayTinh.md,True
+53,Thời hạn cho vay tối đa để mua máy tính học trực tuyến là bao lâu?,student_loan,Thời hạn cho vay tối đa là 36 tháng,Thời hạn cho vay tối đa là 36 tháng,VayVonMuaMayTinh.md,True
+54,Sinh viên thuộc hộ gia đình khó khăn do bố hoặc mẹ mất vì Covid-19 có được vay mua máy tính không?,student_loan,"Có, sinh viên có bố hoặc mẹ mất do dịch Covid-19 thuộc đối tượng vay vốn","Có, sinh viên có bố hoặc mẹ mất do dịch Covid-19 thuộc đối tượng vay vốn",VayVonMuaMayTinh.md,True
+55,Sinh viên mua máy tính có thể trực tiếp đứng tên vay vốn trong trường hợp nào?,student_loan,Khi đã đủ 18 tuổi và hộ gia đình không còn thành viên nào đủ 18 tuổi trở lên hoặc thành viên còn lại không còn đủ năng lực hành vi dân sự,Khi đã đủ 18 tuổi và hộ gia đình không còn thành viên nào đủ 18 tuổi trở lên hoặc thành viên còn lại không còn đủ năng lực hành vi dân sự,VayVonMuaMayTinh.md,True
+56,Sinh viên thuộc hộ nghèo hoặc cận nghèo có thể vay tối đa bao nhiêu tiền mỗi tháng để đi học?,student_loan,"Mức vay vốn tối đa là 4.000.000 đồng/tháng/học sinh, sinh viên","Mức vay vốn tối đa là 4.000.000 đồng/tháng/học sinh, sinh viên",QD_2022.md,True
+57,Khách hàng vay vốn VietinBank bằng tài sản thế chấp để đóng học phí được thời hạn tối đa bao lâu?,student_loan,Tối đa là 15 năm kể từ ngày ký hợp đồng cho vay,Tối đa là 15 năm kể từ ngày ký hợp đồng cho vay,Vayvon_Viettinbank_2025_v2.md,True
+58,Hạn mức vay VietinBank tín chấp để đóng học phí tối đa là bao nhiêu?,student_loan,Tối đa 100% học phí nhưng không vượt quá 500 triệu đồng/khách hàng,Tối đa 100% học phí nhưng không vượt quá 500 triệu đồng/khách hàng,Vayvon_Viettinbank_2025_v2.md,True
+59,Lãi suất 12 tháng đầu ghi vay viettinbank là bao nhiêu?,student_loan,Lãi suất ưu đãi 12 tháng đầu chỉ từ 6%/năm,Lãi suất ưu đãi 12 tháng đầu chỉ từ 6%/năm,Vayvon_Viettinbank_2025_v2.md,True
+60,Vay tín chấp tại VietinBank đóng học phí có yêu cầu giới hạn độ tuổi không?,student_loan,Khách hàng không quá 60 tuổi tại thời điểm hết nghĩa vụ nợ,Khách hàng không quá 60 tuổi tại thời điểm hết nghĩa vụ nợ,Vayvon_Viettinbank_2025_v2.md,True
+61,Em học ngành STEM thì được vay bao nhiêu?,student_loan,5 triệu đồng/tháng,5 triệu đồng/tháng,NDCP_VayVonSVKT.md,True
+62,Lãi khi vay vốn cho học phí ngành kỹ thuật là bao nhiêu?,student_loan,"Lãi suất cho vay là 4,8%/năm","Lãi suất cho vay là 4,8%/năm",NDCP_VayVonSVKT.md,True
+63,Sinh viên năm nhất muốn vay STEM cần điều kiện điểm cấp 3 thế nào?,student_loan,"Cần có học lực 3 năm trung học phổ thông đạt loại Khá trở lên hoặc điểm trung bình môn Toán, Lý, Hóa, Sinh lớp 12 từ 8 điểm trở lên","Cần có học lực 3 năm trung học phổ thông đạt loại Khá trở lên hoặc điểm trung bình môn Toán, Lý, Hóa, Sinh lớp 12 từ 8 điểm trở lên",NDCP_VayVonSVKT.md,True
+64,Sinh viên vay vốn STEM trên 500 triệu đồng có cần tài sản bảo đảm không?,student_loan,"Có, khách hàng vay vốn trên 500 triệu đồng phải thực hiện bảo đảm nghĩa vụ trả tiền vay bằng tài sản","Có, khách hàng vay vốn trên 500 triệu đồng phải thực hiện bảo đảm nghĩa vụ trả tiền vay bằng tài sản",NDCP_VayVonSVKT.md,True
+65,Lãi suất nợ quá hạn của các chương trình vay vốn sinh viên là bao nhiêu?,student_loan,Lãi suất nợ quá hạn được tính bằng 130% lãi suất khi cho vay,Lãi suất nợ quá hạn được tính bằng 130% lãi suất khi cho vay,NDCP_VayVonSVKT.md,True
+66,"Trong thời gian sinh viên bảo lưu kết quả học tập, Ngân hàng Chính sách xã hội có giải ngân vốn vay không?",student_loan,Không giải ngân vốn vay trong thời gian người học được nhà trường cho phép bảo lưu kết quả,Không giải ngân vốn vay trong thời gian người học được nhà trường cho phép bảo lưu kết quả,NDCP_VayVonSVKT.md,True
+67,Trả nợ vay vốn sinh viên trước hạn có bị phạt lãi không?,student_loan,Khách hàng có thể trả nợ trước hạn mà không phải chịu lãi phạt,Khách hàng có thể trả nợ trước hạn mà không phải chịu lãi phạt,NDCP_VayVonSVKT.md,True
+68,Sinh viên ngành Khoa học tự nhiên có thuộc đối tượng được vay vốn STEM không?,student_loan,"Có, mã ngành Khoa học tự nhiên (744) thuộc danh mục được vay vốn","Có, mã ngành Khoa học tự nhiên (744) thuộc danh mục được vay vốn",VayVonChoSinhVienKyT.md,True
+69,Sinh viên đăng ký in mẫu giấy xác nhận vay vốn trực tuyến ở đâu?,student_loan,"Đăng nhập vào hệ thống, chọn menu ""Kết quả học tập"", sau đó chuyển sang tab ""Yêu cầu xác nhận""","Đăng nhập vào hệ thống, chọn menu ""Kết quả học tập"", sau đó chuyển sang tab ""Yêu cầu xác nhận""",HuongDanXacNhanVayVon.md,True
+70,Sinh viên có thể xóa mẫu yêu cầu xác nhận vay vốn trong trường hợp nào?,student_loan,"Khi mẫu đơn đó vẫn còn ở trạng thái ""Chưa in""","Khi mẫu đơn đó vẫn còn ở trạng thái ""Chưa in""",HuongDanXacNhanVayVon.md,True
+71,Sinh viên sư phạm được Nhà nước hỗ trợ sinh hoạt phí bao nhiêu mỗi tháng?,student_loan,"Được nhà nước hỗ trợ 3,63 triệu đồng/tháng để chi trả sinh hoạt phí","Được nhà nước hỗ trợ 3,63 triệu đồng/tháng để chi trả sinh hoạt phí",VayVonChoSVSuPham.md,True
+72,Sinh viên sư phạm công tác trong ngành giáo dục với thời gian bao lâu thì không phải bồi hoàn kinh phí?,student_loan,Có thời gian công tác tối thiểu gấp hai lần thời gian đào tạo,Có thời gian công tác tối thiểu gấp hai lần thời gian đào tạo,VayVonChoSVSuPham.md,True
+73,Sinh viên sư phạm đang học nhưng chuyển sang ngành khác có phải bồi hoàn tiền không?,student_loan,"Có, phải bồi hoàn toàn bộ kinh phí đã được nhà nước hỗ trợ","Có, phải bồi hoàn toàn bộ kinh phí đã được nhà nước hỗ trợ",VayVonChoSVSuPham.md,True
+74,Đơn vị nào trực tiếp chi trả tiền hỗ trợ sinh hoạt phí cho sinh viên sư phạm?,student_loan,Cơ sở đào tạo giáo viên có trách nhiệm chi trả thông qua tài khoản tiền gửi của sinh viên tại ngân hàng,Cơ sở đào tạo giáo viên có trách nhiệm chi trả thông qua tài khoản tiền gửi của sinh viên tại ngân hàng,VayVonChoSVSuPham.md,True
+75,"Học sinh, sinh viên mồ côi cả cha lẫn mẹ muốn vay vốn thì ai là người đứng tên?",student_loan,Sinh viên mồ côi cả cha lẫn mẹ sẽ được trực tiếp đứng tên vay vốn tại Ngân hàng Chính sách xã hội,Sinh viên mồ côi cả cha lẫn mẹ sẽ được trực tiếp đứng tên vay vốn tại Ngân hàng Chính sách xã hội,VayVon.md,True
+76,Mức học bổng khuyến khích học tập bình quân của Khóa 51 học kỳ đầu tiên là bao nhiêu?,scholarship,Mức học bổng bình quân là 5.000.000 đồng/sinh viên/học kỳ,Mức học bổng bình quân là 5.000.000 đồng/sinh viên/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True
+77,Sinh viên tuyển thẳng Khóa 51 có mức học bổng khuyến khích học kỳ đầu tiên là bao nhiêu?,scholarship,Mức hưởng học bổng là 6.000.000 đồng/học kỳ,Mức hưởng học bổng là 6.000.000 đồng/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True
+78,Sinh viên có điểm rèn luyện từ 80 đến dưới 90 điểm được phân loại gì?,scholarship,Được phân loại Tốt,Được phân loại Tốt,Tài liệu phân bổ quỹ học bổng.md,True
+79,Khối ngành VI (Sức khỏe) sinh viên đạt học bổng Xuất sắc được thưởng bao nhiêu?,scholarship,Mức học bổng loại Xuất sắc là 10.560.000 đồng/học kỳ,Mức học bổng loại Xuất sắc là 10.560.000 đồng/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True
+80,"Sinh viên Khối ngành III (Kinh doanh và quản lý, pháp luật) đạt học bổng Khá được thưởng bao nhiêu?",scholarship,Mức học bổng loại Khá là 6.600.000 đồng/học kỳ,Mức học bổng loại Khá là 6.600.000 đồng/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True
+81,Sinh viên chương trình Chất lượng cao Khóa 51 đạt học bổng Giỏi nhận được mức bao nhiêu?,scholarship,Sẽ nhận được mức học bổng là 13.600.000 đồng/học kỳ,Sẽ nhận được mức học bổng là 13.600.000 đồng/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True
+82,Giá trị của mỗi suất học bổng Vallet là bao nhiêu?,scholarship,Mỗi suất học bổng trị giá 34.000.000 đồng,Mỗi suất học bổng trị giá 34.000.000 đồng,HB_Vallet_Chi_Tiet.md,True
+83,Sinh viên tính điểm hệ 4 cần đạt điểm trung bình tích lũy bao nhiêu để xét học bổng Vallet?,scholarship,"Cần đạt điểm trung bình từ 3,0 trở lên trong các học kỳ chính khóa","Cần đạt điểm trung bình từ 3,0 trở lên trong các học kỳ chính khóa",HB_Vallet_Chi_Tiet.md,True
+84,Bài báo nghiên cứu khoa học có được xét ưu tiên khi xin học bổng Vallet không?,scholarship,"Có, các công trình nghiên cứu khoa học được xem xét ưu tiên khi tuyển chọn","Có, các công trình nghiên cứu khoa học được xem xét ưu tiên khi tuyển chọn",HB_Vallet_Chi_Tiet.md,True
+85,Mỗi suất học bổng Panasonic có giá trị bao nhiêu tiền?,scholarship,Mỗi suất trị giá 30.000.000 đồng/năm học,Mỗi suất trị giá 30.000.000 đồng/năm học,HB_Panasonic.md,True
+86,Sinh viên có hoàn cảnh gia đình khó khăn cần đạt điểm trung bình hệ 4 bao nhiêu để xin học bổng Panasonic?,scholarship,"Yêu cầu đạt điểm trung bình từ 2,5 trở lên (theo thang điểm 4)","Yêu cầu đạt điểm trung bình từ 2,5 trở lên (theo thang điểm 4)",HB_Panasonic.md,True
+87,Có bao nhiêu suất học bổng SCC (Saigon Children’s Charity CIO) được trao?,scholarship,Học bổng có tất cả 10 suất,Học bổng có tất cả 10 suất,HB_SCC.md,True
+88,Trị giá của học bổng SCC là bao nhiêu?,scholarship,Mỗi suất trị giá 10.000.000 đồng,Mỗi suất trị giá 10.000.000 đồng,HB_SCC.md,True
+89,Điểm học tập yêu cầu để xét học bổng SCC là bao nhiêu?,scholarship,Sinh viên phải đạt Điểm trung bình tích lũy từ 3.2 trở lên,Sinh viên phải đạt Điểm trung bình tích lũy từ 3.2 trở lên,HB_SCC.md,True
+90,Học bổng Lương Văn Can toàn phần bao gồm những chi phí nào?,scholarship,"Học bổng bao gồm học phí, sinh hoạt phí và/hoặc chi phí học ngoại ngữ","Học bổng bao gồm học phí, sinh hoạt phí và/hoặc chi phí học ngoại ngữ",HB_LuongVanCang.md,True
+91,Điều kiện về điểm học tập đối với sinh viên đang học ứng tuyển học bổng Lương Văn Can là gì?,scholarship,Yêu cầu Điểm trung bình tích lũy đạt từ 8.0 trở lên (theo thang điểm 10),Yêu cầu Điểm trung bình tích lũy đạt từ 8.0 trở lên (theo thang điểm 10),HB_LuongVanCang.md,True
+92,Học bổng Lê Sở Memorial Scholarship of Excellence trị giá bao nhiêu một năm?,scholarship,Học bổng trị giá tương đương khoảng 45 triệu đồng/năm,Học bổng trị giá tương đương khoảng 45 triệu đồng/năm,HB_LeSo.md,True
+93,Tân sinh viên Khóa 51 phải đạt tổng điểm thi đầu vào bao nhiêu để dự tuyển học bổng Lê Sở?,scholarship,Tổng điểm thi đại học phải đạt từ 24/30 trở lên,Tổng điểm thi đại học phải đạt từ 24/30 trở lên,HB_LeSo.md,True
+94,Học bổng SCIC - Nâng bước tài năng trẻ năm 2026 dành cho sinh viên trường nào của Đại học Cần Thơ?,scholarship,Dành riêng cho sinh viên Trường Công nghệ Thông tin & Truyền thông,Dành riêng cho sinh viên Trường Công nghệ Thông tin & Truyền thông,HB_SCIC_2026.md,True
+95,Mỗi suất học bổng SCIC trị giá bao nhiêu?,scholarship,Mỗi suất học bổng có giá trị 10.000.000 đồng,Mỗi suất học bổng có giá trị 10.000.000 đồng,HB_SCIC_2026.md,True
+96,Hồ sơ xin học bổng Shinhan Life S-cellence có yêu cầu viết bài luận không?,scholarship,"Có, sinh viên cần nộp một bài luận ngắn từ 500 - 800 chữ (hoặc bài thuyết trình, video ngắn)","Có, sinh viên cần nộp một bài luận ngắn từ 500 - 800 chữ (hoặc bài thuyết trình, video ngắn)",HB_Shihan.md,True
+97,Học bổng Thắp sáng Niềm Tin tài trợ mức tối đa là bao nhiêu một năm học?,scholarship,Mức tài trợ tối đa là 30.000.000 đồng/năm học (gồm học phí và sinh hoạt phí),Mức tài trợ tối đa là 30.000.000 đồng/năm học (gồm học phí và sinh hoạt phí),HB_TanSinhVien_K52.md,True
+98,Yêu cầu về học lực đối với tân sinh viên ứng tuyển học bổng Thắp sáng Niềm Tin là gì?,scholarship,Yêu cầu tối thiểu phải đạt danh hiệu học sinh tiên tiến 03 năm liền tại cấp Trung học phổ thông,Yêu cầu tối thiểu phải đạt danh hiệu học sinh tiên tiến 03 năm liền tại cấp Trung học phổ thông,HB_TanSinhVien_K52.md,True
+99,Số tiền sinh viên được nhận của học bổng Hội Khuyến học tỉnh Tây Ninh là bao nhiêu một suất?,scholarship,Mỗi suất học bổng có giá trị 5.000.000 đồng,Mỗi suất học bổng có giá trị 5.000.000 đồng,HB_TayNinh.md,True
+100,Đăng ký hồ sơ dự tuyển học bổng Vallet được thực hiện qua hình thức nào?,scholarship,Đăng ký hồ sơ theo hình thức trực tuyến (online),Đăng ký hồ sơ theo hình thức trực tuyến (online),HB_Vallet_Chi_Tiet.md,True

@@ -16,7 +16,7 @@ Kiến trúc **Supervisor Pattern** với 4 Agent chuyên biệt, mỗi agent đ
 | :---------------------------- | :------------------------------------------------- | :---------------------------- |
 | 🎯**Supervisor**        | Phân tích intent, query rewrite, routing         | Structured Output (Gemini)    |
 | 📚**Academic Agent**    | Chương trình đào tạo, ngành học, môn học | 6 Neo4j Graph Tools (ReAct)   |
-| 💰**Financial Agent**   | Học phí, miễn giảm, tính toán tài chính    | 3 Tools (Graph + JSON + Calc) |
+| 💰**Financial Agent**   | Học phí, miễn giảm, tính toán tài chính    | 4 Tools (Graph + JSON + Calc) |
 | 🏆**Scholarship Agent** | Học bổng khuyến khích học tập                | 1 Calculator Tool             |
 | 📋**General Agent**     | Quy chế học vụ, thủ tục, tuyển sinh          | RAG Context only              |
 
@@ -31,17 +31,18 @@ Kiến trúc **Supervisor Pattern** với 4 Agent chuyên biệt, mỗi agent đ
 ### 🕸️ Neo4j Knowledge Graph
 
 - Lưu trữ **toàn bộ chương trình đào tạo** dưới dạng đồ thị: `Program → Block → Course`, quan hệ tiên quyết `REQUIRES`
+- Lưu trữ **học phí thực tế & mức cơ sở tính miễn giảm**: `Program → HAS_TUITION → TuitionFee` và `Program → HAS_EXEMPTION_BASIS → ExemptionBasisRate`
 - **Lazy auto-ingest**: Khởi động tự kiểm tra và nạp dữ liệu nếu graph rỗng
 - **6 Academic Tools**: Tra cứu ngành, so sánh ngành, tìm ngành, chuỗi tiên quyết, môn chung, tìm ngành theo môn
-- **2 Tuition Tools**: Tra cứu học phí từ graph (ưu tiên) với JSON fallback, tra cứu quy định học phí
+- **3 Tuition & Exemption Tools**: Tra cứu học phí từ graph (ưu tiên) với JSON fallback, tra cứu mức trần cơ sở miễn giảm, tra cứu quy định học phí
 
 ### 🧠 LLM-powered Intent Classification
 
 - **Gemini Flash Lite** phân loại intent với structured output (`lane`, `confidence`, `params`)
 - **Rule-based fallback**: Hệ thống từ khóa deterministic dự phòng khi LLM unavailable
-- **11 intent lanes**: ACTUAL_TUITION, EXEMPTION_BASIS, EXEMPTION_POLICY, CALCULATION, BOTH, AMBIGUOUS_TUITION, SCHOLARSHIP, STUDENT_LOAN, SOCIAL_SUPPORT, ACADEMIC_PROGRAM, ACADEMIC_RULES, OTHER
+- **12 intent lanes**: ACTUAL_TUITION, EXEMPTION_BASIS, EXEMPTION_POLICY, CALCULATION, BOTH, AMBIGUOUS_TUITION, SCHOLARSHIP, STUDENT_LOAN, SOCIAL_SUPPORT, ACADEMIC_PROGRAM, ACADEMIC_RULES, OTHER
 
-### ⚡ Bộ Công Cụ Tính Toán (11 LangChain Tools)
+### ⚡ Bộ Công Cụ Tính Toán (12 LangChain Tools)
 
 <details>
 <summary><b>📚 Academic Tools (6)</b> — Neo4j Graph-backed</summary>
@@ -58,13 +59,14 @@ Kiến trúc **Supervisor Pattern** với 4 Agent chuyên biệt, mỗi agent đ
 </details>
 
 <details>
-<summary><b>💰 Financial Tools (3)</b> — Graph + JSON + Calculator</summary>
+<summary><b>💰 Financial Tools (4)</b> — Graph + JSON + Calculator</summary>
 
-| Tool                         | Mô tả                                                                             |
-| :--------------------------- | :---------------------------------------------------------------------------------- |
-| `tra_cuu_hoc_phi_graph`    | Tra cứu học phí theo ngành + khóa từ Neo4j (ưu tiên), JSON fallback         |
-| `tra_cuu_quy_dinh_hoc_phi` | Tra cứu quy định chung (hệ số ngoài giờ, VLVH, từ xa, thạc sĩ, tiến sĩ) |
-| `tinh_toan_hoc_phi`        | Tính số tiền thực đóng sau miễn giảm                                        |
+| Tool                             | Mô tả                                                                                                  |
+| :------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| `tra_cuu_hoc_phi_graph`          | Tra cứu học phí thực tế theo ngành + khóa từ Neo4j (ưu tiên), JSON fallback                            |
+| `tra_cuu_co_so_mien_giam_graph` | Tra cứu mức học phí trần / cơ sở tính miễn giảm theo ngành, khối ngành hoặc chương trình từ Neo4j Graph |
+| `tra_cuu_quy_dinh_hoc_phi`       | Tra cứu quy định chung (hệ số ngoài giờ, VLVH, từ xa, thạc sĩ, tiến sĩ)                                |
+| `tinh_toan_hoc_phi`              | Tính số tiền thực đóng sau miễn giảm (dựa trên học phí thực tế, mức trần và % miễn giảm)               |
 
 </details>
 
@@ -238,27 +240,27 @@ print('✅ Hoàn tất!')
 "
 ```
 
-### Bước 6: Xây Dựng Chỉ Mục Dữ Liệu
-
 ### Bước 6: Xây Dựng Chỉ Mục Dữ Liệu (Indexing)
 
-Hệ thống cung cấp các file markdown quy chế mẫu sẵn tại `data/markdown/`. Bạn cần tạo chỉ mục cho chúng:
+Hệ thống lấy tài liệu từ `data/markdown/`, lưu parent document trong PostgreSQL, vector trong Qdrant và sparse index trong BM25:
 
 ```bash
-# BM25 Index (Lexical Search)
-python scripts/build_bm25_index.py
-
-# Vector Index (Qdrant)
+# 1. Tạo collection vật lý mới trong Qdrant
 python scripts/reindex_all.py build --index-version 2026-09-02-v1
 
-# Kiểm tra collection trước khi kích hoạt
+# 2. Kiểm tra checksum, metadata, vectors và parent PostgreSQL
 python scripts/reindex_all.py validate --index-version 2026-09-02-v1
 
-# Kích hoạt alias live cho ứng dụng và benchmark
+# 3. Kích hoạt collection qua alias live
 python scripts/reindex_all.py activate --index-version 2026-09-02-v1 --alias ctu_scholarship_docs_current
+
+# 4. Đồng bộ BM25 với doc_id hiện có trong Qdrant/PostgreSQL
+python scripts/rebuild_bm25.py --alias ctu_scholarship_docs_current
 ```
 
-> **📝 Note:** Neo4j Knowledge Graph sẽ tự động được nạp dữ liệu (lazy init) khi ứng dụng khởi động lần đầu. Có thể nạp thủ công bằng `python Graph_DB/app/ingest.py`.
+> **📝 Lưu ý:** Không dùng `scripts/build_bm25_index.py` cho live RAG; script này tạo `parent_id` mới, không đồng bộ PostgreSQL. Dùng `scripts/rebuild_bm25.py` sau khi activate.
+
+> **🕸️ Neo4j:** Graph tự động lazy-ingest khi ứng dụng khởi động. Nạp thủ công bằng `python Graph_DB/app/ingest.py`; học phí bằng `python Graph_DB/app/ingest_tuition.py`.
 
 ---
 
@@ -362,11 +364,15 @@ CTU-Chat_bot/
 
 | Lệnh                                                                                                                               | Mô Tả                                                   |
 | :---------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------- |
-| `python scripts/build_bm25_index.py`                                                                                              | Quét 244 văn bản Markdown và tái tạo chỉ mục BM25 |
-| `python scripts/reindex_all.py build --index-version 2026-09-02-v1`                                                               | Nạp toàn bộ dữ liệu vào Qdrant collection mới      |
-| `python scripts/reindex_all.py validate --index-version 2026-09-02-v1`                                                           | Kiểm tra collection Qdrant trước khi activate      |
-| `python scripts/reindex_all.py activate --index-version 2026-09-02-v1 --alias ctu_scholarship_docs_current`                     | Kích hoạt alias Qdrant cho ứng dụng (zero-downtime) |
+| `python scripts/reindex_all.py build --index-version 2026-09-02-v1`                                                               | Tạo collection Qdrant mới từ `data/markdown/`      |
+| `python scripts/reindex_all.py validate --index-version 2026-09-02-v1`                                                           | Kiểm tra collection và parent PostgreSQL          |
+| `python scripts/reindex_all.py activate --index-version 2026-09-02-v1 --alias ctu_scholarship_docs_current`                     | Kích hoạt alias Qdrant live                      |
+| `python scripts/rebuild_bm25.py --alias ctu_scholarship_docs_current`                                                            | Tạo BM25 với `doc_id` đồng bộ Qdrant/PostgreSQL   |
 | `python Graph_DB/app/ingest.py`                                                                                                  | Nạp chương trình đào tạo vào Neo4j Graph          |
+| `python Graph_DB/app/ingest_tuition.py`                                                                                           | Nạp học phí thực tế & mức cơ sở miễn giảm vào Neo4j Graph |
+| `python scripts/ingest_academic_programs.py`                                                                                      | Bổ sung chunk CTĐT vào Qdrant (không thay thế graph ingest) |
+| `python scripts/test_exemption_graph.py`                                                                                          | Kiểm tra truy vấn Cypher & Tool miễn giảm học phí       |
+| `python tests/benchmarkpaper/benchmark_table4.py --dataset tests/data/100.csv`                                                   | Chạy benchmark Table 4 E1–E5                    |
 | `python scripts/batch_process.py`                                                                                                 | Batch OCR hàng loạt PDF                                 |
 | `python scripts/evaluate_chat_dataset.py`                                                                                         | Đánh giá chất lượng chatbot trên dataset           |
 | `python scripts/run_ablation_test.py`                                                                                             | Ablation test cho từng component RAG                     |

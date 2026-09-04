@@ -1,7 +1,7 @@
 """Run the E1--E5 retrieval ablation used by Table 4.
 
 The benchmark reads ``tests/data/dataset.xlsx`` or a compatible CSV and reports document-level
-P@5, Recall@5, and MRR.  It uses the same query set for every variant:
+P@5, Recall@5, H@1, H@3, MRR@10, nDCG@10, and latency.  It uses the same query set for every variant:
 
     E1 BM25
     E2 Dense
@@ -19,6 +19,7 @@ Examples::
 
     python tests/benchmarkpaper/benchmark_table4.py --dry-run
     python tests/benchmarkpaper/benchmark_table4.py --dataset tests/data/100.csv
+    python tests/benchmarkpaper/benchmark_table4.py --dataset tests/data/100.csv --category academic_program
 
 Services required for a real run: PostgreSQL, Qdrant, and Neo4j.  Results are
 written to ``tests/outputpaper/table4_results.json`` and the chart to
@@ -29,16 +30,19 @@ completed case and resumed automatically on the next run.
 from __future__ import annotations
 
 import argparse
+import asyncio
 import csv
 import hashlib
 import html
 import json
+import math
 import os
 import re
 import sys
+import time
 import xml.etree.ElementTree as ET
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Sequence
 from zipfile import ZipFile
@@ -50,7 +54,10 @@ DEFAULT_CHART = PROJECT_ROOT / "tests" / "outputpaper" / "table4_results.svg"
 DEFAULT_CHECKPOINT = PROJECT_ROOT / "tests" / "outputpaper" / "table4_checkpoint.json"
 GRAPH_DATA_DIR = PROJECT_ROOT / "data" / "markdown_graph"
 TOP_K = 5
+METRIC_K = 10
 RRF_K = 60
+AGENT_MODE_REAL = "real"
+AGENT_MODE_PROXY = "proxy"
 
 NS_MAIN = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
 NS_REL = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -183,7 +190,12 @@ def _gold_sources(row: dict[str, Any], group: str) -> list[str]:
     return []
 
 
-def load_cases(path: Path, groups: Sequence[str], limit: int | None = None) -> tuple[list[Case], dict[str, int]]:
+def load_cases(
+    path: Path,
+    groups: Sequence[str],
+    limit: int | None = None,
+    category: str | None = None,
+) -> tuple[list[Case], dict[str, int]]:
     is_csv = path.suffix.casefold() == ".csv"
     rows = read_csv_rows(path) if is_csv else read_xlsx_rows(path)
     selected_groups = ("CSV",) if is_csv else groups
@@ -192,6 +204,8 @@ def load_cases(path: Path, groups: Sequence[str], limit: int | None = None) -> t
     for row in rows:
         group = "CSV" if is_csv else _text(row.get("Dataset Group"))
         if group not in selected_groups:
+            continue
+        if category and _text(row.get("Category")).casefold() != category.casefold():
             continue
         question = _text(row.get("Master Question")) or _text(row.get("Question"))
         gold = tuple(dict.fromkeys(_gold_sources(row, group)))
@@ -236,52 +250,67 @@ def _rrf(lanes: Sequence[Sequence[str]], limit: int = TOP_K) -> list[str]:
 
 
 def _metrics(retrieved: Sequence[str], gold: Sequence[str]) -> dict[str, Any]:
-    top = _unique_sources(retrieved)[:TOP_K]
+    top5 = _unique_sources(retrieved)[:TOP_K]
+    top10 = _unique_sources(retrieved)[:METRIC_K]
     gold_set = set(gold)
     if not gold_set:
         return {
             "precision_at_5": None,
             "recall_at_5": None,
             "mrr": None,
+            "hit_at_1": None,
+            "recall_at_1": None,
+            "hit_at_3": None,
+            "recall_at_3": None,
+            "mrr_at_10": None,
+            "ndcg_at_10": None,
             "first_relevant_rank": None,
-            "retrieved": top,
+            "first_relevant_rank_at_10": None,
+            "retrieved": top5,
+            "retrieved_top10": top10,
             "gold_available": False,
-            "retrieval_nonempty": bool(top),
+            "retrieval_nonempty": bool(top10),
         }
-    hits = [index + 1 for index, source in enumerate(top) if source in gold_set]
+    hits5 = [index + 1 for index, source in enumerate(top5) if source in gold_set]
+    hits10 = [index + 1 for index, source in enumerate(top10) if source in gold_set]
+    dcg = sum(
+        1.0 / math.log2(rank + 1)
+        for rank, source in enumerate(top10, start=1)
+        if source in gold_set
+    )
+    ideal_hits = min(len(gold_set), METRIC_K)
+    idcg = sum(1.0 / math.log2(rank + 1) for rank in range(1, ideal_hits + 1))
     assert TOP_K == 5  # Table 4's fixed cutoff.
     return {
-        "precision_at_5": len(hits) / TOP_K,
-        "recall_at_5": len(hits) / len(gold_set),
-        "mrr": 1.0 / hits[0] if hits else 0.0,
-        "first_relevant_rank": hits[0] if hits else None,
-        "retrieved": top,
+        "precision_at_5": len(hits5) / TOP_K,
+        "recall_at_5": len(hits5) / len(gold_set),
+        "mrr": 1.0 / hits5[0] if hits5 else 0.0,
+        "hit_at_1": float(any(rank <= 1 for rank in hits10)),
+        "recall_at_1": sum(rank <= 1 for rank in hits10) / len(gold_set),
+        "hit_at_3": float(any(rank <= 3 for rank in hits10)),
+        "recall_at_3": sum(rank <= 3 for rank in hits10) / len(gold_set),
+        "mrr_at_10": 1.0 / hits10[0] if hits10 else 0.0,
+        "ndcg_at_10": dcg / idcg if idcg else 0.0,
+        "first_relevant_rank": hits5[0] if hits5 else None,
+        "first_relevant_rank_at_10": hits10[0] if hits10 else None,
+        "retrieved": top5,
+        "retrieved_top10": top10,
         "gold_available": True,
-        "retrieval_nonempty": bool(top),
+        "retrieval_nonempty": bool(top10),
     }
 
 
-def _academic_route(question: str) -> bool:
-    # ponytail: deterministic route gate; replace with supervisor traces when
-    # measuring LLM routing itself.
-    markers = (
-        "ngành",
-        "chương trình",
-        "học phần",
-        "môn",
-        "plo",
-        "peo",
-        "tiên quyết",
-        "chuẩn đầu ra",
-        "vị trí việc làm",
-        "tín chỉ",
-    )
-    folded = question.casefold()
-    return any(marker in folded for marker in markers)
+def _academic_route(category: str) -> bool:
+    return category.casefold() == "academic_program"
 
 
-def _graph_sources(graph_service: Any, question: str, file_by_code: dict[str, str]) -> list[str]:
-    if graph_service is None:
+def _graph_sources(
+    graph_service: Any,
+    question: str,
+    category: str,
+    file_by_code: dict[str, str],
+) -> list[str]:
+    if graph_service is None or not _academic_route(category):
         return []
     results: list[dict[str, Any]] = []
     try:
@@ -294,12 +323,11 @@ def _graph_sources(graph_service: Any, question: str, file_by_code: dict[str, st
         results.extend(graph_service.search_programs(question) or [])
     except Exception:
         pass
-    sources = []
-    for result in results:
-        code = _text(result.get("code"))
-        if code in file_by_code:
-            sources.append(file_by_code[code])
-    return _unique_sources(sources)
+    return _unique_sources(
+        file_by_code[_text(result.get("code"))]
+        for result in results
+        if _text(result.get("code")) in file_by_code
+    )
 
 
 def _graph_file_map() -> dict[str, str]:
@@ -311,44 +339,184 @@ def _graph_file_map() -> dict[str, str]:
     return mapping
 
 
-def _retrieve_lanes(engine: Any, query: str) -> dict[str, list[str]]:
+@dataclass
+class AgentTrace:
+    tools: list[str] = field(default_factory=list)
+    sources: list[str] = field(default_factory=list)
+
+
+def _agent_tool_sources(
+    tool_name: str,
+    output: Any,
+    inputs: Any,
+    graph_service: Any,
+    file_by_code: dict[str, str],
+) -> list[str]:
+    text = output if isinstance(output, str) else getattr(output, "content", output)
+    codes = re.findall(r"\b\d{7}C?\b", str(text))
+    if not codes and tool_name == "xem_chuoi_tien_quyet" and graph_service is not None:
+        values = inputs.values() if isinstance(inputs, dict) else [inputs]
+        query = next((_text(value) for value in values if _text(value)), "")
+        try:
+            result = graph_service.get_prerequisite_chain(query) or {}
+            codes = [
+                _text(program.get("code"))
+                for program in result.get("belongs_to_programs", [])
+                if isinstance(program, dict)
+            ]
+        except Exception:
+            codes = []
+    return _unique_sources(
+        file_by_code[code] for code in codes if code in file_by_code
+    )
+
+
+def _make_agent_trace_callback(
+    trace: AgentTrace,
+    graph_service: Any,
+    file_by_code: dict[str, str],
+) -> Any:
+    from langchain_core.callbacks import BaseCallbackHandler
+
+    class TraceCallback(BaseCallbackHandler):
+        def __init__(self) -> None:
+            self.inputs: dict[str, tuple[str, Any]] = {}
+
+        def on_tool_start(
+            self,
+            serialized: dict[str, Any],
+            input_str: str,
+            *,
+            run_id: Any,
+            inputs: Any = None,
+            **kwargs: Any,
+        ) -> None:
+            name = _text(serialized.get("name")) or _text(serialized.get("id"))
+            trace.tools.append(name or "unknown_tool")
+            self.inputs[str(run_id)] = (name, inputs if inputs is not None else input_str)
+
+        def on_tool_end(self, output: Any, *, run_id: Any, **kwargs: Any) -> None:
+            name, inputs = self.inputs.pop(str(run_id), ("", ""))
+            trace.sources.extend(
+                _agent_tool_sources(name, output, inputs, graph_service, file_by_code)
+            )
+
+    return TraceCallback()
+
+
+def _build_real_agent(engine: Any, graph_service: Any) -> Any:
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    from app.agents.graph import build_agent_graph
+    from app.services.tuition_catalog import TuitionRateCatalog
+    from app.tools.academic_program import (
+        mon_chung_giua_nganh,
+        set_graph_service,
+        so_sanh_nganh,
+        tim_nganh,
+        tim_nganh_co_mon,
+        tra_cuu_nganh,
+        xem_chuoi_tien_quyet,
+    )
+    from app.tools.scholarship import tinh_tien_hoc_bong
+    from app.tools.tuition import tinh_toan_hoc_phi
+    from app.tools.tuition_graph import (
+        set_tuition_catalog,
+        set_tuition_graph_service,
+        tra_cuu_co_so_mien_giam_graph,
+        tra_cuu_hoc_phi_graph,
+        tra_cuu_quy_dinh_hoc_phi,
+    )
+
+    if graph_service is None:
+        raise RuntimeError("Neo4j service unavailable for real Agent benchmark")
+    set_graph_service(graph_service)
+    set_tuition_graph_service(graph_service)
+    tuition_catalog = TuitionRateCatalog.load()
+    set_tuition_catalog(tuition_catalog)
+    llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite", temperature=0.0)
+    rewrite_llm = ChatGoogleGenerativeAI(
+        model="gemini-3.1-flash-lite", temperature=0.0
+    )
+    return build_agent_graph(
+        llm=llm,
+        rewrite_llm=rewrite_llm,
+        engine=engine,
+        tuition_catalog=tuition_catalog,
+        graph_service=graph_service,
+        academic_tools=[
+            tra_cuu_nganh,
+            so_sanh_nganh,
+            tim_nganh,
+            xem_chuoi_tien_quyet,
+            mon_chung_giua_nganh,
+            tim_nganh_co_mon,
+        ],
+        financial_tools=[
+            tra_cuu_hoc_phi_graph,
+            tra_cuu_co_so_mien_giam_graph,
+            tra_cuu_quy_dinh_hoc_phi,
+            tinh_toan_hoc_phi,
+        ],
+        scholarship_tools=[tinh_tien_hoc_bong],
+    )
+
+
+def _retrieve_lanes(
+    engine: Any,
+    query: str,
+    latency_ms: dict[str, float] | None = None,
+) -> dict[str, list[str]]:
+    started = time.perf_counter()
     dense_docs = engine.retrieve(
         query,
-        top_n=TOP_K,
+        top_n=METRIC_K,
         hybrid_search=False,
         use_reranker=False,
         metadata_filter_enabled=False,
     )
+    if latency_ms is not None:
+        latency_ms["E2"] = (time.perf_counter() - started) * 1000
     dense = _unique_sources(_source_from_document(doc) for doc in dense_docs)
 
     sparse: list[str] = []
+    started = time.perf_counter()
     if engine.bm25_index is not None and engine.bm25_index.is_indexed():
-        matches = engine.bm25_index.search(query=query, top_k=TOP_K)
+        matches = engine.bm25_index.search(query=query, top_k=METRIC_K)
         parents = engine.doc_store.mget([parent_id for parent_id, _ in matches])
         sparse = _unique_sources(_source_from_document(doc) for doc in parents if doc is not None)
+    if latency_ms is not None:
+        latency_ms["E1"] = (time.perf_counter() - started) * 1000
 
+    started = time.perf_counter()
     hybrid_docs = engine.retrieve(
         query,
-        top_n=TOP_K,
+        top_n=METRIC_K,
         hybrid_search=True,
         use_reranker=False,
         metadata_filter_enabled=False,
     )
+    if latency_ms is not None:
+        latency_ms["E3"] = (time.perf_counter() - started) * 1000
     hybrid = _unique_sources(_source_from_document(doc) for doc in hybrid_docs)
     return {"bm25": sparse, "dense": dense, "hybrid": hybrid}
 
 
-def _variant_sources(lanes: dict[str, list[str]], graph: list[str], question: str) -> dict[str, tuple[list[str], str | None]]:
+def _variant_sources(
+    lanes: dict[str, list[str]],
+    graph: list[str],
+    category: str,
+    agent_sources: list[str] | None = None,
+) -> dict[str, tuple[list[str], str | None]]:
     e1 = lanes["bm25"]
     e2 = lanes["dense"]
-    e3 = lanes["hybrid"] or _rrf((e1, e2))
-    e4 = _rrf((e3, graph))
-    if _academic_route(question):
-        # Agent proxy: route relational questions graph-first; retain hybrid
-        # fallback when graph linking returns no candidate.
-        e5 = _rrf((graph, e3)) if graph else e3
+    e3 = lanes["hybrid"] or _rrf((e1, e2), limit=METRIC_K)
+    if _academic_route(category):
+        e4 = _rrf((e3, graph), limit=METRIC_K) if graph else e3
+        agent_lane = graph if agent_sources is None else agent_sources
+        e5 = _rrf((agent_lane, e3), limit=METRIC_K) if agent_lane else e3
         route = "academic_graph"
     else:
+        e4 = e3
         e5 = e3
         route = "hybrid_only"
     return {
@@ -365,6 +533,16 @@ def _mean(rows: list[dict[str, Any]], key: str) -> float | None:
     return sum(values) / len(values) if values else None
 
 
+def _percentile(rows: list[dict[str, Any]], key: str, quantile: float) -> float | None:
+    values = sorted(float(row[key]) for row in rows if row.get(key) is not None)
+    if not values:
+        return None
+    position = (len(values) - 1) * quantile
+    lower = math.floor(position)
+    upper = min(lower + 1, len(values) - 1)
+    return values[lower] + (values[upper] - values[lower]) * (position - lower)
+
+
 def _format_metric(value: Any) -> str:
     return "NA" if value is None else f"{float(value):.4f}"
 
@@ -374,13 +552,18 @@ def _checkpoint_identity(
     groups: Sequence[str],
     limit: int | None,
     cases: Sequence[Case],
+    category: str | None = None,
+    agent_mode: str = AGENT_MODE_REAL,
 ) -> dict[str, Any]:
     return {
         "schema": 1,
+        "benchmark_logic_version": 4,
         "dataset": str(dataset_path.resolve()),
         "dataset_sha256": hashlib.sha256(dataset_path.read_bytes()).hexdigest(),
         "groups": list(groups),
         "limit": limit,
+        "category": category,
+        "agent_mode": agent_mode,
         "case_ids": [case.case_id for case in cases],
     }
 
@@ -487,14 +670,18 @@ def run_benchmark(
     dry_run: bool = False,
     checkpoint_path: Path = DEFAULT_CHECKPOINT,
     resume: bool = True,
+    category: str | None = None,
+    agent_mode: str = AGENT_MODE_REAL,
 ) -> int:
-    cases, skipped = load_cases(dataset_path, groups, limit)
+    cases, skipped = load_cases(dataset_path, groups, limit, category)
     effective_groups = ["CSV"] if dataset_path.suffix.casefold() == ".csv" else list(groups)
     if dry_run:
         payload = {
             "status": "dry_run",
             "dataset": str(dataset_path),
             "groups": effective_groups,
+            "category": category,
+            "agent_mode": agent_mode,
             "cases": len(cases),
             "unanswerable_cases": sum(not case.gold_sources for case in cases),
             "skipped": skipped,
@@ -540,7 +727,24 @@ def run_benchmark(
         graph_error = f"{type(exc).__name__}: {exc}"
 
     file_by_code = _graph_file_map()
-    identity = _checkpoint_identity(dataset_path, effective_groups, limit, cases)
+    agent_graph = None
+    agent_loop = None
+    if agent_mode == AGENT_MODE_REAL and any(_academic_route(case.category) for case in cases):
+        try:
+            agent_graph = _build_real_agent(engine, graph_service)
+            agent_loop = asyncio.new_event_loop()
+        except Exception as exc:
+            payload = {
+                "status": "blocked",
+                "stage": "agent_graph",
+                "error": f"{type(exc).__name__}: {exc}",
+                "cases": len(cases),
+            }
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
+            return 2
+    identity = _checkpoint_identity(
+        dataset_path, effective_groups, limit, cases, category, agent_mode
+    )
     checkpoint = _load_checkpoint(checkpoint_path, identity) if resume else None
     if checkpoint:
         per_variant, errors = checkpoint
@@ -556,10 +760,62 @@ def run_benchmark(
             continue
         errors = [item for item in errors if item.get("case_id") != case.case_id]
         try:
-            lanes = _retrieve_lanes(engine, case.question)
-            graph = _graph_sources(graph_service, case.question, file_by_code)
+            lane_latency: dict[str, float] = {}
+            lanes = _retrieve_lanes(engine, case.question, lane_latency)
+            graph_started = time.perf_counter()
+            graph = _graph_sources(
+                graph_service,
+                case.question,
+                case.category,
+                file_by_code,
+            )
+            graph_latency = (
+                (time.perf_counter() - graph_started) * 1000
+                if _academic_route(case.category)
+                else 0.0
+            )
+            agent_trace = AgentTrace()
+            agent_sources: list[str] | None = None
+            agent_route = None
+            agent_response = ""
+            agent_error = ""
+            agent_latency = 0.0
+            if agent_graph is not None and _academic_route(case.category):
+                callback = _make_agent_trace_callback(
+                    agent_trace, graph_service, file_by_code
+                )
+                agent_started = time.perf_counter()
+                try:
+                    agent_state = agent_loop.run_until_complete(
+                        agent_graph.ainvoke(
+                            {
+                                "query": case.question,
+                                "chat_history": [],
+                            },
+                            config={"callbacks": [callback]},
+                        )
+                    )
+                    agent_route = _text(agent_state.get("next_agent")) or "unknown"
+                    agent_response = _text(agent_state.get("response"))[:1000]
+                    agent_sources = _unique_sources(agent_trace.sources)
+                except Exception as exc:
+                    agent_error = f"{type(exc).__name__}: {exc}"
+                    agent_sources = []
+                agent_latency = (time.perf_counter() - agent_started) * 1000
+            hybrid_latency = lane_latency.get("E3", 0.0)
+            variant_latency = {
+                "E1": lane_latency.get("E1"),
+                "E2": lane_latency.get("E2"),
+                "E3": hybrid_latency,
+                "E4": hybrid_latency + graph_latency,
+                "E5": hybrid_latency + agent_latency,
+            }
+            if agent_error:
+                raise RuntimeError(f"real Agent failed: {agent_error}")
             case_rows: dict[str, dict[str, Any]] = {}
-            for variant, (retrieved, route) in _variant_sources(lanes, graph, case.question).items():
+            for variant, (retrieved, route) in _variant_sources(
+                lanes, graph, case.category, agent_sources
+            ).items():
                 metric = _metrics(retrieved, case.gold_sources)
                 case_rows[variant] = {
                     "case_id": case.case_id,
@@ -568,7 +824,12 @@ def run_benchmark(
                     "question": case.question,
                     "gold_sources": list(case.gold_sources),
                     "graph_sources": graph,
-                    "agent_route": route,
+                    "agent_sources": agent_sources or [],
+                    "agent_route": agent_route or route,
+                    "agent_tools": agent_trace.tools,
+                    "agent_response": agent_response,
+                    "agent_error": agent_error,
+                    "latency_ms": variant_latency[variant],
                     **metric,
                 }
             for variant, row in case_rows.items():
@@ -610,6 +871,15 @@ def run_benchmark(
             "precision_at_5": _mean(rows, "precision_at_5"),
             "recall_at_5": _mean(rows, "recall_at_5"),
             "mrr": _mean(rows, "mrr"),
+            "hit_at_1": _mean(rows, "hit_at_1"),
+            "recall_at_1": _mean(rows, "recall_at_1"),
+            "hit_at_3": _mean(rows, "hit_at_3"),
+            "recall_at_3": _mean(rows, "recall_at_3"),
+            "mrr_at_10": _mean(rows, "mrr_at_10"),
+            "ndcg_at_10": _mean(rows, "ndcg_at_10"),
+            "latency_ms": _mean(rows, "latency_ms"),
+            "latency_p50_ms": _percentile(rows, "latency_ms", 0.50),
+            "latency_p95_ms": _percentile(rows, "latency_ms", 0.95),
             "details": rows,
         }
 
@@ -618,7 +888,10 @@ def run_benchmark(
         "benchmark": "Table 4 E1-E5",
         "dataset": str(dataset_path),
         "groups": effective_groups,
+        "category": category,
+        "agent_mode": agent_mode,
         "top_k": TOP_K,
+        "retrieval_k": METRIC_K,
         "rrf_k": RRF_K,
         "cases_loaded": len(cases),
         "skipped": skipped,
@@ -633,12 +906,20 @@ def run_benchmark(
     write_chart(summary, chart_path)
     if not errors:
         checkpoint_path.unlink(missing_ok=True)
+    if agent_loop is not None:
+        agent_loop.close()
     print(json.dumps({key: value for key, value in payload.items() if key != "variants"}, ensure_ascii=False, indent=2))
     for variant, result in summary.items():
         print(
             f"{variant}: P@5={_format_metric(result['precision_at_5'])} "
             f"Recall@5={_format_metric(result['recall_at_5'])} "
-            f"MRR={_format_metric(result['mrr'])} n={result['cases']} "
+            f"H@1={_format_metric(result['hit_at_1'])} "
+            f"R@1={_format_metric(result['recall_at_1'])} "
+            f"H@3={_format_metric(result['hit_at_3'])} "
+            f"R@3={_format_metric(result['recall_at_3'])} "
+            f"MRR@10={_format_metric(result['mrr_at_10'])} "
+            f"nDCG@10={_format_metric(result['ndcg_at_10'])} "
+            f"lat_p50={_format_metric(result['latency_p50_ms'])}ms n={result['cases']} "
             f"unanswerable_retrieval={_format_metric(result['unanswerable_retrieval_nonempty_rate'])}"
         )
     return 0 if not errors else 1
@@ -652,6 +933,13 @@ def main() -> int:
     parser.add_argument("--checkpoint", type=Path, default=DEFAULT_CHECKPOINT)
     parser.add_argument("--groups", nargs="+", default=["RAGAS", "E2E"], choices=["RAGAS", "E2E", "Retrieval", "CSV"])
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--category", help="run only one dataset category, e.g. academic_program")
+    parser.add_argument(
+        "--agent-mode",
+        choices=[AGENT_MODE_REAL, AGENT_MODE_PROXY],
+        default=AGENT_MODE_REAL,
+        help="E5 mode: real production LangGraph Agent or deterministic proxy",
+    )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--no-resume", action="store_true", help="ignore any existing checkpoint")
     args = parser.parse_args()
@@ -664,6 +952,8 @@ def main() -> int:
         args.dry_run,
         args.checkpoint,
         not args.no_resume,
+        args.category,
+        args.agent_mode,
     )
 
 
