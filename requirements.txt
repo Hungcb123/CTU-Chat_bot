@@ -19,17 +19,27 @@ langchain-classic==1.0.7
 langchain-community==0.4.2
 langchain-core==1.4.8
 langchain-google-genai==4.2.4
+# T1-T7: RAGAS imports langchain-openai; pin a release compatible with
+# the project's langchain-core==1.4.8 instead of resolving to 1.6.0.
+langchain-openai==1.1.10
 langchain-qdrant==1.1.0
 langchain-text-splitters==1.1.2
 langgraph==1.2.2
 # chromadb==1.5.9
 bm25s>=0.3.10
 pyvi>=0.1.1
-# sentence-transformers và huggingface_hub đã được thay bằng API:
-# - Embedding: Google Gemini text-embedding-004 (dùng langchain-google-genai)
-# - Reranker: NVIDIA Nemotron qua OpenRouter (dùng httpx)
+# T1-T6: rag_engine still loads the local Vietnamese bi-encoder and checks
+# torch for CPU/CUDA, so both packages are required by the current source.
+torch>=2.2,<3
+sentence-transformers>=3,<6
 
-pydantic==2.1
+# T1-T7: benchmark runner and its regression tests.
+ragas==0.2.15
+pytest>=8,<10
+
+# T1-T7: FastAPI 0.137.0 requires Pydantic >=2.9.0; pin a compatible 2.x release
+# so the experiment environment can be installed reproducibly.
+pydantic==2.12.5
 typing_extensions==4.15.0
 
 # Authentication and HTTP

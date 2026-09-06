@@ -1,4 +1,4 @@
-"""Script xây dựng hoặc đồng bộ lại toàn bộ BM25 index từ thư mục data/markdown."""
+"""Build a BM25 snapshot aligned with the active Qdrant/PostgreSQL index."""
 
 import hashlib
 import json
@@ -10,13 +10,21 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
+load_dotenv(PROJECT_ROOT / ".env")
+# T2-T6: keep Vietnamese progress/test output valid in Windows PowerShell.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 from langchain_core.documents import Document
 from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
+from qdrant_client import QdrantClient
 from app.services.bm25_service import VietnameseBM25Index, BM25ChildRecord
 from app.services.document_metadata import get_document_metadata
+from app.services.rag_engine import PostgresDocStore
 
 logging.basicConfig(
     level=logging.INFO,
@@ -186,7 +194,8 @@ def _business_metadata_label(metadata):
     return f"[METADATA | {' | '.join(parts)}]" if parts else ""
 
 
-def build_all_bm25_indexes(output_dirs=None):
+def _build_all_bm25_indexes_from_markdown_legacy(output_dirs=None):
+    """Legacy builder retained for reference; it creates unrelated parent UUIDs."""
     if output_dirs is None:
         output_dirs = [
             PROJECT_ROOT / "parent_doc_storage" / "bm25_index",
@@ -305,6 +314,79 @@ def build_all_bm25_indexes(output_dirs=None):
         index.save(out_dir)
         logger.info(f"✅ Đã lưu BM25 Index vào: {out_dir}")
 
+    return index
+
+
+def _active_qdrant_records() -> tuple[list[BM25ChildRecord], str]:
+    """T2-T6: copy child text and the canonical PostgreSQL parent ID from Qdrant."""
+    qdrant_url = os.getenv("QDRANT_URL", "http://localhost:6333")
+    collection = os.getenv("QDRANT_COLLECTION_ALIAS", "ctu_scholarship_docs_current")
+    client = QdrantClient(url=qdrant_url)
+    records: list[BM25ChildRecord] = []
+    versions: set[str] = set()
+    offset = None
+
+    while True:
+        points, offset = client.scroll(
+            collection_name=collection,
+            limit=256,
+            offset=offset,
+            with_payload=True,
+            with_vectors=False,
+        )
+        for point in points:
+            payload = point.payload or {}
+            metadata = dict(payload.get("metadata") or {})
+            parent_id = str(metadata.get("doc_id") or "").strip()
+            child_text = str(payload.get("page_content") or "").strip()
+            if not parent_id or not child_text:
+                raise RuntimeError(f"Qdrant point {point.id} lacks metadata.doc_id or page_content")
+            if metadata.get("index_version"):
+                versions.add(str(metadata["index_version"]))
+            records.append(BM25ChildRecord(child_text, parent_id, metadata))
+        if offset is None:
+            break
+
+    if not records:
+        raise RuntimeError(f"Active Qdrant collection {collection!r} contains no child points")
+    if len(versions) != 1:
+        raise RuntimeError(f"Expected one active index_version, found {sorted(versions)}")
+    return records, next(iter(versions))
+
+
+def _verify_postgres_parents(records: list[BM25ChildRecord]) -> None:
+    """T2-T6: never publish BM25 IDs that cannot resolve to parent documents."""
+    parent_ids = list(dict.fromkeys(record.parent_id for record in records))
+    store = PostgresDocStore()
+    missing: list[str] = []
+    for start in range(0, len(parent_ids), 500):
+        batch = parent_ids[start:start + 500]
+        missing.extend(key for key, doc in zip(batch, store.mget(batch)) if doc is None)
+    if missing:
+        raise RuntimeError(
+            f"BM25 build aborted: {len(missing)}/{len(parent_ids)} parent IDs are missing "
+            f"from PostgreSQL (examples: {missing[:3]})"
+        )
+
+
+def build_all_bm25_indexes(output_dirs=None):
+    """T2-T6: build Sparse retrieval from the same active index as Dense retrieval."""
+    if output_dirs is None:
+        output_dirs = [
+            PROJECT_ROOT / "parent_doc_storage" / "bm25_index",
+            PROJECT_ROOT / "qdrant_storage" / "bm25_index",
+        ]
+    records, index_version = _active_qdrant_records()
+    _verify_postgres_parents(records)
+    logger.info(
+        "Building aligned BM25 snapshot: %s children, index_version=%s",
+        len(records), index_version,
+    )
+    index = VietnameseBM25Index(index_version=index_version)
+    index.build_index(records)
+    for output_dir in output_dirs:
+        index.save(output_dir)
+        logger.info("Saved aligned BM25 index to %s", output_dir)
     return index
 
 

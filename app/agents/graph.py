@@ -72,6 +72,8 @@ class AgentState(TypedDict):
     # Retrieval output
     context: str                         # Context từ RAG
     retrieval_instruction: str           # Hướng dẫn cho agent
+    # T7: benchmark-only fixed evidence passed from T6; normal chat leaves this None.
+    fixed_context: str | None
 
     # Final output
     response: str                        # Câu trả lời cuối cùng
@@ -115,6 +117,8 @@ def build_agent_graph(
     academic_tools: list,
     financial_tools: list,
     scholarship_tools: list,
+    # T7: receives the exact ordered evidence emitted by T6 and disables all retrieval/tools.
+    fixed_context: str | None = None,
 ):
     """Xây dựng LangGraph StateGraph cho Multi-Agent System.
 
@@ -198,12 +202,12 @@ def build_agent_graph(
         try:
             route: RouteDecision = await supervisor_llm.ainvoke(messages)
             next_agent = route.next_agent
+            intent = _INTENT_MAP.get(route.intent, QueryIntent.OTHER)
         except Exception as e:
+            # T7 safety: a quota/network failure must still return a valid fallback state.
             logger.warning("Supervisor routing lỗi, fallback general: %s", e)
             next_agent = "general"
-
-        # ── Intent (từ LLM structured output) → QueryRoutingDecision ──
-        intent = _INTENT_MAP.get(route.intent, QueryIntent.OTHER)
+            intent = QueryIntent.OTHER
         routing_decision = QueryRoutingDecision(intent=intent)
 
         logger.info(
@@ -222,6 +226,12 @@ def build_agent_graph(
     # ─────────────────────────────────────────────────────────────
     async def retrieval_node(state: AgentState) -> dict:
         """RAG Retrieval: Qdrant + BM25 hybrid search."""
+        # T7: never call Qdrant, BM25, Neo4j, or the tuition catalog after T6 evidence is fixed.
+        if fixed_context is not None:
+            return {
+                "context": fixed_context,
+                "retrieval_instruction": build_answer_instruction(state["routing_decision"]),
+            }
         search_query = state["search_query"]
         query = state["query"]
         routing_decision = state["routing_decision"]
@@ -346,11 +356,30 @@ def build_agent_graph(
             "retrieval_instruction": retrieval_instruction,
         }
 
+    async def fixed_evidence_answer(state: AgentState, system_prompt: str) -> str:
+        """T7: synthesize an answer from T6 evidence only; no ReAct tools are available."""
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", system_prompt),
+            (
+                "human",
+                "Evidence cố định từ T6 (không được tìm kiếm hoặc gọi công cụ bổ sung):\n"
+                "{context}\n\nCâu hỏi: {question}",
+            ),
+        ])
+        chain = prompt | llm | StrOutputParser()
+        return _parse_llm_content(await chain.ainvoke({
+            "context": fixed_context or "Không có evidence.",
+            "question": state["query"],
+        }))
+
     # ─────────────────────────────────────────────────────────────
     # NODE: academic_agent
     # ─────────────────────────────────────────────────────────────
     async def academic_agent_node(state: AgentState) -> dict:
         """Academic Agent: ReAct loop với Neo4j graph tools."""
+        # T7: academic reasoning is retained, but Neo4j tools are intentionally unavailable.
+        if fixed_context is not None:
+            return {"response": await fixed_evidence_answer(state, ACADEMIC_PROMPT)}
         query = state["query"]
         chat_history = state.get("chat_history", [])
 
@@ -374,6 +403,14 @@ def build_agent_graph(
         context = state.get("context", "")
         retrieval_instruction = state.get("retrieval_instruction", "")
         chat_history = state.get("chat_history", [])
+
+        # T7: do not allow Graph/catalog/calculation tools to add evidence beyond T6.
+        if fixed_context is not None:
+            fixed_prompt = FINANCIAL_PROMPT.format(
+                context=fixed_context,
+                retrieval_instruction=retrieval_instruction,
+            )
+            return {"response": await fixed_evidence_answer(state, fixed_prompt)}
 
         prompt = FINANCIAL_PROMPT.format(
             context=context,
@@ -404,6 +441,14 @@ def build_agent_graph(
         retrieval_instruction = state.get("retrieval_instruction", "")
         chat_history = state.get("chat_history", [])
 
+        # T7: scholarship calculation is disabled so the agent cannot introduce external data.
+        if fixed_context is not None:
+            fixed_prompt = SCHOLARSHIP_PROMPT.format(
+                context=fixed_context,
+                retrieval_instruction=retrieval_instruction,
+            )
+            return {"response": await fixed_evidence_answer(state, fixed_prompt)}
+
         prompt = SCHOLARSHIP_PROMPT.format(
             context=context,
             retrieval_instruction=retrieval_instruction,
@@ -432,6 +477,14 @@ def build_agent_graph(
         context = state.get("context", "")
         retrieval_instruction = state.get("retrieval_instruction", "")
         chat_history = state.get("chat_history", [])
+
+        # T7: preserve the specialist prompt while guaranteeing the answer uses only T6 evidence.
+        if fixed_context is not None:
+            fixed_prompt = GENERAL_PROMPT.format(
+                context=fixed_context,
+                retrieval_instruction=retrieval_instruction,
+            )
+            return {"response": await fixed_evidence_answer(state, fixed_prompt)}
 
         prompt = ChatPromptTemplate.from_messages([
             ("system", GENERAL_PROMPT.format(

@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "mode": "hybrid_rrf",
+      "status": "paused_quota",
+      "completed": 0,
+      "total": 100
+    }
+  ]
+}

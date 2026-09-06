@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "mode": "hybrid_rrf",
+      "status": "completed",
+      "completed": 3,
+      "total": 3,
+      "metrics": {
+        "answer_relevancy": 0.5626592646344951,
+        "context_recall": 0.6666666666666666,
+        "context_precision": 0.5555555555148147,
+        "answer_correctness": 0.6226456270024958
+      },
+      "per_category": {
+        "actual_tuition": {
+          "answer_relevancy": 0.5626592646344951,
+          "context_recall": 0.6666666666666666,
+          "context_precision": 0.5555555555148147,
+          "answer_correctness": 0.6226456270024958
+        }
+      }
+    }
+  ]
+}

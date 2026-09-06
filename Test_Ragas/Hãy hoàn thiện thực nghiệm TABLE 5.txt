@@ -1,0 +1,616 @@
+Hãy hoàn thiện thực nghiệm TABLE 5 cho benchmark PaperT9.
+
+MỤC TIÊU
+
+Đánh giá chất lượng context và câu trả lời end-to-end bằng RAGAS cho các cấu hình:
+
+T1 = Dense-only
+T2 = Sparse-only (BM25)
+T3 = Hybrid RRF
+T4 = Hybrid RRF + Reranker
+T5 = Hybrid RRF + Graph
+T6 = Hybrid RRF + Graph + Reranker
+T7 = Hybrid RRF + Graph + Reranker + Agent
+
+Table 5 KHÔNG thay thế Table 4.
+
+Table 4:
+→ đo retrieval effectiveness / ablation retrieval.
+
+Table 5:
+→ đo context quality + answer quality end-to-end.
+
+Không hard-code benchmark case.
+Không dùng Ground Truth/Source để ảnh hưởng retrieval, reranking, Graph hoặc Agent.
+
+==================================================
+1. CẤU HÌNH THỰC NGHIỆM
+==================================================
+
+T1 — DENSE-ONLY
+
+Query
+→ Dense retrieval
+→ top-K context
+→ LLM
+→ answer
+
+
+T2 — SPARSE-ONLY
+
+Query
+→ BM25
+→ top-K context
+→ LLM
+→ answer
+
+
+T3 — HYBRID RRF
+
+BM25 ─┐
+      ├─ RRF
+Dense ┘
+       ↓
+    top-K context
+       ↓
+      LLM
+       ↓
+    answer
+
+
+T4 — HYBRID RRF + RERANKER
+
+BM25 ─┐
+      ├─ RRF
+Dense ┘
+       ↓
+candidate pool
+       ↓
+Reranker
+       ↓
+top-K context
+       ↓
+LLM
+       ↓
+answer
+
+
+T5 — HYBRID RRF + GRAPH
+
+BM25 ─┐
+Dense ├─ RRF
+Graph ┘
+       ↓
+top-K context/evidence
+       ↓
+LLM
+       ↓
+answer
+
+
+T6 — HYBRID RRF + GRAPH + RERANKER
+
+BM25 ─┐
+Dense ├─ RRF
+Graph ┘
+       ↓
+candidate pool
+       ↓
+Reranker
+       ↓
+top-K context/evidence
+       ↓
+LLM
+       ↓
+answer
+
+
+T7 — FULL AGENTIC SYSTEM
+
+BM25 ─┐
+Dense ├─ RRF
+Graph ┘
+       ↓
+candidate pool
+       ↓
+Reranker
+       ↓
+E4R evidence
+       ↓
+Agent
+       ↓
+ANSWER | ANSWER_ALL | CLARIFY | ABSTAIN
+       ↓
+final answer
+
+==================================================
+2. RERANKER POLICY
+==================================================
+
+Reranker KHÔNG phải retrieval lane.
+
+KHÔNG làm:
+
+RRF(
+  BM25,
+  Dense,
+  Graph,
+  Reranker
+)
+
+Phải làm:
+
+RRF(...)
+→ candidate pool
+→ Reranker(candidate pool)
+
+Reranker chỉ được sắp xếp lại các candidate đã được retrieval tạo ra.
+
+Không được:
+- gọi BM25 lại
+- gọi Dense lại
+- query Graph lại
+- thêm candidate mới
+- dùng gold source/ground truth để rerank
+
+Raw reranker score chỉ dùng để xếp hạng sau RRF.
+
+Phải log:
+- reranker model
+- reranker score
+- pre-rerank rank
+- post-rerank rank
+- candidate depth đầu vào
+- top-K đầu ra
+- reranking latency
+
+==================================================
+3. FAIR ABLATION
+==================================================
+
+Các cặp so sánh chính:
+
+T1 vs T2
+→ semantic vs lexical
+
+T3 vs T1/T2
+→ contribution của hybrid fusion
+
+T3 vs T4
+→ contribution của Reranker trên Hybrid RAG
+
+T3 vs T5
+→ contribution của Graph trên cùng Hybrid baseline
+
+T5 vs T6
+→ contribution của Reranker khi có Graph
+
+T6 vs T7
+→ contribution của Agent khi retrieval + reranking được giữ cố định
+
+Không để một variant có thêm retrieval call hoặc query rewrite ngoài thành phần được ablate.
+
+==================================================
+4. RETRIEVAL/FUSION INVARIANT
+==================================================
+
+T3:
+
+E3 =
+RRF(
+  BM25_rank,
+  Dense_rank
+)
+
+T5/T6/T7 retrieval base:
+
+E4 =
+RRF(
+  BM25_rank,
+  Dense_rank,
+  Graph_rank
+)
+
+KHÔNG làm:
+
+RRF(E3_rank, Graph_rank)
+
+E4 phải fusion trực tiếp ba lane trong một lần.
+
+Raw BM25/Dense/Graph scores chỉ dùng để tạo ranking trong từng lane.
+
+Final RRF chỉ dùng rank.
+
+==================================================
+5. CANDIDATE BUDGET
+==================================================
+
+Dùng config thống nhất:
+
+candidate_depth = L
+context_top_k = K
+rrf_k = R
+
+Ví dụ:
+
+candidate_depth = 20
+context_top_k = 5
+rrf_k = 60
+
+BM25 → top L
+Dense → top L
+Graph → tối đa L
+
+Sau RRF:
+
+T3/T5:
+→ lấy top K trực tiếp làm context
+
+T4/T6/T7:
+→ lấy top L hoặc configured reranker pool
+→ Reranker
+→ chọn top K
+
+Không cho reranker variant nhận nhiều retrieval candidate hơn bất thường nếu không được log rõ.
+
+==================================================
+6. DEDUPLICATION
+==================================================
+
+Deduplicate trong từng retrieval lane trước RRF.
+
+Sau fusion cũng phải tránh duplicate context.
+
+Canonical identity ưu tiên:
+
+1. evidence_id
+2. source_document_id + source_section_id
+3. source_document_id
+
+Không để cùng một chunk/document chiếm nhiều context slot vô ích.
+
+==================================================
+7. CONTEXT CONSTRUCTION
+==================================================
+
+Context đưa vào LLM phải được tạo deterministic và nhất quán giữa các variant.
+
+Giữ cố định:
+- context_top_k
+- formatting
+- ordering rule
+- prompt template
+- generation model
+- temperature
+- max tokens
+
+Không thay prompt generation theo từng experiment nếu không phải phần đang ablate.
+
+Graph structured evidence phải được serialize bằng một formatter chung.
+
+Không tạo prompt đặc biệt cho benchmark ID/category.
+
+==================================================
+8. RAGAS METRICS
+==================================================
+
+Table 5 báo cáo:
+
+- Answer Relevance
+- Context Recall
+- Context Precision
+- Answer Correctness
+
+Nếu implementation RAGAS hiện tại dùng tên metric/version khác,
+hãy map rõ và log version.
+
+Không thay đổi metric definition giữa các variant.
+
+Ground Truth chỉ được dùng bởi evaluator/RAGAS sau khi hệ thống đã tạo answer/context.
+
+==================================================
+9. AGENT VARIANT
+==================================================
+
+T7 phải nhận chính xác evidence sau T6 reranking.
+
+Agent KHÔNG được retrieval lại.
+
+Agent chỉ được:
+
+- inspect evidence
+- resolve ambiguity
+- assess evidence coverage
+- select evidence
+- decide:
+
+ANSWER
+ANSWER_ALL
+CLARIFY
+ABSTAIN
+
+- synthesize final answer
+
+Nếu dataset hiện chưa có gold decision label thì:
+
+KHÔNG tự tạo decision accuracy giả.
+
+Chỉ tính các RAGAS metric hỗ trợ được.
+
+Có thể log Agent decision dưới dạng diagnostic.
+
+==================================================
+10. GRAPH-TARGET SUBSET
+==================================================
+
+Ngoài toàn dataset, báo cáo thêm:
+
+actual_tuition
++
+academic_program
+
+ít nhất cho:
+
+T3
+T4
+T5
+T6
+T7
+
+Mục tiêu:
+phân tích xem Graph và Reranker có cải thiện quality ở domain mà Graph được thiết kế hỗ trợ hay không.
+
+Không chỉ dựa vào overall average.
+
+==================================================
+11. SOURCE RELATION
+==================================================
+
+Dataset có:
+
+single
+any_valid
+all_required
+
+Không dùng source_relation trong retrieval/Agent.
+
+Chỉ evaluator có thể dùng nó để phân tích coverage.
+
+Nếu RAGAS Context Recall implementation không hiểu relation semantics,
+không được âm thầm coi tất cả multi-source là all_required.
+
+Hãy:
+- giữ RAGAS metric chuẩn như một metric độc lập
+- và nếu cần thêm relation-aware diagnostic riêng
+
+Không sửa nghĩa metric RAGAS mà vẫn gọi nó là RAGAS Context Recall.
+
+==================================================
+12. DOCUMENT VS SECTION/EVIDENCE
+==================================================
+
+Đặc biệt với actual_tuition:
+
+nhiều fact có thể nằm trong cùng một document.
+
+Vì vậy log cả:
+
+- source_document_id
+- source_filename
+- source_section_id
+- evidence_id
+
+Table 5 main vẫn dùng RAGAS context text.
+
+Nhưng tạo diagnostic cho Graph-target:
+- đúng document
+- đúng section/evidence
+
+Không coi đúng filename là đủ nếu context chứa sai fact.
+
+==================================================
+13. GENERATION FAIRNESS
+==================================================
+
+T1-T6 phải dùng cùng một answer-generation model và prompt.
+
+Ví dụ:
+
+same LLM
+same system prompt
+same temperature
+same max tokens
+
+Chỉ khác retrieval/context pipeline.
+
+T7 được phép có Agent reasoning vì đó là thành phần đang đánh giá.
+
+Nếu Agent cuối cùng dùng cùng LLM thì log rõ.
+
+==================================================
+14. LATENCY
+==================================================
+
+Ngoài 4 metric chính của Table 5, log latency breakdown:
+
+- retrieval_ms
+- graph_ms nếu có
+- fusion_ms
+- reranker_ms nếu có
+- agent_ms nếu có
+- generation_ms
+- total_latency_ms
+
+Không cần bắt buộc đưa tất cả latency vào bảng chính,
+nhưng phải lưu để phân tích trade-off.
+
+==================================================
+15. REPRODUCIBILITY
+==================================================
+
+Mỗi run lưu:
+
+dataset hash
+corpus/index version
+BM25 config
+Dense model/version
+Graph schema/version
+Graph ingest version
+candidate_depth
+context_top_k
+rrf_k
+reranker model/version
+LLM model/version
+RAGAS version
+evaluator model nếu RAGAS cần LLM judge
+temperature
+random seed nếu relevant
+code revision
+
+Checkpoint phải invalid nếu các config quan trọng thay đổi.
+
+==================================================
+16. DATA LEAKAGE
+==================================================
+
+Các trường sau evaluator-only:
+
+- Ground Truth
+- Source
+- source_relation
+- benchmark ID
+- expected answer
+
+Không được dùng chúng để:
+
+- retrieve
+- rerank
+- Graph lookup
+- EntityResolver
+- context selection
+- Agent decision
+- answer generation
+
+==================================================
+17. OUTPUT TABLE
+==================================================
+
+Xuất bảng chính:
+
+TABLE 5 — RAGAS ANSWER QUALITY
+
+| Configuration | Answer Relevance | Context Recall | Context Precision | Answer Correctness |
+|---|---:|---:|---:|---:|
+| Dense-only | | | | |
+| Sparse-only (BM25) | | | | |
+| Hybrid RRF | | | | |
+| Hybrid RRF + Reranker | | | | |
+| Hybrid RRF + Graph | | | | |
+| Hybrid RRF + Graph + Reranker | | | | |
+| Full Agentic System | | | | |
+
+Xuất thêm:
+
+GRAPH-TARGET SUBSET
+
+| Configuration | Answer Relevance | Context Recall | Context Precision | Answer Correctness |
+|---|---:|---:|---:|---:|
+| Hybrid RRF | | | | |
+| Hybrid RRF + Reranker | | | | |
+| Hybrid RRF + Graph | | | | |
+| Hybrid RRF + Graph + Reranker | | | | |
+| Full Agentic System | | | | |
+
+Và latency diagnostic nếu có.
+
+==================================================
+18. AUDIT TRƯỚC KHI PATCH
+==================================================
+
+Trước tiên inspect implementation Table 5 hiện tại và báo:
+
+1. hiện có những configuration nào
+2. Dense/BM25/Hybrid dùng retrieval path nào
+3. reranker hiện nằm trước hay sau RRF
+4. reranker có thêm candidate mới không
+5. Graph đã được tích hợp chưa
+6. Agent có retrieval lại không
+7. generation prompt/model có giống nhau giữa các variant không
+8. RAGAS version và metric implementation
+9. Ground Truth được dùng ở đâu
+10. có leakage/fairness issue nào không
+11. candidate/context budget có giống nhau không
+12. có duplicate context không
+
+==================================================
+19. PATCH POLICY
+==================================================
+
+Sau audit:
+
+- chỉ sửa những gì cần để đạt architecture trên
+- không rewrite code đã đúng
+- không thêm benchmark-specific exception
+- không hard-code ngành/cohort/program type
+- không tune reranker/RRF/BM25 trên test set
+- ưu tiên reuse Evidence/RRF/EntityResolver canonical implementation từ Phase 2
+
+Không tạo implementation retrieval riêng chỉ cho Table 5 nếu production/shared implementation đã tồn tại.
+
+==================================================
+20. TRẠNG THÁI MIGRATION
+==================================================
+
+Nếu Graph production chưa migration/re-ingest Evidence mới:
+
+KHÔNG chạy Table 5 chính thức.
+
+Chỉ chạy:
+- unit tests
+- fixture tests
+- synthetic smoke tests
+
+Không thêm fallback về legacy Graph/catalog để làm T5/T6/T7 có kết quả trước migration.
+
+PRE_MIGRATION_STATE không phải bug.
+
+==================================================
+21. TEST BẮT BUỘC
+==================================================
+
+Test ít nhất:
+
+- T4 reranker chỉ rerank candidate từ T3.
+- T6 reranker chỉ rerank candidate từ T5.
+- T7 Agent chỉ nhận evidence từ T6.
+- no new retrieval call in reranker.
+- no new retrieval call in Agent.
+- same generation model/prompt T1-T6.
+- dedup trước context construction.
+- Graph provenance được giữ qua RRF → reranker → Agent.
+- gold/source_relation không đi vào production path.
+- malformed/empty context xử lý an toàn.
+- unknown evidence không tạo fallback legacy.
+
+==================================================
+22. OUTPUT CUỐI
+==================================================
+
+Sau patch báo:
+
+A. files changed
+B. Table 5 architecture trước patch
+C. Table 5 architecture sau patch
+D. reranker location
+E. Graph integration
+F. Agent isolation
+G. RAGAS implementation/version
+H. tests passed/failed
+I. fairness/leakage status
+J. remaining PRE_MIGRATION_STATE
+K. READY / NOT READY FOR OFFICIAL TABLE 5
+
+Sau đó DỪNG.
+
+Không migration/re-ingest dữ liệu thật.
+Không chạy benchmark Table 5 chính thức cho đến khi Graph migration hoàn tất.

@@ -1,6 +1,7 @@
 .antigravitycli/
 venv/
 wsl_venv/
+wsl_venv_old/
 ragas_venv/
 ragas_venv_new/
 .venv/

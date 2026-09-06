@@ -1,6 +1,6 @@
 # Hướng dẫn chạy Table 5 RAGAS Test
 
-Tài liệu từng bước chạy benchmark **Table 5** (RAGAS answer-quality, 4 chế độ retrieval) bằng [Test_Ragas/test_table5_ragas.py](../Test_Ragas/test_table5_ragas.py) — **không cần sửa `rag_engine.py`**.
+Tài liệu từng bước chạy benchmark **Table 5** (RAGAS answer-quality, T1–T7) bằng [Test_Ragas/test_table5_ragas.py](../Test_Ragas/test_table5_ragas.py). Chi tiết thay đổi và các comment T1–T7 nằm tại [T1_T7_CODE_CHANGELOG.md](T1_T7_CODE_CHANGELOG.md).
 
 ---
 
@@ -124,7 +124,14 @@ Sau bước này thư mục `models/` chứa:
 python scripts/reindex_all.py build --index-version 2026-08-31-v1
 
 # Trỏ alias sang collection mới (zero-downtime)
-python scripts/reindex_all.py swap --alias-name ctu_scholarship_docs_current --target-collection ctu_scholarship_docs_2026-08-31-v1
+# T1-T7: validate the newly built physical collection before changing the live alias.
+python scripts/reindex_all.py validate --index-version 2026-09-05-table5
+
+# T1-T7: current CLI uses `activate` (the former `swap` command was removed).
+python scripts/reindex_all.py activate --index-version 2026-09-05-table5
+
+# T2-T6: rebuild Sparse BM25 from the newly active Qdrant parent IDs.
+python scripts/build_bm25_index.py
 ```
 
 ### 5.2 — BM25 Index (Sparse)
@@ -145,54 +152,147 @@ python scripts/build_bm25_index.py
 
 ## Bước 6 — Chạy Table 5 RAGAS Test
 
-### Smoke test trước (3 câu × 1 mode, ~2 phút)
+Chạy **từng T riêng biệt** để dễ theo dõi quota và checkpoint. Với mỗi T, nên
+chạy lần lượt 1 câu, 2 câu, rồi toàn bộ. Khi tăng từ `--limit 1` lên
+`--limit 2`, câu đầu đã hoàn tất được bỏ qua; khi bỏ `--limit`, các câu đã hoàn
+tất tiếp tục được bỏ qua.
+
+### T1 — Dense-only
 
 ```powershell
-python Test_Ragas/test_table5_ragas.py --limit 3 --modes dense_only
+# Thử 1 câu
+python Test_Ragas/test_table5_ragas.py --modes dense_only --limit 1
+
+# Thử 2 câu
+python Test_Ragas/test_table5_ragas.py --modes dense_only --limit 2
+
+# Chạy toàn bộ 100 câu
+python Test_Ragas/test_table5_ragas.py --modes dense_only
 ```
 
-Kết quả mong đợi: log `ĐÁNH GIÁ MODE: dense_only` → `Kết quả: {...}` → `Kết quả lưu tại: logs\table5_results`.
-
-### Chạy đủ 4 mode trên subset (kiểm tra pipeline end-to-end)
+### T2 — Sparse-only (BM25)
 
 ```powershell
-python Test_Ragas/test_table5_ragas.py --limit 3
+# Thử 1 câu
+python Test_Ragas/test_table5_ragas.py --modes sparse_only --limit 1
+
+# Thử 2 câu
+python Test_Ragas/test_table5_ragas.py --modes sparse_only --limit 2
+
+# Chạy toàn bộ 100 câu
+python Test_Ragas/test_table5_ragas.py --modes sparse_only
 ```
 
-### Chạy thật — full 103 câu × 4 mode (~3 giờ, rate limit 15 RPM)
+### T3 — Hybrid RRF
 
 ```powershell
-# Chạy nền để không mất terminal
-Start-Process -NoNewWindow python -ArgumentList "Test_Ragas/test_table5_ragas.py" -RedirectStandardOutput logs\table5_stdout.log -RedirectStandardError logs\table5_stderr.log
+# Thử 1 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf --limit 1
+
+# Thử 2 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf --limit 2
+
+# Chạy toàn bộ 100 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf
 ```
 
-### Các tùy chọn hữu ích
+T3 lưu candidate pool dùng chung. Nên hoàn tất T3 trước T5 và T6 để hai mode
+sau chỉ đọc lại cache Hybrid RRF, không retrieval lại.
+
+### T4 — Hybrid RRF + Reranker
 
 ```powershell
-# Chỉ định mode riêng (dense_only | sparse_only | hybrid_rrf | hybrid_rrf_rerank)
-python Test_Ragas/test_table5_ragas.py --modes sparse_only,hybrid_rrf_rerank
+# Thử 1 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_rerank --limit 1
 
-# Tăng số câu (mặc định: tất cả 103 câu trong data/dataset.md)
-python Test_Ragas/test_table5_ragas.py --limit 25
+# Thử 2 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_rerank --limit 2
 
-# Chỉ định dataset khác
-python Test_Ragas/test_table5_ragas.py --dataset data/dataset/test_experiment/file_test/Hung/dataset.md
+# Chạy toàn bộ 100 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_rerank
+```
 
-# Đổi top_n retrieval (mặc định 6 — khớp DEFAULT_RERANK_TOP_N của engine)
-python Test_Ragas/test_table5_ragas.py --top-n 10
+### T5 — Hybrid RRF + Graph
+
+```powershell
+# Thử 1 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph --limit 1
+
+# Thử 2 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph --limit 2
+
+# Chạy toàn bộ 100 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph
+```
+
+T5 cần Neo4j hoạt động. Graph chỉ bổ sung evidence và không tham gia công thức
+RRF.
+
+### T6 — Hybrid RRF + Graph + Reranker
+
+```powershell
+# Thử 1 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph_rerank --limit 1
+
+# Thử 2 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph_rerank --limit 2
+
+# Chạy toàn bộ 100 câu
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph_rerank
+```
+
+T6 cần Neo4j và reranker. Evidence cuối cùng của từng câu được lưu để T7 dùng
+nguyên trạng.
+
+### T7 — Agent dùng đúng evidence của T6
+
+```powershell
+# Chỉ chạy sau khi câu tương ứng của T6 đã hoàn tất
+
+# Thử 1 câu (T6 --limit 1 phải hoàn tất trước)
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph_rerank_agent --limit 1
+
+# Thử 2 câu (T6 --limit 2 phải hoàn tất trước)
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph_rerank_agent --limit 2
+
+# Chạy toàn bộ 100 câu (T6 phải hoàn tất 100/100 trước)
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph_rerank_agent
+```
+
+T7 đọc checkpoint T6 và kiểm tra fingerprint; T7 không chạy retrieval hoặc
+reranker lại. Nếu T6 chưa hoàn tất câu tương ứng, T7 dừng với lỗi rõ ràng.
+
+### Quy tắc checkpoint
+
+- Giữ nguyên dataset, `--top-n`, `--candidate-depth` và `--checkpoint-dir` giữa
+  các lần chạy.
+- Output mặc định nằm trong `logs/table5_results_v3/`.
+- Nếu hết quota, đổi key hợp lệ rồi chạy lại **đúng lệnh của mode đang dở**.
+- Dòng log `[mode] completed X/100 case=Y` cho biết đã lưu đủ answer và bốn
+  metrics của câu đó.
+- Không xóa `logs/table5_results_v3/checkpoints/` khi muốn resume.
+
+### Tùy chọn nâng cao
+
+```powershell
+# Chỉ định dataset khác (hỗ trợ CSV và định dạng dataset.md cũ)
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf --dataset data/dataset/test_experiment/file_test/Hung/dataset.md
+
+# Đổi top_n retrieval; phải giữ cùng giá trị cho toàn bộ chuỗi thí nghiệm
+python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf --top-n 10
 ```
 
 ---
 
 ## Bước 7 — Đọc kết quả
 
-Output nằm tại `logs/table5_results/`:
+Output nằm tại `logs/table5_results_v3/`:
 
 
-| File                              | Nội dung                                                   |
-| ----------------------------------- | ------------------------------------------------------------- |
-| `table5_results_{timestamp}.json` | Kết quả chi tiết: metrics, failed_counts, per_domain     |
-| `table5_report_{timestamp}.md`    | Bảng**Table 5** — 4 config × 4 metrics, kèm theo domain |
+| File                              | Nội dung                                                               |
+| ----------------------------------- | ------------------------------------------------------------------------- |
+| `table5_results_{timestamp}.json` | Kết quả Table 5 T1–T7 theo các mode đã chạy                      |
+| `table5_report_{timestamp}.md`    | Bảng Table 5; metric thiếu được ghi incomplete, không ghi pending |
 
 Bảng kết quả định dạng khớp paper (RAG.pdf, trang 10):
 
@@ -223,16 +323,19 @@ Bảng kết quả định dạng khớp paper (RAG.pdf, trang 10):
 
 ---
 
-## Appendix — 4 chế độ retrieval được tạo thế nào?
+## Appendix — T1–T7 được tạo thế nào?
 
-File test **không sửa** `rag_engine.py` — 4 mode map lên tham số có sẵn:
+T1–T6 tái sử dụng `rag_engine.py`; Graph là evidence augmentation, không phải RRF lane. T7 dùng exact evidence từ checkpoint T6:
 
 
-| Mode                | Cách gọi engine                                                                     |
-| --------------------- | --------------------------------------------------------------------------------------- |
-| `dense_only`        | `engine.retrieve(query, hybrid_search=False, use_reranker=False)`                     |
-| `sparse_only`       | Gọi thẳng`engine.bm25_index.search()` + `engine.doc_store.mget()` (bỏ kênh dense) |
-| `hybrid_rrf`        | `engine.retrieve(query, hybrid_search=True, use_reranker=False)`                      |
-| `hybrid_rrf_rerank` | `engine.retrieve(query, hybrid_search=True, use_reranker=True)`                       |
+| Mode                            | Cách gọi engine                                                                     |
+| --------------------------------- | --------------------------------------------------------------------------------------- |
+| `dense_only`                    | `engine.retrieve(query, hybrid_search=False, use_reranker=False)`                     |
+| `sparse_only`                   | Gọi thẳng`engine.bm25_index.search()` + `engine.doc_store.mget()` (bỏ kênh dense) |
+| `hybrid_rrf`                    | `engine.retrieve(query, hybrid_search=True, use_reranker=False)`                      |
+| `hybrid_rrf_rerank`             | `engine.retrieve(query, hybrid_search=True, use_reranker=True)`                       |
+| `hybrid_rrf_graph`              | T3 evidence + Graph evidence, giữ nguyên context budget                             |
+| `hybrid_rrf_graph_rerank`       | T3 candidate pool + Graph evidence → reranker                                        |
+| `hybrid_rrf_graph_rerank_agent` | T6 evidence cố định → Agent không tool/retrieval                                 |
 
 Chi tiết: [Test_Ragas/test_table5_ragas.py](../Test_Ragas/test_table5_ragas.py) — hàm `retrieve_dense_only` / `retrieve_sparse_only` / `retrieve_hybrid_rrf` / `retrieve_hybrid_rrf_rerank`.
