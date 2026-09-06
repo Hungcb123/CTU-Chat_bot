@@ -57,8 +57,9 @@ from scripts.evaluate_chat_dataset import parse_dataset
 from scripts.evaluate_ragas import RateLimitedChatGoogleGenerativeAI
 from Test_Ragas.table5_experiment import (
     BenchmarkCase, CaseCheckpointStore, IncompleteMetricError, QuotaPausedError,
-    combine_evidence, dataset_sha256, deserialize_documents, evidence_fingerprint,
-    graph_evidence_for_query, is_completed_case, is_quota_error, load_csv_dataset,
+    checkpoint_file_path, combine_evidence, dataset_sha256, deserialize_documents,
+    evidence_fingerprint,
+    graph_evidence_for_query, is_api_pause_error, is_completed_case, load_csv_dataset,
     merge_graph_evidence, message_content_text, serialize_documents,
 )
 
@@ -167,7 +168,10 @@ class Table5Runner:
             set_tuition_graph_service(self.graph_service)
 
         self.base_store = CaseCheckpointStore(
-            Path(args.checkpoint_dir) / "hybrid_rrf_candidates.json",
+            # T3-T6: share the saved T3 candidate pool from the T3 mode directory.
+            checkpoint_file_path(
+                Path(args.checkpoint_dir), "hybrid_rrf", filename="candidates.json"
+            ),
             fingerprint=checkpoint_fingerprint(args, "hybrid_rrf_candidates"),
         )
 
@@ -176,8 +180,9 @@ class Table5Runner:
             self.graph_service.close()
 
     def store_for_mode(self, mode: str) -> CaseCheckpointStore:
+        """T1-T7: isolate each mode checkpoint for independent runs and Git merges."""
         return CaseCheckpointStore(
-            Path(self.args.checkpoint_dir) / f"{mode}.json",
+            checkpoint_file_path(Path(self.args.checkpoint_dir), mode),
             fingerprint=checkpoint_fingerprint(self.args, mode),
         )
 
@@ -294,8 +299,12 @@ class Table5Runner:
             row = result.to_pandas().iloc[0]
             metrics = {name: (None if name not in row else row[name]) for name in METRIC_NAMES}
         except Exception as error:
-            if is_quota_error(error):
-                raise QuotaPausedError(str(error)) from error
+            # T1-T7: classify both direct Gemini 429 errors and RAGAS timeouts
+            # through the same checkpoint-safe pause path.
+            if is_api_pause_error(error):
+                raise QuotaPausedError(
+                    str(error) or "API evaluation timed out after quota/rate-limit retries."
+                ) from error
             raise
 
         if any(value is None or getattr(value, "item", lambda: value)() != getattr(value, "item", lambda: value)() for value in metrics.values()):
@@ -368,12 +377,19 @@ class Table5Runner:
                 })
                 raise
             except Exception as error:
-                if is_quota_error(error):
+                # T1-T7: RAGAS may turn repeated 429 responses into TimeoutError;
+                # preserve the current stage and stop with the same resumable exit path.
+                if is_api_pause_error(error):
                     store.upsert(case.case_id, {
-                        "last_error": str(error),
-                        "paused_reason": "quota_exhausted",
+                        "last_error": str(error) or type(error).__name__,
+                        "paused_reason": (
+                            "evaluation_timeout" if isinstance(error, TimeoutError)
+                            else "quota_exhausted"
+                        ),
                     })
-                    raise QuotaPausedError(str(error)) from error
+                    raise QuotaPausedError(
+                        str(error) or "API evaluation timed out after quota/rate-limit retries."
+                    ) from error
                 store.upsert(case.case_id, {"last_error": str(error)})
                 raise
 

@@ -43,6 +43,12 @@ from app.services.query_intent import (
 
 logger = logging.getLogger(__name__)
 
+
+def _escape_prompt_literal(value: str) -> str:
+    """T7: preserve JSON braces from fixed T6 evidence as literal prompt text."""
+    return value.replace("{", "{{").replace("}", "}}")
+
+
 def _parse_llm_content(content: Any) -> str:
     """Helper to parse Gemini list content format into a single string."""
     if isinstance(content, str):
@@ -359,7 +365,9 @@ def build_agent_graph(
     async def fixed_evidence_answer(state: AgentState, system_prompt: str) -> str:
         """T7: synthesize an answer from T6 evidence only; no ReAct tools are available."""
         prompt = ChatPromptTemplate.from_messages([
-            ("system", system_prompt),
+            # T7: formatted agent prompts may contain JSON evidence; escape its
+            # braces before ChatPromptTemplate discovers template variables.
+            ("system", _escape_prompt_literal(system_prompt)),
             (
                 "human",
                 "Evidence cố định từ T6 (không được tìm kiếm hoặc gọi công cụ bổ sung):\n"

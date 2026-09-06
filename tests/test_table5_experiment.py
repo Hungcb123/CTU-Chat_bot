@@ -9,14 +9,33 @@ from langchain_core.documents import Document
 
 from Test_Ragas.table5_experiment import (
     CaseCheckpointStore,
+    checkpoint_file_path,
     dataset_sha256,
     merge_graph_evidence,
+    is_api_pause_error,
     is_completed_case,
     message_content_text,
 )
 
 
 class Table5ExperimentTests(unittest.TestCase):
+    def test_t1_t7_evaluator_timeout_is_a_resumable_api_pause(self):
+        """T1-T7: RAGAS quota retries ending in TimeoutError must pause safely."""
+        self.assertTrue(is_api_pause_error(TimeoutError()))
+
+    def test_t1_t7_checkpoint_paths_are_grouped_by_mode(self):
+        """T1-T7 checkpoints use one directory per mode to avoid Git conflicts."""
+        root = Path("checkpoints")
+
+        self.assertEqual(
+            checkpoint_file_path(root, "hybrid_rrf_graph"),
+            root / "hybrid_rrf_graph" / "checkpoint.json",
+        )
+        self.assertEqual(
+            checkpoint_file_path(root, "hybrid_rrf", filename="candidates.json"),
+            root / "hybrid_rrf" / "candidates.json",
+        )
+
     def test_t1_t7_dataset_hash_depends_on_content_not_path(self):
         """T1-T7 checkpoints remain portable when the same dataset is copied elsewhere."""
         with tempfile.TemporaryDirectory() as directory:
