@@ -742,7 +742,7 @@ class AcademicGraphService:
                 # Strategy A: Program -> HAS_EXEMPTION_BASIS -> ExemptionBasisRate
                 cypher_prog = """
                     MATCH (p:Program)-[:HAS_EXEMPTION_BASIS]->(e:ExemptionBasisRate)
-                    WHERE p.code = $query
+                    WHERE p.code = $query_text
                        OR toLower(p.name) CONTAINS $norm
                     RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
                            e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
@@ -751,7 +751,8 @@ class AcademicGraphService:
                            p.code AS program_code
                     ORDER BY p.name
                 """
-                res = session.run(cypher_prog, query=query.strip(), norm=norm)
+                # T5/T6: avoid colliding with Neo4j Session.run(query, ...).
+                res = session.run(cypher_prog, query_text=query.strip(), norm=norm)
                 results = [dict(r) for r in res]
 
                 # Strategy B: Tìm theo tên khối ngành trực tiếp

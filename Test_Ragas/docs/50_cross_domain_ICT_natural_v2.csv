@@ -1,0 +1,712 @@
+﻿Original ID,Master Question,Category,Ground Truth,Answer,Source,has_ground_truth,source_relation
+CDICT001,CNTT CLC K44 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K44 là 25 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT002,CNTT CLC K45 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K45 là 26 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT003,CNTT CLC K46 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K46 là 28 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT004,CNTT CLC K47 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K47 là 30 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT005,CNTT CLC K48 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT006,CNTT CLC K49 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 36 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT007,CNTT CLC K50 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 36 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT008,CNTT CLC K51 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K51 là 40 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT009,CNTT CLC K52 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>","CTĐT có 168 tín chỉ; mức học phí cố định của K52 là 44,0 triệu đồng/năm học.",67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT010,KTPM CLC K48 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>11</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>33</td>
+            <td>33</td>
+            <td>33</td>
+            <td>40</td>
+            <td>41,8</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.,71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT011,KTPM CLC K49 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>11</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>33</td>
+            <td>33</td>
+            <td>33</td>
+            <td>40</td>
+            <td>41,8</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 33 triệu đồng/năm học.,71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT012,KTPM CLC K50 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>11</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>33</td>
+            <td>33</td>
+            <td>33</td>
+            <td>40</td>
+            <td>41,8</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 33 triệu đồng/năm học.,71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT013,KTPM CLC K51 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308 nghìn đồng/tín chỉ.",71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT014,KTPM CLC K52 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366 nghìn đồng/tín chỉ.",71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT015,HTTT CLC K49 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K49 là  nghìn đồng/tín chỉ.",69_7480104C_HeThongThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT016,HTTT CLC K50 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K50 là 1.118 nghìn đồng/tín chỉ.",69_7480104C_HeThongThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT017,HTTT CLC K51 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308 nghìn đồng/tín chỉ.",69_7480104C_HeThongThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT018,HTTT CLC K52 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366 nghìn đồng/tín chỉ.",69_7480104C_HeThongThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT019,MMT&TTDL CLC K51 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>14</td>
+      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308 nghìn đồng/tín chỉ.",109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT020,MMT&TTDL CLC K52 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>14</td>
+      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366 nghìn đồng/tín chỉ.",109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT021,CNTT CLC K44 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4.5 năm
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>",Thời gian đào tạo là 4.5 năm; mức học phí của K44 là 882 nghìn đồng/tín chỉ.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT022,CNTT CLC K47 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4.5 năm
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>",Thời gian đào tạo là 4.5 năm; mức học phí của K47 là 1.064 nghìn đồng/tín chỉ.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT023,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên CNTT CLC K45 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 914 nghìn đồng/tín chỉ, số tiền tương ứng là 18.280.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT024,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên CNTT CLC K46 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 989 nghìn đồng/tín chỉ, số tiền tương ứng là 19.780.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT025,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên CNTT CLC K48 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.161 nghìn đồng/tín chỉ, số tiền tương ứng là 23.220.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT026,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên CNTT CLC K49 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.254 nghìn đồng/tín chỉ, số tiền tương ứng là 25.080.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT027,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên KTPM CLC K48 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.161 nghìn đồng/tín chỉ, số tiền tương ứng là 23.220.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT028,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên KTPM CLC K50 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.073 nghìn đồng/tín chỉ, số tiền tương ứng là 21.460.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT029,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên HTTT CLC K51 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.308 nghìn đồng/tín chỉ, số tiền tương ứng là 26.160.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT030,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên MMT&TTDL CLC K52 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+      <td>14</td>
+      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.366 nghìn đồng/tín chỉ, số tiền tương ứng là 27.320.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT031,"CNTT chuẩn, học phần “Lập trình căn bản A” (CT101) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K49 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Lập trình căn bản A** (Mã số: CT101)
+- Số tín chỉ: 4 (Bắt buộc)
+<tr>
+      <td>41</td>
+      <td>7480201</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Công nghệ thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>",Học phần có 4 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 3.328.000 đồng.,66_7480201_CongNgheThongTin.md; MucHocPhi_2627.md,True,all_required
+CDICT032,"CNTT chuẩn, học phần “Cấu trúc dữ liệu” (CT177) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cấu trúc dữ liệu** (Mã số: CT177)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+            <td>43</td>
+            <td>7480201</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Công nghệ thông tin</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>",Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.,66_7480201_CongNgheThongTin.md; MucHocPhi_2627.md,True,all_required
+CDICT033,"KTPM chuẩn, học phần “Toán rời rạc” (CT172E) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K50 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Toán rời rạc** (Mã số: CT172E)
+- Số tín chỉ: 4 (Bắt buộc)
+<tr>
+      <td>37</td>
+      <td>7480103</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>",Học phần có 4 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 3.328.000 đồng.,70_7480103_KyThuatPhanMem.md; MucHocPhi_2627.md,True,all_required
+CDICT034,"KTPM chuẩn, học phần “Cơ sở dữ liệu” (CT180) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cơ sở dữ liệu** (Mã số: CT180)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+            <td>39</td>
+            <td>7480103</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>",Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.,70_7480103_KyThuatPhanMem.md; MucHocPhi_2627.md,True,all_required
+CDICT035,"HTTT chuẩn, học phần “Nhập môn trí tuệ nhân tạo” (CT190E) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K51 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Nhập môn trí tuệ nhân tạo** (Mã số: CT190E)
+- Số tín chỉ: 2 (Bắt buộc)
+<tr>
+      <td>38</td>
+      <td>7480104</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Hệ thống thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>",Học phần có 2 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 1.664.000 đồng.,68_7480104_HeThongThongTin.md; MucHocPhi_2627.md,True,all_required
+CDICT036,"HTTT chuẩn, học phần “Cấu trúc dữ liệu” (CT177) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cấu trúc dữ liệu** (Mã số: CT177)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+            <td>40</td>
+            <td>7480104</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Hệ thống thông tin</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>",Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.,68_7480104_HeThongThongTin.md; MucHocPhi_2627.md,True,all_required
+CDICT037,"CNTT CLC, học phần “Toán cho khoa học máy tính” (CT101H) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K49 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Toán cho khoa học máy tính** (Mã số: CT101H)
+- Số tín chỉ: 4 (Bắt buộc)
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>",Học phần có 4 tín chỉ; mức áp dụng là 1.254; số tiền tương ứng là 5.016.000 đồng.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT038,"CNTT CLC, học phần “Cấu trúc dữ liệu” (CT102H) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cấu trúc dữ liệu** (Mã số: CT102H)
+- Số tín chỉ: 4 (Bắt buộc)
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>",Học phần có 4 tín chỉ; mức áp dụng là 1.438; số tiền tương ứng là 5.752.000 đồng.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT039,"KTPM CLC, học phần “Cấu trúc dữ liệu” (CT177H) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K51 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cấu trúc dữ liệu** (Mã số: CT177H)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>",Học phần có 3 tín chỉ; mức áp dụng là 1.308; số tiền tương ứng là 3.924.000 đồng.,71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT040,"MMT&TTDL CLC, học phần “Mạng máy tính” (CT106H) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Mạng máy tính** (Mã số: CT106H)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+      <td>14</td>
+      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>",Học phần có 3 tín chỉ; mức áp dụng là 1.366; số tiền tương ứng là 4.098.000 đồng.,109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT041,Ngành CNTT bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K49 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: **161 tín chỉ**
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+      <td>41</td>
+      <td>7480201</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Công nghệ thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K49: chuẩn 832.000 đồng/TC; CLC 1.254 nghìn đồng/TC.",66_7480201_CongNgheThongTin.md; 67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT042,Ngành CNTT bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K50 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: **161 tín chỉ**
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+      <td>41</td>
+      <td>7480201</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Công nghệ thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K50: chuẩn 832.000 đồng/TC; CLC 1.181 nghìn đồng/TC.",66_7480201_CongNgheThongTin.md; 67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT043,Ngành CNTT bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K51 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: **161 tín chỉ**
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+      <td>41</td>
+      <td>7480201</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Công nghệ thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308 nghìn đồng/TC.",66_7480201_CongNgheThongTin.md; 67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT044,Ngành CNTT bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K52 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: **161 tín chỉ**
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>43</td>
+            <td>7480201</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Công nghệ thông tin</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.438 nghìn đồng/TC.",66_7480201_CongNgheThongTin.md; 67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT045,Ngành KTPM bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K51 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: 161 tín chỉ
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+      <td>37</td>
+      <td>7480103</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308 nghìn đồng/TC.",70_7480103_KyThuatPhanMem.md; 71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT046,Ngành KTPM bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K52 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: 161 tín chỉ
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>39</td>
+            <td>7480103</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.366 nghìn đồng/TC.",70_7480103_KyThuatPhanMem.md; 71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT047,"Khoa học máy tính chuẩn, thời gian đào tạo là bao lâu; theo Quy định công tác học vụ, thời gian tối đa để hoàn thành một CTĐT có thời gian thiết kế tương ứng là bao nhiêu?",academic_rules,"- Thời gian đào tạo: 4,5 năm
+| 4,5 năm                     | 9 năm                                          |","Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",73_7480101_KhoaHocMayTinh.md; quychehocvu.md,True,all_required
+CDICT048,"Trí tuệ nhân tạo chuẩn, thời gian đào tạo là bao lâu; theo Quy định công tác học vụ, thời gian tối đa để hoàn thành một CTĐT có thời gian thiết kế tương ứng là bao nhiêu?",academic_rules,"- Thời gian đào tạo: 4,5 năm
+| 4,5 năm                     | 9 năm                                          |","Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",108_7480107_TriTueNhanTao.md; quychehocvu.md,True,all_required
+CDICT049,"An toàn thông tin chuẩn, thời gian đào tạo là bao lâu; theo Quy định công tác học vụ, thời gian tối đa để hoàn thành một CTĐT có thời gian thiết kế tương ứng là bao nhiêu?",academic_rules,"- Thời gian đào tạo: 4,5 năm
+| 4,5 năm                     | 9 năm                                          |","Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",64_7480202_AnToanThongTin.md; quychehocvu.md,True,all_required
+CDICT050,"CNTT CLC, thời gian đào tạo là bao lâu; theo Quy định công tác học vụ, thời gian tối đa để hoàn thành một CTĐT có thời gian thiết kế tương ứng là bao nhiêu?",academic_rules,"- Thời gian đào tạo: 4.5 năm
+| 4,5 năm                     | 9 năm                                          |",Thời gian đào tạo là 4.5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.,67_7480201C_CongNgheThongTin_CTCLC.md; quychehocvu.md,True,all_required

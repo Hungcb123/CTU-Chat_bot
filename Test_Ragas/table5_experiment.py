@@ -32,6 +32,13 @@ class BenchmarkCase:
     expected_answer: str
 
 
+def checkpoint_file_path(
+    checkpoint_dir: Path, mode: str, *, filename: str = "checkpoint.json"
+) -> Path:
+    """T1-T7: keep each mode's resumable files in its own directory."""
+    return Path(checkpoint_dir) / mode / filename
+
+
 def dataset_sha256(path: Path) -> str:
     """T1-T7: identify dataset content so checkpoints can move between machines."""
     digest = hashlib.sha256()
@@ -189,6 +196,11 @@ def is_quota_error(error: BaseException) -> bool:
     return any(token in message for token in (
         "resource_exhausted", "quota exceeded", "daily limit", "429",
     ))
+
+
+def is_api_pause_error(error: BaseException) -> bool:
+    """T1-T7: pause safely when RAGAS hides exhausted retries as TimeoutError."""
+    return isinstance(error, TimeoutError) or is_quota_error(error)
 
 
 def is_completed_case(record: dict[str, Any] | None, *, evidence_fingerprint: str | None = None) -> bool:

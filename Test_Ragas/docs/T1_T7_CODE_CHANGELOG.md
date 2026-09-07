@@ -67,7 +67,7 @@ phụ thuộc T3→T5/T6 và yêu cầu T6 hoàn tất trước T7.
 
 ### T3 — Hybrid RRF
 
-`Table5Runner.t3_candidates()` tại `Test_Ragas/test_table5_ragas.py:171` gọi production `AdvancedChunkingEngine.retrieve()` đúng một lần cho mỗi câu với `hybrid_search=True` và `use_reranker=False`. Candidate pool được lưu tại checkpoint `hybrid_rrf_candidates.json`; T3 lấy `K` evidence đầu tiên.
+`Table5Runner.t3_candidates()` tại `Test_Ragas/test_table5_ragas.py:171` gọi production `AdvancedChunkingEngine.retrieve()` đúng một lần cho mỗi câu với `hybrid_search=True` và `use_reranker=False`. Candidate pool được lưu tại `checkpoints/hybrid_rrf/candidates.json`; T3 lấy `K` evidence đầu tiên.
 
 ### T4 — Hybrid RRF + Reranker
 
@@ -83,9 +83,19 @@ Graph không phải RRF lane: Graph record không nhận RRF score và không đ
 
 `combine_evidence()` tại `Test_Ragas/table5_experiment.py:84` tạo candidate pool gồm T3 candidates và Graph evidence. Sau đó `rerank()` tại `Test_Ragas/test_table5_ragas.py:104` sắp xếp lại pool này và lấy `K` evidence. T6 checkpoint lưu full content, metadata, thứ tự và fingerprint tại `Test_Ragas/test_table5_ragas.py:303–320`.
 
+`AcademicGraphService.lookup_exemption_basis()` đổi Cypher parameter từ
+`query` sang `query_text`. Sửa lỗi T5/T6 khi Neo4j `Session.run()` nhận cả
+câu Cypher theo vị trí và keyword `query`, dẫn đến `TypeError: multiple
+values for argument 'query'`. Truy vấn và dữ liệu trả về không thay đổi.
+
 ### T7 — Fixed-evidence Agent
 
 T7 chỉ đọc checkpoint T6 trong `Test_Ragas/test_table5_ragas.py:303–310`. Runner kiểm tra fingerprint; nếu evidence T6 không có hoặc khác thứ tự/nội dung, T7 dừng với lỗi rõ ràng và không tự chạy retrieval lại.
+
+`_escape_prompt_literal()` tại `app/agents/graph.py` escape dấu ngoặc JSON
+trong fixed evidence trước khi tạo `ChatPromptTemplate`. Sửa lỗi T7 hiểu
+trường JSON như `{"don_vi": ...}` thành biến template bị thiếu. Nội dung
+evidence sau khi render được giữ nguyên và T7 không gọi retrieval lại.
 
 `build_agent_graph(..., fixed_context=...)` tại `app/agents/graph.py:111–121` là interface benchmark-only. Khi có `fixed_context`:
 
@@ -103,22 +113,33 @@ Vì vậy T7 đo routing và reasoning/orchestration trên evidence T6; nó khô
 đường dẫn tuyệt đối. `checkpoint_fingerprint()` được nâng từ schema v3
 lên v4 với `dataset_name` và `dataset_sha256`. Thay đổi T1–T7 này cho
 phép chuyển checkpoint T3 sang máy khác mà vẫn phát hiện dataset bị
-thay đổi. Hai checkpoint T3 hiện có (`hybrid_rrf.json` và
-`hybrid_rrf_candidates.json`) đã được chuyển phần fingerprint sang v4;
-100 kết quả và candidate được giữ nguyên.
+thay đổi. Mỗi mode nay lưu trong folder riêng theo mẫu
+`checkpoints/<mode>/checkpoint.json`; candidate pool dùng chung nằm tại
+`checkpoints/hybrid_rrf/candidates.json`. Hai checkpoint T3 hiện có đã
+được chuyển sang cấu trúc này và schema v4; 100 kết quả cùng
+candidate được giữ nguyên. Thay đổi tách folder giúp T5 và T6
+chạy trên hai máy mà không ghi chung một file checkpoint.
 
 Khi lỗi quota `429`, `RESOURCE_EXHAUSTED` hoặc daily limit, `is_quota_error()` tại `Test_Ragas/table5_experiment.py:155` phân loại lỗi và runner dừng với exit code `75` sau khi đã ghi checkpoint. Khi đổi API key, chạy lại đúng câu lệnh; các câu đã có answer và đủ bốn metric sẽ được bỏ qua, còn câu dở dang sẽ tiếp tục từ stage chưa hoàn thành.
+
+`is_api_pause_error()` cũng nhận `TimeoutError` là một lần tạm dừng
+có thể resume. RAGAS có thể retry nhiều phản hồi 429 rồi chỉ ném
+`TimeoutError` rỗng; runner nay ghi `paused_reason=evaluation_timeout`, giữ
+answer đã sinh và dừng qua cùng luồng exit code `75`.
+`Table5Runner.evaluate_one()` cũng dùng chính helper này, tránh lỗi
+`NameError` khi Gemini trả 429 trực tiếp trong một metric RAGAS.
 
 Metric `null`, `NaN`, answer rỗng hoặc lỗi API không được ghi là `success`. Báo cáo dùng trạng thái `incomplete` hoặc `paused_quota`, không dùng `pending` như kết quả thực nghiệm.
 
 ## Kiểm thử
 
-`tests/test_table5_experiment.py` kiểm tra bốn yêu cầu tối thiểu:
+`tests/test_table5_experiment.py` kiểm tra năm yêu cầu tối thiểu:
 
-1. Dataset giống nội dung tại hai đường dẫn khác nhau có cùng hash.
-2. T5 không tăng context budget và loại evidence trùng.
-3. T7 chỉ chấp nhận đúng fingerprint evidence T6.
-4. Checkpoint có answer rỗng không được xem là hoàn thành.
+1. Checkpoint của mỗi mode và candidate T3 nằm đúng folder riêng.
+2. Dataset giống nội dung tại hai đường dẫn khác nhau có cùng hash.
+3. T5 không tăng context budget và loại evidence trùng.
+4. T7 chỉ chấp nhận đúng fingerprint evidence T6.
+5. Checkpoint có answer rỗng không được xem là hoàn thành.
 
 Chạy smoke test sau khi môi trường Python hoạt động:
 

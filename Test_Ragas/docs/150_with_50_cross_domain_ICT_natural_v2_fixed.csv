@@ -1,0 +1,898 @@
+﻿Original ID,Master Question,Category,Ground Truth,Answer,Source,has_ground_truth,source_relation
+26,Mức học phí đại cương chung của ngành CNTT đối với Khóa 49 là bao nhiêu?,actual_tuition,"Chương trình đào tạo chuẩn, đối với khóa 51 trở về trước: ""Mức học phí khối kiến thức đại cương chung"" là 695.000 đồng/tín chỉ. Chương trình chất lượng cao: ""Mức học phí của khối kiến thức đại cương chung (tất cả các ngành)"" tại K49 là 441 (1.000 đồng/tín chỉ).",Chương trình chuẩn: 695.000 đồng/tín chỉ; chương trình chất lượng cao: 441.000 đồng/tín chỉ.,MucHocPhi_2627.md,True,single
+27,Mức học phí đại cương chung đối với Khóa 52 (đại trà) là bao nhiêu?,actual_tuition,"""Mức học phí của khối kiến thức đại cương chung (tất cả các ngành)"" đối với K52 là 695.000 đồng/tín chỉ.",Mức học phí là 695.000 đồng/tín chỉ,MucHocPhi_2627.md,True,single
+28,Học lại môn ngoài thời gian thiết kế chương trình đối với Khóa 52 bị nhân hệ số bao nhiêu?,actual_tuition,"Học ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất: Là mức học phí PHỤ LỤC 2 nhân với hệ số 1,3.","Bị nhân với hệ số 1,3",MucHocPhi_2627.md,True,single
+29,Khóa 51 học lại ngoài thời gian thiết kế thì học phí nhân hệ số mấy?,actual_tuition,"Học ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất: Là mức học phí mục a hoặc mục b nhân với hệ số 1,3.","Bị nhân với hệ số 1,3",MucHocPhi_2627.md,True,single
+30,Mức học phí theo tín chỉ của ngành Sư phạm Toán học Khóa 51 trở về trước là bao nhiêu?,actual_tuition,"PHỤ LỤC 1 — Mức học phí/tín chỉ khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành đại học chính quy chương trình đào tạo chuẩn, áp dụng cho Khóa 51 về trước: Sư phạm Toán học — Mức HP 26-27/TC: 695.000.",Mức học phí là 695.000 đồng/tín chỉ,MucHocPhi_2627.md,True,single
+31,Khóa 52 ngành Sư phạm Toán học có học phí bao nhiêu 1 tín chỉ?,actual_tuition,"PHỤ LỤC 2 — K52: Sư phạm Toán học — 109,5 Trđ/khóa; 807.000 đồng/tín chỉ.",Mức học phí là 807.000 đồng/tín chỉ,MucHocPhi_2627.md,True,single
+32,Học phí toàn khóa ngành Quản trị kinh doanh đại trà Khóa 52 là bao nhiêu?,actual_tuition,"PHỤ LỤC 2 — K52: Quản trị kinh doanh — 114,5 Trđ/khóa; 844.000 đồng/tín chỉ.","Học phí toàn khóa là 114,5 triệu đồng",MucHocPhi_2627.md,True,single
+33,Khóa 52 ngành Khoa học máy tính học phí bao nhiêu 1 tín chỉ?,actual_tuition,"PHỤ LỤC 2 — K52: Khoa học máy tính — 150,3 Trđ/khóa; 966.000 đồng/tín chỉ.",Mức học phí là 966.000 đồng/tín chỉ,MucHocPhi_2627.md,True,single
+34,Ngành Kiến trúc Khóa 52 đại trà có học phí toàn khóa bao nhiêu?,actual_tuition,"PHỤ LỤC 2 — K52: Kiến trúc — 165,6 Trđ/khóa; 1.016.000 đồng/tín chỉ.","Học phí toàn khóa là 165,6 triệu đồng",MucHocPhi_2627.md,True,single
+35,Ngành Công nghệ thông tin Chất lượng cao Khóa 52 có mức học phí cố định một năm là bao nhiêu?,actual_tuition,"PHỤ LỤC 3 — Học phí cố định theo khóa học (triệu đồng/năm học) — Chương trình chất lượng cao — Công nghệ thông tin — K52: 44,0.",Học phí là 44 triệu đồng/năm học,MucHocPhi_2627.md,True,single
+36,Ngành Kinh doanh quốc tế Chất lượng cao Khóa 51 có học phí một năm là bao nhiêu?,actual_tuition,PHỤ LỤC 3 — Học phí cố định theo khóa học (triệu đồng/năm học) — Chương trình chất lượng cao — Kinh doanh quốc tế — K51: 40.,Học phí là 40 triệu đồng/năm học,MucHocPhi_2627.md,True,single
+37,Mức học phí môn Năng lực số đối với Khóa 51 trở về trước là bao nhiêu?,actual_tuition,Mức học phí khối kiến thức đại cương chung — Năng lực số — Số tín chỉ: 3; Mức học phí một tín chỉ: 695.000.,Là 695.000 đồng/tín chỉ,MucHocPhi_2627.md,True,single
+38,Sinh viên Khóa 51 ngành Kế toán học phí bao nhiêu 1 tín chỉ chuyên ngành?,actual_tuition,PHỤ LỤC 1 — áp dụng cho Khóa 51 về trước: Kế toán — Mức HP 26-27/TC: 727.000.,Mức học phí là 727.000 đồng/tín chỉ,MucHocPhi_2627.md,True,single
+39,Khóa 52 ngành Kinh doanh nông nghiệp - Hòa An có học phí bao nhiêu một tín chỉ?,actual_tuition,"PHỤ LỤC 2 — K52: Kinh doanh nông nghiệp - Hòa An — 114,5 Trđ/khóa; 844.000 đồng/tín chỉ.",Học phí là 844.000 đồng/tín chỉ,MucHocPhi_2627.md,True,single
+76,Mức học bổng khuyến khích học tập bình quân của Khóa 51 học kỳ đầu tiên là bao nhiêu?,scholarship,"Định mức bình quân học bổng khuyến khích học tập của học kỳ đầu tiên Khóa 51 (áp dụng cho sinh viên của tất cả các chương trình: đại trà, tiên tiến, chất lượng cao) là 5.000.000 đồng/sinh viên/học kỳ.",Mức học bổng bình quân là 5.000.000 đồng/sinh viên/học kỳ,Tài liệu phân bổ quỹ học bổng.md; HB_K51_2026.md,True,any_valid
+77,Sinh viên tuyển thẳng Khóa 51 có mức học bổng khuyến khích học kỳ đầu tiên là bao nhiêu?,scholarship,"Sinh viên diện tuyển thẳng, ưu tiên xét tuyển Khóa 51 được hưởng mức học bổng khuyến khích học tập là 6.000.000 đồng/học kỳ trong học kỳ đầu tiên.",Mức hưởng học bổng là 6.000.000 đồng/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True,single
+78,Sinh viên có điểm rèn luyện từ 80 đến dưới 90 điểm được phân loại gì?,scholarship,Được phân loại Tốt,Được phân loại Tốt,Tài liệu phân bổ quỹ học bổng.md,True,single
+79,Khối ngành VI (Sức khỏe) sinh viên đạt học bổng Xuất sắc được thưởng bao nhiêu?,scholarship,Mức học bổng loại Xuất sắc là 10.560.000 đồng/học kỳ,Mức học bổng loại Xuất sắc là 10.560.000 đồng/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True,single
+80,"Sinh viên Khối ngành III (Kinh doanh và quản lý, pháp luật) đạt học bổng Khá được thưởng bao nhiêu?",scholarship,Mức học bổng loại Khá là 6.600.000 đồng/học kỳ,Mức học bổng loại Khá là 6.600.000 đồng/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True,single
+81,Sinh viên chương trình Chất lượng cao Khóa 51 đạt học bổng Giỏi nhận được mức bao nhiêu?,scholarship,Sẽ nhận được mức học bổng là 13.600.000 đồng/học kỳ,Sẽ nhận được mức học bổng là 13.600.000 đồng/học kỳ,Tài liệu phân bổ quỹ học bổng.md,True,single
+82,Giá trị của mỗi suất học bổng Vallet là bao nhiêu?,scholarship,Giá trị mỗi suất học bổng Vallet dành cho sinh viên hay học viên cao học là 34.000.000 đồng.,Mỗi suất học bổng trị giá 34.000.000 đồng,HB_Vallet_Chi_Tiet.md; HB_Vallet.md,True,any_valid
+83,Sinh viên tính điểm hệ 4 cần đạt điểm trung bình tích lũy bao nhiêu để xét học bổng Vallet?,scholarship,"Cần đạt điểm trung bình từ 3,0 trở lên trong các học kỳ chính khóa","Cần đạt điểm trung bình từ 3,0 trở lên trong các học kỳ chính khóa",HB_Vallet_Chi_Tiet.md,True,single
+84,Bài báo nghiên cứu khoa học có được xét ưu tiên khi xin học bổng Vallet không?,scholarship,"Có, các công trình nghiên cứu khoa học được xem xét ưu tiên khi tuyển chọn","Có, các công trình nghiên cứu khoa học được xem xét ưu tiên khi tuyển chọn",HB_Vallet_Chi_Tiet.md,True,single
+85,Mỗi suất học bổng Panasonic có giá trị bao nhiêu tiền?,scholarship,Mỗi suất trị giá 30.000.000 đồng/năm học,Mỗi suất trị giá 30.000.000 đồng/năm học,HB_Panasonic.md,True,single
+86,Sinh viên có hoàn cảnh gia đình khó khăn cần đạt điểm trung bình hệ 4 bao nhiêu để xin học bổng Panasonic?,scholarship,"Yêu cầu đạt điểm trung bình từ 2,5 trở lên (theo thang điểm 4)","Yêu cầu đạt điểm trung bình từ 2,5 trở lên (theo thang điểm 4)",HB_Panasonic.md,True,single
+87,Có bao nhiêu suất học bổng SCC (Saigon Children’s Charity CIO) được trao?,scholarship,Học bổng có tất cả 10 suất,Học bổng có tất cả 10 suất,HB_SCC.md,True,single
+88,Trị giá của học bổng SCC là bao nhiêu?,scholarship,Mỗi suất trị giá 10.000.000 đồng,Mỗi suất trị giá 10.000.000 đồng,HB_SCC.md,True,single
+89,Điểm học tập yêu cầu để xét học bổng SCC là bao nhiêu?,scholarship,Sinh viên phải đạt Điểm trung bình tích lũy từ 3.2 trở lên,Sinh viên phải đạt Điểm trung bình tích lũy từ 3.2 trở lên,HB_SCC.md,True,single
+Q023,"Thời gian học tập tối đa để hoàn thành chương trình đào tạo thiết kế 4,5 năm là bao lâu?",academic_rules,"Sinh viên theo học chương trình đào tạo có thời gian thiết kế 4,5 năm được học tập tối đa 9 năm để hoàn thành chương trình.","Thời gian học tập tối đa để hoàn thành chương trình đào tạo có thời gian thiết kế 4,5 năm là 9 năm.",quychehocvu.md,True,single
+Q032,Học phần được đánh giá dựa trên những thành phần điểm nào?,academic_rules,"Việc đánh giá học phần thường gồm các thành phần điểm như điểm chuyên cần/quá trình, điểm giữa kỳ và điểm cuối kỳ, với trọng số được quy định trong đề cương chi tiết học phần, theo Điều 21 của Quy định công tác học vụ.","Đối với học phần lý thuyết hoặc học phần lý thuyết kết hợp thực hành, điểm học phần được đánh giá qua tối thiểu hai điểm thành phần, bao gồm: điểm bài tập, điểm kiểm tra giữa kỳ, điểm thực hành, điểm đánh giá nhận thức, điểm tham gia thảo luận, điểm chuyên cần, điểm đồ án,... và điểm thi kết thúc học phần.
+
+Đối với học phần thực hành, điểm học phần được tính bằng điểm trung bình của các bài thực hành.
+
+Ngoài ra, đối với các học phần có khối lượng nhỏ hơn 02 tín chỉ, có thể chỉ có điểm của một loại hình đánh giá. Phương pháp đánh giá cụ thể cho từng học phần sẽ được công bố trong đề cương chi tiết học phần.",quychehocvu.md,True,single
+Q034,Hạng tốt nghiệp của sinh viên được xếp dựa trên tiêu chí nào?,academic_rules,"Hạng tốt nghiệp (Xuất sắc, Giỏi, Khá, Trung bình...) được xếp chủ yếu dựa trên điểm trung bình chung tích lũy toàn khóa, có thể bị điều chỉnh giảm một mức nếu sinh viên bị kỷ luật hoặc thi lại/học lại quá số lần quy định, theo Điều 34 của Quy định công tác học vụ.","Hạng tốt nghiệp của sinh viên được xác định căn cứ vào điểm trung bình chung tích lũy (ĐTBCTL) theo các mức cụ thể như sau:
+
+*   **Loại xuất sắc:** từ 3,60 đến 4,00.
+*   **Loại giỏi:** từ 3,20 đến 3,59.
+*   **Loại khá:** từ 2,50 đến 3,19.
+*   **Loại trung bình:** từ 2,00 đến 2,49.
+
+Ngoài ra, hạng tốt nghiệp loại xuất sắc và loại giỏi sẽ bị giảm một mức nếu sinh viên thuộc một trong các trường hợp sau:
+1. Có khối lượng các học phần bị điểm F vượt quá 5% so với tổng số tín chỉ quy định của chương trình đào tạo (không tính khối lượng học phần học cải thiện điểm bị điểm F).
+2. Đã bị kỷ luật từ mức cảnh cáo cấp Trường trở lên trong thời gian học.",quychehocvu.md,True,single
+Q050,Xếp loại học lực của sinh viên được chia thành những mức nào?,academic_rules,"Xếp loại học lực của sinh viên được chia theo các mức dựa trên điểm trung bình chung, ví dụ: Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém, theo quy định tại Điều 26 của Quy định công tác học vụ.","Xếp loại học lực của sinh viên được chia thành các mức sau:
+
+*   **Loại xuất sắc:** Điểm trung bình chung học kỳ (ĐTBCHK) hoặc điểm trung bình chung năm học (ĐTBCNH) đạt từ 3,60 đến 4,00.
+*   **Loại giỏi:** ĐTBCHK/ĐTBCNH đạt từ 3,20 đến 3,59.
+*   **Loại khá:** ĐTBCHK/ĐTBCNH đạt từ 2,50 đến 3,19.
+*   **Loại trung bình:** ĐTBCHK/ĐTBCNH đạt từ 2,00 đến 2,49.
+*   **Loại yếu:** ĐTBCHK/ĐTBCNH đạt từ 1,00 đến 1,99.
+*   **Loại kém:** ĐTBCHK/ĐTBCNH đạt dưới 1,00.",quychehocvu.md,True,single
+Q076,"Sinh viên vi phạm quy định về thi, kiểm tra có thể bị xử lý bằng những hình thức nào?",academic_rules,"Tùy mức độ vi phạm, sinh viên vi phạm quy định về thi và kiểm tra có thể bị khiển trách, cảnh cáo, đình chỉ thi/học phần, hoặc hình thức kỷ luật nặng hơn theo quy định tại Điều 28 của Quy định công tác học vụ.","Sinh viên vi phạm các quy định về thi và kiểm tra có thể bị xử lý bằng các hình thức kỷ luật sau đây:
+
+1. **Khiển trách:** Áp dụng đối với các lỗi như nhìn bài của người khác hoặc trao đổi, thảo luận với người khác. Sinh viên bị khiển trách sẽ bị trừ 25% điểm số của lần thi/kiểm tra đó. Nếu bị khiển trách 2 lần trong một năm học, sinh viên sẽ bị kỷ luật cảnh cáo toàn đơn vị đào tạo.
+
+2. **Cảnh cáo:** Áp dụng đối với các lỗi như đã bị khiển trách một lần nhưng vẫn tiếp tục vi phạm trong cùng buổi thi; trao đổi giấy nháp; chép bài hoặc để người khác chép bài; không chấp hành sự quản lý hoặc có thái độ thiếu tôn trọng cán bộ coi thi. Sinh viên bị cảnh cáo sẽ bị trừ 50% điểm số của lần thi/kiểm tra đó. Nếu bị cảnh cáo 2 lần trong một năm học, sinh viên sẽ bị kỷ luật cảnh cáo toàn Trường.
+
+3. **Đình chỉ thi:** Áp dụng đối với các lỗi như đã bị cảnh cáo một lần nhưng vẫn tiếp tục vi phạm; mang vật dụng không được phép vào phòng thi; sử dụng giấy nháp hoặc bài làm của người khác; đưa đề thi ra ngoài hoặc nhận bài giải từ ngoài vào; có hành động gây rối hoặc đe dọa cán bộ coi thi/sinh viên khác. Sinh viên bị đình chỉ thi sẽ nhận điểm 0 cho lần thi/kiểm tra đó. Nếu bị đình chỉ thi 2 lần trong một năm học, sinh viên sẽ bị đình chỉ học tập 1 năm; nếu tái phạm sẽ bị buộc thôi học.
+
+4. **Xử lý thi hộ:** Áp dụng cho cả người thi hộ và người nhờ thi hộ.
+   - Vi phạm lần thứ nhất: Người nhờ thi hộ nhận điểm 0 học phần đó và bị đình chỉ học tập 1 năm; người thi hộ bị đình chỉ học tập 1 năm.
+   - Vi phạm lần thứ hai (trong cả khóa học): Buộc thôi học.
+
+Ngoài ra, tùy theo mức độ vi phạm, các trường hợp khác sẽ do Hội đồng kỷ luật của Trường xem xét và quyết định hình thức xử lý cụ thể.",quychehocvu.md,True,single
+R11,Học sinh xét tuyển thẳng phải học bổ sung kiến thức trong bao lâu?,academic_rules,"1. Học sinh được xét tuyển thẳng phải học bổ sung kiến thức một năm. Năm học bao gồm 2 học kỳ (gồm học kỳ I và học kỳ II). Mỗi học kỳ, học sinh phải học 4 môn học như sau:",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True,single
+R12,Chương trình bổ sung kiến thức cho học sinh xét tuyển thẳng gồm bao nhiêu tín chỉ?,academic_rules,"Chương trình học gồm 4 môn học (Toán học, Ngữ văn, Tiếng Anh, Tin học), tổng cộng 600 tiết (300 tiết lý thuyết, 300 tiết thực hành) tương ứng với 40 tín chỉ.",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True,single
+R13,Nếu học sinh nghỉ quá 20% số tiết của một môn thì có được thi cuối học kỳ môn đó không?,academic_rules,b) Tổng số thời gian nghỉ học có lý do và không có lý do vượt quá 20% số tiết ở môn học nào thì không được dự thi môn học đó trong học kỳ.,,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True,single
+R14,Điểm tổng kết môn học của học sinh xét tuyển thẳng được tính với hệ số kiểm tra và thi như thế nào?,academic_rules,"1. Cuối năm học, mỗi môn học có một điểm tổng kết. Điểm tổng kết môn học là điểm trung bình chung của 2 lần kiểm tra (hệ số 1) và 2 lần thi (hệ số 2).",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True,single
+R15,Điều kiện để học sinh sau năm bổ sung kiến thức được xét tuyển vào đại học là gì?,academic_rules,"a) Thi đủ 4 môn cuối mỗi học kỳ;
+b) Điểm trung bình chung năm học đạt từ **5,0 điểm** trở lên và Điểm tổng kết môn học đạt trên **1,0 điểm**.
+c) Xếp loại rèn luyện cả năm đạt từ **Khá** trở lên.",,2020_QD2734_quy-dinh-to-chuc-boi-duong-XTT2020_llp.md,True,single
+R21,Đại học Cần Thơ bắt đầu tổ chức 3 học kỳ chính từ thời điểm nào?,academic_rules,"Nhằm giúp người học có thể rút ngắn thời gian học tập, hỗ trợ sinh viên ra trường đúng tiến độ, khai thác hiệu quả quỹ phòng học cho hoạt động giảng dạy và học tập và đảm bảo giờ nghĩa vụ của giảng viên, ngày 05 tháng 7 năm 2024, Hội đồng trường Trường Đại học Cần Thơ (ĐHCT) đã ban hành Nghị quyết số 189/NQ-HĐT phê duyệt kế hoạch tổ chức giảng dạy và học tập từ Học kỳ 2 năm học 2024 - 2025. Theo đó, từ Học kỳ 2 năm học 2024 - 2025, Trường ĐHCT sẽ tổ chức giảng dạy và học tập 03 học kỳ chính trong một năm học.",,3hk.md,True,single
+R22,Một học kỳ chính theo kế hoạch 3 học kỳ của CTU kéo dài bao nhiêu tuần?,academic_rules,"b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",,3hk.md,True,single
+R23,15 tuần của một học kỳ chính được phân bổ như thế nào?,academic_rules,"b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",,3hk.md,True,single
+R24,"Học kỳ 1, 2 và 3 của CTU tương ứng với các khoảng tuần nào trong năm?",academic_rules,"c) Học kỳ 1 bắt đầu từ tuần thứ 37 đến tuần thứ 51 của năm; Học kỳ 2 bắt đầu từ tuần thứ 01 đến tuần thứ 17 của năm (_bao gồm 2 tuần nghỉ Tết Nguyên Đán_); Học kỳ 3 bắt đầu từ tuần thứ 20 đến tuần thứ 34 của năm. Tuần nghỉ giữa các học kỳ là tuần thứ 18, 19, 35, 36, 52 và tuần thứ 53 (_nếu có_) của năm.",,3hk.md,True,single
+R16,Sinh viên được vay vốn theo Quyết định 29 để chi trả những khoản nào?,student_loan,"Người học vay vốn để trang trải học phí, sinh hoạt phí và chi phí học tập khác trong thời gian theo học các ngành khoa học, công nghệ, kỹ thuật và toán được ban hành theo Quyết định 29",,Q_29_STEM_288.md,True,single
+R17,Sinh viên ngành máy tính và công nghệ thông tin có thuộc đối tượng của chương trình tín dụng theo Quyết định 29 không?,student_loan,"Có, ngành Máy tính và công nghệ thông tin (mã khối 748) thuộc Danh mục các ngành, nghề học được vay vốn theo Quyết định 29/2025/QĐ-TTg.",,Q_29_STEM_288.md,True,single
+R18,Sinh viên năm nhất muốn vay vốn theo Quyết định 29 phải đáp ứng điều kiện học tập nào?,student_loan,"(1) Có đồng thời cả ba năm học trung học phổ thông được đánh giá kết quả học tập đạt từ mức khá trở lên;**Hoặc**(2) Đạt điểm trung bình môn lớp 12 của các môn toán, vật lý, hóa học, sinh học từ 8 điểm trở lên",,Q_29_STEM_288.md,True,single
+R19,Sinh viên từ năm thứ hai trở đi cần kết quả học tập thế nào để vay vốn?,student_loan,Có kết quả học tập trung bình các môn học đạt loại giỏi trở lên theo quy định của pháp luật tại năm trước liền kề với năm đề nghị vay vốn.,,Q_29_STEM_288.md,True,single
+R20,Sinh viên chính quy xin giấy xác nhận vay vốn ở đâu?,student_loan,Sinh viên hình thức chính quy thực hiện thủ tục cấp giấy xác nhận tại văn phòng Phòng Công tác Sinh viên.,,HuongDanXacNhanVayVon.md,True,single
+R96,"Khi vay vốn lần đầu và các năm tiếp theo, người học sử dụng mẫu phụ lục nào?",student_loan,"Khi vay vốn lần đầu, người học điền Tờ khai thông tin theo mẫu Phụ lục I; đối với các năm tiếp theo, người học sử dụng mẫu Phụ lục II.",,Q_29_STEM_288.md,True,single
+R97,Học viên thạc sĩ và nghiên cứu sinh xin giấy xác nhận vay vốn tại đâu?,student_loan,"- Học viên thạc sĩ, nghiên cứu sinh thực hiện thủ tục cấp giấy xác nhận tại văn phòng Khoa Sau đại học.",,Q_29_STEM_288.md,True,single
+51,Mức vay vốn ưu đãi tối đa để mua máy tính học trực tuyến là bao nhiêu?,student_loan,"Mức vốn vay tối đa là 10 triệu đồng/học sinh, sinh viên","Mức vốn vay tối đa là 10 triệu đồng/học sinh, sinh viên",VayVonMuaMayTinh.md,True,single
+52,Lãi suất cho vay mua máy tính học trực tuyến là bao nhiêu?,student_loan,"Lãi suất cho vay là 1,2%/năm","Lãi suất cho vay là 1,2%/năm",VayVonMuaMayTinh.md,True,single
+53,Thời hạn cho vay tối đa để mua máy tính học trực tuyến là bao lâu?,student_loan,Thời hạn cho vay tối đa là 36 tháng,Thời hạn cho vay tối đa là 36 tháng,VayVonMuaMayTinh.md,True,single
+54,Sinh viên thuộc hộ gia đình khó khăn do bố hoặc mẹ mất vì Covid-19 có được vay mua máy tính không?,student_loan,"Có, sinh viên có bố hoặc mẹ mất do dịch Covid-19 thuộc đối tượng vay vốn","Có, sinh viên có bố hoặc mẹ mất do dịch Covid-19 thuộc đối tượng vay vốn",VayVonMuaMayTinh.md,True,single
+55,Sinh viên mua máy tính có thể trực tiếp đứng tên vay vốn trong trường hợp nào?,student_loan,Khi đã đủ 18 tuổi và hộ gia đình không còn thành viên nào đủ 18 tuổi trở lên hoặc thành viên còn lại không còn đủ năng lực hành vi dân sự,Khi đã đủ 18 tuổi và hộ gia đình không còn thành viên nào đủ 18 tuổi trở lên hoặc thành viên còn lại không còn đủ năng lực hành vi dân sự,VayVonMuaMayTinh.md,True,single
+15,"Trợ cấp xã hội cho sinh viên hộ nghèo, tàn tật là bao nhiêu tiền một tháng?",social_support,Mức trợ cấp xã hội cho sinh viên thuộc đối tượng hộ nghèo hoặc tàn tật là 100.000 đồng/sinh viên/tháng.,Mức trợ cấp là 100.000 đồng/1 sinh viên/1 tháng,TCXH.md,True,single
+16,Em là sinh viên dân tộc thiểu số thuộc hộ nghèo thì được hỗ trợ chi phí học tập bao nhiêu?,social_support,Mức hỗ trợ bằng 60% mức lương tối thiểu chung,Mức hỗ trợ bằng 60% mức lương tối thiểu chung,66_2013.md,True,single
+17,Khoản hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số thuộc hộ nghèo được nhận tối đa mấy tháng trong một năm học?,social_support,Sinh viên được hưởng không quá 10 tháng/năm học,Sinh viên được hưởng không quá 10 tháng/năm học,66_2013.md,True,single
+18,Sinh viên học văn bằng hai có được nhận hỗ trợ chi phí học tập dành cho sinh viên dân tộc thiểu số thuộc hộ nghèo không?,social_support,Không áp dụng đối với sinh viên học văn bằng hai,Không áp dụng đối với sinh viên học văn bằng hai,66_2013.md,True,single
+19,Ai là người ký xác nhận giấy chứng nhận hộ nghèo để sinh viên làm hồ sơ hỗ trợ chi phí học tập?,social_support,"Giấy chứng nhận hộ nghèo phải do Ủy ban nhân dân xã, phường, thị trấn cấp","Giấy chứng nhận hộ nghèo phải do Ủy ban nhân dân xã, phường, thị trấn cấp",donz.md,True,single
+20,Nguồn tiền hỗ trợ chi phí học tập cho sinh viên dân tộc thiểu số thuộc hộ nghèo được lấy từ đâu?,social_support,Kinh phí được cân đối trong nguồn chi cho sự nghiệp giáo dục và đào tạo hằng năm theo phân cấp quản lý ngân sách nhà nước,Kinh phí được cân đối trong nguồn chi cho sự nghiệp giáo dục và đào tạo hằng năm theo phân cấp quản lý ngân sách nhà nước,66_2013.md,True,single
+21,"Em học sư phạm và đã được Nhà nước hỗ trợ học phí, sinh hoạt phí rồi thì có được nhận thêm hỗ trợ chi phí đào tạo dành cho sinh viên dân tộc thiểu số không?",social_support,"Không, sinh viên khối ngành sư phạm đã hưởng chính sách hỗ trợ tiền đóng học phí và chi phí sinh hoạt theo Nghị định 116/2020/NĐ-CP thì không thuộc đối tượng được hưởng chính sách hỗ trợ chi phí học tập dành cho sinh viên dân tộc thiểu số nghèo/cận nghèo theo Quyết định số 66/2013/QĐ-TTg.","Không, sinh viên sư phạm chưa được hưởng chính sách theo Nghị định 116 mới thuộc đối tượng này",Ho_tro.md,True,single
+22,Sinh viên dân tộc thiểu số thuộc hộ nghèo muốn nộp hồ sơ hỗ trợ chi phí học tập thì nộp trực tiếp ở đâu?,social_support,Nộp trực tiếp tại Văn phòng Phòng Công tác Sinh viên,Nộp trực tiếp tại Văn phòng Phòng Công tác Sinh viên,donz.md,True,single
+23,Hồ sơ xin trợ cấp xã hội của sinh viên mồ côi cả cha lẫn mẹ cần giấy tờ gì?,social_support,"Đơn xin hưởng trợ cấp, bản sao giấy chứng tử của cha mẹ hoặc giấy xác nhận của UBND cấp xã nơi cư trú là mồ côi cả cha lẫn mẹ","Đơn xin hưởng trợ cấp, bản sao giấy chứng tử của cha mẹ hoặc giấy xác nhận của UBND cấp xã nơi cư trú là mồ côi cả cha lẫn mẹ",Tro_cap_XH.md,True,single
+24,Sinh viên mồ côi cần nộp hồ sơ xin trợ cấp xã hội mấy lần?,social_support,Chỉ cần nộp hồ sơ một lần để xét hưởng đến hết khóa học theo khung thời gian đào tạo,Chỉ cần nộp hồ sơ một lần để xét hưởng đến hết khóa học theo khung thời gian đào tạo,Tro_cap_XH.md,True,single
+25,Sinh viên được hỗ trợ chi phí đào tạo dành cho vùng đồng bào dân tộc thiểu số thì nộp hồ sơ ở đâu?,social_support,"Nộp trực tiếp tại Phòng Quản lý chất lượng, Sở Giáo dục và Đào tạo thành phố Cần Thơ","Nộp trực tiếp tại Phòng Quản lý chất lượng, Sở Giáo dục và Đào tạo thành phố Cần Thơ",Ho_tro.md,True,single
+R01,Học kỳ 3 năm học 2025-2026 sinh viên được ở KTX trong khoảng thời gian nào?,other,"Thời gian ở KTX của học kỳ 3 năm học 2025-2026 là **3,5 tháng**, tính từ ngày 04/5/2026 đến 21/8/2026.",,tbdk_hk32526_llp.md,True,single
+R02,Sinh viên phải đóng phí KTX học kỳ 3 năm học 2025-2026 khi nào?,other,"- Sinh viên nộp phí **từ ngày 23/4 đến 29/4/2026**, SV nộp phí cho cả kỳ ở.",,tbdk_hk32526_llp.md,True,single
+R03,"Khi chuyển khoản tiền KTX học kỳ 3, nội dung chuyển khoản phải ghi theo cú pháp nào?",other,+ Nội dung ghi cú pháp: ***Mã số SV – Tên SV – Số điện thoại - KTX.***,,tbdk_hk32526_llp.md,True,single
+R04,Hạn đăng ký ở KTX học kỳ 3 năm học 2025-2026 là ngày nào?,other,- Sinh viên đăng ký ở KTX tập trung đầu kỳ *(kể cả SV đang ở KTX)* qua **Hệ thống Quản lý KTX** của Trường bằng tài khoản SV từ ngày phát hành thông báo đến **ngày 10/4/2026.**,,tbdk_hk32526_llp.md,True,single
+R05,Sinh viên đăng ký mới ở KTX học kỳ 3 năm học 2025-2026 có thể nhận chỗ từ ngày nào?,other,- Đối với SV đăng ký mới có thể nhận chỗ ở từ ngày 04/5/2026.,,tbdk_hk32526_llp.md,True,single
+R06,Thời gian ở KTX học kỳ 1 năm học 2026-2027 kéo dài từ ngày nào đến ngày nào?,other,"**1. Thời gian ở KTX** của học kỳ 1 năm học 2026-2027 là **3,5 tháng**, tính từ ngày 07/9/2026 đến 18/12/2026.",,072026_tb_dk1_2627_llp.md,True,single
+R07,Học kỳ 1 năm học 2026-2027 phải nộp phí KTX trong thời gian nào?,other,"- Sinh viên nộp phí **từ ngày 04/8 đến 07/8/2026**, SV nộp phí cho cả kỳ ở.",,072026_tb_dk1_2627_llp.md,True,single
+R08,Sinh viên đã ở KTX từ học kỳ 3 năm học 2025-2026 có phải đăng ký lại cho học kỳ 1 năm học 2026-2027 không?,other,"- Đối với SV đang ở cũ *(HK3, năm học 2025-2026)* **không cần phải đăng ký lại**, chỉ thực hiện nộp phí theo thời gian nêu ở **mục 2**, trong thông báo này.",,072026_tb_dk1_2627_llp.md,True,single
+R09,Phí gửi xe KTX học kỳ 1 năm học 2026-2027 được nộp trong khoảng thời gian nào?,other,"+ Sinh viên nộp phí gửi xe của học kỳ tại Văn phòng KTX, bao gồm: xe máy, xe điện và xe đạp *(miễn phí)*, từ ngày 04/8 đến 14/8/2026. Sau thời gian trên SV nộp từ 15 giờ đến 16 giờ *(thứ 2 đến thứ 6)*. Đối với xe không có đăng ký phải di chuyển ra khỏi nhà xe nhường lại khoảng trống để sắp xếp xe đã đăng ký.",,072026_tb_dk1_2627_llp.md,True,single
+Q001,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Công nghệ thông tin gồm những nội dung gì?",academic_program,"Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin (PLO 1); Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội (PLO 2);","Chào bạn, dựa trên chương trình đào tạo ngành Công nghệ thông tin (mã ngành 7480201), chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm các nội dung sau:
+
+- **a. PLO 1:** Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin.
+- **b. PLO 2:** Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội.
+
+---
+📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",66_7480201_CongNgheThongTin.md,True,single
+Q002,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Kỹ thuật Phần mềm gồm những nội dung gì?",academic_program,"Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân. (PLO1) Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm. (PLO2) Ứng dụng kiến thức về công nghệ số (bậc 4 theo Khung năng lực số) và ngoại ngữ (tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn. (PLO3)","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, tôi xin giải đáp thắc mắc của bạn về chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Kỹ thuật Phần mềm như sau:
+
+Chuẩn đầu ra (PLO) về kiến thức thuộc khối giáo dục đại cương bao gồm các nội dung sau:
+
+- **PLO1:** Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân.
+- **PLO2:** Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm.
+- **PLO3:** Ứng dụng kiến thức về công nghệ số (bậc 4 theo Khung năng lực số) và ngoại ngữ (tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn.
+
+---
+📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True,single
+Q003,"Học phần ""Kinh tế chính trị Mác - Lênin"" (ngành Công nghệ thông tin (chất lượng cao)) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Kinh tế chính trị Mác - Lênin"" yêu cầu học phần tiên quyết: ML014.","Học phần ""Kinh tế chính trị Mác - Lênin"" (mã số: ML016) trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) yêu cầu học phần tiên quyết là: **Triết học Mác - Lênin** (mã số: ML014).
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True,single
+Q004,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Công nghệ thông tin (chất lượng cao) gồm những nội dung gì?",academic_program,"Áp dụng sâu rộng kiến thức về tính toán và toán học để giải quyết các vấn đề phức tạp và đòi hỏi sự sáng tạo trong lĩnh vực công nghệ thông tin (PLO 1); Hiểu rõ và vận dụng các chuẩn mực và trách nhiệm nghề nghiệp ở tầm quốc tế, chính trị, đạo đức, pháp lý, văn hóa và xã hội, có ý thức trách nhiệm công dân toàn cầu (PLO 2);","Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, mình xin giải đáp thắc mắc của bạn về chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Công nghệ thông tin (chất lượng cao) như sau:
+
+Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm các nội dung sau:
+
+*   **a. (PLO 1):** Áp dụng sâu rộng kiến thức về tính toán và toán học để giải quyết các vấn đề phức tạp và đòi hỏi sự sáng tạo trong lĩnh vực công nghệ thông tin.
+*   **b. (PLO 2):** Hiểu rõ và vận dụng các chuẩn mực và trách nhiệm nghề nghiệp ở tầm quốc tế, chính trị, đạo đức, pháp lý, văn hóa và xã hội, có ý thức trách nhiệm công dân toàn cầu.
+
+---
+📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True,single
+Q005,"Sau khi tốt nghiệp, sinh viên ngành Công nghệ thông tin (chất lượng cao) có thể đảm nhận những vị trí việc làm nào?",academic_program,"Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân. Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân. Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học. Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.","Sau khi tốt nghiệp chương trình đào tạo chất lượng cao ngành Công nghệ thông tin tại Trường Đại học Cần Thơ, sinh viên có thể đảm nhận các vị trí việc làm sau:
+
+* Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.
+* Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.
+* Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học.
+* Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",67_7480201C_CongNgheThongTin_CTCLC.md,True,single
+Q006,"Học phần ""Kiểm chứng mô hình"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có mã số và số tín chỉ là bao nhiêu?",academic_program,"Học phần Kiểm chứng mô hình có mã số CT287, số tín chỉ là 3 (Bắt buộc), số tiết là 30 LT, 30 TH.","Học phần ""Kiểm chứng mô hình"" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có thông tin như sau:
+
+- Mã số: CT287
+- Số tín chỉ: 3 tín chỉ
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",70_7480103_KyThuatPhanMem.md,True,single
+Q007,"Học phần ""Mạng máy tính"" (ngành Khoa học máy tính) yêu cầu học phần tiên quyết nào?",academic_program,"Học phần ""Mạng máy tính"" yêu cầu học phần tiên quyết: CT178.","Học phần ""Mạng máy tính"" (mã số: CT112) trong chương trình đào tạo ngành Khoa học máy tính yêu cầu học phần tiên quyết là: **Nguyên lý hệ điều hành** (mã số: CT178).
+
+---
+📌 **Nguồn tham khảo:** [Khối kiến thức cơ sở ngành](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",73_7480101_KhoaHocMayTinh.md,True,single
+Q008,"Chuẩn đầu ra (PLO) thuộc phần ""Khối kiến thức giáo dục đại cương"" của ngành Hệ thống thông tin gồm những nội dung gì?",academic_program,"Vận dụng được các kiến thức cơ bản về khoa học chính trị, khoa học tự nhiên, khoa học xã hội và pháp luật trong quá trình hoạt động nghề nghiệp trong lĩnh vực HTTT (PLO1); Vận dụng được các kiến thức cơ bản về giáo dục thể chất, quốc phòng và an ninh để rèn luyện thể chất, ý thức kỷ luật và thực hiện nghĩa vụ công dân trong học tập và môi trường nghề nghiệp (PLO2).","Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Hệ thống thông tin bao gồm các nội dung sau:
+
+- **PLO1:** Vận dụng được các kiến thức cơ bản về khoa học chính trị, khoa học tự nhiên, khoa học xã hội và pháp luật trong quá trình hoạt động nghề nghiệp trong lĩnh vực HTTT.
+- **PLO2:** Vận dụng được các kiến thức cơ bản về giáo dục thể chất, quốc phòng và an ninh để rèn luyện thể chất, ý thức kỷ luật và thực hiện nghĩa vụ công dân trong học tập và môi trường nghề nghiệp.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/3. Chuẩn đầu ra của chương trình đào tạo/3.1 Kiến thức/]( /api/pdfs/68_7480104_HeThongThongTin.pdf)",68_7480104_HeThongThongTin.md,True,single
+Q009,Mã ngành của chương trình đào tạo Trí tuệ nhân tạo là gì?,academic_program,Mã ngành của ngành Trí tuệ nhân tạo là: 7480107.,"Mã ngành của chương trình đào tạo Trí tuệ nhân tạo là: **7480107**.
+
+---
+📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",108_7480107_TriTueNhanTao.md,True,single
+1,Trẻ bị bỏ rơi không có nguồn nuôi dưỡng học đại học thì được hưởng chế độ học phí như thế nào?,exemption_policy,Sinh viên thuộc diện này được miễn 100% học phí,Sinh viên thuộc diện này được miễn 100% học phí,mghp.md,True,single
+2,Sinh viên khuyết tật muốn xin miễn học phí thì cần chuẩn bị giấy tờ gì?,exemption_policy,"Cần nộp Đơn đề nghị miễn, giảm học phí (theo mẫu) và Giấy xác nhận khuyết tật do Ủy ban nhân dân xã, phường cấp","Cần nộp Đơn đề nghị miễn, giảm học phí (theo mẫu) và Giấy xác nhận khuyết tật do Ủy ban nhân dân xã, phường cấp",mghp.md,True,single
+3,Sinh viên người dân tộc thiểu số ở xã khu vực III vùng dân tộc và miền núi được giảm bao nhiêu phần trăm học phí?,exemption_policy,Được giảm 70% học phí,Được giảm 70% học phí,mghp.md,True,single
+4,Con của bệnh binh được hưởng chế độ học phí như thế nào?,exemption_policy,Được miễn 100% học phí,Được miễn 100% học phí,mghp.md,True,single
+5,Cha hoặc mẹ bị tai nạn lao động được hưởng trợ cấp thường xuyên thì sinh viên được giảm bao nhiêu học phí?,exemption_policy,Được giảm 50% học phí,Được giảm 50% học phí,mghp.md,True,single
+6,"Sinh viên đang bị kỷ luật ngừng học có được xét miễn, giảm học phí không?",exemption_policy,"Không áp dụng chế độ ưu đãi miễn, giảm học phí trong thời gian sinh viên bị kỷ luật ngừng học","Không áp dụng chế độ ưu đãi miễn, giảm học phí trong thời gian sinh viên bị kỷ luật ngừng học",mghp.md,True,single
+7,"Nếu sinh viên thuộc nhiều diện miễn, giảm học phí cùng lúc thì tính như thế nào?",exemption_policy,Chỉ được hưởng mức hỗ trợ cao nhất,Chỉ được hưởng mức hỗ trợ cao nhất,mghp.md,True,single
+8,Sinh viên đang hưởng lương hoặc sinh hoạt phí khi đi học có được miễn giảm học phí không?,exemption_policy,"Không áp dụng miễn, giảm học phí đối với trường hợp đang hưởng lương hoặc sinh hoạt phí khi đi học","Không áp dụng miễn, giảm học phí đối với trường hợp đang hưởng lương hoặc sinh hoạt phí khi đi học",mghp.md,True,single
+9,Sổ hộ nghèo hết hạn thì làm gì để được tiếp tục miễn giảm học phí?,exemption_policy,Bắt buộc phải nộp bổ sung giấy xác nhận mới khi giấy cũ hết hạn để được gia hạn chế độ,Bắt buộc phải nộp bổ sung giấy xác nhận mới khi giấy cũ hết hạn để được gia hạn chế độ,mghp.md,True,single
+10,"Học phí làm cơ sở tính miễn, giảm cho môn Giáo dục quốc phòng và An ninh (đại trà) là bao nhiêu?",exemption_basis,Là 451.000 đồng/tín chỉ,Là 451.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True,single
+11,"Khối ngành III (Kinh doanh và quản lý, pháp luật) có mức học phí cơ sở để tính miễn giảm là bao nhiêu 1 tín chỉ?",exemption_basis,Mức học phí cơ sở là 451.000 đồng/tín chỉ,Mức học phí cơ sở là 451.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True,single
+12,"Khối ngành IV (Khoa học sự sống, khoa học tự nhiên) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?",exemption_basis,Mức học phí cơ sở là 487.000 đồng/tín chỉ,Mức học phí cơ sở là 487.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True,single
+13,Khối ngành VI (Sức khỏe) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?,exemption_basis,Mức học phí cơ sở là 753.000 đồng/tín chỉ,Mức học phí cơ sở là 753.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True,single
+14,Sinh viên chương trình tiên tiến khóa 47 trở về trước có học phí làm cơ sở tính miễn giảm là bao nhiêu?,exemption_basis,Mức học phí là 335.000 đồng/tín chỉ,Mức học phí là 335.000 đồng/tín chỉ,MucHocPhi_2526_MienGiam.md,True,single
+R31,Quyết định 17/QĐ-HSV về tiêu chuẩn Sinh viên 5 tốt có hiệu lực thi hành kể từ năm học nào?,other,Quyết định có hiệu lực thi hành kể từ năm học 2025-2026.,,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True,single
+R32,Tiêu chuẩn Đạo đức tốt yêu cầu điểm rèn luyện trung bình cộng đạt từ bao nhiêu điểm?,other,"Điểm rèn luyện trung bình cộng của học kỳ 3 năm học trước, học kỳ 1 và 2 năm học xét đạt từ 85 điểm trở lên.",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True,single
+R33,"Đối với sinh viên năm nhất, tiêu chí điểm rèn luyện của Đạo đức tốt xét những học kỳ nào?",other,"Đối với sinh viên năm nhất, tiêu chí điểm rèn luyện của Đạo đức tốt chỉ xét điểm của học kỳ 1 và 2 năm học xét.",,17 - QD ban hanh SV5T DHCT giai doan 2025-2028.signed_llp.md,True,single
+CDICT001,CNTT CLC K44 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K44 là 25 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT002,CNTT CLC K45 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K45 là 26 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT003,CNTT CLC K46 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K46 là 28 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT004,CNTT CLC K47 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K47 là 30 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT005,CNTT CLC K48 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT006,CNTT CLC K49 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 36 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT007,CNTT CLC K50 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 36 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT008,CNTT CLC K51 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K51 là 40 triệu đồng/năm học.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT009,CNTT CLC K52 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>25</td>
+            <td>26</td>
+            <td>28</td>
+            <td>30</td>
+            <td>33</td>
+            <td>36</td>
+            <td>36</td>
+            <td>40</td>
+            <td>44,0</td>
+        </tr>","CTĐT có 168 tín chỉ; mức học phí cố định của K52 là 44,0 triệu đồng/năm học.",67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT010,KTPM CLC K48 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>11</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>33</td>
+            <td>33</td>
+            <td>33</td>
+            <td>40</td>
+            <td>41,8</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.,71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT011,KTPM CLC K49 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>11</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>33</td>
+            <td>33</td>
+            <td>33</td>
+            <td>40</td>
+            <td>41,8</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 33 triệu đồng/năm học.,71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT012,KTPM CLC K50 có tổng bao nhiêu tín chỉ và học phí một năm 2026-2027 là bao nhiêu?,actual_tuition,"- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>11</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>33</td>
+            <td>33</td>
+            <td>33</td>
+            <td>40</td>
+            <td>41,8</td>
+        </tr>",CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 33 triệu đồng/năm học.,71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT013,KTPM CLC K51 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308 nghìn đồng/tín chỉ.",71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT014,KTPM CLC K52 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366 nghìn đồng/tín chỉ.",71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT015,HTTT CLC K49 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K49 là  nghìn đồng/tín chỉ.",69_7480104C_HeThongThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT016,HTTT CLC K50 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K50 là 1.118 nghìn đồng/tín chỉ.",69_7480104C_HeThongThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT017,HTTT CLC K51 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308 nghìn đồng/tín chỉ.",69_7480104C_HeThongThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT018,HTTT CLC K52 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366 nghìn đồng/tín chỉ.",69_7480104C_HeThongThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT019,MMT&TTDL CLC K51 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>14</td>
+      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308 nghìn đồng/tín chỉ.",109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT020,MMT&TTDL CLC K52 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4,5 năm
+<tr>
+      <td>14</td>
+      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366 nghìn đồng/tín chỉ.",109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT021,CNTT CLC K44 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4.5 năm
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>",Thời gian đào tạo là 4.5 năm; mức học phí của K44 là 882 nghìn đồng/tín chỉ.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT022,CNTT CLC K47 học mấy năm và năm 2026-2027 đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Thời gian đào tạo: 4.5 năm
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>",Thời gian đào tạo là 4.5 năm; mức học phí của K47 là 1.064 nghìn đồng/tín chỉ.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT023,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên CNTT CLC K45 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 914 nghìn đồng/tín chỉ, số tiền tương ứng là 18.280.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT024,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên CNTT CLC K46 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 989 nghìn đồng/tín chỉ, số tiền tương ứng là 19.780.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT025,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên CNTT CLC K48 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.161 nghìn đồng/tín chỉ, số tiền tương ứng là 23.220.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT026,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên CNTT CLC K49 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.254 nghìn đồng/tín chỉ, số tiền tương ứng là 25.080.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT027,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên KTPM CLC K48 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.161 nghìn đồng/tín chỉ, số tiền tương ứng là 23.220.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT028,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên KTPM CLC K50 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.073 nghìn đồng/tín chỉ, số tiền tương ứng là 21.460.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT029,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên HTTT CLC K51 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+      <td>13</td>
+      <td>Hệ thống thông tin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.118</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.308 nghìn đồng/tín chỉ, số tiền tương ứng là 26.160.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT030,"Theo quy chế, sinh viên được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ? Nếu một sinh viên MMT&TTDL CLC K52 giả định cả 20 tín chỉ đều áp dụng học phí mỗi tín chỉ của chương trình này năm 2026-2027, số tiền tương ứng là bao nhiêu?",actual_tuition,"1. Sinh viên được đăng ký học tối đa 20 TC/HK.
+1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.
+<tr>
+      <td>14</td>
+      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.366 nghìn đồng/tín chỉ, số tiền tương ứng là 27.320.000 đồng.",quychehocvu.md; MucHocPhi_2627.md,True,all_required
+CDICT031,"CNTT chuẩn, học phần “Lập trình căn bản A” (CT101) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K49 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Lập trình căn bản A** (Mã số: CT101)
+- Số tín chỉ: 4 (Bắt buộc)
+<tr>
+      <td>41</td>
+      <td>7480201</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Công nghệ thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>",Học phần có 4 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 3.328.000 đồng.,66_7480201_CongNgheThongTin.md; MucHocPhi_2627.md,True,all_required
+CDICT032,"CNTT chuẩn, học phần “Cấu trúc dữ liệu” (CT177) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cấu trúc dữ liệu** (Mã số: CT177)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+            <td>43</td>
+            <td>7480201</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Công nghệ thông tin</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>",Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.,66_7480201_CongNgheThongTin.md; MucHocPhi_2627.md,True,all_required
+CDICT033,"KTPM chuẩn, học phần “Toán rời rạc” (CT172E) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K50 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Toán rời rạc** (Mã số: CT172E)
+- Số tín chỉ: 4 (Bắt buộc)
+<tr>
+      <td>37</td>
+      <td>7480103</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>",Học phần có 4 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 3.328.000 đồng.,70_7480103_KyThuatPhanMem.md; MucHocPhi_2627.md,True,all_required
+CDICT034,"KTPM chuẩn, học phần “Cơ sở dữ liệu” (CT180) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cơ sở dữ liệu** (Mã số: CT180)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+            <td>39</td>
+            <td>7480103</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>",Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.,70_7480103_KyThuatPhanMem.md; MucHocPhi_2627.md,True,all_required
+CDICT035,"HTTT chuẩn, học phần “Nhập môn trí tuệ nhân tạo” (CT190E) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K51 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Nhập môn trí tuệ nhân tạo** (Mã số: CT190E)
+- Số tín chỉ: 2 (Bắt buộc)
+<tr>
+      <td>38</td>
+      <td>7480104</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Hệ thống thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>",Học phần có 2 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 1.664.000 đồng.,68_7480104_HeThongThongTin.md; MucHocPhi_2627.md,True,all_required
+CDICT036,"HTTT chuẩn, học phần “Cấu trúc dữ liệu” (CT177) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cấu trúc dữ liệu** (Mã số: CT177)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+            <td>40</td>
+            <td>7480104</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Hệ thống thông tin</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>",Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.,68_7480104_HeThongThongTin.md; MucHocPhi_2627.md,True,all_required
+CDICT037,"CNTT CLC, học phần “Toán cho khoa học máy tính” (CT101H) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K49 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Toán cho khoa học máy tính** (Mã số: CT101H)
+- Số tín chỉ: 4 (Bắt buộc)
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>",Học phần có 4 tín chỉ; mức áp dụng là 1.254; số tiền tương ứng là 5.016.000 đồng.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT038,"CNTT CLC, học phần “Cấu trúc dữ liệu” (CT102H) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cấu trúc dữ liệu** (Mã số: CT102H)
+- Số tín chỉ: 4 (Bắt buộc)
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>",Học phần có 4 tín chỉ; mức áp dụng là 1.438; số tiền tương ứng là 5.752.000 đồng.,67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT039,"KTPM CLC, học phần “Cấu trúc dữ liệu” (CT177H) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K51 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Cấu trúc dữ liệu** (Mã số: CT177H)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>",Học phần có 3 tín chỉ; mức áp dụng là 1.308; số tiền tương ứng là 3.924.000 đồng.,71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT040,"MMT&TTDL CLC, học phần “Mạng máy tính” (CT106H) có bao nhiêu tín chỉ? Nếu áp dụng học phí mỗi tín chỉ của K52 năm học 2026-2027 cho chương trình này, số tiền tương ứng với học phần là bao nhiêu?",actual_tuition,"* **Mạng máy tính** (Mã số: CT106H)
+- Số tín chỉ: 3 (Bắt buộc)
+<tr>
+      <td>14</td>
+      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>",Học phần có 3 tín chỉ; mức áp dụng là 1.366; số tiền tương ứng là 4.098.000 đồng.,109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT041,Ngành CNTT bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K49 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: **161 tín chỉ**
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+      <td>41</td>
+      <td>7480201</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Công nghệ thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K49: chuẩn 832.000 đồng/TC; CLC 1.254 nghìn đồng/TC.",66_7480201_CongNgheThongTin.md; 67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT042,Ngành CNTT bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K50 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: **161 tín chỉ**
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+      <td>41</td>
+      <td>7480201</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Công nghệ thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K50: chuẩn 832.000 đồng/TC; CLC 1.181 nghìn đồng/TC.",66_7480201_CongNgheThongTin.md; 67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT043,Ngành CNTT bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K51 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: **161 tín chỉ**
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+      <td>41</td>
+      <td>7480201</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Công nghệ thông tin</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308 nghìn đồng/TC.",66_7480201_CongNgheThongTin.md; 67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT044,Ngành CNTT bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K52 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: **161 tín chỉ**
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>43</td>
+            <td>7480201</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Công nghệ thông tin</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>
+<tr>
+            <td>1</td>
+            <td>Công nghệ thông tin</td>
+            <td>882</td>
+            <td>914</td>
+            <td>989</td>
+            <td>1.064</td>
+            <td>1.161</td>
+            <td>1.254</td>
+            <td>1.181</td>
+            <td>1.308</td>
+            <td>1.438</td>
+        </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.438 nghìn đồng/TC.",66_7480201_CongNgheThongTin.md; 67_7480201C_CongNgheThongTin_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT045,Ngành KTPM bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K51 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: 161 tín chỉ
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+      <td>37</td>
+      <td>7480103</td>
+      <td>V</td>
+      <td>748</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td>DI</td>
+      <td>832.000</td>
+    </tr>
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308 nghìn đồng/TC.",70_7480103_KyThuatPhanMem.md; 71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT046,Ngành KTPM bản chuẩn và CLC khác nhau bao nhiêu tín chỉ? Với K52 thì năm 2026-2027 mỗi chương trình đóng bao nhiêu tiền một tín chỉ?,actual_tuition,"- Số lượng tín chỉ: 161 tín chỉ
+- Số lượng tín chỉ: 168 tín chỉ
+<tr>
+            <td>39</td>
+            <td>7480103</td>
+            <td>V</td>
+            <td>748</td>
+            <td>Kỹ thuật phần mềm</td>
+            <td>DI</td>
+            <td>150,3</td>
+            <td>966.000</td>
+        </tr>
+<tr>
+      <td>11</td>
+      <td>Kỹ thuật phần mềm</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.161</td>
+      <td>1.142</td>
+      <td>1.073</td>
+      <td>1.308</td>
+      <td>1.366</td>
+    </tr>","CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.366 nghìn đồng/TC.",70_7480103_KyThuatPhanMem.md; 71_7480103C_KyThuatPhanMem_CTCLC.md; MucHocPhi_2627.md,True,all_required
+CDICT047,"Khoa học máy tính chuẩn, thời gian đào tạo là bao lâu; theo Quy định công tác học vụ, thời gian tối đa để hoàn thành một CTĐT có thời gian thiết kế tương ứng là bao nhiêu?",academic_rules,"- Thời gian đào tạo: 4,5 năm
+| 4,5 năm                     | 9 năm                                          |","Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",73_7480101_KhoaHocMayTinh.md; quychehocvu.md,True,all_required
+CDICT048,"Trí tuệ nhân tạo chuẩn, thời gian đào tạo là bao lâu; theo Quy định công tác học vụ, thời gian tối đa để hoàn thành một CTĐT có thời gian thiết kế tương ứng là bao nhiêu?",academic_rules,"- Thời gian đào tạo: 4,5 năm
+| 4,5 năm                     | 9 năm                                          |","Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",108_7480107_TriTueNhanTao.md; quychehocvu.md,True,all_required
+CDICT049,"An toàn thông tin chuẩn, thời gian đào tạo là bao lâu; theo Quy định công tác học vụ, thời gian tối đa để hoàn thành một CTĐT có thời gian thiết kế tương ứng là bao nhiêu?",academic_rules,"- Thời gian đào tạo: 4,5 năm
+| 4,5 năm                     | 9 năm                                          |","Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",64_7480202_AnToanThongTin.md; quychehocvu.md,True,all_required
+CDICT050,"CNTT CLC, thời gian đào tạo là bao lâu; theo Quy định công tác học vụ, thời gian tối đa để hoàn thành một CTĐT có thời gian thiết kế tương ứng là bao nhiêu?",academic_rules,"- Thời gian đào tạo: 4.5 năm
+| 4,5 năm                     | 9 năm                                          |",Thời gian đào tạo là 4.5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.,67_7480201C_CongNgheThongTin_CTCLC.md; quychehocvu.md,True,all_required

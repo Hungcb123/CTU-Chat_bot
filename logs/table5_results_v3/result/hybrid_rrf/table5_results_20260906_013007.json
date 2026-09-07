@@ -1,0 +1,72 @@
+{
+  "results": [
+    {
+      "mode": "hybrid_rrf",
+      "status": "completed",
+      "completed": 100,
+      "total": 100,
+      "metrics": {
+        "answer_relevancy": 0.7386978480022607,
+        "context_recall": 0.86,
+        "context_precision": 0.6573888888361284,
+        "answer_correctness": 0.7253761305468325
+      },
+      "per_category": {
+        "actual_tuition": {
+          "answer_relevancy": 0.8228313073122734,
+          "context_recall": 0.9285714285714286,
+          "context_precision": 0.6428571428172223,
+          "answer_correctness": 0.8901227888844421
+        },
+        "scholarship": {
+          "answer_relevancy": 0.8180875725626393,
+          "context_recall": 1.0,
+          "context_precision": 0.8023809523097619,
+          "answer_correctness": 0.8227989769739575
+        },
+        "academic_rules": {
+          "answer_relevancy": 0.7556882056292372,
+          "context_recall": 0.75,
+          "context_precision": 0.5825396825014153,
+          "answer_correctness": 0.5612320019470705
+        },
+        "student_loan": {
+          "answer_relevancy": 0.6976931009391429,
+          "context_recall": 0.8333333333333334,
+          "context_precision": 0.6583333332709722,
+          "answer_correctness": 0.7244570930278232
+        },
+        "social_support": {
+          "answer_relevancy": 0.6408783740595415,
+          "context_recall": 0.6363636363636364,
+          "context_precision": 0.48863636358882573,
+          "answer_correctness": 0.6174449545711062
+        },
+        "other": {
+          "answer_relevancy": 0.7857820408990098,
+          "context_recall": 0.9166666666666666,
+          "context_precision": 0.6874999999347221,
+          "answer_correctness": 0.7704390191324834
+        },
+        "academic_program": {
+          "answer_relevancy": 0.40149676236294485,
+          "context_recall": 0.7222222222222222,
+          "context_precision": 0.3879629629435648,
+          "answer_correctness": 0.4620700828609103
+        },
+        "exemption_policy": {
+          "answer_relevancy": 0.8307147831152842,
+          "context_recall": 1.0,
+          "context_precision": 0.8333333332595679,
+          "answer_correctness": 0.8026310876234352
+        },
+        "exemption_basis": {
+          "answer_relevancy": 0.8752035754302241,
+          "context_recall": 1.0,
+          "context_precision": 0.9666666666083333,
+          "answer_correctness": 0.9173003849683447
+        }
+      }
+    }
+  ]
+}

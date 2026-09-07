@@ -267,6 +267,10 @@ reranker lại. Nếu T6 chưa hoàn tất câu tương ứng, T7 dừng với l
 - Giữ nguyên dataset, `--top-n`, `--candidate-depth` và `--checkpoint-dir` giữa
   các lần chạy.
 - Output mặc định nằm trong `logs/table5_results_v3/`.
+- Mỗi mode tự lưu checkpoint vào
+  `logs/table5_results_v3/checkpoints/<mode>/checkpoint.json`.
+- Candidate pool dùng chung cho T3–T6 nằm tại
+  `logs/table5_results_v3/checkpoints/hybrid_rrf/candidates.json`.
 - Nếu hết quota, đổi key hợp lệ rồi chạy lại **đúng lệnh của mode đang dở**.
 - Dòng log `[mode] completed X/100 case=Y` cho biết đã lưu đủ answer và bốn
   metrics của câu đó.
