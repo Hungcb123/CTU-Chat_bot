@@ -1,7 +1,7 @@
 {
   "results": [
     {
-      "mode": "dense_only",
+      "mode": "hybrid_rrf_rerank",
       "status": "paused_quota",
       "completed": 0,
       "total": 100
