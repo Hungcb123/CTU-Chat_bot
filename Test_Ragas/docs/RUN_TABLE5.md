@@ -259,8 +259,17 @@ python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph_rerank_agent --l
 python Test_Ragas/test_table5_ragas.py --modes hybrid_rrf_graph_rerank_agent
 ```
 
-T7 đọc checkpoint T6 và kiểm tra fingerprint; T7 không chạy retrieval hoặc
-reranker lại. Nếu T6 chưa hoàn tất câu tương ứng, T7 dừng với lỗi rõ ràng.
+T7 đọc checkpoint T6 và kiểm tra fingerprint; T7 không chạy retrieval,
+reranker, Graph hoặc tool lại. Supervisor vẫn dùng prompt gốc để chọn Agent,
+sau đó prompt chuyên môn gốc nhận evidence T6 đúng một lần. Adapter T7 chỉ
+thông báo rằng tra cứu đã hoàn tất và dữ liệu đã nằm trong Context; không
+thêm yêu cầu trả lời ngắn và không đổi quy tắc nghiệp vụ của prompt.
+
+Hướng dẫn gọi tool bị vô hiệu hóa trong T7 gồm các Graph tool chương trình
+đào tạo, các tool học phí/miễn giảm/tính học phí và tool tính học bổng. Danh
+sách đầy đủ được lưu trong `T7_DISABLED_TOOL_GUIDANCE` và giải thích tại
+`T1_T7_CODE_CHANGELOG.md`. Nếu T6 chưa hoàn tất câu tương ứng, T7 dừng với
+lỗi rõ ràng.
 
 ### Quy tắc checkpoint
 
@@ -269,6 +278,9 @@ reranker lại. Nếu T6 chưa hoàn tất câu tương ứng, T7 dừng với l
 - Output mặc định nằm trong `logs/table5_results_v3/`.
 - Mỗi mode tự lưu checkpoint vào
   `logs/table5_results_v3/checkpoints/<mode>/checkpoint.json`.
+- Riêng T7 đã sửa lưu vào
+  `logs/table5_results_v3/checkpoints/hybrid_rrf_graph_rerank_agent/checkpoint_fixed_v2.json`.
+  File `checkpoint.json` cũ được giữ lại để đối chiếu và không được resume.
 - Candidate pool dùng chung cho T3–T6 nằm tại
   `logs/table5_results_v3/checkpoints/hybrid_rrf/candidates.json`.
 - Nếu hết quota, đổi key hợp lệ rồi chạy lại **đúng lệnh của mode đang dở**.

@@ -9,16 +9,56 @@ from langchain_core.documents import Document
 
 from Test_Ragas.table5_experiment import (
     CaseCheckpointStore,
+    T7_DISABLED_TOOL_GUIDANCE,
+    build_t7_fixed_evidence_messages,
     checkpoint_file_path,
     dataset_sha256,
     merge_graph_evidence,
     is_api_pause_error,
     is_completed_case,
     message_content_text,
+    mode_checkpoint_file_path,
 )
 
 
 class Table5ExperimentTests(unittest.TestCase):
+    def test_t7_fixed_evidence_appears_exactly_once_in_agent_messages(self):
+        """T7: the exact T6 context must not be duplicated across prompt messages."""
+        evidence = "UNIQUE-T6-EVIDENCE"
+
+        for agent_name in ("academic", "financial", "scholarship", "general"):
+            messages = build_t7_fixed_evidence_messages(
+                agent_name=agent_name,
+                question="Câu hỏi kiểm thử",
+                context=evidence,
+            )
+            rendered = "\n".join(str(message.content) for message in messages)
+            self.assertEqual(rendered.count(evidence), 1, agent_name)
+
+    def test_t7_fixed_evidence_keeps_agent_rules_and_marks_tools_precompleted(self):
+        """T7: preserve production rules while declaring lookup instructions pre-completed."""
+        messages = build_t7_fixed_evidence_messages(
+            agent_name="financial",
+            question="Học phí ngành CNTT là bao nhiêu?",
+            context="Kết quả Graph từ T6",
+        )
+        system_text = str(messages[0].content)
+
+        self.assertIn("Phân biệt rạch ròi 2 loại mức học phí", system_text)
+        self.assertIn("đã được thực hiện ở T6", system_text)
+        self.assertIn("không gọi lại công cụ", system_text)
+        self.assertNotIn("trả lời ngắn", system_text.casefold())
+        self.assertIn("tra_cuu_hoc_phi_graph", T7_DISABLED_TOOL_GUIDANCE["financial"])
+
+    def test_t7_fixed_evidence_rejects_unknown_agent(self):
+        """T7: an invalid router result must fail instead of silently choosing a prompt."""
+        with self.assertRaisesRegex(ValueError, "Unsupported T7 agent"):
+            build_t7_fixed_evidence_messages(
+                agent_name="unknown",
+                question="question",
+                context="evidence",
+            )
+
     def test_t1_t7_evaluator_timeout_is_a_resumable_api_pause(self):
         """T1-T7: RAGAS quota retries ending in TimeoutError must pause safely."""
         self.assertTrue(is_api_pause_error(TimeoutError()))
@@ -34,6 +74,19 @@ class Table5ExperimentTests(unittest.TestCase):
         self.assertEqual(
             checkpoint_file_path(root, "hybrid_rrf", filename="candidates.json"),
             root / "hybrid_rrf" / "candidates.json",
+        )
+
+    def test_fixed_t7_uses_a_new_checkpoint_without_overwriting_old_results(self):
+        """T7: corrected prompts must not resume the completed legacy T7 answers."""
+        root = Path("checkpoints")
+
+        self.assertEqual(
+            mode_checkpoint_file_path(root, "hybrid_rrf_graph_rerank_agent"),
+            root / "hybrid_rrf_graph_rerank_agent" / "checkpoint_fixed_v2.json",
+        )
+        self.assertEqual(
+            mode_checkpoint_file_path(root, "hybrid_rrf_graph_rerank"),
+            root / "hybrid_rrf_graph_rerank" / "checkpoint.json",
         )
 
     def test_t1_t7_dataset_hash_depends_on_content_not_path(self):

@@ -38,29 +38,19 @@ from ragas.dataset_schema import EvaluationDataset, SingleTurnSample
 from ragas.metrics import answer_correctness, answer_relevancy, context_precision, context_recall
 from ragas.run_config import RunConfig
 
-from app.agents.graph import build_agent_graph
 from app.services.graph_service import AcademicGraphService
 from app.services.query_intent import classify_query_intent
 from app.services.rag_engine import AdvancedChunkingEngine, TemporalCrossEncoderReranker
-from app.services.tuition_catalog import TuitionRateCatalog
-from app.tools.academic_program import (
-    mon_chung_giua_nganh, set_graph_service, so_sanh_nganh, tim_nganh,
-    tim_nganh_co_mon, tra_cuu_nganh, xem_chuoi_tien_quyet,
-)
-from app.tools.scholarship import tinh_tien_hoc_bong
-from app.tools.tuition import tinh_toan_hoc_phi
-from app.tools.tuition_graph import (
-    set_tuition_catalog, set_tuition_graph_service, tra_cuu_co_so_mien_giam_graph,
-    tra_cuu_hoc_phi_graph, tra_cuu_quy_dinh_hoc_phi,
-)
 from scripts.evaluate_chat_dataset import parse_dataset
 from scripts.evaluate_ragas import RateLimitedChatGoogleGenerativeAI
 from Test_Ragas.table5_experiment import (
     BenchmarkCase, CaseCheckpointStore, IncompleteMetricError, QuotaPausedError,
+    build_t7_fixed_evidence_messages,
     checkpoint_file_path, combine_evidence, dataset_sha256, deserialize_documents,
     evidence_fingerprint,
     graph_evidence_for_query, is_api_pause_error, is_completed_case, load_csv_dataset,
-    merge_graph_evidence, message_content_text, serialize_documents,
+    merge_graph_evidence, message_content_text, mode_checkpoint_file_path,
+    route_t7_agent, serialize_documents,
 )
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -160,13 +150,6 @@ class Table5Runner:
         else:
             self.graph_service.ensure_data_loaded()
 
-        # T7: initialize the same production dependencies as app/main.py.
-        self.tuition_catalog = TuitionRateCatalog.load()
-        set_tuition_catalog(self.tuition_catalog)
-        if self.graph_service is not None:
-            set_graph_service(self.graph_service)
-            set_tuition_graph_service(self.graph_service)
-
         self.base_store = CaseCheckpointStore(
             # T3-T6: share the saved T3 candidate pool from the T3 mode directory.
             checkpoint_file_path(
@@ -182,7 +165,9 @@ class Table5Runner:
     def store_for_mode(self, mode: str) -> CaseCheckpointStore:
         """T1-T7: isolate each mode checkpoint for independent runs and Git merges."""
         return CaseCheckpointStore(
-            checkpoint_file_path(Path(self.args.checkpoint_dir), mode),
+            # T7: corrected fixed-evidence prompts use a fresh checkpoint file;
+            # the completed legacy results remain available for comparison.
+            mode_checkpoint_file_path(Path(self.args.checkpoint_dir), mode),
             fingerprint=checkpoint_fingerprint(self.args, mode),
         )
 
@@ -248,33 +233,18 @@ class Table5Runner:
         raise ValueError(f"Unsupported Table 5 mode: {mode}")
 
     async def t7_answer(self, case: BenchmarkCase, documents: list[Document]) -> str:
-        """T7: run production routing/reasoning against the exact T6 evidence and no tools."""
+        """T7: route and answer with original agent prompts over exact T6 evidence."""
         fixed_context = format_context(documents)
-        graph = build_agent_graph(
-            llm=self.generator,
-            rewrite_llm=self.generator,
-            engine=self.engine,
-            tuition_catalog=self.tuition_catalog,
-            graph_service=self.graph_service,
-            academic_tools=[tra_cuu_nganh, so_sanh_nganh, tim_nganh, xem_chuoi_tien_quyet,
-                            mon_chung_giua_nganh, tim_nganh_co_mon],
-            financial_tools=[tra_cuu_hoc_phi_graph, tra_cuu_co_so_mien_giam_graph,
-                             tra_cuu_quy_dinh_hoc_phi, tinh_toan_hoc_phi],
-            scholarship_tools=[tinh_tien_hoc_bong],
-            fixed_context=fixed_context,
+        # T7: call only the production router and selected specialist prompt.
+        # No engine, Graph service, catalog, or tool object is reachable here.
+        route = await route_t7_agent(self.generator, case.question)
+        messages = build_t7_fixed_evidence_messages(
+            agent_name=route.next_agent,
+            question=case.question,
+            context=fixed_context,
         )
-        result = await graph.ainvoke({
-            "query": case.question,
-            "chat_history": [],
-            "search_query": "",
-            "next_agent": "",
-            "routing_decision": None,
-            "context": "",
-            "retrieval_instruction": "",
-            "fixed_context": fixed_context,
-            "response": "",
-        })
-        answer = str(result.get("response") or "").strip()
+        result = await self.generator.ainvoke(messages)
+        answer = message_content_text(result.content)
         if not answer:
             raise RuntimeError("T7 agent returned an empty answer.")
         return answer

@@ -12,6 +12,81 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from langchain_core.documents import Document
+from langchain_core.messages import HumanMessage, SystemMessage
+
+from app.agents.graph import RouteDecision
+from app.agents.prompts import (
+    ACADEMIC_PROMPT,
+    FINANCIAL_PROMPT,
+    GENERAL_PROMPT,
+    SCHOLARSHIP_PROMPT,
+    SUPERVISOR_PROMPT,
+)
+
+
+# T7: document the production tool guidance that is disabled only for the
+# fixed-evidence ablation. T6 has already performed retrieval, Graph lookup,
+# and reranking, so T7 must not execute these operations again.
+T7_DISABLED_TOOL_GUIDANCE: dict[str, tuple[str, ...]] = {
+    "academic": (
+        "tra_cuu_nganh", "so_sanh_nganh", "tim_nganh", "xem_chuoi_tien_quyet",
+        "mon_chung_giua_nganh", "tim_nganh_co_mon",
+    ),
+    "financial": (
+        "tra_cuu_hoc_phi_graph", "tra_cuu_co_so_mien_giam_graph",
+        "tra_cuu_quy_dinh_hoc_phi", "tinh_toan_hoc_phi",
+    ),
+    "scholarship": ("tinh_tien_hoc_bong",),
+    "general": (),
+}
+
+
+def build_t7_fixed_evidence_messages(
+    *, agent_name: str, question: str, context: str
+) -> list[SystemMessage | HumanMessage]:
+    """T7: apply the original specialist prompt to T6 evidence exactly once."""
+    prompts = {
+        "academic": ACADEMIC_PROMPT,
+        "financial": FINANCIAL_PROMPT,
+        "scholarship": SCHOLARSHIP_PROMPT,
+        "general": GENERAL_PROMPT,
+    }
+    if agent_name not in prompts:
+        raise ValueError(f"Unsupported T7 agent: {agent_name}")
+
+    disabled_tools = T7_DISABLED_TOOL_GUIDANCE[agent_name]
+    disabled_names = ", ".join(f"`{name}`" for name in disabled_tools) or "không có"
+    # T7: this execution notice changes only tool availability. It keeps every
+    # production business and presentation rule, and adds no brevity instruction.
+    execution_notice = (
+        "CHẾ ĐỘ THỰC NGHIỆM T7 (EVIDENCE CỐ ĐỊNH): Các bước tra cứu đã được thực hiện "
+        "ở T6 và toàn bộ kết quả cần dùng đã nằm trong Context. Hãy xem các chỉ dẫn gọi "
+        "tool là đã hoàn tất, không gọi lại công cụ và không tìm thêm dữ liệu. "
+        f"Hướng dẫn tool bị vô hiệu hóa trong cấu hình này: {disabled_names}."
+    )
+    original_prompt = prompts[agent_name]
+    if "{context}" in original_prompt:
+        # T7: financial, scholarship, and general prompts already own the single
+        # Context slot; the operational notice occupies retrieval_instruction.
+        system_prompt = original_prompt.format(
+            retrieval_instruction=execution_notice,
+            context=context,
+        )
+    else:
+        # T7: the academic production prompt has no Context slot because it
+        # normally relies entirely on tools, so append the fixed T6 evidence once.
+        system_prompt = f"{original_prompt}\n\n{execution_notice}\n\nContext:\n{context}"
+
+    return [SystemMessage(content=system_prompt), HumanMessage(content=question)]
+
+
+async def route_t7_agent(llm: Any, question: str) -> RouteDecision:
+    """T7: reuse the production supervisor prompt without running retrieval/tools."""
+    router = llm.with_structured_output(RouteDecision)
+    return await router.ainvoke([
+        SystemMessage(content=SUPERVISOR_PROMPT),
+        HumanMessage(content=question),
+    ])
 
 
 class QuotaPausedError(RuntimeError):
@@ -37,6 +112,18 @@ def checkpoint_file_path(
 ) -> Path:
     """T1-T7: keep each mode's resumable files in its own directory."""
     return Path(checkpoint_dir) / mode / filename
+
+
+def mode_checkpoint_file_path(checkpoint_dir: Path, mode: str) -> Path:
+    """T1-T7: preserve legacy T7 answers while corrected T7 starts a fresh run."""
+    # T7: the earlier completed checkpoint contains answers from the duplicated
+    # evidence implementation. Keep it for audit instead of silently resuming it.
+    filename = (
+        "checkpoint_fixed_v2.json"
+        if mode == "hybrid_rrf_graph_rerank_agent"
+        else "checkpoint.json"
+    )
+    return checkpoint_file_path(checkpoint_dir, mode, filename=filename)
 
 
 def dataset_sha256(path: Path) -> str:

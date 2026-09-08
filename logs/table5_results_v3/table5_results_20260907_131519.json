@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "mode": "hybrid_rrf_graph_rerank_agent",
+      "status": "paused_quota",
+      "completed": 0,
+      "total": 100
+    }
+  ]
+}

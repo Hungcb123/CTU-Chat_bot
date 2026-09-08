@@ -1,6 +1,6 @@
 # Nhật ký thay đổi mã cho thực nghiệm Table 5 T1–T7
 
-Ngày cập nhật: 2026-09-05
+Ngày cập nhật: 2026-09-07
 
 Mục tiêu của thay đổi này là đo riêng Hybrid Retrieval, Graph evidence, reranker và Agent reasoning. Mã benchmark không dùng `Ground Truth`, `Source` hoặc `Category` để quyết định retrieval hay Graph lookup; các trường đó chỉ phục vụ RAGAS và báo cáo sau khi câu trả lời đã được tạo.
 
@@ -8,10 +8,10 @@ Mục tiêu của thay đổi này là đo riêng Hybrid Retrieval, Graph eviden
 
 | File | Dòng sau cập nhật | Thực nghiệm | Nội dung |
 |---|---:|---|---|
-| `Test_Ragas/table5_experiment.py` | 1–214 | T1–T7 | Helper cho dataset CSV, evidence identity, Graph adapter, fingerprint và checkpoint atomic. |
-| `Test_Ragas/test_table5_ragas.py` | 1–442 | T1–T7 | Runner CLI, cache T3, T4/T6 rerank, T5 Graph augmentation, T7 fixed evidence, RAGAS theo từng câu và resume. |
-| `app/agents/graph.py` | 75, 120, 229, 359–493 | T7 | Chế độ `fixed_context`: nhận evidence của T6, bỏ retrieval và vô hiệu hóa tool ở mọi specialist agent. |
-| `tests/test_table5_experiment.py` | 1–53 | T5, T7, checkpoint | Regression tests cho budget evidence, fingerprint T6→T7 và checkpoint answer rỗng. |
+| `Test_Ragas/table5_experiment.py` | xem `build_t7_fixed_evidence_messages()` và `route_t7_agent()` | T7 | Adapter test-only dùng Supervisor và prompt Agent gốc với evidence T6 đúng một lần; liệt kê tool bị vô hiệu hóa. |
+| `Test_Ragas/test_table5_ragas.py` | xem `Table5Runner.t7_answer()` | T1–T7 | Runner CLI, cache T3, T4/T6 rerank, T5 Graph augmentation, T7 fixed evidence, RAGAS theo từng câu và resume. |
+| `app/agents/graph.py` | toàn file | Production | Đã khôi phục về bản `main`; không còn `fixed_context` hoặc nhánh benchmark T7. |
+| `tests/test_table5_experiment.py` | xem các test `test_t7_*` | T5, T7, checkpoint | Kiểm tra evidence chỉ xuất hiện một lần, giữ quy tắc prompt gốc, khai báo tool bị vô hiệu hóa và fingerprint T6→T7. |
 | `requirements.txt` | 32–34 | T1–T7 | Nâng Pydantic lên 2.12.5 để tương thích với FastAPI 0.137.0 và cài được môi trường test. |
 
 Mọi khối code mới đều có comment hoặc docstring `T1–T7`, `T5/T6`, hoặc `T7` ngay trong source, nhằm phân biệt với mã vận hành chatbot thông thường.
@@ -90,20 +90,34 @@ values for argument 'query'`. Truy vấn và dữ liệu trả về không thay 
 
 ### T7 — Fixed-evidence Agent
 
-T7 chỉ đọc checkpoint T6 trong `Test_Ragas/test_table5_ragas.py:303–310`. Runner kiểm tra fingerprint; nếu evidence T6 không có hoặc khác thứ tự/nội dung, T7 dừng với lỗi rõ ràng và không tự chạy retrieval lại.
+T7 chỉ đọc checkpoint T6 trong `Table5Runner.run_mode()`. Runner kiểm tra fingerprint; nếu evidence T6 không có hoặc khác thứ tự/nội dung, T7 dừng với lỗi rõ ràng và không tự chạy retrieval lại.
 
-`_escape_prompt_literal()` tại `app/agents/graph.py` escape dấu ngoặc JSON
-trong fixed evidence trước khi tạo `ChatPromptTemplate`. Sửa lỗi T7 hiểu
-trường JSON như `{"don_vi": ...}` thành biến template bị thiếu. Nội dung
-evidence sau khi render được giữ nguyên và T7 không gọi retrieval lại.
+`route_t7_agent()` dùng nguyên `SUPERVISOR_PROMPT` và `RouteDecision` của hệ
+thống để chọn Academic, Financial, Scholarship hoặc General Agent.
+`build_t7_fixed_evidence_messages()` sau đó dùng nguyên prompt chuyên môn đã
+có. Evidence T6 chỉ được chèn vào một vị trí `Context`; câu hỏi nằm trong
+human message và không lặp lại evidence.
 
-`build_agent_graph(..., fixed_context=...)` tại `app/agents/graph.py:111–121` là interface benchmark-only. Khi có `fixed_context`:
+Adapter thêm thông báo vận hành rằng các bước tra cứu đã hoàn tất ở T6 và
+kết quả đã nằm trong Context. Thông báo này không thêm yêu cầu trả lời ngắn
+và không thay đổi quy tắc nghiệp vụ hoặc trình bày của prompt gốc.
 
-- `retrieval_node()` tại `app/agents/graph.py:229` trả context cố định và không gọi Qdrant, BM25, Neo4j hay tuition catalog;
-- `fixed_evidence_answer()` tại `app/agents/graph.py:359` chỉ tổng hợp câu trả lời từ context đó;
-- Academic, Financial, Scholarship và General agent tại `app/agents/graph.py:380–493` không tạo ReAct agent và không được cấp tool lookup/calculation.
+Các hướng dẫn gọi tool bị vô hiệu hóa chỉ trong T7 fixed-evidence:
 
-Vì vậy T7 đo routing và reasoning/orchestration trên evidence T6; nó không phải phép đánh giá full tool-calling agent. Tool validity và decision accuracy vẫn thuộc Table 6.
+- Academic: `tra_cuu_nganh`, `so_sanh_nganh`, `tim_nganh`, `xem_chuoi_tien_quyet`, `mon_chung_giua_nganh`, `tim_nganh_co_mon`;
+- Financial: `tra_cuu_hoc_phi_graph`, `tra_cuu_co_so_mien_giam_graph`, `tra_cuu_quy_dinh_hoc_phi`, `tinh_toan_hoc_phi`;
+- Scholarship: `tinh_tien_hoc_bong`;
+- General: không có tool production để vô hiệu hóa.
+
+`Table5Runner.t7_answer()` chỉ gọi router và LLM với các message trên. Hàm
+không truyền engine, Graph service, catalog hoặc danh sách tool, nên T7 không
+thể retrieval hay gọi tool lại. Vì vậy T7 đo routing và reasoning của Agent
+trên đúng evidence T6; đây không phải phép đánh giá full tool-calling agent.
+
+Kết quả T7 cũ đã hoàn tất không được resume vì được tạo bởi cách chèn evidence
+lặp. Bản sửa dùng `checkpoint_fixed_v2.json` trong cùng thư mục T7; file
+`checkpoint.json` cũ vẫn được giữ nguyên để kiểm tra lịch sử. Checkpoint T6
+không đổi và tiếp tục là nguồn evidence cho T7.
 
 ## Checkpoint và quota
 
