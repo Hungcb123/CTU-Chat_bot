@@ -1,60 +1,103 @@
-.antigravitycli/
+# ==========================================
+# 1. Virtual Environments & IDEs
+# ==========================================
 venv/
 wsl_venv/
 ragas_venv/
 ragas_venv_new/
 .venv/
 env/
-.env
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*Zone.Identifier
 
-.agent
-.claude
-.kilo
-.codex
+# ==========================================
+# 2. AI Assistant & Workspace Configs
+# ==========================================
+.agent/
+.claude/
+.kilo/
+.codex/
+.antigravitycli/
 .antigravitycli
-.gitnexus
-temp
+.gitnexus/
+.codex_tmp_*
 
-# Data and Storage
+# ==========================================
+# 3. Security & Credentials (CRITICAL)
+# ==========================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*service_account*.json
+gen-lang-client-*.json
+client_secret*.json
+credentials/
+secrets/
+
+# ==========================================
+# 4. Python Cache & Build Artifacts
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+
+# ==========================================
+# 5. Database & Heavy Storage Volumes (Root Level)
+# ==========================================
 data/input/
 data/done/
 postgres_data/
 qdrant_storage/
 redis_data/
 parent_doc_storage/
-models/
+neo4j_data/
+/models/
+/temp/
+/tmp/
+/scratch/
+/output/
 
-Báo_cáo/Bai_nop
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+# ==========================================
+# 6. Temporary, Logs & Backup Files
+# ==========================================
+*.log
+*.bak
+*.backup
+*.old
+*~
+*.swp
+data/* (1).*
+data/* (2).*
 
+# ==========================================
+# 7. Experiment Checkpoints (Avoid Repo Bloat)
+# ==========================================
+*checkpoint*.json
+logs/dataset_evaluation/*.jsonl
 
-
-# IDEs
-.vscode/
-.idea/
-
-# OS specific
-.DS_Store
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Temporary and Output Files
-tmp/
-scratch/
-output/
-.codex_tmp_*
-
-# Draw.io Backups
+# ==========================================
+# 8. Diagrams & Miscellaneous
+# ==========================================
 .$*.drawio.bkp
 ~*.drawio.bkp
-# Google Cloud Service Account Keys
-gen-lang-client-*.json
-*service_account*.json
-credentials/
+Báo_cáo/Bai_nop
