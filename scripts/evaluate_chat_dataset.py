@@ -26,8 +26,6 @@ import urllib.request
 from collections import defaultdict
 from dataclasses import dataclass
 from pydantic import BaseModel, Field
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import PromptTemplate
 from datetime import datetime
 from dotenv import load_dotenv
 from pathlib import Path
@@ -41,7 +39,8 @@ DEFAULT_LOG_DIR = PROJECT_ROOT / "logs" / "dataset_evaluation"
 load_dotenv(PROJECT_ROOT / ".env")
 
 
-def _build_judge() -> ChatGoogleGenerativeAI:
+def _build_judge() -> Any:
+    from langchain_google_genai import ChatGoogleGenerativeAI
     return ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite")
 
 
@@ -79,6 +78,7 @@ def score_answer(
     llm: Any,
     threshold: float = 0.55,
 ) -> ScoreResult:
+    from langchain_core.prompts import PromptTemplate
     prompt = PromptTemplate.from_template(
         """You are an expert judge evaluating an AI chatbot's response in Vietnamese.
 
@@ -112,7 +112,35 @@ Output ONLY a valid JSON object with keys: 'score', 'passed', and 'reasoning'.""
         return ScoreResult(score=0.0, passed=False, reasoning=f"Error evaluating: {e}")
 
 
+def parse_csv_dataset(path: Path) -> list[DatasetCase]:
+    import csv
+    cases: list[DatasetCase] = []
+    with path.open("r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for idx, row in enumerate(reader, start=1):
+            raw_id = row.get("Original ID", "").strip()
+            case_id = int(raw_id) if raw_id.isdigit() else idx
+            category = row.get("Category", "Không phân loại").strip()
+            question = row.get("Master Question", "").strip()
+            expected_answer = (row.get("Ground Truth") or row.get("Answer") or "").strip()
+            source_text = row.get("Source", "").strip()
+            sources = tuple(part.strip() for part in source_text.split(",") if part.strip())
+            cases.append(
+                DatasetCase(
+                    case_id=case_id,
+                    category=category,
+                    question=question,
+                    expected_answer=expected_answer,
+                    expected_sources=sources,
+                )
+            )
+    return cases
+
+
 def parse_dataset(path: Path) -> list[DatasetCase]:
+    if path.suffix.lower() == ".csv":
+        return parse_csv_dataset(path)
+
     text = path.read_text(encoding="utf-8")
     sections = [(match.start(), match.group(1).strip()) for match in SECTION_RE.finditer(text)]
     if not sections:
@@ -260,10 +288,15 @@ def _write_markdown_report(
 
 
 def _filter_cases(cases: Iterable[DatasetCase], args: argparse.Namespace) -> list[DatasetCase]:
+    case_id_set = None
+    if getattr(args, "cases", None):
+        case_id_set = {int(x.strip()) for x in args.cases.split(",") if x.strip()}
+
     selected = [
         case
         for case in cases
-        if (args.from_id is None or case.case_id >= args.from_id)
+        if (case_id_set is None or case.case_id in case_id_set)
+        and (args.from_id is None or case.case_id >= args.from_id)
         and (args.to_id is None or case.case_id <= args.to_id)
         and (args.category is None or args.category.casefold() in case.category.casefold())
     ]
@@ -288,6 +321,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--shared-session", action="store_true", help="Reuse one chat session; default isolates every case")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_LOG_DIR)
     parser.add_argument("--dry-run", action="store_true", help="Parse and list cases without API calls")
+    parser.add_argument("--cases", help="Comma-separated case IDs to run (e.g. 30,33,36,37)")
+    parser.add_argument("--resume", type=Path, help="Resume from an existing JSONL and re-run only failed/error cases")
     parser.add_argument(
         "--rescore-jsonl",
         type=Path,
@@ -357,6 +392,26 @@ def main(argv: list[str] | None = None) -> int:
     dataset_hash = hashlib.sha256(dataset_path.read_bytes()).hexdigest()
     print(f"Parsed {len(cases)} cases from {dataset_path}")
     print(f"Dataset SHA256: {dataset_hash}")
+    resumed_records: dict[tuple[int, str], dict[str, Any]] = {}
+    if args.resume:
+        resume_path = args.resume.resolve()
+        if not resume_path.exists():
+            raise SystemExit(f"Resume file not found: {resume_path}")
+        for line in resume_path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                rec = json.loads(line)
+                resumed_records[(rec["case_id"], rec.get("category", ""))] = rec
+        passed_keys = {
+            key for key, r in resumed_records.items()
+            if r.get("passed") is True and not r.get("error")
+        }
+        print(f"Resuming from {resume_path.name}: {len(resumed_records)} previous records ({len(passed_keys)} passed).")
+        cases = [c for c in cases if (c.case_id, c.category) not in passed_keys]
+        print(f"Remaining cases to run: {len(cases)}")
+        if not cases:
+            print("All cases have already passed! Nothing to re-run.")
+            return 0
+
     for case in cases if args.dry_run else []:
         print(f"[{case.case_id:02d}] {case.category}: {case.question}")
     if args.dry_run:
@@ -452,6 +507,15 @@ def main(argv: list[str] | None = None) -> int:
                     time.sleep(args.delay)
     except KeyboardInterrupt:
         print("\nInterrupted; writing a partial report for completed cases.", file=sys.stderr)
+
+    if resumed_records:
+        merged_map = dict(resumed_records)
+        for rec in records:
+            merged_map[(rec["case_id"], rec.get("category", ""))] = rec
+        records = [merged_map[k] for k in sorted(merged_map.keys(), key=lambda x: (x[1], x[0]))]
+        with jsonl_path.open("w", encoding="utf-8") as jsonl:
+            for rec in records:
+                jsonl.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
     _write_markdown_report(
         report_path,

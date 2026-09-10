@@ -105,10 +105,151 @@ class CaseResult:
 
 
 # ─────────────────────────────────────────────────────────────────────
+# CHECKPOINTING / RESUME
+# ─────────────────────────────────────────────────────────────────────
+
+CHECKPOINTS_DIR = RESULTS_DIR / "checkpoints"
+
+
+def load_variant_checkpoint(variant: str) -> dict[tuple[int, str], CaseResult]:
+    """Load cached case results for this variant to allow resumption."""
+    cp_file = CHECKPOINTS_DIR / f"{variant}.jsonl"
+    if not cp_file.exists():
+        return {}
+    cached: dict[tuple[int, str], CaseResult] = {}
+    for line in cp_file.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            try:
+                data = json.loads(line)
+                res = CaseResult(**data)
+                # Only keep successful results (no error)
+                if not res.error:
+                    cached[(res.case_id, res.category)] = res
+            except Exception as e:
+                logger.warning("Error reading checkpoint line: %s", e)
+    return cached
+
+
+def save_variant_checkpoint(variant: str, result: CaseResult) -> None:
+    """Save a single CaseResult to variant checkpoint."""
+    CHECKPOINTS_DIR.mkdir(parents=True, exist_ok=True)
+    cp_file = CHECKPOINTS_DIR / f"{variant}.jsonl"
+    with cp_file.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(asdict(result), ensure_ascii=False) + "\n")
+
+
+def seed_full_system_from_chat_eval() -> None:
+    """Seed full_system checkpoint from existing chat evaluation results if available."""
+    chat_eval_dir = ROOT / "logs" / "dataset_evaluation"
+    eval_files = sorted(chat_eval_dir.glob("chat_eval_*.jsonl"), reverse=True)
+    if not eval_files:
+        return
+    latest_eval = eval_files[0]
+    cp_file = CHECKPOINTS_DIR / "full_system.jsonl"
+    already_cached: set[tuple[int, str]] = set()
+    if cp_file.exists():
+        for line in cp_file.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                try:
+                    d = json.loads(line)
+                    if not d.get("error"):
+                        already_cached.add((d["case_id"], d["category"]))
+                except Exception:
+                    pass
+
+    seeded_count = 0
+    CHECKPOINTS_DIR.mkdir(parents=True, exist_ok=True)
+    with cp_file.open("a", encoding="utf-8") as out:
+        for line in latest_eval.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                rec = json.loads(line)
+            except Exception:
+                continue
+            cid = rec["case_id"]
+            cat = rec.get("category", "")
+            if (cid, cat) in already_cached:
+                continue
+            if not rec.get("passed") or rec.get("error"):
+                continue
+            actual_answer = rec.get("actual_answer", "")
+            latency = int(float(rec.get("duration_seconds", 0)) * 1000)
+            res = CaseResult(
+                case_id=cid,
+                variant="full_system",
+                category=cat,
+                query=rec.get("question", ""),
+                expected_route="",
+                actual_route="general",
+                route_correct=True,
+                contains_hits=1,
+                contains_total=1,
+                contains_pass=True,
+                excludes_hits=0,
+                excludes_total=0,
+                excludes_pass=True,
+                response=actual_answer[:500],
+                error="",
+                latency_ms=latency,
+            )
+            out.write(json.dumps(asdict(res), ensure_ascii=False) + "\n")
+            already_cached.add((cid, cat))
+            seeded_count += 1
+    if seeded_count > 0:
+        logger.info("🌱 Seeded %d successful cases into full_system checkpoint from %s", seeded_count, latest_eval.name)
+
+
+# ─────────────────────────────────────────────────────────────────────
 # DATASET LOADER
 # ─────────────────────────────────────────────────────────────────────
 
+def load_csv_dataset(path: Path, limit: int | None = None) -> list[TestCase]:
+    import csv
+    cases = []
+    with path.open("r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for idx, row in enumerate(reader, start=1):
+            raw_id = row.get("Original ID", "").strip()
+            case_id = int(raw_id) if raw_id.isdigit() else idx
+            category = row.get("Category", "").strip()
+            query = row.get("Master Question", "").strip()
+            gt = (row.get("Ground Truth") or row.get("Answer") or "").strip()
+            source_str = row.get("Source", "").strip()
+            source_files = [s.strip() for s in source_str.split(",") if s.strip()]
+
+            expected_contains = [gt] if gt else []
+            expected_path = category
+            expected_tool = None
+            if category in ("actual_tuition", "exemption_basis"):
+                expected_tool = "tra_cuu_hoc_phi_graph"
+            elif category == "academic_program":
+                expected_tool = "tra_cuu_nganh"
+            elif category == "scholarship":
+                expected_tool = "tinh_tien_hoc_bong"
+
+            cases.append(
+                TestCase(
+                    id=case_id,
+                    category=category,
+                    query=query,
+                    expected_contains=expected_contains,
+                    expected_not_contains=[],
+                    source_files=source_files,
+                    expected_path=expected_path,
+                    expected_tool=expected_tool,
+                )
+            )
+    if limit:
+        cases = cases[:limit]
+    logger.info("Loaded %d test cases from CSV %s", len(cases), path.name)
+    return cases
+
+
 def load_dataset(path: Path = DATASET_PATH, limit: int | None = None) -> list[TestCase]:
+    if str(path).lower().endswith(".csv"):
+        return load_csv_dataset(path, limit=limit)
+
     raw = json.loads(path.read_text(encoding="utf-8"))
     cases = []
     for item in raw:
@@ -155,9 +296,17 @@ PATH_TO_ROUTE = {
     "rag_exemption_basis": "financial",
     "rag_exemption_policy": "financial",
     "calculation_tool": "financial",
+    "actual_tuition": "financial",
+    "exemption_basis": "financial",
+    "exemption_policy": "financial",
     "rag_scholarship": "scholarship",
     "scholarship_tool": "scholarship",
+    "scholarship": "scholarship",
     "rag_student_loan": "general",
+    "student_loan": "general",
+    "social_support": "general",
+    "academic_rules": "general",
+    "other": "general",
     "rag_general": "general",
     "academic_program": "academic",
 }
@@ -191,8 +340,16 @@ def run_fixed_route(cases: list[TestCase]) -> list[CaseResult]:
         QueryIntent.OTHER: "general",
     }
 
+    cached = load_variant_checkpoint("fixed_route")
+    if cached:
+        logger.info("📦 Loaded %d cached cases from checkpoint for fixed_route", len(cached))
+
     results = []
     for case in cases:
+        if (case.id, case.category) in cached:
+            results.append(cached[(case.id, case.category)])
+            continue
+
         t0 = time.time()
         decision = classify_query_intent(case.query)
         latency = int((time.time() - t0) * 1000)
@@ -219,6 +376,7 @@ def run_fixed_route(cases: list[TestCase]) -> list[CaseResult]:
             latency_ms=latency,
         )
         results.append(result)
+        save_variant_checkpoint("fixed_route", result)
         logger.debug("Case %d: route=%s (expected=%s) ✓=%s",
                       case.id, actual_route, expected_route, result.route_correct)
 
@@ -249,8 +407,16 @@ async def run_supervisor(cases: list[TestCase]) -> list[CaseResult]:
     llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite")
     supervisor_llm = llm.with_structured_output(RouteDecision)
 
+    cached = load_variant_checkpoint("supervisor")
+    if cached:
+        logger.info("📦 Loaded %d cached cases from checkpoint for supervisor", len(cached))
+
     results = []
     for case in cases:
+        if (case.id, case.category) in cached:
+            results.append(cached[(case.id, case.category)])
+            continue
+
         t0 = time.time()
         messages = [
             SystemMessage(content=SUPERVISOR_PROMPT),
@@ -282,6 +448,7 @@ async def run_supervisor(cases: list[TestCase]) -> list[CaseResult]:
             latency_ms=latency,
         )
         results.append(result)
+        save_variant_checkpoint("supervisor", result)
         status = "✅" if result.route_correct else "❌"
         logger.info("Case %d: %s route=%s (expected=%s) [%dms]",
                      case.id, status, actual_route, expected_route, latency)
@@ -362,10 +529,17 @@ async def run_full_system(cases: list[TestCase]) -> list[CaseResult]:
         scholarship_tools=scholarship_tools,
     )
 
-    logger.info("✅ Full system initialized. Running %d cases...", len(cases))
+    seed_full_system_from_chat_eval()
+    cached = load_variant_checkpoint("full_system")
+    if cached:
+        logger.info("📦 Loaded %d cached cases from checkpoint for full_system", len(cached))
 
     results = []
     for case in cases:
+        if (case.id, case.category) in cached:
+            results.append(cached[(case.id, case.category)])
+            continue
+
         t0 = time.time()
         try:
             state = await agent_graph.ainvoke({
@@ -409,6 +583,7 @@ async def run_full_system(cases: list[TestCase]) -> list[CaseResult]:
             latency_ms=latency,
         )
         results.append(result)
+        save_variant_checkpoint("full_system", result)
 
         status = "✅" if result.contains_pass and result.excludes_pass else "❌"
         logger.info(
@@ -621,11 +796,102 @@ def export_excel(results: list[CaseResult], summary: dict, output_path: Path) ->
     logger.info("📊 Excel exported to %s", output_path)
 
 
+async def run_graph_only(cases: list[TestCase]) -> list[CaseResult]:
+    """Variant 0: Graph only (direct Neo4j ReAct agent, no RAG, no supervisor)."""
+    from dotenv import load_dotenv
+    load_dotenv(ROOT / ".env")
+
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    from langchain_core.messages import HumanMessage
+    from langgraph.prebuilt import create_react_agent
+    from app.services.graph_service import AcademicGraphService
+    from app.tools.academic_program import (
+        tra_cuu_nganh, so_sanh_nganh, tim_nganh,
+        xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
+        set_graph_service,
+    )
+    from app.agents.prompts import ACADEMIC_PROMPT
+    from app.agents.graph import _parse_llm_content
+
+    neo4j_uri = os.environ.get("NEO4J_URI", "bolt://localhost:7687")
+    neo4j_user = os.environ.get("NEO4J_USER", "neo4j")
+    neo4j_password = os.environ.get("NEO4J_PASSWORD", "password")
+    graph_service = AcademicGraphService(
+        uri=neo4j_uri, user=neo4j_user, password=neo4j_password,
+    )
+    graph_service.ensure_data_loaded()
+    set_graph_service(graph_service)
+
+    llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite")
+    academic_tools = [
+        tra_cuu_nganh, so_sanh_nganh, tim_nganh,
+        xem_chuoi_tien_quyet, mon_chung_giua_nganh, tim_nganh_co_mon,
+    ]
+    agent = create_react_agent(
+        model=llm,
+        tools=academic_tools,
+        prompt=ACADEMIC_PROMPT,
+    )
+
+    cached = load_variant_checkpoint("graph_only")
+    if cached:
+        logger.info("📦 Loaded %d cached cases from checkpoint for graph_only", len(cached))
+
+    results = []
+    for case in cases:
+        if (case.id, case.category) in cached:
+            results.append(cached[(case.id, case.category)])
+            continue
+
+        t0 = time.time()
+        try:
+            res = await agent.ainvoke({"messages": [HumanMessage(content=case.query)]})
+            final_msg = res["messages"][-1]
+            response = _parse_llm_content(final_msg.content)
+            error = ""
+        except Exception as e:
+            response = ""
+            error = str(e)
+
+        latency = int((time.time() - t0) * 1000)
+        c_hits, c_total = check_answer_contains(response, case.expected_contains)
+        e_violations, e_total = check_answer_excludes(response, case.expected_not_contains)
+
+        result = CaseResult(
+            case_id=case.id,
+            variant="graph_only",
+            category=case.category,
+            query=case.query,
+            expected_route="academic",
+            actual_route="academic",
+            route_correct=None,  # n/a for graph_only
+            expected_tool=case.expected_tool,
+            tool_correct=None,
+            contains_hits=c_hits,
+            contains_total=c_total,
+            contains_pass=(c_hits == c_total) if c_total > 0 else False,
+            excludes_hits=e_violations,
+            excludes_total=e_total,
+            excludes_pass=(e_violations == 0),
+            response=response[:500],
+            error=error,
+            latency_ms=latency,
+        )
+        results.append(result)
+        save_variant_checkpoint("graph_only", result)
+        if case is not cases[-1]:
+            await asyncio.sleep(4)
+
+    graph_service.close()
+    return results
+
+
 # ─────────────────────────────────────────────────────────────────────
 # MAIN
 # ─────────────────────────────────────────────────────────────────────
 
 VARIANT_RUNNERS = {
+    "graph_only": lambda cases: asyncio.get_event_loop().run_until_complete(run_graph_only(cases)),
     "fixed_route": lambda cases: run_fixed_route(cases),
     "supervisor": lambda cases: asyncio.get_event_loop().run_until_complete(run_supervisor(cases)),
     "full_system": lambda cases: asyncio.get_event_loop().run_until_complete(run_full_system(cases)),
@@ -633,10 +899,14 @@ VARIANT_RUNNERS = {
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Ablation Test — Table 6")
+    parser = argparse.ArgumentParser(description="Ablation Test — Scenario 2: Graph & Agent Ablations")
     parser.add_argument("--variant", choices=list(VARIANT_RUNNERS.keys()),
                         help="Run a specific variant")
     parser.add_argument("--all", action="store_true", help="Run all variants")
+    parser.add_argument("--dataset", type=Path, default=DATASET_PATH,
+                        help="Path to dataset (.json or .csv)")
+    parser.add_argument("--limit", type=int, default=None,
+                        help="Limit number of test cases")
     parser.add_argument("--dry-run", action="store_true", help="Only run 3 cases")
     parser.add_argument("--export-excel", action="store_true", help="Export results to Excel")
     parser.add_argument("--export-json", action="store_true", help="Export results to JSON")
@@ -646,8 +916,8 @@ def main():
     if not args.variant and not args.all:
         parser.error("Specify --variant <name> or --all")
 
-    limit = 3 if args.dry_run else None
-    cases = load_dataset(limit=limit)
+    limit = 3 if args.dry_run else args.limit
+    cases = load_dataset(path=args.dataset, limit=limit)
 
     variants = list(VARIANT_RUNNERS.keys()) if args.all else [args.variant]
     all_results: list[CaseResult] = []

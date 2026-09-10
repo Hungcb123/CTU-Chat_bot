@@ -1,0 +1,2441 @@
+[
+  {
+    "id": "26",
+    "field": "Master Question",
+    "before": "CNTT Khóa 49 đóng bao nhiêu cho mỗi tín chỉ thuộc phần đại cương chung?",
+    "after": "Trong năm học 2026-2027, CNTT Khóa 49 đóng bao nhiêu cho một tín chỉ đại cương chung ở chương trình chuẩn và chương trình chất lượng cao?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "26",
+    "field": "Ground Truth",
+    "before": "Chương trình đào tạo chuẩn, đối với khóa 51 trở về trước: \"Mức học phí khối kiến thức đại cương chung\" là 695.000 đồng/tín chỉ. Chương trình chất lượng cao: \"Mức học phí của khối kiến thức đại cương chung (tất cả các ngành)\" tại K49 là 441.000 đồng/tín chỉ.",
+    "after": "Chương trình chuẩn: 695.000 đồng/tín chỉ; chương trình chất lượng cao: 441.000 đồng/tín chỉ.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "26",
+    "field": "Source",
+    "before": "MucHocPhi_QuyDinhChung.md",
+    "after": "MucHocPhi_QuyDinhChung.md; MucHocPhi_ChatLuongCao_TienTien.md",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "26",
+    "field": "source_relation",
+    "before": "single",
+    "after": "all_required",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "27",
+    "field": "Master Question",
+    "before": "Với Khóa 52 hệ đại trà, mỗi tín chỉ của phần đại cương chung được tính bao nhiêu?",
+    "after": "Trong năm học 2026-2027, với Khóa 52 hệ đại trà, mỗi tín chỉ của phần đại cương chung được tính bao nhiêu?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "27",
+    "field": "Ground Truth",
+    "before": "\"Mức học phí của khối kiến thức đại cương chung (tất cả các ngành)\" đối với K52 là 695.000 đồng/tín chỉ.",
+    "after": "Mức học phí là 695.000 đồng/tín chỉ",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "27",
+    "field": "Source",
+    "before": "MucHocPhi_DaiHocChinhQuy_Khoa52.md; MucHocPhi_QuyDinhChung.md",
+    "after": "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "27",
+    "field": "source_relation",
+    "before": "all_required",
+    "after": "single",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "28",
+    "field": "Master Question",
+    "before": "Nếu sinh viên Khóa 52 phải học lại sau thời gian chuẩn của chương trình thì học phí được tính theo hệ số nào?",
+    "after": "Trong năm học 2026-2027, sinh viên chương trình chuẩn Khóa 52 học ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất thì học phí nhân với hệ số nào?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "28",
+    "field": "Ground Truth",
+    "before": "Học ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất: Là mức học phí áp dụng cho Khóa 52 nhân với hệ số 1,3.",
+    "after": "Bị nhân với hệ số 1,3",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "28",
+    "field": "Source",
+    "before": "MucHocPhi_QuyDinhChung.md; MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+    "after": "MucHocPhi_QuyDinhChung.md",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "28",
+    "field": "source_relation",
+    "before": "all_required",
+    "after": "single",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "29",
+    "field": "Master Question",
+    "before": "Sinh viên Khóa 51 học lại sau thời gian đào tạo thiết kế sẽ bị tính học phí gấp mấy lần?",
+    "after": "Trong năm học 2026-2027, sinh viên chương trình chuẩn Khóa 51 học ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất thì học phí nhân với hệ số nào?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "29",
+    "field": "Ground Truth",
+    "before": "Học ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất: Là mức học phí mục a hoặc mục b nhân với hệ số 1,3.",
+    "after": "Bị nhân với hệ số 1,3",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "30",
+    "field": "Master Question",
+    "before": "Sư phạm Toán K51 trở về trước: mỗi tín chỉ đóng ở mức nào?",
+    "after": "Trong năm học 2026-2027, sư phạm Toán K51 trở về trước: mỗi tín chỉ đóng ở mức nào (chương trình chuẩn, khối đại cương ngành/cơ sở ngành/chuyên ngành)?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "30",
+    "field": "Ground Truth",
+    "before": "Mức học phí/tín chỉ khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành đại học chính quy chương trình đào tạo chuẩn, áp dụng cho Khóa 51 về trước: Sư phạm Toán học — Mức HP 26-27/TC: 695.000.",
+    "after": "Mức học phí là 695.000 đồng/tín chỉ",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "31",
+    "field": "Master Question",
+    "before": "Một tín chỉ của ngành Sư phạm Toán học Khóa 52 được tính học phí bao nhiêu?",
+    "after": "Trong năm học 2026-2027, một tín chỉ của ngành Sư phạm Toán học Khóa 52 được tính học phí bao nhiêu (chương trình chuẩn, khối đại cương ngành/cơ sở ngành/chuyên ngành)?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "31",
+    "field": "Ground Truth",
+    "before": "K52: Sư phạm Toán học — 109,5 Trđ/khóa; 807.000 đồng/tín chỉ.",
+    "after": "Mức học phí là 807.000 đồng/tín chỉ",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "32",
+    "field": "Master Question",
+    "before": "Quản trị kinh doanh hệ đại trà Khóa 52 dự kiến đóng tổng học phí cho cả khóa bao nhiêu?",
+    "after": "Trong năm học 2026-2027, quản trị kinh doanh hệ đại trà Khóa 52 dự kiến đóng tổng học phí cho cả khóa bao nhiêu?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "32",
+    "field": "Ground Truth",
+    "before": "K52: Quản trị kinh doanh — 114,5 Trđ/khóa; 844.000 đồng/tín chỉ.",
+    "after": "Học phí toàn khóa là 114,5 triệu đồng",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "33",
+    "field": "Master Question",
+    "before": "Sinh viên Khoa học máy tính Khóa 52 đóng bao nhiêu cho mỗi tín chỉ?",
+    "after": "Trong năm học 2026-2027, sinh viên Khoa học máy tính Khóa 52 đóng bao nhiêu cho mỗi tín chỉ (chương trình chuẩn, khối đại cương ngành/cơ sở ngành/chuyên ngành)?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "33",
+    "field": "Ground Truth",
+    "before": "K52: Khoa học máy tính — 150,3 Trđ/khóa; 966.000 đồng/tín chỉ.",
+    "after": "Mức học phí là 966.000 đồng/tín chỉ",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "34",
+    "field": "Master Question",
+    "before": "Tổng học phí toàn khóa của ngành Kiến trúc hệ đại trà Khóa 52 là bao nhiêu?",
+    "after": "Trong năm học 2026-2027, tổng học phí toàn khóa của ngành Kiến trúc hệ đại trà Khóa 52 là bao nhiêu?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "34",
+    "field": "Ground Truth",
+    "before": "K52: Kiến trúc — 165,6 Trđ/khóa; 1.016.000 đồng/tín chỉ.",
+    "after": "Học phí toàn khóa là 165,6 triệu đồng",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "35",
+    "field": "Master Question",
+    "before": "CNTT CLC K52 thu học phí cố định theo năm ở mức nào?",
+    "after": "Trong năm học 2026-2027, cNTT CLC K52 thu học phí cố định theo năm ở mức nào?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "35",
+    "field": "Ground Truth",
+    "before": "Học phí cố định theo khóa học (triệu đồng/năm học) — Chương trình chất lượng cao — Công nghệ thông tin — K52: 44,0.",
+    "after": "Học phí là 44 triệu đồng/năm học",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "36",
+    "field": "Master Question",
+    "before": "Kinh doanh quốc tế CLC K51: học phí tính theo năm ở mức bao nhiêu?",
+    "after": "Trong năm học 2026-2027, kinh doanh quốc tế CLC K51: học phí tính theo năm ở mức bao nhiêu?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "36",
+    "field": "Ground Truth",
+    "before": "Học phí cố định theo khóa học (triệu đồng/năm học) — Chương trình chất lượng cao — Kinh doanh quốc tế — K51: 40.",
+    "after": "Học phí là 40 triệu đồng/năm học",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "37",
+    "field": "Master Question",
+    "before": "Môn Năng lực số áp dụng cho Khóa 51 trở về trước được tính học phí ở mức nào?",
+    "after": "Trong năm học 2026-2027, môn Năng lực số áp dụng cho Khóa 51 trở về trước được tính học phí ở mức nào (chương trình chuẩn)?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "37",
+    "field": "Ground Truth",
+    "before": "Mức học phí khối kiến thức đại cương chung — Năng lực số — Số tín chỉ: 3; Mức học phí một tín chỉ: 695.000.",
+    "after": "Là 695.000 đồng/tín chỉ",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "38",
+    "field": "Master Question",
+    "before": "Một tín chỉ chuyên ngành của sinh viên Kế toán Khóa 51 có mức học phí bao nhiêu?",
+    "after": "Trong năm học 2026-2027, một tín chỉ chuyên ngành của sinh viên Kế toán Khóa 51 có mức học phí bao nhiêu (chương trình chuẩn, khối đại cương ngành/cơ sở ngành/chuyên ngành)?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "38",
+    "field": "Ground Truth",
+    "before": "áp dụng cho Khóa 51 về trước: Kế toán — Mức HP 26-27/TC: 727.000.",
+    "after": "Mức học phí là 727.000 đồng/tín chỉ",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "39",
+    "field": "Master Question",
+    "before": "Kinh doanh nông nghiệp - Hòa An K52: mỗi tín chỉ phải đóng khoảng bao nhiêu?",
+    "after": "Trong năm học 2026-2027, kinh doanh nông nghiệp - Hòa An K52: mỗi tín chỉ phải đóng khoảng bao nhiêu (chương trình chuẩn, khối đại cương ngành/cơ sở ngành/chuyên ngành)?",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "39",
+    "field": "Ground Truth",
+    "before": "K52: Kinh doanh nông nghiệp - Hòa An — 114,5 Trđ/khóa; 844.000 đồng/tín chỉ.",
+    "after": "Học phí là 844.000 đồng/tín chỉ",
+    "reasons": [
+      "Make fee academic year explicit",
+      "Specify fee block and program instead of conflating all credits",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "76",
+    "field": "Ground Truth",
+    "before": "Định mức bình quân học bổng khuyến khích học tập của học kỳ đầu tiên Khóa 51 (áp dụng cho sinh viên của tất cả các chương trình: đại trà, tiên tiến, chất lượng cao) là 5.000.000 đồng/sinh viên/học kỳ.",
+    "after": "Mức học bổng bình quân là 5.000.000 đồng/sinh viên/học kỳ",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "77",
+    "field": "Ground Truth",
+    "before": "Sinh viên diện tuyển thẳng, ưu tiên xét tuyển Khóa 51 được hưởng mức học bổng khuyến khích học tập là 6.000.000 đồng/học kỳ trong học kỳ đầu tiên.",
+    "after": "Mức hưởng học bổng là 6.000.000 đồng/học kỳ",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "79",
+    "field": "Master Question",
+    "before": "Sinh viên khối VI - Sức khỏe đạt mức Xuất sắc thì nhận học bổng bao nhiêu?",
+    "after": "Trong học kỳ 1 năm học 2025-2026, sinh viên khối VI - Sức khỏe đạt mức Xuất sắc thì nhận học bổng bao nhiêu?",
+    "reasons": [
+      "Scope scholarship amount to source period",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "80",
+    "field": "Master Question",
+    "before": "Ở khối III (Kinh doanh, quản lý và pháp luật), học bổng mức Khá có giá trị bao nhiêu?",
+    "after": "Trong học kỳ 1 năm học 2025-2026, ở khối III (Kinh doanh, quản lý và pháp luật), học bổng mức Khá có giá trị bao nhiêu?",
+    "reasons": [
+      "Scope scholarship amount to source period",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "81",
+    "field": "Master Question",
+    "before": "Sinh viên chất lượng cao Khóa 51 nếu đạt loại Giỏi thì mức học bổng là bao nhiêu?",
+    "after": "Từ học kỳ 2 năm học 2025-2026, sinh viên chất lượng cao Khóa 51 nếu đạt loại Giỏi thì mức học bổng là bao nhiêu?",
+    "reasons": [
+      "Use the explicit K51 effective semester in the source table",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "82",
+    "field": "Master Question",
+    "before": "Một suất Vallet hỗ trợ sinh viên với số tiền bao nhiêu?",
+    "after": "Trong đợt học bổng năm 2026, một suất Vallet hỗ trợ sinh viên với số tiền bao nhiêu?",
+    "reasons": [
+      "Scope annual scholarship announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "82",
+    "field": "Ground Truth",
+    "before": "Giá trị mỗi suất học bổng Vallet dành cho sinh viên hay học viên cao học là 34.000.000 đồng.",
+    "after": "Mỗi suất học bổng trị giá 34.000.000 đồng",
+    "reasons": [
+      "Scope annual scholarship announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "83",
+    "field": "Master Question",
+    "before": "Xét học bổng Vallet theo thang 4 thì điểm trung bình tích lũy tối thiểu cần bao nhiêu?",
+    "after": "Trong đợt học bổng năm 2026, xét học bổng Vallet theo thang 4 thì điểm trung bình tích lũy tối thiểu cần bao nhiêu?",
+    "reasons": [
+      "Scope annual scholarship announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "84",
+    "field": "Master Question",
+    "before": "Có công bố bài báo nghiên cứu khoa học thì hồ sơ Vallet có được ưu tiên không?",
+    "after": "Trong đợt học bổng năm 2026, có công bố bài báo nghiên cứu khoa học thì hồ sơ Vallet có được ưu tiên không?",
+    "reasons": [
+      "Scope annual scholarship announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "85",
+    "field": "Master Question",
+    "before": "Học bổng Panasonic trao bao nhiêu tiền cho mỗi suất?",
+    "after": "Trong đợt học bổng năm 2026, học bổng Panasonic trao bao nhiêu tiền cho mỗi suất?",
+    "reasons": [
+      "Scope annual scholarship announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "86",
+    "field": "Master Question",
+    "before": "Với hoàn cảnh gia đình khó khăn, sinh viên cần GPA hệ 4 tối thiểu bao nhiêu để nộp hồ sơ Panasonic?",
+    "after": "Trong đợt học bổng năm 2026, với hoàn cảnh gia đình khó khăn, sinh viên cần GPA hệ 4 tối thiểu bao nhiêu để nộp hồ sơ Panasonic?",
+    "reasons": [
+      "Scope annual scholarship announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "87",
+    "field": "Master Question",
+    "before": "Chương trình SCC dự kiến trao tổng cộng bao nhiêu suất học bổng?",
+    "after": "Trong năm học 2025-2026, chương trình SCC dự kiến trao tổng cộng bao nhiêu suất học bổng?",
+    "reasons": [
+      "Scope SCC announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "88",
+    "field": "Master Question",
+    "before": "Mỗi học bổng SCC có giá trị bao nhiêu?",
+    "after": "Trong năm học 2025-2026, mỗi học bổng SCC có giá trị bao nhiêu?",
+    "reasons": [
+      "Scope SCC announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "89",
+    "field": "Master Question",
+    "before": "Muốn xét học bổng SCC thì kết quả học tập phải đạt mức nào?",
+    "after": "Trong năm học 2025-2026, muốn xét học bổng SCC thì kết quả học tập phải đạt mức nào?",
+    "reasons": [
+      "Scope SCC announcement",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q023",
+    "field": "Master Question",
+    "before": "Chương trình được thiết kế trong 4,5 năm thì sinh viên được phép kéo dài tối đa đến bao lâu để hoàn tất?",
+    "after": "Theo quy định học vụ năm 2024, với sinh viên không có tín chỉ được công nhận/chuyển đổi làm giảm thời hạn học, chương trình được thiết kế trong 4,5 năm thì sinh viên được phép kéo dài tối đa đến bao lâu để hoàn tất?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q023",
+    "field": "Ground Truth",
+    "before": "Sinh viên theo học chương trình đào tạo có thời gian thiết kế 4,5 năm được học tập tối đa 9 năm để hoàn thành chương trình.",
+    "after": "Thời gian học tập tối đa để hoàn thành chương trình đào tạo có thời gian thiết kế 4,5 năm là 9 năm.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q032",
+    "field": "Ground Truth",
+    "before": "Việc đánh giá học phần thường gồm các thành phần điểm như điểm chuyên cần/quá trình, điểm giữa kỳ và điểm cuối kỳ, với trọng số được quy định trong đề cương chi tiết học phần, theo Điều 21 của Quy định công tác học vụ.",
+    "after": "Đối với học phần lý thuyết hoặc học phần lý thuyết kết hợp thực hành, điểm học phần được đánh giá qua tối thiểu hai điểm thành phần, bao gồm: điểm bài tập, điểm kiểm tra giữa kỳ, điểm thực hành, điểm đánh giá nhận thức, điểm tham gia thảo luận, điểm chuyên cần, điểm đồ án,... và điểm thi kết thúc học phần.\n\nĐối với học phần thực hành, điểm học phần được tính bằng điểm trung bình của các bài thực hành.\n\nNgoài ra, đối với các học phần có khối lượng nhỏ hơn 02 tín chỉ, có thể chỉ có điểm của một loại hình đánh giá. Phương pháp đánh giá cụ thể cho từng học phần sẽ được công bố trong đề cương chi tiết học phần.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q034",
+    "field": "Ground Truth",
+    "before": "Hạng tốt nghiệp (Xuất sắc, Giỏi, Khá, Trung bình...) được xếp chủ yếu dựa trên điểm trung bình chung tích lũy toàn khóa, có thể bị điều chỉnh giảm một mức nếu sinh viên bị kỷ luật hoặc thi lại/học lại quá số lần quy định, theo Điều 34 của Quy định công tác học vụ.",
+    "after": "Hạng tốt nghiệp của sinh viên được xác định căn cứ vào điểm trung bình chung tích lũy (ĐTBCTL) theo các mức cụ thể như sau:\n\n*   **Loại xuất sắc:** từ 3,60 đến 4,00.\n*   **Loại giỏi:** từ 3,20 đến 3,59.\n*   **Loại khá:** từ 2,50 đến 3,19.\n*   **Loại trung bình:** từ 2,00 đến 2,49.\n\nNgoài ra, hạng tốt nghiệp loại xuất sắc và loại giỏi sẽ bị giảm một mức nếu sinh viên thuộc một trong các trường hợp sau:\n1. Có khối lượng các học phần bị điểm F vượt quá 5% so với tổng số tín chỉ quy định của chương trình đào tạo (không tính khối lượng học phần học cải thiện điểm bị điểm F).\n2. Đã bị kỷ luật từ mức cảnh cáo cấp Trường trở lên trong thời gian học.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q050",
+    "field": "Ground Truth",
+    "before": "Xếp loại học lực của sinh viên được chia theo các mức dựa trên điểm trung bình chung, ví dụ: Xuất sắc, Giỏi, Khá, Trung bình, Yếu, Kém, theo quy định tại Điều 26 của Quy định công tác học vụ.",
+    "after": "Xếp loại học lực của sinh viên được chia thành các mức sau:\n\n*   **Loại xuất sắc:** Điểm trung bình chung học kỳ (ĐTBCHK) hoặc điểm trung bình chung năm học (ĐTBCNH) đạt từ 3,60 đến 4,00.\n*   **Loại giỏi:** ĐTBCHK/ĐTBCNH đạt từ 3,20 đến 3,59.\n*   **Loại khá:** ĐTBCHK/ĐTBCNH đạt từ 2,50 đến 3,19.\n*   **Loại trung bình:** ĐTBCHK/ĐTBCNH đạt từ 2,00 đến 2,49.\n*   **Loại yếu:** ĐTBCHK/ĐTBCNH đạt từ 1,00 đến 1,99.\n*   **Loại kém:** ĐTBCHK/ĐTBCNH đạt dưới 1,00.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q076",
+    "field": "Ground Truth",
+    "before": "Tùy mức độ vi phạm, sinh viên vi phạm quy định về thi và kiểm tra có thể bị khiển trách, cảnh cáo, đình chỉ thi/học phần, hoặc hình thức kỷ luật nặng hơn theo quy định tại Điều 28 của Quy định công tác học vụ.",
+    "after": "Sinh viên vi phạm các quy định về thi và kiểm tra có thể bị xử lý bằng các hình thức kỷ luật sau đây:\n\n1. **Khiển trách:** Áp dụng đối với các lỗi như nhìn bài của người khác hoặc trao đổi, thảo luận với người khác. Sinh viên bị khiển trách sẽ bị trừ 25% điểm số của lần thi/kiểm tra đó. Nếu bị khiển trách 2 lần trong một năm học, sinh viên sẽ bị kỷ luật cảnh cáo toàn đơn vị đào tạo.\n\n2. **Cảnh cáo:** Áp dụng đối với các lỗi như đã bị khiển trách một lần nhưng vẫn tiếp tục vi phạm trong cùng buổi thi; trao đổi giấy nháp; chép bài hoặc để người khác chép bài; không chấp hành sự quản lý hoặc có thái độ thiếu tôn trọng cán bộ coi thi. Sinh viên bị cảnh cáo sẽ bị trừ 50% điểm số của lần thi/kiểm tra đó. Nếu bị cảnh cáo 2 lần trong một năm học, sinh viên sẽ bị kỷ luật cảnh cáo toàn Trường.\n\n3. **Đình chỉ thi:** Áp dụng đối với các lỗi như đã bị cảnh cáo một lần nhưng vẫn tiếp tục vi phạm; mang vật dụng không được phép vào phòng thi; sử dụng giấy nháp hoặc bài làm của người khác; đưa đề thi ra ngoài hoặc nhận bài giải từ ngoài vào; có hành động gây rối hoặc đe dọa cán bộ coi thi/sinh viên khác. Sinh viên bị đình chỉ thi sẽ nhận điểm 0 cho lần thi/kiểm tra đó. Nếu bị đình chỉ thi 2 lần trong một năm học, sinh viên sẽ bị đình chỉ học tập 1 năm; nếu tái phạm sẽ bị buộc thôi học.\n\n4. **Xử lý thi hộ:** Áp dụng cho cả người thi hộ và người nhờ thi hộ.\n   - Vi phạm lần thứ nhất: Người nhờ thi hộ nhận điểm 0 học phần đó và bị đình chỉ học tập 1 năm; người thi hộ bị đình chỉ học tập 1 năm.\n   - Vi phạm lần thứ hai (trong cả khóa học): Buộc thôi học.\n\nNgoài ra, tùy theo mức độ vi phạm, các trường hợp khác sẽ do Hội đồng kỷ luật của Trường xem xét và quyết định hình thức xử lý cụ thể.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R11",
+    "field": "Ground Truth",
+    "before": "1. Học sinh được xét tuyển thẳng phải học bổ sung kiến thức một năm. Năm học bao gồm 2 học kỳ (gồm học kỳ I và học kỳ II). Mỗi học kỳ, học sinh phải học 4 môn học như sau:",
+    "after": "Học sinh được xét tuyển thẳng phải học bổ sung kiến thức trong thời gian một năm (gồm học kỳ I và học kỳ II).",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R12",
+    "field": "Ground Truth",
+    "before": "Chương trình học gồm 4 môn học (Toán học, Ngữ văn, Tiếng Anh, Tin học), tổng cộng 600 tiết (300 tiết lý thuyết, 300 tiết thực hành) tương ứng với 40 tín chỉ.",
+    "after": "Chương trình học gồm 4 môn học (Toán học, Ngữ văn, Tiếng Anh, Tin học), tổng cộng 600 tiết (300 tiết lý thuyết, 300 tiết thực hành), tương ứng với 40 tín chỉ.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R13",
+    "field": "Master Question",
+    "before": "Vắng quá 20% số tiết của môn học thì còn được dự thi cuối kỳ không?",
+    "after": "Trong chương trình bồi dưỡng kiến thức cho học sinh xét tuyển thẳng theo quy định năm 2020, vắng quá 20% số tiết của môn học thì còn được dự thi cuối kỳ không?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R13",
+    "field": "Ground Truth",
+    "before": "b) Tổng số thời gian nghỉ học có lý do và không có lý do vượt quá 20% số tiết ở môn học nào thì không được dự thi môn học đó trong học kỳ.",
+    "after": "Không, học sinh nghỉ quá 20% số tiết ở môn học nào (kể cả có lý do và không có lý do) thì không được dự thi môn học đó trong học kỳ.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R14",
+    "field": "Ground Truth",
+    "before": "1. Cuối năm học, mỗi môn học có một điểm tổng kết. Điểm tổng kết môn học là điểm trung bình chung của 2 lần kiểm tra (hệ số 1) và 2 lần thi (hệ số 2).",
+    "after": "Điểm tổng kết môn học là điểm trung bình chung của 2 lần kiểm tra (hệ số 1) và 2 lần thi (hệ số 2).",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R15",
+    "field": "Ground Truth",
+    "before": "a) Thi đủ 4 môn cuối mỗi học kỳ;\nb) Điểm trung bình chung năm học đạt từ **5,0 điểm** trở lên và Điểm tổng kết môn học đạt trên **1,0 điểm**.\nc) Xếp loại rèn luyện cả năm đạt từ **Khá** trở lên.",
+    "after": "Điều kiện để được xét tuyển vào đại học là: thi đủ 4 môn cuối mỗi học kỳ; điểm trung bình chung năm học đạt từ 5,0 điểm trở lên và điểm tổng kết môn học đạt trên 1,0 điểm; xếp loại rèn luyện cả năm đạt từ Khá trở lên.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R21",
+    "field": "Ground Truth",
+    "before": "Nhằm giúp người học có thể rút ngắn thời gian học tập, hỗ trợ sinh viên ra trường đúng tiến độ, khai thác hiệu quả quỹ phòng học cho hoạt động giảng dạy và học tập và đảm bảo giờ nghĩa vụ của giảng viên, ngày 05 tháng 7 năm 2024, Hội đồng trường Trường Đại học Cần Thơ (ĐHCT) đã ban hành Nghị quyết số 189/NQ-HĐT phê duyệt kế hoạch tổ chức giảng dạy và học tập từ Học kỳ 2 năm học 2024 - 2025. Theo đó, từ Học kỳ 2 năm học 2024 - 2025, Trường ĐHCT sẽ tổ chức giảng dạy và học tập 03 học kỳ chính trong một năm học.",
+    "after": "Trường Đại học Cần Thơ tổ chức giảng dạy và học tập 3 học kỳ chính kể từ Học kỳ 2 năm học 2024 - 2025.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R22",
+    "field": "Ground Truth",
+    "before": "b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",
+    "after": "Một học kỳ kéo dài 15 tuần.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R23",
+    "field": "Ground Truth",
+    "before": "b) Một học kỳ kéo dài 15 tuần, trong đó gồm 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",
+    "after": "Khoảng thời gian 15 tuần của học kỳ chính bao gồm: 11 tuần dạy và học, 01 tuần dự trữ và tổ chức thi những học phần thi riêng, 01 tuần tổ chức thi những học phần riêng còn lại, 01 tuần tổ chức thi những học phần thi chung và 01 tuần xử lý kết quả.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R24",
+    "field": "Ground Truth",
+    "before": "c) Học kỳ 1 bắt đầu từ tuần thứ 37 đến tuần thứ 51 của năm; Học kỳ 2 bắt đầu từ tuần thứ 01 đến tuần thứ 17 của năm (_bao gồm 2 tuần nghỉ Tết Nguyên Đán_); Học kỳ 3 bắt đầu từ tuần thứ 20 đến tuần thứ 34 của năm. Tuần nghỉ giữa các học kỳ là tuần thứ 18, 19, 35, 36, 52 và tuần thứ 53 (_nếu có_) của năm.",
+    "after": "Học kỳ 1 từ tuần thứ 37 đến tuần thứ 51 của năm; Học kỳ 2 từ tuần thứ 01 đến tuần thứ 17 của năm (bao gồm 2 tuần nghỉ Tết Nguyên Đán); Học kỳ 3 từ tuần thứ 20 đến tuần thứ 34 của năm.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R16",
+    "field": "Ground Truth",
+    "before": "Người học vay vốn để trang trải học phí, sinh hoạt phí và chi phí học tập khác trong thời gian theo học các ngành khoa học, công nghệ, kỹ thuật và toán được ban hành theo Quyết định 29",
+    "after": "Người học được vay vốn để trang trải học phí, sinh hoạt phí và chi phí học tập khác.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R17",
+    "field": "Ground Truth",
+    "before": "Sinh viên, học viên thạc sĩ, nghiên cứu sinh là công dân Việt Nam đang theo học các ngành khoa học, công nghệ, kỹ thuật và toán theo quy định đang đào tạo tại ĐHCT thuộc các ngành, lĩnh vực đào tạo cụ thể:\n| 3   | Máy tính và công nghệ thông tin                                        | 748                           | 848                           | 948                                   |",
+    "after": "Có, sinh viên ngành Máy tính và công nghệ thông tin (mã ngành 748, thạc sĩ 848, nghiên cứu sinh 948) thuộc đối tượng được vay vốn theo Quyết định 29.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R18",
+    "field": "Ground Truth",
+    "before": "(1) Có đồng thời cả ba năm học trung học phổ thông được đánh giá kết quả học tập đạt từ mức khá trở lên;**Hoặc**(2) Đạt điểm trung bình môn lớp 12 của các môn toán, vật lý, hóa học, sinh học từ 8 điểm trở lên",
+    "after": "Sinh viên năm thứ nhất phải đáp ứng một trong hai điều kiện: (1) có đồng thời cả ba năm học THPT đạt kết quả học tập từ khá trở lên, hoặc (2) đạt điểm trung bình môn lớp 12 của các môn Toán, Vật lý, Hóa học, Sinh học từ 8 điểm trở lên.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R19",
+    "field": "Master Question",
+    "before": "Từ năm học thứ hai, sinh viên phải đạt kết quả học tập ra sao mới đủ điều kiện vay vốn?",
+    "after": "Theo chương trình vay vốn của Quyết định 29 được nêu trong tài liệu, từ năm học thứ hai sinh viên phải đạt kết quả học tập ra sao mới đủ điều kiện vay?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R19",
+    "field": "Ground Truth",
+    "before": "Có kết quả học tập trung bình các môn học đạt loại giỏi trở lên theo quy định của pháp luật tại năm trước liền kề với năm đề nghị vay vốn.",
+    "after": "Cần có kết quả học tập trung bình các môn học đạt loại giỏi trở lên tại năm trước liền kề năm đề nghị vay vốn.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R96",
+    "field": "Ground Truth",
+    "before": "Khi vay vốn lần đầu, người học điền Tờ khai thông tin theo mẫu Phụ lục I; đối với các năm tiếp theo, người học sử dụng mẫu Phụ lục II.",
+    "after": "Khi vay vốn lần đầu sử dụng mẫu Phụ lục I; đối với các năm tiếp theo sử dụng mẫu Phụ lục II.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R97",
+    "field": "Ground Truth",
+    "before": "- Học viên thạc sĩ, nghiên cứu sinh thực hiện thủ tục cấp giấy xác nhận tại văn phòng Khoa Sau đại học.",
+    "after": "Học viên thạc sĩ và nghiên cứu sinh thực hiện thủ tục cấp giấy xác nhận tại văn phòng Khoa Sau đại học.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "51",
+    "field": "Master Question",
+    "before": "Mức vay vốn ưu đãi tối đa để mua máy tính học trực tuyến là bao nhiêu?",
+    "after": "Theo chính sách mua thiết bị học trực tuyến ban hành năm 2022, mức vay vốn ưu đãi tối đa để mua máy tính học trực tuyến là bao nhiêu?",
+    "reasons": [
+      "Historical document QA; no claim that applications remain open",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "52",
+    "field": "Master Question",
+    "before": "Lãi suất cho vay mua máy tính học trực tuyến là bao nhiêu?",
+    "after": "Theo chính sách mua thiết bị học trực tuyến ban hành năm 2022, lãi suất cho vay mua máy tính học trực tuyến là bao nhiêu?",
+    "reasons": [
+      "Historical document QA; no claim that applications remain open",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "53",
+    "field": "Master Question",
+    "before": "Khoản vay để mua máy tính phục vụ học trực tuyến được kéo dài tối đa trong bao lâu?",
+    "after": "Theo chính sách mua thiết bị học trực tuyến ban hành năm 2022, khoản vay để mua máy tính phục vụ học trực tuyến được kéo dài tối đa trong bao lâu?",
+    "reasons": [
+      "Historical document QA; no claim that applications remain open",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "54",
+    "field": "Master Question",
+    "before": "Sinh viên thuộc hộ gia đình khó khăn do bố hoặc mẹ mất vì Covid-19 có được vay mua máy tính không?",
+    "after": "Theo chính sách mua thiết bị học trực tuyến ban hành năm 2022, sinh viên thuộc hộ gia đình khó khăn do bố hoặc mẹ mất vì Covid-19 có được vay mua máy tính không?",
+    "reasons": [
+      "Historical document QA; no claim that applications remain open",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "55",
+    "field": "Master Question",
+    "before": "Sinh viên mua máy tính có thể trực tiếp đứng tên vay vốn trong trường hợp nào?",
+    "after": "Theo chính sách mua thiết bị học trực tuyến ban hành năm 2022, sinh viên mua máy tính có thể trực tiếp đứng tên vay vốn trong trường hợp nào?",
+    "reasons": [
+      "Historical document QA; no claim that applications remain open",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "15",
+    "field": "Ground Truth",
+    "before": "Mức trợ cấp xã hội cho sinh viên thuộc đối tượng hộ nghèo hoặc tàn tật là 100.000 đồng/sinh viên/tháng.",
+    "after": "Mức trợ cấp là 100.000 đồng/1 sinh viên/1 tháng",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "21",
+    "field": "Ground Truth",
+    "before": "Sinh viên đang học tại Trường hệ chính quy (kể cả sinh viên mới trúng tuyển vào Trường năm 2025 – Khóa 51) là người dân tộc thiểu số theo Quyết định 1227/QĐ – TTg ngày 14/7/2021 thuộc hộ nghèo, hộ cận nghèo hoặc ngành Sư phạm nhưng chưa được hưởng chính sách theo Nghị định số 116/2020/NĐ - CP ngày 25/9/2020 của Thủ tướng Chính phủ.",
+    "after": "Không, sinh viên sư phạm chưa được hưởng chính sách theo Nghị định 116 mới thuộc đối tượng này",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R01",
+    "field": "Ground Truth",
+    "before": "Thời gian ở KTX của học kỳ 3 năm học 2025-2026 là **3,5 tháng**, tính từ ngày 04/5/2026 đến 21/8/2026.",
+    "after": "Thời gian ở KTX học kỳ 3 năm học 2025-2026 là 3,5 tháng, tính từ ngày 04/5/2026 đến 21/8/2026.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R02",
+    "field": "Ground Truth",
+    "before": "- Sinh viên nộp phí **từ ngày 23/4 đến 29/4/2026**, SV nộp phí cho cả kỳ ở.",
+    "after": "Sinh viên phải đóng phí cho cả kỳ ở từ ngày 23/4 đến ngày 29/4/2026.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R03",
+    "field": "Master Question",
+    "before": "Khi chuyển khoản tiền KTX học kỳ 3, nội dung chuyển khoản phải ghi theo cú pháp nào?",
+    "after": "Khi chuyển khoản tiền KTX học kỳ 3 năm học 2025-2026, nội dung chuyển khoản phải ghi theo cú pháp nào?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R03",
+    "field": "Ground Truth",
+    "before": "+ Nội dung ghi cú pháp: ***Mã số SV – Tên SV – Số điện thoại - KTX.***",
+    "after": "Nội dung chuyển khoản ghi theo cú pháp: Mã số SV – Tên SV – Số điện thoại - KTX.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R04",
+    "field": "Ground Truth",
+    "before": "- Sinh viên đăng ký ở KTX tập trung đầu kỳ *(kể cả SV đang ở KTX)* qua **Hệ thống Quản lý KTX** của Trường bằng tài khoản SV từ ngày phát hành thông báo đến **ngày 10/4/2026.**",
+    "after": "Hạn cuối đăng ký ở KTX học kỳ 3 năm học 2025-2026 là ngày 10/4/2026.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R05",
+    "field": "Ground Truth",
+    "before": "- Đối với SV đăng ký mới có thể nhận chỗ ở từ ngày 04/5/2026.",
+    "after": "Sinh viên đăng ký mới có thể nhận chỗ ở từ ngày 04/5/2026.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R06",
+    "field": "Ground Truth",
+    "before": "**1. Thời gian ở KTX** của học kỳ 1 năm học 2026-2027 là **3,5 tháng**, tính từ ngày 07/9/2026 đến 18/12/2026.",
+    "after": "Thời gian ở KTX học kỳ 1 năm học 2026-2027 là 3,5 tháng, tính từ ngày 07/9/2026 đến 18/12/2026.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R07",
+    "field": "Ground Truth",
+    "before": "- Sinh viên nộp phí **từ ngày 04/8 đến 07/8/2026**, SV nộp phí cho cả kỳ ở.",
+    "after": "Sinh viên nộp phí cho cả kỳ ở từ ngày 04/8 đến ngày 07/8/2026.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R08",
+    "field": "Ground Truth",
+    "before": "- Đối với SV đang ở cũ *(HK3, năm học 2025-2026)* **không cần phải đăng ký lại**, chỉ thực hiện nộp phí theo thời gian nêu ở **mục 2**, trong thông báo này.",
+    "after": "Không cần phải đăng ký lại, sinh viên chỉ thực hiện nộp phí theo quy định.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R09",
+    "field": "Ground Truth",
+    "before": "+ Sinh viên nộp phí gửi xe của học kỳ tại Văn phòng KTX, bao gồm: xe máy, xe điện và xe đạp *(miễn phí)*, từ ngày 04/8 đến 14/8/2026. Sau thời gian trên SV nộp từ 15 giờ đến 16 giờ *(thứ 2 đến thứ 6)*. Đối với xe không có đăng ký phải di chuyển ra khỏi nhà xe nhường lại khoảng trống để sắp xếp xe đã đăng ký.",
+    "after": "Phí gửi xe của học kỳ được nộp tại Văn phòng KTX từ ngày 04/8 đến ngày 14/8/2026. Sau thời gian này, sinh viên nộp từ 15 giờ đến 16 giờ (thứ 2 đến thứ 6). Xe đạp được gửi miễn phí.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q001",
+    "field": "Ground Truth",
+    "before": "Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin (PLO 1); Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội (PLO 2);",
+    "after": "- **a. PLO 1:** Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin.\n- **b. PLO 2:** Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q001",
+    "field": "Answer",
+    "before": "Chào bạn, dựa trên chương trình đào tạo ngành Công nghệ thông tin (mã ngành 7480201), chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm các nội dung sau:\n\n- **a. PLO 1:** Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin.\n- **b. PLO 2:** Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội.\n\n---\n📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/66_7480201_CongNgheThongTin.pdf)",
+    "after": "- **a. PLO 1:** Áp dụng kiến thức về tính toán và toán học phù hợp với các vấn đề liên quan đến công nghệ thông tin.\n- **b. PLO 2:** Hiểu biết về các chuẩn mực và trách nhiệm đối với nghề nghiệp, chính trị, đạo đức, pháp lý, văn hoá và xã hội.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q002",
+    "field": "Ground Truth",
+    "before": "Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân. (PLO1) Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm. (PLO2) Ứng dụng kiến thức về công nghệ số (bậc 4 theo Khung năng lực số) và ngoại ngữ (tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn. (PLO3)",
+    "after": "Chuẩn đầu ra (PLO) về kiến thức thuộc khối giáo dục đại cương bao gồm các nội dung sau:\n\n- **PLO1:** Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân.\n- **PLO2:** Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm.\n- **PLO3:** Ứng dụng kiến thức về công nghệ số (bậc 4 theo Khung năng lực số) và ngoại ngữ (tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q002",
+    "field": "Answer",
+    "before": "Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, tôi xin giải đáp thắc mắc của bạn về chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Kỹ thuật Phần mềm như sau:\n\nChuẩn đầu ra (PLO) về kiến thức thuộc khối giáo dục đại cương bao gồm các nội dung sau:\n\n- **PLO1:** Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân.\n- **PLO2:** Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm.\n- **PLO3:** Ứng dụng kiến thức về công nghệ số (bậc 4 theo Khung năng lực số) và ngoại ngữ (tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn.\n\n---\n📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",
+    "after": "Chuẩn đầu ra (PLO) về kiến thức thuộc khối giáo dục đại cương bao gồm các nội dung sau:\n\n- **PLO1:** Vận dụng kiến thức cơ bản về khoa học chính trị, khoa học xã hội và nhân văn, pháp luật, giáo dục thể chất, giáo dục quốc phòng - an ninh, ý tưởng về đổi mới sáng tạo và khởi nghiệp trong các vấn đề liên quan đến công nghệ phần mềm và phát triển cá nhân.\n- **PLO2:** Ứng dụng kiến thức toán học nền tảng để tiếp thu kiến thức chuyên môn trong lĩnh vực kỹ thuật phần mềm.\n- **PLO3:** Ứng dụng kiến thức về công nghệ số (bậc 4 theo Khung năng lực số) và ngoại ngữ (tiếng Anh hoặc tiếng Pháp tương đương trình độ bậc 3/6 Khung năng lực ngoại ngữ) vào nghiên cứu, cập nhật và trao đổi thông tin phục vụ học tập và phát triển chuyên môn.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q003",
+    "field": "Ground Truth",
+    "before": "Học phần \"Kinh tế chính trị Mác - Lênin\" yêu cầu học phần tiên quyết: ML014.",
+    "after": "Học phần \"Kinh tế chính trị Mác - Lênin\" (mã số: ML016) trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) yêu cầu học phần tiên quyết là: **Triết học Mác - Lênin** (mã số: ML014).",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q003",
+    "field": "Answer",
+    "before": "Học phần \"Kinh tế chính trị Mác - Lênin\" (mã số: ML016) trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) yêu cầu học phần tiên quyết là: **Triết học Mác - Lênin** (mã số: ML014).\n\n---\n📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC/7. Khung chương trình đào tạo](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",
+    "after": "Học phần \"Kinh tế chính trị Mác - Lênin\" (mã số: ML016) trong chương trình đào tạo ngành Công nghệ thông tin (chất lượng cao) yêu cầu học phần tiên quyết là: **Triết học Mác - Lênin** (mã số: ML014).",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q004",
+    "field": "Ground Truth",
+    "before": "Áp dụng sâu rộng kiến thức về tính toán và toán học để giải quyết các vấn đề phức tạp và đòi hỏi sự sáng tạo trong lĩnh vực công nghệ thông tin (PLO 1); Hiểu rõ và vận dụng các chuẩn mực và trách nhiệm nghề nghiệp ở tầm quốc tế, chính trị, đạo đức, pháp lý, văn hóa và xã hội, có ý thức trách nhiệm công dân toàn cầu (PLO 2);",
+    "after": "Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm các nội dung sau:\n\n*   **a. (PLO 1):** Áp dụng sâu rộng kiến thức về tính toán và toán học để giải quyết các vấn đề phức tạp và đòi hỏi sự sáng tạo trong lĩnh vực công nghệ thông tin.\n*   **b. (PLO 2):** Hiểu rõ và vận dụng các chuẩn mực và trách nhiệm nghề nghiệp ở tầm quốc tế, chính trị, đạo đức, pháp lý, văn hóa và xã hội, có ý thức trách nhiệm công dân toàn cầu.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q004",
+    "field": "Answer",
+    "before": "Chào bạn, với tư cách là trợ lý ảo tư vấn học vụ của Trường Đại học Cần Thơ, mình xin giải đáp thắc mắc của bạn về chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Công nghệ thông tin (chất lượng cao) như sau:\n\nChuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm các nội dung sau:\n\n*   **a. (PLO 1):** Áp dụng sâu rộng kiến thức về tính toán và toán học để giải quyết các vấn đề phức tạp và đòi hỏi sự sáng tạo trong lĩnh vực công nghệ thông tin.\n*   **b. (PLO 2):** Hiểu rõ và vận dụng các chuẩn mực và trách nhiệm nghề nghiệp ở tầm quốc tế, chính trị, đạo đức, pháp lý, văn hóa và xã hội, có ý thức trách nhiệm công dân toàn cầu.\n\n---\n📌 **Nguồn tham khảo:** [3.1.1 Khối kiến thức giáo dục đại cương](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",
+    "after": "Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương bao gồm các nội dung sau:\n\n*   **a. (PLO 1):** Áp dụng sâu rộng kiến thức về tính toán và toán học để giải quyết các vấn đề phức tạp và đòi hỏi sự sáng tạo trong lĩnh vực công nghệ thông tin.\n*   **b. (PLO 2):** Hiểu rõ và vận dụng các chuẩn mực và trách nhiệm nghề nghiệp ở tầm quốc tế, chính trị, đạo đức, pháp lý, văn hóa và xã hội, có ý thức trách nhiệm công dân toàn cầu.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q005",
+    "field": "Ground Truth",
+    "before": "Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân. Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân. Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học. Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.",
+    "after": "Sau khi tốt nghiệp chương trình đào tạo chất lượng cao ngành Công nghệ thông tin tại Trường Đại học Cần Thơ, sinh viên có thể đảm nhận các vị trí việc làm sau:\n\n* Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.\n* Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.\n* Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học.\n* Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q005",
+    "field": "Answer",
+    "before": "Sau khi tốt nghiệp chương trình đào tạo chất lượng cao ngành Công nghệ thông tin tại Trường Đại học Cần Thơ, sinh viên có thể đảm nhận các vị trí việc làm sau:\n\n* Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.\n* Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.\n* Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học.\n* Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.\n\n---\n📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO CHẤT LƯỢNG CAO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/67_7480201C_CongNgheThongTin_CTCLC.pdf)",
+    "after": "Sau khi tốt nghiệp chương trình đào tạo chất lượng cao ngành Công nghệ thông tin tại Trường Đại học Cần Thơ, sinh viên có thể đảm nhận các vị trí việc làm sau:\n\n* Nhà tư vấn, giám sát, nhà lãnh đạo lĩnh vực công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.\n* Lập trình viên, kỹ thuật viên, quản trị viên hệ thống công nghệ thông tin cho các tổ chức, doanh nghiệp hay cá nhân.\n* Cán bộ nghiên cứu, phân tích trong lĩnh vực công nghệ thông tin tại các viện nghiên cứu hay các trường đại học.\n* Giảng viên giảng dạy ở các trường đại học, cao đẳng, trung học chuyên nghiệp, trung học phổ thông.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q006",
+    "field": "Ground Truth",
+    "before": "Học phần Kiểm chứng mô hình có mã số CT287, số tín chỉ là 3 (Bắt buộc), số tiết là 30 LT, 30 TH.",
+    "after": "Học phần \"Kiểm chứng mô hình\" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có thông tin như sau:\n\n- Mã số: CT287\n- Số tín chỉ: 3 tín chỉ",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q006",
+    "field": "Answer",
+    "before": "Học phần \"Kiểm chứng mô hình\" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có thông tin như sau:\n\n- Mã số: CT287\n- Số tín chỉ: 3 tín chỉ\n\n---\n📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/70_7480103_KyThuatPhanMem.pdf)",
+    "after": "Học phần \"Kiểm chứng mô hình\" trong chương trình đào tạo ngành Kỹ thuật Phần mềm có thông tin như sau:\n\n- Mã số: CT287\n- Số tín chỉ: 3 tín chỉ",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q007",
+    "field": "Ground Truth",
+    "before": "Học phần \"Mạng máy tính\" yêu cầu học phần tiên quyết: CT178.",
+    "after": "Học phần \"Mạng máy tính\" (mã số: CT112) trong chương trình đào tạo ngành Khoa học máy tính yêu cầu học phần tiên quyết là: **Nguyên lý hệ điều hành** (mã số: CT178).",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q007",
+    "field": "Answer",
+    "before": "Học phần \"Mạng máy tính\" (mã số: CT112) trong chương trình đào tạo ngành Khoa học máy tính yêu cầu học phần tiên quyết là: **Nguyên lý hệ điều hành** (mã số: CT178).\n\n---\n📌 **Nguồn tham khảo:** [Khối kiến thức cơ sở ngành](/api/pdfs/73_7480101_KhoaHocMayTinh.pdf)",
+    "after": "Học phần \"Mạng máy tính\" (mã số: CT112) trong chương trình đào tạo ngành Khoa học máy tính yêu cầu học phần tiên quyết là: **Nguyên lý hệ điều hành** (mã số: CT178).",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q008",
+    "field": "Ground Truth",
+    "before": "Vận dụng được các kiến thức cơ bản về khoa học chính trị, khoa học tự nhiên, khoa học xã hội và pháp luật trong quá trình hoạt động nghề nghiệp trong lĩnh vực HTTT (PLO1); Vận dụng được các kiến thức cơ bản về giáo dục thể chất, quốc phòng và an ninh để rèn luyện thể chất, ý thức kỷ luật và thực hiện nghĩa vụ công dân trong học tập và môi trường nghề nghiệp (PLO2).",
+    "after": "Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Hệ thống thông tin bao gồm các nội dung sau:\n\n- **PLO1:** Vận dụng được các kiến thức cơ bản về khoa học chính trị, khoa học tự nhiên, khoa học xã hội và pháp luật trong quá trình hoạt động nghề nghiệp trong lĩnh vực HTTT.\n- **PLO2:** Vận dụng được các kiến thức cơ bản về giáo dục thể chất, quốc phòng và an ninh để rèn luyện thể chất, ý thức kỷ luật và thực hiện nghĩa vụ công dân trong học tập và môi trường nghề nghiệp.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q008",
+    "field": "Answer",
+    "before": "Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Hệ thống thông tin bao gồm các nội dung sau:\n\n- **PLO1:** Vận dụng được các kiến thức cơ bản về khoa học chính trị, khoa học tự nhiên, khoa học xã hội và pháp luật trong quá trình hoạt động nghề nghiệp trong lĩnh vực HTTT.\n- **PLO2:** Vận dụng được các kiến thức cơ bản về giáo dục thể chất, quốc phòng và an ninh để rèn luyện thể chất, ý thức kỷ luật và thực hiện nghĩa vụ công dân trong học tập và môi trường nghề nghiệp.\n\n---\n📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC/3. Chuẩn đầu ra của chương trình đào tạo/3.1 Kiến thức/]( /api/pdfs/68_7480104_HeThongThongTin.pdf)",
+    "after": "Chuẩn đầu ra (PLO) thuộc khối kiến thức giáo dục đại cương của ngành Hệ thống thông tin bao gồm các nội dung sau:\n\n- **PLO1:** Vận dụng được các kiến thức cơ bản về khoa học chính trị, khoa học tự nhiên, khoa học xã hội và pháp luật trong quá trình hoạt động nghề nghiệp trong lĩnh vực HTTT.\n- **PLO2:** Vận dụng được các kiến thức cơ bản về giáo dục thể chất, quốc phòng và an ninh để rèn luyện thể chất, ý thức kỷ luật và thực hiện nghĩa vụ công dân trong học tập và môi trường nghề nghiệp.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q009",
+    "field": "Ground Truth",
+    "before": "Mã ngành của ngành Trí tuệ nhân tạo là: 7480107.",
+    "after": "Mã ngành của chương trình đào tạo Trí tuệ nhân tạo là: **7480107**.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "Q009",
+    "field": "Answer",
+    "before": "Mã ngành của chương trình đào tạo Trí tuệ nhân tạo là: **7480107**.\n\n---\n📌 **Nguồn tham khảo:** [CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC](/api/pdfs/108_7480107_TriTueNhanTao.pdf)",
+    "after": "Mã ngành của chương trình đào tạo Trí tuệ nhân tạo là: **7480107**.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "10",
+    "field": "Master Question",
+    "before": "Học phí làm cơ sở tính miễn, giảm cho môn Giáo dục quốc phòng và An ninh (đại trà) là bao nhiêu?",
+    "after": "Trong năm học 2025-2026, học phí làm cơ sở tính miễn, giảm cho môn Giáo dục quốc phòng và An ninh (đại trà) là bao nhiêu?",
+    "reasons": [
+      "Distinguish historical exemption basis from actual tuition",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "11",
+    "field": "Master Question",
+    "before": "Khối ngành III (Kinh doanh và quản lý, pháp luật) có mức học phí cơ sở để tính miễn giảm là bao nhiêu 1 tín chỉ?",
+    "after": "Trong năm học 2025-2026, khối ngành III (Kinh doanh và quản lý, pháp luật) có mức học phí cơ sở để tính miễn giảm là bao nhiêu 1 tín chỉ?",
+    "reasons": [
+      "Distinguish historical exemption basis from actual tuition",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "12",
+    "field": "Master Question",
+    "before": "Khối ngành IV (Khoa học sự sống, khoa học tự nhiên) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?",
+    "after": "Trong năm học 2025-2026, khối ngành IV (Khoa học sự sống, khoa học tự nhiên) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?",
+    "reasons": [
+      "Distinguish historical exemption basis from actual tuition",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "13",
+    "field": "Master Question",
+    "before": "Khối ngành VI (Sức khỏe) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?",
+    "after": "Trong năm học 2025-2026, khối ngành VI (Sức khỏe) có mức học phí cơ sở để tính miễn giảm là bao nhiêu?",
+    "reasons": [
+      "Distinguish historical exemption basis from actual tuition",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "14",
+    "field": "Master Question",
+    "before": "Sinh viên chương trình tiên tiến khóa 47 trở về trước có học phí làm cơ sở tính miễn giảm là bao nhiêu?",
+    "after": "Trong năm học 2025-2026, sinh viên chương trình tiên tiến khóa 47 trở về trước có học phí làm cơ sở tính miễn giảm là bao nhiêu?",
+    "reasons": [
+      "Distinguish historical exemption basis from actual tuition",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R32",
+    "field": "Master Question",
+    "before": "Muốn đạt tiêu chí Đạo đức tốt thì điểm rèn luyện trung bình cần từ mức nào trở lên?",
+    "after": "Theo tiêu chí Sinh viên 5 tốt cấp Đại học Cần Thơ giai đoạn 2025-2028, muốn đạt Đạo đức tốt thì điểm rèn luyện trung bình cần từ mức nào trở lên?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R32",
+    "field": "Ground Truth",
+    "before": "Điểm rèn luyện trung bình cộng của học kỳ 3 năm học trước, học kỳ 1 và 2 năm học xét đạt từ 85 điểm trở lên.",
+    "after": "Điểm rèn luyện trung bình cộng của học kỳ 3 năm học trước, học kỳ 1 và 2 năm học xét phải đạt từ 85 điểm trở lên.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "R33",
+    "field": "Master Question",
+    "before": "Năm nhất muốn đạt tiêu chí Đạo đức tốt thì điểm rèn luyện được lấy từ các học kỳ nào?",
+    "after": "Theo tiêu chí Sinh viên 5 tốt cấp Đại học Cần Thơ giai đoạn 2025-2028, sinh viên năm nhất được xét Đạo đức tốt bằng điểm rèn luyện của các học kỳ nào?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT001",
+    "field": "Master Question",
+    "before": "CNTT CLC K44 cần hoàn thành tổng cộng bao nhiêu tín chỉ, và riêng năm học 2026-2027 mức học phí theo năm là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: CNTT CLC K44 cần hoàn thành tổng cộng bao nhiêu tín chỉ, và riêng năm học 2026-2027 mức học phí theo năm là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT001",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K44 là 25 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT001",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K44 là 25 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K44 là 25 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT002",
+    "field": "Master Question",
+    "before": "Với CNTT CLC K45, chương trình có tổng số tín chỉ là bao nhiêu? Năm 2026-2027 sinh viên phải đóng học phí cả năm ở mức nào?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Với CNTT CLC K45, chương trình có tổng số tín chỉ là bao nhiêu? Năm 2026-2027 sinh viên phải đóng học phí cả năm ở mức nào?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT002",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K45 là 26 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT002",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K45 là 26 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K45 là 26 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT003",
+    "field": "Master Question",
+    "before": "Sinh viên CNTT CLC K46 học tổng cộng bao nhiêu tín chỉ và mức thu học phí theo năm cho 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Sinh viên CNTT CLC K46 học tổng cộng bao nhiêu tín chỉ và mức thu học phí theo năm cho 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT003",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K46 là 28 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT003",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K46 là 28 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K46 là 28 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT004",
+    "field": "Master Question",
+    "before": "Cho mình biết tổng số tín chỉ của CNTT CLC K47 và số tiền học phí một năm áp dụng trong năm học 2026-2027.",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Cho mình biết tổng số tín chỉ của CNTT CLC K47 và số tiền học phí một năm áp dụng trong năm học 2026-2027.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT004",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K47 là 30 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT004",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K47 là 30 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K47 là 30 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT005",
+    "field": "Master Question",
+    "before": "CNTT CLC K48 cần hoàn thành tổng cộng bao nhiêu tín chỉ, và riêng năm học 2026-2027 mức học phí theo năm là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: CNTT CLC K48 cần hoàn thành tổng cộng bao nhiêu tín chỉ, và riêng năm học 2026-2027 mức học phí theo năm là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT005",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT005",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT006",
+    "field": "Master Question",
+    "before": "Với CNTT CLC K49, chương trình có tổng số tín chỉ là bao nhiêu? Năm 2026-2027 sinh viên phải đóng học phí cả năm ở mức nào?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Với CNTT CLC K49, chương trình có tổng số tín chỉ là bao nhiêu? Năm 2026-2027 sinh viên phải đóng học phí cả năm ở mức nào?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT006",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 36 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT006",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 36 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 36 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT007",
+    "field": "Master Question",
+    "before": "Sinh viên CNTT CLC K50 học tổng cộng bao nhiêu tín chỉ và mức thu học phí theo năm cho 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Sinh viên CNTT CLC K50 học tổng cộng bao nhiêu tín chỉ và mức thu học phí theo năm cho 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT007",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 36 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT007",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 36 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 36 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT008",
+    "field": "Master Question",
+    "before": "Cho mình biết tổng số tín chỉ của CNTT CLC K51 và số tiền học phí một năm áp dụng trong năm học 2026-2027.",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Cho mình biết tổng số tín chỉ của CNTT CLC K51 và số tiền học phí một năm áp dụng trong năm học 2026-2027.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT008",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K51 là 40 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT008",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K51 là 40 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K51 là 40 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT009",
+    "field": "Master Question",
+    "before": "CNTT CLC K52 cần hoàn thành tổng cộng bao nhiêu tín chỉ, và riêng năm học 2026-2027 mức học phí theo năm là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: CNTT CLC K52 cần hoàn thành tổng cộng bao nhiêu tín chỉ, và riêng năm học 2026-2027 mức học phí theo năm là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT009",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>25</td>\n            <td>26</td>\n            <td>28</td>\n            <td>30</td>\n            <td>33</td>\n            <td>36</td>\n            <td>36</td>\n            <td>40</td>\n            <td>44,0</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K52 là 44,0 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT009",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K52 là 44,0 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K52 là 44,0 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT010",
+    "field": "Master Question",
+    "before": "Với KTPM CLC K48, chương trình có tổng số tín chỉ là bao nhiêu? Năm 2026-2027 sinh viên phải đóng học phí cả năm ở mức nào?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Với KTPM CLC K48, chương trình có tổng số tín chỉ là bao nhiêu? Năm 2026-2027 sinh viên phải đóng học phí cả năm ở mức nào?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT010",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>11</td>\n            <td>Kỹ thuật phần mềm</td>\n            <td></td>\n            <td></td>\n            <td></td>\n            <td></td>\n            <td>33</td>\n            <td>33</td>\n            <td>33</td>\n            <td>40</td>\n            <td>41,8</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT010",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K48 là 33 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT011",
+    "field": "Master Question",
+    "before": "Sinh viên KTPM CLC K49 học tổng cộng bao nhiêu tín chỉ và mức thu học phí theo năm cho 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Sinh viên KTPM CLC K49 học tổng cộng bao nhiêu tín chỉ và mức thu học phí theo năm cho 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT011",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>11</td>\n            <td>Kỹ thuật phần mềm</td>\n            <td></td>\n            <td></td>\n            <td></td>\n            <td></td>\n            <td>33</td>\n            <td>33</td>\n            <td>33</td>\n            <td>40</td>\n            <td>41,8</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 33 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT011",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 33 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K49 là 33 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT012",
+    "field": "Master Question",
+    "before": "Cho mình biết tổng số tín chỉ của KTPM CLC K50 và số tiền học phí một năm áp dụng trong năm học 2026-2027.",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Cho mình biết tổng số tín chỉ của KTPM CLC K50 và số tiền học phí một năm áp dụng trong năm học 2026-2027.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT012",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>11</td>\n            <td>Kỹ thuật phần mềm</td>\n            <td></td>\n            <td></td>\n            <td></td>\n            <td></td>\n            <td>33</td>\n            <td>33</td>\n            <td>33</td>\n            <td>40</td>\n            <td>41,8</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 33 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT012",
+    "field": "Answer",
+    "before": "CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 33 triệu đồng/năm học.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: CTĐT có 168 tín chỉ; mức học phí cố định của K50 là 33 triệu đồng/năm học.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT013",
+    "field": "Master Question",
+    "before": "KTPM CLC K51 được thiết kế học trong bao nhiêu năm, và năm 2026-2027 mỗi tín chỉ của chương trình này tính bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: KTPM CLC K51 được thiết kế học trong bao nhiêu năm, và năm 2026-2027 mỗi tín chỉ của chương trình này tính bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT013",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n<tr>\n      <td>11</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.161</td>\n      <td>1.142</td>\n      <td>1.073</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT013",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT014",
+    "field": "Master Question",
+    "before": "Thời gian đào tạo của KTPM CLC K52 là mấy năm? Nếu học trong năm 2026-2027 thì một tín chỉ có mức thu bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Thời gian đào tạo của KTPM CLC K52 là mấy năm? Nếu học trong năm 2026-2027 thì một tín chỉ có mức thu bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT014",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n<tr>\n      <td>11</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.161</td>\n      <td>1.142</td>\n      <td>1.073</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT014",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT015",
+    "field": "Master Question",
+    "before": "Với HTTT CLC K51, chương trình kéo dài bao lâu và đơn giá học phí theo tín chỉ năm 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Với HTTT CLC K51, chương trình kéo dài bao lâu và đơn giá học phí theo tín chỉ năm 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT015",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n<tr>\n      <td>13</td>\n      <td>Hệ thống thông tin</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.118</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 51, năm học 2026-2027 là 1.308.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT015",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4,5 năm; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 51, năm học 2026-2027 là 1.308.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 51, năm học 2026-2027 là 1.308.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT016",
+    "field": "Master Question",
+    "before": "Cho mình hỏi HTTT CLC K50 học mấy năm; đồng thời mức học phí cho một tín chỉ trong 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Cho mình hỏi HTTT CLC K50 học mấy năm; đồng thời mức học phí cho một tín chỉ trong 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT016",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n<tr>\n      <td>13</td>\n      <td>Hệ thống thông tin</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.118</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 50, năm học 2026-2027 là 1.118.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT016",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4,5 năm; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 50, năm học 2026-2027 là 1.118.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 50, năm học 2026-2027 là 1.118.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT017",
+    "field": "Master Question",
+    "before": "HTTT CLC K51 có tổng số bao nhiêu tín chỉ, và trong năm học 2026-2027 mỗi tín chỉ được tính học phí bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: HTTT CLC K51 có tổng số bao nhiêu tín chỉ, và trong năm học 2026-2027 mỗi tín chỉ được tính học phí bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT017",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n      <td>13</td>\n      <td>Hệ thống thông tin</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.118</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Chương trình có 168 tín chỉ; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 51, năm học 2026-2027 là 1.308.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT017",
+    "field": "Answer",
+    "before": "Chương trình có 168 tín chỉ; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 51, năm học 2026-2027 là 1.308.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Chương trình có 168 tín chỉ; mức học phí chương trình chất lượng cao ngành Hệ thống thông tin, Khóa 51, năm học 2026-2027 là 1.308.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT018",
+    "field": "Master Question",
+    "before": "Thời gian đào tạo của HTTT CLC K52 là mấy năm? Nếu học trong năm 2026-2027 thì một tín chỉ có mức thu bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Thời gian đào tạo của HTTT CLC K52 là mấy năm? Nếu học trong năm 2026-2027 thì một tín chỉ có mức thu bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT018",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n<tr>\n      <td>13</td>\n      <td>Hệ thống thông tin</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.118</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT018",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT019",
+    "field": "Master Question",
+    "before": "Với MMT&TTDL CLC K51, chương trình kéo dài bao lâu và đơn giá học phí theo tín chỉ năm 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Với MMT&TTDL CLC K51, chương trình kéo dài bao lâu và đơn giá học phí theo tín chỉ năm 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT019",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n<tr>\n      <td>14</td>\n      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT019",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K51 là 1.308.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT020",
+    "field": "Master Question",
+    "before": "Cho mình hỏi MMT&TTDL CLC K52 học mấy năm; đồng thời mức học phí cho một tín chỉ trong 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Cho mình hỏi MMT&TTDL CLC K52 học mấy năm; đồng thời mức học phí cho một tín chỉ trong 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT020",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n<tr>\n      <td>14</td>\n      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT020",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4,5 năm; mức học phí của K52 là 1.366.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT021",
+    "field": "Master Question",
+    "before": "CNTT CLC K44 được thiết kế học trong bao nhiêu năm, và năm 2026-2027 mỗi tín chỉ của chương trình này tính bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: CNTT CLC K44 được thiết kế học trong bao nhiêu năm, và năm 2026-2027 mỗi tín chỉ của chương trình này tính bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT021",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4.5 năm\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4.5 năm; mức học phí của K44 là 882.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT021",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4.5 năm; mức học phí của K44 là 882.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4.5 năm; mức học phí của K44 là 882.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT022",
+    "field": "Master Question",
+    "before": "Thời gian đào tạo của CNTT CLC K47 là mấy năm? Nếu học trong năm 2026-2027 thì một tín chỉ có mức thu bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Thời gian đào tạo của CNTT CLC K47 là mấy năm? Nếu học trong năm 2026-2027 thì một tín chỉ có mức thu bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT022",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4.5 năm\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4.5 năm; mức học phí của K47 là 1.064.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT022",
+    "field": "Answer",
+    "before": "Thời gian đào tạo là 4.5 năm; mức học phí của K47 là 1.064.000 đồng/tín chỉ.",
+    "after": "Theo giả định đối chiếu CTĐT 2025: Thời gian đào tạo là 4.5 năm; mức học phí của K47 là 1.064.000 đồng/tín chỉ.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT023",
+    "field": "Master Question",
+    "before": "Theo quy định học vụ, một học kỳ sinh viên được đăng ký tối đa bao nhiêu tín chỉ? Với CNTT CLC K45, nếu giả sử học đủ 20 tín chỉ đều tính theo đơn giá của chương trình năm 2026-2027 thì tổng học phí là bao nhiêu?",
+    "after": "Theo quy định học vụ ban hành năm 2024, theo quy định học vụ, một học kỳ sinh viên được đăng ký tối đa bao nhiêu tín chỉ? Với CNTT CLC K45, nếu giả sử học đủ 20 tín chỉ đều tính theo đơn giá của chương trình năm 2026-2027 thì tổng học phí là bao nhiêu?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT023",
+    "field": "Ground Truth",
+    "before": "1. Sinh viên được đăng ký học tối đa 20 TC/HK.\n1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 914.000 đồng/tín chỉ, số tiền tương ứng là 18.280.000 đồng.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT024",
+    "field": "Master Question",
+    "before": "Giới hạn số tín chỉ được đăng ký trong một học kỳ là bao nhiêu? Giả sử sinh viên CNTT CLC K46 đăng ký 20 tín chỉ và tất cả đều áp dụng cùng mức học phí/tín chỉ năm 2026-2027, cần đóng tổng cộng bao nhiêu?",
+    "after": "Theo quy định học vụ ban hành năm 2024, giới hạn số tín chỉ được đăng ký trong một học kỳ là bao nhiêu? Giả sử sinh viên CNTT CLC K46 đăng ký 20 tín chỉ và tất cả đều áp dụng cùng mức học phí/tín chỉ năm 2026-2027, cần đóng tổng cộng bao nhiêu?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT024",
+    "field": "Ground Truth",
+    "before": "1. Sinh viên được đăng ký học tối đa 20 TC/HK.\n1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 989.000 đồng/tín chỉ, số tiền tương ứng là 19.780.000 đồng.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT025",
+    "field": "Master Question",
+    "before": "Một học kỳ được phép đăng ký nhiều nhất bao nhiêu tín chỉ theo quy chế? Nếu CNTT CLC K48 học 20 tín chỉ, toàn bộ tính theo mức thu của chương trình trong 2026-2027, số tiền tương ứng là bao nhiêu?",
+    "after": "Theo quy định học vụ ban hành năm 2024, một học kỳ được phép đăng ký nhiều nhất bao nhiêu tín chỉ theo quy chế? Nếu CNTT CLC K48 học 20 tín chỉ, toàn bộ tính theo mức thu của chương trình trong 2026-2027, số tiền tương ứng là bao nhiêu?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT025",
+    "field": "Ground Truth",
+    "before": "1. Sinh viên được đăng ký học tối đa 20 TC/HK.\n1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.161.000 đồng/tín chỉ, số tiền tương ứng là 23.220.000 đồng.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT026",
+    "field": "Master Question",
+    "before": "Theo quy chế CTU, trần đăng ký tín chỉ mỗi học kỳ là bao nhiêu? Với trường hợp CNTT CLC K49 lấy đủ 20 tín chỉ và đều dùng đơn giá học phí 2026-2027 của chương trình, tổng tiền là bao nhiêu?",
+    "after": "Theo quy định học vụ ban hành năm 2024, theo quy chế CTU, trần đăng ký tín chỉ mỗi học kỳ là bao nhiêu? Với trường hợp CNTT CLC K49 lấy đủ 20 tín chỉ và đều dùng đơn giá học phí 2026-2027 của chương trình, tổng tiền là bao nhiêu?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT026",
+    "field": "Ground Truth",
+    "before": "1. Sinh viên được đăng ký học tối đa 20 TC/HK.\n1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.254.000 đồng/tín chỉ, số tiền tương ứng là 25.080.000 đồng.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT027",
+    "field": "Master Question",
+    "before": "Theo quy định học vụ, một học kỳ sinh viên được đăng ký tối đa bao nhiêu tín chỉ? Với KTPM CLC K48, nếu giả sử học đủ 20 tín chỉ đều tính theo đơn giá của chương trình năm 2026-2027 thì tổng học phí là bao nhiêu?",
+    "after": "Theo quy định học vụ ban hành năm 2024, theo quy định học vụ, một học kỳ sinh viên được đăng ký tối đa bao nhiêu tín chỉ? Với KTPM CLC K48, nếu giả sử học đủ 20 tín chỉ đều tính theo đơn giá của chương trình năm 2026-2027 thì tổng học phí là bao nhiêu?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT027",
+    "field": "Ground Truth",
+    "before": "1. Sinh viên được đăng ký học tối đa 20 TC/HK.\n1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.\n<tr>\n      <td>11</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.161</td>\n      <td>1.142</td>\n      <td>1.073</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.161.000 đồng/tín chỉ, số tiền tương ứng là 23.220.000 đồng.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT028",
+    "field": "Master Question",
+    "before": "Giới hạn số tín chỉ được đăng ký trong một học kỳ là bao nhiêu? Giả sử sinh viên KTPM CLC K50 đăng ký 20 tín chỉ và tất cả đều áp dụng cùng mức học phí/tín chỉ năm 2026-2027, cần đóng tổng cộng bao nhiêu?",
+    "after": "Theo quy định học vụ ban hành năm 2024, giới hạn số tín chỉ được đăng ký trong một học kỳ là bao nhiêu? Giả sử sinh viên KTPM CLC K50 đăng ký 20 tín chỉ và tất cả đều áp dụng cùng mức học phí/tín chỉ năm 2026-2027, cần đóng tổng cộng bao nhiêu?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT028",
+    "field": "Ground Truth",
+    "before": "1. Sinh viên được đăng ký học tối đa 20 TC/HK.\n1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.\n<tr>\n      <td>11</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.161</td>\n      <td>1.142</td>\n      <td>1.073</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.073.000 đồng/tín chỉ, số tiền tương ứng là 21.460.000 đồng.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT029",
+    "field": "Master Question",
+    "before": "Một học kỳ được phép đăng ký nhiều nhất bao nhiêu tín chỉ theo quy chế? Nếu HTTT CLC K51 học 20 tín chỉ, toàn bộ tính theo mức thu của chương trình trong 2026-2027, số tiền tương ứng là bao nhiêu?",
+    "after": "Theo quy định học vụ ban hành năm 2024, một học kỳ được phép đăng ký nhiều nhất bao nhiêu tín chỉ theo quy chế? Nếu HTTT CLC K51 học 20 tín chỉ, toàn bộ tính theo mức thu của chương trình trong 2026-2027, số tiền tương ứng là bao nhiêu?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT029",
+    "field": "Ground Truth",
+    "before": "1. Sinh viên được đăng ký học tối đa 20 TC/HK.\n1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.\n<tr>\n      <td>13</td>\n      <td>Hệ thống thông tin</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.118</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.308.000 đồng/tín chỉ, số tiền tương ứng là 26.160.000 đồng.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT030",
+    "field": "Master Question",
+    "before": "Theo quy chế CTU, trần đăng ký tín chỉ mỗi học kỳ là bao nhiêu? Với trường hợp MMT&TTDL CLC K52 lấy đủ 20 tín chỉ và đều dùng đơn giá học phí 2026-2027 của chương trình, tổng tiền là bao nhiêu?",
+    "after": "Theo quy định học vụ ban hành năm 2024, theo quy chế CTU, trần đăng ký tín chỉ mỗi học kỳ là bao nhiêu? Với trường hợp MMT&TTDL CLC K52 lấy đủ 20 tín chỉ và đều dùng đơn giá học phí 2026-2027 của chương trình, tổng tiền là bao nhiêu?",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT030",
+    "field": "Ground Truth",
+    "before": "1. Sinh viên được đăng ký học tối đa 20 TC/HK.\n1. Học phí đóng theo HK và tính theo tổng số TC mà SV đã đăng ký học ở HK đó. Mức học phí do Hiệu trưởng quyết định.\n<tr>\n      <td>14</td>\n      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Tối đa 20 tín chỉ/HK; với giả định cả 20 tín chỉ cùng áp mức 1.366.000 đồng/tín chỉ, số tiền tương ứng là 27.320.000 đồng.",
+    "reasons": [
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT031",
+    "field": "Master Question",
+    "before": "Trong CNTT chuẩn, môn “Lập trình căn bản A” (CT101) có mấy tín chỉ? Nếu tính học phí môn này theo đơn giá mỗi tín chỉ của K49 trong năm 2026-2027 thì tổng tiền là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Trong CNTT chuẩn, môn “Lập trình căn bản A” (CT101) có mấy tín chỉ? Nếu tính học phí môn này theo đơn giá mỗi tín chỉ của K49 trong năm 2026-2027 thì tổng tiền là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT031",
+    "field": "Ground Truth",
+    "before": "* **Lập trình căn bản A** (Mã số: CT101)\n- Số tín chỉ: 4 (Bắt buộc)\n<tr>\n      <td>41</td>\n      <td>7480201</td>\n      <td>V</td>\n      <td>748</td>\n      <td>Công nghệ thông tin</td>\n      <td>DI</td>\n      <td>832.000</td>\n    </tr>",
+    "after": "Học phần có 4 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 3.328.000 đồng.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT032",
+    "field": "Master Question",
+    "before": "Môn “Cấu trúc dữ liệu” (CT177) thuộc CNTT chuẩn gồm bao nhiêu tín chỉ; lấy mức học phí/tín chỉ của K52 năm 2026-2027 để tính thì học phần này hết bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Môn “Cấu trúc dữ liệu” (CT177) thuộc CNTT chuẩn gồm bao nhiêu tín chỉ; lấy mức học phí/tín chỉ của K52 năm 2026-2027 để tính thì học phần này hết bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT032",
+    "field": "Ground Truth",
+    "before": "* **Cấu trúc dữ liệu** (Mã số: CT177)\n- Số tín chỉ: 3 (Bắt buộc)\n<tr>\n            <td>43</td>\n            <td>7480201</td>\n            <td>V</td>\n            <td>748</td>\n            <td>Công nghệ thông tin</td>\n            <td>DI</td>\n            <td>150,3</td>\n            <td>966.000</td>\n        </tr>",
+    "after": "Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT033",
+    "field": "Master Question",
+    "before": "Cho biết số tín chỉ của “Toán rời rạc” (CT172E) trong KTPM chuẩn. Với đơn giá học phí theo tín chỉ áp dụng cho K50 năm 2026-2027, số tiền cho môn đó là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Cho biết số tín chỉ của “Toán rời rạc” (CT172E) trong KTPM chuẩn. Với đơn giá học phí theo tín chỉ áp dụng cho K50 năm 2026-2027, số tiền cho môn đó là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT033",
+    "field": "Ground Truth",
+    "before": "* **Toán rời rạc** (Mã số: CT172E)\n- Số tín chỉ: 4 (Bắt buộc)\n<tr>\n      <td>37</td>\n      <td>7480103</td>\n      <td>V</td>\n      <td>748</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td>DI</td>\n      <td>832.000</td>\n    </tr>",
+    "after": "Học phần có 4 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 3.328.000 đồng.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT034",
+    "field": "Master Question",
+    "before": "Sinh viên KTPM chuẩn học “Cơ sở dữ liệu” (CT180) bao nhiêu tín chỉ? Nếu áp dụng mức thu trên mỗi tín chỉ của K52 trong 2026-2027 thì cần đóng bao nhiêu cho học phần này?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Sinh viên KTPM chuẩn học “Cơ sở dữ liệu” (CT180) bao nhiêu tín chỉ? Nếu áp dụng mức thu trên mỗi tín chỉ của K52 trong 2026-2027 thì cần đóng bao nhiêu cho học phần này?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT034",
+    "field": "Ground Truth",
+    "before": "* **Cơ sở dữ liệu** (Mã số: CT180)\n- Số tín chỉ: 3 (Bắt buộc)\n<tr>\n            <td>39</td>\n            <td>7480103</td>\n            <td>V</td>\n            <td>748</td>\n            <td>Kỹ thuật phần mềm</td>\n            <td>DI</td>\n            <td>150,3</td>\n            <td>966.000</td>\n        </tr>",
+    "after": "Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT035",
+    "field": "Master Question",
+    "before": "Trong HTTT chuẩn, môn “Nhập môn trí tuệ nhân tạo” (CT190E) có mấy tín chỉ? Nếu tính học phí môn này theo đơn giá mỗi tín chỉ của K51 trong năm 2026-2027 thì tổng tiền là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Trong HTTT chuẩn, môn “Nhập môn trí tuệ nhân tạo” (CT190E) có mấy tín chỉ? Nếu tính học phí môn này theo đơn giá mỗi tín chỉ của K51 trong năm 2026-2027 thì tổng tiền là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT035",
+    "field": "Ground Truth",
+    "before": "* **Nhập môn trí tuệ nhân tạo** (Mã số: CT190E)\n- Số tín chỉ: 2 (Bắt buộc)\n<tr>\n      <td>38</td>\n      <td>7480104</td>\n      <td>V</td>\n      <td>748</td>\n      <td>Hệ thống thông tin</td>\n      <td>DI</td>\n      <td>832.000</td>\n    </tr>",
+    "after": "Học phần có 2 tín chỉ; mức áp dụng là 832.000; số tiền tương ứng là 1.664.000 đồng.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT036",
+    "field": "Master Question",
+    "before": "Môn “Cấu trúc dữ liệu” (CT177) thuộc HTTT chuẩn gồm bao nhiêu tín chỉ; lấy mức học phí/tín chỉ của K52 năm 2026-2027 để tính thì học phần này hết bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Môn “Cấu trúc dữ liệu” (CT177) thuộc HTTT chuẩn gồm bao nhiêu tín chỉ; lấy mức học phí/tín chỉ của K52 năm 2026-2027 để tính thì học phần này hết bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT036",
+    "field": "Ground Truth",
+    "before": "* **Cấu trúc dữ liệu** (Mã số: CT177)\n- Số tín chỉ: 3 (Bắt buộc)\n<tr>\n            <td>40</td>\n            <td>7480104</td>\n            <td>V</td>\n            <td>748</td>\n            <td>Hệ thống thông tin</td>\n            <td>DI</td>\n            <td>150,3</td>\n            <td>966.000</td>\n        </tr>",
+    "after": "Học phần có 3 tín chỉ; mức áp dụng là 966.000; số tiền tương ứng là 2.898.000 đồng.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT037",
+    "field": "Master Question",
+    "before": "Cho biết số tín chỉ của “Toán cho khoa học máy tính” (CT101H) trong CNTT CLC. Với đơn giá học phí theo tín chỉ áp dụng cho K49 năm 2026-2027, số tiền cho môn đó là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Cho biết số tín chỉ của “Toán cho khoa học máy tính” (CT101H) trong CNTT CLC. Với đơn giá học phí theo tín chỉ áp dụng cho K49 năm 2026-2027, số tiền cho môn đó là bao nhiêu?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT037",
+    "field": "Ground Truth",
+    "before": "* **Toán cho khoa học máy tính** (Mã số: CT101H)\n- Số tín chỉ: 4 (Bắt buộc)\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Học phần có 4 tín chỉ; mức áp dụng là 1.254.000 đồng/tín chỉ; số tiền tương ứng là 5.016.000 đồng.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT037",
+    "field": "Answer",
+    "before": "Học phần có 4 tín chỉ; mức áp dụng là 1.254; số tiền tương ứng là 5.016.000 đồng.",
+    "after": "Học phần có 4 tín chỉ; mức áp dụng là 1.254.000 đồng/tín chỉ; số tiền tương ứng là 5.016.000 đồng.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT038",
+    "field": "Master Question",
+    "before": "Sinh viên CNTT CLC học “Cấu trúc dữ liệu” (CT102H) bao nhiêu tín chỉ? Nếu áp dụng mức thu trên mỗi tín chỉ của K52 trong 2026-2027 thì cần đóng bao nhiêu cho học phần này?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Sinh viên CNTT CLC học “Cấu trúc dữ liệu” (CT102H) bao nhiêu tín chỉ? Nếu áp dụng mức thu trên mỗi tín chỉ của K52 trong 2026-2027 thì cần đóng bao nhiêu cho học phần này?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT038",
+    "field": "Ground Truth",
+    "before": "* **Cấu trúc dữ liệu** (Mã số: CT102H)\n- Số tín chỉ: 4 (Bắt buộc)\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Học phần có 4 tín chỉ; mức áp dụng là 1.438.000 đồng/tín chỉ; số tiền tương ứng là 5.752.000 đồng.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT038",
+    "field": "Answer",
+    "before": "Học phần có 4 tín chỉ; mức áp dụng là 1.438; số tiền tương ứng là 5.752.000 đồng.",
+    "after": "Học phần có 4 tín chỉ; mức áp dụng là 1.438.000 đồng/tín chỉ; số tiền tương ứng là 5.752.000 đồng.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT039",
+    "field": "Master Question",
+    "before": "Trong KTPM CLC, môn “Cấu trúc dữ liệu” (CT177H) có mấy tín chỉ? Nếu tính học phí môn này theo đơn giá mỗi tín chỉ của K51 trong năm 2026-2027 thì tổng tiền là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Trong KTPM CLC, môn “Cấu trúc dữ liệu” (CT177H) có mấy tín chỉ? Nếu tính học phí môn này theo đơn giá mỗi tín chỉ của K51 trong năm 2026-2027 thì tổng tiền là bao nhiêu?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT039",
+    "field": "Ground Truth",
+    "before": "* **Cấu trúc dữ liệu** (Mã số: CT177H)\n- Số tín chỉ: 3 (Bắt buộc)\n<tr>\n      <td>11</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.161</td>\n      <td>1.142</td>\n      <td>1.073</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Học phần có 3 tín chỉ; mức áp dụng là 1.308.000 đồng/tín chỉ; số tiền tương ứng là 3.924.000 đồng.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT039",
+    "field": "Answer",
+    "before": "Học phần có 3 tín chỉ; mức áp dụng là 1.308; số tiền tương ứng là 3.924.000 đồng.",
+    "after": "Học phần có 3 tín chỉ; mức áp dụng là 1.308.000 đồng/tín chỉ; số tiền tương ứng là 3.924.000 đồng.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT040",
+    "field": "Master Question",
+    "before": "Môn “Mạng máy tính” (CT106H) thuộc MMT&TTDL CLC gồm bao nhiêu tín chỉ; lấy mức học phí/tín chỉ của K52 năm 2026-2027 để tính thì học phần này hết bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Môn “Mạng máy tính” (CT106H) thuộc MMT&TTDL CLC gồm bao nhiêu tín chỉ; lấy mức học phí/tín chỉ của K52 năm 2026-2027 để tính thì học phần này hết bao nhiêu?",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT040",
+    "field": "Ground Truth",
+    "before": "* **Mạng máy tính** (Mã số: CT106H)\n- Số tín chỉ: 3 (Bắt buộc)\n<tr>\n      <td>14</td>\n      <td>Mạng máy tính và truyền<br />thông dữ liệu</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Học phần có 3 tín chỉ; mức áp dụng là 1.366.000 đồng/tín chỉ; số tiền tương ứng là 4.098.000 đồng.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT040",
+    "field": "Answer",
+    "before": "Học phần có 3 tín chỉ; mức áp dụng là 1.366; số tiền tương ứng là 4.098.000 đồng.",
+    "after": "Học phần có 3 tín chỉ; mức áp dụng là 1.366.000 đồng/tín chỉ; số tiền tương ứng là 4.098.000 đồng.",
+    "reasons": [
+      "Explicit source/scope/unit correction; see corrections.json",
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT041",
+    "field": "Master Question",
+    "before": "So với bản chuẩn, chương trình CNTT CLC chênh bao nhiêu tín chỉ? Với K49, năm 2026-2027 mức học phí một tín chỉ của từng chương trình là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: So với bản chuẩn, chương trình CNTT CLC chênh bao nhiêu tín chỉ? Với K49, năm 2026-2027 mức học phí một tín chỉ của từng chương trình là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT041",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: **161 tín chỉ**\n- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n      <td>41</td>\n      <td>7480201</td>\n      <td>V</td>\n      <td>748</td>\n      <td>Công nghệ thông tin</td>\n      <td>DI</td>\n      <td>832.000</td>\n    </tr>\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K49: chuẩn 832.000 đồng/TC; CLC 1.254.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT041",
+    "field": "Answer",
+    "before": "CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K49: chuẩn 832.000 đồng/TC; CLC 1.254.000 đồng/TC.",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K49: chuẩn 832.000 đồng/TC; CLC 1.254.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT042",
+    "field": "Master Question",
+    "before": "Bản chuẩn và CLC của ngành CNTT khác nhau thế nào về tổng số tín chỉ? Riêng K50, mỗi bên tính bao nhiêu cho một tín chỉ trong năm học 2026-2027?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Bản chuẩn và CLC của ngành CNTT khác nhau thế nào về tổng số tín chỉ? Riêng K50, mỗi bên tính bao nhiêu cho một tín chỉ trong năm học 2026-2027?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT042",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: **161 tín chỉ**\n- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n      <td>41</td>\n      <td>7480201</td>\n      <td>V</td>\n      <td>748</td>\n      <td>Công nghệ thông tin</td>\n      <td>DI</td>\n      <td>832.000</td>\n    </tr>\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K50: chuẩn 832.000 đồng/TC; CLC 1.181.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT042",
+    "field": "Answer",
+    "before": "CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K50: chuẩn 832.000 đồng/TC; CLC 1.181.000 đồng/TC.",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K50: chuẩn 832.000 đồng/TC; CLC 1.181.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT043",
+    "field": "Master Question",
+    "before": "Ngành CNTT: tổng tín chỉ giữa chương trình chuẩn và CLC lệch bao nhiêu, và ở K51 mức thu theo tín chỉ của hai chương trình trong 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Ngành CNTT: tổng tín chỉ giữa chương trình chuẩn và CLC lệch bao nhiêu, và ở K51 mức thu theo tín chỉ của hai chương trình trong 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT043",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: **161 tín chỉ**\n- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n      <td>41</td>\n      <td>7480201</td>\n      <td>V</td>\n      <td>748</td>\n      <td>Công nghệ thông tin</td>\n      <td>DI</td>\n      <td>832.000</td>\n    </tr>\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT043",
+    "field": "Answer",
+    "before": "CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308.000 đồng/TC.",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT044",
+    "field": "Master Question",
+    "before": "So với bản chuẩn, chương trình CNTT CLC chênh bao nhiêu tín chỉ? Với K52, năm 2026-2027 mức học phí một tín chỉ của từng chương trình là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: So với bản chuẩn, chương trình CNTT CLC chênh bao nhiêu tín chỉ? Với K52, năm 2026-2027 mức học phí một tín chỉ của từng chương trình là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT044",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: **161 tín chỉ**\n- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>43</td>\n            <td>7480201</td>\n            <td>V</td>\n            <td>748</td>\n            <td>Công nghệ thông tin</td>\n            <td>DI</td>\n            <td>150,3</td>\n            <td>966.000</td>\n        </tr>\n<tr>\n            <td>1</td>\n            <td>Công nghệ thông tin</td>\n            <td>882</td>\n            <td>914</td>\n            <td>989</td>\n            <td>1.064</td>\n            <td>1.161</td>\n            <td>1.254</td>\n            <td>1.181</td>\n            <td>1.308</td>\n            <td>1.438</td>\n        </tr>",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.438.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT044",
+    "field": "Answer",
+    "before": "CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.438.000 đồng/TC.",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.438.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT045",
+    "field": "Master Question",
+    "before": "Bản chuẩn và CLC của ngành KTPM khác nhau thế nào về tổng số tín chỉ? Riêng K51, mỗi bên tính bao nhiêu cho một tín chỉ trong năm học 2026-2027?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Bản chuẩn và CLC của ngành KTPM khác nhau thế nào về tổng số tín chỉ? Riêng K51, mỗi bên tính bao nhiêu cho một tín chỉ trong năm học 2026-2027?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT045",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 161 tín chỉ\n- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n      <td>37</td>\n      <td>7480103</td>\n      <td>V</td>\n      <td>748</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td>DI</td>\n      <td>832.000</td>\n    </tr>\n<tr>\n      <td>11</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.161</td>\n      <td>1.142</td>\n      <td>1.073</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT045",
+    "field": "Answer",
+    "before": "CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308.000 đồng/TC.",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K51: chuẩn 832.000 đồng/TC; CLC 1.308.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT046",
+    "field": "Master Question",
+    "before": "Ngành KTPM: tổng tín chỉ giữa chương trình chuẩn và CLC lệch bao nhiêu, và ở K52 mức thu theo tín chỉ của hai chương trình trong 2026-2027 là bao nhiêu?",
+    "after": "Giả sử dùng CTĐT 2025 để đối chiếu: Ngành KTPM: tổng tín chỉ giữa chương trình chuẩn và CLC lệch bao nhiêu, và ở K52 mức thu theo tín chỉ của hai chương trình trong 2026-2027 là bao nhiêu?",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT046",
+    "field": "Ground Truth",
+    "before": "- Số lượng tín chỉ: 161 tín chỉ\n- Số lượng tín chỉ: 168 tín chỉ\n<tr>\n            <td>39</td>\n            <td>7480103</td>\n            <td>V</td>\n            <td>748</td>\n            <td>Kỹ thuật phần mềm</td>\n            <td>DI</td>\n            <td>150,3</td>\n            <td>966.000</td>\n        </tr>\n<tr>\n      <td>11</td>\n      <td>Kỹ thuật phần mềm</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>1.161</td>\n      <td>1.142</td>\n      <td>1.073</td>\n      <td>1.308</td>\n      <td>1.366</td>\n    </tr>",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.366.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT046",
+    "field": "Answer",
+    "before": "CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.366.000 đồng/TC.",
+    "after": "Chương trình CLC nhiều hơn chương trình chuẩn 7 tín chỉ. CTĐT chuẩn có 161 tín chỉ, CLC có 168 tín chỉ. Mức theo tín chỉ của K52: chuẩn 966.000 đồng/TC; CLC 1.366.000 đồng/TC.",
+    "reasons": [
+      "Remove unsupported historical cohort/curriculum applicability claim",
+      "Answer the requested credit difference explicitly",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT047",
+    "field": "Master Question",
+    "before": "Khoa học máy tính chuẩn có thời gian đào tạo thiết kế bao nhiêu năm? Từ mốc đó, quy định học vụ cho phép sinh viên tối đa bao lâu để hoàn thành chương trình?",
+    "after": "Đối chiếu CTĐT ban hành năm 2025 với quy định học vụ năm 2024; giả sử sinh viên không có tín chỉ được công nhận/chuyển đổi làm giảm thời hạn học. Khoa học máy tính chuẩn có thời gian đào tạo thiết kế bao nhiêu năm? Từ mốc đó, quy định học vụ cho phép sinh viên tối đa bao lâu để hoàn thành chương trình?",
+    "reasons": [
+      "State no-transfer-credit assumption for maximum study duration",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT047",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n| 4,5 năm                     | 9 năm                                          |",
+    "after": "Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",
+    "reasons": [
+      "State no-transfer-credit assumption for maximum study duration",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT048",
+    "field": "Master Question",
+    "before": "Chương trình Trí tuệ nhân tạo chuẩn học theo thiết kế trong mấy năm, và thời hạn hoàn thành tối đa tương ứng theo quy định công tác học vụ là bao nhiêu?",
+    "after": "Đối chiếu CTĐT ban hành năm 2025 với quy định học vụ năm 2024; giả sử sinh viên không có tín chỉ được công nhận/chuyển đổi làm giảm thời hạn học. Chương trình Trí tuệ nhân tạo chuẩn học theo thiết kế trong mấy năm, và thời hạn hoàn thành tối đa tương ứng theo quy định công tác học vụ là bao nhiêu?",
+    "reasons": [
+      "State no-transfer-credit assumption for maximum study duration",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT048",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n| 4,5 năm                     | 9 năm                                          |",
+    "after": "Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",
+    "reasons": [
+      "State no-transfer-credit assumption for maximum study duration",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT049",
+    "field": "Master Question",
+    "before": "Với An toàn thông tin chuẩn, thời gian đào tạo chuẩn là bao lâu? Nếu áp dụng quy định về thời gian học tối đa cho CTĐT có cùng thời gian thiết kế thì giới hạn là bao nhiêu?",
+    "after": "Đối chiếu CTĐT ban hành năm 2025 với quy định học vụ năm 2024; giả sử sinh viên không có tín chỉ được công nhận/chuyển đổi làm giảm thời hạn học. Với An toàn thông tin chuẩn, thời gian đào tạo chuẩn là bao lâu? Nếu áp dụng quy định về thời gian học tối đa cho CTĐT có cùng thời gian thiết kế thì giới hạn là bao nhiêu?",
+    "reasons": [
+      "State no-transfer-credit assumption for maximum study duration",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT049",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4,5 năm\n| 4,5 năm                     | 9 năm                                          |",
+    "after": "Thời gian đào tạo là 4,5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",
+    "reasons": [
+      "State no-transfer-credit assumption for maximum study duration",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT050",
+    "field": "Master Question",
+    "before": "Sinh viên CNTT CLC dự kiến học bao nhiêu năm theo chương trình; trường hợp kéo dài thì quy định cho phép tối đa đến bao lâu để tốt nghiệp?",
+    "after": "Đối chiếu CTĐT ban hành năm 2025 với quy định học vụ năm 2024; giả sử sinh viên không có tín chỉ được công nhận/chuyển đổi làm giảm thời hạn học. Sinh viên CNTT CLC dự kiến học bao nhiêu năm theo chương trình; trường hợp kéo dài thì quy định cho phép tối đa đến bao lâu để tốt nghiệp?",
+    "reasons": [
+      "State no-transfer-credit assumption for maximum study duration",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  },
+  {
+    "id": "CDICT050",
+    "field": "Ground Truth",
+    "before": "- Thời gian đào tạo: 4.5 năm\n| 4,5 năm                     | 9 năm                                          |",
+    "after": "Thời gian đào tạo là 4.5 năm; thời gian tối đa để hoàn thành CTĐT tương ứng là 9 năm.",
+    "reasons": [
+      "State no-transfer-credit assumption for maximum study duration",
+      "Canonical concise answer; preserve original evidence in records.jsonl"
+    ]
+  }
+]

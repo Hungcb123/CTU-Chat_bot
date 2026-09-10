@@ -54,3 +54,7 @@ output/
 # Draw.io Backups
 .$*.drawio.bkp
 ~*.drawio.bkp
+# Google Cloud Service Account Keys
+gen-lang-client-*.json
+*service_account*.json
+credentials/

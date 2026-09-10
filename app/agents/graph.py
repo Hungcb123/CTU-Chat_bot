@@ -198,12 +198,12 @@ def build_agent_graph(
         try:
             route: RouteDecision = await supervisor_llm.ainvoke(messages)
             next_agent = route.next_agent
+            intent = _INTENT_MAP.get(route.intent, QueryIntent.OTHER)
         except Exception as e:
             logger.warning("Supervisor routing lỗi, fallback general: %s", e)
             next_agent = "general"
+            intent = QueryIntent.OTHER
 
-        # ── Intent (từ LLM structured output) → QueryRoutingDecision ──
-        intent = _INTENT_MAP.get(route.intent, QueryIntent.OTHER)
         routing_decision = QueryRoutingDecision(intent=intent)
 
         logger.info(
@@ -433,11 +433,12 @@ def build_agent_graph(
         retrieval_instruction = state.get("retrieval_instruction", "")
         chat_history = state.get("chat_history", [])
 
+        system_content = GENERAL_PROMPT.format(
+            context=context,
+            retrieval_instruction=retrieval_instruction,
+        )
         prompt = ChatPromptTemplate.from_messages([
-            ("system", GENERAL_PROMPT.format(
-                context=context,
-                retrieval_instruction=retrieval_instruction,
-            )),
+            SystemMessage(content=system_content),
             MessagesPlaceholder(variable_name="chat_history"),
             ("human", "{question}"),
         ])

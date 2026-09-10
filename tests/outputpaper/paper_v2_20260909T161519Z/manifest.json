@@ -1,0 +1,24 @@
+{
+  "status": "running",
+  "output_directory": "/mnt/d/Project/Chatbot/tests/outputpaper/paper_v2_20260909T161519Z",
+  "dataset": "/mnt/d/Project/Chatbot/data/paper_v2/150_revised.csv",
+  "dataset_sha256": "8ead9b65cbfc6424d6f25cf52dc336bfc29076c8caa49195d7121e1d1528c633",
+  "model": "gemini-3.5-flash-lite",
+  "delay_seconds": 6.0,
+  "retrieval_n": 150,
+  "generation_n": 25,
+  "caveats": [
+    "Exploratory legacy benchmark, not publication-ready RAGAS.",
+    "Table 4 AR/AC/CR/CP are legacy heuristic proxies.",
+    "T7 duplicates T2; T5 removes graph as well as reranker.",
+    "Sampling is first-per-category, not randomized.",
+    "Legacy generator returns fallback text after exhausted retries; inspect log.",
+    "Dataset remains development data pending independent review."
+  ],
+  "scripts_sha256": {
+    "benchmark_table4_e2e.py": "53554f4a8a522ee926f9f537a657ec10daf108523e10e667991804ee2097f4c1",
+    "benchmark_table3_upgraded.py": "907a3d24d9329eb543ed28ceb2a8375bb5a6c9835dfaa592d825e2379c761195"
+  },
+  "api_smoke": "passed",
+  "table4": "completed"
+}

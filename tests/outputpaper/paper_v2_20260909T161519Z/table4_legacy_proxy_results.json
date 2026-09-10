@@ -1,0 +1,77 @@
+{
+  "dataset": "/mnt/d/Project/Chatbot/data/paper_v2/150_revised.csv",
+  "total_cases": 150,
+  "sampled_cases_e2e": 25,
+  "metrics": {
+    "T1": {
+      "name": "BM25 + LLM",
+      "purpose": "Sparse lexical baseline",
+      "AR": 0.973,
+      "CR": 0.881,
+      "CP": 0.998,
+      "AC": 0.592,
+      "n_cr_cp": 150,
+      "n_ar_ac": 25
+    },
+    "T2": {
+      "name": "Dense + LLM",
+      "purpose": "Dense semantic baseline",
+      "AR": 0.98,
+      "CR": 0.798,
+      "CP": 0.998,
+      "AC": 0.571,
+      "n_cr_cp": 150,
+      "n_ar_ac": 25
+    },
+    "T3": {
+      "name": "Hybrid + LLM",
+      "purpose": "Hybrid BM25+Dense baseline",
+      "AR": 0.958,
+      "CR": 0.869,
+      "CP": 0.999,
+      "AC": 0.627,
+      "n_cr_cp": 150,
+      "n_ar_ac": 25
+    },
+    "T4": {
+      "name": "Proposed (CTU-Chat)",
+      "purpose": "Full governed multi-agent hybrid system",
+      "AR": 0.971,
+      "CR": 0.799,
+      "CP": 0.942,
+      "AC": 0.616,
+      "n_cr_cp": 150,
+      "n_ar_ac": 25
+    },
+    "T5": {
+      "name": "w/o Cross-Encoder Reranker",
+      "purpose": "Ablation without BAAI reranker",
+      "AR": 0.967,
+      "CR": 0.801,
+      "CP": 0.959,
+      "AC": 0.631,
+      "n_cr_cp": 150,
+      "n_ar_ac": 25
+    },
+    "T6": {
+      "name": "w/o Knowledge Graph",
+      "purpose": "Ablation without Neo4j graph",
+      "AR": 0.966,
+      "CR": 0.8,
+      "CP": 0.959,
+      "AC": 0.617,
+      "n_cr_cp": 150,
+      "n_ar_ac": 25
+    },
+    "T7": {
+      "name": "w/o Governance Filter",
+      "purpose": "Ablation without metadata lane filters (unbounded)",
+      "AR": 0.98,
+      "CR": 0.798,
+      "CP": 0.998,
+      "AC": 0.571,
+      "n_cr_cp": 150,
+      "n_ar_ac": 25
+    }
+  }
+}

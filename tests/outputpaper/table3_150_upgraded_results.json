@@ -1,0 +1,56 @@
+{
+  "dataset": "/mnt/d/Project/Chatbot/data/150_NATURAL_NO_APPENDIX.csv",
+  "total_cases": 15,
+  "results": {
+    "E1": {
+      "name": "BM25",
+      "purpose": "Sparse lexical baseline",
+      "hit_at_1": 0.7333,
+      "hit_at_3": 0.8667,
+      "precision_at_5": 0.2133,
+      "recall_at_5": 0.9,
+      "mrr_at_10": 0.8133,
+      "latency_ms": 20.09
+    },
+    "E2": {
+      "name": "Dense",
+      "purpose": "Dense semantic baseline",
+      "hit_at_1": 0.5333,
+      "hit_at_3": 0.6,
+      "precision_at_5": 0.16,
+      "recall_at_5": 0.6667,
+      "mrr_at_10": 0.5833,
+      "latency_ms": 80.34
+    },
+    "E3": {
+      "name": "Hybrid (BM25 + Dense RRF)",
+      "purpose": "Hybrid baseline",
+      "hit_at_1": 0.6,
+      "hit_at_3": 0.8,
+      "precision_at_5": 0.2,
+      "recall_at_5": 0.8333,
+      "mrr_at_10": 0.7006,
+      "latency_ms": 94.05
+    },
+    "E4": {
+      "name": "Hybrid + Reranker",
+      "purpose": "Hybrid with Cross-Encoder reranking",
+      "hit_at_1": 0.8,
+      "hit_at_3": 0.9333,
+      "precision_at_5": 0.2267,
+      "recall_at_5": 0.9333,
+      "mrr_at_10": 0.8556,
+      "latency_ms": 36274.77
+    },
+    "E5": {
+      "name": "Full Proposed System",
+      "purpose": "Governed lanes + Reranker + Graph",
+      "hit_at_1": 0.8667,
+      "hit_at_3": 1.0,
+      "precision_at_5": 0.24,
+      "recall_at_5": 1.0,
+      "mrr_at_10": 0.9222,
+      "latency_ms": 59011.74
+    }
+  }
+}

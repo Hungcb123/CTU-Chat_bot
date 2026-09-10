@@ -1,0 +1,46 @@
+{
+  "26": {
+    "Master Question": "Trong năm học 2026-2027, CNTT Khóa 49 đóng bao nhiêu cho một tín chỉ đại cương chung ở chương trình chuẩn và chương trình chất lượng cao?",
+    "Source": "MucHocPhi_QuyDinhChung.md; MucHocPhi_ChatLuongCao_TienTien.md",
+    "source_relation": "all_required"
+  },
+  "27": {
+    "Source": "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+    "source_relation": "single"
+  },
+  "28": {
+    "Master Question": "Trong năm học 2026-2027, sinh viên chương trình chuẩn Khóa 52 học ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất thì học phí nhân với hệ số nào?",
+    "Source": "MucHocPhi_QuyDinhChung.md",
+    "source_relation": "single"
+  },
+  "29": {
+    "Master Question": "Trong năm học 2026-2027, sinh viên chương trình chuẩn Khóa 51 học ngoài thời gian thiết kế của chương trình đào tạo ngành thứ nhất thì học phí nhân với hệ số nào?"
+  },
+  "R13": {
+    "Master Question": "Trong chương trình bồi dưỡng kiến thức cho học sinh xét tuyển thẳng theo quy định năm 2020, vắng quá 20% số tiết của môn học thì còn được dự thi cuối kỳ không?"
+  },
+  "R19": {
+    "Master Question": "Theo chương trình vay vốn của Quyết định 29 được nêu trong tài liệu, từ năm học thứ hai sinh viên phải đạt kết quả học tập ra sao mới đủ điều kiện vay?"
+  },
+  "R03": {
+    "Master Question": "Khi chuyển khoản tiền KTX học kỳ 3 năm học 2025-2026, nội dung chuyển khoản phải ghi theo cú pháp nào?"
+  },
+  "R32": {
+    "Master Question": "Theo tiêu chí Sinh viên 5 tốt cấp Đại học Cần Thơ giai đoạn 2025-2028, muốn đạt Đạo đức tốt thì điểm rèn luyện trung bình cần từ mức nào trở lên?"
+  },
+  "R33": {
+    "Master Question": "Theo tiêu chí Sinh viên 5 tốt cấp Đại học Cần Thơ giai đoạn 2025-2028, sinh viên năm nhất được xét Đạo đức tốt bằng điểm rèn luyện của các học kỳ nào?"
+  },
+  "CDICT037": {
+    "Answer": "Học phần có 4 tín chỉ; mức áp dụng là 1.254.000 đồng/tín chỉ; số tiền tương ứng là 5.016.000 đồng."
+  },
+  "CDICT038": {
+    "Answer": "Học phần có 4 tín chỉ; mức áp dụng là 1.438.000 đồng/tín chỉ; số tiền tương ứng là 5.752.000 đồng."
+  },
+  "CDICT039": {
+    "Answer": "Học phần có 3 tín chỉ; mức áp dụng là 1.308.000 đồng/tín chỉ; số tiền tương ứng là 3.924.000 đồng."
+  },
+  "CDICT040": {
+    "Answer": "Học phần có 3 tín chỉ; mức áp dụng là 1.366.000 đồng/tín chỉ; số tiền tương ứng là 4.098.000 đồng."
+  }
+}

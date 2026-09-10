@@ -1,0 +1,146 @@
+[
+  {
+    "id": "CDICT023",
+    "credits": 20,
+    "rate_vnd": 914000,
+    "expected_vnd": 18280000,
+    "answer_vnd": 18280000,
+    "pass": true
+  },
+  {
+    "id": "CDICT024",
+    "credits": 20,
+    "rate_vnd": 989000,
+    "expected_vnd": 19780000,
+    "answer_vnd": 19780000,
+    "pass": true
+  },
+  {
+    "id": "CDICT025",
+    "credits": 20,
+    "rate_vnd": 1161000,
+    "expected_vnd": 23220000,
+    "answer_vnd": 23220000,
+    "pass": true
+  },
+  {
+    "id": "CDICT026",
+    "credits": 20,
+    "rate_vnd": 1254000,
+    "expected_vnd": 25080000,
+    "answer_vnd": 25080000,
+    "pass": true
+  },
+  {
+    "id": "CDICT027",
+    "credits": 20,
+    "rate_vnd": 1161000,
+    "expected_vnd": 23220000,
+    "answer_vnd": 23220000,
+    "pass": true
+  },
+  {
+    "id": "CDICT028",
+    "credits": 20,
+    "rate_vnd": 1073000,
+    "expected_vnd": 21460000,
+    "answer_vnd": 21460000,
+    "pass": true
+  },
+  {
+    "id": "CDICT029",
+    "credits": 20,
+    "rate_vnd": 1308000,
+    "expected_vnd": 26160000,
+    "answer_vnd": 26160000,
+    "pass": true
+  },
+  {
+    "id": "CDICT030",
+    "credits": 20,
+    "rate_vnd": 1366000,
+    "expected_vnd": 27320000,
+    "answer_vnd": 27320000,
+    "pass": true
+  },
+  {
+    "id": "CDICT031",
+    "credits": 4,
+    "rate_vnd": 832000,
+    "expected_vnd": 3328000,
+    "answer_vnd": 3328000,
+    "pass": true
+  },
+  {
+    "id": "CDICT032",
+    "credits": 3,
+    "rate_vnd": 966000,
+    "expected_vnd": 2898000,
+    "answer_vnd": 2898000,
+    "pass": true
+  },
+  {
+    "id": "CDICT033",
+    "credits": 4,
+    "rate_vnd": 832000,
+    "expected_vnd": 3328000,
+    "answer_vnd": 3328000,
+    "pass": true
+  },
+  {
+    "id": "CDICT034",
+    "credits": 3,
+    "rate_vnd": 966000,
+    "expected_vnd": 2898000,
+    "answer_vnd": 2898000,
+    "pass": true
+  },
+  {
+    "id": "CDICT035",
+    "credits": 2,
+    "rate_vnd": 832000,
+    "expected_vnd": 1664000,
+    "answer_vnd": 1664000,
+    "pass": true
+  },
+  {
+    "id": "CDICT036",
+    "credits": 3,
+    "rate_vnd": 966000,
+    "expected_vnd": 2898000,
+    "answer_vnd": 2898000,
+    "pass": true
+  },
+  {
+    "id": "CDICT037",
+    "credits": 4,
+    "rate_vnd": 1254000,
+    "expected_vnd": 5016000,
+    "answer_vnd": 5016000,
+    "pass": true
+  },
+  {
+    "id": "CDICT038",
+    "credits": 4,
+    "rate_vnd": 1438000,
+    "expected_vnd": 5752000,
+    "answer_vnd": 5752000,
+    "pass": true
+  },
+  {
+    "id": "CDICT039",
+    "credits": 3,
+    "rate_vnd": 1308000,
+    "expected_vnd": 3924000,
+    "answer_vnd": 3924000,
+    "pass": true
+  },
+  {
+    "id": "CDICT040",
+    "credits": 3,
+    "rate_vnd": 1366000,
+    "expected_vnd": 4098000,
+    "answer_vnd": 4098000,
+    "pass": true
+  }
+]

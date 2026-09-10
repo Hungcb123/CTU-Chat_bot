@@ -2,7 +2,7 @@
 
 Bảng dưới đây là mức học phí thực tế của khối kiến thức đại cương chung trong năm học 2026-2027; các hệ số được áp dụng theo đúng nhóm học phần được nêu trong từng mục.
 
-**Ngữ cảnh:** Căn cứ Nghị định 238/2025/NĐ-CP ngày 03/9/2025, Hiệu trưởng Đại học Cần Thơ quy định mức học phí năm học 2026-2027 áp dụng cho sinh viên, học viên và nghiên cứu sinh (Văn bản số 423/ĐHCT-KHTC ngày 03/02/2026).
+**Ngữ cảnh:** Căn cứ Nghị định 238/2025/NĐ-CP ngày 03/9/2025, Giám đốc Đại học Cần Thơ quy định mức học phí năm học 2026-2027 áp dụng cho sinh viên, học viên và nghiên cứu sinh (Văn bản số 2276/ĐHCT-KHTC ngày 17/07/2026, thay thế văn bản số 423/ĐHCT-KHTC ngày 03/02/2026).
 
 ## 1. Đại học hình thức chính quy chương trình đào tạo chuẩn (đại trà)
 

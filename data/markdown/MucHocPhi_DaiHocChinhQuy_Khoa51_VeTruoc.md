@@ -1,6 +1,6 @@
 # Bảng học phí thực tế — Chương trình chuẩn Khóa 51 trở về trước — Năm học 2026-2027
 
-**Ngữ cảnh:** Đây là PHỤ LỤC 1 của Văn bản số 423/ĐHCT-KHTC ngày 03/02/2026. Bảng dưới đây liệt kê mức học phí/tín chỉ của khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành dành cho sinh viên đại học chính quy chương trình đào tạo chuẩn (đại trà), áp dụng cho Khóa 51 trở về trước, năm học 2026-2027 tại Trường Đại học Cần Thơ.
+**Ngữ cảnh:** Đây là PHỤ LỤC 1 của Văn bản số 2276/ĐHCT-KHTC ngày 17/07/2026 của Giám đốc Đại học Cần Thơ (thay thế văn bản số 423/ĐHCT-KHTC ngày 03/02/2026). Bảng dưới đây liệt kê mức học phí/tín chỉ của khối kiến thức đại cương ngành, cơ sở ngành, chuyên ngành dành cho sinh viên đại học chính quy chương trình đào tạo chuẩn (đại trà), áp dụng cho Khóa 51 trở về trước, năm học 2026-2027 tại Trường Đại học Cần Thơ.
 
 Trong bảng học phí thực tế năm học 2026-2027, ngành Sư phạm Toán học Khóa 51 trở về trước có mức **695.000 đồng/tín chỉ** và ngành Kế toán Khóa 51 trở về trước có mức **727.000 đồng/tín chỉ**.
 
