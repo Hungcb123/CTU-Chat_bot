@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+<title id="title">Table 5 T6 RAGAS results</title>
+<desc id="desc">Bar chart of four RAGAS metrics for Hybrid RRF plus Graph plus Reranker over 100 completed questions.</desc>
+<rect width="100%" height="100%" fill="white"/>
+<text x="90" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="700">Table 5: T6 — Hybrid RRF + Graph + Reranker</text>
+<text x="90" y="57" font-family="Arial, sans-serif" font-size="13" fill="#4b5563">100/100 questions completed</text>
+<line x1="90" y1="505" x2="965" y2="505" stroke="#111827"/>
+<line x1="90" y1="75" x2="90" y2="505" stroke="#111827"/>
+<text x="25" y="290" transform="rotate(-90 25 290)" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Score</text>
+<g font-family="Arial, sans-serif" font-size="13" fill="#374151">
+  <line x1="90" y1="505" x2="965" y2="505" stroke="#d1d5db"/><text x="78" y="510" text-anchor="end">0.00</text>
+  <line x1="90" y1="397.5" x2="965" y2="397.5" stroke="#d1d5db"/><text x="78" y="402.5" text-anchor="end">0.25</text>
+  <line x1="90" y1="290" x2="965" y2="290" stroke="#d1d5db"/><text x="78" y="295" text-anchor="end">0.50</text>
+  <line x1="90" y1="182.5" x2="965" y2="182.5" stroke="#d1d5db"/><text x="78" y="187.5" text-anchor="end">0.75</text>
+  <line x1="90" y1="75" x2="965" y2="75" stroke="#d1d5db"/><text x="78" y="80" text-anchor="end">1.00</text>
+</g>
+<g font-family="Arial, sans-serif" text-anchor="middle">
+  <rect x="155" y="156.5" width="110" height="348.5" rx="3" fill="#2563eb"/>
+  <text x="210" y="146.5" font-size="14" font-weight="700">0.8104</text>
+  <text x="210" y="535" font-size="14">Answer Relevancy</text>
+  <rect x="365" y="113.0" width="110" height="392.0" rx="3" fill="#16a34a"/>
+  <text x="420" y="103" font-size="14" font-weight="700">0.9117</text>
+  <text x="420" y="535" font-size="14">Context Recall</text>
+  <rect x="575" y="154.4" width="110" height="350.6" rx="3" fill="#f59e0b"/>
+  <text x="630" y="144.4" font-size="14" font-weight="700">0.8153</text>
+  <text x="630" y="535" font-size="14">Context Precision</text>
+  <rect x="785" y="181.5" width="110" height="323.5" rx="3" fill="#9333ea"/>
+  <text x="840" y="171.5" font-size="14" font-weight="700">0.7524</text>
+  <text x="840" y="535" font-size="14">Answer Correctness</text>
+</g>
+<text x="90" y="578" font-family="Arial, sans-serif" font-size="12" fill="#4b5563">Source: table5_results_20260906_161925.json · completed 2026-09-06 16:19:25</text>
+</svg>

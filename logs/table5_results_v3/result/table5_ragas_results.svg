@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1520 650" role="img" aria-labelledby="title desc">
+<title id="title">Table 5 T1-T7 RAGAS comparison</title>
+<desc id="desc">Grouped bar chart comparing four RAGAS metrics for seven configurations.</desc>
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,sans-serif}.grid{stroke:#d1d5db}.axis{stroke:#111827}.tick{font-size:13px;fill:#374151}.value{font-size:14px;font-weight:700;fill:#111827;text-anchor:middle}.group{font-size:17px;font-weight:700;text-anchor:middle}</style>
+<text x="90" y="30" font-size="22" font-weight="700">Table 5: T1-T7 RAGAS Comparison</text>
+<line class="grid" x1="90" y1="555" x2="1490" y2="555"/><text class="tick" x="78" y="560" text-anchor="end">0.00</text>
+<line class="grid" x1="90" y1="430" x2="1490" y2="430"/><text class="tick" x="78" y="435" text-anchor="end">0.25</text>
+<line class="grid" x1="90" y1="305" x2="1490" y2="305"/><text class="tick" x="78" y="310" text-anchor="end">0.50</text>
+<line class="grid" x1="90" y1="180" x2="1490" y2="180"/><text class="tick" x="78" y="185" text-anchor="end">0.75</text>
+<line class="grid" x1="90" y1="55" x2="1490" y2="55"/><text class="tick" x="78" y="60" text-anchor="end">1.00</text>
+<line class="axis" x1="90" y1="55" x2="90" y2="555"/><line class="axis" x1="90" y1="555" x2="1490" y2="555"/>
+<text x="22" y="305" transform="rotate(-90 22 305)" text-anchor="middle" font-size="14">Score</text>
+<g><text class="group" x="166" y="584">T1</text>
+<rect x="96" y="289.2" width="28" height="265.8" fill="#2563eb" rx="2"/><text class="value" x="110" y="282.2">0.532</text>
+<rect x="134" y="246.3" width="28" height="308.8" fill="#16a34a" rx="2"/><text class="value" x="148" y="239.3">0.618</text>
+<rect x="172" y="297.1" width="28" height="257.9" fill="#f59e0b" rx="2"/><text class="value" x="186" y="290.1">0.516</text>
+<rect x="210" y="255.8" width="28" height="299.2" fill="#9333ea" rx="2"/><text class="value" x="224" y="248.8">0.598</text></g>
+<g transform="translate(51 0)"><text class="group" x="320" y="584">T2</text>
+<rect x="250" y="187.4" width="28" height="367.6" fill="#2563eb" rx="2"/><text class="value" x="264" y="180.4">0.735</text>
+<rect x="288" y="130" width="28" height="425" fill="#16a34a" rx="2"/><text class="value" x="302" y="123">0.850</text>
+<rect x="326" y="184" width="28" height="371" fill="#f59e0b" rx="2"/><text class="value" x="340" y="177">0.742</text>
+<rect x="364" y="185.5" width="28" height="369.5" fill="#9333ea" rx="2"/><text class="value" x="378" y="178.5">0.739</text></g>
+<g transform="translate(102 0)"><text class="group" x="474" y="584">T3</text>
+<rect x="404" y="185.7" width="28" height="369.3" fill="#2563eb" rx="2"/><text class="value" x="418" y="178.7">0.739</text>
+<rect x="442" y="125" width="28" height="430" fill="#16a34a" rx="2"/><text class="value" x="456" y="118">0.860</text>
+<rect x="480" y="226.3" width="28" height="328.7" fill="#f59e0b" rx="2"/><text class="value" x="494" y="219.3">0.657</text>
+<rect x="518" y="192.3" width="28" height="362.7" fill="#9333ea" rx="2"/><text class="value" x="532" y="185.3">0.725</text></g>
+<g transform="translate(153 0)"><text class="group" x="628" y="584">T4</text>
+<rect x="558" y="149.6" width="28" height="405.4" fill="#2563eb" rx="2"/><text class="value" x="572" y="142.6">0.811</text>
+<rect x="596" y="94.2" width="28" height="460.8" fill="#16a34a" rx="2"/><text class="value" x="610" y="87.2">0.922</text>
+<rect x="634" y="146.5" width="28" height="408.5" fill="#f59e0b" rx="2"/><text class="value" x="648" y="139.5">0.817</text>
+<rect x="672" y="179.4" width="28" height="375.6" fill="#9333ea" rx="2"/><text class="value" x="686" y="172.4">0.751</text></g>
+<g transform="translate(204 0)"><text class="group" x="782" y="584">T5</text>
+<rect x="712" y="217.3" width="28" height="337.7" fill="#2563eb" rx="2"/><text class="value" x="726" y="210.3">0.675</text>
+<rect x="750" y="160" width="28" height="395" fill="#16a34a" rx="2"/><text class="value" x="764" y="153">0.790</text>
+<rect x="788" y="253.1" width="28" height="301.9" fill="#f59e0b" rx="2"/><text class="value" x="802" y="246.1">0.604</text>
+<rect x="826" y="217.7" width="28" height="337.3" fill="#9333ea" rx="2"/><text class="value" x="840" y="210.7">0.675</text></g>
+<g transform="translate(255 0)"><text class="group" x="936" y="584">T6</text>
+<rect x="866" y="149.8" width="28" height="405.2" fill="#2563eb" rx="2"/><text class="value" x="880" y="142.8">0.810</text>
+<rect x="904" y="99.2" width="28" height="455.8" fill="#16a34a" rx="2"/><text class="value" x="918" y="92.2">0.912</text>
+<rect x="942" y="147.4" width="28" height="407.6" fill="#f59e0b" rx="2"/><text class="value" x="956" y="140.4">0.815</text>
+<rect x="980" y="178.8" width="28" height="376.2" fill="#9333ea" rx="2"/><text class="value" x="994" y="171.8">0.752</text></g>
+<g transform="translate(306 0)"><text class="group" x="1090" y="584">T7</text>
+<rect x="1020" y="148.4" width="28" height="406.6" fill="#2563eb" rx="2"/><text class="value" x="1034" y="141.4">0.813</text>
+<rect x="1058" y="99.2" width="28" height="455.8" fill="#16a34a" rx="2"/><text class="value" x="1072" y="92.2">0.912</text>
+<rect x="1096" y="147.4" width="28" height="407.6" fill="#f59e0b" rx="2"/><text class="value" x="1110" y="140.4">0.815</text>
+<rect x="1134" y="325.6" width="28" height="229.4" fill="#9333ea" rx="2"/><text class="value" x="1148" y="318.6">0.459</text></g>
+<rect x="850" y="33" width="12" height="12" fill="#2563eb"/><text x="866" y="44" font-size="12">Answer Relevancy</text>
+<rect x="995" y="33" width="12" height="12" fill="#16a34a"/><text x="1011" y="44" font-size="12">Context Recall</text>
+<rect x="1110" y="33" width="12" height="12" fill="#f59e0b"/><text x="1126" y="44" font-size="12">Context Precision</text>
+<rect x="1245" y="33" width="12" height="12" fill="#9333ea"/><text x="1261" y="44" font-size="12">Answer Correctness</text>
+<text x="90" y="625" font-size="12" fill="#4b5563">Source: JSON results in logs/table5_results_v3/result · 100/100 questions completed for each configuration.</text>
+</svg>
