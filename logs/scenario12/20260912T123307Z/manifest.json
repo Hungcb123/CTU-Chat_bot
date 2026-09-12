@@ -1,0 +1,56 @@
+{
+  "created_at_utc": "2026-09-12T12:34:30.671138+00:00",
+  "split": "heldout",
+  "dataset": "/mnt/d/Project/Chatbot/data/scenario12_heldout.jsonl",
+  "case_count": 50,
+  "scenario": "all",
+  "model": "gemini-2.5-flash-lite",
+  "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+  "temperature": 0.0,
+  "workers": 10,
+  "repetitions": 3,
+  "signature": {
+    "dataset_sha256": "f82eb42e0cfe3cd3149fb2390a6a17ecf16de2f67d52bc80ab3cbaa7dde276c1",
+    "code_sha256": "2a71c083b6e2b47ee5635068df0cc4543b718f806ea209924b02b895b31b7bd6",
+    "prompt_sha256": "703e62de50a6793c3ca9912c1f96ca752923050641729df760ccb3a451396f5d",
+    "judge_rubric_sha256": "c7063784f9c971170867f37905a9516b1d4c6c1199fdddbec173840d70cfb5f2",
+    "graph_data_sha256": "c40803c485da5bee9e4a8afc6018c16dbe0f1e1e00046b1b7aea96bad2bbf1fd",
+    "catalog_sha256": "456b923d09b33d5010e358b500b3b2336add137a3b6dfdc8f3aedb92a4177ba8",
+    "model": "gemini-2.5-flash-lite",
+    "ragas_version": "0.4.3",
+    "top_k": 7,
+    "metric_k": 10,
+    "scenario": "all",
+    "split": "heldout",
+    "limit": null,
+    "configurations": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "generation": {
+      "temperature": 0.0,
+      "repetitions": 3,
+      "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+      "embedding_backend": "local",
+      "location": "us-central1"
+    }
+  },
+  "artifact_sha256": {
+    "records.jsonl": "256e5d2730c1d36378a04e47a7a7ff670d113de534591a062713e49794c33b07",
+    "summary.json": "88a0a4d1425f8ba30df15c7fdc36ec19725786f18b62c95a82ab0bc79c93edd7",
+    "comparison.md": "4b10311932a12e81f2cbc898fec10d05964cf326870d9084493de1d697ab1b24",
+    "failures.md": "4e4f72103d35dfd0e52af0966d3715a701287fe0bc8638ea1af8aeb3130a0d7f",
+    "checkpoint.json": "2e95628ea569797106a1afbad9b4f4dc04420a70b85ff73bd4a1fdafbc8a2aa0",
+    "run.log": "382288573c70a31d510c5102dd489246f512e4aa5be209e870e447801acc9737"
+  }
+}

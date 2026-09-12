@@ -1,0 +1,101 @@
+% ============================================================
+% 04-methodology.tex
+% ============================================================
+\section{Methodology}
+\label{sec:method}
+
+This section describes the core methodologies implemented in CTU-Chat,
+including hybrid retrieval, cross-encoder evidence reranking, governed
+retrieval lanes, graph-based candidate expansion, and domain-specific
+deterministic calculation tools.
+
+%------------------------------------------------
+\subsection{Hybrid Retrieval with Reciprocal Rank Fusion}
+
+To improve retrieval robustness, CTU-Chat combines BM25 lexical retrieval and
+dense semantic retrieval. Since these retrievers produce heterogeneous score
+distributions, their scores are not directly summed. Instead, retrieved
+candidates are merged, deduplicated by document identifier, and ranked using
+Reciprocal Rank Fusion (RRF). Graph-derived candidates are added later by the
+orchestration layer and are reranked with the fused text candidates.
+
+For the retrieval source set
+$\mathcal{S}=\{\text{BM25},\text{Dense}\}$,
+the RRF score of a candidate document $d$ is computed as
+
+\begin{equation}
+  \RRF(d)
+  =\sum_{s\in\mathcal{S}_d}\frac{1}{k+r_s(d)},
+  \qquad k=60,
+\label{eq:rrf}
+\end{equation}
+
+where $r_s(d)$ denotes the ranking position of document $d$ returned by retrieval source $s$, and $\mathcal{S}_d$ contains only the retrievers that successfully retrieve $d$. The constant $k=60$ is fixed across all experiments to ensure reproducibility.
+
+The query-intent classifier selects metadata-constrained retrieval lanes for
+tuition, scholarships, loans, social support, academic programs, and academic
+regulations. For supported academic-program queries, Neo4j entity lookup adds
+program metadata to the candidate set. The graph is treated as an expansion
+mechanism rather than an authority source.
+
+%------------------------------------------------
+\subsection{Cross-Encoder Evidence Reranking}
+
+Following RRF fusion and governed-lane expansion, CTU-Chat uses
+\nolinkurl{BAAI/bge-reranker-v2-m3} to score each query--document pair. The
+implementation truncates the text used for scoring to 1,000 characters while
+retaining the full document for answer generation. Documents are ranked by
+cross-encoder relevance; when scores differ by at most 0.05, newer timestamped
+documents are preferred. This neural reranker is not the hand-weighted
+deterministic formula described in earlier drafts.
+
+%------------------------------------------------
+\subsection{Deterministic Academic and Financial Tools}
+
+Certain university services require exact numerical computation rather than language-model reasoning. CTU-Chat therefore integrates typed deterministic tools for course grading, GPA calculation, and tuition fee estimation, ensuring reproducible results that are directly traceable to institutional policies.
+
+\subsubsection{Course Grade Calculation}
+
+Given assessment scores $x_i$ and weights $w_i$ satisfying $\sum_i w_i=100$, the final 10-point score is calculated as
+
+\begin{equation}
+  S_{10}
+  =\mathrm{Round}_{0.1}\!\left(
+     \sum_i
+     \mathrm{Round}_{0.1}(x_i)
+     \frac{w_i}{100}
+   \right).
+\label{eq:grade}
+\end{equation}
+
+The resulting score is converted into the official CTU letter-grade scale (A, B+, B, C+, C, D+, D, and F).
+
+\subsubsection{GPA Calculation}
+
+For eligible courses $\mathcal{I}$ with credits $c_i$ and grade points $g_i$, GPA is computed as
+
+\begin{equation}
+  \mathrm{GPA}
+  =\mathrm{Round}_{0.01}\!\left(
+     \frac{\sum_{i\in\mathcal{I}}c_i g_i}
+          {\sum_{i\in\mathcal{I}}c_i}
+   \right).
+\label{eq:gpa}
+\end{equation}
+
+Courses with statuses Missing (M), Incomplete (I), and Withdrawn (W) are excluded according to the university grading policy.
+
+\subsubsection{Tuition Fee Calculation}
+
+For each registered course $i$, the payable tuition fee is determined from the credit load, tuition rate, exemption basis, and reduction percentage:
+
+\begin{align}
+  \mathrm{Gross}_i &= c_i r_i m_i,\\
+  \mathrm{Reduction}_i &= c_i b_i\frac{p_i}{100},\\
+  \mathrm{Payable}_i &=
+  \mathrm{Round}_{1\,\mathrm{VND}}
+  \left(\max(0,\mathrm{Gross}_i-\mathrm{Reduction}_i)\right).
+\label{eq:tuition-payable}
+\end{align}
+
+All computations use decimal arithmetic, and every tool output preserves the corresponding evidence identifier and policy reference to guarantee auditability.

@@ -1,0 +1,96 @@
+% ============================================================
+%  CTU-Chat: Domain-Specialized Agentic RAG with Heterogeneous
+%  Knowledge Allocation for Vietnamese University Counseling
+%  Springer LNCS — main.tex
+% ============================================================
+\documentclass[runningheads]{llncs}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{pifont}   % \cmark / \xmark
+\usepackage{placeins}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,backgrounds}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{microtype}
+% The minimal TeX Live environment used for reproducible builds may lack
+% pdftex.map; disable font expansion while retaining microtype basics.
+\microtypesetup{expansion=false}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false, pdfborder={0 0 0}}
+\emergencystretch=2em
+
+% Float and list spacing adjustments for concise Springer LNCS layout
+\setlength{\textfloatsep}{7pt plus 1pt minus 2pt}
+\setlength{\floatsep}{5pt plus 1pt minus 2pt}
+\setlength{\intextsep}{5pt plus 1pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{3pt}
+\renewcommand{\topfraction}{0.90}
+\renewcommand{\bottomfraction}{0.80}
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\floatpagefraction}{0.85}
+
+% Compact bibliography formatting for Springer LNCS layout
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\section*{\refname}%
+      \def\@biblabel##1{##1.}%
+      \small\fontsize{7.5pt}{8.8pt}\selectfont
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \setlength{\itemsep}{0pt plus 0.2pt}%
+            \setlength{\parsep}{0pt}%
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy\clubpenalty4000\widowpenalty4000
+      \sfcode`\.=1000\relax}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
+
+% ---------- convenience macros ----------
+\newcommand{\system}{\textsc{CTU-Chat}}  % system shorthand
+\newcommand{\cmark}{\ding{51}}           % check mark
+\newcommand{\xmark}{\ding{55}}           % cross mark
+\newcommand{\RRF}{s_{\mathrm{RRF}}}
+
+% ----------------------------------------
+\begin{document}
+
+\title{CTU-Chat: Supervisor-Routed Multi-Agent RAG with Heterogeneous Knowledge Allocation for University Counseling}
+\titlerunning{CTU-Chat: Supervisor-Routed Multi-Agent RAG}
+
+\author{Ngoc-Anh Le\orcidID{0009-0006-7453-1009} \and
+Nhu-Quynh Nguyen\orcidID{0009-0008-7396-697X} \and
+Tuong-Hung Cao\orcidID{0009-0003-5886-2666} \and
+Trang Minh Chanh \and
+Lan Phuong Phan}
+% \authorrunning{T.-H. Cao et al.}
+\institute{College of Information and Communication Technology,\\ Can Tho University, Can Tho, Vietnam\\
+\email{\{anhb2303861, quynhb2303777, hungb2303873, chanh\}@student.ctu.edu.vn}\\
+\email{pplan@ctu.edu.vn}}
+
+\maketitle
+
+% ---------- sections ----------
+\input{sections/00-abstract}
+\input{sections/01-introduction}
+\input{sections/02-related-work}
+\input{sections/03-proposed-model}
+\input{sections/04-experiments}
+\input{sections/05-conclusion}
+
+\bibliographystyle{splncs04}
+\bibliography{references}
+
+\end{document}

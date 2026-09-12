@@ -1,0 +1,463 @@
+% ============================================================
+% 03-proposed-model.tex
+% ============================================================
+\section{Proposed Model}
+\label{sec:model}
+
+This section presents the architectural design, algorithmic foundation, and operational mechanisms of \system{}. Unlike conventional monolithic RAG pipelines that force all institutional documentation into a uniform document index or graph schema, \emph{\system{} proposes a centralized supervisor-routed, domain-specialized multi-agent architecture in which each specialist is assigned a domain-specific knowledge space, retrieval path, and tool privilege.}
+
+%------------------------------------------------
+\subsection{Design Motivation and Knowledge Characteristics}
+\label{sec:taxonomy}
+
+Higher education counseling at large institutions such as Can Tho University (CTU) is characterized by acute knowledge heterogeneity. An empirical audit of 244 official institutional documents reveals five structurally distinct categories of administrative information, each imposing unique representation and reasoning requirements:
+
+\begin{enumerate}
+    \item \textbf{Academic Curricula (Relational Knowledge):} Encompassing 113 undergraduate majors (alongside an institutional academic regulation document), curricula exhibit deep hierarchies (General $\rightarrow$ Fundamental $\rightarrow$ Specialized $\rightarrow$ Electives) and strict multi-hop prerequisite dependencies. While flat document chunking fragments prerequisite chains, a property graph naturally captures topological relationships, enabling deterministic path traversals without relation hallucination.
+    
+    \item \textbf{Tuition Fee Schedules (Structured / Parametric Knowledge):} Governed by official institutional rector decisions, tuition fee schedules are multi-dimensional matrices indexed by admission cohorts and major groups. Flat text search frequently conflates cohorts, while generative LLMs miscalculate credit multipliers, requiring structured tabular lookups coupled with deterministic arithmetic engines.
+    
+    \item \textbf{Statutory Fee Reductions (Normative Legal Decrees):} Governed by Decree 81/2021/ND-CP and its amendment, Decree 97/2023/ND-CP~\cite{government2021decree81,government2023decree97}, statutory exemptions prescribe exact deductions for qualified beneficiaries. These require parent-child hybrid text retrieval for legal qualification, followed by exact mathematical deduction against student tuition.
+    
+    \item \textbf{Scholarships and Financial Aid (Rule-Based Threshold Policies):} Academic encouragement scholarships operate under dual thresholds (cumulative GPA and training point scores) evaluated across tiers (Good, Very Good, Excellent) against semester quotas, combining rule-based filtering with narrative conditions.
+    
+    \item \textbf{General Campus Regulations (Unstructured Administrative Prose):} Administrative decisions governing student conduct, examination retakes, dormitories, and deferrals are long narrative prose requiring high-recall semantic search paired with exact lexical matching for official decision identifiers and administrative codes.
+\end{enumerate}
+
+These heterogeneous characteristics expose the fundamental flaw of uniform RAG systems: no single retrieval or reasoning paradigm is optimal for all administrative domains. This motivates our proposed architecture: coordinating domain-specialized agents with isolated knowledge spaces and asymmetric tool privileges under a centralized supervisor.
+
+%------------------------------------------------
+\subsection{Overall Proposed Architecture}
+\label{sec:architecture}
+
+Figure~\ref{fig:architecture} depicts the system architecture of \system{}, structured across three coordinated tiers: (1)~the \emph{Interaction and Centralized Supervisor Tier}, (2)~the \emph{Domain-Specialized Multi-Agent Core Layer}, and (3)~the \emph{Heterogeneous Knowledge Storage and Tool Tier}.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.72, transform shape,
+    font=\sffamily\small,
+    tierbox/.style={draw=black!30, rounded corners=6pt, dashed, thick},
+    routernode/.style={draw=purple!80!black, fill=purple!8, thick, rounded corners=4pt, minimum height=28pt, text width=4.8cm, align=center},
+    agentnode/.style={draw=blue!80!black, fill=blue!8, thick, rounded corners=4pt, minimum height=26pt, text width=2.5cm, align=center, font=\sffamily\scriptsize},
+    toolnode/.style={draw=teal!70!black, fill=teal!10, thick, rounded corners=3pt, minimum height=18pt, text width=2.4cm, align=center, font=\sffamily\tiny},
+    notoolnode/.style={draw=gray!40, fill=gray!5, dashed, rounded corners=3pt, minimum height=18pt, text width=2.2cm, align=center, font=\sffamily\tiny, text=gray!60},
+    dbnode/.style={draw=orange!80!black, fill=orange!8, thick, rounded corners=4pt, minimum height=32pt, align=center, font=\sffamily\scriptsize},
+    arrow/.style={-{Stealth[scale=0.85]}, thick, draw=black!70},
+    biarrow/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, thick, draw=black!70}
+]
+
+% Tier 1
+\draw[tierbox, fill=purple!2] (0.1, 7.0) rectangle (11.8, 8.9);
+\node[anchor=north west, font=\bfseries\scriptsize, text=purple!80!black] at (0.25, 8.85) {\textsc{Tier 1: Interaction \& Centralized Supervisor Routing}};
+
+\node[draw=gray!70, fill=white, rounded corners=4pt, minimum height=24pt, text width=2.2cm, align=center, font=\sffamily\scriptsize] (user) at (1.5, 7.9) {\textbf{Student Query}\\(Natural Language)};
+\node[routernode] (sup) at (6.0, 7.9) {\textbf{Central Supervisor Node}\\Intent Router \& Context Rewriter};
+\node[draw=red!70!black, fill=red!6, rounded corners=4pt, minimum height=24pt, text width=2.0cm, align=center, font=\sffamily\scriptsize] (redis) at (10.5, 7.9) {\textbf{Redis Cache}\\State $\mathcal{S}$ \& History $\mathcal{H}$};
+
+\draw[arrow] (user) -- (sup);
+\draw[biarrow] (sup) -- (redis);
+
+% Bus
+\draw[arrow] (sup.south) -- (6.0, 6.75);
+\draw[thick, draw=purple!80!black] (1.5, 6.75) -- (10.5, 6.75);
+\node[fill=white, inner sep=1.5pt, font=\tiny\sffamily\bfseries, text=purple!80!black] at (6.0, 6.75) {Domain / Intent Dispatch ($d^*$)};
+
+\draw[arrow] (1.5, 6.75) -- (1.5, 6.05);
+\draw[arrow] (4.5, 6.75) -- (4.5, 6.05);
+\draw[arrow] (7.5, 6.75) -- (7.5, 6.05);
+\draw[arrow] (10.5, 6.75) -- (10.5, 6.05);
+
+% Tier 2 (Core Multi-Agent Layer)
+\draw[tierbox, fill=blue!2] (0.1, 3.4) rectangle (11.8, 6.5);
+\node[anchor=north west, font=\bfseries\scriptsize, text=blue!80!black] at (0.25, 6.45) {\textsc{Tier 2: Domain-Specialized Multi-Agent Core (Asymmetric Privileges)}};
+
+\node[agentnode] (ag_acad) at (1.5, 5.4) {\textbf{Academic Spec.}\\(6 Cypher tools)};
+\node[agentnode] (ag_fin)  at (4.5, 5.4) {\textbf{Financial Spec.}\\(4 direct tools)};
+\node[agentnode] (ag_sch)  at (7.5, 5.4) {\textbf{Scholarship Spec.}\\(1 direct tool)};
+\node[agentnode] (ag_gen)  at (10.5, 5.4) {\textbf{General Spec.}\\(0 direct tools)};
+
+\node[toolnode]   (tool_acad) at (1.5, 4.1) {Cypher Graph Tools\\(\texttt{tra\_cuu\_nganh}, etc.)};
+\node[toolnode]   (tool_fin)  at (4.5, 4.1) {\texttt{tinh\_toan\_hoc\_phi}\\+ 3 Fee Graph tools};
+\node[toolnode]   (tool_sch)  at (7.5, 4.1) {\texttt{tinh\_tien\_hoc\_bong}\\(Threshold Check)};
+\node[notoolnode] (nt_gen)    at (10.5, 4.1) {[0 direct tools]};
+
+\draw[arrow, draw=teal!70!black] (ag_acad.south) -- (tool_acad.north);
+\draw[arrow, draw=teal!70!black] (ag_fin.south)  -- (tool_fin.north);
+\draw[arrow, draw=teal!70!black] (ag_sch.south)  -- (tool_sch.north);
+\draw[draw=gray!40, dashed]      (ag_gen.south)  -- (nt_gen.north);
+
+% Tier 3
+\draw[tierbox, fill=orange!2] (0.1, 0.4) rectangle (11.8, 3.0);
+\node[anchor=north west, font=\bfseries\scriptsize, text=orange!80!black] at (0.25, 2.95) {\textsc{Tier 3: Heterogeneous Knowledge Storage \& Specialized Retrieval Paths}};
+
+\node[dbnode, text width=2.4cm] (db_neo)  at (1.5, 1.5) {\textbf{Neo4j Graph}\\113 Curricula\\Prerequisites};
+\node[dbnode, text width=2.4cm] (db_fee)  at (4.5, 1.5) {\textbf{Tuition Catalog}\\JSON Schedules\\Cohort Tariffs};
+\node[dbnode, text width=4.9cm] (db_doc)  at (9.0, 1.5) {\textbf{Hybrid Document RAG (BM25 + Dense)}\\RRF ($k=60$) $\rightarrow$ BGE Cross-Reranker\\PostgreSQL Parent Chunks (2,800 chars)};
+
+\draw[biarrow, draw=blue!70!black] (tool_acad.south) -- node[fill=white, inner sep=1pt, font=\tiny\sffamily, text=blue!80!black] {Graph Path} (db_neo.north);
+\draw[biarrow, draw=blue!70!black] (tool_fin.south)  -- node[fill=white, inner sep=1pt, font=\tiny\sffamily, text=blue!80!black] {Structured Path} (db_fee.north);
+\draw[arrow, draw=teal!70!black]   (tool_sch.south)  -- node[fill=white, inner sep=1pt, font=\tiny\sffamily, text=teal!70!black] {Hybrid RAG} (7.8, 2.2);
+\draw[biarrow, draw=blue!70!black] (nt_gen.south)    -- node[fill=white, inner sep=1pt, font=\tiny\sffamily, text=blue!80!black] {Hybrid RAG} (10.2, 2.2);
+
+\end{tikzpicture}
+\caption{System architecture of \system{}, highlighting the centralized supervisor, the domain-specialized multi-agent core layer, and separate knowledge paths for relational, structured, and narrative administrative evidence.}
+\label{fig:architecture}
+\end{figure}
+
+The interaction flow proceeds through three well-defined stages: (1)~\textbf{Tier 1 (Supervisor):} Student query $q$ is contextualized against Redis history $\mathcal{H}$ and routed to predicted domain $d^* \in \mathcal{D}$; (2)~\textbf{Tier 2 (Domain Multi-Agent Core):} The query is dispatched to the designated specialist operating under asymmetric tool privileges (Table~\ref{tab:agent_specs}); and (3)~\textbf{Tier 3 (Heterogeneous Knowledge Paths):} The specialist queries isolated representations (Neo4j for curricula, structured graph/catalogs for fee matrices, and hybrid document RAG for narrative regulations) and executes bounded deterministic tools.
+
+%------------------------------------------------
+\subsection{Supervisor-Routed Domain-Specialized Multi-Agent Architecture}
+\label{sec:agents}
+
+A core contribution of \system{} is the operational isolation of domain agents within a \textbf{centralized supervisor-routed multi-agent architecture}. In conventional multi-agent meshes, exposing broad tool suites to all agents and permitting autonomous agent-to-agent negotiation can increase the risk of parameter errors, cascading failures, and extended execution. \system{} is designed to reduce these risks through explicit structural boundaries:
+
+\begin{itemize}
+    \item \textbf{Supervisor Agent (Central Dispatcher):} Implemented via a structured output LLM (\texttt{gemini-2.5-flash-lite} in empirical evaluation, configurable to \texttt{gemini-3.5-flash-lite} in operational deployments) with deterministic regex fallbacks. The supervisor inspects incoming query $q$ and session history $\mathcal{H}$, generates a disambiguated standalone query $q_{\text{standalone}}$, classifies intent into exactly one target domain $d^* \in \{\text{academic}, \text{financial}, \text{scholarship}, \text{general}\}$, and selects the appropriate evidence acquisition path.
+    
+    \item \textbf{Four Domain Specialists:}
+    \begin{enumerate}
+        \item \texttt{Academic Specialist:} Dedicated to curriculum structures across 113 undergraduate majors, prerequisite course dependency chains, and course equivalence. Bounded to 6 direct Cypher inspection tools connecting to Neo4j, with zero arithmetic tools and zero document retrieval tools. Reasoning mode: ReAct loop over graph tools.
+        \item \texttt{Financial Specialist:} Dedicated to credit-based tuition fee schedules, cohort tariffs, statutory fee deductions, and payment deadlines. Armed with 4 direct tools including fee graph queries and the deterministic arithmetic engine \texttt{tinh\_toan\_hoc\_phi}.
+        \item \texttt{Scholarship Specialist:} Dedicated to academic encouragement scholarships, corporate sponsored grants, and financial aid quotas. Armed with the deterministic threshold evaluation tool \texttt{tinh\_tien\_hoc\_bong}.
+        \item \texttt{General Specialist:} Dedicated to administrative regulations, student conduct, examination retakes, dormitories, student loans, and pedagogical support. Operates with zero direct tools, synthesizing answers purely over retrieved hybrid parent-child regulatory passages.
+    \end{enumerate}
+
+    \item \textbf{Shared State vs. Isolated Resources:} All agents share conversational session state $\mathcal{S}$ and dialogue history $\mathcal{H}$ managed in Redis. However, tool namespaces, prompt envelopes, and knowledge stores are strictly isolated: no specialist has access to cross-domain tools or unauthorized databases.
+    
+    \item \textbf{Strict Centralized Routing (No Peer-to-Peer Communication):} Unlike collaborative agent meshes, \system{} strictly prohibits peer-to-peer handoffs, autonomous agent-to-agent negotiations, or dynamic delegation. All interactions follow the centralized routing topology: $\text{START} \rightarrow \text{Supervisor} \rightarrow \text{[Evidence Node]} \rightarrow \text{Specialist} \rightarrow \text{END}$.
+\end{itemize}
+
+\begin{table}[!htbp]
+\centering
+\caption{Operational comparison and resource privileges of domain-specialized agents in \system{}.}
+\label{tab:agent_specs}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{llllll}
+\toprule
+\textbf{Specialist Agent} & \textbf{Shared State} & \textbf{Available Direct Tools} & \textbf{Primary Evidence Store} & \textbf{Retrieval Strategy} & \textbf{Tool-Call Bound} \\
+\midrule
+\texttt{Academic Specialist}    & Redis $\mathcal{S}, \mathcal{H}$ & \textbf{6 Cypher tools} (\texttt{tra\_cuu\_nganh}, etc.) & Neo4j Knowledge Graph & Direct Cypher topological traversal & $\text{max\_tool\_calls}=1$ \\
+\texttt{Financial Specialist}   & Redis $\mathcal{S}, \mathcal{H}$ & \textbf{4 tools} (\texttt{tinh\_toan\_hoc\_phi}, etc.) & Tuition Graph + JSON Catalog & Pre-retrieved Fee Graph/JSON + Calc & $\text{max\_tool\_calls}=1$ \\
+\texttt{Scholarship Specialist} & Redis $\mathcal{S}, \mathcal{H}$ & \textbf{1 tool} (\texttt{tinh\_tien\_hoc\_bong}) & Hybrid RAG + Criteria Catalog & Pre-retrieved Hybrid + Criteria tool & $\text{max\_tool\_calls}=1$ \\
+\texttt{General Specialist}     & Redis $\mathcal{S}, \mathcal{H}$ & \textbf{0 direct tools} (pure synthesis) & PostgreSQL + Qdrant & Parent-child Hybrid RRF + BGE & $\text{max\_tool\_calls}=0$ \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\textbf{Distinction Between Direct Tools and Pre-Retrieved Context:} Table~\ref{tab:agent_specs} formalizes the boundary between \emph{direct tools bound to specialists} and \emph{pre-retrieval functions executed outside the specialist}. Specifically, the \texttt{Academic Specialist} executes its 6 Cypher tools directly during ReAct execution without passing through the text retrieval node. In contrast, for the \texttt{Financial Specialist} and \texttt{Scholarship Specialist}, structured tuition tables and hybrid regulatory passages are pre-retrieved and formatted into prompt context by the upstream retrieval node; direct tools are then invoked solely for deterministic calculations or interactive sub-queries.
+
+%------------------------------------------------
+\subsection{Heterogeneous Knowledge Allocation}
+\label{sec:allocation}
+
+Rather than forcing all university data into a single retrieval index, \system{} allocates knowledge across specialized modalities according to structural properties (Table~\ref{tab:knowledge_allocation}).
+
+\begin{table}[!htbp]
+\centering
+\caption{Heterogeneous knowledge allocation across institutional administrative domains.}
+\label{tab:knowledge_allocation}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lllll}
+\toprule
+\textbf{Knowledge Type} & \textbf{Structural Property} & \textbf{Primary Representation} & \textbf{Runtime Access Mechanism} & \textbf{Specialist} \\
+\midrule
+Academic Programs & Relational, multi-hop & Neo4j Knowledge Graph & Dedicated Cypher query tools & \texttt{Academic} \\
+Tuition Schedules & Structured, cohort-dependent & Neo4j Tuition Graph / JSON & Graph lookup + deterministic calc & \texttt{Financial} \\
+Scholarship Criteria & Narrative + rule-based thresholds & Hybrid Document RAG & Hybrid search + threshold tool & \texttt{Scholarship} \\
+General Regulations & Narrative administrative text & Hybrid Document RAG & BM25 + Dense + RRF + BGE & \texttt{General} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\textbf{Physical Storage vs. Primary Runtime Retrieval Path:} We draw a crucial architectural distinction between physical indexing and runtime retrieval:
+\begin{itemize}
+    \item \emph{Physical Storage/Indexing:} Neo4j 5 hosts topological curriculum entities (\texttt{Major}, \texttt{KnowledgeBlock}, \texttt{Course}) and structured tuition nodes. Structured JSON files store frozen credit tariffs and scholarship thresholds. Simultaneously, 244 institutional regulatory decrees are archived in PostgreSQL (parent chunks, 2,800 characters) and Qdrant (child chunks, 400 characters).
+    \item \emph{Primary Runtime Retrieval Path:} At runtime, academic inquiries bypass text search entirely to query Neo4j directly via Cypher tools. For tuition inquiries, the primary runtime path executes structured graph/catalog lookup; document retrieval is only invoked for textual decrees (e.g., payment procedures). For scholarship and general queries, the runtime path executes hybrid document retrieval.
+\end{itemize}
+
+%------------------------------------------------
+\subsection{Representation-Aware Routing Strategy}
+\label{sec:selection_criteria}
+
+Applying global hybrid retrieval across an undifferentiated administrative corpus introduces severe cross-domain evidence interference. To ensure precision, \system{} enforces rigorous decision criteria mapping inquiry characteristics to preferred evidence mechanisms (Table~\ref{tab:decision_criteria}).
+
+\begin{table}[!htbp]
+\centering
+\caption{Decision criteria for evidence representation and retrieval mechanism selection.}
+\label{tab:decision_criteria}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lll}
+\toprule
+\textbf{Information Characteristic} & \textbf{Preferred Mechanism} & \textbf{Structural Rationale} \\
+\midrule
+Exact identifiers, course codes, formal terms & BM25 Lexical Search & Exact inverted index token matching without semantic drift \\
+Semantic paraphrase \& conversational phrasing & Dense Vector Search (Qdrant) & Captures contextual proximity in 768-d embedding space \\
+Narrative administrative policies \& decrees   & Hybrid BM25 + Dense + RRF + BGE & Fuses lexical and semantic signals, refined by cross-attention \\
+Relational curriculum / prerequisite query    & Neo4j Knowledge Graph & Deterministic graph traversal over topological dependencies \\
+Statutory tuition / scholarship calculation   & Structured Graph/JSON + Tools & Deterministic arithmetic outside generative text production \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Formally, the supervisor maps incoming student query $q$ and dialogue context $\mathcal{H}$ to a constrained routing tuple:
+\begin{equation}
+    \mathcal{R}(q, \mathcal{H}) = \langle q_{\text{standalone}}, d^*, A^*, \mathcal{P}_{A^*}, \mathcal{L}_{\text{target}} \rangle,
+\end{equation}
+where $q_{\text{standalone}}$ is the disambiguated query, $d^* \in \mathcal{D}$ denotes the predicted domain ($\mathcal{D} = \{\text{acad}, \text{fin}, \text{sch}, \text{gen}\}$), $A^*$ is the assigned specialist agent, $\mathcal{P}_{A^*}$ defines authorized tool privileges, and $\mathcal{L}_{\text{target}} \in \{\texttt{'direct\_graph'}, \texttt{'evidence\_node'}\}$ specifies the evidence acquisition path.
+
+After identifying the need for contextualization, the supervisor jointly determines the target specialist and its corresponding evidence path. Algorithm~\ref{alg:routing} formalizes this centralized routing process. Given the current student query $q$, dialogue history $\mathcal{H}$, and shared session state $\mathcal{S}$, the supervisor optionally rewrites context-dependent queries, classifies domain and intent, assigns a bounded specialist, and selects the appropriate graph-oriented or document-oriented evidence path.
+
+\begin{algorithm}[!htbp]
+\scriptsize
+\SetAlFnt{\scriptsize}
+\SetAlCapFnt{\scriptsize}
+\SetAlCapNameFnt{\scriptsize}
+\SetAlgoVlined
+\LinesNumbered
+\caption{Supervisor Intent and Specialist Routing}
+\label{alg:routing}
+\KwIn{Incoming student query $q$, Session dialogue history $\mathcal{H}$, Shared session state $\mathcal{S}$}
+\KwOut{Routing tuple $\langle q_{\text{standalone}}, d^*, A^*, \mathcal{P}_{A^*}, \mathcal{L}_{\text{target}} \rangle$}
+$q_{\text{standalone}} \leftarrow q$\;
+\If{$\mathrm{ShouldRewriteQuery}(q, \mathcal{H})$}{
+    $q_{\text{cand}} \leftarrow \mathrm{FastLLM\_Rewrite}(q, \mathcal{H})$\;
+    \If{$\mathrm{ValidateRewrite}(q, q_{\text{cand}}, \mathcal{H})$}{
+        $q_{\text{standalone}} \leftarrow q_{\text{cand}}$\;
+    }
+}
+$\langle d^*, \iota \rangle \leftarrow \mathrm{ClassifyDomainAndIntent}(q_{\text{standalone}}, \text{SUPERVISOR\_PROMPT})$\;
+\If{$d^* = \mathrm{NULL}$}{
+    $d^* \leftarrow \mathrm{RegexFallbackClassifier}(q_{\text{standalone}})$\;
+}
+$A^* \leftarrow \mathrm{SelectSpecialist}(d^*)$;\quad $\mathcal{P}_{A^*} \leftarrow \mathrm{GetSpecialistPrivileges}(A^*)$\;
+\eIf{$d^* = \text{'academic'}$}{
+    $\mathcal{L}_{\text{target}} \leftarrow \text{'direct\_graph'}$\;
+}{
+    $\mathcal{L}_{\text{target}} \leftarrow \text{'evidence\_node'}$\;
+}
+\Return $\langle q_{\text{standalone}}, d^*, A^*, \mathcal{P}_{A^*}, \mathcal{L}_{\text{target}} \rangle$\;
+\end{algorithm}
+
+The output of Algorithm~\ref{alg:routing} is not the final answer but a constrained routing decision tuple. This decision limits downstream execution strictly to the selected specialist $A^*$, designated evidence source $\mathcal{L}_{\text{target}}$, and permitted tool set $\mathcal{P}_{A^*}$, thereby enforcing the resource isolation that defines the proposed multi-agent architecture. By pruning unauthorized tools prior to specialist invocation, this centralized routing mechanism constrains tool exposure and execution paths; Scenario~3 evaluates the resulting bounded behavior at the isolated decision level.
+
+%------------------------------------------------
+\subsection{Hybrid Document Retrieval Path}
+\label{sec:hybrid_path}
+
+For narrative administrative regulations and scholarship policies, \system{} employs a multi-stage hybrid document retrieval pipeline:
+\begin{enumerate}
+    \item \textbf{Dual Candidate Generation:} Query $q_{\text{standalone}}$ is searched simultaneously via BM25 over tokenized child chunks in PostgreSQL and dense vector search in Qdrant (768-d embeddings via \texttt{vietnamese-bi-encoder}), returning candidate sets $\mathcal{D}_{\text{bm25}}$ and $\mathcal{D}_{\text{dense}}$ ($\text{top-}15$ in production defaults, with $k=10$ evaluated in retrieval benchmarks).
+    \item \textbf{Reciprocal Rank Fusion (RRF):} Candidates are merged without fragile score normalization:
+    \begin{equation}
+        \RRF(d) = \sum_{s \in \{\text{bm25}, \text{dense}\}} \frac{1}{k + r_s(d)}, \quad k = 60.
+    \end{equation}
+    \item \textbf{Neural Cross-Encoder Reranking:} The top-fused candidates are reranked via \texttt{BAAI/bge-reranker-v2-m3} cross-attention, selecting the top-5 child chunks (with $\text{top-}6$ configured as the engine production ceiling).
+    \item \textbf{Parent Chunk Expansion:} Selected child chunks are mapped back to their 2,800-character parent chunks in PostgreSQL, ensuring complete legal context and article structure for generation.
+\end{enumerate}
+\emph{Clarification of Component Novelty:} We emphasize that BM25, dense bi-encoders, RRF, and cross-encoders are established literature paradigms. In \system{}, they function as building blocks within the hybrid path, coordinated under supervisor routing.
+
+%------------------------------------------------
+\subsection{Graph-Oriented Academic and Tuition Retrieval}
+\label{sec:graph_path}
+
+\textbf{Curriculum Knowledge Graph (Neo4j):} Curricula across all 113 undergraduate programs are modeled in Neo4j (alongside general academic regulations). The \texttt{Academic Specialist} queries this graph directly via 6 APOC-optimized Cypher tools, resolving complex multi-hop prerequisite chains deterministically without relation hallucination.
+
+\textbf{Tuition Knowledge Graph and Structured Catalogs:} Credit-based tuition fee schedules are indexed as structured nodes in Neo4j with a JSON catalog fallback. For statutory calculations, parameter extraction invokes the deterministic engine \texttt{tinh\_toan\_hoc\_phi}:
+\begin{align}
+  \mathrm{Gross} &= \textstyle\sum_{i \in \mathcal{C}} c_i \cdot r_i \cdot m_i, \label{eq:gross_fee} \\
+  \mathrm{Reduction} &= \textstyle\sum_{i \in \mathcal{C}} c_i \cdot b_i \cdot (p_i / 100), \label{eq:reduction_fee} \\
+  \mathrm{Payable} &= \max\left(0, \mathrm{Round}_{\text{VND}}(\mathrm{Gross} - \mathrm{Reduction})\right), \label{eq:payable_fee}
+\end{align}
+where $\mathcal{C}$ is the registered course set, $c_i$ is course credit count, $r_i$ is per-credit fee, $m_i$ is cohort multiplier, $b_i$ is exemption base rate, and $p_i \in \{0, 50, 70, 100\}$ is statutory deduction percentage. A typed Pydantic tool schema ensures numerical reliability.
+
+%------------------------------------------------
+\subsection{Domain-Aware Evidence Acquisition and Specialist Execution}
+\label{sec:execution_mechanism}
+
+Algorithm~\ref{alg:execution} executes the routing decision produced by Algorithm~\ref{alg:routing}. Evidence acquisition is intentionally asymmetric across specialists: academic queries are resolved through graph-oriented evidence, financial queries use structured tuition evidence and deterministic calculation when required, while narrative administrative queries are served through hybrid document retrieval. This separation is central to \system{} and distinguishes it from a uniform retrieve-then-generate pipeline.
+
+\begin{algorithm}[!htbp]
+\scriptsize
+\SetAlFnt{\scriptsize}
+\SetAlCapFnt{\scriptsize}
+\SetAlCapNameFnt{\scriptsize}
+\SetAlgoVlined
+\LinesNumbered
+\caption{Evidence Acquisition and Bounded Specialist Execution}
+\label{alg:execution}
+\KwIn{Routing tuple $\langle q_{\text{standalone}}, d^*, A^*, \mathcal{P}_{A^*}, \mathcal{L}_{\text{target}} \rangle$, Knowledge stores (Neo4j, Qdrant, PostgreSQL, JSON)}
+\KwOut{Validated citation-grounded response $y_{\text{final}}$}
+\eIf{$A^* = \text{AcademicSpecialist}$}{
+    $\mathcal{E}_{\text{graph}} \leftarrow \mathrm{AcquireGraphEvidence}(A^*, \mathcal{P}_{A^*}.\text{tools}, q_{\text{standalone}})$\;
+    $y \leftarrow \mathrm{SynthesizeSpecialistResponse}(A^*, q_{\text{standalone}}, \mathcal{E}_{\text{graph}})$\;
+}{
+    \Switch{$d^*$}{
+        \Case{\upshape 'financial'}{
+            $\mathcal{E}_{\text{struct}} \leftarrow \mathrm{LookupStructuredTuition}(q_{\text{standalone}})$\;
+            $\mathcal{E}_{\text{policy}} \leftarrow \mathrm{RetrieveRegulatoryDecrees}(q_{\text{standalone}})$\;
+            $\mathcal{C}_{\text{ctx}} \leftarrow \mathcal{E}_{\text{struct}} \cup \mathcal{E}_{\text{policy}}$\;
+            \eIf{$\mathrm{IsCalculationRequired}(q_{\text{standalone}})$}{
+                $\text{params} \leftarrow \mathrm{ExtractFeeParameters}(q_{\text{standalone}}, \mathcal{C}_{\text{ctx}})$\;
+                $\text{calc} \leftarrow \mathrm{ExecuteDeterministicTool}(\texttt{tinh\_toan\_hoc\_phi}, \text{params})$\;
+                $y \leftarrow \mathrm{SynthesizeSpecialistResponse}(A^*, q_{\text{standalone}}, \mathcal{C}_{\text{ctx}} \cup \{\text{calc}\})$\;
+            }{
+                $y \leftarrow \mathrm{SynthesizeSpecialistResponse}(A^*, q_{\text{standalone}}, \mathcal{C}_{\text{ctx}})$\;
+            }
+        }
+        \Case{\upshape 'scholarship'}{
+            $\mathcal{E}_{\text{sch}} \leftarrow \mathrm{RetrieveScholarshipEvidence}(q_{\text{standalone}})$\;
+            \eIf{$\mathrm{IsThresholdCheckRequired}(q_{\text{standalone}})$}{
+                $\text{params} \leftarrow \mathrm{ExtractCriteriaParameters}(q_{\text{standalone}}, \mathcal{E}_{\text{sch}})$\;
+                $\text{eval} \leftarrow \mathrm{ExecuteDeterministicTool}(\texttt{tinh\_tien\_hoc\_bong}, \text{params})$\;
+                $y \leftarrow \mathrm{SynthesizeSpecialistResponse}(A^*, q_{\text{standalone}}, \mathcal{E}_{\text{sch}} \cup \{\text{eval}\})$\;
+            }{
+                $y \leftarrow \mathrm{SynthesizeSpecialistResponse}(A^*, q_{\text{standalone}}, \mathcal{E}_{\text{sch}})$\;
+            }
+        }
+        \Case{\upshape 'general'}{
+            $\mathcal{E}_{\text{gen}} \leftarrow \mathrm{RetrieveHybridDocumentEvidence}(q_{\text{standalone}})$\;
+            $y \leftarrow \mathrm{SynthesizeGeneralResponse}(A^*, q_{\text{standalone}}, \mathcal{E}_{\text{gen}})$\;
+        }
+    }
+}
+$y_{\text{final}} \leftarrow \mathrm{AppendAuthoritativeCitations}(y)$\;
+$\mathrm{CommitSessionState}(\text{Redis}, \mathcal{S}, q, y_{\text{final}})$\;
+\Return $y_{\text{final}}$\;
+\end{algorithm}
+
+Algorithm~\ref{alg:execution} underscores the operational differentiation and privilege boundaries among the four specialists:
+\begin{itemize}
+    \item \textbf{Academic vs. General Specialists:} The \texttt{Academic Specialist} queries a topological property graph (Neo4j) via a bounded ReAct loop over 6 Cypher tools to resolve multi-hop course dependencies, whereas the \texttt{General Specialist} operates with zero direct tools, synthesizing answers strictly over 2,800-character parent regulatory chunks retrieved through the hybrid RAG path.
+    \item \textbf{Financial vs. Scholarship Specialists:} The \texttt{Financial Specialist} accesses structured fee schedules in Neo4j and JSON catalogs, executing the deterministic arithmetic engine \texttt{tinh\_toan\_hoc\_phi} for exact monetary deductions. In contrast, the \texttt{Scholarship Specialist} retrieves narrative eligibility decrees and invokes \texttt{tinh\_tien\_hoc\_bong} to evaluate discrete GPA and training-point thresholds against semester quotas.
+    \item \textbf{Specialist Knowledge Paths and Tools:} Academic queries utilize the graph path exclusively; financial queries prioritize structured graph/JSON lookups paired with deterministic arithmetic; scholarship and general inquiries rely on the multi-stage hybrid document RAG path (BM25, Dense embeddings, RRF, and neural cross-encoder reranking).
+    \item \textbf{Shared State vs. Isolated Resources:} While dialogue history $\mathcal{H}$ and session state $\mathcal{S}$ are shared via Redis, each specialist is strictly bound to its own prompt envelope, knowledge store, and authorized toolset. Peer-to-peer delegation is prohibited, with at most one tool call permitted per evaluated decision ($\text{max\_tool\_calls}=1$).
+\end{itemize}
+\emph{The key distinction is not the individual retrieval algorithms themselves, but the specialist-specific assignment of evidence paths and tool privileges.} By pairing domain specialists with native data representations and deterministic engines, \system{} replaces fragile generative guesswork with reliable, verified execution.
+
+%------------------------------------------------
+\subsection{Detailed Activity Flow}
+\label{sec:flow}
+
+Figure~\ref{fig:flowchart} illustrates the runtime activity flowchart of \system{}, demonstrating the operational coordination between the central supervisor and the four domain-specialized execution swimlanes.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.69, transform shape,
+    font=\sffamily\scriptsize,
+    startstop/.style={rectangle, rounded corners=10pt, draw=green!60!black, fill=green!15, thick, minimum height=22pt, minimum width=2.4cm, align=center, font=\sffamily\scriptsize\bfseries},
+    terminal/.style={rounded corners=4pt, draw=black!75, fill=gray!10, thick, minimum height=22pt, align=center},
+    supnode/.style={rectangle, draw=purple!80!black, fill=purple!8, thick, rounded corners=4pt, minimum height=24pt, align=center},
+    decision/.style={diamond, draw=purple!80!black, fill=purple!12, thick, aspect=1.8, inner sep=1.5pt, align=center, font=\sffamily\tiny\bfseries},
+    process/.style={rectangle, draw=blue!70!black, fill=blue!6, thick, rounded corners=3pt, minimum height=20pt, align=center},
+    agentnode/.style={rectangle, draw=teal!80!black, fill=teal!8, thick, rounded corners=3pt, minimum height=20pt, text width=2.45cm, align=center, font=\sffamily\tiny},
+    evidnode/.style={rectangle, draw=orange!80!black, fill=orange!8, thick, rounded corners=3pt, minimum height=20pt, text width=2.45cm, align=center, font=\sffamily\tiny},
+    toolnode/.style={rectangle, draw=blue!70!black, fill=blue!6, thick, rounded corners=3pt, minimum height=20pt, text width=2.45cm, align=center, font=\sffamily\tiny},
+    columnbox/.style={rounded corners=4pt, dashed, thick},
+    arrow/.style={-{Stealth[scale=0.85]}, thick, draw=black!75},
+    ynlabel/.style={font=\sffamily\tiny\bfseries, fill=white, inner sep=1.5pt}
+]
+
+% 1. Start Node & Query Ingestion
+\node[startstop] (start_pill) at (6.0, 12.3) {\textbf{Start}};
+\node[terminal, text width=6.8cm] (start) at (6.0, 11.2) {\textbf{Student Query $q$} + Dialogue Context $\mathcal{H}$};
+\draw[arrow] (start_pill) -- (start);
+
+% 2. Ambiguity Decision
+\node[decision] (d_rewrite) at (6.0, 9.9) {Context\\Ambiguous?};
+\node[process, text width=2.8cm, font=\sffamily\tiny] (rewrite) at (9.8, 9.9) {\textbf{Fast LLM Rewriter}\\Disambiguate $\rightarrow q_{\text{standalone}}$};
+
+\draw[arrow] (start) -- (d_rewrite);
+\draw[arrow] (d_rewrite) -- node[ynlabel, above=1pt] {Yes} (rewrite);
+\draw[arrow] (d_rewrite) -- node[ynlabel, right=1pt] {No} (6.0, 9.05);
+
+% 3. Supervisor Node
+\node[supnode, text width=7.4cm] (sup) at (6.0, 8.6) {\textbf{Central Supervisor Node}\\Structured Intent Classification \& Domain Identification};
+\draw[arrow] (rewrite) |- (sup.east);
+
+% 4. Cascading Domain Decision Diamonds (All with Yes / No)
+\draw[arrow] (sup.south) -- (6.0, 7.8) -| (1.3, 7.45);
+
+\node[decision, draw=teal!80!black, fill=teal!12] (d_acad) at (1.3, 6.95) {Domain =\\Academic?};
+\node[decision, draw=orange!80!black, fill=orange!12] (d_fin) at (4.4, 6.95) {Domain =\\Financial?};
+\node[decision, draw=purple!80!black, fill=purple!12] (d_schol) at (7.6, 6.95) {Domain =\\Scholarship?};
+
+% Horizontal No-branches between decision diamonds
+\draw[arrow] (d_acad.east) -- node[ynlabel, above=1pt] {No} (d_fin.west);
+\draw[arrow] (d_fin.east) -- node[ynlabel, above=1pt] {No} (d_schol.west);
+\draw[arrow] (d_schol.east) -- node[ynlabel, above=1pt] {No} (10.7, 6.95) -- (10.7, 5.75);
+
+% 5. 4 Swimlane Column Backgrounds
+\draw[columnbox, draw=teal!40, fill=teal!2] (0.0, 1.1) rectangle (2.6, 5.75);
+\node[anchor=north, font=\sffamily\tiny\bfseries, text=teal!80!black] at (1.3, 5.7) {\textsc{Academic Domain}};
+
+\draw[columnbox, draw=orange!40, fill=orange!2] (3.1, 1.1) rectangle (5.7, 5.75);
+\node[anchor=north, font=\sffamily\tiny\bfseries, text=orange!80!black] at (4.4, 5.7) {\textsc{Financial Domain}};
+
+\draw[columnbox, draw=purple!40, fill=purple!2] (6.3, 1.1) rectangle (8.9, 5.75);
+\node[anchor=north, font=\sffamily\tiny\bfseries, text=purple!80!black] at (7.6, 5.7) {\textsc{Scholarship Domain}};
+
+\draw[columnbox, draw=blue!40, fill=blue!2] (9.4, 1.1) rectangle (12.0, 5.75);
+\node[anchor=north, font=\sffamily\tiny\bfseries, text=blue!80!black] at (10.7, 5.7) {\textsc{General Regulations}};
+
+% Yes-branches descending into Swimlanes
+\draw[arrow] (d_acad.south) -- node[ynlabel, right=1pt] {Yes} (1.3, 5.15);
+\draw[arrow] (d_fin.south) -- node[ynlabel, right=1pt] {Yes} (4.4, 5.15);
+\draw[arrow] (d_schol.south) -- node[ynlabel, right=1pt] {Yes} (7.6, 5.15);
+
+% Column 1: Academic (x = 1.3)
+\node[agentnode] (node_1A) at (1.3, 4.7) {\textbf{Academic Specialist}\\(Cypher ReAct Agent)};
+\node[toolnode]  (node_1B) at (1.3, 3.2) {\textbf{Neo4j Graph Traversal}\\6 Cypher APOC Tools\\(Curricula / Prerequisites)};
+\node[agentnode] (node_1C) at (1.3, 1.7) {\textbf{Curriculum Grounding}\\Topological prerequisite\\resolution and synthesis};
+
+\draw[arrow] (node_1A) -- (node_1B);
+\draw[arrow] (node_1B) -- (node_1C);
+
+% Column 2: Financial (x = 4.4)
+\node[evidnode]  (node_2A) at (4.4, 4.7) {\textbf{Tuition Rate Lookup}\\Neo4j Graph $\cup$ JSON Catalog\\(+ Exemption Decrees)};
+\node[agentnode] (node_2B) at (4.4, 3.2) {\textbf{Financial Specialist}\\Prompt Context Formulator\\(Rate matrices \& quotas)};
+\node[toolnode]  (node_2C) at (4.4, 1.7) {\textbf{Deterministic Calc}\\Tool: \texttt{tinh\_toan\_hoc\_phi}\\(or direct tariff synthesis)};
+
+\draw[arrow] (node_2A) -- (node_2B);
+\draw[arrow] (node_2B) -- (node_2C);
+
+% Column 3: Scholarship (x = 7.6)
+\node[evidnode]  (node_3A) at (7.6, 4.7) {\textbf{Scholarship Evidence}\\Hybrid Criteria Retrieval\\(Policy conditions / quotas)};
+\node[agentnode] (node_3B) at (7.6, 3.2) {\textbf{Scholarship Specialist}\\Eligibility Evaluator\\(Tier conditions / criteria)};
+\node[toolnode]  (node_3C) at (7.6, 1.7) {\textbf{Threshold Engine}\\Tool: \texttt{tinh\_tien\_hoc\_bong}\\(or direct policy synthesis)};
+
+\draw[arrow] (node_3A) -- (node_3B);
+\draw[arrow] (node_3B) -- (node_3C);
+
+% Column 4: General (x = 10.7)
+\node[evidnode]  (node_4A) at (10.7, 4.7) {\textbf{Hybrid Document RAG}\\BM25 + Dense Qdrant\\$\rightarrow$ Reciprocal Rank Fusion};
+\node[toolnode]  (node_4B) at (10.7, 3.2) {\textbf{Neural Cross-Rerank}\\\texttt{bge-reranker-v2-m3}\\Top-5 Child Chunk Selection};
+\node[agentnode] (node_4C) at (10.7, 1.7) {\textbf{General Specialist}\\Parent Chunks (1,000 tok)\\Synthesis (\textbf{0 direct tools})};
+
+\draw[arrow] (node_4A) -- (node_4B);
+\draw[arrow] (node_4B) -- (node_4C);
+
+% Collector Box (Bottom)
+\node[terminal, text width=11.6cm] (collector) at (6.0, 0.5) {\textbf{Response Verification, Regulatory Citation Grounding, \& Redis Session Commit}\\$\longrightarrow$ Synthesis of Verified Advisory Answer};
+
+\draw[arrow] (node_1C.south) -- (1.3, 0.88);
+\draw[arrow] (node_2C.south) -- (4.4, 0.88);
+\draw[arrow] (node_3C.south) -- (7.6, 0.88);
+\draw[arrow] (node_4C.south) -- (10.7, 0.88);
+
+% 6. End Node
+\node[startstop] (end_pill) at (6.0, -0.45) {\textbf{End: Deliver Verified Answer to Student}};
+\draw[arrow] (collector.south) -- (end_pill.north);
+
+\end{tikzpicture}
+\caption{Detailed runtime activity flowchart of \system{}, illustrating explicit Start/End states, decision diamonds with Yes/No branches for contextual query rewriting and cascading domain intent routing across four isolated specialist swimlanes, heterogeneous knowledge acquisition, bounded tool execution, and authoritative citation grounding.}
+\label{fig:flowchart}
+\end{figure}
+
+\textbf{End-to-End Execution Walkthrough:} As illustrated in Figure~\ref{fig:flowchart}, a relational curriculum query is routed by the supervisor to the \texttt{Academic Specialist} and resolved through graph evidence, whereas a narrative regulation query is directed to the \texttt{General Specialist} and processed through the hybrid document-retrieval path. Financial queries additionally activate structured evidence lookup and deterministic calculation when the requested answer requires an exact monetary result, reducing reliance on generative arithmetic. Finally, retrieved regulatory citations are appended and conversational state is committed to Redis before returning the response to the student.
+\FloatBarrier

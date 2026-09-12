@@ -554,75 +554,110 @@ class AcademicGraphService:
     def lookup_tuition(
         self, query: str, khoa: Optional[str] = None
     ) -> List[Dict[str, Any]]:
-        """Tra cứu học phí của ngành theo tên/mã ngành, có thể lọc theo khóa."""
+        """Tra cứu học phí theo thực thể rõ ràng, không trả hàng sai khóa/hệ.
+
+        ``khoa`` chấp nhận cả ``51`` và ``K51``. Khi câu hỏi chứa hệ đào tạo
+        hoặc đơn vị tính, các ràng buộc đó được áp dụng cứng. Truy vấn mơ hồ
+        không rơi xuống token-overlap rộng vì đây là nguồn số liệu định lượng.
+        """
         norm = _normalize(query)
+        cohort_match = re.search(r"\b(?:k|khoa)\s*([4-9]\d)\b", norm)
+        cohort_number = cohort_match.group(1) if cohort_match else None
+        if khoa:
+            explicit = re.search(r"([4-9]\d)", str(khoa))
+            cohort_number = explicit.group(1) if explicit else cohort_number
+
+        if re.search(r"\bclc\b|chat luong cao", norm):
+            requested_program = "clc"
+        elif "tien tien" in norm:
+            requested_program = "tien_tien"
+        elif re.search(r"\bdai tra\b|chuong trinh chuan|he chuan", norm):
+            requested_program = "chuan"
+        else:
+            requested_program = None
+
+        if "tin chi" in norm or re.search(r"\btc\b", norm):
+            requested_units = {"dong/tin_chi"}
+        elif "toan khoa" in norm or "ca khoa" in norm:
+            requested_units = {"trieu_dong/khoa"}
+        elif "theo nam" in norm or "moi nam" in norm or "nam hoc" in norm:
+            requested_units = {"trieu_dong/nam_hoc", "dong/nam_hoc"}
+        else:
+            requested_units = None
+
+        aliases = {
+            "cntt": "cong nghe thong tin",
+            "ktpm": "ky thuat phan mem",
+            "httt": "he thong thong tin",
+            "khmt": "khoa hoc may tinh",
+            "attt": "an toan thong tin",
+            "qtkd": "quan tri kinh doanh",
+            "mmtttdl": "mang may tinh va truyen thong du lieu",
+        }
+        expanded_norm = norm
+        compact_norm = norm.replace(" ", "")
+        for alias, canonical in aliases.items():
+            if re.search(rf"\b{re.escape(alias)}\b", norm) or alias in compact_norm:
+                expanded_norm += " " + canonical
 
         with self._driver.session() as session:
-            # Strategy 1: Tìm qua Program → HAS_TUITION → TuitionFee
-            cypher = """
-                MATCH (p:Program)-[:HAS_TUITION]->(tf:TuitionFee)
-                WHERE p.code = $query
-                   OR toLower(p.name) CONTAINS $norm
-            """
-            params: Dict[str, Any] = {"query": query.strip(), "norm": norm}
-
-            if khoa:
-                cypher += "    AND tf.khoa = $khoa\n"
-                params["khoa"] = khoa.strip()
-
-            cypher += """
-                RETURN tf.id AS id, tf.ma_nganh AS ma_nganh, tf.khoa AS khoa,
-                       tf.nam_hoc AS nam_hoc, tf.loai_ct AS loai_ct,
-                       tf.don_vi_tinh AS don_vi_tinh, tf.muc_hp AS muc_hp,
-                       tf.ten_nganh AS ten_nganh, p.name AS program_name,
-                       p.code AS program_code
-                ORDER BY tf.khoa, tf.don_vi_tinh
-            """
-
-            result = session.run(cypher, parameters=params)
-            matches = [dict(r) for r in result]
-
-            # Strategy 2: Tìm trực tiếp trên TuitionFee (cho CLC/TT không link Program)
-            if not matches:
-                cypher2 = """
-                    MATCH (tf:TuitionFee)
-                    WHERE toLower(tf.ten_nganh) CONTAINS $norm
+            result = session.run(
                 """
-                params2: Dict[str, Any] = {"norm": norm}
-
-                if khoa:
-                    cypher2 += "    AND tf.khoa = $khoa\n"
-                    params2["khoa"] = khoa.strip()
-
-                cypher2 += """
-                    RETURN tf.id AS id, tf.ma_nganh AS ma_nganh, tf.khoa AS khoa,
-                           tf.nam_hoc AS nam_hoc, tf.loai_ct AS loai_ct,
-                           tf.don_vi_tinh AS don_vi_tinh, tf.muc_hp AS muc_hp,
-                           tf.ten_nganh AS ten_nganh,
-                           '' AS program_name, '' AS program_code
-                    ORDER BY tf.khoa, tf.don_vi_tinh
+                MATCH (tf:TuitionFee)
+                OPTIONAL MATCH (p:Program)-[:HAS_TUITION]->(tf)
+                RETURN DISTINCT tf.id AS id, tf.ma_nganh AS ma_nganh,
+                       tf.khoa AS khoa, tf.nam_hoc AS nam_hoc,
+                       tf.loai_ct AS loai_ct, tf.don_vi_tinh AS don_vi_tinh,
+                       tf.muc_hp AS muc_hp, tf.ten_nganh AS ten_nganh,
+                       coalesce(p.name, '') AS program_name,
+                       coalesce(p.code, '') AS program_code,
+                       tf.source AS source, tf.source_section AS source_section,
+                       tf.source_table AS source_table
                 """
-                result = session.run(cypher2, **params2)
-                matches = [dict(r) for r in result]
+            )
+            rows = [dict(row) for row in result]
 
-            # Strategy 3: Token overlap fallback
-            if not matches:
-                result = session.run(
-                    "MATCH (tf:TuitionFee) RETURN tf"
+        candidates: List[tuple[int, Dict[str, Any]]] = []
+        for row in rows:
+            stored_cohort = str(row.get("khoa") or "")
+            if cohort_number:
+                cohort_value = int(cohort_number)
+                cohort_ok = stored_cohort == f"K{cohort_number}" or (
+                    stored_cohort == "K51_ve_truoc" and cohort_value <= 51
                 )
-                query_tokens = set(norm.split())
-                scored = []
-                for row in result:
-                    tf = dict(row["tf"])
-                    tf_norm = _normalize(tf.get("ten_nganh", ""))
-                    tf_tokens = set(tf_norm.split())
-                    overlap = len(query_tokens & tf_tokens)
-                    if overlap > 0:
-                        scored.append((overlap, tf))
-                scored.sort(key=lambda x: x[0], reverse=True)
-                matches = [item for _, item in scored[:20]]
+                if not cohort_ok:
+                    continue
+            if requested_program and row.get("loai_ct") != requested_program:
+                continue
+            if requested_units and row.get("don_vi_tinh") not in requested_units:
+                continue
 
-        return matches
+            names = {
+                _normalize(str(row.get("ten_nganh") or "")),
+                _normalize(str(row.get("program_name") or "")),
+            }
+            names.discard("")
+            code_values = {str(row.get("ma_nganh") or ""), str(row.get("program_code") or "")}
+            name_scores = [len(name) for name in names if name in expanded_norm]
+            code_match_score = 1000 if any(code and code in query for code in code_values) else 0
+            score = max(name_scores or [0]) + code_match_score
+            if score:
+                candidates.append((score, row))
+
+        if not candidates:
+            return []
+        best_score = max(score for score, _ in candidates)
+        return [
+            row for score, row in sorted(
+                candidates,
+                key=lambda item: (
+                    -item[0],
+                    str(item[1].get("khoa") or ""),
+                    str(item[1].get("don_vi_tinh") or ""),
+                ),
+            )
+            if score == best_score
+        ]
 
     # ------------------------------------------------------------------
     # 8. get_tuition_policies — lấy danh sách quy định học phí
@@ -643,7 +678,9 @@ class AcademicGraphService:
                     RETURN tp.id AS id, tp.loai AS loai, tp.mo_ta AS mo_ta,
                            tp.he_so AS he_so, tp.muc_hp AS muc_hp,
                            tp.don_vi_tinh AS don_vi_tinh,
-                           tp.doi_tuong AS doi_tuong, tp.nam_hoc AS nam_hoc
+                           tp.doi_tuong AS doi_tuong, tp.nam_hoc AS nam_hoc,
+                           tp.source AS source, tp.source_section AS source_section,
+                           tp.source_table AS source_table
                     ORDER BY tp.id
                     """,
                     norm=norm,
@@ -655,7 +692,9 @@ class AcademicGraphService:
                     RETURN tp.id AS id, tp.loai AS loai, tp.mo_ta AS mo_ta,
                            tp.he_so AS he_so, tp.muc_hp AS muc_hp,
                            tp.don_vi_tinh AS don_vi_tinh,
-                           tp.doi_tuong AS doi_tuong, tp.nam_hoc AS nam_hoc
+                           tp.doi_tuong AS doi_tuong, tp.nam_hoc AS nam_hoc,
+                           tp.source AS source, tp.source_section AS source_section,
+                           tp.source_table AS source_table
                     ORDER BY tp.id
                     """
                 )
@@ -702,7 +741,9 @@ class AcademicGraphService:
                     RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
                            e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
                            e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
-                           e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                           e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code,
+                           e.source AS source, e.source_section AS source_section,
+                           e.source_table AS source_table
                     ORDER BY e.khoi
                 """
                 res = session.run(cypher_k, khoi=target_k, khoi_raw=khoi.strip().upper())
@@ -721,7 +762,9 @@ class AcademicGraphService:
                         RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
                                e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
                                e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
-                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code,
+                               e.source AS source, e.source_section AS source_section,
+                               e.source_table AS source_table
                         """
                     )
                     return [dict(r) for r in res]
@@ -734,7 +777,9 @@ class AcademicGraphService:
                         RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
                                e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
                                e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
-                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code,
+                               e.source AS source, e.source_section AS source_section,
+                               e.source_table AS source_table
                         """
                     )
                     return [dict(r) for r in res]
@@ -748,10 +793,15 @@ class AcademicGraphService:
                            e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
                            e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
                            e.ghi_chu AS ghi_chu, p.name AS program_name,
-                           p.code AS program_code
+                           p.code AS program_code, e.source AS source,
+                           e.source_section AS source_section, e.source_table AS source_table
                     ORDER BY p.name
                 """
-                res = session.run(cypher_prog, query=query.strip(), norm=norm)
+                # `query` is reserved as the first positional argument name by
+                # Neo4j's Session.run API; pass the Cypher parameter via a
+                # differently named placeholder to avoid duplicate binding.
+                cypher_prog = cypher_prog.replace("$query", "$query_text")
+                res = session.run(cypher_prog, query_text=query.strip(), norm=norm)
                 results = [dict(r) for r in res]
 
                 # Strategy B: Tìm theo tên khối ngành trực tiếp
@@ -763,7 +813,9 @@ class AcademicGraphService:
                         RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
                                e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
                                e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
-                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                               e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code,
+                               e.source AS source, e.source_section AS source_section,
+                               e.source_table AS source_table
                         ORDER BY e.khoi
                     """
                     res = session.run(cypher_eb, norm=norm)
@@ -777,11 +829,12 @@ class AcademicGraphService:
                     RETURN e.id AS id, e.khoi AS khoi, e.ten_khoi AS ten_khoi,
                            e.muc_hp AS muc_hp, e.don_vi_tinh AS don_vi_tinh,
                            e.nam_hoc AS nam_hoc, e.loai_ct AS loai_ct,
-                           e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code
+                           e.ghi_chu AS ghi_chu, '' AS program_name, '' AS program_code,
+                           e.source AS source, e.source_section AS source_section,
+                           e.source_table AS source_table
                     ORDER BY e.khoi
                     """
                 )
                 results = [dict(r) for r in res]
 
         return results
-

@@ -1,0 +1,35 @@
+% ============================================================
+%  00-abstract.tex
+% ============================================================
+\begin{abstract}
+University administrative question answering demands more than
+semantic similarity matching: answers must respect document validity,
+organizational authority, temporal scope, and exact procedural or
+numerical rules.
+This paper presents {\system{}}, a bilingual Vietnamese--English
+framework that integrates metadata-filtered \mbox{BM25} and dense retrieval,
+a provenance-preserving knowledge graph, cross-encoder evidence
+reranking, and a specialist-agent workflow.
+PostgreSQL serves as the authoritative data store, while Qdrant and
+Neo4j function as rebuildable retrieval projections; every candidate
+is revalidated against publication, approval, audience, category, and
+effective-date constraints prior to generation.
+The framework is evaluated through retrieval and end-to-end QA studies
+using 150 human-reviewed questions spanning nine administrative categories.
+The full retrieval configuration achieves H@1 of 0.8667, perfect H@3 and
+Recall@5, and MRR@10 of 0.9222. In the end-to-end evaluation, the proposed
+system attains Context Recall of 0.745 and Context Precision of 0.749, while
+removing governance produces the lowest Answer Correctness score.
+This work provides a reproducible design for evidence-grounded
+administrative assistants in low-resource bilingual settings.
+\keywords{
+  Retrieval-augmented generation \and
+  GraphRAG \and
+  Agentic AI \and
+  Evidence provenance \and
+  Hybrid retrieval \and
+  Bilingual question answering \and
+  University administration \and
+  Vietnamese NLP
+}
+\end{abstract}

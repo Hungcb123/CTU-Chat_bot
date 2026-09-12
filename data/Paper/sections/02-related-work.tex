@@ -1,0 +1,85 @@
+\section{Related Work}
+\label{sec:related}
+
+This section reviews representative studies on Retrieval-Augmented Generation, hybrid retrieval, GraphRAG, agentic AI, and educational question answering. Rather than summarizing previous work, we analyze their limitations and identify the research gap addressed by CTU-Chat.
+
+%------------------------------------------------
+\subsection{Retrieval-Augmented Generation}
+
+Retrieval-Augmented Generation (RAG), first introduced by Lewis et al.~\cite{lewis2020rag}, combines external document retrieval with large language models to generate evidence-grounded responses. By conditioning generation on retrieved passages, RAG significantly improves factual accuracy and reduces hallucinations in open-domain question answering.
+
+However, conventional RAG assumes a static and homogeneous document collection in which all retrieved documents are treated as equally reliable. Such an assumption is unsuitable for university administrative services because regulations are continuously revised and possess different publication states and periods of validity. Consequently, existing RAG systems rarely preserve document provenance or distinguish obsolete documents from currently effective regulations, limiting their reliability in governance-oriented applications.
+
+%------------------------------------------------
+\subsection{Lexical and Dense Retrieval for Bilingual Text}
+
+Lexical retrieval and dense retrieval represent two complementary paradigms for information retrieval. BM25~\cite{robertson2009bm25} remains highly effective for matching exact policy terminology, course identifiers, and administrative codes, while multilingual dense embeddings~\cite{chen2024bgem3} provide robust semantic matching across Vietnamese and English paraphrases.
+
+The BM25 ranking function is defined as:
+
+\begin{equation}
+  s_{\mathrm{BM25}}(q,d)
+  =\sum_{w\in q}\mathrm{IDF}(w)
+   \frac{\mathrm{tf}(w,d)(k_1+1)}
+        {\mathrm{tf}(w,d)+k_1\!\left(1-b+b\,\tfrac{|d|}{\overline{|d|}}\right)}.
+\label{eq:bm25}
+\end{equation}
+
+Dense retrieval computes semantic similarity using cosine similarity between query and document embeddings:
+
+\begin{equation}
+  s_{\mathrm{dense}}(q,d)
+  =\frac{\mathbf{h}_q^\top\mathbf{h}_d}
+        {\|\mathbf{h}_q\|_2\|\mathbf{h}_d\|_2}.
+\label{eq:dense}
+\end{equation}
+
+To leverage the strengths of both paradigms, hybrid retrieval commonly employs Reciprocal Rank Fusion (RRF)~\cite{cormack2009rrf} to merge lexical and semantic rankings without score normalization.
+
+Despite their complementary advantages, existing hybrid retrieval methods primarily optimize relevance while overlooking governance metadata. Highly ranked passages may therefore originate from expired or unauthorized documents, and Vietnamese-specific challenges such as word segmentation and compound administrative terminology remain insufficiently addressed by general multilingual retrieval models.
+
+%------------------------------------------------
+\subsection{Knowledge Graphs and GraphRAG}
+
+Knowledge graphs extend retrieval by explicitly modeling entities and their relationships, enabling multi-hop reasoning across organizational structures, curricula, prerequisites, and administrative procedures. GraphRAG~\cite{edge2024graphrag} integrates graph traversal with retrieval-augmented generation to discover evidence beyond isolated text chunks.
+
+Nevertheless, most GraphRAG frameworks directly project LLM-extracted facts into the graph without validating their correctness. Unreviewed graph edges may propagate inaccurate relationships during retrieval, while graph-expanded candidates frequently bypass the governance constraints enforced in the authoritative document repository. These issues reduce the trustworthiness of graph reasoning in highly regulated domains such as university administration.
+
+%------------------------------------------------
+\subsection{Agentic RAG and Multi-Agent Systems}
+
+Agentic RAG extends traditional retrieval pipelines through autonomous planning, tool invocation, and iterative evidence acquisition~\cite{yao2023react}. Supervisor--Worker orchestration frameworks, such as LangGraph, further improve scalability by assigning specialized responsibilities to domain-specific agents with dedicated tools and contextual memory.
+
+Although these architectures provide greater flexibility than conventional RAG, increased autonomy also introduces new sources of uncertainty. Routing errors, inappropriate tool selection, memory leakage across sessions, and non-deterministic reasoning negatively affect reproducibility. Moreover, existing studies rarely evaluate whether an agent should abstain or retry retrieval when supporting evidence is insufficient, leaving reliability largely unexplored.
+
+%------------------------------------------------
+\subsection{Administrative and Educational Question Answering}
+
+Educational question answering systems have been widely applied to university student services, including academic advising, curriculum consultation, and administrative assistance~\cite{ma2025rebot}. These systems demonstrate the practicality of conversational AI for accessing institutional knowledge and supporting student services.
+
+However, most existing educational QA systems remain document-centric rather than governance-centric. They seldom support bilingual Vietnamese--English administrative language, preserve citation provenance, or integrate deterministic calculation tools for tuition and GPA policies. In addition, multi-agent routing and evidence-aware response generation are rarely evaluated, indicating that reliable university governance remains an open research problem.
+
+%------------------------------------------------
+\subsection{Research Gap and Problem Formulation}
+\label{sec:prob}
+
+The literature review reveals that no existing approach simultaneously addresses multilingual retrieval, document governance, provenance preservation, temporal validity, and deterministic policy computation within a unified university student-service framework. This study therefore formulates the administrative QA problem as follows.
+
+Let a user query be defined as
+$q=(x,\ell,\mathcal{C},\mathcal{A},t)$,
+where $x$ is the question text, $\ell\in\{vi,en\}$ is the language, $\mathcal{C}$ denotes category constraints, $\mathcal{A}$ represents an optional audience constraint, and $t$ is the reference time for answer validity.
+
+The objective is to generate an answer $y$ together with a set of supporting citations $Z\subseteq E$ such that every cited evidence is relevant, originates from an approved and effective document version, satisfies governance constraints, and fully supports the generated claims. When sufficient evidence is unavailable, the system should abstain or explicitly express uncertainty rather than generating unsupported information.
+
+The governance constraint is formalized by the predicate:
+
+\begin{equation}
+  G(e,q)
+  = I_{\text{approved}}(e)\cdot I_{\text{published}}(e)
+    \cdot I_{\text{category}}(e,\mathcal{C})
+    \cdot I_{\text{audience}}(e,\mathcal{A})
+    \cdot I_{\text{effective}}(e,t).
+\label{eq:gov}
+\end{equation}
+
+Only evidence satisfying $G(e,q)=1$ is allowed to participate in answer generation. This formulation establishes the theoretical foundation for the governance-aware hybrid retrieval architecture proposed in the following section.

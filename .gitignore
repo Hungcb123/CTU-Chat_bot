@@ -94,6 +94,7 @@ data/* (2).*
 # ==========================================
 *checkpoint*.json
 logs/dataset_evaluation/*.jsonl
+logs/scenario3/
 
 # ==========================================
 # 8. Diagrams & Miscellaneous

@@ -1,0 +1,22 @@
+% ============================================================
+% 01-introduction.tex (Revised)
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Providing accurate and timely administrative support is an essential component of modern university student services. Students frequently seek information about tuition fees, scholarships, student loans, academic regulations, curricula, and administrative procedures. However, these answers are distributed across versioned regulations, official announcements, fee tables, and curriculum documents, making reliable information retrieval a challenging task. Incorrect or outdated responses may directly affect students' academic and financial decisions.
+
+Recent advances in Retrieval-Augmented Generation (RAG)~\cite{lewis2020rag} have significantly improved question answering by grounding large language models on external knowledge. Dense retrieval effectively captures semantic similarity, while lexical retrieval remains valuable for matching exact identifiers such as course codes, decision numbers, and Vietnamese administrative terminology. Knowledge graphs and agent-based orchestration further extend RAG by supporting relational reasoning and specialized tool invocation.
+
+Despite these advances, existing RAG systems remain insufficient for university administrative services. First, semantic retrieval alone often fails to retrieve exact policy identifiers and structured tabular information. Second, most systems do not preserve document governance, including version validity, publication status, and effective dates. Third, they lack deterministic mechanisms for numerical calculations such as tuition reduction and scholarship eligibility, leading to fluent but potentially incorrect responses. These limitations reveal a research gap in building evidence-grounded and governance-aware RAG systems for higher education.
+
+\textbf{Research Question.} \textit{How can a hybrid retrieval framework combining lexical search, dense retrieval, knowledge graphs, and deterministic tools improve the reliability and factual accuracy of university student-service question answering?}
+
+To address this question, this paper proposes \textbf{\system{}}, a hybrid Retrieval-Augmented Generation framework for Can Tho University. The proposed system integrates Vietnamese BM25, dense vector retrieval, Reciprocal Rank Fusion (RRF), metadata-governed evidence filtering, graph-based relational retrieval, and intent-aware multi-agent orchestration with typed calculation tools. This architecture preserves evidence provenance while providing accurate, transparent, and reproducible answers for administrative and academic queries.
+
+The main contributions of this work are as follows:
+\begin{itemize}
+    \item A governance-aware hybrid retrieval architecture that combines lexical, semantic, and graph-based evidence under temporal and metadata constraints.
+    \item An intent-aware multi-agent framework integrating Neo4j graph retrieval with deterministic academic and financial calculation tools.
+    \item A comprehensive experimental evaluation on a human-verified university student-service benchmark to assess retrieval quality, answer correctness, and system reliability.
+\end{itemize}

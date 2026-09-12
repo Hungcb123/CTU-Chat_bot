@@ -1,0 +1,55 @@
+{
+  "created_at_utc": "2026-09-11T15:52:26.363340+00:00",
+  "split": "dev",
+  "dataset": "/mnt/d/project/chatbot/data/scenario12_dev.jsonl",
+  "case_count": 1,
+  "scenario": "2",
+  "model": "gemini-2.5-flash-lite",
+  "embedding_model": "text-embedding-004",
+  "temperature": 0.0,
+  "workers": 10,
+  "repetitions": 1,
+  "signature": {
+    "dataset_sha256": "61c244bd417d2ce3c5c211104a6b0d502d5e99666db9aa7633a845b559fd54f7",
+    "code_sha256": "a717c3f36c4aef5c5339e633589313a1bc531c13757c2162210c1f12fa49dc85",
+    "prompt_sha256": "6430d7360e79d0d0645732ba380379649c6ccb768ed645e0e78e230f96ccb7ae",
+    "judge_rubric_sha256": "c7063784f9c971170867f37905a9516b1d4c6c1199fdddbec173840d70cfb5f2",
+    "graph_data_sha256": "c40803c485da5bee9e4a8afc6018c16dbe0f1e1e00046b1b7aea96bad2bbf1fd",
+    "catalog_sha256": "456b923d09b33d5010e358b500b3b2336add137a3b6dfdc8f3aedb92a4177ba8",
+    "model": "gemini-2.5-flash-lite",
+    "ragas_version": "0.4.3",
+    "top_k": 7,
+    "metric_k": 10,
+    "scenario": "2",
+    "split": "dev",
+    "limit": 1,
+    "configurations": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "generation": {
+      "temperature": 0.0,
+      "repetitions": 1,
+      "embedding_model": "text-embedding-004",
+      "location": "us-central1"
+    }
+  },
+  "artifact_sha256": {
+    "records.jsonl": "cfdba199b8cda294bf02c5ec173d99c60444410cbbf7d1d4d464a7976b37a6a9",
+    "summary.json": "d938f8f193047575fc503b542e637ca2f81275577d452fa1ee54913aa35afd9f",
+    "comparison.md": "f44be06286be7c58f62b5218d123c3cc70bb702043ee3f38f9a7665584c7abc8",
+    "failures.md": "ffb7aecd2fcfd8c6f5152e79177dc60fc060cc712bbb3f20ce366d317b19f1a8",
+    "checkpoint.json": "b69e23f1c8d7f13b18100ddc30ec1f085e850e62a9343e87cceaa2fe3fcaa252",
+    "run.log": "adaa8185b66f0881b7d68936f98cba043e91c3e6c0121d88ae6137850115de46"
+  }
+}

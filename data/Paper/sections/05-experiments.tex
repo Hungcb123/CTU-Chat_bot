@@ -1,0 +1,198 @@
+\FloatBarrier
+% ============================================================
+% 05-experimental-results.tex
+% ============================================================
+
+\section{Experimental Results}
+\label{sec:exp}
+\suppressfloats[t]
+
+This section presents the experimental dataset, implementation environment,
+evaluation metrics, experimental scenarios, and discussion of the proposed
+CTU-Chat framework.
+
+%------------------------------------------------
+\subsection{Experimental Dataset}
+
+A benchmark dataset was constructed to evaluate the proposed CTU-Chat
+framework on university student-service question answering. The dataset was
+developed from official Can Tho University documents, including academic
+regulations, training programs, tuition policies, scholarships, student loan
+policies, social support, dormitory regulations, and administrative procedures.
+
+Instead of manually composing every question, candidate questions were first
+generated using Claude based on the collected documents. The generated dataset
+then underwent a two-stage validation process. First, a validation notebook was
+used to verify the availability of supporting documents and evidence references.
+Second, all questions were manually reviewed to remove duplicated or ambiguous
+samples and to ensure that each question had a complete ground-truth answer.
+A final validation step was performed before constructing the benchmark.
+
+The final benchmark contains 150 representative questions selected according to
+three criteria: (1) coverage of all major administrative categories,
+(2) high-frequency real-world student inquiries, and (3) complete
+ground-truth evidence for every sample.
+
+\begin{table}[!htbp]
+\centering
+\caption{Distribution of the benchmark dataset.}
+\label{tab:dataset}
+\begin{tabular}{lc}
+\toprule
+Category & Questions \\
+\midrule
+Actual Tuition & 60 \\
+Academic Rules & 18 \\
+Scholarship & 14 \\
+Student Loan & 12 \\
+Other & 12 \\
+Social Support & 11 \\
+Academic Program & 9 \\
+Exemption Policy & 9 \\
+Exemption Basis & 5 \\
+\midrule
+\textbf{Total} & \textbf{150} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------
+\subsection{Experimental Tools}
+
+The proposed system was implemented using a hybrid retrieval architecture
+consisting of vector, graph, and relational databases. Dense embeddings were
+generated using the Vietnamese bi-encoder used by the deployed index, and a
+BGE reranker was used in the upgraded retrieval pipeline. LangGraph was used
+for multi-agent orchestration. Retrieval metrics were computed from gold
+document identifiers; answer relevancy and correctness were scored by a
+Gemini-based LLM judge.
+
+\begin{table}[!htbp]
+\centering
+\caption{Experimental implementation environment.}
+\label{tab:tools}
+\begin{tabular}{ll}
+\toprule
+Component & Technology \\
+\midrule
+Programming language & Python 3.12 \\
+Vector database & Qdrant \\
+Graph database & Neo4j \\
+Metadata database & PostgreSQL \\
+Embedding model & \texttt{vietnamese-bi-encoder} \\
+Cross-encoder reranker & \texttt{bge-reranker-v2-m3} \\
+Generation and judge LLM & Gemini 2.5 Flash Lite \\
+Agent framework & LangGraph \\
+Evaluation & Gold-source metrics + LLM judge \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------
+\subsection{Evaluation Metrics}
+
+Two groups of evaluation metrics were adopted in this study.
+
+\textbf{Retrieval metrics} evaluate the quality of evidence retrieval,
+including Hit@1 (H@1), Hit@3 (H@3), Precision@5 (P@5), Recall@5, and
+Mean Reciprocal Rank (MRR@10).
+
+\textbf{End-to-end QA metrics} follow the terminology of Answer Relevancy
+(AR), Context Recall (CR), Context Precision (CP), and Answer Correctness
+(AC). In the reported run, CR and CP were computed deterministically from
+gold document identifiers, whereas AR and AC were assigned by a Gemini 2.5
+Flash Lite judge. These are therefore RAGAS-style metrics, not scores produced
+by the RAGAS software package. All metrics range from 0 to 1, where higher
+values indicate better performance.
+
+%------------------------------------------------
+\subsection{Experimental Scenarios}
+
+Two groups of experiments were conducted using the same 150-question benchmark.
+The first evaluates the retrieval module (E1--E5), while the second evaluates
+the complete question answering pipeline (T1--T7).
+
+%-----------------------------
+\subsubsection{Scenario A: Retrieval Performance}
+
+Five cumulative retrieval configurations were evaluated. E1 uses BM25, E2
+uses dense retrieval, and E3 combines both retrievers through RRF. E4 adds the
+\texttt{bge-reranker-v2-m3} cross-encoder, while E5 represents the complete
+system with governed retrieval lanes, graph-based candidate expansion, and
+cross-encoder reranking.
+
+Table~\ref{tab:retrieval} shows a clear improvement as the reranker and full
+system components are introduced. E4 raises H@1 from 0.6000 to 0.8000 and
+MRR@10 from 0.7006 to 0.8556 relative to E3. E5 achieves the strongest overall
+retrieval result, including perfect H@3 and Recall@5 and an MRR@10 of 0.9222.
+
+\begin{table}[!ht]
+\centering
+\caption{Retrieval evaluation results of E1--E5 on 150 questions.}
+\label{tab:retrieval}
+\begin{tabular}{lccccc}
+\toprule
+Config. & H@1 & H@3 & P@5 & R@5 & MRR \\
+\midrule
+E1 & 0.7333 & 0.8667 & 0.2133 & 0.9000 & 0.8133 \\
+E2 & 0.5333 & 0.6000 & 0.1600 & 0.6667 & 0.5833 \\
+E3 & 0.6000 & 0.8000 & 0.2000 & 0.8333 & 0.7006 \\
+E4 & 0.8000 & 0.9333 & 0.2267 & 0.9333 & 0.8556 \\
+\textbf{E5} & \textbf{0.8667} & \textbf{1.0000} & \textbf{0.2400} & \textbf{1.0000} & \textbf{0.9222} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%-----------------------------
+\subsubsection{Scenario B: End-to-End Question Answering}
+
+The second experiment evaluates seven QA configurations (T1--T7) using the
+metric procedure described above. The logged run contains 150 cases for each
+configuration, for a total of 1,050 generated answers and 1,050 judge records.
+
+Table~\ref{tab:ragas} shows that T4 achieves strong context quality, with
+Context Recall of 0.745 and Context Precision of 0.749. In contrast, removing
+the governance filter in T7 reduces Answer Correctness to 0.398, the lowest
+score in the experiment. T5 and T6 remain competitive on answer correctness,
+indicating that high-quality retrieval and answer generation must be optimized
+jointly.
+
+\begin{table}[!ht]
+\centering
+\caption{End-to-end QA results of T1--T7 on 150 questions.}
+\label{tab:ragas}
+\begin{tabular}{lcccc}
+\toprule
+Config. & AR & CR & CP & AC \\
+\midrule
+T1 & 0.561 & 0.745 & 0.684 & 0.518 \\
+T2 & 0.455 & 0.533 & 0.421 & 0.395 \\
+T3 & 0.578 & 0.682 & 0.550 & 0.506 \\
+\textbf{T4} & \textbf{0.551} & \textbf{0.745} & \textbf{0.749} & \textbf{0.500} \\
+T5 & 0.575 & 0.682 & 0.550 & 0.525 \\
+T6 & 0.561 & 0.745 & 0.750 & 0.508 \\
+T7 & 0.479 & 0.533 & 0.421 & \textbf{0.398} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------
+\subsection{Discussion}
+
+The retrieval results demonstrate the complementary roles of lexical matching,
+semantic retrieval, and learned reranking. BM25 remains effective for exact
+cohort identifiers and administrative terminology, whereas the cross-encoder
+substantially improves the ranking of hybrid candidates. Governed lanes and
+graph expansion further improve evidence coverage, allowing E5 to retrieve all
+required sources within the top five for this benchmark.
+
+The end-to-end results reinforce the importance of governed retrieval. T4
+maintains high Context Recall and Context Precision, while T7 records the
+lowest Answer Correctness. At the same time, the competitive AC values of T5
+and T6 show that context quality alone does not guarantee the best generated
+answer; generation prompts and answer calibration remain important optimization
+targets.
+
+The benchmark is drawn from a single institution and contains a large tuition
+subset. Future work will extend the evaluation to balanced bilingual queries,
+additional institutions, and repeated or human-assisted answer assessment.

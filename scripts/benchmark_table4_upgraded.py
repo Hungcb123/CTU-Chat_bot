@@ -12,7 +12,7 @@ Evaluates 7 QA configurations:
   T7: Ablation w/o Governance Filter (Unbounded dense retrieval -> cohort hallucination)
 
 Metrics:
-  - CR (Context Recall): Gold document coverage in Top-5 context
+  - CR (Context Recall): Gold document coverage in Top-7 context
   - CP (Context Precision): Mean Average Precision (MAP) of Gold document ranks
   - AR (Answer Relevancy): Evaluated by Gemini 2.5 Flash Lite Judge [0.0 - 1.0]
   - AC (Answer Correctness): Evaluated by Gemini 2.5 Flash Lite Judge vs Ground Truth [0.0 - 1.0]
@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import logging
 import os
@@ -48,12 +49,17 @@ logging.basicConfig(
 )
 logger = logging.getLogger("table4_vertex")
 
+
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
 DEFAULT_DATASET = ROOT / "data" / "150_NATURAL_NO_APPENDIX.csv"
 OUTPUT_JSON = ROOT / "tests" / "outputpaper" / "table4_e2e_results.json"
 OUTPUT_TEX = ROOT / "tests" / "outputpaper" / "table4_e2e_table.tex"
 CHECKPOINT_FILE = ROOT / "tests" / "outputpaper" / "table4_vertex_checkpoint.json"
 
-TOP_K = 5
+TOP_K = 7
+PROMPT_VERSION = "graph_context_top7_v1"
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
 SERVICE_ACCOUNT_KEY = ROOT / "gen-lang-client-0656432358-9a6fb12696b2.json"
 
@@ -82,6 +88,32 @@ def _source_from_document(document: Any) -> str:
     metadata = getattr(document, "metadata", {}) or {}
     src = metadata.get("source") or metadata.get("document_key") or ""
     return Path(str(src).strip()).name
+
+
+def _format_graph_tuition_results(results: list[dict[str, Any]]) -> str:
+    """Serialize Graph tuition rows with the numeric facts needed by the LLM."""
+    lines = ["[DỮ LIỆU HỌC PHÍ THỰC TẾ TỪ NEO4J GRAPH]"]
+    for item in results:
+        fields = [
+            f"Ngành: {item.get('ten_nganh') or item.get('program_name') or ''}",
+            f"Mã ngành: {item.get('ma_nganh') or item.get('program_code') or ''}",
+            f"Khóa: {item.get('khoa') or ''}",
+            f"Chương trình: {item.get('loai_ct') or ''}",
+            f"Mức học phí: {item.get('muc_hp') or ''}",
+            f"Đơn vị: {item.get('don_vi_tinh') or ''}",
+        ]
+        lines.append("- " + "; ".join(fields))
+    return "\n".join(lines)
+
+
+def _format_graph_rows(title: str, rows: list[dict[str, Any]]) -> str:
+    """Keep policy/basis Graph context compact while retaining all returned facts."""
+    lines = [title]
+    for row in rows:
+        values = [f"{key}={value}" for key, value in row.items() if value not in (None, "")]
+        if values:
+            lines.append("- " + "; ".join(values))
+    return "\n".join(lines)
 
 
 def calculate_context_recall(retrieved_sources: list[str], gold_sources: list[str]) -> float:
@@ -145,8 +177,8 @@ class VertexLLMService:
         ctx_str = "\n\n---\n\n".join(contexts) if contexts else "Không có tài liệu phù hợp."
         prompt = (
             "Bạn là trợ lý tư vấn học vụ và học phí của Trường Đại học Cần Thơ (CTU).\n"
-            "Dựa CHỈ VÀO các tài liệu dưới đây, hãy trả lời câu hỏi một cách ngắn gọn, súc tích và chính xác nhất. "
-            "Nếu tài liệu trích xuất không có thông tin, hãy trả lời: 'Không tìm thấy thông tin phù hợp trong ngữ cảnh.'\n\n"
+            "Dựa CHỈ VÀO các tài liệu dưới đây, hãy tận dụng tối đa mọi dữ kiện liên quan để trả lời đầy đủ, chính xác và súc tích. "
+            "Nếu ngữ cảnh chỉ có một phần thông tin, hãy trả lời phần đã được hỗ trợ và nói rõ chi tiết nào còn thiếu; chỉ trả lời 'Không tìm thấy thông tin phù hợp trong ngữ cảnh' khi hoàn toàn không có dữ kiện liên quan.\n\n"
             f"=== TÀI LIỆU TRÍCH XUẤT ===\n{ctx_str}\n\n"
             f"=== CÂU HỎI ===\n{question}\n\n"
             "=== TRẢ LỜI ==="
@@ -294,21 +326,58 @@ def retrieve_all_configs(
         except Exception:
             pass
 
-    # 2. Tuition Fee Knowledge Graph
+    # 2. Tuition Fee Knowledge Graph with actual numeric rows (not title-only placeholders)
     k_match = re.search(r'K(?:hóa\s*)?(\d+)', q, re.IGNORECASE)
     khoa_str = k_match.group(1) if k_match else ""
     is_clc = bool(re.search(r'\bCLC\b|chất lượng cao|tiên tiến', q, re.IGNORECASE))
     is_chung = bool(re.search(r'đại cương chung|ngoài thời gian|thiết kế|học lại|miễn|giảm', q, re.IGNORECASE))
 
     if case.category == "actual_tuition" or "học phí" in q.lower():
-        if is_clc:
-            t4_candidates.append(Document(page_content="Biểu mức thu học phí chương trình chất lượng cao và tiên tiến Trường Đại học Cần Thơ.", metadata={"source": "MucHocPhi_ChatLuongCao_TienTien.md"}))
-        if is_chung:
-            t4_candidates.append(Document(page_content="Quy định chung về mức thu học phí và các hệ số đào tạo Trường Đại học Cần Thơ.", metadata={"source": "MucHocPhi_QuyDinhChung.md"}))
-        if khoa_str == "52":
-            t4_candidates.append(Document(page_content="Biểu mức thu học phí đại học chính quy Khóa 52 Trường Đại học Cần Thơ.", metadata={"source": "MucHocPhi_DaiHocChinhQuy_Khoa52.md"}))
-        elif khoa_str in ("49", "50", "51"):
-            t4_candidates.append(Document(page_content="Biểu mức thu học phí đại học chính quy Khóa 51 trở về trước Trường Đại học Cần Thơ.", metadata={"source": "MucHocPhi_DaiHocChinhQuy_Khoa51_VeTruoc.md"}))
+        tuition_rows: list[dict[str, Any]] = []
+        if graph_service is not None:
+            try:
+                tuition_rows = graph_service.lookup_tuition(q, khoa_str or None) or []
+            except Exception as exc:
+                logger.warning("Graph tuition expansion failed for %s: %s", case.case_id, exc)
+        if tuition_rows:
+            t4_candidates.append(Document(
+                page_content=_format_graph_tuition_results(tuition_rows),
+                metadata={"source": "neo4j_tuition_graph", "backend": "graph"},
+            ))
+        else:
+            # Keep a clearly labelled catalog fallback so numeric facts are still available,
+            # without misrepresenting the fallback as a Graph hit.
+            try:
+                fallback = tuition_catalog.lookup(q)
+                if fallback.status in {"found", "needs_clarification"} and fallback.message:
+                    t4_candidates.append(Document(
+                        page_content="[DỮ LIỆU HỌC PHÍ TỪ CATALOG FALLBACK]\n" + fallback.message,
+                        metadata={"source": str(tuition_catalog.source_path), "backend": "catalog_fallback"},
+                    ))
+            except Exception as exc:
+                logger.warning("Tuition catalog expansion failed for %s: %s", case.case_id, exc)
+
+        if graph_service is not None and is_chung:
+            try:
+                policy_rows = graph_service.get_tuition_policies(None) or []
+                if policy_rows:
+                    t4_candidates.append(Document(
+                        page_content=_format_graph_rows("[QUY ĐỊNH HỌC PHÍ TỪ NEO4J GRAPH]", policy_rows),
+                        metadata={"source": "neo4j_tuition_policy", "backend": "graph"},
+                    ))
+            except Exception as exc:
+                logger.warning("Graph policy expansion failed for %s: %s", case.case_id, exc)
+
+        if graph_service is not None and re.search(r"miễn|giảm", q, re.IGNORECASE):
+            try:
+                basis_rows = graph_service.lookup_exemption_basis(query=q) or []
+                if basis_rows:
+                    t4_candidates.append(Document(
+                        page_content=_format_graph_rows("[CƠ SỞ MIỄN GIẢM TỪ NEO4J GRAPH]", basis_rows),
+                        metadata={"source": "neo4j_exemption_basis", "backend": "graph"},
+                    ))
+            except Exception as exc:
+                logger.warning("Graph exemption expansion failed for %s: %s", case.case_id, exc)
 
     seen_contents_t4 = set()
     unique_candidates_t4 = []
@@ -373,7 +442,15 @@ def run_table4_benchmark(dataset_path: Path, limit: int | None = None, workers: 
 
     llm_service = VertexLLMService(model_name=DEFAULT_MODEL)
 
+    checkpoint_signature = {
+        "dataset_sha256": sha256_file(dataset_path),
+        "model": DEFAULT_MODEL,
+        "top_k": TOP_K,
+        "prompt_version": PROMPT_VERSION,
+        "configs": [cfg for cfg, _, _ in CONFIGS],
+    }
     checkpoint: dict[str, Any] = {
+        "signature": checkpoint_signature,
         "cr_cp": {},
         "answers": {},
         "ar_ac": {},
@@ -381,8 +458,12 @@ def run_table4_benchmark(dataset_path: Path, limit: int | None = None, workers: 
     if CHECKPOINT_FILE.exists():
         try:
             with open(CHECKPOINT_FILE, "r", encoding="utf-8") as f:
-                checkpoint = json.load(f)
-                logger.info(f"Loaded existing checkpoint from {CHECKPOINT_FILE}")
+                loaded_checkpoint = json.load(f)
+                if loaded_checkpoint.get("signature") == checkpoint_signature:
+                    checkpoint = loaded_checkpoint
+                    logger.info(f"Loaded matching checkpoint from {CHECKPOINT_FILE}")
+                else:
+                    logger.info("Ignoring stale checkpoint (dataset/model/TOP_K/prompt signature changed).")
         except Exception:
             pass
 
@@ -394,23 +475,24 @@ def run_table4_benchmark(dataset_path: Path, limit: int | None = None, workers: 
     t0 = time.time()
     all_contexts: dict[str, dict[str, list[str]]] = {}
 
+    # Retrieval remains sequential to avoid contention on the GPU reranker and
+    # to keep Neo4j/Qdrant load predictable. Generation and judging below use
+    # the bounded worker pool for Vertex AI calls.
     for i, case in enumerate(cases):
         cid = case.case_id
-        if (i + 1) % 25 == 0 or i == 0:
-            logger.info(f"Retrieval [{i+1}/{len(cases)}]: {case.question[:40]}...")
-
-        configs_ctx, configs_src = retrieve_all_configs(case, engine, graph_service, tuition_catalog, compressor)
+        configs_ctx, configs_src = retrieve_all_configs(
+            case, engine, graph_service, tuition_catalog, compressor
+        )
         all_contexts[cid] = configs_ctx
-
-        if cid not in cr_cp_data:
-            cr_cp_data[cid] = {}
-
+        cr_cp_data.setdefault(cid, {})
         for cfg_code, _, _ in CONFIGS:
             srcs = configs_src[cfg_code]
-            cr = calculate_context_recall(srcs, case.gold_sources)
-            cp = calculate_context_precision(srcs, case.gold_sources)
-            cr_cp_data[cid][cfg_code] = {"cr": cr, "cp": cp}
-
+            cr_cp_data[cid][cfg_code] = {
+                "cr": calculate_context_recall(srcs, case.gold_sources),
+                "cp": calculate_context_precision(srcs, case.gold_sources),
+            }
+        if i == 0 or (i + 1) % 25 == 0:
+            logger.info("Retrieval [%d/%d] complete: %s", i + 1, len(cases), case.question[:40])
         if (i + 1) % 20 == 0:
             with open(CHECKPOINT_FILE, "w", encoding="utf-8") as f:
                 json.dump(checkpoint, f, ensure_ascii=False, indent=2)
@@ -503,6 +585,11 @@ def run_table4_benchmark(dataset_path: Path, limit: int | None = None, workers: 
         "dataset": str(dataset_path),
         "total_cases": len(cases),
         "model": DEFAULT_MODEL,
+        "top_k": TOP_K,
+        "prompt_version": PROMPT_VERSION,
+        "workers": workers,
+        "configs": [cfg_code for cfg_code, _, _ in CONFIGS],
+        "dataset_sha256": sha256_file(dataset_path),
         "metrics": results_table,
     }
     OUTPUT_JSON.parent.mkdir(parents=True, exist_ok=True)

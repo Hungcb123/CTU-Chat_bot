@@ -1,0 +1,40 @@
+% ============================================================
+% 01-introduction.tex
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Providing timely, accessible, and accurate administrative guidance is vital for student success and institutional efficiency. In large universities such as Can Tho University (CTU)---a flagship institution in Vietnam's Mekong Delta serving over 40,000 students~\cite{ctu2022handbook}---advisory inquiries span diverse administrative domains. Because regulations are frequently updated through ministerial circulars, rector decisions, and cohort-specific guidelines, automated conversational counseling systems are essential to alleviate advisory strain and ensure compliance.
+
+However, higher education counseling is characterized by acute \emph{knowledge heterogeneity}, encompassing structurally distinct representations: (1)~\textbf{Academic Curricula:} relational course prerequisite chains spanning the 113 majors represented in our graph corpus; (2)~\textbf{Tuition Schedules:} multi-dimensional rate matrices governed by admission cohort and discipline; (3)~\textbf{Statutory Exemptions:} legal decrees prescribing percentage deductions for qualified beneficiaries~\cite{government2021decree81,government2023decree97}; (4)~\textbf{Scholarships:} multi-variable eligibility thresholds (cumulative GPA and training point scores); and (5)~\textbf{Campus Regulations:} narrative administrative prose governing examinations, conduct, and student loans.
+
+To automate institutional QA, Retrieval-Augmented Generation (RAG)~\cite{lewis2020rag,gao2023rag_survey} and GraphRAG~\cite{edge2024graphrag} augment large language models (LLMs) with external documents or knowledge graphs, while agentic architectures~\cite{yao2023react,wu2023autogen,schick2023toolformer} introduce iterative tool invocation and multi-agent coordination. Nevertheless, applying existing paradigms to university counseling reveals significant limitations. Monolithic RAG pipelines risk a \emph{uniform representation fallacy}: forcing relational curricula, tabular fee matrices, and narrative legal prose into a single retrieval index can fragment tabular data and prerequisite links. Conversely, uncoordinated multi-agent meshes can expose broad tool sets across agents, increasing the risk of tool mis-selection, parameter errors, and extended execution, while known limitations in language-model arithmetic~\cite{qian2023limitations} motivate deterministic calculation for credit-based tuition.
+
+These challenges crystallize three open research gaps in automated university counseling:
+(1)~\textbf{Gap 1 (Limited Domain-Specialized Multi-Agent Orchestration):} Existing agentic and multi-agent systems provide delegation and tool use, but the coordinated use of domain-specialized agents with isolated knowledge spaces, tool privileges, and retrieval paths remains underexplored in heterogeneous university counseling;
+(2)~\textbf{Gap 2 (Uniform Knowledge Representation):} Existing RAG-oriented systems often process structurally different institutional knowledge through a common retrieval space, although relational curricula, structured tuition information, and narrative regulations require fundamentally different representations; and
+(3)~\textbf{Gap 3 (Lack of Representation-Aware Routing):} Existing systems provide lexical, semantic, and graph retrieval methods, but offer limited mechanisms for selecting the appropriate evidence representation and specialist according to query domain and information structure.
+
+To address these gaps, we formulate three core research questions:
+\begin{itemize}
+    \setlength{\itemsep}{1.5pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \item \textbf{RQ1 (Domain-Specialized Multi-Agent Architecture):} How effectively can a centralized supervisor-routed multi-agent architecture coordinate domain-specialized agents with isolated knowledge and tool access for heterogeneous university counseling tasks?
+    \item \textbf{RQ2 (Heterogeneous Knowledge Allocation):} How does prioritizing graph-oriented access for relational academic-program and structured tuition knowledge, while retaining narrative regulations in hybrid document retrieval, affect retrieval and answer quality compared with uniform retrieval representations?
+    \item \textbf{RQ3 (Representation-Aware Evidence Routing):} How does intent-guided routing between graph-oriented and hybrid document-retrieval paths affect retrieval effectiveness, answer correctness, and latency across different counseling domains?
+\end{itemize}
+
+\emph{We hypothesize that reliable university counseling is better supported by a supervisor-routed multi-agent architecture in which domain specialists are constrained to knowledge representations and tools appropriate to their information structure, rather than by a uniform retrieval-and-reasoning pipeline. Accordingly, \system{} separates specialist coordination, knowledge allocation, and evidence-path selection as three complementary design dimensions.}
+
+To answer these questions, we present \textbf{\system{}}. \emph{\system{} proposes a centralized supervisor-routed, domain-specialized multi-agent architecture in which each specialist is assigned a domain-specific knowledge space, retrieval path, and tool privilege.} Under centralized supervisor coordination, incoming inquiries are contextualized via Redis history and dispatched to four bounded specialists operating under asymmetric privileges: (1)~\texttt{Academic Specialist}, bound to 6 dedicated Cypher tools over a Neo4j knowledge graph; (2)~\texttt{Financial Specialist}, equipped with structured tuition graph lookups and the deterministic arithmetic engine \texttt{tinh\_toan\_hoc\_phi}; (3)~\texttt{Scholarship Specialist}, equipped with the deterministic evaluator \texttt{tinh\_tien\_hoc\_bong}; and (4)~\texttt{General Specialist}, operating with zero tools to synthesize narrative regulatory context. Specialists share session state in Redis while maintaining strictly isolated execution envelopes without unconstrained peer-to-peer communication.
+
+Our principal contributions are three-fold:
+\begin{itemize}
+    \setlength{\itemsep}{1.5pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \item \textbf{C1 (Supervisor-Routed Domain-Specialized Multi-Agent Architecture):} A centralized supervisor-routed architecture coordinating four domain-specialized agents with asymmetric tool privileges, a per-decision bound of $\text{max\_tool\_calls}=1$, and shared session state, designed to reduce tool mis-selection and constrain execution without peer-to-peer delegation (addressing Gap~1 and RQ1).
+    \item \textbf{C2 (Heterogeneous Knowledge Allocation Framework):} A principled allocation strategy that separates relational curricula and structured tuition into graph-oriented representations while reserving hybrid document retrieval for narrative administrative decrees, resolving the uniform representation fallacy (addressing Gap~2 and RQ2).
+    \item \textbf{C3 (Representation-Aware Routing and Evidence Acquisition):} An intent-guided evidence acquisition mechanism that routes queries dynamically to graph-oriented or hybrid document-retrieval paths, leveraging established BM25, Dense vectors, RRF, and cross-encoder reranking as complementary building blocks (addressing Gap~3 and RQ3).
+\end{itemize}

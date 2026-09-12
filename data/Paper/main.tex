@@ -1,0 +1,61 @@
+% ============================================================
+%  Evidence-Aware Agentic GraphRAG
+%  AICON 2026 / Springer LNICST — main.tex
+%  Structure: 6 sections (Introduction, Related Work + Problem
+%  Formulation, Proposed Architecture, Methods, Experiments, Conclusion)
+% ============================================================
+\documentclass[runningheads]{llncs}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{pifont}   % \cmark / \xmark
+\usepackage{placeins}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false, pdfborder={0 0 0}}
+\emergencystretch=2em
+
+% ---------- convenience macros ----------
+\newcommand{\system}{\textsc{CTU-Chat}}  % system shorthand
+\newcommand{\cmark}{\ding{51}}           % check mark
+\newcommand{\xmark}{\ding{55}}           % cross mark
+\newcommand{\tbd}{\texttt{TBD}}
+\newcommand{\Gcal}{\mathcal{G}}
+\newcommand{\G}{G}
+\newcommand{\Rel}{\mathrm{Rel}}
+\newcommand{\Top}{\mathrm{Top}}
+\newcommand{\Coverage}{\mathrm{Coverage}}
+\newcommand{\RRF}{s_{\mathrm{RRF}}}
+\newcommand{\sR}{s_{R}}
+
+% ----------------------------------------
+\begin{document}
+
+\title{CTU-Chat: A Hybrid Retrieval-Augmented Generation System
+       for University Student Services}
+\titlerunning{CTU-Chat Hybrid RAG}
+
+% Restore authors and affiliation for the camera-ready version.
+\author{Anonymous Authors}
+\authorrunning{Anonymous Authors}
+\institute{Anonymous Institution}
+
+\maketitle
+
+% ---------- sections ----------
+\input{sections/00-abstract}
+\input{sections/01-introduction}
+\input{sections/02-related-work}
+\input{sections/03-architecture}
+\input{sections/04-method}
+\input{sections/05-experiments}
+\input{sections/06-conclusion}
+
+\bibliographystyle{splncs04}
+\bibliography{references}
+
+\end{document}

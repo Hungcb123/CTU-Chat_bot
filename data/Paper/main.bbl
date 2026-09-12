@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{chen2024bgem3}
+Chen, J., Xiao, S., Zhang, P., Luo, K., Lian, D., Liu, Z.: {BGE M3}-embedding:
+  Multi-lingual, multi-functionality, multi-granularity text embeddings through
+  self-knowledge distillation. arXiv preprint arXiv:2402.03216  (2024)
+
+\bibitem{cormack2009rrf}
+Cormack, G.V., Clarke, C.L.A., Buettcher, S.: Reciprocal rank fusion
+  outperforms condorcet and individual rank learning methods. In: Proceedings
+  of the 32nd International ACM SIGIR Conference on Research and Development in
+  Information Retrieval. pp. 758--759 (2009)
+
+\bibitem{edge2024graphrag}
+Edge, D., Trinh, H., Cheng, N., Bradley, J., Chao, A., Mody, A., Truitt, S.,
+  Larson, J.: From local to global: A graph {RAG} approach to query-focused
+  summarization. arXiv preprint arXiv:2404.16130  (2024)
+
+\bibitem{lewis2020rag}
+Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N.,
+  Kuttler, H., Lewis, M., Yih, W.t., Rockt{\"a}schel, T., Riedel, S., Kiela,
+  D.: Retrieval-augmented generation for knowledge-intensive nlp tasks.
+  Advances in Neural Information Processing Systems  \textbf{33},  9459--9474
+  (2020)
+
+\bibitem{ma2025rebot}
+Ma, T., La, T.T., Le~Huu, L.T., Nguyen, M.N., Pham~Luu, K.V.: {REBot}: From
+  {RAG} to {CatRAG} with semantic enrichment and graph routing. arXiv preprint
+  arXiv:2510.01800  (2025)
+
+\bibitem{robertson2009bm25}
+Robertson, S., Zaragoza, H.: The probabilistic relevance framework: {BM25} and
+  beyond. Foundations and Trends in Information Retrieval  \textbf{3}(4),
+  333--389 (2009)
+
+\bibitem{yao2023react}
+Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., Cao, Y.:
+  {ReAct}: Synergizing reasoning and acting in language models. In:
+  International Conference on Learning Representations (2023)
+
+\end{thebibliography}

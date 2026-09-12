@@ -153,6 +153,29 @@ def _tuition_parser_kind(filepath: Path, metadata: Dict[str, Any]) -> str:
     raise ValueError(f"Unsupported tuition table format: {filepath.name}")
 
 
+def _attach_provenance(
+    rows: List[Dict[str, Any]],
+    filepath: Path,
+    metadata: Dict[str, Any],
+) -> List[Dict[str, Any]]:
+    """Attach canonical document provenance without changing parsed facts."""
+    heading_match = re.search(
+        r"(?m)^#{1,3}\s+(.+?)\s*$",
+        filepath.read_text(encoding="utf-8", errors="replace"),
+    )
+    source_section = str(
+        metadata.get("source_section")
+        or metadata.get("title")
+        or (heading_match.group(1).strip() if heading_match else "")
+    )
+    source_table = str(metadata.get("source_table") or metadata.get("content_kind") or "")
+    for row in rows:
+        row["source"] = filepath.name
+        row["source_section"] = source_section
+        row["source_table"] = source_table
+    return rows
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Parsers
 # ─────────────────────────────────────────────────────────────────────────────
@@ -862,7 +885,10 @@ def ingest_tuition_fees(fees: List[Dict[str, Any]]) -> int:
                     tf.muc_hp = $muc_hp,
                     tf.ten_nganh = $ten_nganh,
                     tf.don_vi = $don_vi,
-                    tf.khoi = $khoi
+                    tf.khoi = $khoi,
+                    tf.source = $source,
+                    tf.source_section = $source_section,
+                    tf.source_table = $source_table
                 """,
                 **fee,
             )
@@ -913,7 +939,10 @@ def ingest_clc_tt_fees(fees: List[Dict[str, Any]]) -> int:
                     tf.muc_hp = $muc_hp,
                     tf.ten_nganh = $ten_nganh,
                     tf.don_vi = $don_vi,
-                    tf.khoi = $khoi
+                    tf.khoi = $khoi,
+                    tf.source = $source,
+                    tf.source_section = $source_section,
+                    tf.source_table = $source_table
                 """,
                 **fee,
             )
@@ -959,7 +988,10 @@ def ingest_tuition_policies(policies: List[Dict[str, Any]]) -> int:
                     tp.muc_hp = $muc_hp,
                     tp.don_vi_tinh = $don_vi_tinh,
                     tp.doi_tuong = $doi_tuong,
-                    tp.nam_hoc = $nam_hoc
+                    tp.nam_hoc = $nam_hoc,
+                    tp.source = $source,
+                    tp.source_section = $source_section,
+                    tp.source_table = $source_table
                 """,
                 **policy,
             )
@@ -1062,7 +1094,10 @@ def ingest_exemption_basis_rates(rates: List[Dict[str, Any]]) -> int:
                     e.don_vi_tinh = $don_vi_tinh,
                     e.nam_hoc = $nam_hoc,
                     e.loai_ct = $loai_ct,
-                    e.ghi_chu = $ghi_chu
+                    e.ghi_chu = $ghi_chu,
+                    e.source = $source,
+                    e.source_section = $source_section,
+                    e.source_table = $source_table
                 """,
                 **rate,
             )
@@ -1149,22 +1184,27 @@ def run_tuition_ingest(data_dir: Path | None = None) -> bool:
                 exemption_sources.append(filepath)
                 continue
             if parser_kind == "k51":
-                count = ingest_tuition_fees(parse_tuition_k51(filepath))
+                rows = _attach_provenance(parse_tuition_k51(filepath), filepath, metadata)
+                count = ingest_tuition_fees(rows)
                 print(f"  ✓ {filepath.name}: {count} TuitionFee nodes")
                 total += count
             elif parser_kind == "k52":
-                count = ingest_tuition_fees(parse_tuition_k52(filepath))
+                rows = _attach_provenance(parse_tuition_k52(filepath), filepath, metadata)
+                count = ingest_tuition_fees(rows)
                 print(f"  ✓ {filepath.name}: {count} TuitionFee nodes")
                 total += count
             elif parser_kind == "clc_tt":
-                count = ingest_clc_tt_fees(parse_tuition_clc_tt(filepath))
+                rows = _attach_provenance(parse_tuition_clc_tt(filepath), filepath, metadata)
+                count = ingest_clc_tt_fees(rows)
                 print(f"  ✓ {filepath.name}: {count} TuitionFee nodes")
                 total += count
             elif parser_kind == "policy":
-                count = ingest_tuition_policies(parse_tuition_policies(filepath))
+                rows = _attach_provenance(parse_tuition_policies(filepath), filepath, metadata)
+                count = ingest_tuition_policies(rows)
                 print(f"  ✓ {filepath.name}: {count} TuitionPolicy nodes")
             elif parser_kind == "exemption_basis":
-                count = ingest_exemption_basis_rates(parse_exemption_basis(filepath))
+                rows = _attach_provenance(parse_exemption_basis(filepath), filepath, metadata)
+                count = ingest_exemption_basis_rates(rows)
                 print(f"  ✓ {filepath.name}: {count} ExemptionBasisRate nodes")
 
         # Link fees → policies after all tuition rates are present.
@@ -1173,7 +1213,9 @@ def run_tuition_ingest(data_dir: Path | None = None) -> bool:
         # Exemption links can use the TuitionFee khối mapping, so ingest them
         # only after all actual tuition tables have been loaded.
         for filepath in exemption_sources:
-            count = ingest_exemption_basis_rates(parse_exemption_basis(filepath))
+            metadata = dict(json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))["documents"][filepath.name])
+            rows = _attach_provenance(parse_exemption_basis(filepath), filepath, metadata)
+            count = ingest_exemption_basis_rates(rows)
             print(f"  ✓ {filepath.name}: {count} ExemptionBasisRate nodes")
 
         print(f"\n{'='*60}")

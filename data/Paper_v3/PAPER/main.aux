@@ -1,0 +1,150 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ctu2022handbook}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {title}{CTU-Chat: Supervisor-Routed Multi-Agent RAG with Heterogeneous Knowledge Allocation for University Counseling}{1}{chapter.1}\protected@file@percent }
+\@writefile{toc}{\authcount {5}}
+\@writefile{toc}{\contentsline {author}{Ngoc-Anh Le \and Nhu-Quynh Nguyen \and Tuong-Hung Cao \and Trang Minh Chanh \and Lan Phuong Phan}{1}{chapter.1}\protected@file@percent }
+\citation{government2021decree81,government2023decree97}
+\citation{lewis2020rag,gao2023rag_survey}
+\citation{edge2024graphrag}
+\citation{yao2023react,wu2023autogen,schick2023toolformer}
+\citation{qian2023limitations}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{2}{Introduction}{section.1.1}{}}
+\citation{robertson2009bm25}
+\citation{karpukhin2020dpr,lewis2020rag}
+\citation{cormack2009rrf}
+\citation{nogueira2019bert,xiao2023bge}
+\citation{jeong2024adaptiverag}
+\citation{pan2024unifying}
+\citation{edge2024graphrag}
+\citation{yao2023react,wu2023autogen,schick2023toolformer}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{4}{section.1.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{4}{Related Work}{section.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Sparse and Dense Retrieval}{4}{subsection.1.2.1}\protected@file@percent }
+\newlabel{sec:sparse_dense}{{2.1}{4}{Sparse and Dense Retrieval}{subsection.1.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Hybrid Retrieval and Reciprocal Rank Fusion}{4}{subsection.1.2.2}\protected@file@percent }
+\newlabel{sec:hybrid_rrf}{{2.2}{4}{Hybrid Retrieval and Reciprocal Rank Fusion}{subsection.1.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Knowledge Graphs and GraphRAG}{4}{subsection.1.2.3}\protected@file@percent }
+\newlabel{sec:kg_graphrag}{{2.3}{4}{Knowledge Graphs and GraphRAG}{subsection.1.2.3}{}}
+\citation{wollny2021chatbots}
+\citation{ma2025rebot}
+\citation{robertson2009bm25}
+\citation{karpukhin2020dpr}
+\citation{cormack2009rrf}
+\citation{edge2024graphrag}
+\citation{jeong2024adaptiverag}
+\citation{yao2023react,schick2023toolformer}
+\citation{wu2023autogen}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Agentic RAG and Multi-Agent Orchestration}{5}{subsection.1.2.4}\protected@file@percent }
+\newlabel{sec:agentic_multiagent}{{2.4}{5}{Agentic RAG and Multi-Agent Orchestration}{subsection.1.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Educational and University Counseling Systems}{5}{subsection.1.2.5}\protected@file@percent }
+\newlabel{sec:educational_counseling}{{2.5}{5}{Educational and University Counseling Systems}{subsection.1.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Comparative Synthesis and Research Gaps}{5}{subsection.1.2.6}\protected@file@percent }
+\newlabel{sec:gaps}{{2.6}{5}{Comparative Synthesis and Research Gaps}{subsection.1.2.6}{}}
+\citation{government2021decree81,government2023decree97}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Proposed Model}{6}{section.1.3}\protected@file@percent }
+\newlabel{sec:model}{{3}{6}{Proposed Model}{section.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Design Motivation and Knowledge Characteristics}{6}{subsection.1.3.1}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3.1}{6}{Design Motivation and Knowledge Characteristics}{subsection.1.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Overall Proposed Architecture}{7}{subsection.1.3.2}\protected@file@percent }
+\newlabel{sec:architecture}{{3.2}{7}{Overall Proposed Architecture}{subsection.1.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System architecture of \textsc  {CTU-Chat}{}, highlighting the centralized supervisor, the domain-specialized multi-agent core layer, and separate knowledge paths for relational, structured, and narrative administrative evidence.}}{7}{figure.1.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{7}{System architecture of \system {}, highlighting the centralized supervisor, the domain-specialized multi-agent core layer, and separate knowledge paths for relational, structured, and narrative administrative evidence}{figure.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Supervisor-Routed Domain-Specialized Multi-Agent Architecture}{7}{subsection.1.3.3}\protected@file@percent }
+\newlabel{sec:agents}{{3.3}{7}{Supervisor-Routed Domain-Specialized Multi-Agent Architecture}{subsection.1.3.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Operational comparison and resource privileges of domain-specialized agents in \textsc  {CTU-Chat}{}.}}{8}{table.1.1}\protected@file@percent }
+\newlabel{tab:agent_specs}{{1}{8}{Operational comparison and resource privileges of domain-specialized agents in \system {}}{table.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Heterogeneous Knowledge Allocation}{9}{subsection.1.3.4}\protected@file@percent }
+\newlabel{sec:allocation}{{3.4}{9}{Heterogeneous Knowledge Allocation}{subsection.1.3.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Heterogeneous knowledge allocation across institutional administrative domains.}}{9}{table.1.2}\protected@file@percent }
+\newlabel{tab:knowledge_allocation}{{2}{9}{Heterogeneous knowledge allocation across institutional administrative domains}{table.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Representation-Aware Routing Strategy}{9}{subsection.1.3.5}\protected@file@percent }
+\newlabel{sec:selection_criteria}{{3.5}{9}{Representation-Aware Routing Strategy}{subsection.1.3.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Decision criteria for evidence representation and retrieval mechanism selection.}}{10}{table.1.3}\protected@file@percent }
+\newlabel{tab:decision_criteria}{{3}{10}{Decision criteria for evidence representation and retrieval mechanism selection}{table.1.3}{}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Supervisor Intent and Specialist Routing}}{10}{algocf.1}\protected@file@percent }
+\newlabel{alg:routing}{{1}{10}{Representation-Aware Routing Strategy}{algocf.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Hybrid Document Retrieval Path}{10}{subsection.1.3.6}\protected@file@percent }
+\newlabel{sec:hybrid_path}{{3.6}{10}{Hybrid Document Retrieval Path}{subsection.1.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Graph-Oriented Academic and Tuition Retrieval}{11}{subsection.1.3.7}\protected@file@percent }
+\newlabel{sec:graph_path}{{3.7}{11}{Graph-Oriented Academic and Tuition Retrieval}{subsection.1.3.7}{}}
+\newlabel{eq:gross_fee}{{4}{11}{Graph-Oriented Academic and Tuition Retrieval}{equation.1.3.4}{}}
+\newlabel{eq:reduction_fee}{{5}{11}{Graph-Oriented Academic and Tuition Retrieval}{equation.1.3.5}{}}
+\newlabel{eq:payable_fee}{{6}{11}{Graph-Oriented Academic and Tuition Retrieval}{equation.1.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Domain-Aware Evidence Acquisition and Specialist Execution}{11}{subsection.1.3.8}\protected@file@percent }
+\newlabel{sec:execution_mechanism}{{3.8}{11}{Domain-Aware Evidence Acquisition and Specialist Execution}{subsection.1.3.8}{}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Evidence Acquisition and Bounded Specialist Execution}}{12}{algocf.2}\protected@file@percent }
+\newlabel{alg:execution}{{2}{12}{Domain-Aware Evidence Acquisition and Specialist Execution}{algocf.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Detailed Activity Flow}{13}{subsection.1.3.9}\protected@file@percent }
+\newlabel{sec:flow}{{3.9}{13}{Detailed Activity Flow}{subsection.1.3.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Detailed runtime activity flowchart of \textsc  {CTU-Chat}{}, illustrating explicit Start/End states, decision diamonds with Yes/No branches for contextual query rewriting and cascading domain intent routing across four isolated specialist swimlanes, heterogeneous knowledge acquisition, bounded tool execution, and authoritative citation grounding.}}{14}{figure.1.2}\protected@file@percent }
+\newlabel{fig:flowchart}{{2}{14}{Detailed runtime activity flowchart of \system {}, illustrating explicit Start/End states, decision diamonds with Yes/No branches for contextual query rewriting and cascading domain intent routing across four isolated specialist swimlanes, heterogeneous knowledge acquisition, bounded tool execution, and authoritative citation grounding}{figure.1.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Results}{14}{section.1.4}\protected@file@percent }
+\newlabel{sec:exp}{{4}{14}{Experimental Results}{section.1.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Dataset and Benchmark Construction}{14}{subsection.1.4.1}\protected@file@percent }
+\newlabel{sec:dataset}{{4.1}{14}{Experimental Dataset and Benchmark Construction}{subsection.1.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Tools and Infrastructure}{15}{subsection.1.4.2}\protected@file@percent }
+\newlabel{sec:tools_env}{{4.2}{15}{Experimental Tools and Infrastructure}{subsection.1.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{15}{subsection.1.4.3}\protected@file@percent }
+\newlabel{sec:metrics}{{4.3}{15}{Evaluation Metrics}{subsection.1.4.3}{}}
+\citation{es2023ragas}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Three Experimental Scenarios}{16}{subsection.1.4.4}\protected@file@percent }
+\newlabel{sec:scenarios}{{4.4}{16}{Three Experimental Scenarios}{subsection.1.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Systematic mapping between Research Gaps, Research Questions, Proposed Components, Experiments, and Empirical Metrics.}}{16}{table.1.4}\protected@file@percent }
+\newlabel{tab:rq_mapping}{{4}{16}{Systematic mapping between Research Gaps, Research Questions, Proposed Components, Experiments, and Empirical Metrics}{table.1.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Scenario 1 --- Retrieval Component Stacking (E1--E5):}{16}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}{17}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Scenario 3 --- Multi-Agent Routing, Tool Reliability, and Robustness:}{17}{section*.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Retrieval evaluation results of cumulative configurations (E1--E5) on the 150-question benchmark.}}{18}{table.1.5}\protected@file@percent }
+\newlabel{tab:retrieval_evaluation}{{5}{18}{Retrieval evaluation results of cumulative configurations (E1--E5) on the 150-question benchmark}{table.1.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces End-to-end QA generation and ablation evaluation results (T1--T7) on the 150-question benchmark using Ragas metrics with a common Top-7 context window.}}{18}{table.1.6}\protected@file@percent }
+\newlabel{tab:e2e_evaluation}{{6}{18}{End-to-end QA generation and ablation evaluation results (T1--T7) on the 150-question benchmark using Ragas metrics with a common Top-7 context window}{table.1.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per evaluated decision ($\text  {max\_tool\_calls}=1$).}}{19}{table.1.7}\protected@file@percent }
+\newlabel{tab:scenario3_results}{{7}{19}{Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per evaluated decision ($\text {max\_tool\_calls}=1$)}{table.1.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Discussion}{20}{subsection.1.4.5}\protected@file@percent }
+\newlabel{sec:discussion}{{4.5}{20}{Discussion}{subsection.1.4.5}{}}
+\bibstyle{splncs04}
+\bibdata{references}
+\bibcite{ctu2022handbook}{1}
+\bibcite{cormack2009rrf}{2}
+\bibcite{edge2024graphrag}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Threats to Validity and Limitations}{21}{subsection.1.4.6}\protected@file@percent }
+\newlabel{sec:limitations}{{4.6}{21}{Threats to Validity and Limitations}{subsection.1.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion and Future Work}{21}{section.1.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{21}{Conclusion and Future Work}{section.1.5}{}}
+\bibcite{es2023ragas}{4}
+\bibcite{gao2023rag_survey}{5}
+\bibcite{government2021decree81}{6}
+\bibcite{government2023decree97}{7}
+\bibcite{jeong2024adaptiverag}{8}
+\bibcite{karpukhin2020dpr}{9}
+\bibcite{lewis2020rag}{10}
+\bibcite{ma2025rebot}{11}
+\bibcite{nogueira2019bert}{12}
+\bibcite{pan2024unifying}{13}
+\bibcite{qian2023limitations}{14}
+\bibcite{robertson2009bm25}{15}
+\bibcite{schick2023toolformer}{16}
+\bibcite{wollny2021chatbots}{17}
+\bibcite{wu2023autogen}{18}
+\bibcite{xiao2023bge}{19}
+\bibcite{yao2023react}{20}
+\gdef \@abspage@last{22}

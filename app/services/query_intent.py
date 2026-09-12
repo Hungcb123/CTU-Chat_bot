@@ -330,6 +330,13 @@ def _classify_one(text: str | None) -> QueryIntent:
             "duoc giam khong",
             "muc giam 70",
             "muc giam 50",
+            "duoc huong",
+            "con duoc huong",
+            "huong mien",
+            "huong giam",
+            "mien giam khong",
+            "tra luong",
+            "sinh hoat phi",
         ),
     ):
         return QueryIntent.EXEMPTION_POLICY
@@ -361,6 +368,51 @@ def _classify_one(text: str | None) -> QueryIntent:
         return QueryIntent.ACTUAL_TUITION
     if has_tuition:
         return QueryIntent.AMBIGUOUS_TUITION
+
+    if _contains_any(
+        value,
+        (
+            "quy che hoc vu",
+            "canh bao hoc vu",
+            "buoc thoi hoc",
+            "thoi hoc",
+            "xep loai tot nghiep",
+            "dieu kien tot nghiep",
+            "rut hoc phan",
+            "huy hoc phan",
+            "diem f",
+            "diem i",
+            "xoa diem",
+            "hoc cai thien",
+            "chuyen nganh",
+            "chuyen truong",
+            "tam dung hoc",
+            "bao luu",
+        ),
+    ):
+        return QueryIntent.ACADEMIC_RULES
+
+    if (
+        _contains_any(
+            value,
+            (
+                "chuan dau ra",
+                "plo",
+                "khung chuong trinh",
+                "chuong trinh dao tao",
+                "tong so tin chi",
+                "thoi gian dao tao",
+                "hoc phan",
+                "mon hoc",
+                "mon tien quyet",
+                "tien quyet",
+                "song hanh",
+            ),
+        )
+        or bool(re.search(r"\b[a-z]{2}\d{3}[a-z]?\b", value))
+    ):
+        return QueryIntent.ACADEMIC_PROGRAM
+
     return QueryIntent.OTHER
 
 
@@ -491,6 +543,15 @@ def validate_rewritten_query(
     return True, "accepted"
 
 
+_TUITION_INTENTS = {
+    QueryIntent.ACTUAL_TUITION,
+    QueryIntent.EXEMPTION_BASIS,
+    QueryIntent.CALCULATION,
+    QueryIntent.BOTH,
+    QueryIntent.AMBIGUOUS_TUITION,
+}
+
+
 def classify_query_intent(
     original_query: str,
     rewritten_query: str | None = None,
@@ -500,12 +561,14 @@ def classify_query_intent(
     original_year = _extract_academic_year(original_query)
     original_intent = _classify_one(original_query)
     if original_intent not in {QueryIntent.AMBIGUOUS_TUITION, QueryIntent.OTHER}:
-        return QueryRoutingDecision(original_intent, original_year, "original")
+        year = original_year if original_intent in _TUITION_INTENTS else None
+        return QueryRoutingDecision(original_intent, year, "original")
 
     rewritten_intent = _classify_one(rewritten_query)
     academic_year = original_year or _extract_academic_year(rewritten_query)
     if rewritten_query and rewritten_intent not in {QueryIntent.OTHER, QueryIntent.AMBIGUOUS_TUITION}:
-        return QueryRoutingDecision(rewritten_intent, academic_year, "rewrite")
+        year = academic_year if rewritten_intent in _TUITION_INTENTS else None
+        return QueryRoutingDecision(rewritten_intent, year, "rewrite")
 
     # A genuinely ambiguous tuition question remains ambiguous even if the
     # rewriter simply paraphrases it without choosing a fee type.
@@ -514,7 +577,8 @@ def classify_query_intent(
         if QueryIntent.AMBIGUOUS_TUITION in {original_intent, rewritten_intent}
         else QueryIntent.OTHER
     )
-    return QueryRoutingDecision(final_intent, academic_year, "original")
+    year = academic_year if final_intent in _TUITION_INTENTS else None
+    return QueryRoutingDecision(final_intent, year, "original")
 
 
 def build_retrieval_lanes(decision: QueryRoutingDecision) -> tuple[RetrievalLane, ...]:
@@ -576,9 +640,13 @@ def build_retrieval_lanes(decision: QueryRoutingDecision) -> tuple[RetrievalLane
     if decision.intent in {QueryIntent.BOTH, QueryIntent.AMBIGUOUS_TUITION}:
         return (actual, basis)
     if decision.intent == QueryIntent.ACADEMIC_PROGRAM:
-        # Dữ liệu CTĐT nằm trong Neo4j Graph → truy vấn qua LLM Tool Calling
-        # Không cần retrieval lane từ Qdrant/BM25
-        return ()
+        return (
+            RetrievalLane(
+                name="academic_program",
+                domain="academic_program",
+                top_n=6,
+            ),
+        )
     if decision.intent == QueryIntent.ACADEMIC_RULES:
         return (
             RetrievalLane(

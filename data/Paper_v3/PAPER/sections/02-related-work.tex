@@ -1,0 +1,54 @@
+% ============================================================
+% 02-related-work.tex
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+This section reviews established retrieval and reasoning paradigms in the literature, examining their operational mechanisms and limitations in institutional counseling.
+
+%------------------------------------------------
+\subsection{Sparse and Dense Retrieval}
+\label{sec:sparse_dense}
+
+\textbf{Lexical Retrieval (BM25):} Sparse keyword search using BM25~\cite{robertson2009bm25} evaluates term frequency ($\mathrm{tf}$) and inverse document frequency ($\mathrm{IDF}$) over an inverted index:
+\begin{equation}
+  s_{\mathrm{BM25}}(q, d) = \sum_{w \in q} \mathrm{IDF}(w) \cdot \frac{\mathrm{tf}(w, d) \cdot (k_1 + 1)}{\mathrm{tf}(w, d) + k_1 \cdot \left(1 - b + b \cdot \frac{|d|}{\overline{|d|}}\right)},
+\end{equation}
+with $k_1 = 1.5$ and $b = 0.75$. BM25 supports exact lexical matching for rigid alphanumeric tokens (decision codes, cohort labels, course identifiers), but may miss semantic paraphrases.
+
+\textbf{Dense Semantic Retrieval:} Dense retrieval systems~\cite{karpukhin2020dpr,lewis2020rag} map queries and passages into embedding spaces using bi-encoders, computing relevance via vector similarity. While dense models capture paraphrastic intent, rare alphanumeric identifiers and out-of-vocabulary regulatory tokens can remain difficult and may introduce cross-cohort noise, motivating hybrid retrieval.
+
+%------------------------------------------------
+\subsection{Hybrid Retrieval and Reciprocal Rank Fusion}
+\label{sec:hybrid_rrf}
+
+To merge BM25 and dense candidates without score calibration, Reciprocal Rank Fusion (RRF)~\cite{cormack2009rrf} sorts documents by reciprocal position: $\RRF(d) = \sum_{s \in \mathcal{M}} \frac{1}{k + r_s(d)}$ ($k = 60$), while neural cross-encoders~\cite{nogueira2019bert,xiao2023bge} jointly encode query--passage pairs for reranking. Adaptive-RAG further demonstrates that retrieval strategies can be selected according to question complexity~\cite{jeong2024adaptiverag}. These approaches motivate dynamic retrieval, but do not directly allocate institution-specific relational, tabular, and narrative knowledge to isolated specialist paths.
+
+%------------------------------------------------
+\subsection{Knowledge Graphs and GraphRAG}
+\label{sec:kg_graphrag}
+
+Knowledge graphs represent domain knowledge as structured triples $(h, r, t)$~\cite{pan2024unifying}. GraphRAG~\cite{edge2024graphrag} leverages graph topology to uncover multi-hop associative paths escaping flat chunking, benefiting curriculum structures and prerequisite chains. However, universal graph extraction across institutional corpora produces hallucinated relationships, while forcing narrative legal prose into graphs is structurally unnatural, motivating selective rather than universal graph use.
+
+%------------------------------------------------
+\subsection{Agentic RAG and Multi-Agent Orchestration}
+\label{sec:agentic_multiagent}
+
+ReAct demonstrates interleaved reasoning and action, AutoGen provides a framework for multi-agent conversation, and Toolformer studies when and how language models invoke external APIs~\cite{yao2023react,wu2023autogen,schick2023toolformer}. For institutional counseling, these capabilities raise design risks when applied without explicit constraints: broad tool exposure can increase tool and parameter errors; peer-to-peer exchanges can increase coordination cost; a shared index can mix evidence across domains; and a common retrieval path can obscure opportunities for direct graph traversal or structured lookup. These risks motivate the bounded, supervisor-routed specialization evaluated in this work.
+
+%------------------------------------------------
+\subsection{Educational and University Counseling Systems}
+\label{sec:educational_counseling}
+
+Systematic evidence shows that educational chatbots are used for informational, assisting, mentoring, and learning-support roles, while evaluation quality and adaptation remain open challenges~\cite{wollny2021chatbots}. REBot is a recent example of applying semantically enriched RAG and graph routing to educational counseling~\cite{ma2025rebot}. However, this line of work does not establish that a single retrieval representation or generative arithmetic is appropriate for every counseling domain. We therefore study explicit representation allocation, specialist routing, and deterministic calculation as separate design dimensions.
+
+%------------------------------------------------
+\subsection{Comparative Synthesis and Research Gaps}
+\label{sec:gaps}
+
+Synthesizing established paradigms reveals distinct structural trade-offs for our setting: (1)~\emph{BM25}~\cite{robertson2009bm25} favors exact administrative tokens but may miss natural paraphrases; (2)~\emph{Dense Retrieval}~\cite{karpukhin2020dpr} captures semantic intent but may confuse similar cohort-specific passages; (3)~\emph{Hybrid RRF}~\cite{cormack2009rrf} combines lexical and semantic rankings but does not itself model relational curricula; (4)~\emph{GraphRAG}~\cite{edge2024graphrag} supports graph-based associations, although universal graph extraction is not necessarily suitable for narrative regulations; (5)~\emph{Adaptive RAG}~\cite{jeong2024adaptiverag} selects retrieval depth by query complexity but not by institutional representation type; (6)~\emph{ReAct/Toolformer-style systems}~\cite{yao2023react,schick2023toolformer} support tool-using reasoning but require tool-access controls; and (7)~\emph{multi-agent conversation frameworks}~\cite{wu2023autogen} provide coordination primitives but do not by themselves guarantee bounded execution or knowledge isolation.
+
+This comparative analysis directly crystallizes the three core research gaps identified in Section~\ref{sec:intro}:
+(1)~\textbf{Gap~1 (Limited Domain-Specialized Multi-Agent Orchestration):} Coordinated multi-agent systems with isolated knowledge spaces, tool privileges, and dedicated retrieval paths remain underexplored in university counseling;
+(2)~\textbf{Gap~2 (Uniform Knowledge Representation):} Processing relational curricula, structured tuition, and narrative regulations through a common retrieval space induces representation failure; and
+(3)~\textbf{Gap~3 (Lack of Representation-Aware Routing):} Dynamic routing mechanisms that steer queries to appropriate evidence representations and bounded specialists according to information structure are absent in existing architectures.

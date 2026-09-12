@@ -1,0 +1,22 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper presented \textbf{\system{}}, a hybrid Retrieval-Augmented Generation (RAG) system for university student services that integrates lexical, dense, and graph retrieval with governed document management for bilingual Vietnamese--English administrative question answering.
+
+The proposed framework addresses five research gaps identified in existing educational RAG systems, namely the absence of document governance, limited integration of lexical, semantic, and graph retrieval, insufficient provenance preservation, lack of evidence-aware retrieval, and the reliance on LLM-based numerical reasoning for academic and financial services.
+
+On the 150-question retrieval benchmark, the complete E5 configuration achieved
+H@1 of 0.8667, perfect H@3 and Recall@5, and MRR@10 of 0.9222. Compared with
+the hybrid E3 baseline, the cross-encoder in E4 substantially improved ranking
+quality, while governed lanes and graph-based expansion in E5 provided the
+strongest overall retrieval performance.
+
+In the end-to-end evaluation, T4 achieved Answer Relevancy of 0.551, Context
+Recall of 0.745, Context Precision of 0.749, and Answer Correctness of 0.500.
+The T7 configuration without governance produced the lowest Answer Correctness
+score of 0.398, highlighting the value of cohort-aware and domain-aware evidence
+selection for reliable administrative question answering.
+
+Future work will expand the benchmark to additional institutions, add balanced
+Vietnamese--English test cases, improve answer generation from high-quality
+contexts, and enhance graph construction for more complex multi-hop reasoning.

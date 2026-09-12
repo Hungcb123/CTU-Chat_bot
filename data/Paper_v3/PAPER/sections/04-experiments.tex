@@ -1,0 +1,190 @@
+% ============================================================
+% 04-experiments.tex
+% ============================================================
+\section{Experimental Results}
+\label{sec:exp}
+
+This section presents the empirical evaluation of \system{}, detailing the benchmark dataset, infrastructure, evaluation metrics, three experimental scenarios, discussion answering each research question in order, and threats to validity.
+
+%------------------------------------------------
+\subsection{Experimental Dataset and Benchmark Construction}
+\label{sec:dataset}
+
+Scenarios~1 and~2 use the fixed file \texttt{data/150\_NATURAL\_NO\_APPENDIX.csv}, a 150-question benchmark covering tuition fees, academic regulations, scholarships, and exemption policies. To construct it, we collected publicly available official university documents (including regulations, tuition schedules, scholarship and exemption policies, and academic-program materials), then extracted and phrased representative natural-language questions whose answers are grounded in those documents. Each record retains the document-derived reference answer and source identifier, enabling reproducible retrieval and answer evaluation. The benchmark is therefore document-grounded rather than a log of production user conversations or a survey of students; questions were curated for coverage of the target counseling intents.
+
+The benchmark spans institutional categories including \texttt{actual\_tuition}, \texttt{academic\_rules}, \texttt{scholarship}, \texttt{student\_loan}, \texttt{other}, \texttt{social\_support}, \texttt{academic\_program}, \texttt{exemption\_policy}, and \texttt{exemption\_basis}. Each record includes reference-answer text and source identifiers. We do not report a full-benchmark category distribution because the authoritative reports provide exact category counts only for the 100-question single-domain routing subset used in Scenario~3.
+
+%------------------------------------------------
+\subsection{Experimental Tools and Infrastructure}
+\label{sec:tools_env}
+
+The experimental testbed was deployed across dedicated hardware and cloud infrastructure:
+\textbf{Computational Hardware:} Local experiments and neural cross-encoder reranking were conducted on a GPU-accelerated workstation with an Intel Core i9 CPU, 64~GB RAM, and an NVIDIA GeForce RTX 4090 GPU (24~GB VRAM).
+\textbf{Software Stack:} \system{} is implemented in Python and FastAPI. Multi-agent state orchestration is executed via LangGraph under a StateGraph supervisor, with session state cached in Redis 7 (via \texttt{redis:7-alpine}). Relational curricula are hosted in Neo4j 5 with the APOC plugin. Document parent chunks (2,800 characters, 100-character overlap) are stored in PostgreSQL; child chunks (400 characters, 50-character overlap) are indexed in Qdrant using \texttt{bkai-foundation-models/vietnamese-bi-encoder} (768-d). Neural candidate reranking employs \texttt{BAAI/bge-reranker-v2-m3}.
+\textbf{LLM Backbones and Cloud Evaluation:} Agent reasoning and response synthesis use \texttt{gemini-2.5-flash-lite} across all benchmark evaluations (with operational server support for \texttt{gemini-3.5-flash-lite}), while contextual query rewriting uses \texttt{gemini-3.1-flash-lite}. End-to-end generation and automated Ragas evaluation were executed via Google Cloud Vertex AI using service account authentication, employing \texttt{gemini-2.5-flash-lite} across 5 parallel worker threads. The 1,050 evaluations were completed in 7.7 minutes.
+
+%------------------------------------------------
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+\textbf{Multi-Agent Coordination Metrics (Scenario 3):} Following isolated evaluation protocols, we assess: (1)~\textbf{Agent Accuracy \& Macro-F1:} proportion of queries routed to the target specialist ($\text{actual}=\text{expected}$) alongside macro-averaged F1 across the four specialist domains to reduce class frequency bias; (2)~\textbf{Intent Accuracy:} accuracy of fine-grained intent classification; (3)~\textbf{Tool Selection, Argument Exact Match (EM), and Result Accuracy:} whether the correct execution path (deterministic catalog lookup vs. typed LLM tool) is invoked, whether extracted arguments match ground truth with exact numeric and case-insensitive string equality, and whether numerical outputs are mathematically exact without forbidden tokens; (4)~\textbf{End-to-End Pass Rate:} joint success across tool selection, argument binding, and execution output; (5)~\textbf{Robustness \& Tool-Gating Accuracy:} correct tool triggering on complete inputs versus deliberate tool suppression on malformed or policy-only queries; (6)~\textbf{Safe Result Behavior:} explicit abstention or diagnostic clarification without parameter fabrication or hallucination; and (7)~\textbf{Bounded Completion Rate:} proportion of decisions terminating within the evaluated operational invariants ($\text{max\_tool\_calls}=1, \text{timeout}=60.0\,\text{s}$).
+
+\textbf{Retrieval Quality Metrics:} Evaluated over top-$k$ returned passages against gold document identifiers: (1)~\textbf{Hit@$k$ ($k \in \{1, 3\}$):} proportion of queries where at least one gold document is retrieved within top-$k$: $\mathrm{Hit}@k = \frac{1}{|Q|} \sum_{q \in Q} \mathbb{I}(\mathrm{rank}(d^*_q) \le k)$; (2)~\textbf{Precision@7 (P@7)} and \textbf{Recall@7 (R@7):} proportion of relevant passages in the common Top-7 context window, and proportion of gold passages retrieved; (3)~\textbf{Mean Reciprocal Rank (MRR@10):} reciprocal rank of the first relevant document: $\mathrm{MRR} = \frac{1}{|Q|} \sum_{q \in Q} \frac{1}{\mathrm{rank}(d^*_q)}$; and (4)~\textbf{Latency (ms):} retrieval turnaround time.
+
+\textbf{End-to-End Generation Metrics (Ragas):} Evaluated using LLM-as-a-judge under Ragas~\cite{es2023ragas}. All four scores lie in $[0,1]$ (higher is better), but they measure different objects: (1)~\textbf{Answer Relevancy (AR):} how directly the generated answer addresses the user's question, independent of whether every fact is correct; (2)~\textbf{Context Recall (CR):} how much of the factual information required by the reference answer is present in the retrieved Top-7 context; (3)~\textbf{Context Precision (CP):} how concentrated the retrieved Top-7 ranking is on relevant evidence, rewarding relevant passages appearing earlier; and (4)~\textbf{Answer Correctness (AC):} whether the generated answer is factually consistent with the ground-truth answer, including numerical values and cohort conditions. Thus AR/AC evaluate the answer, whereas CR/CP evaluate its supporting context; none of these four scores is a latency or retrieval-time measure.
+
+%------------------------------------------------
+\subsection{Three Experimental Scenarios}
+\label{sec:scenarios}
+
+To rigorously evaluate the system against our three research questions, Table~\ref{tab:rq_mapping} maps each research gap and question to its corresponding architectural component, experiment, and evaluation metrics.
+
+\begin{table}[!htbp]
+\centering
+\caption{Systematic mapping between Research Gaps, Research Questions, Proposed Components, Experiments, and Empirical Metrics.}
+\label{tab:rq_mapping}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{llllll}
+\toprule
+\textbf{Gap} & \textbf{RQ} & \textbf{Proposed Component} & \textbf{Experiment} & \textbf{Target Metrics} & \textbf{Empirical Evidence} \\
+\midrule
+Gap 1 & \textbf{RQ1 (Multi-Agent)}     & Supervisor + 4 Specialists (C1)  & Scenario 3 & Agent Acc, Tool EM, Robustness & 97.0\% routing, 100\% tool EM (tuition), 100\% bounded \\
+Gap 2 & \textbf{RQ2 (Allocation)}      & Graph vs. Hybrid Allocation (C2) & Scenario 2 & Context Precision, Answer Correctness & T4 records the highest AC: 0.647 \\
+Gap 3 & \textbf{RQ3 (Routing \& RAG)}  & Intent Routing + Stacking (C3)   & Scenario 1 & Hit@k, Recall@5, MRR@10, Latency      & E5 attains 0.9000 Hit@1, 0.9600 Hit@3, 0.9327 MRR \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsubsection{Scenario 1 --- Retrieval Component Stacking (E1--E5):}
+\emph{Objective \& RQ Alignment:} Scenario~1 investigates \textbf{RQ3} and supports \textbf{RQ2} by evaluating the empirical contribution of progressively stacking retrieval components over the 150-case benchmark.
+\emph{Configurations:} We compare five cumulative setups: (1)~\textbf{E1 (BM25 Lexical):} BM25 search over tokenized child chunks; (2)~\textbf{E2 (Dense Semantic):} 768-d \texttt{vietnamese-bi-encoder} vector search in Qdrant; (3)~\textbf{E3 (Hybrid RRF):} BM25 and Dense fused via Reciprocal Rank Fusion ($k=60$); (4)~\textbf{E4 (Hybrid + Reranker):} E3 augmented with \texttt{bge-reranker-v2-m3} cross-attention; and (5)~\textbf{E5 (Full Proposed System):} integrating IG-SRR subspace routing, Neo4j relational grounding, and parent-child chunk mapping.
+\emph{Results \& Interpretation:} As shown in Table~\ref{tab:retrieval_evaluation}, BM25 achieves an initial lexical baseline ($0.6667$ Hit@1) owing to rigid alphanumeric tokens (cohort IDs, decision numbers). Dense retrieval alone exhibits marked degradation ($0.4267$ Hit@1, $0.5115$ MRR) because vector proximity conflates semantically similar regulations across different cohorts. Unreranked hybrid fusion (E3) balances lexical and semantic representations ($0.5067$ Hit@1, $0.7606$ Recall@5). Introducing cross-encoder reranking over hybrid candidates (E4) substantially improves lexical-semantic reordering ($0.8000$ Hit@1, $0.8650$ MRR). Finally, full heterogeneous integration with IG-SRR subspace routing and Neo4j relational grounding (E5) achieves the highest performance across all retrieval metrics: \textbf{0.9000 Hit@1}, \textbf{0.9600 Hit@3}, \textbf{0.2627 Precision@5}, \textbf{0.8656 Recall@5}, and \textbf{0.9327 MRR@10}, outperforming the un-governed cross-reranked baseline E4 by $+10.0\%$ in Hit@1 and $+6.77\%$ in MRR@10.
+
+\begin{table}[!htbp]
+\centering
+\caption{Retrieval evaluation results of cumulative configurations (E1--E5) on the 150-question benchmark.}
+\label{tab:retrieval_evaluation}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Configuration} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{Precision@5} & \textbf{Recall@5} & \textbf{MRR@10} \\
+\midrule
+E1 (BM25 Lexical)                  & 0.6667 & 0.9000 & 0.2360 & 0.7783 & 0.7857 \\
+E2 (Dense Vector)                  & 0.4267 & 0.5867 & 0.1493 & 0.5778 & 0.5115 \\
+E3 (Hybrid RRF)                    & 0.5067 & 0.7933 & 0.2213 & 0.7606 & 0.6702 \\
+E4 (Hybrid + Cross-Reranker)       & 0.8000 & 0.9333 & 0.2450 & 0.8200 & 0.8650 \\
+\textbf{E5 (Full Proposed System)} & \textbf{0.9000} & \textbf{0.9600} & \textbf{0.2627} & \textbf{0.8656} & \textbf{0.9327} \\
+\bottomrule
+\end{tabular}
+}
+\vspace{0.6em}
+
+\caption{End-to-end QA generation and ablation evaluation results (T1--T7) on the 150-question benchmark using Ragas metrics with a common Top-7 context window.}
+\label{tab:e2e_evaluation}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Config.} & \textbf{Configuration Description / Ablation Target} & \textbf{AR} & \textbf{CR} & \textbf{CP} & \textbf{AC} \\
+\midrule
+T1 & BM25 Lexical + LLM Baseline                     & 0.737 & 0.790 & 0.653 & 0.596 \\
+T2 & Dense Semantic + LLM Baseline                   & 0.580 & 0.583 & 0.415 & 0.482 \\
+T3 & Hybrid (BM25 + Dense RRF) + LLM Baseline        & 0.730 & 0.758 & 0.531 & 0.600 \\
+\textbf{T4} & \textbf{Proposed System (\system{} Full Stack)} & \textbf{0.781} & 0.795 & 0.722 & \textbf{0.647} \\
+T5 & w/o Cross-Encoder Reranker (\texttt{bge-reranker-v2-m3}) & 0.723 & 0.758 & 0.531 & 0.612 \\
+T6 & w/o Neo4j Knowledge Graph Grounding             & 0.750 & \textbf{0.798} & \textbf{0.739} & 0.642 \\
+T7 & w/o Governance Filter (No Subspace Routing)     & 0.579 & 0.583 & 0.415 & 0.482 \\
+\bottomrule
+\end{tabular}
+}
+\vspace{0.25em}
+\parbox{\columnwidth}{\footnotesize
+\emph{Metric definitions:}\newline
+\textbf{AR---Answer Relevancy:} whether the generated answer directly addresses the user's question; this score alone does not establish factual correctness.\newline
+\textbf{CR---Context Recall:} whether the retrieved Top-7 context contains the information required to support the ground-truth answer.\newline
+\textbf{CP---Context Precision:} whether the retrieved passages are relevant, with greater reward when relevant evidence appears at higher ranks.\newline
+\textbf{AC---Answer Correctness:} factual agreement between the generated answer and the ground truth, including monetary amounts, cohorts, and eligibility conditions.\newline
+All scores are normalized to $[0,1]$, and higher values indicate better performance.}
+\end{table}
+
+%------------------------------------------------
+\subsubsection{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}
+\emph{Objective \& RQ Alignment:} Scenario~2 addresses \textbf{RQ2} and \textbf{RQ3} by evaluating end-to-end answer synthesis and modular ablation across seven configurations on the 150 benchmark queries.
+\emph{Configurations:} (T1) BM25+LLM; (T2) Dense+LLM; (T3) Hybrid+LLM; (T4) Proposed \system{} Full Stack; (T5) w/o Reranker; (T6) w/o Neo4j Knowledge Graph; and (T7) w/o Governance Filter (removing subspace routing).
+\emph{Results \& Interpretation:} All 1,050 responses were evaluated using Ragas LLM-as-a-judge on Vertex AI with the same Top-7 context cutoff for every configuration (Table~\ref{tab:e2e_evaluation}). The full system (T4) improves over the hybrid baseline (T3) on AR (0.730$\rightarrow$\textbf{0.781}), CR (0.758$\rightarrow$0.795), CP (0.531$\rightarrow$0.722), and AC (0.600$\rightarrow$\textbf{0.647}). The reranker and governed Graph injection therefore improve answer quality under the evaluated setup, although the graph ablation (T6) obtains slightly higher CR/CP (0.798/0.739), so T4 does not dominate every context metric. Removing the governance filter (T7) reduces AR/CR/CP to 0.579/0.583/0.415, matching the dense-only failure pattern and yielding AC 0.482; this supports the value of subspace routing without claiming universal dominance. The dense baseline (T2) is similarly weak (AR 0.580, CR 0.583, CP 0.415, AC 0.482), while the no-reranker ablation (T5) retains AC 0.612 but lower AR and context scores than T4.
+
+%------------------------------------------------
+\subsubsection{Scenario 3 --- Multi-Agent Routing, Tool Reliability, and Robustness:}
+\emph{Objective \& RQ Alignment:} Scenario~3 directly addresses \textbf{RQ1} by evaluating the multi-agent coordination, tool execution reliability, and bounded safety of \system{} independently from retrieval quality (Scenario 1) or generative answer synthesis (Scenario 2). It investigates three core empirical questions:
+(1)~Does the Supervisor reliably route diverse student inquiries to the correct specialist and intent?
+(2)~When quantitative calculation or catalog lookup is required, does the system accurately discriminate between deterministic structured lookups and typed LLM tool calls, extract arguments with exact match, and return mathematically exact outputs?
+(3)~Under incomplete, invalid, or adversarial inputs attempting forced tool invocation, does the system safely suppress execution, request missing parameters, and terminate within bounded constraints?
+
+\emph{Experimental Setup:} Evaluated using \texttt{gemini-2.5-flash-lite} via Google Cloud Vertex AI ($\text{temperature}=0.0$, $\text{timeout}=60.0\,\text{s}$, maximum 1 tool call per decision, SDK retry 1, sequential execution with $1.0\,\text{s}$ delay, 3 repetitions). The evaluation spans three suites:
+(1)~\textbf{Supervisor Routing (Panel A):} Evaluated on 100 single-domain queries from the benchmark ($N=300$ runs for the LLM Supervisor, alongside $N=100$ runs for a baseline rule-based regex router). Fifty composite cross-domain queries (\texttt{CDICT*}) combining curriculum requirements, academic standing, and tuition schedules were excluded from single-agent routing measurement because the supervisor routes each atomic turn to a single specialist; forcing composite queries into a single label like \texttt{actual\_tuition} penalizes valid alternative specialist assignments (\texttt{academic\_program}, \texttt{calculation}, or combined). The 100 queries span 9 source categories mapped to 4 specialists: \texttt{financial} (28 queries), \texttt{general} (49 queries), \texttt{scholarship} (14 queries), and \texttt{academic} (9 queries).
+(2)~\textbf{Specialist Tool Reliability (Panel B):} Evaluated across 60 production-tool cases ($N=180$ runs across 3 repetitions) from \texttt{scenario3\_production\_tools.json}. The suite covers five cases for each of the 11 production tools (six academic graph tools, three financial graph/policy tools, two deterministic calculators) plus five no-tool cases. Graph-backed outputs additionally record whether the result came from Graph or from an empty/fallback path; fallback is not counted as a Graph hit.
+(3)~\textbf{Adversarial Robustness and Failure Gating (Panel C):} Evaluated across 20 adversarial failure scenarios ($N=60$ runs across 3 repetitions) from \texttt{scenario3\_robustness\_cases.json}. These stress-test system boundaries against: missing mandatory arguments, out-of-range GPA/training points (DRL)/fee reduction percentages, policy questions where tool execution must be suppressed, cross-domain queries, tuition queries lacking admission cohort, Vietnamese decimal comma notation, context-free follow-up queries, and prompt injection attempts instructing the model to fabricate numerical parameters.
+
+\begin{table}[!htbp]
+\centering
+\caption{Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per evaluated decision ($\text{max\_tool\_calls}=1$).}
+\label{tab:scenario3_results}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccccccc}
+\toprule
+\multicolumn{8}{l}{\textbf{Panel A: Supervisor Routing and Specialist Selection ($N=100$ queries; Rule: 1 rep / LLM: 3 reps, $N=300$)}} \\
+\midrule
+\textbf{Router Variant} & \textbf{Runs ($N$)} & \textbf{Agent Acc.} & \textbf{Macro-F1} & \textbf{Intent Acc.} & \textbf{Bounded} & \textbf{p50 (ms)} & \textbf{p95 (ms)} \\
+\midrule
+Rule-Based Router          & 100 & 85.0\% & 69.2\% & 69.0\% & 100.0\% & \textbf{0.0} & \textbf{0.1} \\
+LLM Supervisor (\system{}) & 300 & \textbf{97.0\%} & \textbf{97.8\%} & \textbf{95.0\%} & \textbf{100.0\%} & 795.5 & 981.7 \\
+\midrule
+\multicolumn{8}{l}{\textbf{Panel B: Specialist Tool Execution Reliability ($N=15$ runs per function, 3 reps)}} \\
+\midrule
+\textbf{Target Function} & \textbf{Execution Type} & \textbf{Selection} & \textbf{Arg. EM} & \textbf{Result Acc.} & \textbf{E2E Pass} & \textbf{Bounded} & \textbf{Graph hit} \\
+\midrule
+\texttt{tra\_cuu\_nganh} & LLM Tool Call & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & -- \\
+\texttt{so\_sanh\_nganh} & LLM Tool Call & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & -- \\
+\texttt{tim\_nganh} & LLM Tool Call & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & -- \\
+\texttt{xem\_chuoi\_tien\_quyet} & LLM Tool Call & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & -- \\
+\texttt{mon\_chung\_giua\_nganh} & LLM Tool Call & 93.3\% & 93.3\% & 100.0\% & 93.3\% & 100.0\% & -- \\
+\texttt{tim\_nganh\_co\_mon} & LLM Tool Call & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & -- \\
+\texttt{tra\_cuu\_hoc\_phi\_graph} & LLM Tool Call & 80.0\% & 80.0\% & 100.0\% & 80.0\% & 100.0\% & 80.0\% \\
+\texttt{tra\_cuu\_co\_so\_mien\_giam\_graph} & LLM Tool Call & 80.0\% & 80.0\% & 73.3\% & 73.3\% & 93.3\% & 78.6\% \\
+\texttt{tra\_cuu\_quy\_dinh\_hoc\_phi} & LLM Tool Call & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 40.0\% \\
+\texttt{tinh\_toan\_hoc\_phi} & LLM Tool Call & 100.0\% & 80.0\% & 80.0\% & 80.0\% & 100.0\% & -- \\
+\texttt{tinh\_tien\_hoc\_bong} & LLM Tool Call & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & -- \\
+\texttt{no\_tool} & No Tool Call & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & -- \\
+\midrule
+\multicolumn{8}{l}{\textbf{Panel C: Robustness and Bounded Failure Handling ($N=60$ runs under malformed/adversarial inputs)}} \\
+\midrule
+\textbf{Adversarial Gate} & \textbf{Runs ($N$)} & \textbf{Agent Acc.} & \textbf{Tool Gate} & \textbf{Safe Result} & \textbf{E2E Pass} & \textbf{Bounded} & \textbf{Notes} \\
+\midrule
+Failure Gate Robustness    & 60 & 100.0\% & 100.0\% & 98.3\% & 98.3\% & 100.0\% & -- \\
+\bottomrule
+\end{tabular}
+}
+\smallskip
+\parbox{\columnwidth}{\footnotesize\emph{Note:} \texttt{tuition\_lookup} evaluates the deterministic structured catalog path. Scholarship and tuition reduction evaluate typed LLM tool selection.}
+\end{table}
+
+\emph{Results \& Interpretation:}
+(1)~\emph{Supervisor vs. Heuristic Routing:} The LLM Supervisor attains \textbf{97.0\% Agent Accuracy}, \textbf{97.8\% Macro-F1}, and \textbf{95.0\% Intent Accuracy}, outperforming the rule router ($85.0\%$, $69.2\%$, and $69.0\%$). The Macro-F1 result shows higher balance across the 4 specialist domains than the rule router. While the rule router achieves near-zero latency ($0.1\,\text{ms}$), it performs worse on this routing set; the LLM Supervisor provides higher semantic discernment with a sub-second p95 latency ($981.7\,\text{ms}$, p50 $795.5\,\text{ms}$).
+(2)~\emph{Specialist Tool Execution and Graph Coverage:} As shown in Panel~B, five academic tools, tuition-policy lookup, scholarship calculation, and no-tool gating achieved \textbf{100.0\%} end-to-end pass. The production graph tuition lookup achieved $80.0\%$ selection/argument/E2E with an $80.0\%$ Graph-hit rate. Graph exemption-basis lookup achieved $80.0\%$ selection and $73.3\%$ result/E2E, with a $78.6\%$ Graph-hit rate. The only non-graph calculator weakness was $80.0\%$ argument EM and E2E for tuition arithmetic.
+(3)~\emph{Robustness and Bounded Failure Invariants:} Under adversarial stress testing (Panel~C), \system{} achieved \textbf{100.0\% Tool/No-tool decision accuracy}, \textbf{100.0\% Agent and Intent Accuracy}, \textbf{98.3\% Safe Result behavior}, and \textbf{98.3\% End-to-End pass}. The system suppressed tool calls on malformed or policy-only queries in this suite, explicitly requesting missing parameters rather than fabricating values. Across all 550 rescored isolated decision records in Panels A, B, and C, \textbf{100.0\% completed within operational bounds} ($\text{max\_tool\_calls}=1, \text{timeout}=60\,\text{s}$), supporting bounded execution at the isolated decision level.
+
+%------------------------------------------------
+\subsection{Discussion}
+\label{sec:discussion}
+
+\textbf{Answering RQ1 (Domain-Specialized Multi-Agent Architecture):} Centralizing routing under a structured supervisor with asymmetric privileges and bounds ($\text{max\_tool\_calls}=1$, timeout $=60\,\text{s}$) produced bounded isolated decisions in the Scenario~3 runs: the LLM Supervisor achieves $97.0\%$ agent accuracy and $97.8\%$ Macro-F1 across 300 evaluations, outperforming rule-based routing ($85.0\%$ and $69.2\%$). Across the 180 production-tool evaluations, academic lookup, policy lookup, scholarship, and no-tool gating reached $100.0\%$ end-to-end pass, while graph tuition and exemption-basis paths exposed the remaining selection and backend-coverage failures. Adversarial testing demonstrated $100.0\%$ tool-gating accuracy, $98.3\%$ safe-result behavior, and $100.0\%$ bounded completion.
+
+\textbf{Answering RQ2 (Heterogeneous Knowledge Allocation):} Decomposing counseling data across relational curricula (Neo4j), tuition catalogs (JSON), and narrative decrees (hybrid RAG) is supported by the ablation pattern. Full heterogeneous integration with Neo4j grounding (E5) achieves $0.9000$ Hit@1, $0.9600$ Hit@3, $0.8656$ Recall@5, and $0.9327$ MRR. In the Top-7 end-to-end evaluation, \system{} (T4) attains the highest Answer Correctness ($0.647$) and improves substantially over the hybrid baseline (T3: $0.600$), while the graph ablation (T6) is slightly higher on context recall/precision ($0.798/0.739$ versus T4's $0.795/0.722$). Thus the measured benefit is strongest for answer correctness rather than universal context-metric dominance.
+
+\textbf{Answering RQ3 (Representation-Aware Evidence Routing):} Across the cumulative configurations, top-1 retrieval increases from $0.6667$ (E1) to \textbf{0.9000} (E5), with E5 achieving \textbf{0.9600 Hit@3}, \textbf{0.8656 Recall@5}, and \textbf{0.9327 MRR}. In the Top-7 ablation, T4's governed Graph injection and reranking raise AR/CR/CP/AC over T3 to $0.781/0.795/0.722/0.647$, while T7 without governance falls to $0.579/0.583/0.415/0.482$. Neural-reranked configurations also show higher measured latency ($20.09\,\text{ms}$ for E1, $36{,}274.77\,\text{ms}$ for E4, and $59{,}011.74\,\text{ms}$ for E5), while E3 records $94.05\,\text{ms}$ and may be considered when latency is prioritized.
+
+%------------------------------------------------
+\subsection{Threats to Validity and Limitations}
+\label{sec:limitations}
+
+While derived from Can Tho University, the administrative taxonomy generalizes across Vietnamese higher education; multi-institutional validation remains planned. In addition, cross-attention reranking latency motivates model distillation. Curricula graphs currently rely on offline schemas, and automated judges penalize out-of-scope abstentions, underestimating practical correctness when refusing ungrounded generation. Finally, while Scenario~3 validates bounded execution and tool reliability at the isolated supervisor and specialist decision level, end-to-end fault injection across external infrastructure services (e.g., Neo4j connection drops or Qdrant timeouts) represents an orthogonal system-resilience evaluation reserved for future work.

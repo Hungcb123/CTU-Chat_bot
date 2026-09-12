@@ -1,0 +1,56 @@
+{
+  "_exclude_id_prefixes": ["CDICT"],
+  "_overrides": {
+    "78": {
+      "expected_agent": "general",
+      "expected_intent": "other",
+      "reason": "The query asks only for conduct-score classification, not scholarship eligibility or amount."
+    },
+    "R12": {
+      "expected_agent": "academic",
+      "expected_intent": "academic_program",
+      "reason": "The query asks for the credit count of a study program."
+    },
+    "R24": {
+      "expected_agent": "general",
+      "expected_intent": "other",
+      "reason": "The query asks for the academic calendar rather than an academic regulation decision."
+    }
+  },
+  "actual_tuition": {
+    "expected_agent": "financial",
+    "expected_intent": "actual_tuition"
+  },
+  "exemption_basis": {
+    "expected_agent": "financial",
+    "expected_intent": "exemption_basis"
+  },
+  "exemption_policy": {
+    "expected_agent": "financial",
+    "expected_intent": "exemption_policy"
+  },
+  "scholarship": {
+    "expected_agent": "scholarship",
+    "expected_intent": "scholarship"
+  },
+  "student_loan": {
+    "expected_agent": "general",
+    "expected_intent": "student_loan"
+  },
+  "social_support": {
+    "expected_agent": "general",
+    "expected_intent": "social_support"
+  },
+  "academic_program": {
+    "expected_agent": "academic",
+    "expected_intent": "academic_program"
+  },
+  "academic_rules": {
+    "expected_agent": "general",
+    "expected_intent": "academic_rules"
+  },
+  "other": {
+    "expected_agent": "general",
+    "expected_intent": "other"
+  }
+}

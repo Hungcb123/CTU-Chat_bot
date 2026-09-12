@@ -1,0 +1,9 @@
+% ============================================================
+% 05-conclusion.tex
+% ============================================================
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+This paper addressed knowledge heterogeneity in university counseling, where uniform RAG pipelines and uncoordinated agent meshes can be brittle across relational curricula, structured tuition matrices, and narrative decrees. \system{} introduces a centralized supervisor-routed multi-agent architecture granting four domain specialists isolated subspaces, dedicated retrieval paths, and asymmetric tool privileges. Relational curricula are allocated to Neo4j and structured tuition to graph catalogs with deterministic engines, reserving hybrid RAG (BM25, dense embeddings, RRF, cross-encoder reranking) for narrative decrees. Specialists execute without peer-to-peer delegation, with at most one tool call per evaluated decision ($\text{max\_tool\_calls}=1$).
+
+Empirical evaluation provides evidence of 97.0\% supervisor routing accuracy and 100.0\% bounded completion in isolated Scenario~3 decisions. The production-tool suite achieved 100.0\% end-to-end pass for academic lookup, tuition-policy, scholarship, and no-tool gates; graph tuition lookup reached 80.0\%, while graph exemption-basis lookup reached 73.3\% with a 78.6\% Graph-hit rate. Component stacking achieves \textbf{0.9000 Hit@1}, \textbf{0.9600 Hit@3}, \textbf{0.8656 Recall@5}, and \textbf{0.9327 MRR}. With a common Top-7 context window, the full system T4 reaches the highest Answer Correctness (0.647), although the graph ablation T6 is slightly higher on context recall and precision; removing governance (T7) lowers AC to 0.482. Future work will explore cross-institutional transferability, latency distillation, and advisory trials.
