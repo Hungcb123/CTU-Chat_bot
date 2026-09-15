@@ -99,37 +99,33 @@
 \newlabel{fig:flowchart}{{2}{14}{Detailed runtime activity flowchart of \system {}, illustrating explicit Start/End states, decision diamonds with Yes/No branches for contextual query rewriting and cascading domain intent routing across four isolated specialist swimlanes, heterogeneous knowledge acquisition, bounded tool execution, and authoritative citation grounding}{figure.1.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Results}{14}{section.1.4}\protected@file@percent }
 \newlabel{sec:exp}{{4}{14}{Experimental Results}{section.1.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Dataset and Benchmark Construction}{14}{subsection.1.4.1}\protected@file@percent }
-\newlabel{sec:dataset}{{4.1}{14}{Experimental Dataset and Benchmark Construction}{subsection.1.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Tools and Infrastructure}{15}{subsection.1.4.2}\protected@file@percent }
-\newlabel{sec:tools_env}{{4.2}{15}{Experimental Tools and Infrastructure}{subsection.1.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{15}{subsection.1.4.3}\protected@file@percent }
-\newlabel{sec:metrics}{{4.3}{15}{Evaluation Metrics}{subsection.1.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Benchmark and Protocols}{14}{subsection.1.4.1}\protected@file@percent }
+\newlabel{sec:dataset}{{4.1}{14}{Experimental Benchmark and Protocols}{subsection.1.4.1}{}}
 \citation{es2023ragas}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Three Experimental Scenarios}{16}{subsection.1.4.4}\protected@file@percent }
-\newlabel{sec:scenarios}{{4.4}{16}{Three Experimental Scenarios}{subsection.1.4.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Systematic mapping between Research Gaps, Research Questions, Proposed Components, Experiments, and Empirical Metrics.}}{16}{table.1.4}\protected@file@percent }
-\newlabel{tab:rq_mapping}{{4}{16}{Systematic mapping between Research Gaps, Research Questions, Proposed Components, Experiments, and Empirical Metrics}{table.1.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Evaluation Metrics}{15}{subsection.1.4.2}\protected@file@percent }
+\newlabel{sec:metrics}{{4.2}{15}{Evaluation Metrics}{subsection.1.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Scenarios and Benchmark Results}{16}{subsection.1.4.3}\protected@file@percent }
+\newlabel{sec:scenarios}{{4.3}{16}{Experimental Scenarios and Benchmark Results}{subsection.1.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Systematic mapping between Research Gaps, RQs, Proposed Modules, and Target Metrics.}}{16}{table.1.4}\protected@file@percent }
+\newlabel{tab:rq_mapping}{{4}{16}{Systematic mapping between Research Gaps, RQs, Proposed Modules, and Target Metrics}{table.1.4}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Scenario 1 --- Retrieval Component Stacking (E1--E5):}{16}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}{17}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}{16}{section*.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Scenario 1: Progressive retrieval component stacking on the Held-Out Test Set ($N=50$).}}{17}{table.1.5}\protected@file@percent }
+\newlabel{tab:retrieval_evaluation}{{5}{17}{Scenario 1: Progressive retrieval component stacking on the Held-Out Test Set ($N=50$)}{table.1.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scenario 2: End-to-end QA generation and modular ablation on Held-Out Test Set ($N=50, R=3$, 1,050 total evaluation turns, Top-7 context).}}{17}{table.1.6}\protected@file@percent }
+\newlabel{tab:e2e_evaluation}{{6}{17}{Scenario 2: End-to-end QA generation and modular ablation on Held-Out Test Set ($N=50, R=3$, 1,050 total evaluation turns, Top-7 context)}{table.1.6}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Scenario 3 --- Multi-Agent Routing, Tool Reliability, and Robustness:}{17}{section*.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Retrieval evaluation results of cumulative configurations (E1--E5) on the 150-question benchmark.}}{18}{table.1.5}\protected@file@percent }
-\newlabel{tab:retrieval_evaluation}{{5}{18}{Retrieval evaluation results of cumulative configurations (E1--E5) on the 150-question benchmark}{table.1.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces End-to-end QA generation and ablation evaluation results (T1--T7) on the 150-question benchmark using Ragas metrics with a common Top-7 context window.}}{18}{table.1.6}\protected@file@percent }
-\newlabel{tab:e2e_evaluation}{{6}{18}{End-to-end QA generation and ablation evaluation results (T1--T7) on the 150-question benchmark using Ragas metrics with a common Top-7 context window}{table.1.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per evaluated decision ($\text  {max\_tool\_calls}=1$).}}{19}{table.1.7}\protected@file@percent }
-\newlabel{tab:scenario3_results}{{7}{19}{Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per evaluated decision ($\text {max\_tool\_calls}=1$)}{table.1.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Discussion}{20}{subsection.1.4.5}\protected@file@percent }
-\newlabel{sec:discussion}{{4.5}{20}{Discussion}{subsection.1.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per decision ($\text  {max\_tool\_calls}=1$).}}{18}{table.1.7}\protected@file@percent }
+\newlabel{tab:scenario3_results}{{7}{18}{Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per decision ($\text {max\_tool\_calls}=1$)}{table.1.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Discussion}{18}{subsection.1.4.4}\protected@file@percent }
+\newlabel{sec:discussion}{{4.4}{18}{Discussion}{subsection.1.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Threats to Validity and Limitations}{19}{subsection.1.4.5}\protected@file@percent }
+\newlabel{sec:limitations}{{4.5}{19}{Threats to Validity and Limitations}{subsection.1.4.5}{}}
 \bibstyle{splncs04}
 \bibdata{references}
 \bibcite{ctu2022handbook}{1}
 \bibcite{cormack2009rrf}{2}
 \bibcite{edge2024graphrag}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Threats to Validity and Limitations}{21}{subsection.1.4.6}\protected@file@percent }
-\newlabel{sec:limitations}{{4.6}{21}{Threats to Validity and Limitations}{subsection.1.4.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion and Future Work}{21}{section.1.5}\protected@file@percent }
-\newlabel{sec:conclusion}{{5}{21}{Conclusion and Future Work}{section.1.5}{}}
 \bibcite{es2023ragas}{4}
 \bibcite{gao2023rag_survey}{5}
 \bibcite{government2021decree81}{6}
@@ -137,6 +133,8 @@
 \bibcite{jeong2024adaptiverag}{8}
 \bibcite{karpukhin2020dpr}{9}
 \bibcite{lewis2020rag}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion and Future Work}{20}{section.1.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{20}{Conclusion and Future Work}{section.1.5}{}}
 \bibcite{ma2025rebot}{11}
 \bibcite{nogueira2019bert}{12}
 \bibcite{pan2024unifying}{13}
@@ -147,4 +145,4 @@
 \bibcite{wu2023autogen}{18}
 \bibcite{xiao2023bge}{19}
 \bibcite{yao2023react}{20}
-\gdef \@abspage@last{22}
+\gdef \@abspage@last{21}

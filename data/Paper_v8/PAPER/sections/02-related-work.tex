@@ -1,0 +1,53 @@
+% ============================================================
+% 02-related-work.tex
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+
+
+%------------------------------------------------
+\subsection{Vietnamese NLP Foundations and Linguistic Specifics}
+\label{sec:vietnamese_nlp}
+
+Unlike whitespace-delimited languages, Vietnamese is an isolating, tonal language where white spaces separate syllables rather than words~\cite{nguyen2020phobert}, with over 85\% of lexical units forming multi-syllabic compound words (e.g., \textit{``h\d{o}c ph\'i''} [tuition fee]). While domain-adapted bi-encoders like PhoBERT capture semantic paraphrasing, Vietnamese higher education decrees rely heavily on rigid Sino-Vietnamese legal terminology and alphanumeric cohort codes. This dual characteristic motivates coupling syllable-aware dense embeddings with exact lexical token matching to mitigate both semantic drift and alphanumeric recall failures.
+
+%------------------------------------------------
+\subsection{Sparse and Dense Retrieval}
+\label{sec:sparse_dense}
+
+\textbf{Lexical Retrieval (BM25):} Sparse keyword search using BM25~\cite{robertson2009bm25} scores documents via term frequency ($\mathrm{tf}$) and inverse document frequency ($\mathrm{IDF}$) over an inverted index ($k_1 = 1.5, b = 0.75$). BM25 provides reliable exact token matching for rigid alphanumeric identifiers (decision codes, cohort labels, course codes), but cannot capture semantic paraphrases.
+
+\textbf{Dense Semantic Retrieval:} Dense retrieval systems~\cite{karpukhin2020dpr,lewis2020rag} map queries and passages into embedding spaces using bi-encoders, computing relevance via vector similarity. While dense models capture paraphrastic intent, rare alphanumeric identifiers and out-of-vocabulary regulatory tokens can remain difficult and may introduce cross-cohort noise, motivating hybrid retrieval.
+
+%------------------------------------------------
+\subsection{Hybrid Retrieval and Reciprocal Rank Fusion}
+\label{sec:hybrid_rrf}
+
+To merge BM25 and dense candidates without score calibration, Reciprocal Rank Fusion (RRF)~\cite{cormack2009rrf} sorts documents by reciprocal position: $\RRF(d) = \sum_{s \in \mathcal{M}} \frac{1}{k + r_s(d)}$ ($k = 60$), while neural cross-encoders~\cite{nogueira2019bert,xiao2023bge} jointly encode query--passage pairs for reranking. Adaptive-RAG further demonstrates that retrieval strategies can be selected according to question complexity~\cite{jeong2024adaptiverag}. These approaches motivate dynamic retrieval, but do not directly allocate institution-specific relational, tabular, and narrative knowledge to isolated specialist paths.
+
+%------------------------------------------------
+\subsection{Knowledge Graphs and GraphRAG}
+\label{sec:kg_graphrag}
+
+Knowledge graphs represent domain knowledge as structured triples $(h, r, t)$~\cite{pan2024unifying}. GraphRAG~\cite{edge2024graphrag} leverages graph topology to uncover multi-hop associative paths escaping flat chunking, benefiting curriculum structures and prerequisite chains. However, universal graph extraction across institutional corpora can produce spurious or hallucinated relationships, while forcing narrative legal prose into graphs is structurally unnatural, motivating selective rather than universal graph use.
+
+%------------------------------------------------
+\subsection{Agentic RAG and Multi-Agent Orchestration}
+\label{sec:agentic_multiagent}
+
+ReAct demonstrates interleaved reasoning and action, AutoGen provides a framework for multi-agent conversation, and Toolformer studies when and how language models invoke external APIs~\cite{yao2023react,wu2023autogen,schick2023toolformer}. For institutional counseling, these capabilities raise design risks when applied without explicit constraints: broad tool exposure can increase tool and parameter errors; peer-to-peer exchanges can increase coordination cost; a shared index can mix evidence across domains; and a common retrieval path can obscure opportunities for direct graph traversal or structured lookup. These risks motivate the bounded, supervisor-routed specialization evaluated in this work.
+
+%------------------------------------------------
+\subsection{Educational and University Counseling Systems}
+\label{sec:educational_counseling}
+
+Educational chatbots assist in advising and learning support~\cite{wollny2021chatbots}, with recent systems like REBot~\cite{ma2025rebot} combining text retrieval with category-guided GraphRAG for academic regulations. \system{} departs from prior advisory systems across three key aspects: (1)~\emph{Task Scope}: while representative prior advisory systems often emphasize single-domain text-QA or focus primarily on narrative regulations, \system{} models 113 curricula as relational property graphs and incorporates deterministic arithmetic engines (\texttt{tinh\_toan\_hoc\_phi}, \texttt{tinh\_tien\_hoc\_bong}) for cohort-dependent tuition, exemptions, and scholarship thresholds; (2)~\emph{Multi-Agent Routing}: rather than a monolithic classifier-guided pipeline, a LangGraph supervisor dynamically routes queries to four bounded specialists with isolated evidence spaces and asymmetric tool privileges; and (3)~\emph{Metric Incommensurability}: prior benchmarks evaluate traditional classification accuracy and binary Q\&A $F_1$-scores, precluding direct numerical comparison with \system{}, which evaluates end-to-end generative fidelity via Ragas and bounded multi-agent tool execution benchmarks.
+
+%------------------------------------------------
+\subsection{Comparative Synthesis and Research Gaps}
+\label{sec:gaps}
+
+Synthesizing established retrieval and reasoning paradigms highlights clear operational trade-offs for university counseling~\cite{cormack2009rrf,edge2024graphrag,jeong2024adaptiverag,karpukhin2020dpr,robertson2009bm25,schick2023toolformer,wu2023autogen,yao2023react}. While individual techniques resolve isolated needs---lexical matching for exact regulatory tokens, dense embeddings for semantic paraphrasing, and GraphRAG for relational prerequisites---none simultaneously address the tripartite challenge of multi-domain institutional advising. 
+
+Crucially, this analysis exposes three key operational gaps in automated university counseling: (1)~\emph{Lack of Bounded Multi-Agent Orchestration}: monolithic pipelines and unconstrained agent meshes lack execution guardrails, frequently triggering tool mis-selection and parameter hallucination; (2)~\emph{The Uniform Representation Bottleneck}: forcing relational curricula, tabular tuition matrices, and narrative legal text into a single retrieval space can cause prerequisite fragmentation and semantic drift; and (3)~\emph{Absence of Representation-Aware Routing}: dynamic steering mechanisms that allocate queries across isolated representation pathways while offloading statutory arithmetic to deterministic engines remain largely unaddressed in higher-education administrative counseling. These structural imperatives directly motivate the centralized supervisor-routed architecture detailed in Section~3.

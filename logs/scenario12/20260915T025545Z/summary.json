@@ -1,0 +1,46 @@
+{
+  "scenario1": {
+    "E1": {
+      "hit_at_1": 1.0,
+      "hit_at_3": 1.0,
+      "precision_at_5": 0.2,
+      "recall_at_5": 1.0,
+      "mrr_at_10": 1.0,
+      "latency_ms": 115.48212799971225
+    },
+    "E2": {
+      "hit_at_1": 0.0,
+      "hit_at_3": 0.0,
+      "precision_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "mrr_at_10": 0.0,
+      "latency_ms": 170.2168840001832
+    },
+    "E3": {
+      "hit_at_1": 0.0,
+      "hit_at_3": 1.0,
+      "precision_at_5": 0.2,
+      "recall_at_5": 1.0,
+      "mrr_at_10": 0.3333333333333333,
+      "latency_ms": 52.22594100087008
+    },
+    "E4": {
+      "hit_at_1": 1.0,
+      "hit_at_3": 1.0,
+      "precision_at_5": 0.2,
+      "recall_at_5": 1.0,
+      "mrr_at_10": 1.0,
+      "latency_ms": 16902.81329500067
+    },
+    "E5": {
+      "hit_at_1": 1.0,
+      "hit_at_3": 1.0,
+      "precision_at_5": 0.2,
+      "recall_at_5": 1.0,
+      "mrr_at_10": 1.0,
+      "latency_ms": 20998.959733002266
+    }
+  },
+  "scenario2": {},
+  "paired_differences": {}
+}

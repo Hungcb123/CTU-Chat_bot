@@ -1,0 +1,25 @@
+{
+  "protocol": "multi-vs-single-v2.0",
+  "created_at_utc": "2026-09-14T10:19:44.003395+00:00",
+  "status": "locked_before_execution",
+  "primary_outcome": "paired unique-case end_to_end_pass_rate difference (multi - single)",
+  "interpretation": "superiority only if the paired 95% bootstrap CI excludes zero",
+  "multi_agent_arm": "live structured supervisor, then predicted-specialist tool gate",
+  "single_agent_arm": "one monolithic gate exposing all available tools",
+  "synthetic_distractors": "same count per specialist; monolithic arm sees their union",
+  "repetitions": 1,
+  "levels": [
+    0
+  ],
+  "workers": 2,
+  "temperature": 0.0,
+  "model": "gemini-2.5-flash-lite",
+  "limit": 1,
+  "datasets": {
+    "production_tools": "/mnt/d/project/chatbot/data/scenario3_production_tools.json",
+    "production_tools_sha256": "b5dbecec26b7893301ec6073ef964d999df91f9fedb47f607ffe648f48811c56",
+    "robustness": "/mnt/d/project/chatbot/data/scenario3_robustness_cases.json",
+    "robustness_sha256": "c0d840dc6ccfc7fc37e5d27dd9d034544cd72fd67f7ca18cb8fdc4c54220b6fb"
+  },
+  "script_sha256": "fc26aaa227a08193a99ea179b94b304fb26fd099127361cea3bb3989ffcf8c37"
+}

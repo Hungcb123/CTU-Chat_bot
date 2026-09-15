@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import logging
 import operator
+import os
 from typing import Annotated, Any, Literal, Sequence
 
 from langchain_core.messages import (
@@ -17,6 +18,7 @@ from langchain_core.messages import (
     BaseMessage,
     HumanMessage,
     SystemMessage,
+    ToolMessage,
 )
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
@@ -37,9 +39,12 @@ from app.services.query_intent import (
     QueryRoutingDecision,
     build_answer_instruction,
     build_retrieval_lanes,
+    classify_query_intent,
     should_rewrite_query,
     validate_rewritten_query,
 )
+from app.services.orchestration_contract import repair_route_decision, tool_gate_prompt
+from app.services.tool_execution import recommend_required_tool
 
 logger = logging.getLogger(__name__)
 
@@ -68,6 +73,9 @@ class AgentState(TypedDict):
     search_query: str                    # Câu hỏi đã rewrite
     next_agent: str                      # academic | financial | scholarship | general
     routing_decision: Any                # QueryRoutingDecision (cho retrieval)
+    raw_agent: str                       # Supervisor output before deterministic validation
+    raw_intent: str
+    route_repair_reason: str
 
     # Retrieval output
     context: str                         # Context từ RAG
@@ -139,6 +147,28 @@ def build_agent_graph(
         prompt=ACADEMIC_PROMPT,
     )
 
+    async def invoke_with_tool_repair(agent, messages: list[BaseMessage], specialist: str, query: str):
+        """Allow one bounded retry when a clearly tool-backed query skipped tools."""
+        result = await agent.ainvoke({"messages": messages})
+        required_tool = recommend_required_tool(specialist, query)
+        used_tool = any(isinstance(message, ToolMessage) for message in result.get("messages", []))
+        enabled = os.getenv("TOOL_REPAIR_ENABLED", "true").lower() in {"true", "1", "yes"}
+        if not enabled or not required_tool or used_tool:
+            return result
+        logger.info(
+            "Tool repair specialist=%s required=%s reason=missing_tool_call",
+            specialist,
+            required_tool,
+        )
+        repair_message = HumanMessage(
+            content=(
+                f"Câu hỏi này cần tra cứu bằng `{required_tool}`. "
+                "Nếu đủ các tham số bắt buộc theo schema, hãy gọi đúng công cụ này một lần; "
+                "nếu thiếu hoặc không hợp lệ, hãy hỏi làm rõ và không bịa tham số."
+            )
+        )
+        return await agent.ainvoke({"messages": [*result.get("messages", messages), repair_message]})
+
     # ─────────────────────────────────────────────────────────────
     # NODE: supervisor
     # ─────────────────────────────────────────────────────────────
@@ -197,24 +227,36 @@ def build_agent_graph(
         ]
         try:
             route: RouteDecision = await supervisor_llm.ainvoke(messages)
-            next_agent = route.next_agent
-            intent = _INTENT_MAP.get(route.intent, QueryIntent.OTHER)
+            raw_agent = route.next_agent
+            raw_intent = route.intent
         except Exception as e:
             logger.warning("Supervisor routing lỗi, fallback general: %s", e)
-            next_agent = "general"
-            intent = QueryIntent.OTHER
+            raw_agent = "general"
+            raw_intent = QueryIntent.OTHER.value
 
-        routing_decision = QueryRoutingDecision(intent=intent)
+        repaired = repair_route_decision(query, raw_agent, raw_intent)
+        next_agent = repaired.agent
+        intent = repaired.intent
+        rule_decision = classify_query_intent(search_query)
+        academic_year = rule_decision.academic_year if rule_decision.intent == intent else None
+        routing_decision = QueryRoutingDecision(
+            intent=intent,
+            academic_year=academic_year,
+            classified_from="route_repair" if repaired.repaired else "supervisor",
+        )
 
         logger.info(
-            "🎯 Supervisor: query=%r → agent=%s (intent=%s)",
-            query, next_agent, intent.value,
+            "🎯 Supervisor: query=%r raw=%s/%s repaired=%s/%s reason=%s",
+            query, raw_agent, raw_intent, next_agent, intent.value, repaired.reason,
         )
 
         return {
             "search_query": search_query,
             "next_agent": next_agent,
             "routing_decision": routing_decision,
+            "raw_agent": raw_agent,
+            "raw_intent": raw_intent,
+            "route_repair_reason": repaired.reason,
         }
 
     # ─────────────────────────────────────────────────────────────
@@ -295,21 +337,61 @@ def build_agent_graph(
                 unique_docs.append(doc)
         docs = unique_docs
 
-        # ── Build context string ──
-        context_blocks = list(structured_context_blocks)
+        # ── Build context string with priority-ordered evidence packing ──
+        # Priority: structured tool > official regulation docs > RAG retrieval
+        BLOCK_LABELS = {
+            "structured_tool": "[🔧 KẾT QUẢ TRA CỨU — Dữ liệu chính xác từ hệ thống]",
+            "official_doc": "[📄 TÀI LIỆU CHÍNH THỨC — Quy định/Quyết định]",
+            "rag_doc": "[📋 TÀI LIỆU THAM KHẢO — Retrieval]",
+        }
+
+        # Structured tool results already in context_blocks (highest priority)
+        context_blocks = []
+        for block in structured_context_blocks:
+            context_blocks.append(f"{BLOCK_LABELS['structured_tool']}\n{block}")
+
+        # Classify and sort RAG docs by provenance
+        official_docs = []
+        reference_docs = []
         for doc in docs:
+            content_kind = doc.metadata.get("content_kind", "")
+            domain = doc.metadata.get("domain", "")
+            # Official documents: regulations, decisions, formal policy docs
+            is_official = content_kind in (
+                "regulation", "policy", "decision", "formal",
+            ) or domain in ("quy_dinh", "regulation")
+            if is_official:
+                official_docs.append(doc)
+            else:
+                reference_docs.append(doc)
+
+        def _format_doc_block(doc: Document, label: str) -> str:
             headers = [str(v) for k, v in doc.metadata.items() if k.startswith("Header_")]
             header_prefix = "Chuyên mục: " + " > ".join(headers) + "\n" if headers else ""
             fee_kind_label = {
                 "actual_tuition": "HỌC PHÍ THỰC TẾ",
                 "exemption_basis": "CƠ SỞ TÍNH MIỄN GIẢM",
             }.get(doc.metadata.get("fee_kind"), "")
+            source_name = doc.metadata.get("source", "Tài liệu")
+            retrieval_source = doc.metadata.get("retrieval_source", "")
             metadata_prefix = (
+                f"{label}\n"
                 f"[LOẠI: {fee_kind_label} | "
                 f"NĂM HỌC: {doc.metadata.get('academic_year', 'không xác định')} | "
-                f"NGUỒN: {doc.metadata.get('source', 'Tài liệu')}]\n"
+                f"NGUỒN: {source_name}"
             )
-            context_blocks.append(f"{metadata_prefix}{header_prefix}{doc.page_content}")
+            if retrieval_source:
+                metadata_prefix += f" | RETRIEVAL: {retrieval_source}"
+            metadata_prefix += "]\n"
+            return f"{metadata_prefix}{header_prefix}{doc.page_content}"
+
+        # Add official docs (second priority)
+        for doc in official_docs:
+            context_blocks.append(_format_doc_block(doc, BLOCK_LABELS["official_doc"]))
+
+        # Add reference docs (third priority)
+        for doc in reference_docs:
+            context_blocks.append(_format_doc_block(doc, BLOCK_LABELS["rag_doc"]))
 
         # ── Missing lanes warning ──
         lane_labels = {
@@ -354,9 +436,14 @@ def build_agent_graph(
         query = state["query"]
         chat_history = state.get("chat_history", [])
 
-        result = await academic_agent.ainvoke({
-            "messages": [*chat_history, HumanMessage(content=query)],
-        })
+        # Inject tool-gate instruction from contract
+        gate_msg = SystemMessage(content=tool_gate_prompt("academic"))
+        result = await invoke_with_tool_repair(
+            academic_agent,
+            [gate_msg, *chat_history, HumanMessage(content=query)],
+            "academic",
+            query,
+        )
 
         # Lấy message cuối cùng từ ReAct agent
         final_msg = result["messages"][-1]
@@ -379,14 +466,19 @@ def build_agent_graph(
             context=context,
             retrieval_instruction=retrieval_instruction,
         )
+        # Append tool-gate instruction from contract
+        prompt = f"{prompt}\n\n{tool_gate_prompt('financial')}"
         financial_agent = create_react_agent(
             model=llm,
             tools=financial_tools,
             prompt=prompt,
         )
-        result = await financial_agent.ainvoke({
-            "messages": [*chat_history, HumanMessage(content=query)],
-        })
+        result = await invoke_with_tool_repair(
+            financial_agent,
+            [*chat_history, HumanMessage(content=query)],
+            "financial",
+            query,
+        )
 
         final_msg = result["messages"][-1]
         response = _parse_llm_content(final_msg.content)
@@ -408,14 +500,19 @@ def build_agent_graph(
             context=context,
             retrieval_instruction=retrieval_instruction,
         )
+        # Append tool-gate instruction from contract
+        prompt = f"{prompt}\n\n{tool_gate_prompt('scholarship')}"
         scholarship_agent = create_react_agent(
             model=llm,
             tools=scholarship_tools,
             prompt=prompt,
         )
-        result = await scholarship_agent.ainvoke({
-            "messages": [*chat_history, HumanMessage(content=query)],
-        })
+        result = await invoke_with_tool_repair(
+            scholarship_agent,
+            [*chat_history, HumanMessage(content=query)],
+            "scholarship",
+            query,
+        )
 
         final_msg = result["messages"][-1]
         response = _parse_llm_content(final_msg.content)

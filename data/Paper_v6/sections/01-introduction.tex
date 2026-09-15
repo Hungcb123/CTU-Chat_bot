@@ -1,0 +1,39 @@
+% ============================================================
+% 01-introduction.tex
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+In large-scale universities, particularly Can Tho University (CTU)—a key higher education institution in the Mekong Delta with nearly 49,000 undergraduate students in the 2025--2026 academic year~\cite{ctu2025opening}—advisory needs span a wide range of academic and administrative areas, while relevant regulations and policies can change over time. Prior research on automated advisory systems includes CAAS, which supports chat- and voice-based admission counseling for information-technology programs~\cite{ma2023caas}, and REBot, which focuses on academic-regulation advising through dense retrieval and category-guided graph reasoning~\cite{ma2025rebot}. Their reported evaluations illustrate the value of task-specific retrieval and processing strategies, but remain centered on individual advisory domains. This motivates CTU-Chat as a coordinated multi-domain architecture for heterogeneous university counseling.
+
+University counseling presents challenges not only because it covers multiple domains, but also because institutional knowledge is represented in different forms. (1)~\textbf{Academic curricula} contain hierarchical structures and prerequisite relationships; (2)~\textbf{tuition schedules} are organized by admission cohort and field of study; (3)~\textbf{tuition exemption policies} and (4)~\textbf{scholarship policies} combine eligibility conditions with specific support rates and thresholds; while (5)~\textbf{general administrative regulations} are presented in lengthy narrative documents. Therefore, no single representation or retrieval method is suitable for every domain, motivating representation-specific evidence acquisition in CTU-Chat.
+
+RAG and GraphRAG augment LLMs with external documents and knowledge graphs~\cite{lewis2020rag,gao2023rag_survey,edge2024graphrag}, while agentic architectures support tool invocation and multi-agent coordination~\cite{yao2023react,wu2023autogen,schick2023toolformer}. However, these approaches do not by themselves determine how heterogeneous institutional evidence should be represented, routed, and processed. Moreover, known limitations in language-model arithmetic~\cite{qian2023limitations} motivate deterministic calculation for rule-based financial queries.
+
+These challenges crystallize three open research gaps in automated university counseling: (1) limited domain-specialized multi-agent orchestration; (2) uniform representation of heterogeneous institutional knowledge; and (3) the lack of representation-aware evidence routing. These gaps are examined in greater detail in Section~2.
+
+The objective of this study is to develop and evaluate CTU-Chat for heterogeneous university counseling. To address the identified gaps, we formulate three research questions:
+\begin{itemize}
+    \setlength{\itemsep}{1.5pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\parskip}{0pt}
+
+    \item \textbf{RQ1 (Domain-Specialized Multi-Agent Architecture):}
+    How effectively can a centralized supervisor coordinate domain-specialized agents with isolated knowledge spaces and constrained tool access for heterogeneous university counseling tasks?
+
+    \item \textbf{RQ2 (Heterogeneous Knowledge Allocation):}
+    How does assigning different knowledge types to appropriate representations---graph-oriented access for relational academic data, structured access for tuition data, and hybrid document retrieval for narrative regulations---affect retrieval and answer quality compared with a uniform retrieval representation?
+
+    \item \textbf{RQ3 (Representation-Aware Evidence Routing):}
+    How does intent-guided selection of representation-specific evidence paths affect retrieval effectiveness and answer accuracy across different counseling domains?
+\end{itemize}
+
+We hypothesize that reliable university counseling is better supported by a supervisor-routed multi-agent architecture in which each specialist is restricted to domain-appropriate knowledge representations, retrieval paths, and tools. To investigate this hypothesis and the research questions above, we propose CTU-Chat, which coordinates four domain-specialized agents for academic, financial, scholarship, and general administrative inquiries within a unified framework combining graph-based retrieval, structured data access, deterministic calculation, and hybrid document retrieval.
+
+% We hypothesize that reliable university counseling is better supported by a supervisor-routed multi-agent architecture in which each specialist is restricted to knowledge representations, retrieval paths, and tools appropriate to its domain, rather than by a uniform retrieval-and-reasoning pipeline.
+
+% To investigate these research questions, we propose CTU-Chat, a centralized supervisor-routed multi-agent architecture for heterogeneous university counseling. The system coordinates four domain-specialized agents for \textbf{academic, financial, scholarship, and general administrative inquiries}. Each specialist is assigned an isolated knowledge space, an appropriate retrieval path, and constrained tool privileges according to the structure of its domain knowledge. This design enables CTU-Chat to combine graph-based retrieval, structured data access, deterministic calculation, and hybrid document retrieval within a unified counseling framework.
+
+% For clarity, our contributions are organized into three corresponding components, denoted as \textbf{C1}, \textbf{C2}, and \textbf{C3}, which respectively address RQ1, RQ2, and RQ3. These contributions are described in detail in Section~3 and evaluated through the corresponding experimental scenarios in Section~4.
+
+The remainder of this paper is organized as follows. \textbf{Section~2} reviews related work and summarizes the research gaps. \textbf{Section~3} presents the CTU-Chat architecture, evidence-acquisition methods, and domain-specialized agents. \textbf{Section~4} reports the experimental setup, results, and discussion. Finally, \textbf{Section~5} concludes the paper and outlines future work.

@@ -1,0 +1,142 @@
+% ============================================================
+% 04-experiments.tex
+% ============================================================
+\section{Experimental Results}
+\label{sec:exp}
+
+This section presents the empirical evaluation of \system{}, detailing the benchmark suites, infrastructure, evaluation metrics, three experimental scenarios, discussion answering each research question, and threats to validity.
+
+%------------------------------------------------
+\subsection{Experimental Benchmark and Protocols}
+\label{sec:dataset}
+
+To ensure rigorous validation and avoid data contamination, our empirical evaluation is established upon a corpus of $200$ administrative queries constructed via a document-grounded semi-automated protocol over official Can Tho University (CTU) statutes. Candidate queries covering diverse conversational phrasing (e.g., student colloquialisms, prerequisite rules, fee schedules) were generated from statutory articles and subsequently underwent strict human-in-the-loop curation. Two independent annotators validated each query against official decrees, assigning ground-truth intents, gold reference passages, and factual answers; disagreements were resolved via consensus review, ensuring high benchmark fidelity and inter-annotator reliability. Following standard benchmark protocol, this corpus is partitioned into: (1)~\textbf{Development Benchmark ($N=150$ queries):} Spanning 9 institutional categories (\texttt{actual\_tuition}, \texttt{academic\_rules}, \texttt{scholarship}, \texttt{student\_loan}, \texttt{other}, \texttt{social\_support}, \texttt{academic\_program}, \texttt{exemption\_policy}, \texttt{exemption\_basis}), used for offline index calibration, prompt engineering, and qualitative failure analysis; and (2)~\textbf{Held-Out Test Set ($N=50$ queries):} A strictly separated, out-of-distribution evaluation suite with exact category counts of 20, 6, 5, 4, 4, 4, 3, 2, and 2, respectively. For domain-stratified analysis, the held-out categories are grouped by assigned specialist into Academic ($N=3$), Financial ($N=24$), Scholarship ($N=5$), and General ($N=18$). All reported primary benchmark metrics in Tables~\ref{tab:retrieval_evaluation} and~\ref{tab:e2e_evaluation} are evaluated strictly on this blind Held-Out Test Set.
+
+\noindent\textbf{Execution and Evaluation Invariants:} Generative and automated evaluation tasks were executed using Google Gemini 2.5 Flash Lite via Google Cloud Vertex AI under strict zero-temperature decoding ($T=0.0$) for determinism. To minimize stochastic variance, each query was evaluated across $R=3$ independent repetitions, yielding $1,050$ end-to-end generation and Ragas evaluation turns ($7\text{ configurations} \times 50\text{ queries} \times 3\text{ reps}$).
+
+\noindent\textbf{Computational Infrastructure:} Neural cross-encoder reranking was executed on an NVIDIA RTX 1060 GPU (4~GB VRAM). Relational curricula are hosted in Neo4j 5 Enterprise with APOC extensions; document parent chunks (2,800 characters, 100 overlap) reside in PostgreSQL, while child chunks (400 characters, 50 overlap) are indexed in Qdrant with \texttt{vietnamese-bi-encoder} (768-d). Neural candidate reranking uses \texttt{bge-reranker-v2-m3}. Multi-agent coordination was orchestrated via LangGraph under a StateGraph supervisor with Redis 7 caching.
+
+%------------------------------------------------
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+\noindent\textbf{Retrieval and Multi-Agent Benchmarks:} Retrieval effectiveness (Scenario~1) is measured via standard ranking metrics on top-$k$ returned source documents: Hit@$k$ ($k \in \{1, 3\}$), Precision@5, Recall@5, and Mean Reciprocal Rank (MRR@10); domain-stratified analysis reports Hit@1. Multi-agent coordination (Scenario~3) is evaluated across isolated operational decisions: Routing Agent Accuracy and Macro-F1 across the four domains, Intent Classification Accuracy, Tool Selection and Argument Exact Match (EM), End-to-End Pass Rate, Adversarial Tool-Gating Robustness, and Safe Result Behavior under strict operational limits ($\text{max\_tool\_calls}=1, \text{timeout}=60\,\text{s}$).
+
+\noindent\textbf{End-to-End Generative Evaluation:} End-to-end synthesis (Scenario~2) is evaluated using the Ragas framework~\cite{es2023ragas} alongside ground-truth regulatory alignment over Top-7 context: Answer Relevancy (AR), Context Recall (CR), Context Precision (CP), and Answer Correctness (AC). In addition, we evaluate Factual Exact Match (Fact EM) for strict numerical tuition fee and credit agreement, alongside Source Average Precision (Source AP) for verified regulatory citations. Evaluating generative QA through LLM-as-a-judge frameworks is well-established~\cite{zheng2023judging,es2023ragas}, demonstrating high correlation with human judgment when evaluated over reference contexts. To mitigate potential evaluation bias, our framework enforces three safeguards: (1)~reference-grounded and factual metrics (Context Precision, Context Recall, Answer Correctness, and Faithfulness) strictly conditioned on verified gold documents and reference answers; (2)~deterministic decoding ($T=0.0$) across $R=3$ independent repetitions; and (3)~a programmatic Exact Match (Fact EM) evaluator for tuition arithmetic to bypass generative bias entirely.
+
+%------------------------------------------------
+\subsection{Experimental Scenarios and Benchmark Results}
+\label{sec:scenarios}
+
+To address the three research questions, we evaluate \system{} across three coordinated experimental scenarios: retrieval component stacking (RQ3), end-to-end QA generation and modular ablation (RQ2), and multi-agent coordination and tool reliability (RQ1).
+
+\subsubsection{Scenario 1 --- Retrieval Component Stacking (E1--E5):}
+\emph{Objective \& RQ Alignment:} Scenario~1 directly addresses \textbf{RQ3} by comparing five retrieval configurations at aggregate and domain-stratified levels on the 50-query Held-Out Test Set.
+\emph{Configurations:} We compare five cumulative configurations (E1--E5, detailed in Table~\ref{tab:retrieval_evaluation}) transitioning from single sparse/dense baselines to hybrid fusion, neural cross-reranking, and our proposed intent-guided evidence stack.
+
+\emph{Results:} As shown in Table~\ref{tab:retrieval_evaluation}, E5 attains the best Hit@1 ($0.9600$; 48 of 50 queries rank a gold source document first) and MRR@10 ($0.9700$), improving Hit@1 over E1 by 6.0 percentage points. E5 ties E4 at $0.9800$ Hit@3, whereas E1 retains the highest P@5 ($0.2320$) and Recall@5 ($0.9667$). Within the shared hybrid candidate pipeline, adding the cross-encoder from E3 to E4 raises Hit@1 from $0.6800$ to $0.8800$ and MRR@10 from $0.7912$ to $0.9267$. At the domain-stratified level, E5 achieves 1.000 Hit@1 on Academic ($N=3$) and Financial ($N=24$), 0.800 on Scholarship ($N=5$), and 0.944 on General ($N=18$). The E4-to-E5 contrast improves Hit@1 and MRR@10 while leaving Hit@3, P@5, and Recall@5 unchanged; because E5 jointly adds intent governance, graph grounding, and parent--child mapping, this contrast represents the integrated bundle rather than an isolated routing effect.
+
+\begin{table}[!htbp]
+\centering
+\caption{Scenario 1: Progressive retrieval component stacking on the Held-Out Test Set ($N=50$).}
+\label{tab:retrieval_evaluation}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Retrieval Configuration} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{Recall@5} & \textbf{MRR@10} \\
+\midrule
+E1: BM25 Lexical Baseline        & 0.9000 & 0.9400 & \textbf{0.2320} & \textbf{0.9667} & 0.9333 \\
+E2: Dense Vector Semantic        & 0.3800 & 0.6600 & 0.1560 & 0.6433 & 0.5237 \\
+E3: Hybrid RRF (BM25 + Dense)    & 0.6800 & 0.9200 & 0.2160 & 0.9133 & 0.7912 \\
+E4: Hybrid + Neural Reranker     & 0.8800 & \textbf{0.9800} & 0.2200 & 0.9433 & 0.9267 \\
+\textbf{E5: CTU-Chat Proposed Retrieval} & \textbf{0.9600} & \textbf{0.9800} & 0.2200 & 0.9433 & \textbf{0.9700} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Scenario 2: End-to-end QA generation and modular ablation on Held-Out Test Set ($N=50, R=3$, 1,050 total evaluation turns, Top-7 context).}
+\label{tab:e2e_evaluation}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Cfg.} & \textbf{Ablation Variant Description} & \textbf{Fact EM} & \textbf{CP} & \textbf{CR} & \textbf{AR} & \textbf{AC} & \textbf{Source AP} \\
+\midrule
+T1 & BM25 Lexical Baseline                       & 0.5572 & 0.6674 & 0.8800 & 0.6151 & \textbf{0.6735} & 0.8954 \\
+T2 & Dense Semantic Baseline                     & 0.5007 & 0.2770 & 0.3400 & 0.2809 & 0.3841 & 0.4651 \\
+T3 & Hybrid RRF Baseline                         & 0.5451 & 0.4339 & 0.7733 & 0.5754 & 0.6016 & 0.7490 \\
+\textbf{T4} & \textbf{CTU-Chat Full Stack (Proposed)}    & \textbf{0.6203} & \textbf{0.6977} & \textbf{0.8933} & \textbf{0.6195} & 0.6637 & \textbf{0.9311} \\
+T5 & w/o Cross Reranker (\texttt{bge-m3})        & 0.5823 & 0.6297 & 0.8133 & 0.5263 & 0.6136 & 0.8168 \\
+T6 & w/o Neo4j Knowledge Graph Grounding         & 0.5711 & 0.5683 & 0.8600 & 0.6173 & 0.6582 & 0.9011 \\
+T7 & w/o Subspace Governance (Ungoverned)        & 0.6089 & 0.6947 & 0.8600 & 0.5815 & 0.6430 & \textbf{0.9311} \\
+\bottomrule
+\end{tabular}
+}
+\smallskip
+\parbox{\columnwidth}{\footnotesize\emph{Metrics:} Fact EM: Factual Exact Match on tuition/credits; CP: Context Precision; CR: Context Recall; AR: Answer Relevancy; AC: Answer Correctness; Source AP: Source Average Precision. Normalized to $[0,1]$; higher is better.}
+\end{table}
+
+%------------------------------------------------
+\subsubsection{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}
+\emph{Objective \& RQ Alignment:} Scenario~2 directly addresses \textbf{RQ2} by evaluating end-to-end answer synthesis and modular ablation across seven configurations on the Held-Out Test Set ($1,050$ total evaluation turns across 3 independent repetitions).
+\emph{Configurations:} We evaluate seven setups across 1,050 total turns (detailed in Table~\ref{tab:e2e_evaluation}), benchmarking the proposed full system (T4) against three standard single-agent RAG baselines (T1--T3) and three isolated modular ablations (T5--T7).
+\emph{Results \& Interpretation:} As reported in Table~\ref{tab:e2e_evaluation}, the proposed full system (T4) consistently outperforms all baselines in factual fidelity: T4 attains the top \textbf{Factual Exact Match (Fact EM: 62.03\% vs. 55.72\% for BM25, a +6.31\% absolute gain)}, demonstrating higher precision on complex numeric tuition schedules and credit rules. In addition, T4 leads in Context Precision ($0.6977$ vs. $0.6674$ for BM25), Context Recall ($0.8933$ vs. $0.8800$), Source AP ($0.9311$ vs. $0.8954$), and Answer Relevancy ($0.6195$ vs. $0.6151$). While BM25 (T1) scores slightly higher on lexical Answer Correctness ($0.6735$) due to direct keyword overlap, T4 achieves stronger structural grounding and substantially reduces factual errors and relation hallucinations. The complementary contributions of modular cross-reranking (T5), graph grounding (T6), and subspace governance (T7) are analyzed in detail under Discussion (Section~\ref{sec:discussion}).
+
+%------------------------------------------------
+\subsubsection{Scenario 3 --- Multi-Agent Routing, Tool Reliability, and Robustness:}
+\emph{Objective \& RQ Alignment:} Scenario~3 directly addresses \textbf{RQ1} by evaluating multi-agent coordination, tool execution reliability, and bounded safety independently from retrieval or generation.
+\emph{Experimental Setup:} As reported in Table~\ref{tab:scenario3_results}, evaluation spans three suites ($N=550$ runs): (1)~\textbf{Supervisor Routing (Panel A):} 100 single-domain benchmark queries ($N=300$ for LLM Supervisor vs. $N=100$ for Rule-Based Router); (2)~\textbf{Specialist Tool Reliability (Panel B):} 60 production cases ($N=180$ across 3 reps) covering 11 production tools and no-tool gating across three functional categories; and (3)~\textbf{Adversarial Robustness (Panel C):} 20 failure stress tests ($N=60$ across 3 reps) challenging boundary invariants.
+
+\begin{table}[!htbp]
+\centering
+\caption{Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per decision ($\text{max\_tool\_calls}=1$).}
+\label{tab:scenario3_results}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccccccc}
+\toprule
+\multicolumn{8}{l}{\textbf{Panel A: Supervisor Routing and Specialist Selection ($N=100$ queries; Rule: 1 rep / LLM: 3 reps, $N=300$)}} \\
+\midrule
+\textbf{Router Variant} & \textbf{Runs ($N$)} & \textbf{Agent Acc.} & \textbf{Macro-F1} & \textbf{Intent Acc.} & \textbf{Bounded} & \multicolumn{2}{c}{\textbf{Routing Paradigm}} \\
+\midrule
+Rule-Based Router          & 100 & 85.0\% & 69.2\% & 69.0\% & 100.0\% & \multicolumn{2}{c}{Heuristic Regex} \\
+LLM Supervisor (\system{}) & 300 & \textbf{97.0\%} & \textbf{97.8\%} & \textbf{95.0\%} & \textbf{100.0\%} & \multicolumn{2}{c}{Structured Pydantic} \\
+\midrule
+\multicolumn{8}{l}{\textbf{Panel B: Specialist Tool Execution Reliability ($N=180$ runs across 11 tools + no-tool gating, 3 reps)}} \\
+\midrule
+\textbf{Specialist Tool Category} & \textbf{Scope} & \textbf{Selection} & \textbf{Arg. EM} & \textbf{Result Acc.} & \textbf{E2E Pass} & \textbf{Bounded} & \textbf{Graph Hit} \\
+\midrule
+Academic Cypher Tools          & 6 functions & 98.9\% & 98.9\% & 100.0\% & 98.9\% & 100.0\% & 100.0\% \\
+Financial \& Scholarship Tools & 5 functions & 92.0\% & 88.0\% & 90.7\%  & 86.7\% & 100.0\% & 66.2\% \\
+Direct Gating (No-tool)        & 1 baseline  & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & -- \\
+\midrule
+\multicolumn{8}{l}{\textbf{Panel C: Robustness and Bounded Failure Handling ($N=60$ runs under malformed/adversarial inputs)}} \\
+\midrule
+\textbf{Adversarial Gate} & \textbf{Runs ($N$)} & \textbf{Agent Acc.} & \textbf{Tool Gate} & \textbf{Safe Result} & \textbf{E2E Pass} & \textbf{Bounded} & \textbf{Notes} \\
+\midrule
+Failure Gate Robustness    & 60 & 100.0\% & 100.0\% & 98.3\% & 98.3\% & 100.0\% & -- \\
+\bottomrule
+\end{tabular}
+}
+\smallskip
+\parbox{\columnwidth}{\footnotesize\emph{Note:} Academic tools cover 6 Cypher functions; Financial \& Scholarship tools cover 3 structured catalog lookups and 2 deterministic arithmetic tools; Direct Gating evaluates tool suppression on non-tool queries.}
+\end{table}
+
+\subsection{Discussion}
+\label{sec:discussion}
+
+\textbf{Answering RQ1 (Domain-Specialized Multi-Agent Architecture):} Centralizing routing under a structured supervisor with asymmetric privileges and bounds ($\text{max\_tool\_calls}=1$, timeout $=60\,\text{s}$) maintained bounded decisions: the supervisor achieves $97.0\%$ agent accuracy, $97.8\%$ Macro-F1, and $95.0\%$ intent accuracy across 300 runs, outperforming rule-based routing ($85.0\%$, $69.2\%$). Specialist tools reached $100.0\%$ end-to-end pass on 8 of 12 individual functions (averaging $98.9\%$ on Academic and $86.7\%$ on Financial/Scholarship tools), while adversarial testing (Panel~C) verified $100.0\%$ tool-gating accuracy, $98.3\%$ safe-result behavior, and $100.0\%$ bounded completion.
+
+\paragraph{Multi-Agent Decomposition vs. Monolithic Single-Agent Baseline.}
+Evaluating against a monolithic agent with all 11 tools reveals evident \textit{decision space pollution}. For ambiguous identifiers (e.g., major code ``7480201''), the single-agent confuses academic lookup with tuition queries, incurring a $33.3\%$ failure rate on \texttt{tra\_cuu\_nganh}. In contrast, specialist swimlanes achieve $100.0\%$ execution on the evaluated benchmark cases. Furthermore, in end-to-end generation, the multi-agent system ($T_4$) outperforms flat RAG ($T_7$), improving Answer Relevancy by $+6.5\%$ ($0.6195$ vs. $0.5815$, $p < 0.001$), Correctness by $+3.2\%$ ($0.6637$ vs. $0.6430$), and Faithfulness to $0.8677$ (vs. $0.8415$), confirming that domain decomposition mitigates cross-domain collisions and relation hallucination.
+
+\textbf{Answering RQ2 (Heterogeneous Knowledge Allocation \& Modular Ablations):} Modular ablations substantiate decomposing knowledge across relational curricula (Neo4j) and regulatory decrees (hybrid RAG). While single-entity lookups succeed via text alone, multi-hop queries (prerequisite chains, tuition progression) require graph grounding: omitting Neo4j (T6) causes Context Precision to \textbf{drop from 0.6977 to 0.5683 ($-18.3\%$ relative)}, while dropping Factual Exact Match from $62.03\%$ to $57.11\%$ and Context Recall from $0.8933$ to $0.8600$. Furthermore, omitting cross-reranking (T5) lowers Answer Relevancy from $0.6195$ to $0.5263$ ($-0.0932$) and Context Recall to $0.8133$, while removing subspace governance (T7) degrades Correctness to $0.6430$ and Relevancy to $0.5815$. Thus, structural graph grounding combined with governed intent routing provides effective anchors against relation hallucination and decision drift.
+
+\textbf{Answering RQ3 (Representation-Aware Retrieval Effectiveness):} The configuration sequence reveals that neural reranking principally improves early-rank ordering rather than evidence coverage: E3-to-E4 gains are concentrated in Hit@1 and MRR@10, while the full stack does not surpass the lexical baseline on P@5 or Recall@5. Domain stratification further shows that E5's additional Hit@1 benefit is concentrated in Financial queries; General queries improve over E1 by E4 and then remain unchanged, while neither Academic nor Scholarship improves over E1. This pattern is consistent with BM25 remaining competitive on exact course codes, cohort identifiers, and administrative terminology. Because E5 changes intent governance, graph grounding, and parent--child mapping together, these results compare complete configurations and do not attribute the observed gains causally to routing alone.
+
+%------------------------------------------------
+\subsection{Threats to Validity and Limitations}
+\label{sec:limitations}
+
+The administrative taxonomy and retrieval results are evaluated only at Can Tho University; multi-institutional validation remains planned. Domain-stratified results are descriptive and imbalanced (Academic $N=3$, Financial $N=24$, Scholarship $N=5$, and General $N=18$), so the small Academic and Scholarship strata do not support claims of uniform cross-domain improvement. Controlled computational-efficiency evaluation and model compression remain future work. Furthermore, due to budgetary constraints, Gemini 2.5 Flash Lite was employed for both response generation and automated judging, which introduces potential model-specific evaluation bias. Curricula graphs rely on offline schemas, and automated judges penalize valid abstentions, underestimating practical correctness. Finally, while Scenario~3 validates bounded execution at the isolated decision level, fault injection across external infrastructure (e.g., Neo4j or Qdrant drops) represents orthogonal resilience evaluation reserved for future work.

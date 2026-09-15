@@ -30,6 +30,7 @@ class ScenarioCase:
     query_family: str = ""
     is_composite: bool = False
     review_status: str = "development"
+    domain: str = ""
 
 
 @dataclass
@@ -74,9 +75,24 @@ def _parse_sources(value: str) -> list[str]:
     ))
 
 
-def load_cases(dataset_path: Path, require_approved: bool = False) -> list[ScenarioCase]:
-    if dataset_path.suffix.lower() == ".jsonl":
-        rows = [json.loads(line) for line in dataset_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+def _resolve_case_domain(row: dict[str, Any]) -> str:
+    d = str(row.get("domain") or "").lower().strip()
+    if d in ("academic", "financial", "scholarship", "general"):
+        return d
+    cat = str(row.get("category") or "").lower().strip()
+    if cat in ("academic_program", "academic"):
+        return "academic"
+    if cat in ("actual_tuition", "exemption_policy", "exemption_basis", "tuition", "financial"):
+        return "financial"
+    if cat in ("scholarship",):
+        return "scholarship"
+    return "general"
+
+
+def load_cases(dataset_path: Path, *, require_approved: bool = False) -> list[ScenarioCase]:
+    if dataset_path.suffix == ".jsonl":
+        with dataset_path.open("r", encoding="utf-8") as handle:
+            rows = [json.loads(line) for line in handle if line.strip()]
         cases = [
             ScenarioCase(
                 case_id=str(row["id"]),
@@ -90,6 +106,7 @@ def load_cases(dataset_path: Path, require_approved: bool = False) -> list[Scena
                 query_family=str(row.get("query_family", "")),
                 is_composite=bool(row.get("is_composite", False)),
                 review_status=str(row.get("review_status", "pending")),
+                domain=_resolve_case_domain(row),
             )
             for row in rows
         ]
@@ -109,6 +126,7 @@ def load_cases(dataset_path: Path, require_approved: bool = False) -> list[Scena
                 query_family=f"dev-{row.get('Original ID') or index + 1}",
                 is_composite=str(row.get("Original ID") or "").startswith("CDICT"),
                 review_status="development",
+                domain=_resolve_case_domain(row),
             )
             for index, row in enumerate(rows)
             if (row.get("Master Question") or row.get("Question") or "").strip()
@@ -388,6 +406,8 @@ def retrieve_configurations(
     hybrid_docs = engine.retrieve(
         question, top_n=candidate_k, hybrid_search=True, use_reranker=False,
         metadata_filter_enabled=False,
+        adaptive_rrf=False,
+        source_quota=None,
     )
     hybrid_ms = (time.perf_counter() - started) * 1000
 
@@ -407,6 +427,8 @@ def retrieve_configurations(
             hybrid_search=True,
             use_reranker=False,
             metadata_filter_enabled=True,
+            adaptive_rrf=True,
+            source_quota=2,
         ))
     governed = unique_documents(governed)
     gate_reasons: list[str] = []

@@ -1,0 +1,75 @@
+% ============================================================
+% 02-related-work.tex
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+This section reviews established retrieval and reasoning paradigms in the literature, examining their operational mechanisms and limitations in institutional counseling.
+
+%------------------------------------------------
+\subsection{Vietnamese NLP Foundations and Linguistic Specifics}
+\label{sec:vietnamese_nlp}
+
+Unlike whitespace-delimited languages, Vietnamese is an isolating, tonal language where white spaces serve as syllable separators rather than strict word boundaries~\cite{nguyen2020phobert}. Over 85\% of Vietnamese lexical units are multi-syllabic compound words (e.g., \textit{``h\d{o}c ph\'i''} [tuition fee]), which introduces severe morphological ambiguity under standard whitespace tokenization and motivates dedicated syllable segmentation~\cite{vu2018vncorenlp}. 
+
+To capture semantic representations beyond lexical surface forms, domain-adapted language models such as PhoBERT~\cite{nguyen2020phobert} and pretrained bi-encoders project Vietnamese text into dense semantic spaces. However, Vietnamese higher education regulations rely heavily on rigid Sino-Vietnamese administrative terminology alongside explicit cohort and decree codes. This dual characteristic motivates coupling syllable-aware dense embeddings with exact lexical token matching to avoid both semantic drift and alphanumeric recall failures.
+
+%------------------------------------------------
+\subsection{Sparse and Dense Retrieval}
+\label{sec:sparse_dense}
+
+\textbf{Lexical Retrieval (BM25):} Sparse keyword search using BM25~\cite{robertson2009bm25} evaluates term frequency ($\mathrm{tf}$) and inverse document frequency ($\mathrm{IDF}$) over an inverted index:
+\begin{equation}
+  s_{\mathrm{BM25}}(q, d) = \sum_{w \in q} \mathrm{IDF}(w) \cdot \frac{\mathrm{tf}(w, d) \cdot (k_1 + 1)}{\mathrm{tf}(w, d) + k_1 \cdot \left(1 - b + b \cdot \frac{|d|}{\overline{|d|}}\right)},
+\end{equation}
+with $k_1 = 1.5$ and $b = 0.75$. BM25 supports exact lexical matching for rigid alphanumeric tokens (decision codes, cohort labels, course identifiers), but may miss semantic paraphrases.
+
+\textbf{Dense Semantic Retrieval:} Dense retrieval systems~\cite{karpukhin2020dpr,lewis2020rag} map queries and passages into embedding spaces using bi-encoders, computing relevance via vector similarity. While dense models capture paraphrastic intent, rare alphanumeric identifiers and out-of-vocabulary regulatory tokens can remain difficult and may introduce cross-cohort noise, motivating hybrid retrieval.
+
+%------------------------------------------------
+\subsection{Hybrid Retrieval and Reciprocal Rank Fusion}
+\label{sec:hybrid_rrf}
+
+To merge BM25 and dense candidates without score calibration, Reciprocal Rank Fusion (RRF)~\cite{cormack2009rrf} sorts documents by reciprocal position: $\RRF(d) = \sum_{s \in \mathcal{M}} \frac{1}{k + r_s(d)}$ ($k = 60$), while neural cross-encoders~\cite{nogueira2019bert,xiao2023bge} jointly encode query--passage pairs for reranking. Adaptive-RAG further demonstrates that retrieval strategies can be selected according to question complexity~\cite{jeong2024adaptiverag}. These approaches motivate dynamic retrieval, but do not directly allocate institution-specific relational, tabular, and narrative knowledge to isolated specialist paths.
+
+%------------------------------------------------
+\subsection{Knowledge Graphs and GraphRAG}
+\label{sec:kg_graphrag}
+
+Knowledge graphs represent domain knowledge as structured triples $(h, r, t)$~\cite{pan2024unifying}. GraphRAG~\cite{edge2024graphrag} leverages graph topology to uncover multi-hop associative paths escaping flat chunking, benefiting curriculum structures and prerequisite chains. However, universal graph extraction across institutional corpora produces hallucinated relationships, while forcing narrative legal prose into graphs is structurally unnatural, motivating selective rather than universal graph use.
+
+%------------------------------------------------
+\subsection{Agentic RAG and Multi-Agent Orchestration}
+\label{sec:agentic_multiagent}
+
+ReAct demonstrates interleaved reasoning and action, AutoGen provides a framework for multi-agent conversation, and Toolformer studies when and how language models invoke external APIs~\cite{yao2023react,wu2023autogen,schick2023toolformer}. For institutional counseling, these capabilities raise design risks when applied without explicit constraints: broad tool exposure can increase tool and parameter errors; peer-to-peer exchanges can increase coordination cost; a shared index can mix evidence across domains; and a common retrieval path can obscure opportunities for direct graph traversal or structured lookup. These risks motivate the bounded, supervisor-routed specialization evaluated in this work.
+
+%------------------------------------------------
+\subsection{Educational and University Counseling Systems}
+\label{sec:educational_counseling}
+
+Educational chatbots primarily assist in informational, advising, and learning-support roles, though evaluation and adaptation remain challenging~\cite{wollny2021chatbots}. Recent institutional counseling systems like REBot~\cite{ma2025rebot} combine document retrieval with category-guided GraphRAG for academic regulations. However, CTU-Chat departs from prior advisory frameworks across three core dimensions:
+
+\begin{itemize}
+    \item \textbf{Task Scope and Deterministic Arithmetic:} Unlike prior systems restricted to single-turn narrative text-QA over general regulations, CTU-Chat models 113 undergraduate curricula as relational property graphs and incorporates external deterministic arithmetic tools (\texttt{tinh\_toan\_hoc\_phi}, \texttt{tinh\_tien\_hoc\_bong}) for conditional tuition schedules and statutory exemptions.
+    
+    \item \textbf{Multi-Agent Routing vs. Monolithic Pipelines:} Rather than using monolithic pipelines driven by shallow intent classifiers, CTU-Chat deploys a LangGraph \texttt{StateGraph} supervisor that routes queries to four bounded specialists with isolated evidence spaces, dedicated retrieval paths (hybrid RRF vs. Cypher graph traversal), and asymmetric tool privileges.
+    
+    \item \textbf{Metric Incommensurability:} While prior work measures classification accuracy and $F_1$-scores, CTU-Chat operates as an end-to-end multi-agent generative system with programmatic tool invocation. Consequently, direct metric comparison is inapplicable; we instead evaluate generation faithfulness using Ragas alongside bounded tool execution benchmarks.
+\end{itemize}
+
+%------------------------------------------------
+\subsection{Comparative Synthesis and Research Gaps}
+\label{sec:gaps}
+
+Synthesizing established paradigms highlights clear trade-offs across institutional counseling workflows~\cite{cormack2009rrf,edge2024graphrag,jeong2024adaptiverag,karpukhin2020dpr,robertson2009bm25,schick2023toolformer,wu2023autogen,yao2023react}: lexical matching ensures exact identifier recall but misses paraphrases; dense embeddings capture semantics but cause cross-cohort confusion; GraphRAG models relations but degrades on unstructured text; and unconstrained multi-agent frameworks lack execution determinism. These trade-offs crystallize three core research gaps:
+
+\begin{itemize}
+    \item \textbf{Gap 1 (Lack of Bounded Domain-Specialized Agent Orchestration):} Prior frameworks rely on monolithic pipelines or unconstrained agent meshes without execution boundaries, increasing the risks of tool mis-selection, parameter hallucination, and high coordination costs.
+    
+    \item \textbf{Gap 2 (The Uniform Representation Fallacy):} Forcing relational curricula, rate matrices, and regulatory prose into a uniform retrieval index fragments prerequisite chains and induces relation hallucinations across structurally incompatible evidence spaces.
+    
+    \item \textbf{Gap 3 (Absence of Representation-Aware Routing and Deterministic Computation):} Existing systems cannot conditionally steer inquiries to dedicated representation paths (e.g., direct Cypher traversal vs.\ hybrid document RAG) nor decouple arithmetic statutory calculations from generative hallucination.
+\end{itemize}
+
+These limitations motivate our centralized supervisor-routed architecture and heterogeneous knowledge allocation detailed in Section~3.

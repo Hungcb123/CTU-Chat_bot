@@ -22,10 +22,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+
+from app.services.evaluation_contract import (  # noqa: E402
+    arguments_match as contract_arguments_match,
+    evaluate_output,
+    validate_unique_case_ids,
+)
+from app.services.orchestration_contract import (  # noqa: E402
+    SPECIALIST_TOOLS as CONTRACT_SPECIALIST_TOOLS,
+)
 
 DEFAULT_ROUTING_DATASET = ROOT / "data" / "Paper" / "150_NATURAL_NO_APPENDIX.csv"
 DEFAULT_ROUTING_LABELS = ROOT / "data" / "scenario3_routing_labels.json"
@@ -84,7 +92,7 @@ def same_value(expected: Any, actual: Any) -> bool:
 
 
 def arguments_match(expected: dict[str, Any], actual: dict[str, Any]) -> bool:
-    return all(key in actual and same_value(value, actual[key]) for key, value in expected.items())
+    return contract_arguments_match(expected, actual)
 
 
 def parse_content(content: Any) -> str:
@@ -140,6 +148,7 @@ def load_json_cases(path: Path) -> list[dict[str, Any]]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, list) or not payload:
         raise ValueError(f"Dataset phải là JSON array không rỗng: {path}")
+    validate_unique_case_ids(payload)
     return payload
 
 
@@ -358,30 +367,27 @@ def initialize_production_tool_services() -> None:
     set_tuition_catalog(TuitionRateCatalog.load())
 
 
-SPECIALIST_TOOLS = {
-    "academic": ["tra_cuu_nganh", "so_sanh_nganh", "tim_nganh", "xem_chuoi_tien_quyet", "mon_chung_giua_nganh", "tim_nganh_co_mon"],
-    "financial": ["tra_cuu_hoc_phi_graph", "tra_cuu_co_so_mien_giam_graph", "tra_cuu_quy_dinh_hoc_phi", "tinh_toan_hoc_phi"],
-    "scholarship": ["tinh_tien_hoc_bong"],
-    "general": [],
-}
+SPECIALIST_TOOLS = {key: list(value) for key, value in CONTRACT_SPECIALIST_TOOLS.items()}
 
 
 def evaluate_tool_result(
     case: dict[str, Any], selected_tool: str | None, selected_args: dict[str, Any], output: str
-) -> dict[str, bool]:
+) -> dict[str, Any]:
     selection_passed = selected_tool == case.get("expected_tool")
-    arguments_passed = selection_passed and arguments_match(case.get("expected_args", {}), selected_args)
-    folded = output.casefold()
-    result_passed = all(
-        token.casefold() in folded for token in case.get("expected_contains", [])
-    ) and all(
-        token.casefold() not in folded for token in case.get("expected_not_contains", [])
+    arguments_passed = selection_passed and contract_arguments_match(
+        case.get("expected_args", {}),
+        selected_args,
+        tool_name=selected_tool,
+        accepted=case.get("accepted_args", {}),
     )
+    result = evaluate_output(case, output)
     return {
         "selection_passed": selection_passed,
         "arguments_passed": arguments_passed,
-        "result_passed": result_passed,
-        "passed": selection_passed and arguments_passed and result_passed,
+        "result_state": result.state.value,
+        "result_passed": result.passed,
+        "result_reason": result.reason,
+        "passed": selection_passed and arguments_passed and result.passed is not False,
     }
 
 
@@ -605,11 +611,15 @@ def summarize_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     for record in tools:
         tool_groups[record["function"]].append(record)
     for function, items in tool_groups.items():
+        evaluated_results = [item["result_passed"] for item in items if item["result_passed"] is not None]
         item_summary = {
             "n": len(items),
             "selection_accuracy": sum(item["selection_passed"] for item in items) / len(items),
             "argument_exact_match": sum(item["arguments_passed"] for item in items) / len(items),
-            "result_accuracy": sum(item["result_passed"] for item in items) / len(items),
+            "result_accuracy": (
+                sum(evaluated_results) / len(evaluated_results) if evaluated_results else None
+            ),
+            "result_evaluated_n": len(evaluated_results),
             "end_to_end_pass_rate": sum(item["passed"] and not item["error"] for item in items) / len(items),
             "bounded_completion_rate": sum(item["bounded_pass"] for item in items) / len(items),
         }
@@ -669,7 +679,8 @@ def render_report(summary: dict[str, Any], manifest: dict[str, Any]) -> str:
     for function, item in summary.get("tools", {}).items():
         lines.append(
             f"| {function} | {item['n']} | {percent(item['selection_accuracy'])} | "
-            f"{percent(item['argument_exact_match'])} | {percent(item['result_accuracy'])} | "
+            f"{percent(item['argument_exact_match'])} | "
+            f"{percent(item['result_accuracy']) if item['result_accuracy'] is not None else 'n/a'} | "
             f"{percent(item['end_to_end_pass_rate'])} | {percent(item['bounded_completion_rate'])} | "
             f"{percent(item['graph_hit_rate']) if 'graph_hit_rate' in item else 'n/a'} |"
         )

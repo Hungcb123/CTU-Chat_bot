@@ -1,0 +1,48 @@
+{
+  "created_at_utc": "2026-09-15T03:33:25.063446+00:00",
+  "split": "dev",
+  "dataset": "/mnt/d/Project/Chatbot/data/scenario12_heldout_100.jsonl",
+  "case_count": 100,
+  "scenario": "1",
+  "model": "gemini-2.5-flash-lite",
+  "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+  "temperature": 0.0,
+  "workers": 10,
+  "repetitions": 3,
+  "signature": {
+    "dataset_sha256": "05f2ba933c08971be19cc4f557bc6aaa28325699012738108d0f7d18637639a0",
+    "code_sha256": "548feffd59a7dce8b03fcf69b9eae51df50ff7634eb3455b8f7745ef5ac5beff",
+    "prompt_sha256": "e551e032b3237c45f51d7a8fffd5eeab399729035ea134fc8380ddfcc0156aee",
+    "judge_rubric_sha256": "7b8d38fb2bc5f438ef93be5f0e6a94c21e07bd4207a771e7f2571eb17cbf277a",
+    "graph_data_sha256": "c40803c485da5bee9e4a8afc6018c16dbe0f1e1e00046b1b7aea96bad2bbf1fd",
+    "catalog_sha256": "456b923d09b33d5010e358b500b3b2336add137a3b6dfdc8f3aedb92a4177ba8",
+    "model": "gemini-2.5-flash-lite",
+    "ragas_version": "0.4.3",
+    "top_k": 7,
+    "metric_k": 10,
+    "scenario": "1",
+    "split": "dev",
+    "limit": null,
+    "configurations": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "generation": {
+      "temperature": 0.0,
+      "repetitions": 3,
+      "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+      "embedding_backend": "local",
+      "location": "us-central1"
+    }
+  }
+}

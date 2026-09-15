@@ -1,0 +1,188 @@
+{
+  "multi_agent": {
+    "production_tools": {
+      "total_runs": 180,
+      "tool_selection_accuracy": 0.9611,
+      "argument_exact_match": 0.8778,
+      "result_accuracy": 0.9833,
+      "end_to_end_pass_rate": 0.8778,
+      "bounded_completion_rate": 1.0,
+      "mean_latency_ms": 880.3,
+      "function_breakdown": {
+        "mon_chung_giua_nganh": {
+          "runs": 15,
+          "selection_acc": 0.9333,
+          "arg_em": 0.9333,
+          "e2e_pass": 0.9333
+        },
+        "no_tool": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "so_sanh_nganh": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tim_nganh": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 0.0,
+          "e2e_pass": 0.0
+        },
+        "tim_nganh_co_mon": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tinh_tien_hoc_bong": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tinh_toan_hoc_phi": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tra_cuu_co_so_mien_giam_graph": {
+          "runs": 15,
+          "selection_acc": 0.8,
+          "arg_em": 0.8,
+          "e2e_pass": 0.8
+        },
+        "tra_cuu_hoc_phi_graph": {
+          "runs": 15,
+          "selection_acc": 0.8,
+          "arg_em": 0.8,
+          "e2e_pass": 0.8
+        },
+        "tra_cuu_nganh": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tra_cuu_quy_dinh_hoc_phi": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "xem_chuoi_tien_quyet": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        }
+      }
+    },
+    "robustness": {
+      "total_runs": 60,
+      "tool_suppression_accuracy": 0.95,
+      "safe_result_behavior": 0.8833,
+      "bounded_completion_rate": 1.0,
+      "overall_pass_rate": 0.8833,
+      "mean_latency_ms": 744.16
+    }
+  },
+  "single_agent": {
+    "production_tools": {
+      "total_runs": 180,
+      "tool_selection_accuracy": 0.9556,
+      "argument_exact_match": 0.8889,
+      "result_accuracy": 0.9944,
+      "end_to_end_pass_rate": 0.8889,
+      "bounded_completion_rate": 1.0,
+      "mean_latency_ms": 974.47,
+      "function_breakdown": {
+        "mon_chung_giua_nganh": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "no_tool": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "so_sanh_nganh": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tim_nganh": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 0.3333,
+          "e2e_pass": 0.3333
+        },
+        "tim_nganh_co_mon": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tinh_tien_hoc_bong": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tinh_toan_hoc_phi": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "tra_cuu_co_so_mien_giam_graph": {
+          "runs": 15,
+          "selection_acc": 0.9333,
+          "arg_em": 0.9333,
+          "e2e_pass": 0.9333
+        },
+        "tra_cuu_hoc_phi_graph": {
+          "runs": 15,
+          "selection_acc": 0.8,
+          "arg_em": 0.8,
+          "e2e_pass": 0.8
+        },
+        "tra_cuu_nganh": {
+          "runs": 15,
+          "selection_acc": 0.8,
+          "arg_em": 0.6667,
+          "e2e_pass": 0.6667
+        },
+        "tra_cuu_quy_dinh_hoc_phi": {
+          "runs": 15,
+          "selection_acc": 1.0,
+          "arg_em": 1.0,
+          "e2e_pass": 1.0
+        },
+        "xem_chuoi_tien_quyet": {
+          "runs": 15,
+          "selection_acc": 0.9333,
+          "arg_em": 0.9333,
+          "e2e_pass": 0.9333
+        }
+      }
+    },
+    "robustness": {
+      "total_runs": 60,
+      "tool_suppression_accuracy": 0.95,
+      "safe_result_behavior": 0.9167,
+      "bounded_completion_rate": 1.0,
+      "overall_pass_rate": 0.8667,
+      "mean_latency_ms": 972.26
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "created_at_utc": "2026-09-15T02:59:27.140597+00:00",
+  "split": "heldout",
+  "dataset": "/mnt/d/Project/Chatbot/data/scenario12_heldout.jsonl",
+  "case_count": 50,
+  "scenario": "1",
+  "model": "gemini-2.5-flash-lite",
+  "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+  "temperature": 0.0,
+  "workers": 10,
+  "repetitions": 3,
+  "signature": {
+    "dataset_sha256": "f82eb42e0cfe3cd3149fb2390a6a17ecf16de2f67d52bc80ab3cbaa7dde276c1",
+    "code_sha256": "3e2b091066be720313fe0ded0a5d5b282aaa2ff2477ba8a1a9a07dcea2b36efd",
+    "prompt_sha256": "e551e032b3237c45f51d7a8fffd5eeab399729035ea134fc8380ddfcc0156aee",
+    "judge_rubric_sha256": "7b8d38fb2bc5f438ef93be5f0e6a94c21e07bd4207a771e7f2571eb17cbf277a",
+    "graph_data_sha256": "c40803c485da5bee9e4a8afc6018c16dbe0f1e1e00046b1b7aea96bad2bbf1fd",
+    "catalog_sha256": "456b923d09b33d5010e358b500b3b2336add137a3b6dfdc8f3aedb92a4177ba8",
+    "model": "gemini-2.5-flash-lite",
+    "ragas_version": "0.4.3",
+    "top_k": 7,
+    "metric_k": 10,
+    "scenario": "1",
+    "split": "heldout",
+    "limit": null,
+    "configurations": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "generation": {
+      "temperature": 0.0,
+      "repetitions": 3,
+      "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+      "embedding_backend": "local",
+      "location": "us-central1"
+    }
+  },
+  "artifact_sha256": {
+    "records.jsonl": "0b1b5effd1836ce5a66c6c66de2848f7fd7820f867d1a01de7ab9b9a2ed0cc68",
+    "summary.json": "478e8a38708dcdc4c564407e01a4a543c842488c42d8041a3ecd778f10874522",
+    "comparison.md": "b82eae16424358e092736db6e7f86eb1788515bff60a2bf689ffc7ea11f7bd09",
+    "failures.md": "ffb7aecd2fcfd8c6f5152e79177dc60fc060cc712bbb3f20ce366d317b19f1a8",
+    "checkpoint.json": "e8f56d1631f1114dd091bbf156fd5a1e49e265d7fbc38d382e2b8630bc6c1813",
+    "run.log": "9326f35fe4db40198303302add6c4fdeebe5e1d384fbd9795d1893858da3a121"
+  }
+}

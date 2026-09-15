@@ -1060,7 +1060,6 @@ INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
 INPUT /home/hung/.texlive2021/texmf-var/fonts/pk/ljfour/public/cm/cmti9.600pk
-INPUT /home/hung/.texlive2021/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm10.600pk
 INPUT /home/hung/.texlive2021/texmf-var/fonts/pk/ljfour/public/cm/cmtt8.525pk
 INPUT /home/hung/.texlive2021/texmf-var/fonts/pk/ljfour/public/cm/cmti7.600pk
 INPUT /home/hung/.texlive2021/texmf-var/fonts/pk/ljfour/public/cm/cmti7.429pk

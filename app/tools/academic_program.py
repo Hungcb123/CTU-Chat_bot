@@ -153,9 +153,12 @@ def _format_comparison(data: dict) -> str:
 
 @tool
 def tra_cuu_nganh(ten_nganh: str) -> str:
-    """Tra cứu thông tin tổng quan về một ngành đào tạo tại Đại học Cần Thơ.
+    """Tra cứu thông tin chi tiết về một ngành hoặc chương trình đào tạo tại Đại học Cần Thơ.
+    Cung cấp: tổng số tín chỉ của chương trình đào tạo, thời gian đào tạo, loại văn bằng,
+    hình thức đào tạo, đơn vị phụ trách, cấu trúc khung chương trình (số tín chỉ bắt buộc/tự chọn) và các môn học chính.
+
     Đầu vào:
-    - ten_nganh: Tên ngành hoặc mã ngành cần tra cứu (ví dụ: "Công nghệ thông tin", "7480201", "CNTT").
+    - ten_nganh: Tên ngành hoặc mã ngành cần tra cứu (ví dụ: "Công nghệ thông tin", "Trí tuệ nhân tạo", "Logistics và Quản lý chuỗi cung ứng", "7480201", "CNTT").
     """
     svc = _get_service()
     result = svc.lookup_program(ten_nganh)
@@ -169,10 +172,10 @@ def tra_cuu_nganh(ten_nganh: str) -> str:
 
 @tool
 def so_sanh_nganh(nganh_1: str, nganh_2: str) -> str:
-    """So sánh hai ngành đào tạo tại Đại học Cần Thơ.
+    """So sánh hai ngành đào tạo tại Đại học Cần Thơ về tổng số tín chỉ, thời gian đào tạo, môn học chung và cấu trúc chương trình.
     Đầu vào:
-    - nganh_1: Tên hoặc mã ngành thứ nhất (ví dụ: "CNTT").
-    - nganh_2: Tên hoặc mã ngành thứ hai (ví dụ: "Trí tuệ nhân tạo").
+    - nganh_1: Tên hoặc mã ngành thứ nhất (ví dụ: "CNTT", "Công nghệ thông tin").
+    - nganh_2: Tên hoặc mã ngành thứ hai (ví dụ: "Trí tuệ nhân tạo", "Khoa học máy tính").
     """
     svc = _get_service()
     result = svc.compare_programs(nganh_1, nganh_2)

@@ -1,0 +1,33 @@
+{
+  "protocol": "multi-vs-single-v2.0",
+  "created_at_utc": "2026-09-14T10:40:03.724425+00:00",
+  "status": "complete",
+  "primary_outcome": "paired unique-case end_to_end_pass_rate difference (multi - single)",
+  "interpretation": "superiority only if the paired 95% bootstrap CI excludes zero",
+  "multi_agent_arm": "live structured supervisor, then predicted-specialist tool gate",
+  "single_agent_arm": "one monolithic gate exposing all available tools",
+  "synthetic_distractors": "same count per specialist; monolithic arm sees their union",
+  "repetitions": 3,
+  "levels": [
+    0,
+    4
+  ],
+  "workers": 8,
+  "outer_retries": 8,
+  "temperature": 0.0,
+  "model": "gemini-2.5-flash-lite",
+  "limit": 0,
+  "datasets": {
+    "production_tools": "/mnt/d/project/chatbot/data/scenario3_production_tools.json",
+    "production_tools_sha256": "b5dbecec26b7893301ec6073ef964d999df91f9fedb47f607ffe648f48811c56",
+    "robustness": "/mnt/d/project/chatbot/data/scenario3_robustness_cases.json",
+    "robustness_sha256": "c0d840dc6ccfc7fc37e5d27dd9d034544cd72fd67f7ca18cb8fdc4c54220b6fb"
+  },
+  "script_sha256": "eeb597182996ea6bf77b5555ad8b297d906be83e0138b2809e00462b67fb4963",
+  "completed_at_utc": "2026-09-14T10:48:27.492301+00:00",
+  "artifacts": {
+    "records.jsonl": "21eb27b8f1da4d69bed40ee30759a48d9df1988e1f7c6e199e67f876e25fe0c9",
+    "summary.json": "69403d36729413af7e87f38c3ddc87a63f50ac2c1097e364b26933c0be579cbf",
+    "comparison.md": "d2788a853e759045c4307b2fbcdc054731a63d6187fb703ac880fde3ec006707"
+  }
+}

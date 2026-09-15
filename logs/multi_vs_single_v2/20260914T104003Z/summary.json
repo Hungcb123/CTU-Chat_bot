@@ -1,0 +1,253 @@
+{
+  "protocol": "multi-vs-single-v2.0",
+  "levels": {
+    "0": {
+      "suites": {
+        "production_tools": {
+          "multi_agent": {
+            "runs": 180,
+            "unique_cases": 60,
+            "tool_selection_accuracy": 0.9666666666666667,
+            "argument_exact_match": 0.8833333333333333,
+            "result_accuracy": 0.8833333333333333,
+            "end_to_end_pass_rate": 0.8833333333333333,
+            "bounded_completion_rate": 1.0,
+            "routing_agent_accuracy": 0.9833333333333333,
+            "routing_intent_accuracy": null,
+            "errors": 0
+          },
+          "single_agent": {
+            "runs": 180,
+            "unique_cases": 60,
+            "tool_selection_accuracy": 0.9833333333333333,
+            "argument_exact_match": 0.9333333333333333,
+            "result_accuracy": 0.9333333333333333,
+            "end_to_end_pass_rate": 0.9333333333333333,
+            "bounded_completion_rate": 1.0,
+            "routing_agent_accuracy": null,
+            "routing_intent_accuracy": null,
+            "errors": 0
+          },
+          "paired_multi_minus_single": {
+            "selection_passed": {
+              "mean": -0.016666666666666666,
+              "ci95": [
+                -0.05,
+                0.0
+              ],
+              "unique_cases": 60
+            },
+            "arguments_passed": {
+              "mean": -0.05,
+              "ci95": [
+                -0.11666666666666667,
+                0.0
+              ],
+              "unique_cases": 60
+            },
+            "result_passed": {
+              "mean": -0.05,
+              "ci95": [
+                -0.11666666666666667,
+                0.0
+              ],
+              "unique_cases": 60
+            },
+            "passed": {
+              "mean": -0.05,
+              "ci95": [
+                -0.11666666666666667,
+                0.0
+              ],
+              "unique_cases": 60
+            }
+          }
+        },
+        "robustness": {
+          "multi_agent": {
+            "runs": 60,
+            "unique_cases": 20,
+            "tool_selection_accuracy": 0.9666666666666667,
+            "argument_exact_match": 0.9666666666666667,
+            "result_accuracy": 0.9166666666666666,
+            "end_to_end_pass_rate": 0.9166666666666666,
+            "bounded_completion_rate": 1.0,
+            "routing_agent_accuracy": 1.0,
+            "routing_intent_accuracy": 1.0,
+            "errors": 0
+          },
+          "single_agent": {
+            "runs": 60,
+            "unique_cases": 20,
+            "tool_selection_accuracy": 0.95,
+            "argument_exact_match": 0.95,
+            "result_accuracy": 0.9166666666666666,
+            "end_to_end_pass_rate": 0.8666666666666667,
+            "bounded_completion_rate": 1.0,
+            "routing_agent_accuracy": null,
+            "routing_intent_accuracy": null,
+            "errors": 0
+          },
+          "paired_multi_minus_single": {
+            "selection_passed": {
+              "mean": 0.016666666666666663,
+              "ci95": [
+                -0.1,
+                0.15
+              ],
+              "unique_cases": 20
+            },
+            "arguments_passed": {
+              "mean": 0.016666666666666663,
+              "ci95": [
+                -0.1,
+                0.15
+              ],
+              "unique_cases": 20
+            },
+            "result_passed": {
+              "mean": 0.0,
+              "ci95": [
+                -0.15,
+                0.15
+              ],
+              "unique_cases": 20
+            },
+            "passed": {
+              "mean": 0.05,
+              "ci95": [
+                -0.1,
+                0.25
+              ],
+              "unique_cases": 20
+            }
+          }
+        }
+      }
+    },
+    "4": {
+      "suites": {
+        "production_tools": {
+          "multi_agent": {
+            "runs": 180,
+            "unique_cases": 60,
+            "tool_selection_accuracy": 1.0,
+            "argument_exact_match": 0.9,
+            "result_accuracy": 0.9,
+            "end_to_end_pass_rate": 0.9,
+            "bounded_completion_rate": 1.0,
+            "routing_agent_accuracy": 0.9833333333333333,
+            "routing_intent_accuracy": null,
+            "errors": 0
+          },
+          "single_agent": {
+            "runs": 180,
+            "unique_cases": 60,
+            "tool_selection_accuracy": 0.9166666666666666,
+            "argument_exact_match": 0.8666666666666667,
+            "result_accuracy": 0.8666666666666667,
+            "end_to_end_pass_rate": 0.8666666666666667,
+            "bounded_completion_rate": 1.0,
+            "routing_agent_accuracy": null,
+            "routing_intent_accuracy": null,
+            "errors": 0
+          },
+          "paired_multi_minus_single": {
+            "selection_passed": {
+              "mean": 0.08333333333333333,
+              "ci95": [
+                0.016666666666666666,
+                0.15
+              ],
+              "unique_cases": 60
+            },
+            "arguments_passed": {
+              "mean": 0.03333333333333333,
+              "ci95": [
+                -0.05,
+                0.11666666666666667
+              ],
+              "unique_cases": 60
+            },
+            "result_passed": {
+              "mean": 0.03333333333333333,
+              "ci95": [
+                -0.05,
+                0.11666666666666667
+              ],
+              "unique_cases": 60
+            },
+            "passed": {
+              "mean": 0.03333333333333333,
+              "ci95": [
+                -0.05,
+                0.11666666666666667
+              ],
+              "unique_cases": 60
+            }
+          }
+        },
+        "robustness": {
+          "multi_agent": {
+            "runs": 60,
+            "unique_cases": 20,
+            "tool_selection_accuracy": 0.7,
+            "argument_exact_match": 0.7,
+            "result_accuracy": 0.65,
+            "end_to_end_pass_rate": 0.65,
+            "bounded_completion_rate": 1.0,
+            "routing_agent_accuracy": 1.0,
+            "routing_intent_accuracy": 1.0,
+            "errors": 0
+          },
+          "single_agent": {
+            "runs": 60,
+            "unique_cases": 20,
+            "tool_selection_accuracy": 0.8,
+            "argument_exact_match": 0.8,
+            "result_accuracy": 0.6,
+            "end_to_end_pass_rate": 0.6,
+            "bounded_completion_rate": 1.0,
+            "routing_agent_accuracy": null,
+            "routing_intent_accuracy": null,
+            "errors": 0
+          },
+          "paired_multi_minus_single": {
+            "selection_passed": {
+              "mean": -0.1,
+              "ci95": [
+                -0.25,
+                0.0
+              ],
+              "unique_cases": 20
+            },
+            "arguments_passed": {
+              "mean": -0.1,
+              "ci95": [
+                -0.25,
+                0.0
+              ],
+              "unique_cases": 20
+            },
+            "result_passed": {
+              "mean": 0.05,
+              "ci95": [
+                -0.15,
+                0.25
+              ],
+              "unique_cases": 20
+            },
+            "passed": {
+              "mean": 0.05,
+              "ci95": [
+                -0.15,
+                0.25
+              ],
+              "unique_cases": 20
+            }
+          }
+        }
+      }
+    }
+  }
+}

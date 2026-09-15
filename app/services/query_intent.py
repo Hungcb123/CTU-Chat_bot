@@ -388,6 +388,7 @@ def _classify_one(text: str | None) -> QueryIntent:
             "chuyen truong",
             "tam dung hoc",
             "bao luu",
+            "mien thi",
         ),
     ):
         return QueryIntent.ACADEMIC_RULES

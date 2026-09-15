@@ -1,0 +1,225 @@
+% ============================================================
+% 03-proposed-model.tex — CTU-Chat Proposed Architecture
+% ============================================================
+\section{Proposed Model}
+\label{sec:model}
+
+This section presents the architecture, algorithms, and evidence-acquisition mechanisms of \system{}. The proposed model is organized around three design principles: \emph{centralized agent coordination}, in which a supervisor dispatches each query to one domain agent without peer-to-peer delegation; \emph{heterogeneous knowledge allocation}, which assigns each information structure to a corresponding evidence representation; and \emph{representation-aware evidence routing}, which selects either a direct graph-tool path or an intent-scoped retrieval path according to the assigned domain. Here, each \emph{specialist} represents an autonomous domain agent configured with dedicated prompt constraints, an assigned evidence store, and a restricted tool registry.
+
+%------------------------------------------------
+\subsection{Overall Proposed Architecture}
+\label{sec:architecture}
+
+Figure~\ref{fig:architecture} illustrates the system architecture of \system{}, structured across three coordinated tiers: (1)~the \emph{Interaction and Centralized Supervisor Tier}, (2)~the \emph{Domain-Specialized Multi-Agent Core Layer}, and (3)~the \emph{Heterogeneous Knowledge Storage and Tool Tier}.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.80, transform shape,
+    font=\sffamily\small,
+    tierbox/.style={draw=black!35, rounded corners=5pt, dashed, thick},
+    routernode/.style={draw=purple!80!black, fill=purple!8, thick, rounded corners=4pt, minimum height=26pt, text width=4.0cm, align=center},
+    agentnode/.style={draw=blue!80!black, fill=blue!8, thick, rounded corners=4pt, minimum height=26pt, text width=2.5cm, align=center, font=\sffamily\scriptsize},
+    dbnode/.style={draw=orange!80!black, fill=orange!8, thick, rounded corners=4pt, minimum height=31pt, text width=2.25cm, align=center, font=\sffamily\tiny},
+    arrow/.style={-{Stealth[scale=0.85]}, thick, draw=black!70},
+    biarrow/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, thick, draw=black!70},
+    access/.style={{Stealth[scale=0.75]}-{Stealth[scale=0.75]}, dashed, thick, draw=orange!80!black}
+]
+
+% Tier 1: interaction and routing
+\draw[tierbox, fill=purple!2] (0.1, 5.3) rectangle (11.8, 7.2);
+\node[anchor=north west, font=\bfseries\scriptsize, text=purple!80!black] at (0.25, 7.15) {\textsc{Tier 1: API, History, and Supervisor Routing}};
+
+\node[draw=gray!70, fill=white, rounded corners=4pt, minimum height=20pt, text width=1.9cm, align=center, font=\sffamily\scriptsize] (user) at (1.35, 6.55) {\textbf{Student Query}};
+\node[draw=red!70!black, fill=red!6, rounded corners=4pt, minimum height=20pt, text width=1.9cm, align=center, font=\sffamily\scriptsize] (redis) at (1.35, 5.82) {\textbf{Redis Session}\\Dialogue history};
+\node[draw=gray!70, fill=gray!5, rounded corners=4pt, minimum height=24pt, text width=2.1cm, align=center, font=\sffamily\scriptsize] (api) at (4.1, 6.2) {\textbf{Chat API}\\Input state assembly};
+\node[routernode] (sup) at (8.2, 6.2) {\textbf{Supervisor Node}\\Validated rewrite + structured\\domain/intent decision};
+
+\draw[arrow] (user.east) -- (api.north west);
+\draw[biarrow] (redis.east) -- (api.south west);
+\draw[arrow] (api) -- (sup);
+
+% Conditional routing and pre-retrieval
+\node[draw=yellow!80!black, fill=yellow!12, rounded corners=3pt, minimum height=20pt, text width=5.5cm, align=center, font=\sffamily\tiny\bfseries] (ret_node) at (7.5, 4.5) {Retrieval Node: intent-scoped evidence lanes\\structured tuition prefetch + BM25/dense RRF and reranking};
+
+% Tier 2: specialists
+\draw[tierbox, fill=blue!2] (0.1, 2.1) rectangle (11.8, 3.9);
+\node[anchor=north west, font=\bfseries\scriptsize, text=blue!80!black] at (0.25, 3.85) {\textsc{Tier 2: Domain-Specialized Agents with Separate Tool Lists}};
+
+\node[agentnode] (ag_acad) at (1.5, 2.9) {\textbf{Academic}\\6 graph tools};
+\node[agentnode] (ag_fin)  at (4.5, 2.9) {\textbf{Financial}\\3 lookups + 1 calculator};
+\node[agentnode] (ag_sch)  at (7.5, 2.9) {\textbf{Scholarship}\\1 calculator};
+\node[agentnode] (ag_gen)  at (10.5, 2.9) {\textbf{General}\\0 direct tools};
+
+\draw[arrow, draw=teal!80!black] (sup.south) -- ++(0,-0.32) -| node[pos=0.29, fill=white, inner sep=1pt, font=\tiny\sffamily\bfseries, text=teal!80!black] {$d^*=\text{academic}$: direct} (ag_acad.north);
+\draw[arrow, draw=orange!80!black] (sup.south) -- ++(0,-0.32) -| node[pos=0.62, fill=white, inner sep=1pt, font=\tiny\sffamily\bfseries, text=orange!80!black] {$d^*\in\{\text{financial, scholarship, general}\}$} (ret_node.north);
+\draw[arrow, draw=orange!80!black] (ret_node.south) -| (ag_fin.north);
+\draw[arrow, draw=orange!80!black] (ret_node.south) -- (ag_sch.north);
+\draw[arrow, draw=orange!80!black] (ret_node.south) -| (ag_gen.north);
+
+% Tier 3: stores and deterministic tools
+\draw[tierbox, fill=orange!2] (0.1, -0.3) rectangle (11.8, 1.7);
+\node[anchor=north west, font=\bfseries\scriptsize, text=orange!80!black] at (0.25, 1.65) {\textsc{Tier 3: Heterogeneous Evidence Stores and Deterministic Tools}};
+
+\node[dbnode] (db_neo) at (1.5, 0.65) {\textbf{Curriculum Graph}\\Neo4j: programs, courses, prerequisites};
+\node[dbnode] (db_fee) at (4.5, 0.65) {\textbf{Structured Tuition}\\Neo4j; JSON catalog fallback};
+\node[dbnode] (db_calc) at (7.5, 0.65) {\textbf{Calculation Tools}\\fee reduction; scholarship amount};
+\node[dbnode] (db_doc) at (10.5, 0.65) {\textbf{Document Retrieval}\\Qdrant dense + BM25 child index\\PostgreSQL parent store};
+
+\draw[biarrow, draw=teal!80!black] (ag_acad.south) -- node[fill=white, inner sep=1pt, font=\tiny\sffamily] {typed Cypher tools} (db_neo.north);
+\draw[biarrow, draw=orange!80!black] (ag_fin.south) -- node[fill=white, inner sep=1pt, font=\tiny\sffamily] {lookup tools} (db_fee.north);
+\draw[arrow, draw=purple!80!black] (ag_fin.south east) -- (db_calc.north west);
+\draw[arrow, draw=purple!80!black] (ag_sch.south) -- node[fill=white, inner sep=1pt, font=\tiny\sffamily] {calculator} (db_calc.north);
+\draw[access] (ret_node.east) -- (11.65,4.5) |- (db_doc.east);
+\draw[access] (ret_node.west) -- (3.0,4.5) |- (db_fee.west);
+
+\end{tikzpicture}
+\caption{Implemented \system{} architecture. The Chat API loads dialogue history from Redis and supplies it in the graph input state. The first conditional edge sends academic queries directly to the graph-enabled agent and sends the other domains through intent-scoped retrieval; the second edge dispatches the retrieved evidence to the selected domain-specialized agent. Solid agent--resource links denote direct tool access, whereas dashed links denote evidence acquisition performed by the retrieval node.}
+\label{fig:architecture}
+\end{figure}
+\FloatBarrier
+
+\textbf{Application-Level Specialization of LangGraph StateGraph:}
+Rather than modifying the underlying LangGraph engine, \system{} establishes an application-level orchestration policy governed by a typed state contract, isolated execution paths, and partitioned tool registries. Following supervisor dispatch, the four domain specialists operate independently without peer-to-peer delegation, selecting actions strictly from their construction-time tool bindings.
+\begin{itemize}
+    \item \textbf{Node-scoped state updates:} \texttt{AgentState} defines explicit write boundaries: the supervisor writes to the routing fields (\texttt{search\_query}, \texttt{next\_agent}, and \texttt{routing\_decision}); the retrieval node updates \texttt{context}; and each specialist returns \texttt{response}. This contract guarantees transparent data ownership and eliminates cross-domain context pollution.
+    
+    \item \textbf{Two-Tier Conditional Routing Edges:} Instead of letting agents dynamically negotiate execution flow, the orchestration topology is governed by deterministic conditional functions:
+    \begin{equation}
+        \mathrm{Edge}_{\text{sup}}(\mathcal{S}) = \begin{cases}
+            \text{'academic\_agent'}, & \text{if } \mathcal{S}[\text{'next\_agent'}] = \text{'academic'} \\
+            \text{'retrieval'}, & \text{otherwise},
+        \end{cases}
+    \end{equation}
+    bypassing document retrieval for queries assigned to the academic agent. At the retrieval exit, $\mathrm{Edge}_{\text{ret}}(\mathcal{S})$ dispatches the retrieved context to the selected financial, scholarship, or general agent.
+    
+    \item \textbf{Acyclic outer orchestration:} The StateGraph has no peer-to-peer agent edges. Each selected domain-specialized agent returns to \texttt{END}, so the outer routing path cannot cycle. ReAct tool interactions inside an agent remain distinct from this outer graph topology.
+    
+     \item \textbf{Domain-specialized agents with asymmetric tools:} The academic, financial, and scholarship agents are constructed with separate prompts and tool lists, while the general agent has no direct tool (as detailed in Figure~\ref{fig:architecture}). This confines tool selection to the agent selected by the supervisor and keeps domain-specific evidence paths separate, preventing decision space pollution.
+\end{itemize}
+
+%------------------------------------------------
+\subsection{Neo4j Knowledge Graph Specification and Cypher Tool Mechanics}
+\label{sec:neo4j_graph}
+
+\textbf{Schema defined by the ingestion layer:}
+The Neo4j graph models relational dependencies across academic counseling without ontological overhead, comprising over 1,500 entity nodes and 3,800 relational edges across 113 undergraduate curricula and statutory fee schedules. It incorporates 10 node labels (7 for curriculum: \texttt{Program}, \texttt{Course}, \texttt{Block}, etc.; and 3 for tuition: \texttt{TuitionFee}, \texttt{TuitionPolicy}, \texttt{ExemptionBasisRate}) interconnected via 13 relationship types (\texttt{HAS\_BLOCK}, \texttt{CONTAINS}, \texttt{REQUIRES}, \texttt{PARALLEL\_WITH}, \texttt{HAS\_PLO}, \texttt{HAS\_PEO}, \texttt{REALIZED\_BY}, \texttt{HAS\_TRACK}, \texttt{BELONGS\_TO\_TRACK}, \texttt{HAS\_JOB\_POSITION}, \texttt{HAS\_TUITION}, \texttt{GOVERNED\_BY}, and \texttt{HAS\_EXEMPTION\_BASIS}). Narrative regulations remain in the document store unless linked to structured entities.
+
+\textbf{Cypher tool mechanics:}
+The system does not ask the LLM to generate arbitrary Cypher. After the supervisor selects the academic agent, its ReAct policy chooses one of six typed tools and supplies the tool arguments. The tool normalizes identifiers or names and calls a fixed, parameterized Cypher query in the graph service. The tools implement three query classes:
+\begin{itemize}
+    \item \emph{Attribute lookup and search}: \texttt{tra\_cuu\_nganh} and \texttt{tim\_nganh} match program codes or normalized program, unit, and course names; \texttt{so\_sanh\_nganh} applies the same lookup before comparing two programs.
+    \item \emph{Structural traversal}: \texttt{xem\_chuoi\_tien\_quyet} follows \texttt{REQUIRES} paths up to ten hops and returns direct \texttt{PARALLEL\_WITH} courses. \texttt{mon\_chung\_giua\_nganh} computes a course intersection across two program--block paths, and \texttt{tim\_nganh\_co\_mon} traverses those paths in reverse.
+    \item \emph{Structured financial lookup}: parameterized queries match \texttt{TuitionFee}, \texttt{TuitionPolicy}, and \texttt{ExemptionBasisRate} properties and their program relationships. This graph lookup is separate from the BM25--dense hybrid document retrieval path used for narrative regulations.
+\end{itemize}
+This design binds agent actions directly to deterministic graph operations: the LLM only selects the appropriate tool and supplies its arguments, while the query topology remains fixed and parameterized within the graph service. As a result, the multi-agent workflow reliably incorporates graph evidence without the fragility of unconstrained Cypher generation.
+
+%------------------------------------------------
+\subsection{Algorithmic Foundations: Routing and Deterministic Arithmetic}
+\label{sec:algorithms}
+
+Algorithm~\ref{alg:routing} formalizes the operational core of \system{}: supervisor-guided evidence routing. It details the routing and dispatch pipeline. Contextual rewriting is validated against recent dialogue history to prevent semantic drift, while structured classification resolves the target domain and intent, with an explicit fallback to the general agent when classification is ambiguous.
+
+\begin{algorithm}[!htbp]
+\footnotesize
+\SetAlFnt{\footnotesize}
+\SetAlCapFnt{\footnotesize}
+\SetAlCapNameFnt{\footnotesize}
+\SetAlgoVlined
+\LinesNumbered
+\caption{Supervisor Routing and Conditional Evidence-Path Dispatch}
+\label{alg:routing}
+\KwIn{Student query $q$, Dialogue history $\mathcal{H}$, Shared state $\mathcal{S}$}
+\KwOut{State updates and next graph node}
+$q_{\text{standalone}} \leftarrow q$\;
+$q_{\mathrm{prev}} \leftarrow \mathrm{MostRecentUserQuery}(\mathcal{H})$\;
+\If{$\mathrm{ShouldRewriteQuery}(q, q_{\mathrm{prev}})$}{
+    $q_{\text{cand}} \leftarrow \mathrm{FastLLM\_Rewrite}(q, q_{\mathrm{prev}})$\;
+    \If{$\mathrm{ValidateRewrite}(q, q_{\text{cand}}, q_{\mathrm{prev}})$}{
+        $q_{\text{standalone}} \leftarrow q_{\text{cand}}$\;
+    }
+}
+$\langle d^*, \iota^* \rangle \leftarrow \mathrm{StructuredSupervisor}(q)$\;
+\If{structured classification fails}{
+    $d^* \leftarrow \text{'general'}$; $\iota^* \leftarrow \text{'other'}$\;
+}
+Update $\mathcal{S}[\texttt{search\_query}] \leftarrow q_{\text{standalone}}$, $\mathcal{S}[\texttt{next\_agent}] \leftarrow d^*$, and $\mathcal{S}[\texttt{routing\_decision}] \leftarrow \mathrm{QueryRoutingDecision}(\iota^*)$\;
+\eIf{$d^* = \text{'academic'}$}{
+    $v_{\text{next}} \leftarrow \text{'academic\_agent'}$\;
+}{
+    Build retrieval lanes from $\iota^*$ and retrieve evidence\;
+    $v_{\text{next}} \leftarrow d^*\texttt{\_agent}$\;
+}
+\Return $\langle \mathcal{S}, v_{\text{next}} \rangle$\;
+\end{algorithm}
+
+\textbf{Routing characteristics:}
+Algorithm~\ref{alg:routing} separates three decisions that a monolithic pipeline would conflate: whether conversational rewriting is needed, which domain agent should answer, and which evidence path should run. Rewrite validation limits unsupported additions to a context-dependent query; structured output constrains routing to the declared domains and intents; and the explicit \texttt{general}/\texttt{other} fallback keeps classification failure on a defined path. Conditional edges then make the selected path inspectable without allowing peer-to-peer agent delegation.
+
+\textbf{Deterministic Tuition Reduction Arithmetic:}
+For fee-reduction requests, \system{} augments the LLM with the external deterministic tool \texttt{tinh\_toan\_hoc\_phi}. The LLM interprets the request and supplies three parameters---the actual per-credit tuition $T$, the per-credit exemption basis $B$, and the percentage entitlement $p$---but does not perform the arithmetic through free-form text generation. The external tool validates the percentage range and applies the fixed calculation
+\begin{equation}
+  D = B\frac{p}{100}, \qquad P = \max(0, T-D).
+  \label{eq:tuition_reduction}
+\end{equation}
+where $D$ is the reduction per credit and $P$ is the remaining amount per credit. Monetary inputs are expected in VND per credit. The tool enforces $0 \le p \le 100$ and clamps $P$ at zero; values outside the percentage range return an error. Returned monetary values are formatted as integers. Delegating this arithmetic to an external deterministic tool ensures reproducible calculations, prevents floating-point inaccuracies, and eliminates arithmetic hallucination from the generative model.
+
+%------------------------------------------------
+\subsection{Heterogeneous Knowledge Allocation and Hybrid Retrieval}
+\label{sec:hybrid_retrieval}
+
+This layer implements \emph{heterogeneous knowledge allocation}: rather than forcing all institutional knowledge into a uniform document index, \system{} assigns each domain agent a representation and access path suited to the structure of its evidence. Relational curriculum knowledge is preserved in a graph for property lookup and traversal, cohort-dependent tuition data is accessed through structured lookup, and narrative regulations and scholarship policies remain in document retrieval. The resulting allocation is intentionally asymmetric across agents, embedding representation choices directly into the executable routing policy.
+
+Table~\ref{tab:decision_criteria} makes this policy explicit by separating the physical evidence representation from the mechanism used to access it at runtime.
+
+\begin{table}[h!]
+\centering
+\caption{Decision criteria mapping query characteristics to evidence representation mechanisms.}
+\label{tab:decision_criteria}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.30\columnwidth}>{\raggedright\arraybackslash}p{0.29\columnwidth}>{\raggedright\arraybackslash}p{0.30\columnwidth}}
+\toprule
+\textbf{Query characteristic} & \textbf{Evidence path} & \textbf{Rationale} \\
+\midrule
+Program/course attributes & Neo4j property lookup & Exact or normalized match \\
+Prerequisites/shared courses & Neo4j traversal & Stored graph relationships \\
+Regulation identifiers & BM25 child index & Exact token match \\
+Paraphrased regulations & Hybrid RRF + reranker & Lexical + semantic signals \\
+Fee/scholarship calculation & Python tool & Fixed formula outside LLM \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At runtime, this allocation is enforced by the StateGraph rather than left to unrestricted agent choice. Academic queries bypass the document-retrieval node and enter the graph-enabled academic agent directly. Financial, scholarship, and general queries enter the retrieval node, where the supervisor-assigned intent determines the metadata-filtered retrieval lanes before the resulting context is passed to only the selected domain agent. Thus, knowledge allocation and evidence-path selection operate as separate but tightly coordinated design decisions.
+
+\textbf{Hybrid Document Retrieval Path.}
+For narrative regulations and scholarship criteria, evidence is acquired
+through the following pipeline:
+
+\begin{enumerate}
+    \item \emph{Child-level candidate generation.}
+    A BM25 index searches child chunks, while Qdrant performs dense retrieval
+    over their 768-dimensional embeddings.
+
+    \item \emph{Parent resolution.}
+    Parent identifiers associated with the retrieved child chunks are used to
+    load the corresponding parent sections from PostgreSQL.
+
+    \item \emph{Reciprocal Rank Fusion.}
+    The dense- and BM25-derived parent rankings are combined as
+    \[
+        s_{\mathrm{RRF}}(d)
+        = \sum_{s\in\{\mathrm{bm25},\mathrm{dense}\}}
+          \frac{1}{k+r_s(d)}, \qquad k=60.
+    \]
+
+    \item \emph{Cross-encoder reranking.}
+    The fused parent candidates are reranked using
+    \texttt{BAAI/bge-reranker-v2-m3}, and up to six parent sections are
+    supplied to the selected domain agent.
+\end{enumerate}
+
+Parent sections use a 2,800-character target with 100-character overlap;
+child chunks use a 400-character target with 50-character overlap.
+
+\textbf{Architectural Synthesis:} In summary, \system{} integrates established retrieval components (BM25, dense embeddings, RRF, and neural cross-reranking) exclusively within the narrative regulation path. By coordinating these document pipelines with graph traversals and deterministic arithmetic engines under a centralized supervisor, the architecture ensures that each administrative inquiry is resolved through its structurally optimal evidence modality.

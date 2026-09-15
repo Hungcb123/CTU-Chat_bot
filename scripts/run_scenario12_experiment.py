@@ -39,10 +39,10 @@ MODEL = "gemini-2.5-flash-lite"
 TOP_K = 7
 METRIC_K = 10
 TEMPERATURE = 0.0
-GENERATION_PROMPT_VERSION = "scenario12_grounded_complete_answer_v2"
-RAGAS_RUBRIC_VERSION = "ragas-0.4-default-ar-cr-cp-ac-v1"
-DEV_DATASET = ROOT / "data" / "scenario12_dev.jsonl"
-HELDOUT_DATASET = ROOT / "data" / "scenario12_heldout.jsonl"
+GENERATION_PROMPT_VERSION = "scenario12_grounded_complete_answer_v3"
+RAGAS_RUBRIC_VERSION = "ragas-0.4-default-ar-cr-cp-ac-faith-v1"
+DEV_DATASET = ROOT / "data" / "scenario12_dev_100.jsonl"
+HELDOUT_DATASET = ROOT / "data" / "scenario12_heldout_100.jsonl"
 LOG_ROOT = ROOT / "logs" / "scenario12"
 SERVICE_ACCOUNT = ROOT / "gen-lang-client-0656432358-9a6fb12696b2.json"
 CONFIGS_S1 = ("E1", "E2", "E3", "E4", "E5")
@@ -50,6 +50,7 @@ CONFIGS_S2 = ("T1", "T2", "T3", "T4", "T5", "T6", "T7")
 
 GENERATION_PROMPT = """Bạn là trợ lý tư vấn học vụ và học phí của Trường Đại học Cần Thơ (CTU).
 Chỉ dùng evidence được cung cấp. Hãy trả lời câu hỏi bằng câu hoàn chỉnh, rõ ràng, nêu rõ chủ thể được hỏi (tên ngành, khóa, hệ đào tạo, học bổng hoặc thủ tục tương ứng) kèm dữ kiện số liệu hoặc quy định chính xác.
+Không tự tính toán hoặc suy luận ra con số mới. Chỉ trích dẫn số liệu xuất hiện nguyên văn trong evidence.
 Nếu evidence chỉ hỗ trợ một phần, trả lời phần biết được và nêu phần còn thiếu.
 Chỉ nói không tìm thấy khi toàn bộ evidence không có dữ kiện liên quan.
 
@@ -231,6 +232,10 @@ def run_retrieval(
     cases: list[ScenarioCase], checkpoint: dict[str, Any], checkpoint_path: Path,
     logger: logging.Logger,
 ) -> None:
+    missing = [c for c in cases if c.case_id not in checkpoint["retrieval"]]
+    if not missing:
+        logger.info("retrieval: all %d cases already present in checkpoint, skipping", len(cases))
+        return
     engine, graph, catalog, compressor = initialize_retrieval()
     try:
         for index, case in enumerate(cases, start=1):
@@ -346,7 +351,7 @@ def run_ragas(
     from langchain_google_genai import GoogleGenerativeAIEmbeddings
     from langchain_community.embeddings import HuggingFaceEmbeddings
     from ragas import evaluate
-    from ragas.metrics import answer_correctness, answer_relevancy, context_precision, context_recall
+    from ragas.metrics import answer_correctness, answer_relevancy, context_precision, context_recall, faithfulness
     from ragas.run_config import RunConfig
 
     case_map = {case.case_id: case for case in cases}
@@ -372,6 +377,7 @@ def run_ragas(
         "context_recall": "CR",
         "context_precision": "CP",
         "answer_correctness": "AC",
+        "faithfulness": "Faith",
     }
     logger.info("ragas records=%d workers=%d shard=%d", len(missing_keys), args.workers, args.ragas_batch_size)
     for offset in range(0, len(missing_keys), args.ragas_batch_size):
@@ -387,7 +393,7 @@ def run_ragas(
             rows["ground_truth"].append(case.reference_answer)
         result = evaluate(
             Dataset.from_dict(rows),
-            metrics=[answer_relevancy, context_recall, context_precision, answer_correctness],
+            metrics=[answer_relevancy, context_recall, context_precision, answer_correctness, faithfulness],
             llm=llm,
             embeddings=embeddings,
             run_config=RunConfig(
@@ -418,7 +424,7 @@ def bootstrap_ci(values: list[float], *, samples: int = 10000) -> list[float]:
 
 def aggregate(cases: list[ScenarioCase], checkpoint: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
     summary: dict[str, Any] = {"scenario1": {}, "scenario2": {}, "paired_differences": {}}
-    if args.scenario in {"1", "all"}:
+    if args.scenario in {"1", "all"} or checkpoint.get("retrieval"):
         for config in CONFIGS_S1:
             rows = [checkpoint["retrieval"][case.case_id]["configs"][config] for case in cases]
             metric_names = ("hit_at_1", "hit_at_3", "precision_at_5", "recall_at_5", "mrr_at_10")
@@ -426,6 +432,20 @@ def aggregate(cases: list[ScenarioCase], checkpoint: dict[str, Any], args: argpa
                 name: mean([row["metrics"][name] for row in rows]) for name in metric_names
             }
             summary["scenario1"][config]["latency_ms"] = mean([row["latency_ms"] for row in rows])
+            per_domain = {}
+            for dom in ("academic", "financial", "scholarship", "general"):
+                dom_cases = [c for c in cases if getattr(c, "domain", "") == dom]
+                if dom_cases:
+                    dom_rows = [checkpoint["retrieval"][c.case_id]["configs"][config] for c in dom_cases]
+                    per_domain[dom] = {
+                        "n": len(dom_cases),
+                        "hit_at_1": mean([r["metrics"]["hit_at_1"] for r in dom_rows]),
+                        "hit_at_3": mean([r["metrics"]["hit_at_3"] for r in dom_rows]),
+                        "mrr_at_10": mean([r["metrics"]["mrr_at_10"] for r in dom_rows]),
+                    }
+            summary["scenario1"][config]["per_domain"] = per_domain
+            if per_domain:
+                summary["scenario1"][config]["macro_hit_at_1"] = mean([d["hit_at_1"] for d in per_domain.values()])
     if args.scenario in {"2", "all"}:
         for config in CONFIGS_S2:
             config_summary: dict[str, Any] = {}
@@ -491,9 +511,19 @@ def write_reports(run_dir: Path, cases: list[ScenarioCase], checkpoint: dict[str
     (run_dir / "failures.md").write_text("\n".join(failure_lines) + "\n", encoding="utf-8")
     comparison = ["# Scenario 1–2 comparison", "", f"- Split: `{manifest['split']}`", f"- Cases: {manifest['case_count']}", ""]
     if summary["scenario1"]:
-        comparison.extend(["## Scenario 1", "", "| Config | H@1 | H@3 | P@5 | R@5 | MRR@10 | Latency ms |", "|---|---:|---:|---:|---:|---:|---:|"])
+        comparison.extend(["## Scenario 1: Overall Retrieval Metrics", "", "| Config | H@1 | H@3 | P@5 | R@5 | MRR@10 | Latency ms |", "|---|---:|---:|---:|---:|---:|---:|"])
         for config, row in summary["scenario1"].items():
             comparison.append(f"| {config} | {row['hit_at_1']:.4f} | {row['hit_at_3']:.4f} | {row['precision_at_5']:.4f} | {row['recall_at_5']:.4f} | {row['mrr_at_10']:.4f} | {row['latency_ms']:.2f} |")
+        comparison.extend(["", "### Per-Domain Hit@1 (N=25 each) and Macro-Average", "", "| Config | Academic | Financial | Scholarship | General | Macro-Avg H@1 | Micro-Avg H@1 |", "|---|---:|---:|---:|---:|---:|---:|"])
+        for config, row in summary["scenario1"].items():
+            pd = row.get("per_domain", {})
+            acad = pd.get("academic", {}).get("hit_at_1", 0.0)
+            fin = pd.get("financial", {}).get("hit_at_1", 0.0)
+            sch = pd.get("scholarship", {}).get("hit_at_1", 0.0)
+            gen = pd.get("general", {}).get("hit_at_1", 0.0)
+            macro = row.get("macro_hit_at_1", 0.0)
+            micro = row.get("hit_at_1", 0.0)
+            comparison.append(f"| {config} | {acad:.4f} | {fin:.4f} | {sch:.4f} | {gen:.4f} | {macro:.4f} | {micro:.4f} |")
     if summary["scenario2"]:
         comparison.extend(["", "## Scenario 2", "", "| Config | AR | CR | CP | AC | Source recall | Source AP | Fact EM |", "|---|---:|---:|---:|---:|---:|---:|---:|"])
         for config, row in summary["scenario2"].items():
@@ -528,6 +558,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--timeout", type=int, default=180)
     parser.add_argument("--max-retries", type=int, default=6)
     parser.add_argument("--ragas-batch-size", type=int, default=10)
+    parser.add_argument("--seed-from", type=Path, help="Nạp kết quả retrieval đã có từ run directory hoặc checkpoint khác")
     return parser.parse_args()
 
 
@@ -541,6 +572,24 @@ def main() -> None:
     expected = signature(dataset, args)
     run_dir, checkpoint = create_run_dir(expected, args.resume)
     logger = setup_logging(run_dir)
+    if args.seed_from:
+        seed_ckpt_file = args.seed_from if args.seed_from.is_file() else args.seed_from / "checkpoint.json"
+        if seed_ckpt_file.exists():
+            seed_data = json.loads(seed_ckpt_file.read_text(encoding="utf-8"))
+            seeded = 0
+            for cid, cval in seed_data.get("retrieval", {}).items():
+                checkpoint["retrieval"][cid] = cval
+                seeded += 1
+            case_map = {c.case_id: c for c in cases}
+            for cid, cval in checkpoint["retrieval"].items():
+                if cid in case_map:
+                    cur_case = case_map[cid]
+                    for cfg_name, cfg_data in cval.get("configs", {}).items():
+                        if cfg_name in CONFIGS_S1:
+                            srcs = [ctx.get("source") for ctx in cfg_data.get("contexts", [])]
+                            cfg_data["metrics"] = retrieval_metrics(srcs, cur_case.gold_sources)
+            json_dump(run_dir / "checkpoint.json", checkpoint)
+            logger.info("Seeded %d existing retrieval cases from %s", seeded, seed_ckpt_file)
     manifest = {
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "split": args.split, "dataset": str(dataset), "case_count": len(cases),

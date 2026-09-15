@@ -1,0 +1,11 @@
+% ============================================================
+% 05-conclusion.tex
+% ============================================================
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+Taken together, the experiments answer the three research questions from complementary perspectives. For RQ1, centralized supervisor routing achieved 97.0\% agent accuracy and 97.8\% Macro-F1 across 300 evaluations, while all evaluated supervisor decisions completed within the configured execution bounds. For RQ2, the heterogeneous allocation of relational and narrative knowledge was supported by the graph ablation: removing Neo4j reduced Context Precision from 0.6977 to 0.5683 and Factual Exact Match from 62.03\% to 57.11\% on the held-out evaluation. For RQ3, conditional evidence routing and component stacking reached 0.9600 Hit@1 and 0.9700 MRR@10, while the full end-to-end configuration attained the highest measured Factual Exact Match of 62.03\%. These results provide evidence that coordinating domain-specific representations, retrieval paths, and restricted tools is useful for heterogeneous university counseling; they do not establish that any individual component is universally optimal.
+
+The findings also delimit the scope of the contribution. \system{} does not replace LangGraph, graph retrieval, or hybrid RAG; it integrates these mechanisms through a supervisor-routed policy that coordinates three distinct responsibilities: supervisor-based domain assignment, domain-specific knowledge and tool allocation, and conditional selection of the runtime evidence path. The evaluation remains limited to CTU administrative data, automated judging, offline curriculum schemas, and isolated robustness tests. In particular, the observed bounded completion applies only to the evaluated decisions and should not be interpreted as a general safety guarantee.
+
+Future work will evaluate transferability across institutions and policy regimes, conduct advisory studies with students and staff, and examine incremental graph updates as regulations and curricula change. Further work will also investigate latency-aware reranking or model distillation and end-to-end fault injection for failures in external services such as Neo4j and Qdrant.

@@ -1,0 +1,37 @@
+% ============================================================
+% 01-introduction.tex
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+In large-scale universities, particularly Can Tho University (CTU)—a key higher education institution in the Mekong Delta with nearly 49,000 undergraduate students in the 2025--2026 academic year~\cite{ctu2022handbook}—advisory needs span a wide range of academic and administrative areas, while relevant regulations and policies can change over time. Several automated advisory systems have been developed at CTU, including CAAS, which provides text- and voice-based admissions counseling, and REBot, which answers questions about academic regulations by combining document retrieval with a knowledge graph. However, these systems focus on specific advisory areas, and their ability to support multiple domains simultaneously—including curricula, academic regulations, tuition fees, scholarships, and administrative procedures—remains limited. Because these domains have different knowledge structures, an effective system must employ appropriate representation, retrieval, and processing mechanisms for each type of information. This gap motivates the development of CTU-Chat.
+
+University counseling presents challenges not only because it covers multiple domains, but also because institutional knowledge is represented in different forms. (1)~\textbf{Academic curricula} contain hierarchical structures and prerequisite relationships; (2)~\textbf{tuition schedules} are organized by admission cohort and field of study; (3)~\textbf{tuition exemption policies} and (4)~\textbf{scholarship policies} combine eligibility conditions with specific support rates and thresholds; while (5)~\textbf{general administrative regulations} are presented in lengthy narrative documents. Therefore, no single representation or retrieval method is suitable for every domain. Relational curricula are better suited to graph-based retrieval, financial policies require structured data lookup and deterministic calculation, and narrative regulations benefit from hybrid lexical and semantic retrieval. This heterogeneity requires each domain to be matched with an appropriate knowledge representation, retrieval method, and reasoning mechanism.
+
+To automate institutional QA, Retrieval-Augmented Generation (RAG)~\cite{lewis2020rag,gao2023rag_survey} and GraphRAG~\cite{edge2024graphrag} augment large language models (LLMs) with external documents or knowledge graphs, while agentic architectures~\cite{yao2023react,wu2023autogen,schick2023toolformer} introduce iterative tool invocation and multi-agent coordination. Nevertheless, applying existing paradigms to university counseling reveals significant limitations. Monolithic RAG pipelines risk a uniform representation fallacy: forcing relational curricula, tabular fee matrices, and narrative legal prose into a single retrieval index can fragment tabular data and prerequisite links. Conversely, uncoordinated multi-agent meshes can expose broad tool sets across agents, increasing the risk of tool misselection, parameter errors, and extended execution times, while known limitations in language-model arithmetic~\cite{qian2023limitations} motivate deterministic calculation for credit-based tuition.
+
+These challenges crystallize three open research gaps in automated university counseling: (1) limited orchestration of domain-specialized agents with separate knowledge spaces and tool permissions; (2) the homogeneous representation of structurally different institutional knowledge; and (3) the lack of representation-aware routing to appropriate retrieval and reasoning mechanisms. These gaps are examined in greater detail in Section~2.
+
+To address these gaps, we formulate three research questions:
+\begin{itemize}
+    \setlength{\itemsep}{1.5pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\parskip}{0pt}
+
+    \item \textbf{RQ1 (Domain-Specialized Multi-Agent Architecture):}
+    How effectively can a centralized supervisor coordinate domain-specialized agents with isolated knowledge spaces and constrained tool access for heterogeneous university counseling tasks?
+
+    \item \textbf{RQ2 (Heterogeneous Knowledge Allocation):}
+    How does assigning different knowledge types to appropriate representations---graph-oriented access for relational academic data, structured access for tuition data, and hybrid document retrieval for narrative regulations---affect retrieval and answer quality compared with a uniform retrieval representation?
+
+    \item \textbf{RQ3 (Representation-Aware Evidence Routing):}
+    How does intent-guided routing between graph-oriented and hybrid document retrieval paths affect retrieval effectiveness, answer accuracy, and latency across different counseling domains?
+\end{itemize}
+
+We hypothesize that reliable university counseling is better supported by a supervisor-routed multi-agent architecture in which each specialist is restricted to knowledge representations, retrieval paths, and tools appropriate to its domain, rather than by a uniform retrieval-and-reasoning pipeline. Accordingly, CTU-Chat is designed around three complementary dimensions: specialist coordination, heterogeneous knowledge allocation, and representation-aware evidence routing.
+
+To investigate these research questions, we propose CTU-Chat, a centralized supervisor-routed multi-agent architecture for heterogeneous university counseling. The system coordinates four domain-specialized agents for \textbf{academic, financial, scholarship, and general administrative inquiries}. Each specialist is assigned an isolated knowledge space, an appropriate retrieval path, and constrained tool privileges according to the structure of its domain knowledge. This design enables CTU-Chat to combine graph-based retrieval, structured data access, deterministic calculation, and hybrid document retrieval within a unified counseling framework.
+
+For clarity, our contributions are organized into three corresponding components, denoted as \textbf{C1}, \textbf{C2}, and \textbf{C3}, which respectively address RQ1, RQ2, and RQ3. These contributions are described in detail in Section~3 and evaluated through the corresponding experimental scenarios in Section~4.
+
+The remainder of this paper is organized as follows. \textbf{Section~2} reviews related work on retrieval methods, knowledge graphs, agentic RAG, and educational question-answering systems and summarizes the research gaps. \textbf{Section~3} presents the proposed CTU-Chat architecture and its domain-specialized agents. \textbf{Section~4} describes the retrieval, evidence-ranking, and deterministic calculation methods. \textbf{Section~5} reports the experimental setup, evaluation results, and discussion. Finally, \textbf{Section~6} concludes the paper and outlines directions for future work.

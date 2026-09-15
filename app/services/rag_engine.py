@@ -73,6 +73,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 import operator
 from collections.abc import Sequence as AbcSequence
 from langchain_core.callbacks import Callbacks
+from app.services.remote_reranker import RemoteCrossEncoder
+from app.services.lexical_anchors import detect_lexical_anchors
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
@@ -83,6 +85,8 @@ DEFAULT_COLLECTION_ALIAS = "ctu_scholarship_docs_current"
 VECTOR_SIZE = 768
 DEFAULT_SEARCH_K = 15
 DEFAULT_RERANK_TOP_N = 6
+SOURCE_QUOTA = int(os.getenv("RAG_SOURCE_QUOTA", "2"))
+DEFAULT_SCORE_TOLERANCE = float(os.getenv("RAG_RERANKER_SCORE_TOLERANCE", "0.05"))
 DEFAULT_LOCAL_EMBEDDING_PATH = PROJECT_ROOT / "models" / "vietnamese-bi-encoder"
 DEFAULT_EMBEDDING_MODEL = (
     str(DEFAULT_LOCAL_EMBEDDING_PATH)
@@ -258,6 +262,7 @@ class OpenRouterCrossEncoder:
                 exc,
             )
             return [0.5] * len(sentence_pairs)
+
 
 class TemporalCrossEncoderReranker(CrossEncoderReranker):
     """Reranker có ưu tiên MỀM theo thời gian (tie-break).
@@ -575,8 +580,33 @@ class AdvancedChunkingEngine:
         use_reranker_env = os.getenv("RAG_USE_RERANKER", "true").lower() in ("true", "1", "yes")
         if load_reranker and use_reranker_env:
             reranker_model = os.getenv("RAG_RERANKER_MODEL", DEFAULT_RERANKER_MODEL)
+            reranker_backend = os.getenv("RAG_RERANKER_BACKEND", "auto").strip().lower()
+            if reranker_backend == "remote":
+                remote_url = os.getenv("RAG_REMOTE_RERANKER_URL", "").strip()
+                if remote_url:
+                    logger.info("Đang khởi tạo Remote Cross-Encoder Reranker: %s", remote_url)
+                    self.cross_encoder = RemoteCrossEncoder(
+                        base_url=remote_url,
+                        api_key=os.getenv("RAG_REMOTE_RERANKER_API_KEY", ""),
+                        timeout=float(os.getenv("RAG_REMOTE_RERANKER_TIMEOUT_SECONDS", "30")),
+                        fail_open=os.getenv(
+                            "RAG_REMOTE_RERANKER_FAIL_OPEN", "true"
+                        ).lower() in ("true", "1", "yes"),
+                        max_documents=int(os.getenv("RAG_REMOTE_RERANKER_MAX_DOCUMENTS", "64")),
+                        model_name=os.getenv(
+                            "RAG_REMOTE_RERANKER_MODEL_NAME", "BAAI/bge-reranker-v2-m3"
+                        ),
+                    )
+                else:
+                    logger.warning(
+                        "RAG_RERANKER_BACKEND=remote nhưng thiếu RAG_REMOTE_RERANKER_URL. "
+                        "Reranker bị tắt."
+                    )
             # Nếu người dùng cấu hình model OpenRouter API
-            if reranker_model.startswith("nvidia/") or reranker_model.startswith("openrouter/"):
+            elif reranker_backend == "openrouter" or (
+                reranker_backend == "auto"
+                and (reranker_model.startswith("nvidia/") or reranker_model.startswith("openrouter/"))
+            ):
                 openrouter_key = os.getenv("OPENROUTER_API_KEY", "")
                 if openrouter_key:
                     logger.info("Đang khởi tạo Reranker API: %s (OpenRouter)", reranker_model)
@@ -586,7 +616,7 @@ class AdvancedChunkingEngine:
                     )
                 else:
                     logger.warning("OPENROUTER_API_KEY chưa cấu hình. Reranker bị tắt.")
-            else:
+            elif reranker_backend in ("auto", "local"):
                 # Mặc định: Nạp mô hình Local Cross-Encoder (BAAI/bge-reranker-v2-m3)
                 logger.info("Đang nạp Local Cross-Encoder Reranker: %s", reranker_model)
                 try:
@@ -601,6 +631,11 @@ class AdvancedChunkingEngine:
                     logger.info("✅ Đã nạp thành công Local Reranker trên thiết bị: %s (FP16: %s)", device, device == "cuda")
                 except Exception as e:
                     logger.warning("Không thể nạp Local Reranker (%s): %s. Reranker bị tắt.", reranker_model, e)
+            else:
+                logger.warning(
+                    "RAG_RERANKER_BACKEND=%r không hợp lệ; dùng auto, local, remote hoặc openrouter.",
+                    reranker_backend,
+                )
 
             if self.cross_encoder is not None:
                 self.reranker = TemporalCrossEncoderReranker(
@@ -793,6 +828,8 @@ class AdvancedChunkingEngine:
         metadata_filter_enabled: Optional[bool] = None,
         use_reranker: bool = True,
         hybrid_search: bool = True,
+        adaptive_rrf: bool = True,
+        source_quota: Optional[int] = SOURCE_QUOTA,
     ) -> List[Document]:
         """Truy xuất tài liệu theo cơ chế Hybrid Search (Dense Vector + Sparse BM25) & Re-ranking."""
         if not query or not query.strip():
@@ -853,12 +890,29 @@ class AdvancedChunkingEngine:
                 logger.warning(f"BM25 search lỗi: {exc}", exc_info=True)
                 sparse_docs = []
 
-        # 3. Reciprocal Rank Fusion (RRF)
+        # 3. Query-Adaptive Reciprocal Rank Fusion (RRF)
         candidate_parents: List[Document] = []
         if dense_docs and sparse_docs:
             RRF_K = 60
             rrf_scores: Dict[str, float] = {}
             doc_map: Dict[str, Document] = {}
+
+            if adaptive_rrf:
+                # Detect lexical anchors for adaptive BM25 weight
+                anchors = detect_lexical_anchors(query)
+                bm25_weight = anchors.bm25_boost  # 1.5 if anchors, 1.0 otherwise
+                if anchors.has_anchor:
+                    logger.info(
+                        "[AdaptiveRRF] Lexical anchors detected → BM25 boost α=%.2f "
+                        "(programs=%s, courses=%s, cohorts=%s, systems=%s)",
+                        bm25_weight,
+                        anchors.program_codes,
+                        anchors.course_codes,
+                        anchors.cohorts,
+                        anchors.training_systems,
+                    )
+            else:
+                bm25_weight = 1.0
 
             def _get_key(d: Document) -> str:
                 return str(d.metadata.get("doc_id") or hashlib.sha256(d.page_content.encode("utf-8")).hexdigest())
@@ -868,14 +922,21 @@ class AdvancedChunkingEngine:
                 k = _get_key(doc)
                 doc_map[k] = doc
                 dense_keys.add(k)
-                rrf_scores[k] = rrf_scores.get(k, 0.0) + (1.0 / (RRF_K + rank + 1))
+                score = 1.0 / (RRF_K + rank + 1)
+                rrf_scores[k] = rrf_scores.get(k, 0.0) + score
+                doc.metadata = dict(doc.metadata)
+                doc.metadata["dense_rank"] = rank
 
             sparse_keys = set()
             for rank, doc in enumerate(sparse_docs):
                 k = _get_key(doc)
                 doc_map[k] = doc
                 sparse_keys.add(k)
-                rrf_scores[k] = rrf_scores.get(k, 0.0) + (1.0 / (RRF_K + rank + 1))
+                score = bm25_weight / (RRF_K + rank + 1)
+                rrf_scores[k] = rrf_scores.get(k, 0.0) + score
+                doc.metadata = dict(doc.metadata)
+                doc.metadata["bm25_rank"] = rank
+                doc.metadata["bm25_weight"] = bm25_weight
 
             overlap_keys = dense_keys & sparse_keys
             only_dense = dense_keys - sparse_keys
@@ -883,12 +944,14 @@ class AdvancedChunkingEngine:
             logger.info(
                 f"[HybridSearch] Vector: {len(dense_docs)} docs ({len(only_dense)} unique) | "
                 f"BM25: {len(sparse_docs)} docs ({len(only_sparse)} unique) | "
-                f"Overlap: {len(overlap_keys)} | Total RRF candidates: {len(rrf_scores)}"
+                f"Overlap: {len(overlap_keys)} | Total RRF candidates: {len(rrf_scores)} | "
+                f"BM25 weight: {bm25_weight:.2f}"
             )
 
-            # Gắn retrieval_source vào metadata
+            # Gắn retrieval_source + rrf_score vào metadata
             for k, doc in doc_map.items():
                 doc.metadata = dict(doc.metadata)
+                doc.metadata["rrf_score"] = rrf_scores[k]
                 if k in overlap_keys:
                     doc.metadata["retrieval_source"] = "vector+bm25"
                 elif k in only_dense:
@@ -899,6 +962,23 @@ class AdvancedChunkingEngine:
             sorted_keys = sorted(rrf_scores.keys(), key=lambda k: rrf_scores[k], reverse=True)
             candidate_limit = min(len(sorted_keys), max(result_limit * 2, 8))
             candidate_parents = [doc_map[k] for k in sorted_keys[:candidate_limit]]
+
+            # Source quota: max N blocks per source file before reranking
+            eff_quota = source_quota if source_quota is not None else 0
+            if eff_quota > 0:
+                source_count: Dict[str, int] = {}
+                quota_filtered: List[Document] = []
+                for doc in candidate_parents:
+                    src = doc.metadata.get("source", "unknown")
+                    if source_count.get(src, 0) < eff_quota:
+                        quota_filtered.append(doc)
+                        source_count[src] = source_count.get(src, 0) + 1
+                if len(quota_filtered) < len(candidate_parents):
+                    logger.info(
+                        "[SourceQuota] %d → %d candidates (quota=%d/source)",
+                        len(candidate_parents), len(quota_filtered), eff_quota,
+                    )
+                candidate_parents = quota_filtered
         elif dense_docs:
             logger.info(f"[HybridSearch] Vector only: {len(dense_docs)} docs (BM25 returned 0)")
             for doc in dense_docs:
@@ -919,7 +999,7 @@ class AdvancedChunkingEngine:
             compressor = TemporalCrossEncoderReranker(
                 model=self.cross_encoder,
                 top_n=result_limit,
-                score_tolerance=0.05,
+                score_tolerance=DEFAULT_SCORE_TOLERANCE,
             )
             final_docs = list(compressor.compress_documents(candidate_parents, query))
             return final_docs[:result_limit]
@@ -1317,3 +1397,7 @@ if __name__ == "__main__":
     if retrieved_parents:
         print(f"Metadata của Parent được gọi lên: {retrieved_parents[0].metadata}")
         print(f"Bức tranh tổng thể gửi cho LLM:\n{retrieved_parents[0].page_content[:500]}...\n")
+
+
+RAGEngine = AdvancedChunkingEngine
+

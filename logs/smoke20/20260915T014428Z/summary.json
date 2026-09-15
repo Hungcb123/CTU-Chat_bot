@@ -1,0 +1,9 @@
+{
+  "protocol": "smoke20-v1.0",
+  "mode": "route-tool",
+  "total_checks": 20,
+  "passed": 20,
+  "required_failures": [],
+  "target_failures": [],
+  "environment_errors": []
+}

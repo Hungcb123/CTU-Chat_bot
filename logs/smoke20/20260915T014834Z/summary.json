@@ -1,0 +1,12 @@
+{
+  "protocol": "smoke20-v1.0",
+  "mode": "retrieval",
+  "total_checks": 11,
+  "passed": 9,
+  "required_failures": [],
+  "target_failures": [
+    "SMK-SCH-01:retrieval",
+    "SMK-GEN-01:retrieval"
+  ],
+  "environment_errors": []
+}

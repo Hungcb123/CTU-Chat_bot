@@ -1,0 +1,30 @@
+% ============================================================
+% 01-introduction.tex
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+In large-scale higher education institutions, conversational agents and automated counseling systems have increasingly been deployed to streamline academic advising and administrative support~\cite{wollny2021chatbots}. At Can Tho University (CTU)—a flagship institution in the Mekong Delta with nearly 49,000 undergraduate students in the 2025--2026 academic year~\cite{ctu2022handbook}—advisory needs span diverse academic and administrative areas. Prior advisory systems at CTU, such as CAAS (admissions counseling) and REBot (academic regulations), target narrow advisory scopes, leaving multi-domain counseling unsupported. This gap motivates the development of \system{}.
+
+University counseling is inherently challenging because institutional knowledge spans structurally incompatible modalities: hierarchical curricula graphs, cohort-specific tuition matrices, statutory exemption and scholarship policies, and narrative administrative decrees. Consequently, no single retrieval or reasoning method fits every domain: relational curricula demand graph traversal, financial policies require structured lookup and deterministic calculation, and narrative prose benefits from hybrid lexical-semantic retrieval.
+
+While Retrieval-Augmented Generation (RAG)~\cite{lewis2020rag,gao2023rag_survey}, GraphRAG~\cite{edge2024graphrag}, and multi-agent frameworks~\cite{yao2023react,wu2023autogen,schick2023toolformer} augment LLMs, applying them to counseling reveals critical bottlenecks. Monolithic RAG enforces a uniform index that fragments prerequisite chains and tabular fee matrices, uncoordinated agent meshes increase tool misselection and latency, and LLM arithmetic vulnerabilities~\cite{qian2023limitations} degrade statutory fee calculations.
+
+These limitations crystallize three open research gaps (formalized in Section~\ref{sec:gaps}): unconstrained agent tool selection (Gap~1), the uniform representation bottleneck across relational and tabular data (Gap~2), and uncoordinated evidence retrieval across modalities (Gap~3). To address these gaps, we formulate three research questions:
+\begin{itemize}
+    \setlength{\itemsep}{0.5pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\topsep}{1pt}
+
+    \item \textbf{RQ1 (Domain-Specialized Multi-Agent Architecture):}
+    How effectively can a centralized supervisor coordinate domain-specialized agents with isolated knowledge spaces and constrained tool access for heterogeneous university counseling tasks?
+
+    \item \textbf{RQ2 (Heterogeneous Knowledge Allocation):}
+    How does allocating relational curricula, structured fee schedules, and narrative decrees to modality-aligned representations affect retrieval and answer quality over uniform baselines?
+
+    \item \textbf{RQ3 (Representation-Aware Retrieval Effectiveness):}
+    How does intent-guided evidence routing between graph traversals and hybrid document retrieval impact precision and factual answer accuracy across counseling domains?
+\end{itemize}
+
+We hypothesize that multi-domain counseling is best supported when specialists operate over isolated, representation-aligned knowledge spaces under centralized coordination. Accordingly, we propose \system{}, a supervisor-routed multi-agent architecture coordinating four bounded specialists (academic, financial, scholarship, and general administrative) across relational graphs, structured catalogs, and hybrid document retrieval. Our contributions are threefold: \textbf{(C1)} A centralized supervisor architecture with bounded tool gating that isolates domain evidence spaces and prevents cross-domain decision collisions (RQ1); \textbf{(C2)} A heterogeneous knowledge allocation framework mapping relational curricula, structured fee schedules, and narrative decrees to modality-aligned representations (RQ2); and \textbf{(C3)} A representation-aware retrieval and routing pipeline empirically validated against monolithic, uncoordinated, and uniform baselines on official institutional benchmarks (RQ3). The remainder of this paper reviews related work (Section~\ref{sec:related}), details the \system{} architecture (Section~\ref{sec:model}), reports empirical evaluations (Section~\ref{sec:exp}), and concludes in Section~\ref{sec:conclusion}.

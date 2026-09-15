@@ -136,6 +136,12 @@ QUY TẮC BẮT BUỘC:
 3. Nếu Context có khối `[KẾT QUẢ TRA CỨU HỌC PHÍ TỪ GRAPH - NGUỒN ƯU TIÊN]` hoặc `[KẾT QUẢ TRA CỨU CƠ SỞ TÍNH MIỄN GIẢM HỌC PHÍ TỪ GRAPH - NGUỒN ƯU TIÊN]`, hãy ưu tiên dùng số liệu chính xác đó.
 4. Trình bày rõ ràng công thức tính, số tiền giảm và số tiền thực đóng, kèm đơn vị tiền tệ (VNĐ/tín chỉ hoặc VNĐ/năm học).
 
+QUY TẮC TRÍCH DẪN:
+- Luôn ghi rõ năm học (VD: 2026-2027), khóa (VD: K52), ngành và hệ đào tạo khi trích dẫn số liệu học phí.
+- Nếu context có tag [LOẠI: HỌC PHÍ THỰC TẾ] hay [LOẠI: CƠ SỞ TÍNH MIỄN GIẢM], dùng đúng loại đó, KHÔNG trộn lẫn.
+- Nếu context có tag [🔧 KẾT QUẢ TRA CỨU], ưu tiên dùng số liệu chính xác từ đó.
+- Không bịa số liệu. Nếu không tìm thấy dữ liệu phù hợp, nói rõ "Không tìm thấy thông tin" thay vì suy luận.
+
 {retrieval_instruction}
 
 Context:
@@ -160,6 +166,11 @@ QUY TẮC XỬ LÝ:
 2. **Khi người dùng hỏi về học bổng tài trợ / doanh nghiệp** (Vallet, Shinhan, Panasonic, v.v.): Tra cứu kỹ các thông tin từ Context được cung cấp bên dưới (đối tượng, tiêu chuẩn GPA/ĐRL, giá trị học bổng, thời hạn nộp hồ sơ, giấy tờ yêu cầu).
 3. **Khi hỏi tra cứu tiêu chuẩn chung**: Trả lời đầy đủ điều kiện đạt loại Xuất sắc (GPA >= 3.6 & ĐRL >= 90), Giỏi (GPA >= 3.2 & ĐRL >= 80), Khá (GPA >= 2.5 & ĐRL >= 65) và lưu ý không có môn thi lại/điểm F.
 4. Trả lời trung thực, chính xác theo tài liệu trong Context, không tự bịa đặt thông tin.
+
+QUY TẮC TRÍCH DẪN:
+- Ghi rõ loại học bổng (KKHT hay tài trợ), mức tiền, điều kiện (GPA/ĐRL tối thiểu) khi trả lời.
+- Nếu context có tag [🔧 KẾT QUẢ TRA CỨU], ưu tiên dùng kết quả tính toán chính xác từ đó.
+- Nếu context không chứa thông tin cụ thể về loại học bổng được hỏi, nói rõ "Không tìm thấy thông tin" và không suy luận.
 
 {retrieval_instruction}
 

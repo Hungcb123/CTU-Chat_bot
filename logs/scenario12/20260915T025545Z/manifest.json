@@ -1,0 +1,56 @@
+{
+  "created_at_utc": "2026-09-15T02:55:45.920544+00:00",
+  "split": "heldout",
+  "dataset": "/mnt/d/Project/Chatbot/data/scenario12_heldout.jsonl",
+  "case_count": 1,
+  "scenario": "1",
+  "model": "gemini-2.5-flash-lite",
+  "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+  "temperature": 0.0,
+  "workers": 10,
+  "repetitions": 3,
+  "signature": {
+    "dataset_sha256": "f82eb42e0cfe3cd3149fb2390a6a17ecf16de2f67d52bc80ab3cbaa7dde276c1",
+    "code_sha256": "3e2b091066be720313fe0ded0a5d5b282aaa2ff2477ba8a1a9a07dcea2b36efd",
+    "prompt_sha256": "e551e032b3237c45f51d7a8fffd5eeab399729035ea134fc8380ddfcc0156aee",
+    "judge_rubric_sha256": "7b8d38fb2bc5f438ef93be5f0e6a94c21e07bd4207a771e7f2571eb17cbf277a",
+    "graph_data_sha256": "c40803c485da5bee9e4a8afc6018c16dbe0f1e1e00046b1b7aea96bad2bbf1fd",
+    "catalog_sha256": "456b923d09b33d5010e358b500b3b2336add137a3b6dfdc8f3aedb92a4177ba8",
+    "model": "gemini-2.5-flash-lite",
+    "ragas_version": "0.4.3",
+    "top_k": 7,
+    "metric_k": 10,
+    "scenario": "1",
+    "split": "heldout",
+    "limit": 1,
+    "configurations": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "generation": {
+      "temperature": 0.0,
+      "repetitions": 3,
+      "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+      "embedding_backend": "local",
+      "location": "us-central1"
+    }
+  },
+  "artifact_sha256": {
+    "records.jsonl": "2d0290fe257156e2fc26e9af5856f81bf9fadeb785a4efff2e0c57c8200ee6b3",
+    "summary.json": "2c2b0b9149c585f66412fb72db6ed5a268ab0e1fa865ddb04655e7aadcc9fb49",
+    "comparison.md": "cec4d50a9aa63c8b403b39f456639ba99444cd01ce328a0c9b922cead32512f9",
+    "failures.md": "ffb7aecd2fcfd8c6f5152e79177dc60fc060cc712bbb3f20ce366d317b19f1a8",
+    "checkpoint.json": "fe7015b836aa58b703fdfcba218ca93b08990c51d3ecd9dd45a6b624507a315e",
+    "run.log": "03f13c77b9c0a3272ab25273dff11d7e2801fd16abe0a07fee55ae4edfe3feba"
+  }
+}

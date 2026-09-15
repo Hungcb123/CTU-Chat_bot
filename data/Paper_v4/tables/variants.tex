@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Implemented online variants and their intended role.}
+\label{tab:variants}
+\resizebox{\linewidth}{!}{\begin{tabular}{p{2.0cm}p{5.0cm}p{4.5cm}}
+\hline
+Variant & Components & Role \\
+\hline
+B & BM25s + PyVi & Exact lexical retrieval \\
+D & Qdrant dense vectors & Semantic retrieval \\
+H & B + D + RRF & Hybrid parent retrieval \\
+R & H + BGE cross-encoder & Second-stage reranking \\
+A & R + LangGraph agents & Intent-aware orchestration \\
+T & A + typed tools / Neo4j & Calculations and academic relations \\
+\hline
+\end{tabular}}
+\end{table}
