@@ -39,17 +39,20 @@ MODEL = "gemini-2.5-flash-lite"
 TOP_K = 7
 METRIC_K = 10
 TEMPERATURE = 0.0
-GENERATION_PROMPT_VERSION = "scenario12_grounded_complete_answer_v3"
+GENERATION_PROMPT_VERSION = "scenario12_grounded_complete_answer_v4"
 RAGAS_RUBRIC_VERSION = "ragas-0.4-default-ar-cr-cp-ac-faith-v1"
 DEV_DATASET = ROOT / "data" / "scenario12_dev_100.jsonl"
 HELDOUT_DATASET = ROOT / "data" / "scenario12_heldout_100.jsonl"
+STRESS_DATASET = ROOT / "data" / "scenario12_stress_50.jsonl"
 LOG_ROOT = ROOT / "logs" / "scenario12"
 SERVICE_ACCOUNT = ROOT / "gen-lang-client-0656432358-9a6fb12696b2.json"
+if not SERVICE_ACCOUNT.exists() and (ROOT.parent / "gen-lang-client-0656432358-9a6fb12696b2.json").exists():
+    SERVICE_ACCOUNT = ROOT.parent / "gen-lang-client-0656432358-9a6fb12696b2.json"
 CONFIGS_S1 = ("E1", "E2", "E3", "E4", "E5")
 CONFIGS_S2 = ("T1", "T2", "T3", "T4", "T5", "T6", "T7")
 
 GENERATION_PROMPT = """Bạn là trợ lý tư vấn học vụ và học phí của Trường Đại học Cần Thơ (CTU).
-Chỉ dùng evidence được cung cấp. Hãy trả lời câu hỏi bằng câu hoàn chỉnh, rõ ràng, nêu rõ chủ thể được hỏi (tên ngành, khóa, hệ đào tạo, học bổng hoặc thủ tục tương ứng) kèm dữ kiện số liệu hoặc quy định chính xác.
+Chỉ dùng evidence được cung cấp. Hãy trả lời câu hỏi bằng câu hoàn chỉnh, rõ ràng, nêu rõ chủ thể được hỏi (tên ngành, khóa, năm học áp dụng nếu có, hệ đào tạo, học bổng hoặc thủ tục tương ứng) kèm dữ kiện số liệu hoặc quy định chính xác.
 Không tự tính toán hoặc suy luận ra con số mới. Chỉ trích dẫn số liệu xuất hiện nguyên văn trong evidence.
 Nếu evidence chỉ hỗ trợ một phần, trả lời phần biết được và nêu phần còn thiếu.
 Chỉ nói không tìm thấy khi toàn bộ evidence không có dữ kiện liên quan.
@@ -182,6 +185,30 @@ def retrieval_metrics(sources: list[str], gold: list[str]) -> dict[str, float]:
     }
 
 
+def _fact_in_answer(fact: str, answer_norm: str, answer_collapsed: str) -> bool:
+    f_norm = normalize_text(fact)
+    f_collapsed = __import__("re").sub(r"(?<=\d)\s+(?=\d)", "", f_norm)
+    if f_norm in answer_norm or f_collapsed in answer_collapsed:
+        return True
+    if f_collapsed.isdigit():
+        val = int(f_collapsed)
+        if val >= 1_000_000:
+            if val % 1_000_000 == 0:
+                t = val // 1_000_000
+                if any(v in answer_norm for v in (f"{t} trieu", f"{t}tr", f"{t} tr")):
+                    return True
+            elif val % 100_000 == 0:
+                t = val / 1_000_000
+                t_str = f"{t:.1f}".replace(".", " ")
+                if f"{t_str} trieu" in answer_norm or f"{t:.1f} trieu" in answer_norm:
+                    return True
+        if val >= 1_000 and val % 1_000 == 0:
+            k = val // 1_000
+            if any(v in answer_norm for v in (f"{k} ngan", f"{k} nghin", f"{k}k")):
+                return True
+    return False
+
+
 def factual_exact_match(case: ScenarioCase, answer: str) -> float:
     facts = case.required_facts
     if not facts:
@@ -191,7 +218,8 @@ def factual_exact_match(case: ScenarioCase, answer: str) -> float:
     if not facts:
         return float(bool(normalize_text(answer)))
     normalized_answer = normalize_text(answer)
-    return sum(normalize_text(fact) in normalized_answer for fact in facts) / len(facts)
+    collapsed_answer = __import__("re").sub(r"(?<=\d)\s+(?=\d)", "", normalized_answer)
+    return sum(_fact_in_answer(fact, normalized_answer, collapsed_answer) for fact in facts) / len(facts)
 
 
 def document_payload(document: Any) -> dict[str, Any]:
@@ -446,6 +474,36 @@ def aggregate(cases: list[ScenarioCase], checkpoint: dict[str, Any], args: argpa
             summary["scenario1"][config]["per_domain"] = per_domain
             if per_domain:
                 summary["scenario1"][config]["macro_hit_at_1"] = mean([d["hit_at_1"] for d in per_domain.values()])
+            per_category = {}
+            categories = sorted(list({c.category for c in cases if c.category}))
+            for cat in categories:
+                cat_cases = [c for c in cases if c.category == cat]
+                if cat_cases:
+                    cat_rows = [checkpoint["retrieval"][c.case_id]["configs"][config] for c in cat_cases]
+                    per_category[cat] = {
+                        "n": len(cat_cases),
+                        "hit_at_1": mean([r["metrics"]["hit_at_1"] for r in cat_rows]),
+                        "hit_at_3": mean([r["metrics"]["hit_at_3"] for r in cat_rows]),
+                        "precision_at_5": mean([r["metrics"]["precision_at_5"] for r in cat_rows]),
+                        "recall_at_5": mean([r["metrics"]["recall_at_5"] for r in cat_rows]),
+                        "mrr_at_10": mean([r["metrics"]["mrr_at_10"] for r in cat_rows]),
+                    }
+            summary["scenario1"][config]["per_category"] = per_category
+            per_tier = {}
+            tiers = sorted(list({getattr(c, "complexity_tier", "") for c in cases if getattr(c, "complexity_tier", "")}))
+            for tier in tiers:
+                tier_cases = [c for c in cases if getattr(c, "complexity_tier", "") == tier]
+                if tier_cases:
+                    t_rows = [checkpoint["retrieval"][c.case_id]["configs"][config] for c in tier_cases]
+                    per_tier[tier] = {
+                        "n": len(tier_cases),
+                        "hit_at_1": mean([r["metrics"]["hit_at_1"] for r in t_rows]),
+                        "hit_at_3": mean([r["metrics"]["hit_at_3"] for r in t_rows]),
+                        "precision_at_5": mean([r["metrics"]["precision_at_5"] for r in t_rows]),
+                        "recall_at_5": mean([r["metrics"]["recall_at_5"] for r in t_rows]),
+                        "mrr_at_10": mean([r["metrics"]["mrr_at_10"] for r in t_rows]),
+                    }
+            summary["scenario1"][config]["per_tier"] = per_tier
     if args.scenario in {"2", "all"}:
         for config in CONFIGS_S2:
             config_summary: dict[str, Any] = {}
@@ -514,7 +572,7 @@ def write_reports(run_dir: Path, cases: list[ScenarioCase], checkpoint: dict[str
         comparison.extend(["## Scenario 1: Overall Retrieval Metrics", "", "| Config | H@1 | H@3 | P@5 | R@5 | MRR@10 | Latency ms |", "|---|---:|---:|---:|---:|---:|---:|"])
         for config, row in summary["scenario1"].items():
             comparison.append(f"| {config} | {row['hit_at_1']:.4f} | {row['hit_at_3']:.4f} | {row['precision_at_5']:.4f} | {row['recall_at_5']:.4f} | {row['mrr_at_10']:.4f} | {row['latency_ms']:.2f} |")
-        comparison.extend(["", "### Per-Domain Hit@1 (N=25 each) and Macro-Average", "", "| Config | Academic | Financial | Scholarship | General | Macro-Avg H@1 | Micro-Avg H@1 |", "|---|---:|---:|---:|---:|---:|---:|"])
+        comparison.extend(["", "### Per-Domain Hit@1 and Macro-Average", "", "| Config | Academic | Financial | Scholarship | General | Macro-Avg H@1 | Micro-Avg H@1 |", "|---|---:|---:|---:|---:|---:|---:|"])
         for config, row in summary["scenario1"].items():
             pd = row.get("per_domain", {})
             acad = pd.get("academic", {}).get("hit_at_1", 0.0)
@@ -524,6 +582,24 @@ def write_reports(run_dir: Path, cases: list[ScenarioCase], checkpoint: dict[str
             macro = row.get("macro_hit_at_1", 0.0)
             micro = row.get("hit_at_1", 0.0)
             comparison.append(f"| {config} | {acad:.4f} | {fin:.4f} | {sch:.4f} | {gen:.4f} | {macro:.4f} | {micro:.4f} |")
+        all_cats = sorted(list({c.category for c in cases if c.category}))
+        if all_cats:
+            cat_header = " | ".join(all_cats)
+            cat_sep = " | ".join(["---:"] * len(all_cats))
+            comparison.extend(["", f"### Per-Category / Stress Type Hit@1 (N={len(cases)})", "", f"| Config | {cat_header} |", f"|---|{cat_sep}|"])
+            for config, row in summary["scenario1"].items():
+                pc = row.get("per_category", {})
+                cat_vals = " | ".join(f"{pc.get(cat, {}).get('hit_at_1', 0.0):.4f}" for cat in all_cats)
+                comparison.append(f"| {config} | {cat_vals} |")
+        all_tiers = sorted(list({getattr(c, "complexity_tier", "") for c in cases if getattr(c, "complexity_tier", "")}))
+        if all_tiers:
+            tier_header = " | ".join(all_tiers)
+            tier_sep = " | ".join(["---:"] * len(all_tiers))
+            comparison.extend(["", f"### Per-Complexity-Tier Hit@1 (N={len(cases)})", "", f"| Config | {tier_header} |", f"|---|{tier_sep}|"])
+            for config, row in summary["scenario1"].items():
+                pt = row.get("per_tier", {})
+                t_vals = " | ".join(f"{pt.get(t, {}).get('hit_at_1', 0.0):.4f}" for t in all_tiers)
+                comparison.append(f"| {config} | {t_vals} |")
     if summary["scenario2"]:
         comparison.extend(["", "## Scenario 2", "", "| Config | AR | CR | CP | AC | Source recall | Source AP | Fact EM |", "|---|---:|---:|---:|---:|---:|---:|---:|"])
         for config, row in summary["scenario2"].items():
@@ -541,7 +617,7 @@ def write_reports(run_dir: Path, cases: list[ScenarioCase], checkpoint: dict[str
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scenario", choices=("1", "2", "all"), default="all")
-    parser.add_argument("--split", choices=("dev", "heldout"), default="dev")
+    parser.add_argument("--split", choices=("dev", "heldout", "stress"), default="dev")
     parser.add_argument("--dataset", type=Path)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--workers", type=int, default=10)
@@ -564,7 +640,14 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    dataset = (args.dataset or (DEV_DATASET if args.split == "dev" else HELDOUT_DATASET)).resolve()
+    if args.dataset:
+        dataset = args.dataset.resolve()
+    elif args.split == "stress":
+        dataset = STRESS_DATASET.resolve()
+    elif args.split == "heldout":
+        dataset = HELDOUT_DATASET.resolve()
+    else:
+        dataset = DEV_DATASET.resolve()
     cases = load_cases(dataset, require_approved=args.split == "heldout")
     if args.limit:
         cases = cases[:args.limit]

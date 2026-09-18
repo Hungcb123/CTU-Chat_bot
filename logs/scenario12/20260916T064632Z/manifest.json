@@ -1,0 +1,56 @@
+{
+  "created_at_utc": "2026-09-16T06:46:32.476946+00:00",
+  "split": "heldout",
+  "dataset": "/mnt/d/Project/Chatbot/data/scenario12_heldout_100.jsonl",
+  "case_count": 100,
+  "scenario": "1",
+  "model": "gemini-2.5-flash-lite",
+  "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+  "temperature": 0.0,
+  "workers": 10,
+  "repetitions": 3,
+  "signature": {
+    "dataset_sha256": "e337e55dc045882559da342613e58ee13c4743083bd1d301ea757ce84dfc4722",
+    "code_sha256": "8ba76a6e9a2d5d11651300981342aa06394c77901399203c42732c0d6ae054b3",
+    "prompt_sha256": "c9ed553eb78e46b92d1cd6e10cfb1d4c79929c7e227299eec5ac0c7a79fb4032",
+    "judge_rubric_sha256": "7b8d38fb2bc5f438ef93be5f0e6a94c21e07bd4207a771e7f2571eb17cbf277a",
+    "graph_data_sha256": "c40803c485da5bee9e4a8afc6018c16dbe0f1e1e00046b1b7aea96bad2bbf1fd",
+    "catalog_sha256": "456b923d09b33d5010e358b500b3b2336add137a3b6dfdc8f3aedb92a4177ba8",
+    "model": "gemini-2.5-flash-lite",
+    "ragas_version": "0.4.3",
+    "top_k": 7,
+    "metric_k": 10,
+    "scenario": "1",
+    "split": "heldout",
+    "limit": null,
+    "configurations": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "generation": {
+      "temperature": 0.0,
+      "repetitions": 3,
+      "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+      "embedding_backend": "local",
+      "location": "us-central1"
+    }
+  },
+  "artifact_sha256": {
+    "records.jsonl": "c6c4a41eb467cccea35b15cf2da13df8633562e4b1c5f80565d2627ef98990d5",
+    "summary.json": "a4540e5226d0ad80601bd72e6546aa186a44d2fe4e9daed89f211d033878e663",
+    "comparison.md": "cde980f06a27b945f67d8239a68bf21eed4b6dd9a9316912c26dec7082da8af0",
+    "failures.md": "ffb7aecd2fcfd8c6f5152e79177dc60fc060cc712bbb3f20ce366d317b19f1a8",
+    "checkpoint.json": "a678130fd70c8cdb0d658621f881d0e22721f45dbf9bb2abd308df2b9d67fa03",
+    "run.log": "e73d060774776b02e2fe788b3fa6c4901304aa462bb2e9dcf9e0e1536fb38b77"
+  }
+}

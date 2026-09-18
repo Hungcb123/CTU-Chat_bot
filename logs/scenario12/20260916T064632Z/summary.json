@@ -1,0 +1,961 @@
+{
+  "scenario1": {
+    "E1": {
+      "hit_at_1": 0.53,
+      "hit_at_3": 0.76,
+      "precision_at_5": 0.1979999999999998,
+      "recall_at_5": 0.7133333333333334,
+      "mrr_at_10": 0.6661349206349206,
+      "latency_ms": 9.788576450009145,
+      "per_domain": {
+        "academic": {
+          "n": 19,
+          "hit_at_1": 0.5789473684210527,
+          "hit_at_3": 0.8421052631578947,
+          "mrr_at_10": 0.7289473684210527
+        },
+        "financial": {
+          "n": 28,
+          "hit_at_1": 0.6785714285714286,
+          "hit_at_3": 0.8928571428571429,
+          "mrr_at_10": 0.7916666666666667
+        },
+        "scholarship": {
+          "n": 17,
+          "hit_at_1": 0.4117647058823529,
+          "hit_at_3": 0.6470588235294118,
+          "mrr_at_10": 0.5639589169000935
+        },
+        "general": {
+          "n": 16,
+          "hit_at_1": 0.3125,
+          "hit_at_3": 0.5625,
+          "mrr_at_10": 0.4693452380952381
+        }
+      },
+      "macro_hit_at_1": 0.4954458757187086,
+      "per_category": {
+        "academic_program": {
+          "n": 12,
+          "hit_at_1": 0.5,
+          "hit_at_3": 0.75,
+          "precision_at_5": 0.16666666666666666,
+          "recall_at_5": 0.75,
+          "mrr_at_10": 0.6680555555555556
+        },
+        "academic_rules": {
+          "n": 9,
+          "hit_at_1": 0.4444444444444444,
+          "hit_at_3": 0.6666666666666666,
+          "precision_at_5": 0.2,
+          "recall_at_5": 0.6666666666666666,
+          "mrr_at_10": 0.5777777777777778
+        },
+        "actual_tuition": {
+          "n": 9,
+          "hit_at_1": 0.7777777777777778,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.19999999999999998,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.8888888888888888
+        },
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.4,
+          "precision_at_5": 0.08,
+          "recall_at_5": 0.4,
+          "mrr_at_10": 0.32857142857142857
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 0.7,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24000000000000005,
+          "recall_at_5": 0.95,
+          "mrr_at_10": 0.8333333333333334
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.55,
+          "hit_at_3": 0.75,
+          "precision_at_5": 0.23000000000000004,
+          "recall_at_5": 0.575,
+          "mrr_at_10": 0.675
+        },
+        "exemption_basis": {
+          "n": 1,
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "precision_at_5": 0.2,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.25
+        },
+        "exemption_policy": {
+          "n": 2,
+          "hit_at_1": 0.5,
+          "hit_at_3": 0.5,
+          "precision_at_5": 0.2,
+          "recall_at_5": 0.5,
+          "mrr_at_10": 0.5
+        },
+        "financial_policy": {
+          "n": 5,
+          "hit_at_1": 0.6,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24000000000000005,
+          "recall_at_5": 0.6,
+          "mrr_at_10": 0.7666666666666666
+        },
+        "scholarship": {
+          "n": 15,
+          "hit_at_1": 0.4666666666666667,
+          "hit_at_3": 0.6666666666666666,
+          "precision_at_5": 0.18666666666666668,
+          "recall_at_5": 0.7333333333333333,
+          "mrr_at_10": 0.6058201058201059
+        },
+        "social_support": {
+          "n": 4,
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.5,
+          "precision_at_5": 0.1,
+          "recall_at_5": 0.20833333333333331,
+          "mrr_at_10": 0.25
+        },
+        "student_loan": {
+          "n": 3,
+          "hit_at_1": 0.6666666666666666,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.20000000000000004,
+          "recall_at_5": 0.8333333333333334,
+          "mrr_at_10": 0.8333333333333334
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 0.8,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.24,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.85
+        }
+      },
+      "per_tier": {
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.4,
+          "precision_at_5": 0.08,
+          "recall_at_5": 0.4,
+          "mrr_at_10": 0.32857142857142857
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 0.7,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24000000000000005,
+          "recall_at_5": 0.95,
+          "mrr_at_10": 0.8333333333333334
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.55,
+          "hit_at_3": 0.75,
+          "precision_at_5": 0.23000000000000004,
+          "recall_at_5": 0.575,
+          "mrr_at_10": 0.675
+        },
+        "direct": {
+          "n": 40,
+          "hit_at_1": 0.45,
+          "hit_at_3": 0.65,
+          "precision_at_5": 0.15000000000000008,
+          "recall_at_5": 0.75,
+          "mrr_at_10": 0.5909325396825397
+        },
+        "multi_hop": {
+          "n": 20,
+          "hit_at_1": 0.6,
+          "hit_at_3": 0.95,
+          "precision_at_5": 0.26000000000000006,
+          "recall_at_5": 0.6666666666666667,
+          "mrr_at_10": 0.7625000000000001
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 0.8,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.24,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.85
+        }
+      }
+    },
+    "E2": {
+      "hit_at_1": 0.42,
+      "hit_at_3": 0.63,
+      "precision_at_5": 0.15399999999999991,
+      "recall_at_5": 0.5541666666666667,
+      "mrr_at_10": 0.5223333333333334,
+      "latency_ms": 50.804728529996055,
+      "per_domain": {
+        "academic": {
+          "n": 19,
+          "hit_at_1": 0.3157894736842105,
+          "hit_at_3": 0.631578947368421,
+          "mrr_at_10": 0.47543859649122805
+        },
+        "financial": {
+          "n": 28,
+          "hit_at_1": 0.32142857142857145,
+          "hit_at_3": 0.4642857142857143,
+          "mrr_at_10": 0.3898809523809524
+        },
+        "scholarship": {
+          "n": 17,
+          "hit_at_1": 0.6470588235294118,
+          "hit_at_3": 0.7647058823529411,
+          "mrr_at_10": 0.696078431372549
+        },
+        "general": {
+          "n": 16,
+          "hit_at_1": 0.25,
+          "hit_at_3": 0.625,
+          "mrr_at_10": 0.4322916666666667
+        }
+      },
+      "macro_hit_at_1": 0.3835692171605485,
+      "per_category": {
+        "academic_program": {
+          "n": 12,
+          "hit_at_1": 0.3333333333333333,
+          "hit_at_3": 0.5,
+          "precision_at_5": 0.11666666666666665,
+          "recall_at_5": 0.5416666666666666,
+          "mrr_at_10": 0.43333333333333335
+        },
+        "academic_rules": {
+          "n": 9,
+          "hit_at_1": 0.1111111111111111,
+          "hit_at_3": 0.6666666666666666,
+          "precision_at_5": 0.2,
+          "recall_at_5": 0.6666666666666666,
+          "mrr_at_10": 0.39814814814814814
+        },
+        "actual_tuition": {
+          "n": 9,
+          "hit_at_1": 0.5555555555555556,
+          "hit_at_3": 0.6666666666666666,
+          "precision_at_5": 0.13333333333333333,
+          "recall_at_5": 0.6666666666666666,
+          "mrr_at_10": 0.5925925925925926
+        },
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.6,
+          "precision_at_5": 0.12000000000000002,
+          "recall_at_5": 0.45,
+          "mrr_at_10": 0.4666666666666666
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.3,
+          "precision_at_5": 0.08,
+          "recall_at_5": 0.3,
+          "mrr_at_10": 0.25
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.6,
+          "hit_at_3": 0.75,
+          "precision_at_5": 0.20000000000000004,
+          "recall_at_5": 0.5083333333333333,
+          "mrr_at_10": 0.6766666666666666
+        },
+        "exemption_basis": {
+          "n": 1,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.2,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 1.0
+        },
+        "exemption_policy": {
+          "n": 2,
+          "hit_at_1": 0.5,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.30000000000000004,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.75
+        },
+        "financial_policy": {
+          "n": 5,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.4,
+          "precision_at_5": 0.08,
+          "recall_at_5": 0.2,
+          "mrr_at_10": 0.3
+        },
+        "scholarship": {
+          "n": 15,
+          "hit_at_1": 0.7333333333333333,
+          "hit_at_3": 0.8666666666666667,
+          "precision_at_5": 0.18666666666666665,
+          "recall_at_5": 0.7666666666666667,
+          "mrr_at_10": 0.7888888888888889
+        },
+        "social_support": {
+          "n": 4,
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.25,
+          "precision_at_5": 0.05,
+          "recall_at_5": 0.125,
+          "mrr_at_10": 0.08333333333333333
+        },
+        "student_loan": {
+          "n": 3,
+          "hit_at_1": 0.3333333333333333,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.20000000000000004,
+          "recall_at_5": 0.8333333333333334,
+          "mrr_at_10": 0.6666666666666666
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.4,
+          "precision_at_5": 0.16,
+          "recall_at_5": 0.6,
+          "mrr_at_10": 0.31666666666666665
+        }
+      },
+      "per_tier": {
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.6,
+          "precision_at_5": 0.12000000000000002,
+          "recall_at_5": 0.45,
+          "mrr_at_10": 0.4666666666666666
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.3,
+          "precision_at_5": 0.08,
+          "recall_at_5": 0.3,
+          "mrr_at_10": 0.25
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.6,
+          "hit_at_3": 0.75,
+          "precision_at_5": 0.20000000000000004,
+          "recall_at_5": 0.5083333333333333,
+          "mrr_at_10": 0.6766666666666666
+        },
+        "direct": {
+          "n": 40,
+          "hit_at_1": 0.475,
+          "hit_at_3": 0.65,
+          "precision_at_5": 0.14000000000000007,
+          "recall_at_5": 0.7,
+          "mrr_at_10": 0.5654166666666666
+        },
+        "multi_hop": {
+          "n": 20,
+          "hit_at_1": 0.3,
+          "hit_at_3": 0.7,
+          "precision_at_5": 0.18000000000000002,
+          "recall_at_5": 0.45,
+          "mrr_at_10": 0.4833333333333333
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.4,
+          "precision_at_5": 0.16,
+          "recall_at_5": 0.6,
+          "mrr_at_10": 0.31666666666666665
+        }
+      }
+    },
+    "E3": {
+      "hit_at_1": 0.5,
+      "hit_at_3": 0.78,
+      "precision_at_5": 0.20399999999999982,
+      "recall_at_5": 0.7308333333333334,
+      "mrr_at_10": 0.6567738095238096,
+      "latency_ms": 53.10149295999337,
+      "per_domain": {
+        "academic": {
+          "n": 19,
+          "hit_at_1": 0.47368421052631576,
+          "hit_at_3": 0.8947368421052632,
+          "mrr_at_10": 0.6632205513784462
+        },
+        "financial": {
+          "n": 28,
+          "hit_at_1": 0.42857142857142855,
+          "hit_at_3": 0.7857142857142857,
+          "mrr_at_10": 0.6241496598639457
+        },
+        "scholarship": {
+          "n": 17,
+          "hit_at_1": 0.5882352941176471,
+          "hit_at_3": 0.7058823529411765,
+          "mrr_at_10": 0.6911764705882353
+        },
+        "general": {
+          "n": 16,
+          "hit_at_1": 0.3125,
+          "hit_at_3": 0.6875,
+          "mrr_at_10": 0.5125
+        }
+      },
+      "macro_hit_at_1": 0.4507477333038479,
+      "per_category": {
+        "academic_program": {
+          "n": 12,
+          "hit_at_1": 0.3333333333333333,
+          "hit_at_3": 0.8333333333333334,
+          "precision_at_5": 0.16666666666666666,
+          "recall_at_5": 0.75,
+          "mrr_at_10": 0.5500992063492064
+        },
+        "academic_rules": {
+          "n": 9,
+          "hit_at_1": 0.6666666666666666,
+          "hit_at_3": 0.6666666666666666,
+          "precision_at_5": 0.2,
+          "recall_at_5": 0.6666666666666666,
+          "mrr_at_10": 0.7074074074074075
+        },
+        "actual_tuition": {
+          "n": 9,
+          "hit_at_1": 0.5555555555555556,
+          "hit_at_3": 0.7777777777777778,
+          "precision_at_5": 0.19999999999999998,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.7222222222222222
+        },
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.6,
+          "precision_at_5": 0.12000000000000002,
+          "recall_at_5": 0.45,
+          "mrr_at_10": 0.4
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.19999999999999998,
+          "recall_at_5": 0.8,
+          "mrr_at_10": 0.6226190476190476
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.7,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.2500000000000001,
+          "recall_at_5": 0.625,
+          "mrr_at_10": 0.7825
+        },
+        "exemption_basis": {
+          "n": 1,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.2,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 1.0
+        },
+        "exemption_policy": {
+          "n": 2,
+          "hit_at_1": 0.5,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.30000000000000004,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.75
+        },
+        "financial_policy": {
+          "n": 5,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.24000000000000005,
+          "recall_at_5": 0.6,
+          "mrr_at_10": 0.5
+        },
+        "scholarship": {
+          "n": 15,
+          "hit_at_1": 0.6666666666666666,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.21333333333333335,
+          "recall_at_5": 0.8666666666666667,
+          "mrr_at_10": 0.7666666666666667
+        },
+        "social_support": {
+          "n": 4,
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.5,
+          "precision_at_5": 0.1,
+          "recall_at_5": 0.20833333333333331,
+          "mrr_at_10": 0.20833333333333331
+        },
+        "student_loan": {
+          "n": 3,
+          "hit_at_1": 0.3333333333333333,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.20000000000000004,
+          "recall_at_5": 0.8333333333333334,
+          "mrr_at_10": 0.6666666666666666
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.2,
+          "recall_at_5": 0.8,
+          "mrr_at_10": 0.6
+        }
+      },
+      "per_tier": {
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.2,
+          "hit_at_3": 0.6,
+          "precision_at_5": 0.12000000000000002,
+          "recall_at_5": 0.45,
+          "mrr_at_10": 0.4
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.19999999999999998,
+          "recall_at_5": 0.8,
+          "mrr_at_10": 0.6226190476190476
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.7,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.2500000000000001,
+          "recall_at_5": 0.625,
+          "mrr_at_10": 0.7825
+        },
+        "direct": {
+          "n": 40,
+          "hit_at_1": 0.475,
+          "hit_at_3": 0.75,
+          "precision_at_5": 0.1650000000000001,
+          "recall_at_5": 0.825,
+          "mrr_at_10": 0.6337797619047619
+        },
+        "multi_hop": {
+          "n": 20,
+          "hit_at_1": 0.5,
+          "hit_at_3": 0.85,
+          "precision_at_5": 0.26000000000000006,
+          "recall_at_5": 0.6666666666666667,
+          "mrr_at_10": 0.6725
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.2,
+          "recall_at_5": 0.8,
+          "mrr_at_10": 0.6
+        }
+      }
+    },
+    "E4": {
+      "hit_at_1": 0.68,
+      "hit_at_3": 0.9,
+      "precision_at_5": 0.2319999999999998,
+      "recall_at_5": 0.8275,
+      "mrr_at_10": 0.7904285714285715,
+      "latency_ms": 15624.325647439971,
+      "per_domain": {
+        "academic": {
+          "n": 19,
+          "hit_at_1": 0.7368421052631579,
+          "hit_at_3": 0.8947368421052632,
+          "mrr_at_10": 0.8175438596491228
+        },
+        "financial": {
+          "n": 28,
+          "hit_at_1": 0.7857142857142857,
+          "hit_at_3": 0.9642857142857143,
+          "mrr_at_10": 0.875
+        },
+        "scholarship": {
+          "n": 17,
+          "hit_at_1": 0.7647058823529411,
+          "hit_at_3": 0.8823529411764706,
+          "mrr_at_10": 0.8352941176470587
+        },
+        "general": {
+          "n": 16,
+          "hit_at_1": 0.3125,
+          "hit_at_3": 0.75,
+          "mrr_at_10": 0.5297619047619048
+        }
+      },
+      "macro_hit_at_1": 0.6499405683325962,
+      "per_category": {
+        "academic_program": {
+          "n": 12,
+          "hit_at_1": 0.6666666666666666,
+          "hit_at_3": 0.8333333333333334,
+          "precision_at_5": 0.18333333333333332,
+          "recall_at_5": 0.875,
+          "mrr_at_10": 0.7666666666666666
+        },
+        "academic_rules": {
+          "n": 9,
+          "hit_at_1": 0.4444444444444444,
+          "hit_at_3": 0.7777777777777778,
+          "precision_at_5": 0.2222222222222222,
+          "recall_at_5": 0.7222222222222222,
+          "mrr_at_10": 0.6084656084656085
+        },
+        "actual_tuition": {
+          "n": 9,
+          "hit_at_1": 0.8888888888888888,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.19999999999999998,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.9444444444444444
+        },
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.6,
+          "precision_at_5": 0.12000000000000002,
+          "recall_at_5": 0.45,
+          "mrr_at_10": 0.4666666666666666
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 0.8,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24,
+          "recall_at_5": 0.95,
+          "mrr_at_10": 0.9
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.7,
+          "hit_at_3": 0.95,
+          "precision_at_5": 0.31000000000000005,
+          "recall_at_5": 0.7833333333333334,
+          "mrr_at_10": 0.8166666666666668
+        },
+        "exemption_basis": {
+          "n": 1,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.2,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 1.0
+        },
+        "exemption_policy": {
+          "n": 2,
+          "hit_at_1": 0.5,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.30000000000000004,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.75
+        },
+        "financial_policy": {
+          "n": 5,
+          "hit_at_1": 0.8,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.27999999999999997,
+          "recall_at_5": 0.7,
+          "mrr_at_10": 0.9
+        },
+        "scholarship": {
+          "n": 15,
+          "hit_at_1": 0.8,
+          "hit_at_3": 0.9333333333333333,
+          "precision_at_5": 0.24000000000000002,
+          "recall_at_5": 0.9666666666666667,
+          "mrr_at_10": 0.88
+        },
+        "social_support": {
+          "n": 4,
+          "hit_at_1": 0.5,
+          "hit_at_3": 0.5,
+          "precision_at_5": 0.1,
+          "recall_at_5": 0.20833333333333331,
+          "mrr_at_10": 0.5
+        },
+        "student_loan": {
+          "n": 3,
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.20000000000000004,
+          "recall_at_5": 0.8333333333333334,
+          "mrr_at_10": 0.5
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 0.8,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.9
+        }
+      },
+      "per_tier": {
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.6,
+          "precision_at_5": 0.12000000000000002,
+          "recall_at_5": 0.45,
+          "mrr_at_10": 0.4666666666666666
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 0.8,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24,
+          "recall_at_5": 0.95,
+          "mrr_at_10": 0.9
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.7,
+          "hit_at_3": 0.95,
+          "precision_at_5": 0.31000000000000005,
+          "recall_at_5": 0.7833333333333334,
+          "mrr_at_10": 0.8166666666666668
+        },
+        "direct": {
+          "n": 40,
+          "hit_at_1": 0.65,
+          "hit_at_3": 0.875,
+          "precision_at_5": 0.1800000000000001,
+          "recall_at_5": 0.9,
+          "mrr_at_10": 0.7710714285714285
+        },
+        "multi_hop": {
+          "n": 20,
+          "hit_at_1": 0.7,
+          "hit_at_3": 0.9,
+          "precision_at_5": 0.2800000000000001,
+          "recall_at_5": 0.7166666666666667,
+          "mrr_at_10": 0.8016666666666665
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 0.8,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.9
+        }
+      }
+    },
+    "E5": {
+      "hit_at_1": 0.75,
+      "hit_at_3": 0.91,
+      "precision_at_5": 0.23799999999999977,
+      "recall_at_5": 0.8458333333333334,
+      "mrr_at_10": 0.8354285714285714,
+      "latency_ms": 17094.94017298001,
+      "per_domain": {
+        "academic": {
+          "n": 19,
+          "hit_at_1": 0.7368421052631579,
+          "hit_at_3": 0.9473684210526315,
+          "mrr_at_10": 0.8438596491228069
+        },
+        "financial": {
+          "n": 28,
+          "hit_at_1": 0.9285714285714286,
+          "hit_at_3": 1.0,
+          "mrr_at_10": 0.9642857142857143
+        },
+        "scholarship": {
+          "n": 17,
+          "hit_at_1": 0.7647058823529411,
+          "hit_at_3": 0.8823529411764706,
+          "mrr_at_10": 0.8352941176470587
+        },
+        "general": {
+          "n": 16,
+          "hit_at_1": 0.3125,
+          "hit_at_3": 0.75,
+          "mrr_at_10": 0.5453869047619048
+        }
+      },
+      "macro_hit_at_1": 0.6856548540468819,
+      "per_category": {
+        "academic_program": {
+          "n": 12,
+          "hit_at_1": 0.6666666666666666,
+          "hit_at_3": 0.9166666666666666,
+          "precision_at_5": 0.19999999999999998,
+          "recall_at_5": 0.9166666666666666,
+          "mrr_at_10": 0.8083333333333332
+        },
+        "academic_rules": {
+          "n": 9,
+          "hit_at_1": 0.4444444444444444,
+          "hit_at_3": 0.8888888888888888,
+          "precision_at_5": 0.24444444444444446,
+          "recall_at_5": 0.8333333333333334,
+          "mrr_at_10": 0.664021164021164
+        },
+        "actual_tuition": {
+          "n": 9,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.19999999999999998,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 1.0
+        },
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.16,
+          "recall_at_5": 0.55,
+          "mrr_at_10": 0.5666666666666667
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24,
+          "recall_at_5": 0.95,
+          "mrr_at_10": 1.0
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.85,
+          "hit_at_3": 0.9,
+          "precision_at_5": 0.31000000000000005,
+          "recall_at_5": 0.775,
+          "mrr_at_10": 0.8791666666666668
+        },
+        "exemption_basis": {
+          "n": 1,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.2,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 1.0
+        },
+        "exemption_policy": {
+          "n": 2,
+          "hit_at_1": 0.5,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.30000000000000004,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 0.75
+        },
+        "financial_policy": {
+          "n": 5,
+          "hit_at_1": 0.8,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.27999999999999997,
+          "recall_at_5": 0.7,
+          "mrr_at_10": 0.9
+        },
+        "scholarship": {
+          "n": 15,
+          "hit_at_1": 0.8,
+          "hit_at_3": 0.9333333333333333,
+          "precision_at_5": 0.24000000000000002,
+          "recall_at_5": 0.9666666666666667,
+          "mrr_at_10": 0.88
+        },
+        "social_support": {
+          "n": 4,
+          "hit_at_1": 0.5,
+          "hit_at_3": 0.5,
+          "precision_at_5": 0.1,
+          "recall_at_5": 0.20833333333333331,
+          "mrr_at_10": 0.5
+        },
+        "student_loan": {
+          "n": 3,
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.6666666666666666,
+          "precision_at_5": 0.20000000000000004,
+          "recall_at_5": 0.8333333333333334,
+          "mrr_at_10": 0.4166666666666667
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 1.0
+        }
+      },
+      "per_tier": {
+        "adversarial": {
+          "n": 5,
+          "hit_at_1": 0.4,
+          "hit_at_3": 0.8,
+          "precision_at_5": 0.16,
+          "recall_at_5": 0.55,
+          "mrr_at_10": 0.5666666666666667
+        },
+        "comparison": {
+          "n": 10,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24,
+          "recall_at_5": 0.95,
+          "mrr_at_10": 1.0
+        },
+        "cross_domain": {
+          "n": 20,
+          "hit_at_1": 0.85,
+          "hit_at_3": 0.9,
+          "precision_at_5": 0.31000000000000005,
+          "recall_at_5": 0.775,
+          "mrr_at_10": 0.8791666666666668
+        },
+        "direct": {
+          "n": 40,
+          "hit_at_1": 0.675,
+          "hit_at_3": 0.875,
+          "precision_at_5": 0.1850000000000001,
+          "recall_at_5": 0.925,
+          "mrr_at_10": 0.7898214285714286
+        },
+        "multi_hop": {
+          "n": 20,
+          "hit_at_1": 0.7,
+          "hit_at_3": 0.95,
+          "precision_at_5": 0.2900000000000001,
+          "recall_at_5": 0.7416666666666667,
+          "mrr_at_10": 0.8266666666666665
+        },
+        "temporal": {
+          "n": 5,
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "precision_at_5": 0.24,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 1.0
+        }
+      }
+    }
+  },
+  "scenario2": {},
+  "paired_differences": {}
+}

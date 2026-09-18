@@ -31,6 +31,7 @@ class ScenarioCase:
     is_composite: bool = False
     review_status: str = "development"
     domain: str = ""
+    complexity_tier: str = ""
 
 
 @dataclass
@@ -77,15 +78,17 @@ def _parse_sources(value: str) -> list[str]:
 
 def _resolve_case_domain(row: dict[str, Any]) -> str:
     d = str(row.get("domain") or "").lower().strip()
-    if d in ("academic", "financial", "scholarship", "general"):
+    if d in ("academic", "financial", "scholarship", "general") or "+" in d:
         return d
     cat = str(row.get("category") or "").lower().strip()
     if cat in ("academic_program", "academic"):
         return "academic"
-    if cat in ("actual_tuition", "exemption_policy", "exemption_basis", "tuition", "financial"):
+    if cat in ("actual_tuition", "exemption_policy", "exemption_basis", "tuition", "financial", "financial_policy"):
         return "financial"
     if cat in ("scholarship",):
         return "scholarship"
+    if cat in ("cross_domain",):
+        return "cross_domain"
     return "general"
 
 
@@ -107,6 +110,7 @@ def load_cases(dataset_path: Path, *, require_approved: bool = False) -> list[Sc
                 is_composite=bool(row.get("is_composite", False)),
                 review_status=str(row.get("review_status", "pending")),
                 domain=_resolve_case_domain(row),
+                complexity_tier=str(row.get("complexity_tier", "")),
             )
             for row in rows
         ]
@@ -127,6 +131,7 @@ def load_cases(dataset_path: Path, *, require_approved: bool = False) -> list[Sc
                 is_composite=str(row.get("Original ID") or "").startswith("CDICT"),
                 review_status="development",
                 domain=_resolve_case_domain(row),
+                complexity_tier=str(row.get("complexity_tier") or ""),
             )
             for index, row in enumerate(rows)
             if (row.get("Master Question") or row.get("Question") or "").strip()
@@ -442,28 +447,26 @@ def retrieve_configurations(
     graph_ms = (time.perf_counter() - started) * 1000
     gate_reasons.extend(graph_trace["gate_reasons"])
 
-    # Full Proposed Candidate Pool: Governed (targeted lanes) + Hybrid (safety net) + BM25 (lexical anchors) + Graph
-    proposed_candidates = unique_documents(list(governed) + list(hybrid_docs) + list(bm25_docs[:top_k]) + list(graph_docs))
-    no_graph_candidates = unique_documents(list(governed) + list(hybrid_docs) + list(bm25_docs[:top_k]))
-    no_gov_candidates = unique_documents(list(hybrid_docs) + list(bm25_docs[:top_k]) + list(graph_docs))
+    # Full Proposed Candidate Pool: Governed (targeted lanes) + Hybrid (safety net) + BM25 (lexical anchors)
+    governed_candidates = unique_documents(list(governed) + list(hybrid_docs) + list(bm25_docs[:top_k]))
 
-    # Joint Cross-Encoder Reranking for Full Proposed System (E5 / T4)
+    # Cross-Encoder Reranking for Governed Text Candidates
     started = time.perf_counter()
-    proposed_ranked_metric = rerank_documents(proposed_candidates, question, compressor, metric_k)
+    governed_ranked_metric = rerank_documents(governed_candidates, question, compressor, metric_k)
     proposed_rerank_ms = (time.perf_counter() - started) * 1000
-    proposed_ranked_top_k = list(proposed_ranked_metric[:top_k])
+    governed_ranked_top_k = list(governed_ranked_metric[:top_k])
 
     # Lexical Safeguard: If top BM25 candidates have high keyword relevance but were displaced
     # by cross-encoder semantic drift, ensure the best lexical match is retained in top_k
-    if bm25_docs and proposed_ranked_top_k:
-        top_k_ids = {getattr(d, "metadata", {}).get("doc_id") or id(d) for d in proposed_ranked_top_k}
+    if bm25_docs and governed_ranked_top_k:
+        top_k_ids = {getattr(d, "metadata", {}).get("doc_id") or id(d) for d in governed_ranked_top_k}
         q_tokens = [t for t in normalize_text(question).split() if len(t) >= 4]
         for candidate_bm25 in bm25_docs[:3]:
             cand_id = getattr(candidate_bm25, "metadata", {}).get("doc_id") or id(candidate_bm25)
             if cand_id not in top_k_ids:
                 cand_content = normalize_text(getattr(candidate_bm25, "page_content", ""))
                 if sum(t in cand_content for t in q_tokens) >= 2:
-                    proposed_ranked_top_k[-1] = candidate_bm25
+                    governed_ranked_top_k[-1] = candidate_bm25
                     break
 
     # Baseline & Ablation Rerankings
@@ -471,11 +474,17 @@ def retrieve_configurations(
     hybrid_ranked_metric = rerank_documents(hybrid_docs, question, compressor, metric_k)
     hybrid_rerank_ms = (time.perf_counter() - started) * 1000
 
-    # T6 (w/o Graph): Preserves BGE cross-encoder ranking without graph nodes
-    no_graph_ranked = [d for d in proposed_ranked_top_k if d.metadata.get("backend") != "graph"][:top_k]
+    # T4 (Proposed Full Stack): Priority-ordered packing via merge_with_quotas (Graph + Governed Reranked)
+    proposed_ranked_top_k = merge_with_quotas(governed_ranked_top_k, graph_docs, top_k=top_k)
+
+    # T6 (w/o Graph): Preserves BGE cross-encoder ranking of governed documents without graph nodes (full top_k budget)
+    no_graph_ranked = list(governed_ranked_top_k[:top_k])
 
     # T7 (w/o Governance): Hybrid reranked + Graph nodes
     no_gov_ranked = merge_with_quotas(hybrid_ranked_metric[:top_k], graph_docs, top_k=top_k)
+
+    # E5 (Proposed Retrieval): Multi-evidence ranking preserving graph quotas
+    proposed_metric_ranking = merge_with_quotas(governed_ranked_metric, graph_docs, top_k=metric_k)
 
     configs = {
         "T1": unique_documents(bm25_docs)[:top_k],
@@ -489,7 +498,7 @@ def retrieve_configurations(
         "E2": unique_documents(dense_docs)[:metric_k],
         "E3": unique_documents(hybrid_docs)[:metric_k],
         "E4": hybrid_ranked_metric,
-        "E5": proposed_ranked_metric,
+        "E5": proposed_metric_ranking,
     }
     return RetrievalTrace(
         configs=configs,
