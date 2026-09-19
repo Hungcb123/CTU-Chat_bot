@@ -1,4 +1,4 @@
-PWD /mnt/d/Project/Chatbot/data/Paper_V9/PAPER
+PWD /mnt/d/project/chatbot/data/Paper_V9/PAPER
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf

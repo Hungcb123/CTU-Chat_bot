@@ -60,8 +60,8 @@
 \newlabel{sec:model}{{3}{5}{Proposed Model}{section.1.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overall Proposed Architecture}{5}{subsection.1.3.1}\protected@file@percent }
 \newlabel{sec:architecture}{{3.1}{5}{Overall Proposed Architecture}{subsection.1.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Implemented \textsc  {CTU-Chat}{} architecture. The Chat API loads dialogue history from Redis and supplies it in the graph input state. The first conditional edge sends academic queries directly to the graph-enabled agent and sends the other domains through intent-scoped retrieval; the second edge dispatches the retrieved evidence to the selected domain-specialized agent. Solid agent--resource links denote direct tool access, whereas dashed links denote evidence acquisition performed by the retrieval node.}}{6}{figure.1.1}\protected@file@percent }
-\newlabel{fig:architecture}{{1}{6}{Implemented \system {} architecture. The Chat API loads dialogue history from Redis and supplies it in the graph input state. The first conditional edge sends academic queries directly to the graph-enabled agent and sends the other domains through intent-scoped retrieval; the second edge dispatches the retrieved evidence to the selected domain-specialized agent. Solid agent--resource links denote direct tool access, whereas dashed links denote evidence acquisition performed by the retrieval node}{figure.1.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Implemented \textsc  {CTU-Chat}{} architecture. Redis history enters the graph state; the supervisor's structured decision is contract-checked and may be repaired before conditional dispatch (repair is internal, not a separate node). Academic queries enter the graph-enabled agent, whereas other domains pass through intent-scoped retrieval. Solid and dashed links denote direct tool access and retrieval-node evidence acquisition, respectively.}}{6}{figure.1.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{6}{Implemented \system {} architecture. Redis history enters the graph state; the supervisor's structured decision is contract-checked and may be repaired before conditional dispatch (repair is internal, not a separate node). Academic queries enter the graph-enabled agent, whereas other domains pass through intent-scoped retrieval. Solid and dashed links denote direct tool access and retrieval-node evidence acquisition, respectively}{figure.1.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Neo4j Knowledge Graph Specification and Cypher Tool Mechanics}{7}{subsection.1.3.2}\protected@file@percent }
 \newlabel{sec:neo4j_graph}{{3.2}{7}{Neo4j Knowledge Graph Specification and Cypher Tool Mechanics}{subsection.1.3.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Algorithmic Foundations: Routing and Deterministic Arithmetic}{8}{subsection.1.3.3}\protected@file@percent }
@@ -73,33 +73,33 @@
 \newlabel{sec:hybrid_retrieval}{{3.4}{9}{Heterogeneous Knowledge Allocation and Hybrid Retrieval}{subsection.1.3.4}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Decision criteria mapping query characteristics to evidence representation mechanisms.}}{9}{table.1.1}\protected@file@percent }
 \newlabel{tab:decision_criteria}{{1}{9}{Decision criteria mapping query characteristics to evidence representation mechanisms}{table.1.1}{}}
+\citation{es2023ragas}
+\citation{zheng2023judging,es2023ragas}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Results}{10}{section.1.4}\protected@file@percent }
 \newlabel{sec:exp}{{4}{10}{Experimental Results}{section.1.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Benchmark and Protocols}{10}{subsection.1.4.1}\protected@file@percent }
 \newlabel{sec:dataset}{{4.1}{10}{Experimental Benchmark and Protocols}{subsection.1.4.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Evaluation Metrics}{10}{subsection.1.4.2}\protected@file@percent }
 \newlabel{sec:metrics}{{4.2}{10}{Evaluation Metrics}{subsection.1.4.2}{}}
-\citation{es2023ragas}
-\citation{zheng2023judging,es2023ragas}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Scenarios and Benchmark Results}{11}{subsection.1.4.3}\protected@file@percent }
 \newlabel{sec:scenarios}{{4.3}{11}{Experimental Scenarios and Benchmark Results}{subsection.1.4.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Scenario 1 --- Retrieval Component Stacking (E1--E5):}{11}{section*.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scenario 1: Progressive retrieval component stacking on the redesigned Held-Out Test Set ($N=100$).}}{12}{table.1.2}\protected@file@percent }
-\newlabel{tab:retrieval_evaluation}{{2}{12}{Scenario 1: Progressive retrieval component stacking on the redesigned Held-Out Test Set ($N=100$)}{table.1.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scenario 1: Progressive retrieval component stacking on the redesigned Held-Out Test Set ($N=100$).}}{11}{table.1.2}\protected@file@percent }
+\newlabel{tab:retrieval_evaluation}{{2}{11}{Scenario 1: Progressive retrieval component stacking on the redesigned Held-Out Test Set ($N=100$)}{table.1.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}{11}{section*.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces E4--E5 retrieval results by held-out query complexity.}}{12}{table.1.3}\protected@file@percent }
 \newlabel{tab:retrieval_complexity}{{3}{12}{E4--E5 retrieval results by held-out query complexity}{table.1.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scenario 2: End-to-end QA generation and modular ablation on the redesigned Held-Out Test Set ($N=100, R=3$, 2,100 total evaluation turns, Top-7 context).}}{12}{table.1.4}\protected@file@percent }
 \newlabel{tab:e2e_evaluation}{{4}{12}{Scenario 2: End-to-end QA generation and modular ablation on the redesigned Held-Out Test Set ($N=100, R=3$, 2,100 total evaluation turns, Top-7 context)}{table.1.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}{12}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Scenario 3 --- Multi-Agent Routing, Tool Reliability, and Robustness:}{13}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Scenario 3 --- Multi-Agent Routing, Tool Reliability, and Robustness:}{12}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Discussion}{12}{subsection.1.4.4}\protected@file@percent }
+\newlabel{sec:discussion}{{4.4}{12}{Discussion}{subsection.1.4.4}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per decision ($\text  {max\_tool\_calls}=1$).}}{13}{table.1.5}\protected@file@percent }
 \newlabel{tab:scenario3_results}{{5}{13}{Scenario 3: Multi-agent routing, specialist tool execution reliability, and robustness under a maximum of one tool call per decision ($\text {max\_tool\_calls}=1$)}{table.1.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Discussion}{13}{subsection.1.4.4}\protected@file@percent }
-\newlabel{sec:discussion}{{4.4}{13}{Discussion}{subsection.1.4.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Threats to Validity and Limitations}{15}{subsection.1.4.5}\protected@file@percent }
-\newlabel{sec:limitations}{{4.5}{15}{Threats to Validity and Limitations}{subsection.1.4.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion and Future Work}{15}{section.1.5}\protected@file@percent }
-\newlabel{sec:conclusion}{{5}{15}{Conclusion and Future Work}{section.1.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Threats to Validity and Limitations}{14}{subsection.1.4.5}\protected@file@percent }
+\newlabel{sec:limitations}{{4.5}{14}{Threats to Validity and Limitations}{subsection.1.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion and Future Work}{14}{section.1.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{14}{Conclusion and Future Work}{section.1.5}{}}
 \bibstyle{splncs04}
 \bibdata{references}
 \bibcite{ctu2025opening}{1}
@@ -123,4 +123,4 @@
 \bibcite{xiao2023bge}{19}
 \bibcite{yao2023react}{20}
 \bibcite{zheng2023judging}{21}
-\gdef \@abspage@last{17}
+\gdef \@abspage@last{16}

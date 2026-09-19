@@ -4,7 +4,7 @@
 \section{Proposed Model}
 \label{sec:model}
 
-This section presents the architecture, algorithms, and evidence-acquisition mechanisms of \system{}. The proposed model is organized around three design principles: \emph{centralized agent coordination}, in which a supervisor dispatches each query to one domain agent without peer-to-peer delegation; \emph{heterogeneous knowledge allocation}, which assigns each information structure to a corresponding evidence representation; and \emph{representation-aware evidence routing}, which selects either a direct graph-tool path or an intent-scoped retrieval path according to the assigned domain. Here, each \emph{specialist} represents a bounded domain agent configured with dedicated prompt constraints, an assigned evidence store, and a restricted tool registry.
+This section presents the architecture, algorithms, and evidence-acquisition mechanisms of \system{}. The proposed model is organized around three design principles: \emph{centralized agent coordination}, in which a contract-checked supervisor dispatches each query to one domain agent without peer-to-peer delegation; \emph{heterogeneous knowledge allocation}, which assigns each information structure to a corresponding evidence representation; and \emph{representation-aware evidence routing}, which selects either a direct graph-tool path or an intent-scoped retrieval path according to the assigned domain. Each \emph{specialist} is configured with domain-specific prompts, a scoped evidence path, and a restricted tool registry.
 
 %------------------------------------------------
 \subsection{Overall Proposed Architecture}
@@ -15,18 +15,18 @@ Figure~\ref{fig:architecture} illustrates the system architecture of \system{}, 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/architecture.jpg}
-\caption{Implemented \system{} architecture. The Chat API loads dialogue history from Redis and supplies it in the graph input state. The first conditional edge sends academic queries directly to the graph-enabled agent and sends the other domains through intent-scoped retrieval; the second edge dispatches the retrieved evidence to the selected domain-specialized agent. Solid agent--resource links denote direct tool access, whereas dashed links denote evidence acquisition performed by the retrieval node.}
+\caption{Implemented \system{} architecture. Redis history enters the graph state; the supervisor's structured decision is contract-checked and may be repaired before conditional dispatch (repair is internal, not a separate node). Academic queries enter the graph-enabled agent, whereas other domains pass through intent-scoped retrieval. Solid and dashed links denote direct tool access and retrieval-node evidence acquisition, respectively.}
 \label{fig:architecture}
 \end{figure}
 \FloatBarrier
 
 \textbf{Application-Level Specialization of LangGraph StateGraph:}
-Rather than modifying the underlying LangGraph engine, \system{} establishes an application-level orchestration policy governed by a typed state contract, isolated execution paths, and partitioned tool registries. Following supervisor dispatch, the four domain specialists operate independently without peer-to-peer delegation, selecting actions strictly from their construction-time tool bindings.
+\system{} specializes LangGraph through typed state, an intent--owner contract, isolated paths, and partitioned tool registries. The contract checks structured supervisor output before dispatch; specialists then operate without peer delegation and see only their assigned tools.
 \begin{itemize}
     \setlength{\itemsep}{1.5pt}
     \setlength{\parsep}{0pt}
     \setlength{\parskip}{0pt}
-    \item \textbf{Node-scoped state updates:} \texttt{AgentState} defines explicit write boundaries: the supervisor writes to the routing fields (\texttt{search\_query}, \texttt{next\_agent}, and \texttt{routing\_decision}); the retrieval node updates \texttt{context}; and each specialist returns \texttt{response}. This contract enforces transparent data ownership and mitigates cross-domain context pollution.
+    \item \textbf{Node-scoped state updates:} \texttt{AgentState} retains the validated rewrite, raw and repaired routes, repair reason, retrieved evidence, and response. The supervisor writes routing fields, retrieval writes \texttt{context} and \texttt{retrieval\_instruction}, and the specialist writes \texttt{response}, making route repair traceable.
     
     \item \textbf{Two-Tier Conditional Routing Edges:} Instead of letting agents dynamically negotiate execution flow, the orchestration topology is governed by deterministic conditional functions:
     \begin{equation}
@@ -39,7 +39,7 @@ Rather than modifying the underlying LangGraph engine, \system{} establishes an 
     
     \item \textbf{Acyclic outer orchestration:} The StateGraph has no peer-to-peer agent edges. Each selected domain-specialized agent returns to \texttt{END}, so the outer routing path cannot cycle. ReAct tool interactions inside an agent remain distinct from this outer graph topology.
     
-    \item \textbf{Domain-specialized agents with asymmetric tools:} The academic, financial, and scholarship agents are constructed with separate prompts and tool lists, while the general agent has no direct tool (as detailed in Figure~\ref{fig:architecture}). This confines tool selection to the agent selected by the supervisor and keeps domain-specific evidence paths separate, reducing decision space pollution.
+    \item \textbf{Domain-specialized agents with asymmetric tools:} Academic, financial, and scholarship agents receive scoped tool lists; the general agent has no direct tool. A prompt gate requests one call only when required parameters are valid. If a clearly tool-backed query omits it, one bounded retry names the required tool; missing parameters instead trigger clarification.
 \end{itemize}
 
 %------------------------------------------------
@@ -76,7 +76,7 @@ Algorithm~\ref{alg:routing} specifies the supervisor-routing and evidence-path d
 \LinesNumbered
 \caption{Supervisor Routing and Conditional Evidence-Path Dispatch}
 \label{alg:routing}
-\KwIn{Student query $q$, Dialogue history $\mathcal{H}$, Shared state $\mathcal{S}$}
+\KwIn{Student query $q$, Dialogue history $\mathcal{H}$, Shared state $\mathcal{S}$, Ownership contract $\mathcal{P}$}
 \KwOut{State updates and next graph node}
 $q_{\text{standalone}} \leftarrow q$\;
 $q_{\mathrm{prev}} \leftarrow \mathrm{MostRecentUserQuery}(\mathcal{H})$\;
@@ -86,21 +86,25 @@ $q_{\mathrm{prev}} \leftarrow \mathrm{MostRecentUserQuery}(\mathcal{H})$\;
         $q_{\text{standalone}} \leftarrow q_{\text{cand}}$\;
     }
 }
-$\langle d^*, \iota^* \rangle \leftarrow \mathrm{StructuredSupervisor}(q)$\;
+$\langle d_{\mathrm{raw}}, \iota_{\mathrm{raw}} \rangle \leftarrow \mathrm{StructuredSupervisor}(q)$\;
 \If{structured classification fails}{
-    $d^* \leftarrow \text{'general'}$; $\iota^* \leftarrow \text{'other'}$\;
+    $d_{\mathrm{raw}} \leftarrow \text{'general'}$; $\iota_{\mathrm{raw}} \leftarrow \text{'other'}$\;
 }
-Update $\mathcal{S}[\texttt{search\_query}] \leftarrow q_{\text{standalone}}$, $\mathcal{S}[\texttt{next\_agent}] \leftarrow d^*$, and $\mathcal{S}[\texttt{routing\_decision}] \leftarrow \mathrm{QueryRoutingDecision}(\iota^*)$\;
+$\langle d^*, \iota^*, \rho \rangle \leftarrow \mathrm{RepairRoute}(q,d_{\mathrm{raw}},\iota_{\mathrm{raw}},\mathcal{P})$\;
+Write $q_{\text{standalone}},d_{\mathrm{raw}},\iota_{\mathrm{raw}},d^*,\iota^*,\rho$ to $\mathcal{S}$\;
 \eIf{$d^* = \text{'academic'}$}{
     $v_{\text{next}} \leftarrow \text{'academic\_agent'}$\;
 }{
+    \If{$d^* = \text{'financial'}$}{
+        Prefetch tuition evidence from Neo4j, else JSON\;
+    }
     Build retrieval lanes from $\iota^*$ and retrieve evidence\;
     $v_{\text{next}} \leftarrow d^*\texttt{\_agent}$\;
 }
 \Return $\langle \mathcal{S}, v_{\text{next}} \rangle$\;
 \end{algorithm}
 
-A candidate rewrite is adopted only after validation; structured output restricts classification to declared labels with \texttt{general}/\texttt{other} as fallback; and conditional edges route academic queries directly to the agent while other domains pass through retrieval.
+Rewrites require validation, and structured classification falls back to \texttt{general}/\texttt{other}. \texttt{RepairRoute} preserves valid predictions but corrects strong rule conflicts or incompatible agent--intent pairs under $\mathcal{P}$. Conditional edges send academic queries to the graph agent and other domains through retrieval.
 
 \textbf{Deterministic Tuition Reduction Arithmetic:}
 For fee-reduction requests, \system{} augments the LLM with the external deterministic tool \texttt{tinh\_toan\_hoc\_phi}. The LLM interprets the request and supplies three parameters---the actual per-credit tuition $T$, the per-credit exemption basis $B$, and the percentage entitlement $p$---but does not perform the arithmetic through free-form text generation. The external tool validates the percentage range and applies the fixed calculation
@@ -139,7 +143,7 @@ Fee/scholarship calculation & Python tool & Fixed formula outside LLM \\
 \end{tabular}
 \end{table}
 
-At runtime, the StateGraph enforces this allocation. Academic queries bypass the document-retrieval node and enter the graph-enabled academic agent directly. Financial, scholarship, and general queries enter the retrieval node, where the supervisor-assigned intent selects metadata-filtered retrieval lanes before the resulting context is passed only to the assigned domain agent.
+At runtime, academic queries enter the graph agent directly; other domains enter retrieval. Financial retrieval first attempts Neo4j tuition lookup with JSON fallback. The repaired intent then selects metadata-filtered document lanes, and packed evidence is passed only to the selected specialist.
 
 \textbf{Hybrid Document Retrieval Path.}
 For narrative regulations and scholarship criteria, evidence is acquired
