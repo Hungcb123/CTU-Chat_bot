@@ -171,8 +171,9 @@ through the following pipeline:
 
     \item \emph{Cross-encoder reranking.}
     The fused parent candidates are reranked using
-    \texttt{BAAI/bge-reranker-v2-m3}, and up to six parent sections are
-    supplied to the selected domain agent.
+    \texttt{BAAI/bge-reranker-v2-m3}. Each retrieval lane returns at most six
+    parent sections; multi-lane financial requests may combine up to nine before
+    deduplication and evidence packing.
 \end{enumerate}
 
 Parent sections use a 2,800-character target with 100-character overlap;

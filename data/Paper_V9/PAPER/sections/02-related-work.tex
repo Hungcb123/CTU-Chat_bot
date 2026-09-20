@@ -10,7 +10,7 @@
 \subsection{Vietnamese NLP Foundations and Linguistic Specifics}
 \label{sec:vietnamese_nlp}
 
-Unlike whitespace-delimited languages, Vietnamese is an isolating, tonal language where white spaces separate syllables rather than words~\cite{nguyen2020phobert}, with over 85\% of lexical units forming multi-syllabic compound words (e.g., \textit{``h\d{o}c ph\'i''} [tuition fee]). While domain-adapted bi-encoders like PhoBERT capture semantic paraphrasing, Vietnamese higher education decrees rely heavily on rigid Sino-Vietnamese legal terminology and alphanumeric cohort codes. This dual characteristic motivates coupling syllable-aware dense embeddings with exact lexical token matching to mitigate both semantic drift and alphanumeric recall failures.
+Unlike whitespace-delimited languages, Vietnamese is an isolating, tonal language where white spaces separate syllables rather than words~\cite{nguyen2020phobert}; 85\% of Vietnamese word types contain at least two syllables. While domain-adapted bi-encoders like PhoBERT capture semantic paraphrasing, Vietnamese higher education decrees rely heavily on rigid Sino-Vietnamese legal terminology and alphanumeric cohort codes. This dual characteristic motivates coupling syllable-aware dense embeddings with exact lexical token matching to mitigate both semantic drift and alphanumeric recall failures.
 
 %------------------------------------------------
 \subsection{Sparse and Dense Retrieval}

@@ -997,8 +997,8 @@ INPUT sections/02-related-work.tex
 INPUT ./sections/02-related-work.tex
 INPUT ./sections/02-related-work.tex
 INPUT sections/02-related-work.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT ./sections/03-proposed-model.tex
 INPUT ./sections/03-proposed-model.tex

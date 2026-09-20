@@ -14,7 +14,9 @@ We evaluate \system{} on 200 administrative queries constructed through a docume
 
 An audit using entity inventories separate from the development split found no exact cross-split duplicates and a maximum 5-gram Jaccard similarity of 0.1875. Gold sources and required facts were reviewed against 244 institutional documents and 559 structured tuition records. The held-out set contains 19 Academic, 28 Financial, 17 Scholarship, and 16 General single-domain queries; the remaining 20 combine evidence across domains and are analyzed separately. Tables~\ref{tab:retrieval_evaluation} and~\ref{tab:e2e_evaluation} report results on this held-out set.
 
-\noindent\textbf{Evaluated Snapshot and Infrastructure:} Reported results use a fixed Gemini 2.5 Flash Lite snapshot through Google Cloud Vertex AI with greedy decoding ($T=0.0$); later deployment-model substitutions are not evaluated. Each query was run $R=3$ times, yielding $2,100$ generation and Ragas turns ($7$ configurations $\times 100$ queries $\times 3$ runs). Neural reranking used an NVIDIA RTX 1060 GPU (4~GB VRAM). Neo4j 5 Enterprise with APOC stored relational curricula; PostgreSQL stored parent chunks (2,800 characters, 100 overlap); and Qdrant indexed child chunks (400 characters, 50 overlap) using a 768-dimensional \texttt{vietnamese-bi-encoder}. The system used \texttt{bge-reranker-v2-m3}, LangGraph StateGraph, and Redis 7.
+After evidence review, 27 reference answers and 26 required-fact lists were corrected without changing questions, gold sources, domains, or complexity labels. Ragas observations for the reviewed cases were re-evaluated, and the final reporting audit recomputed Fact EM deterministically against the revised required facts.
+
+\noindent\textbf{Evaluated Snapshot and Infrastructure:} Reported results use a fixed Gemini 2.5 Flash Lite snapshot through Google Cloud Vertex AI with greedy decoding ($T=0.0$); later deployment-model substitutions are not evaluated. Each query was run $R=3$ times, yielding $2,100$ generation and Ragas turns ($7$ configurations $\times 100$ queries $\times 3$ runs). Neural reranking used an NVIDIA GeForce GTX 1650 GPU (4~GB VRAM). Neo4j 5.20 with APOC stored relational curricula; PostgreSQL stored parent chunks (2,800 characters, 100 overlap); and Qdrant indexed child chunks (400 characters, 50 overlap) using a 768-dimensional \texttt{vietnamese-bi-encoder}. The system used \texttt{bge-reranker-v2-m3}, LangGraph StateGraph, and Redis 7.
 
 %------------------------------------------------
 \subsection{Evaluation Metrics}
@@ -90,13 +92,13 @@ E5's largest Hit@1 differences over E4 occur for entity-comparison and temporal 
 \toprule
 \textbf{Cfg.} & \textbf{CP} & \textbf{CR} & \textbf{AR} & \textbf{AC} & \textbf{Fact EM} & \textbf{Src. R} & \textbf{Src. AP} \\
 \midrule
-T1 & 0.2576 & 0.5411 & 0.3961 & 0.4758 & 0.5816 & 0.7308 & 0.5498 \\
-T2 & 0.1664 & 0.2682 & 0.2281 & 0.3607 & 0.5443 & 0.5642 & 0.4240 \\
-T3 & 0.2110 & 0.4843 & 0.3618 & 0.4631 & 0.5965 & 0.7608 & 0.5469 \\
-\textbf{T4} & 0.3833 & 0.6296 & 0.4454 & 0.5080 & \textbf{0.6529} & \textbf{0.8408} & \textbf{0.7313} \\
-T5 & 0.2255 & 0.4617 & 0.2996 & 0.4400 & 0.5857 & 0.7192 & 0.6104 \\
-T6 & 0.3761 & 0.5979 & \textbf{0.4639} & \textbf{0.5108} & 0.6271 & \textbf{0.8408} & 0.7058 \\
-T7 & \textbf{0.3862} & \textbf{0.6572} & 0.4235 & 0.4992 & 0.6384 & 0.8208 & 0.7238 \\
+T1 & 0.2576 & 0.5411 & 0.3961 & 0.4758 & 0.5874 & 0.7308 & 0.5498 \\
+T2 & 0.1664 & 0.2682 & 0.2281 & 0.3607 & 0.5502 & 0.5642 & 0.4240 \\
+T3 & 0.2110 & 0.4843 & 0.3618 & 0.4631 & 0.6023 & 0.7608 & 0.5469 \\
+\textbf{T4} & 0.3833 & 0.6296 & 0.4454 & 0.5080 & \textbf{0.6607} & \textbf{0.8408} & \textbf{0.7313} \\
+T5 & 0.2255 & 0.4617 & 0.2996 & 0.4400 & 0.5916 & 0.7192 & 0.6104 \\
+T6 & 0.3761 & 0.5979 & \textbf{0.4639} & \textbf{0.5108} & 0.6329 & \textbf{0.8408} & 0.7058 \\
+T7 & \textbf{0.3862} & \textbf{0.6572} & 0.4235 & 0.4992 & 0.6443 & 0.8208 & 0.7238 \\
 \bottomrule
 \end{tabular}
 \medskip
@@ -105,7 +107,7 @@ T7 & \textbf{0.3862} & \textbf{0.6572} & 0.4235 & 0.4992 & 0.6384 & 0.8208 & 0.7
 
 %------------------------------------------------
 \subsubsection{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}
-Scenario~2 compares the full system (T4) with three single-agent RAG baselines (T1--T3) and three ablations (T5--T7) over $2,100$ evaluation turns. As shown in Table~\ref{tab:e2e_evaluation}, T4 exceeds BM25 on all seven metrics, including a 7.13-percentage-point difference in Fact~EM ($65.29\%$ vs.\ $58.16\%$). T4 records the highest Fact~EM and Source AP and ties T6 on Source Recall; T6 leads Answer Relevancy and Answer Correctness, whereas T7 leads Context Precision and Context Recall. The differences are therefore metric-specific.
+Scenario~2 compares the full system (T4) with three single-agent RAG baselines (T1--T3) and three ablations (T5--T7) over $2,100$ evaluation turns. As shown in Table~\ref{tab:e2e_evaluation}, T4 exceeds BM25 on all seven metrics, including a 7.33-percentage-point difference in Fact~EM ($66.07\%$ vs.\ $58.74\%$). T4 records the highest Fact~EM and Source AP and ties T6 on Source Recall; T6 leads Answer Relevancy and Answer Correctness, whereas T7 leads Context Precision and Context Recall. The differences are therefore metric-specific.
 \FloatBarrier
 
 %------------------------------------------------
