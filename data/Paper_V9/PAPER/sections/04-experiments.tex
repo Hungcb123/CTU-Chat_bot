@@ -24,7 +24,7 @@ After evidence review, 27 reference answers and 26 required-fact lists were corr
 
 \noindent\textbf{Evaluation Metrics:} Scenario~1 reports source-document-level Hit@$k$ ($k\in\{1,3\}$), Precision@5, Recall@5, MRR@10, and domain-level Hit@1. Scenario~3 measures routing accuracy, Macro-F1, intent accuracy, tool selection and argument Exact Match (EM), end-to-end pass rate, adversarial tool gating, and safe behavior under $\text{max\_tool\_calls}=1$ and a $60$-s timeout.
 
-Scenario~2 evaluates Top-7 synthesis using Ragas~\cite{es2023ragas}: Answer Relevancy (AR), Context Recall (CR), Context Precision (CP), and Answer Correctness (AC). Factual Exact Match (Fact EM) measures strict numerical tuition-fee and credit agreement, while Source Recall measures gold-source coverage and Source Average Precision (Source AP) evaluates ranked, verified regulatory citations. To limit LLM-judge bias~\cite{zheng2023judging,es2023ragas}, evaluation conditions reference-grounded metrics on gold documents, uses greedy decoding over three runs, and includes programmatic Fact EM for tuition arithmetic.
+Scenario~2 evaluates Top-7 synthesis using Ragas~\cite{es2023ragas}: Answer Relevancy (AR), Context Recall (CR), Context Precision (CP), Answer Correctness (AC), and Faithfulness (Faith). Factual Exact Match (Fact EM) measures strict numerical tuition-fee and credit agreement, while Source Recall measures gold-source coverage and Source Average Precision (Source AP) evaluates ranked, verified regulatory citations. To limit LLM-judge bias~\cite{zheng2023judging,es2023ragas}, evaluation conditions reference-grounded metrics on gold documents, uses greedy decoding over three runs, and includes programmatic Fact EM for tuition arithmetic.
 
 %------------------------------------------------
 \subsection{Experimental Scenarios and Benchmark Results}
@@ -87,27 +87,27 @@ E5's largest Hit@1 differences over E4 occur for entity-comparison and temporal 
 \caption{Scenario 2: End-to-end QA generation and modular ablation on the redesigned Held-Out Test Set ($N=100, R=3$, 2,100 total evaluation turns, Top-7 context).}
 \label{tab:e2e_evaluation}
 \small
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lccccccc}
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular}{lcccccccc}
 \toprule
-\textbf{Cfg.} & \textbf{CP} & \textbf{CR} & \textbf{AR} & \textbf{AC} & \textbf{Fact EM} & \textbf{Src. R} & \textbf{Src. AP} \\
+\textbf{Cfg.} & \textbf{CP} & \textbf{CR} & \textbf{AR} & \textbf{AC} & \textbf{Faith} & \textbf{Fact EM} & \textbf{Src. R} & \textbf{Src. AP} \\
 \midrule
-T1 & 0.2576 & 0.5411 & 0.3961 & 0.4758 & 0.5874 & 0.7308 & 0.5498 \\
-T2 & 0.1664 & 0.2682 & 0.2281 & 0.3607 & 0.5502 & 0.5642 & 0.4240 \\
-T3 & 0.2110 & 0.4843 & 0.3618 & 0.4631 & 0.6023 & 0.7608 & 0.5469 \\
-\textbf{T4} & 0.3833 & 0.6296 & 0.4454 & 0.5080 & \textbf{0.6607} & \textbf{0.8408} & \textbf{0.7313} \\
-T5 & 0.2255 & 0.4617 & 0.2996 & 0.4400 & 0.5916 & 0.7192 & 0.6104 \\
-T6 & 0.3761 & 0.5979 & \textbf{0.4639} & \textbf{0.5108} & 0.6329 & \textbf{0.8408} & 0.7058 \\
-T7 & \textbf{0.3862} & \textbf{0.6572} & 0.4235 & 0.4992 & 0.6443 & 0.8208 & 0.7238 \\
+T1 & 0.2576 & 0.5411 & 0.3961 & 0.4758 & 0.8580 & 0.5874 & 0.7308 & 0.5498 \\
+T2 & 0.1664 & 0.2682 & 0.2281 & 0.3607 & 0.7082 & 0.5502 & 0.5642 & 0.4240 \\
+T3 & 0.2110 & 0.4843 & 0.3618 & 0.4631 & 0.8554 & 0.6023 & 0.7608 & 0.5469 \\
+\textbf{T4} & 0.3833 & 0.6296 & 0.4454 & 0.5080 & 0.9076 & \textbf{0.6607} & \textbf{0.8408} & \textbf{0.7313} \\
+T5 & 0.2255 & 0.4617 & 0.2996 & 0.4400 & 0.8494 & 0.5916 & 0.7192 & 0.6104 \\
+T6 & 0.3761 & 0.5979 & \textbf{0.4639} & \textbf{0.5108} & \textbf{0.9153} & 0.6329 & \textbf{0.8408} & 0.7058 \\
+T7 & \textbf{0.3862} & \textbf{0.6572} & 0.4235 & 0.4992 & 0.8918 & 0.6443 & 0.8208 & 0.7238 \\
 \bottomrule
 \end{tabular}
 \medskip
-\parbox{\columnwidth}{\footnotesize\emph{Configurations:} T1: BM25; T2: dense; T3: hybrid RRF; T4: full system; T5: without cross-reranker; T6: without Neo4j grounding; T7: without subspace governance. \emph{Metrics:} Fact EM: Factual Exact Match on tuition/credits; CP: Context Precision; CR: Context Recall; AR: Answer Relevancy; AC: Answer Correctness; Src. R: Source Recall; Src. AP: Source Average Precision. Ragas values are means over 300 query--repetition observations per configuration; corresponding standard deviations and bootstrap confidence intervals are retained in the experiment artifacts. All metrics are normalized to $[0,1]$; higher is better.}
+\parbox{\columnwidth}{\footnotesize\emph{Configurations:} T1: BM25; T2: dense; T3: hybrid RRF; T4: full system; T5: without cross-reranker; T6: without Neo4j grounding; T7: without subspace governance. \emph{Metrics:} Fact EM: Factual Exact Match on tuition/credits; CP: Context Precision; CR: Context Recall; AR: Answer Relevancy; AC: Answer Correctness; Faith: Faithfulness; Src. R: Source Recall; Src. AP: Source Average Precision. Ragas values are means over 300 query--repetition observations per configuration; corresponding standard deviations and bootstrap confidence intervals are retained in the experiment artifacts. All metrics are normalized to $[0,1]$; higher is better.}
 \end{table}
 
 %------------------------------------------------
 \subsubsection{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}
-Scenario~2 compares the full system (T4) with three single-agent RAG baselines (T1--T3) and three ablations (T5--T7) over $2,100$ evaluation turns. As shown in Table~\ref{tab:e2e_evaluation}, T4 exceeds BM25 on all seven metrics, including a 7.33-percentage-point difference in Fact~EM ($66.07\%$ vs.\ $58.74\%$). T4 records the highest Fact~EM and Source AP and ties T6 on Source Recall; T6 leads Answer Relevancy and Answer Correctness, whereas T7 leads Context Precision and Context Recall. The differences are therefore metric-specific.
+Scenario~2 compares the full system (T4) with three single-agent RAG baselines (T1--T3) and three ablations (T5--T7) over $2,100$ evaluation turns. As shown in Table~\ref{tab:e2e_evaluation}, T4 exceeds BM25 on all eight metrics, including a notable advantage in Faithfulness ($0.9076$ vs.\ $0.8580$) and a 7.33-percentage-point difference in Fact~EM ($66.07\%$ vs.\ $58.74\%$). T4 records the highest Fact~EM and Source AP and ties T6 on Source Recall; T6 leads Answer Relevancy, Answer Correctness, and Faithfulness (though the Faithfulness difference with T4 is statistically indistinguishable from zero with 95\% bootstrap CI $[-0.0305, +0.0148]$), whereas T7 leads Context Precision and Context Recall. The differences are therefore metric-specific.
 \FloatBarrier
 
 %------------------------------------------------
@@ -153,7 +153,7 @@ Failure Gate Robustness    & 60 & 100.0\% & 100.0\% & 98.3\% & 98.3\% & 100.0\% 
 
 \textbf{Answering RQ1:} Before production route repair, the evaluated raw structured supervisor achieves $97.0\%$ routing accuracy, $97.8\%$ Macro-F1, and $95.0\%$ intent accuracy, compared with $85.0\%$, $69.2\%$, and $69.0\%$ for rule-based routing. The deterministic tuition tools achieve $100.0\%$ end-to-end pass rates, whereas scholarship calculation reaches $76.7\%$ with $86.7\%$ tool selection; all tools maintain $100.0\%$ bounded completion. Adversarial tests obtain $100.0\%$ tool-gating accuracy, $98.3\%$ safe-result behavior, and $100.0\%$ bounded completion. In a paired stress-test with 11 tools, single-agent and multi-agent end-to-end performance is $93.3\%$ and $88.3\%$, respectively, without a statistically significant difference. After adding 16 synthetic distractor tools (27 tools total), monolithic tool selection decreases from $98.3\%$ to $91.7\%$, whereas the domain-partitioned system maintains $100.0\%$ (paired $\Delta=+8.3$ percentage points, 95\% bootstrap CI $[+1.7,+15.0]$, $n=60$). These results suggest that partitioned tool access may reduce decision-space interference as the evaluated registry expands.
 
-\textbf{Answering RQ2:} T4 exceeds the no-cross-reranker configuration T5 on every reported metric, supporting the contribution of cross-reranking in this setting. Comparisons with T6 and T7 are mixed: T4 leads T6 in Context Recall, Source AP, and Fact~EM but trails it in Answer Relevancy and Answer Correctness and ties it on Source Recall. T4 leads T7 in Answer Relevancy, Answer Correctness, Source Recall, Source AP, and Fact~EM but trails it in Context Precision and Context Recall. The ablations therefore indicate component-specific associations rather than uniform causal effects.
+\textbf{Answering RQ2:} T4 exceeds the no-cross-reranker configuration T5 on every reported metric, supporting the contribution of cross-reranking in this setting (e.g., Faithfulness improves by $+0.0582$, 95\% bootstrap CI $[+0.0226, +0.0940]$, $p < 0.001$). Comparisons with T6 and T7 are mixed: T4 leads T6 in Context Recall, Source AP, and Fact~EM but trails it slightly in Answer Relevancy, Answer Correctness, and Faithfulness ($0.9076$ vs.\ $0.9153$; paired difference $-0.0077$ is statistically insignificant with 95\% CI $[-0.0305, +0.0148]$) and ties it on Source Recall. T4 leads T7 in Faithfulness ($0.9076$ vs.\ $0.8918$), Answer Relevancy, Answer Correctness, Source Recall, Source AP, and Fact~EM but trails it in Context Precision and Context Recall. The ablations therefore indicate component-specific associations rather than uniform causal effects.
 
 \textbf{Answering RQ3:} E4 improves both early-rank ordering and evidence coverage over E3, while E5 provides smaller aggregate gains. E5's largest Hit@1 differences over E4 occur on entity-comparison, temporal, and cross-domain queries. Direct and within-domain multi-hop queries show smaller or no Hit@1 gains, and the adversarial tier remains difficult for both configurations. E5 also has slightly lower cross-domain Recall@5 despite its higher Hit@1. Because E5 changes three components jointly, these results do not isolate their individual causal effects.
 
