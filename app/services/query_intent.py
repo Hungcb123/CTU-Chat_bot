@@ -393,6 +393,31 @@ def _classify_one(text: str | None) -> QueryIntent:
     ):
         return QueryIntent.ACADEMIC_RULES
 
+    has_program_subject = _contains_any(
+        value,
+        ("nganh", "chuyen nganh", "chuong trinh", "cu nhan", "ky su", "khung dao tao"),
+    )
+    has_credits_query = _contains_any(
+        value,
+        (
+            "tin chi",
+            "khoi luong kien thuc",
+            "hoc phan",
+            "mon hoc",
+            "tien quyet",
+            "song hanh",
+        ),
+    )
+    has_duration_query = _contains_any(
+        value,
+        (
+            "thoi gian dao tao",
+            "may nam",
+            "bao nhieu nam",
+            "thoi gian hoc",
+            "hoc trong may nam",
+        ),
+    )
     if (
         _contains_any(
             value,
@@ -400,8 +425,12 @@ def _classify_one(text: str | None) -> QueryIntent:
                 "chuan dau ra",
                 "plo",
                 "khung chuong trinh",
+                "khung dao tao",
                 "chuong trinh dao tao",
                 "tong so tin chi",
+                "so luong tin chi",
+                "tin chi bat buoc",
+                "khoi luong kien thuc",
                 "thoi gian dao tao",
                 "hoc phan",
                 "mon hoc",
@@ -411,6 +440,7 @@ def _classify_one(text: str | None) -> QueryIntent:
             ),
         )
         or bool(re.search(r"\b[a-z]{2}\d{3}[a-z]?\b", value))
+        or (has_program_subject and (has_credits_query or has_duration_query))
     ):
         return QueryIntent.ACADEMIC_PROGRAM
 

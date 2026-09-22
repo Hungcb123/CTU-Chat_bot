@@ -1,0 +1,1039 @@
+{
+  "protocol": "multi-vs-single-v4.0",
+  "total_records": 2160,
+  "error_records": 13,
+  "production_cases_count": 60,
+  "robustness_cases_count": 20,
+  "levels": [
+    0,
+    2,
+    4
+  ],
+  "production_tools": {
+    "0": {
+      "registry_size": 11,
+      "distractors_per_domain": 0,
+      "unique_cases": 60,
+      "architectures": {
+        "single_agent": {
+          "selection_passed": 0.9389,
+          "arguments_passed": 0.9389,
+          "result_passed": 0.8833,
+          "passed": 0.8778,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 11.0,
+          "visible_tool_schema_chars": 5393.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 1039.1828,
+          "total_decision_latency_ms": 1039.1828
+        },
+        "oracle_partitioned": {
+          "selection_passed": 0.9222,
+          "arguments_passed": 0.9167,
+          "result_passed": 0.8389,
+          "passed": 0.8389,
+          "bounded_pass": 0.9889,
+          "visible_tool_count": 4.4167,
+          "visible_tool_schema_chars": 2027.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 889.9521,
+          "total_decision_latency_ms": 889.9521
+        },
+        "multi_agent": {
+          "selection_passed": 0.9222,
+          "arguments_passed": 0.9222,
+          "result_passed": 0.8444,
+          "passed": 0.8444,
+          "bounded_pass": 0.9889,
+          "visible_tool_count": 4.4833,
+          "visible_tool_schema_chars": 2069.1167,
+          "route_latency_ms": 891.0949,
+          "gate_latency_ms": 812.3866,
+          "total_decision_latency_ms": 1703.4816
+        }
+      },
+      "paired_contrasts": {
+        "live_vs_single": {
+          "selection_passed": {
+            "mean": -0.0167,
+            "ci95": [
+              -0.0778,
+              0.0389
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0167,
+            "ci95": [
+              -0.0778,
+              0.0389
+            ]
+          },
+          "result_passed": {
+            "mean": -0.0389,
+            "ci95": [
+              -0.1,
+              0.0167
+            ]
+          },
+          "passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.0944,
+              0.0278
+            ]
+          },
+          "bounded_pass": {
+            "mean": -0.0111,
+            "ci95": [
+              -0.0278,
+              0.0
+            ]
+          }
+        },
+        "oracle_vs_single": {
+          "selection_passed": {
+            "mean": -0.0167,
+            "ci95": [
+              -0.0778,
+              0.0389
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0222,
+            "ci95": [
+              -0.0833,
+              0.0333
+            ]
+          },
+          "result_passed": {
+            "mean": -0.0444,
+            "ci95": [
+              -0.1056,
+              0.0167
+            ]
+          },
+          "passed": {
+            "mean": -0.0389,
+            "ci95": [
+              -0.1,
+              0.0222
+            ]
+          },
+          "bounded_pass": {
+            "mean": -0.0111,
+            "ci95": [
+              -0.0278,
+              0.0
+            ]
+          }
+        },
+        "live_vs_oracle": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0056,
+            "ci95": [
+              0.0,
+              0.0167
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0056,
+            "ci95": [
+              0.0,
+              0.0167
+            ]
+          },
+          "passed": {
+            "mean": 0.0056,
+            "ci95": [
+              0.0,
+              0.0167
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    "2": {
+      "registry_size": 19,
+      "distractors_per_domain": 2,
+      "unique_cases": 60,
+      "architectures": {
+        "single_agent": {
+          "selection_passed": 0.9444,
+          "arguments_passed": 0.9389,
+          "result_passed": 0.8889,
+          "passed": 0.8889,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 19.0,
+          "visible_tool_schema_chars": 7627.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 1097.4766,
+          "total_decision_latency_ms": 1097.4766
+        },
+        "oracle_partitioned": {
+          "selection_passed": 0.9111,
+          "arguments_passed": 0.9111,
+          "result_passed": 0.8389,
+          "passed": 0.8389,
+          "bounded_pass": 0.9833,
+          "visible_tool_count": 6.4167,
+          "visible_tool_schema_chars": 2591.0833,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 857.7909,
+          "total_decision_latency_ms": 857.7909
+        },
+        "multi_agent": {
+          "selection_passed": 0.9111,
+          "arguments_passed": 0.9111,
+          "result_passed": 0.8389,
+          "passed": 0.8389,
+          "bounded_pass": 0.9833,
+          "visible_tool_count": 6.4833,
+          "visible_tool_schema_chars": 2634.9333,
+          "route_latency_ms": 888.7641,
+          "gate_latency_ms": 813.4304,
+          "total_decision_latency_ms": 1702.1945
+        }
+      },
+      "paired_contrasts": {
+        "live_vs_single": {
+          "selection_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.0889,
+              0.0167
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0278,
+            "ci95": [
+              -0.0889,
+              0.0278
+            ]
+          },
+          "result_passed": {
+            "mean": -0.05,
+            "ci95": [
+              -0.1167,
+              0.0167
+            ]
+          },
+          "passed": {
+            "mean": -0.05,
+            "ci95": [
+              -0.1167,
+              0.0167
+            ]
+          },
+          "bounded_pass": {
+            "mean": -0.0167,
+            "ci95": [
+              -0.0389,
+              0.0
+            ]
+          }
+        },
+        "oracle_vs_single": {
+          "selection_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.0889,
+              0.0167
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0278,
+            "ci95": [
+              -0.0889,
+              0.0278
+            ]
+          },
+          "result_passed": {
+            "mean": -0.05,
+            "ci95": [
+              -0.1167,
+              0.0167
+            ]
+          },
+          "passed": {
+            "mean": -0.05,
+            "ci95": [
+              -0.1167,
+              0.0167
+            ]
+          },
+          "bounded_pass": {
+            "mean": -0.0167,
+            "ci95": [
+              -0.0389,
+              0.0
+            ]
+          }
+        },
+        "live_vs_oracle": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    "4": {
+      "registry_size": 27,
+      "distractors_per_domain": 4,
+      "unique_cases": 60,
+      "architectures": {
+        "single_agent": {
+          "selection_passed": 0.9556,
+          "arguments_passed": 0.9444,
+          "result_passed": 0.8944,
+          "passed": 0.8944,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 27.0,
+          "visible_tool_schema_chars": 9786.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 1143.0706,
+          "total_decision_latency_ms": 1143.0706
+        },
+        "oracle_partitioned": {
+          "selection_passed": 0.9333,
+          "arguments_passed": 0.9278,
+          "result_passed": 0.8556,
+          "passed": 0.8556,
+          "bounded_pass": 0.9944,
+          "visible_tool_count": 8.4167,
+          "visible_tool_schema_chars": 3110.4167,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 911.1854,
+          "total_decision_latency_ms": 911.1854
+        },
+        "multi_agent": {
+          "selection_passed": 0.9389,
+          "arguments_passed": 0.9333,
+          "result_passed": 0.8611,
+          "passed": 0.8611,
+          "bounded_pass": 0.9944,
+          "visible_tool_count": 8.4833,
+          "visible_tool_schema_chars": 3153.4667,
+          "route_latency_ms": 852.0937,
+          "gate_latency_ms": 876.0298,
+          "total_decision_latency_ms": 1728.1234
+        }
+      },
+      "paired_contrasts": {
+        "live_vs_single": {
+          "selection_passed": {
+            "mean": -0.0167,
+            "ci95": [
+              -0.0667,
+              0.0222
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0111,
+            "ci95": [
+              -0.0667,
+              0.0389
+            ]
+          },
+          "result_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.0889,
+              0.0222
+            ]
+          },
+          "passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.0889,
+              0.0222
+            ]
+          },
+          "bounded_pass": {
+            "mean": -0.0056,
+            "ci95": [
+              -0.0167,
+              0.0
+            ]
+          }
+        },
+        "oracle_vs_single": {
+          "selection_passed": {
+            "mean": -0.0222,
+            "ci95": [
+              -0.0722,
+              0.0222
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0167,
+            "ci95": [
+              -0.0722,
+              0.0333
+            ]
+          },
+          "result_passed": {
+            "mean": -0.0389,
+            "ci95": [
+              -0.0944,
+              0.0167
+            ]
+          },
+          "passed": {
+            "mean": -0.0389,
+            "ci95": [
+              -0.0944,
+              0.0167
+            ]
+          },
+          "bounded_pass": {
+            "mean": -0.0056,
+            "ci95": [
+              -0.0167,
+              0.0
+            ]
+          }
+        },
+        "live_vs_oracle": {
+          "selection_passed": {
+            "mean": 0.0056,
+            "ci95": [
+              0.0,
+              0.0167
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0056,
+            "ci95": [
+              0.0,
+              0.0167
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0056,
+            "ci95": [
+              0.0,
+              0.0167
+            ]
+          },
+          "passed": {
+            "mean": 0.0056,
+            "ci95": [
+              0.0,
+              0.0167
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "robustness": {
+    "0": {
+      "registry_size": 11,
+      "distractors_per_domain": 0,
+      "unique_cases": 20,
+      "architectures": {
+        "single_agent": {
+          "selection_passed": 0.95,
+          "arguments_passed": 0.9333,
+          "result_passed": 0.8833,
+          "passed": 0.8667,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 11.0,
+          "visible_tool_schema_chars": 5393.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 970.174,
+          "total_decision_latency_ms": 970.174
+        },
+        "oracle_partitioned": {
+          "selection_passed": 0.95,
+          "arguments_passed": 0.9,
+          "result_passed": 0.75,
+          "passed": 0.7,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 2.1,
+          "visible_tool_schema_chars": 1238.15,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 809.783,
+          "total_decision_latency_ms": 809.783
+        },
+        "multi_agent": {
+          "selection_passed": 0.95,
+          "arguments_passed": 0.9,
+          "result_passed": 0.7667,
+          "passed": 0.7167,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 2.1,
+          "visible_tool_schema_chars": 1238.15,
+          "route_latency_ms": 885.002,
+          "gate_latency_ms": 880.581,
+          "total_decision_latency_ms": 1765.5817
+        }
+      },
+      "paired_contrasts": {
+        "live_vs_single": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.1,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": -0.1167,
+            "ci95": [
+              -0.2833,
+              0.0167
+            ]
+          },
+          "passed": {
+            "mean": -0.15,
+            "ci95": [
+              -0.3167,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "oracle_vs_single": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.1,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": -0.1333,
+            "ci95": [
+              -0.3,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": -0.1667,
+            "ci95": [
+              -0.3333,
+              -0.0167
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "live_vs_oracle": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0167,
+            "ci95": [
+              0.0,
+              0.05
+            ]
+          },
+          "passed": {
+            "mean": 0.0167,
+            "ci95": [
+              0.0,
+              0.05
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    "2": {
+      "registry_size": 19,
+      "distractors_per_domain": 2,
+      "unique_cases": 20,
+      "architectures": {
+        "single_agent": {
+          "selection_passed": 0.8667,
+          "arguments_passed": 0.85,
+          "result_passed": 0.8,
+          "passed": 0.7667,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 19.0,
+          "visible_tool_schema_chars": 7627.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 1290.9467,
+          "total_decision_latency_ms": 1290.9467
+        },
+        "oracle_partitioned": {
+          "selection_passed": 0.8667,
+          "arguments_passed": 0.8167,
+          "result_passed": 0.7333,
+          "passed": 0.65,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 4.1,
+          "visible_tool_schema_chars": 1809.35,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 792.4425,
+          "total_decision_latency_ms": 792.4425
+        },
+        "multi_agent": {
+          "selection_passed": 0.8667,
+          "arguments_passed": 0.8167,
+          "result_passed": 0.7333,
+          "passed": 0.65,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 4.1,
+          "visible_tool_schema_chars": 1809.35,
+          "route_latency_ms": 869.6363,
+          "gate_latency_ms": 824.7978,
+          "total_decision_latency_ms": 1694.4347
+        }
+      },
+      "paired_contrasts": {
+        "live_vs_single": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              -0.0667,
+              0.0667
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.1333,
+              0.05
+            ]
+          },
+          "result_passed": {
+            "mean": -0.0667,
+            "ci95": [
+              -0.2167,
+              0.0667
+            ]
+          },
+          "passed": {
+            "mean": -0.1167,
+            "ci95": [
+              -0.2833,
+              0.0333
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "oracle_vs_single": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              -0.0667,
+              0.0667
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.1333,
+              0.05
+            ]
+          },
+          "result_passed": {
+            "mean": -0.0667,
+            "ci95": [
+              -0.2167,
+              0.0667
+            ]
+          },
+          "passed": {
+            "mean": -0.1167,
+            "ci95": [
+              -0.2833,
+              0.0333
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "live_vs_oracle": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    "4": {
+      "registry_size": 27,
+      "distractors_per_domain": 4,
+      "unique_cases": 20,
+      "architectures": {
+        "single_agent": {
+          "selection_passed": 0.8,
+          "arguments_passed": 0.7833,
+          "result_passed": 0.75,
+          "passed": 0.6833,
+          "bounded_pass": 0.9833,
+          "visible_tool_count": 27.0,
+          "visible_tool_schema_chars": 9786.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 1129.0848,
+          "total_decision_latency_ms": 1129.0848
+        },
+        "oracle_partitioned": {
+          "selection_passed": 0.7333,
+          "arguments_passed": 0.6833,
+          "result_passed": 0.7167,
+          "passed": 0.5667,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 6.1,
+          "visible_tool_schema_chars": 2357.8,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 1273.2957,
+          "total_decision_latency_ms": 1273.2957
+        },
+        "multi_agent": {
+          "selection_passed": 0.7333,
+          "arguments_passed": 0.6833,
+          "result_passed": 0.7167,
+          "passed": 0.5667,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 6.1,
+          "visible_tool_schema_chars": 2357.8,
+          "route_latency_ms": 823.0547,
+          "gate_latency_ms": 969.0585,
+          "total_decision_latency_ms": 1792.1133
+        }
+      },
+      "paired_contrasts": {
+        "live_vs_single": {
+          "selection_passed": {
+            "mean": -0.0667,
+            "ci95": [
+              -0.2167,
+              0.0667
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.1,
+            "ci95": [
+              -0.25,
+              0.05
+            ]
+          },
+          "result_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.2,
+              0.1167
+            ]
+          },
+          "passed": {
+            "mean": -0.1167,
+            "ci95": [
+              -0.3,
+              0.05
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0167,
+            "ci95": [
+              0.0,
+              0.05
+            ]
+          }
+        },
+        "oracle_vs_single": {
+          "selection_passed": {
+            "mean": -0.0667,
+            "ci95": [
+              -0.2167,
+              0.0667
+            ]
+          },
+          "arguments_passed": {
+            "mean": -0.1,
+            "ci95": [
+              -0.25,
+              0.05
+            ]
+          },
+          "result_passed": {
+            "mean": -0.0333,
+            "ci95": [
+              -0.2,
+              0.1167
+            ]
+          },
+          "passed": {
+            "mean": -0.1167,
+            "ci95": [
+              -0.3,
+              0.05
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0167,
+            "ci95": [
+              0.0,
+              0.05
+            ]
+          }
+        },
+        "live_vs_oracle": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "interactions": {
+    "live_vs_single": {
+      "selection_passed": {
+        "mean": 0.0,
+        "ci95": [
+          -0.05,
+          0.0556
+        ]
+      },
+      "passed": {
+        "mean": 0.0,
+        "ci95": [
+          -0.0556,
+          0.0611
+        ]
+      }
+    },
+    "oracle_vs_single": {
+      "selection_passed": {
+        "mean": -0.0056,
+        "ci95": [
+          -0.0556,
+          0.0444
+        ]
+      },
+      "passed": {
+        "mean": 0.0,
+        "ci95": [
+          -0.0611,
+          0.0667
+        ]
+      }
+    }
+  },
+  "order_blocks": {
+    "gold_first": {
+      "single_agent": {
+        "n": 180,
+        "selection_passed": 0.9389,
+        "passed": 0.9167
+      },
+      "oracle_partitioned": {
+        "n": 180,
+        "selection_passed": 0.9667,
+        "passed": 0.8944
+      },
+      "multi_agent": {
+        "n": 180,
+        "selection_passed": 0.9667,
+        "passed": 0.8944
+      }
+    },
+    "gold_middle": {
+      "single_agent": {
+        "n": 180,
+        "selection_passed": 0.9333,
+        "passed": 0.8667
+      },
+      "oracle_partitioned": {
+        "n": 180,
+        "selection_passed": 0.8833,
+        "passed": 0.8111
+      },
+      "multi_agent": {
+        "n": 180,
+        "selection_passed": 0.8889,
+        "passed": 0.8167
+      }
+    },
+    "gold_last": {
+      "single_agent": {
+        "n": 180,
+        "selection_passed": 0.9667,
+        "passed": 0.8778
+      },
+      "oracle_partitioned": {
+        "n": 180,
+        "selection_passed": 0.9167,
+        "passed": 0.8278
+      },
+      "multi_agent": {
+        "n": 180,
+        "selection_passed": 0.9167,
+        "passed": 0.8333
+      }
+    }
+  }
+}

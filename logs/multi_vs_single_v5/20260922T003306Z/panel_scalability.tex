@@ -1,0 +1,17 @@
+\begin{tabular}{llrrrrrr}
+\toprule
+Registry & Architecture & Visible & Schema chars & Selection & E2E & Tokens & Latency \\
+\midrule
+11 & Monolithic & 11.0 & 5393 & \textbf{96.1\%} & \textbf{91.1\%} & 1849 & 1188 \\
+11 & Static multi & 4.5 & 2069 & 90.6\% & 83.3\% & 3592 & 2285 \\
+11 & Top-$k$ multi & 4.0 & 1886 & 90.6\% & 83.3\% & 3543 & 2413 \\
+\midrule
+27 & Monolithic & 27.0 & 9786 & 91.1\% & 85.6\% & 2792 & 1489 \\
+27 & Static multi & 8.5 & 3153 & \textbf{93.3\%} & \textbf{86.7\%} & 3806 & 2199 \\
+27 & Top-$k$ multi & 4.9 & 2031 & 91.7\% & 83.3\% & 3540 & 2220 \\
+\midrule
+51 & Monolithic & 51.0 & 15789 & \textbf{90.6\%} & \textbf{85.0\%} & 4050 & 1575 \\
+51 & Static multi & 14.5 & 4690 & 87.2\% & 78.3\% & 4126 & 2616 \\
+51 & Top-$k$ multi & 5.0 & 1947 & 85.6\% & 77.8\% & 3508 & 2288 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,222 @@
+{
+  "protocol": "multi-vs-single-v4.0",
+  "total_records": 9,
+  "error_records": 0,
+  "production_cases_count": 1,
+  "robustness_cases_count": 0,
+  "levels": [
+    0
+  ],
+  "production_tools": {
+    "0": {
+      "registry_size": 11,
+      "distractors_per_domain": 0,
+      "unique_cases": 1,
+      "architectures": {
+        "single_agent": {
+          "selection_passed": 1.0,
+          "arguments_passed": 1.0,
+          "result_passed": 1.0,
+          "passed": 1.0,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 11.0,
+          "visible_tool_schema_chars": 5393.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 1622.3033,
+          "total_decision_latency_ms": 1622.3033
+        },
+        "oracle_partitioned": {
+          "selection_passed": 1.0,
+          "arguments_passed": 1.0,
+          "result_passed": 1.0,
+          "passed": 1.0,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 6.0,
+          "visible_tool_schema_chars": 2268.0,
+          "route_latency_ms": 0.0,
+          "gate_latency_ms": 1710.0233,
+          "total_decision_latency_ms": 1710.0233
+        },
+        "multi_agent": {
+          "selection_passed": 1.0,
+          "arguments_passed": 1.0,
+          "result_passed": 1.0,
+          "passed": 1.0,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 6.0,
+          "visible_tool_schema_chars": 2268.0,
+          "route_latency_ms": 2283.8333,
+          "gate_latency_ms": 1044.7533,
+          "total_decision_latency_ms": 3328.5867
+        }
+      },
+      "paired_contrasts": {
+        "live_vs_single": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "oracle_vs_single": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "live_vs_oracle": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "robustness": {},
+  "order_blocks": {
+    "gold_first": {
+      "single_agent": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      },
+      "oracle_partitioned": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      },
+      "multi_agent": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      }
+    },
+    "gold_middle": {
+      "single_agent": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      },
+      "oracle_partitioned": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      },
+      "multi_agent": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      }
+    },
+    "gold_last": {
+      "single_agent": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      },
+      "oracle_partitioned": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      },
+      "multi_agent": {
+        "n": 1,
+        "selection_passed": 1.0,
+        "passed": 1.0
+      }
+    }
+  }
+}

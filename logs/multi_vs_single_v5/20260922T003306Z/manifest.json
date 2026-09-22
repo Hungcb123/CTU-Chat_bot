@@ -1,0 +1,58 @@
+{
+  "protocol": "multi-vs-single-v5.0",
+  "created_at_utc": "2026-09-22T00:33:06.656724+00:00",
+  "status": "completed",
+  "hypothesis": "Dynamic within-domain Top-k shortlisting maintains selection quality while bounding tool exposure as the global registry grows from 11 to 51 tools.",
+  "primary_outcome": "Top-k multi minus monolithic selection interaction Delta(51)-Delta(11) on production cases.",
+  "noninferiority_margin": "Exploratory -5 percentage points; superiority interaction remains primary.",
+  "arms": [
+    "single_agent",
+    "static_multi",
+    "topk_multi"
+  ],
+  "levels": [
+    0,
+    4,
+    10
+  ],
+  "registry_sizes": [
+    11,
+    27,
+    51
+  ],
+  "top_k": 5,
+  "order_blocks": [
+    "gold_first",
+    "gold_middle",
+    "gold_last"
+  ],
+  "expected_records": 2160,
+  "suites": [
+    "production_tools",
+    "robustness"
+  ],
+  "repetitions": 3,
+  "workers": 4,
+  "timeout": 60.0,
+  "max_tool_calls": 1,
+  "seed": 20260922,
+  "temperature": 0.0,
+  "model": "gemini-2.5-flash-lite",
+  "location": "europe-west1",
+  "limit": 0,
+  "hashes": {
+    "tool_dataset": "b5dbecec26b7893301ec6073ef964d999df91f9fedb47f607ffe648f48811c56",
+    "robustness_dataset": "c0d840dc6ccfc7fc37e5d27dd9d034544cd72fd67f7ca18cb8fdc4c54220b6fb",
+    "base_distractors": "4f707a53346de8cc3e91f961cafab7028ab9db5fe5b412d9a77a8efb14c4179c",
+    "extension_distractors": "3b7bbef532a7ee8a661f6b9293f60122af80c4b7316e71405c7c81ef42823ad2",
+    "base_runner_helpers": "2192b9992d2b48782ff9e294ccff9ba5919225f76aed258e6999434bd742634d",
+    "v3_helpers": "b0eb1919bf2e748a40d6383f06e2599d8001b3c621bb35d8274862b25b0c3b33",
+    "v4_helpers": "9f2d4664ac9e406398eb54ae92fe28d0e6c523e0a21c71021523745a8fd2ce61",
+    "runner": "2674256c1b773ee0179543713a54fcb09c246945cb02fd64beba9e0cf32e279a",
+    "records": "babcabf50bc47533340dab985b31f78f309f2cc0ef69dc3ce5425a7765837f3f"
+  },
+  "completed_at_utc": "2026-09-22T01:00:11.360585+00:00",
+  "actual_records": 2160,
+  "error_records": 0,
+  "schema_guard_failures": 5
+}

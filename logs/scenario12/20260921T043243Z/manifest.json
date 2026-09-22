@@ -1,0 +1,56 @@
+{
+  "created_at_utc": "2026-09-21T10:30:20.413994+00:00",
+  "split": "heldout",
+  "dataset": "/mnt/d/Project/Chatbot/data/scenario12_heldout_100.jsonl",
+  "case_count": 100,
+  "scenario": "all",
+  "model": "gemini-2.5-flash-lite",
+  "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+  "temperature": 0.0,
+  "workers": 6,
+  "repetitions": 3,
+  "signature": {
+    "dataset_sha256": "baac2317827fc3315d9ca2a42619df34af9e461fc18456756ee609fe442164ff",
+    "code_sha256": "288679b9d024038f57a295157352bcb711b196231f220318c7067cb8b8afb7e5",
+    "prompt_sha256": "c652653b46e1b7e7034987d41ce1daca0817ee3079016fe2a972d393eba5ab87",
+    "judge_rubric_sha256": "7b8d38fb2bc5f438ef93be5f0e6a94c21e07bd4207a771e7f2571eb17cbf277a",
+    "graph_data_sha256": "c40803c485da5bee9e4a8afc6018c16dbe0f1e1e00046b1b7aea96bad2bbf1fd",
+    "catalog_sha256": "456b923d09b33d5010e358b500b3b2336add137a3b6dfdc8f3aedb92a4177ba8",
+    "model": "gemini-2.5-flash-lite",
+    "ragas_version": "0.4.3",
+    "top_k": 7,
+    "metric_k": 10,
+    "scenario": "all",
+    "split": "heldout",
+    "limit": null,
+    "configurations": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "generation": {
+      "temperature": 0.0,
+      "repetitions": 3,
+      "embedding_model": "/mnt/d/Project/Chatbot/models/vietnamese-bi-encoder",
+      "embedding_backend": "local",
+      "location": "europe-west1"
+    }
+  },
+  "artifact_sha256": {
+    "records.jsonl": "1f96fa85696c1b4ee72e5627b26ae3ba4531d95c973bdf68a0b64b71ba7ac96f",
+    "summary.json": "fac98a80058a8a909a95bd873a8955918a0dc7b067f7744f003f678e7299454d",
+    "comparison.md": "c0a414a45a3cd77cb096ecfa4b8ea76ae7614294898a46f65968251d0b05a1fe",
+    "failures.md": "ffb7aecd2fcfd8c6f5152e79177dc60fc060cc712bbb3f20ce366d317b19f1a8",
+    "checkpoint.json": "eeeeafa1cabe9dd1402c0117abc157c11738e899e3a23a6999221dc2b63f7896",
+    "run.log": "d94759bb40d86bb2905aaed20f322d119c68a2ac81639676fd5f73f421b9232c"
+  }
+}

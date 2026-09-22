@@ -39,7 +39,7 @@ MODEL = "gemini-2.5-flash-lite"
 TOP_K = 7
 METRIC_K = 10
 TEMPERATURE = 0.0
-GENERATION_PROMPT_VERSION = "scenario12_grounded_complete_answer_v4"
+GENERATION_PROMPT_VERSION = "scenario12_grounded_complete_answer_v5"
 RAGAS_RUBRIC_VERSION = "ragas-0.4-default-ar-cr-cp-ac-faith-v1"
 DEV_DATASET = ROOT / "data" / "scenario12_dev_100.jsonl"
 HELDOUT_DATASET = ROOT / "data" / "scenario12_heldout_100.jsonl"
@@ -52,9 +52,10 @@ CONFIGS_S1 = ("E1", "E2", "E3", "E4", "E5")
 CONFIGS_S2 = ("T1", "T2", "T3", "T4", "T5", "T6", "T7")
 
 GENERATION_PROMPT = """Bạn là trợ lý tư vấn học vụ và học phí của Trường Đại học Cần Thơ (CTU).
-Chỉ dùng evidence được cung cấp. Hãy trả lời câu hỏi bằng câu hoàn chỉnh, rõ ràng, nêu rõ chủ thể được hỏi (tên ngành, khóa, năm học áp dụng nếu có, hệ đào tạo, học bổng hoặc thủ tục tương ứng) kèm dữ kiện số liệu hoặc quy định chính xác.
-Không tự tính toán hoặc suy luận ra con số mới. Chỉ trích dẫn số liệu xuất hiện nguyên văn trong evidence.
-Nếu evidence chỉ hỗ trợ một phần, trả lời phần biết được và nêu phần còn thiếu.
+Chỉ dùng thông tin từ EVIDENCE được cung cấp. Hãy trả lời câu hỏi bằng câu hoàn chỉnh, trực tiếp, đầy đủ và đúng trọng tâm.
+Nêu chính xác số liệu, điều kiện hoặc căn cứ quy định được hỏi (kèm tên ngành, mã ngành, khóa, năm học hoặc quyết định áp dụng nếu có trong tài liệu).
+Trả lời đúng trọng tâm câu hỏi, không suy diễn thêm ngoài các dữ kiện có trong evidence.
+Không tự tính toán hoặc chế tác ra con số mới ngoài dữ kiện trong evidence.
 Chỉ nói không tìm thấy khi toàn bộ evidence không có dữ kiện liên quan.
 
 EVIDENCE:
@@ -299,6 +300,18 @@ def run_retrieval(
             }
             json_dump(checkpoint_path, checkpoint)
             logger.info("retrieval [%d/%d] %s graph=%s fallback=%s", index, len(cases), case.case_id, trace.graph_hit, trace.catalog_fallback)
+            if index == 20:
+                interim_cases = [c for c in cases[:20] if c.case_id in checkpoint["retrieval"]]
+                if interim_cases:
+                    logger.info("=== INTERIM RETRIEVAL METRICS (N=20 CASES) ===")
+                    for cfg in CONFIGS_S1:
+                        h1 = mean([checkpoint["retrieval"][c.case_id]["configs"][cfg]["metrics"]["hit_at_1"] for c in interim_cases])
+                        r5 = mean([checkpoint["retrieval"][c.case_id]["configs"][cfg]["metrics"]["recall_at_5"] for c in interim_cases])
+                        logger.info("Interim %s: Hit@1=%.4f | Recall@5=%.4f", cfg, h1, r5)
+                    for cfg in CONFIGS_S2:
+                        s_r = mean([checkpoint["retrieval"][c.case_id]["configs"][cfg]["diagnostics"]["source_recall"] for c in interim_cases])
+                        s_ap = mean([checkpoint["retrieval"][c.case_id]["configs"][cfg]["diagnostics"]["source_ap"] for c in interim_cases])
+                        logger.info("Interim %s Diagnostics: Source Recall=%.4f | Source AP=%.4f", cfg, s_r, s_ap)
     finally:
         graph.close()
 
@@ -445,9 +458,13 @@ def run_ragas(
 def bootstrap_ci(values: list[float], *, samples: int = 10000) -> list[float]:
     if not values:
         return [0.0, 0.0]
-    rng = random.Random(42)
-    means = sorted(mean([values[rng.randrange(len(values))] for _ in values]) for _ in range(samples))
-    return [means[int(0.025 * (samples - 1))], means[int(0.975 * (samples - 1))]]
+    import numpy as np
+    arr = np.array(values, dtype=np.float64)
+    n = len(arr)
+    rng = np.random.default_rng(42)
+    indices = rng.integers(0, n, size=(samples, n))
+    sample_means = arr[indices].mean(axis=1)
+    return [float(np.percentile(sample_means, 2.5)), float(np.percentile(sample_means, 97.5))]
 
 
 def aggregate(cases: list[ScenarioCase], checkpoint: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
@@ -511,7 +528,7 @@ def aggregate(cases: list[ScenarioCase], checkpoint: dict[str, Any], args: argpa
                 f"r{rep}:{case.case_id}:{config}"
                 for rep in range(1, args.repetitions + 1) for case in cases
             ]
-            for metric in ("AR", "CR", "CP", "AC"):
+            for metric in ("AR", "CR", "CP", "AC", "Faith"):
                 values = [checkpoint["ragas"][key][metric] for key in keys if checkpoint["ragas"].get(key, {}).get(metric) is not None]
                 config_summary[metric] = {
                     "mean": mean(values), "sd": stddev(values), "ci95": bootstrap_ci(values), "n": len(values),
@@ -524,7 +541,7 @@ def aggregate(cases: list[ScenarioCase], checkpoint: dict[str, Any], args: argpa
             summary["scenario2"][config] = config_summary
         for ablation in ("T5", "T6", "T7"):
             summary["paired_differences"][f"T4-{ablation}"] = {}
-            for metric in ("AR", "CR", "CP", "AC"):
+            for metric in ("AR", "CR", "CP", "AC", "Faith"):
                 differences = []
                 for rep in range(1, args.repetitions + 1):
                     for case in cases:
@@ -601,9 +618,10 @@ def write_reports(run_dir: Path, cases: list[ScenarioCase], checkpoint: dict[str
                 t_vals = " | ".join(f"{pt.get(t, {}).get('hit_at_1', 0.0):.4f}" for t in all_tiers)
                 comparison.append(f"| {config} | {t_vals} |")
     if summary["scenario2"]:
-        comparison.extend(["", "## Scenario 2", "", "| Config | AR | CR | CP | AC | Source recall | Source AP | Fact EM |", "|---|---:|---:|---:|---:|---:|---:|---:|"])
+        comparison.extend(["", "## Scenario 2", "", "| Config | AR | CR | CP | AC | Faith | Source recall | Source AP | Fact EM |", "|---|---:|---:|---:|---:|---:|---:|---:|---:|"])
         for config, row in summary["scenario2"].items():
-            comparison.append(f"| {config} | {row['AR']['mean']:.4f} ± {row['AR']['sd']:.4f} | {row['CR']['mean']:.4f} ± {row['CR']['sd']:.4f} | {row['CP']['mean']:.4f} ± {row['CP']['sd']:.4f} | {row['AC']['mean']:.4f} ± {row['AC']['sd']:.4f} | {row['source_recall']:.4f} | {row['source_ap']:.4f} | {row['factual_exact_match']:.4f} |")
+            faith_text = f"{row['Faith']['mean']:.4f} ± {row['Faith']['sd']:.4f}" if "Faith" in row else "N/A"
+            comparison.append(f"| {config} | {row['AR']['mean']:.4f} ± {row['AR']['sd']:.4f} | {row['CR']['mean']:.4f} ± {row['CR']['sd']:.4f} | {row['CP']['mean']:.4f} ± {row['CP']['sd']:.4f} | {row['AC']['mean']:.4f} ± {row['AC']['sd']:.4f} | {faith_text} | {row['source_recall']:.4f} | {row['source_ap']:.4f} | {row['factual_exact_match']:.4f} |")
     (run_dir / "comparison.md").write_text("\n".join(comparison) + "\n", encoding="utf-8")
     artifacts = {}
     for name in ("records.jsonl", "summary.json", "comparison.md", "failures.md", "checkpoint.json", "run.log"):

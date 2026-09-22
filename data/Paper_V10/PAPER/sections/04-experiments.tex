@@ -1,0 +1,187 @@
+% ============================================================
+% 04-experiments.tex
+% ============================================================
+\section{Experimental Results}
+\label{sec:exp}
+
+This section presents the empirical evaluation of \system{}.
+
+%------------------------------------------------
+\subsection{Experimental Benchmark and Protocols}
+\label{sec:dataset}
+
+We evaluate \system{} on 200 administrative queries constructed through a document-grounded semi-automated protocol over official Can Tho University (CTU) statutes. Candidate queries with diverse conversational forms were generated from statutory articles and reviewed for ground-truth intents, passages, required facts, and answers. The 100-query development split supports index calibration, prompt engineering, and failure analysis. The separately constructed 100-query held-out set follows a predefined complexity distribution of 40 direct single-hop, 20 within-domain multi-hop, 20 cross-domain, 10 entity-comparison, 5 temporal, and 5 adversarial queries. It includes 51 formal and 49 colloquial formulations; 56 queries have one gold source and 44 require multiple gold sources.
+
+An audit using entity inventories separate from the development split found no exact cross-split duplicates and a maximum 5-gram Jaccard similarity of 0.1875. Gold sources and required facts were reviewed against 244 institutional documents and 559 structured tuition records. The held-out set contains 19 Academic, 28 Financial, 17 Scholarship, and 16 General single-domain queries; the remaining 20 combine evidence across domains and are analyzed separately. Tables~\ref{tab:retrieval_evaluation} and~\ref{tab:e2e_evaluation} report results on this held-out set.
+
+The final run (ID \texttt{20260921T043243Z}) used Ragas 0.4.3 with Answer Relevancy strictness 1 and 10,000 bootstrap resamples for 95\% confidence intervals. Its coverage audit found all 10,500 required metric values valid, with no missing values or evaluation failures.
+
+\noindent\textbf{Evaluated Model and Infrastructure:} The evaluated run used the Gemini 2.5 Flash Lite model identifier through Google Cloud Vertex AI with temperature 0.0; later deployment-model substitutions were not evaluated. Each query was evaluated in three repetitions, producing 2,100 generated answers and 2,100 corresponding Ragas evaluations ($7$ configurations $\times 100$ queries $\times 3$ repetitions). Neural reranking used an NVIDIA GeForce GTX 1650 GPU (4~GB VRAM). Neo4j 5.20 with APOC stored relational curricula; PostgreSQL stored parent chunks (2,800 characters, 100 overlap); and Qdrant indexed child chunks (400 characters, 50 overlap) using a 768-dimensional \texttt{vietnamese-bi-encoder}. The system used \texttt{bge-reranker-v2-m3}, LangGraph StateGraph, and Redis 7.
+
+\noindent\textbf{Scenario 3 Semantic-Neighbor Protocol:} The tool-ambiguity experiment fixes 50 production cases (30 academic and 20 financial) while expanding an 11-tool core with 40 evaluation-only, operationally plausible semantic neighbors distributed across ten production tool families. Adding zero, two, or four neighbors per family produces registries of 11, 31, and 51 tools. Four configurations are compared: a monolithic full-registry gate, a global Top-7 single-agent gate, a supervisor-routed Top-7 gate with a generic selection policy, and a supervisor-routed Top-7 specialist gate with contrastive use/avoid rules derived from the tool contracts. Each primary case is evaluated under three counterbalanced tool-order blocks, yielding 1,800 decisions. A separate 40-case coverage suite makes every semantic-neighbor tool the gold target once at the 51-tool level, adding 160 decisions and producing 1,960 total records. To isolate downstream selection, 190 live supervisor decisions are shared across routed configurations and ambiguity levels for the same case and order block. Paired differences and high-minus-low interactions use 10,000 case-level bootstrap resamples after averaging repetitions within each case.
+
+%------------------------------------------------
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+\noindent\textbf{Evaluation Metrics:} Scenario~1 reports source-document-level Hit@$k$ ($k\in\{1,3\}$), Precision@5, Recall@5, MRR@10, and domain-level Hit@1. Scenario~3 measures routing accuracy, Macro-F1, intent accuracy, tool selection and argument Exact Match (EM), end-to-end pass rate, adversarial tool gating, and safe behavior under $\text{max\_tool\_calls}=1$ and a $60$-s timeout. The semantic-neighbor analysis additionally reports gold-tool shortlist recall, visible tools, input tokens, decision latency, paired 95\% confidence intervals, and the high-minus-low interaction in paired differences.
+
+Scenario~2 evaluates Top-7 synthesis using Ragas~\cite{es2023ragas}: Answer Relevancy (AR), Context Recall (CR), Context Precision (CP), Answer Correctness (AC), and Faithfulness (Faith). Factual Exact Match (Fact EM) measures strict numerical tuition-fee and credit agreement, while Source Recall measures gold-source coverage and Source Average Precision (Source AP) evaluates the ranking of retrieved gold sources. To reduce LLM-judge bias~\cite{zheng2023judging,es2023ragas}, the evaluation uses gold reference answers and source documents for reference-grounded metrics, temperature-zero decoding over three repetitions, and programmatic Fact EM for tuition arithmetic.
+
+%------------------------------------------------
+\subsection{Experimental Scenarios and Benchmark Results}
+\label{sec:scenarios}
+
+We evaluate \system{} through retrieval component stacking (RQ3), end-to-end generation and ablation (RQ2), and multi-agent coordination and tool reliability (RQ1).
+
+\subsubsection{Scenario 1 --- Retrieval Component Stacking (E1--E5):}
+Scenario~1 compares five cumulative retrieval configurations, from sparse and dense baselines to hybrid fusion, neural reranking, and the proposed intent-guided evidence stack, at aggregate and complexity-stratified levels on the 100-query held-out set.
+
+Table~\ref{tab:retrieval_evaluation} shows that E4 and E5 exceed the sparse, dense, and hybrid baselines on every aggregate metric. E4 reaches 0.7000 Hit@1 and 0.8054 MRR@10. The full intent-governed configuration E5 records the highest values: 0.7400 Hit@1, 0.9200 Hit@3, 0.3020 Precision@5, 0.8608 Recall@5, and 0.8333 MRR@10. Its higher latency (21.86~s vs.\ 15.37~s for E4) is consistent with additional intent-governed retrieval and graph-processing stages.
+
+\begin{table}[!htbp]
+\centering
+\caption{Scenario 1: Progressive retrieval component stacking on the redesigned Held-Out Test Set ($N=100$).}
+\label{tab:retrieval_evaluation}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Retrieval Configuration} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{Recall@5} & \textbf{MRR@10} & \textbf{Latency (ms)} \\
+\midrule
+E1: BM25 Lexical Baseline        & 0.5300 & 0.7700 & 0.2060 & 0.6167 & 0.6695 & \textbf{7.08} \\
+E2: Dense Vector Semantic        & 0.4600 & 0.6500 & 0.1760 & 0.5242 & 0.5604 & 33.66 \\
+E3: Hybrid RRF (BM25 + Dense)    & 0.5200 & 0.7900 & 0.2240 & 0.6625 & 0.6725 & 37.57 \\
+E4: Hybrid + Neural Reranker     & 0.7000 & 0.9100 & 0.2540 & 0.7508 & 0.8054 & 15,366.33 \\
+\textbf{E5: CTU-Chat Full Retrieval} & \textbf{0.7400} & \textbf{0.9200} & \textbf{0.3020} & \textbf{0.8608} & \textbf{0.8333} & 21,857.56 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{E4--E5 retrieval results by held-out query complexity.}
+\label{tab:retrieval_complexity}
+\begingroup
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{lccccc}
+\toprule
+\multirow{2}{*}{\textbf{Complexity Tier}} & \multirow{2}{*}{\textbf{$N$}} & \multicolumn{2}{c}{\textbf{Hit@1}} & \multicolumn{2}{c}{\textbf{Recall@5}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+& & \textbf{E4} & \textbf{E5} & \textbf{E4} & \textbf{E5} \\
+\midrule
+Direct single-hop       & 40 & 0.6500 & \textbf{0.6750} & 0.8500 & \textbf{0.9250} \\
+Within-domain multi-hop & 20 & \textbf{0.7000} & \textbf{0.7000} & 0.7000 & \textbf{0.7583} \\
+Cross-domain            & 20 & 0.7500 & \textbf{0.8000} & 0.6917 & \textbf{0.8250} \\
+Entity comparison       & 10 & 0.8000 & \textbf{0.9000} & 0.6667 & \textbf{0.9500} \\
+Temporal                 & 5 & 0.8000 & \textbf{1.0000} & 0.9000 & \textbf{1.0000} \\
+Adversarial              & 5 & \textbf{0.6000} & \textbf{0.6000} & 0.4167 & \textbf{0.5833} \\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{table}
+
+E5 matches or exceeds E4 on both metrics in every complexity tier. The largest Recall@5 differences occur for entity-comparison (28.33 percentage points; 0.9500 vs.\ 0.6667) and cross-domain queries (13.33 percentage points; 0.8250 vs.\ 0.6917). For the five temporal queries, E5 obtains 1.0000 on both metrics.
+
+\begin{table}[!htbp]
+\centering
+\caption{Scenario 2: Controlled retrieval-conditioned generation and modular ablation on the redesigned Held-Out Test Set ($N=100, R=3$, 2,100 total evaluation turns, Top-7 context).}
+\label{tab:e2e_evaluation}
+\small
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Cfg.} & \textbf{CP} & \textbf{CR} & \textbf{AR} & \textbf{AC} & \textbf{Faith} & \textbf{Fact EM} & \textbf{Src. R} & \textbf{Src. AP} \\
+\midrule
+T1 & 0.2522 & 0.5349 & 0.3901 & 0.4615 & 0.8042 & 0.5924 & 0.6358 & 0.4637 \\
+T2 & 0.1626 & 0.2648 & 0.2370 & 0.3372 & 0.5817 & 0.5179 & 0.5342 & 0.4094 \\
+T3 & 0.2071 & 0.4693 & 0.3972 & 0.4361 & 0.7486 & 0.5792 & 0.6892 & 0.5015 \\
+\textbf{T4} & 0.3511 & \textbf{0.6534} & 0.4468 & 0.4785 & \textbf{0.8636} & 0.6331 & \textbf{0.8325} & \textbf{0.7316} \\
+T5 & 0.2248 & 0.5192 & 0.3425 & 0.4330 & 0.7618 & 0.6056 & 0.7892 & 0.6834 \\
+T6 & \textbf{0.3765} & 0.5791 & \textbf{0.4719} & \textbf{0.4913} & 0.8376 & 0.6184 & 0.6925 & 0.5939 \\
+T7 & 0.3541 & 0.6299 & 0.4304 & 0.4785 & 0.8427 & \textbf{0.6345} & 0.8208 & 0.7277 \\
+\bottomrule
+\end{tabular}
+\medskip
+\parbox{\columnwidth}{\footnotesize\emph{Configurations:} T1: BM25; T2: dense; T3: hybrid RRF; T4: full governed multi-evidence configuration; T5: without cross-reranker; T6: without Neo4j grounding; T7: without subspace governance. \emph{Metrics:} Fact EM: Factual Exact Match on tuition/credits; CP: Context Precision; CR: Context Recall; AR: Answer Relevancy; AC: Answer Correctness; Faith: Faithfulness; Src. R: Source Recall; Src. AP: Source Average Precision. Ragas values are means over 300 query--repetition observations per configuration; corresponding standard deviations and bootstrap confidence intervals are retained in the experiment artifacts. All metrics are normalized to $[0,1]$; higher is better.}
+\end{table}
+
+%------------------------------------------------
+\subsubsection{Scenario 2 --- Controlled Retrieval-Conditioned Generation and Modular Ablation (T1--T7):}
+Scenario~2 compares the full governed multi-evidence configuration (T4) with three retrieval baselines (T1--T3) and three ablations (T5--T7) over $2,100$ evaluation turns. As shown in Table~\ref{tab:e2e_evaluation}, T4 exceeds BM25 on all eight metrics, including higher Faithfulness ($0.8636$ vs.\ $0.8042$) and a 4.07-percentage-point Fact~EM difference ($63.31\%$ vs.\ $59.24\%$). T4 records the highest Context Recall ($0.6534$), Faithfulness ($0.8636$), Source Recall ($0.8325$), and Source AP ($0.7316$). T6 leads Context Precision, Answer Relevancy, and Answer Correctness, while T7 obtains slightly higher Fact~EM ($63.45\%$).
+\FloatBarrier
+
+%------------------------------------------------
+\subsubsection{Scenario 3 --- Multi-Agent Routing, Specialist Tool Reliability, and Semantic Tool Ambiguity:}
+Scenario~3 evaluates coordination, bounded safety, and selection among semantically adjacent tools (Table~\ref{tab:scenario3_results}). Panel~A scores raw supervisor output before route repair; Panels~B--C test isolated specialist gates and adversarial inputs. Panel~D reports the 1,800-decision fixed-case semantic-neighbor experiment across 11, 31, and 51 tools; the additional 160-decision coverage suite is reported in the accompanying analysis.
+
+\begin{table}[!htbp]
+\centering
+\caption{Scenario 3: Routing, specialist tool reliability, adversarial robustness, and semantic-neighbor tool ambiguity under a maximum of one tool call per decision ($\text{max\_tool\_calls}=1$).}
+\label{tab:scenario3_results}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccccccc}
+\toprule
+\multicolumn{8}{l}{\textbf{Panel A: Raw Supervisor Routing and Specialist Selection ($N=100$ queries; Rule: 1 rep / LLM: 3 reps, $N=300$)}} \\
+\midrule
+\textbf{Router Variant} & \textbf{Runs ($N$)} & \textbf{Agent Acc.} & \textbf{Macro-F1} & \textbf{Intent Acc.} & \textbf{Bounded} & \multicolumn{2}{c}{\textbf{Routing Paradigm}} \\
+\midrule
+Rule-Based Router          & 100 & 85.0\% & 69.2\% & 69.0\% & 100.0\% & \multicolumn{2}{c}{Heuristic Regex} \\
+Raw LLM Supervisor (\system{}) & 300 & \textbf{97.0\%} & \textbf{97.8\%} & \textbf{95.0\%} & \textbf{100.0\%} & \multicolumn{2}{c}{Structured Pydantic} \\
+\midrule
+\multicolumn{8}{l}{\textbf{Panel B: Specialist Tool Execution Reliability ($N=90$ runs across 30 test cases, 3 repeated runs)}} \\
+\midrule
+\textbf{Specialist Tool Function} & \textbf{Runs ($N$)} & \textbf{Selection} & \textbf{Arg. EM} & \textbf{Result Acc.} & \textbf{E2E Pass} & \textbf{Bounded} & \textbf{Paradigm} \\
+\midrule
+\texttt{tuition\_lookup}                & 30 & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & Structured Catalog \\
+\texttt{scholarship\_calculation}       & 30 & 86.7\%  & 76.7\%  & 86.7\%  & 76.7\%  & 100.0\% & LLM Tool Selection \\
+\texttt{tuition\_reduction\_calculation}& 30 & 100.0\% & 100.0\% & 100.0\% & 100.0\% & 100.0\% & Arithmetic Tool \\
+\midrule
+\multicolumn{8}{l}{\textbf{Panel C: Robustness and Bounded Failure Handling ($N=60$ runs under malformed/adversarial inputs)}} \\
+\midrule
+\textbf{Adversarial Gate} & \textbf{Runs ($N$)} & \textbf{Agent Acc.} & \textbf{Tool Gate} & \textbf{Safe Result} & \textbf{E2E Pass} & \textbf{Bounded} & \textbf{Notes} \\
+\midrule
+Failure Gate Robustness    & 60 & 100.0\% & 100.0\% & 98.3\% & 98.3\% & 100.0\% & -- \\
+\midrule
+\multicolumn{8}{l}{\textbf{Panel D: Semantic-Neighbor Tool Ambiguity ($N=50$ fixed cases, 3 reps, $N=1,800$)}} \\
+\midrule
+\textbf{Registry} & \textbf{Architecture} & \textbf{Visible} & \textbf{Gold@10} & \textbf{Selection} & \textbf{E2E Pass} & \textbf{Input Tok.} & \textbf{Latency (ms)} \\
+\midrule
+\multirow{4}{*}{11 tools} & Full-registry single & 11.0 & -- & 94.0\% & 86.0\% & 1,663 & 1,098 \\
+ & Global Top-10 single & 10.0 & 100.0\% & 93.3\% & 83.3\% & 1,541 & 1,148 \\
+ & Routed generic & 5.1 & 98.0\% & 90.7\% & 80.0\% & 1,204 & 1,889 \\
+ & Routed specialist & 5.1 & 98.0\% & 93.3\% & 85.3\% & 1,441 & 1,983 \\
+\midrule
+\multirow{4}{*}{31 tools} & Full-registry single & 31.0 & -- & 91.3\% & 84.7\% & 2,706 & 1,157 \\
+ & Global Top-10 single & 10.0 & 98.0\% & 90.0\% & 81.3\% & 1,149 & 1,033 \\
+ & Routed generic & 9.8 & 98.0\% & 88.0\% & 79.3\% & 1,396 & 1,958 \\
+ & Routed specialist & 9.8 & 98.0\% & \textbf{93.3\%} & \textbf{88.7\%} & 1,830 & 2,015 \\
+\midrule
+\multirow{4}{*}{51 tools} & Full-registry single & 51.0 & -- & 92.7\% & 83.3\% & 3,722 & 1,289 \\
+ & Global Top-10 single & 10.0 & 96.0\% & 86.7\% & 78.7\% & 1,036 & \textbf{997} \\
+ & Routed generic & 9.8 & 98.0\% & 91.3\% & 82.7\% & 1,340 & 1,907 \\
+ & Routed specialist & 9.8 & 98.0\% & 92.7\% & \textbf{88.0\%} & 1,770 & 2,021 \\
+\bottomrule
+\end{tabular}
+}
+\medskip
+\parbox{\columnwidth}{\footnotesize\emph{Note:} Panels A--C evaluate raw routing, isolated tool gates, and adversarial robustness. Panel D uses 50 fixed production cases across 11, 31, and 51 tools with a distilled supervisor prompt. Gold@10 is gold-tool shortlist recall at $k=10$; Visible is the mean active tool count. Paired intervals use 10,000 case-level bootstrap resamples. The separate coverage suite makes each of 40 semantic-neighbor tools the gold target once.}
+\end{table}
+
+\subsection{Discussion}
+\label{sec:discussion}
+
+\textbf{Answering RQ1:} Before production route repair, the evaluated raw structured supervisor achieves $97.0\%$ routing accuracy, $97.8\%$ Macro-F1, and $95.0\%$ intent accuracy, compared with $85.0\%$, $69.2\%$, and $69.0\%$ for rule-based routing. The isolated deterministic tuition tools achieve $100.0\%$ end-to-end pass rates, whereas scholarship calculation reaches $76.7\%$ with $86.7\%$ tool selection; all tested paths remain bounded. Panel~D evaluates scalability under increasing intra-domain semantic-neighbor density. The routed specialist is the only architecture whose end-to-end pass rate \emph{improves} as the registry scales from 11 to 51 tools ($85.3\% \rightarrow 88.0\%$, $\Delta=+2.7$~pp), whereas every single-agent variant degrades: full-registry single $86.0\% \rightarrow 83.3\%$ ($\Delta=-2.7$~pp), global Top-10 $83.3\% \rightarrow 78.7\%$ ($\Delta=-4.6$~pp). At the densest registry (51 tools), the specialist exceeds the matched global Top-10 single agent in selection by $+6.0$~pp (95\% CI $[-1.3,+14.0]$) and in end-to-end completion by $+9.3$~pp (CI $[+2.0,+17.3]$). The specialist also exceeds the routed generic gate in E2E by $+5.3$~pp (CI $[+0.7,+10.7]$) across all three registry sizes, consistent with a contribution from the contrastive domain policy. Selection accuracy remains near-constant for the specialist ($93.3\% \rightarrow 92.7\%$, $\Delta=-0.6$~pp) while the Top-10 single agent drops $6.6$~pp over the same range.
+
+The token-efficiency difference is noteworthy. The distilled supervisor reduces the routing overhead to approximately 500 tokens, bringing the specialist's total input tokens to $1{,}770$ at 51 tools---$52.4\%$ fewer than the full-registry single agent ($3{,}722$). As the registry grows $4.6\times$, the specialist's token cost increases by a factor of $1.23\times$, compared with the monolithic agent's $2.24\times$ ($O(N)$) growth. The high-minus-low interaction (specialist vs.\ Top-10) is $+6.0$~pp for selection (CI $[-0.0,+13.3]$) and $+7.3$~pp for E2E (CI $[-0.0,+15.3]$); both are positive and the confidence intervals approach but do not cross zero. In the coverage suite at 51 tools, the specialist matches the full-registry single in selection ($92.5\%$) and exceeds it in E2E ($82.5\%$ vs.\ $80.0\%$), despite seeing only 9.8 of 51 tools per query. Conditional on the gold tool being shortlisted, specialist selection reaches $94.6\%$. Taken together, the evidence is consistent with a scalability advantage for domain-partitioned routing: under the evaluated conditions, contrastive specialist gates maintain or improve both accuracy and token efficiency as the tool registry grows, whereas monolithic and unstructured Top-$k$ approaches degrade under increasing semantic-neighbor density.
+
+\textbf{Answering RQ2:} T4 exceeds the no-cross-reranker configuration T5 on every reported metric. The paired Ragas differences favor T4 for all five judged metrics; for example, T4's Faithfulness is 0.1018 higher than T5's (95\% bootstrap CI $[+0.0548,+0.1475]$). Comparisons with the other ablations are mixed. Relative to T6 (without graph evidence), T4 has higher Context Recall, Faithfulness, Source Recall, and Fact~EM, but lower Context Precision, Answer Relevancy, Answer Correctness, and Source AP. Relative to T7 (without governance), T4 has higher Context Recall, Faithfulness, Answer Relevancy, Source Recall, and Source AP, while T7 is slightly higher on Context Precision and Fact~EM; their paired Ragas confidence intervals all include zero. These results support component-specific associations rather than uniform causal effects.
+
+\textbf{Answering RQ3:} E4, which adds neural reranking to hybrid retrieval, exceeds E3 on every aggregate metric. E5 records the highest aggregate values and matches or exceeds E4 on Hit@1 and Recall@5 in every complexity tier. Because E5 jointly adds intent-governed lanes, graph evidence, and quota-based packing, these differences cannot be attributed to an individual component; they are nevertheless consistent with improved multi-source evidence aggregation in the evaluated setting.
+
+%------------------------------------------------
+\subsection{Threats to Validity and Limitations}
+\label{sec:limitations}
+
+The evaluation is limited to CTU and 100 held-out queries, with five temporal and five adversarial cases; Gemini 2.5 Flash Lite may also introduce generator--judge bias. Scenario~3 uses 50 fixed cases and evaluation-only semantic-neighbor contracts. Its coverage suite has one repetition, and shared supervisor decisions control downstream comparisons but omit independent route variability. While the high-minus-low scaling interaction is positive, its confidence intervals approach but do not exclude zero, so the differential degradation rate warrants replication with larger sample sizes. The routed specialist incurs approximately $2\times$ higher latency than the single-agent alternatives due to the two-hop LLM call sequence (supervisor then gate), despite achieving lower total token cost than the full-registry monolithic agent. One-decision gates do not reproduce the complete repair/retry path. Live fault injection, naturally evolving registries, and multi-institutional validation remain future work.

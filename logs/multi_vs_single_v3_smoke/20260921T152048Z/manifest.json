@@ -1,0 +1,31 @@
+{
+  "protocol": "multi-vs-single-v3.0",
+  "created_at_utc": "2026-09-21T15:20:48.547954+00:00",
+  "status": "locked_before_execution",
+  "primary_outcome": "Architecture-by-registry interaction in tool-selection accuracy from 11 to 27 tools on the 60 production cases",
+  "multi_agent_arm": "Live structured supervisor + production route repair, then predicted-specialist tool gate",
+  "single_agent_arm": "Monolithic tool gate exposing all available tools at the given registry level",
+  "repetitions": 1,
+  "levels": [
+    0,
+    2,
+    4
+  ],
+  "suites": [
+    "production_tools",
+    "robustness"
+  ],
+  "workers": 2,
+  "timeout": 60.0,
+  "max_tool_calls": 1,
+  "seed": 20260921,
+  "temperature": 0.0,
+  "model": "gemini-2.5-flash-lite",
+  "limit": 2,
+  "hashes": {
+    "tool_dataset": "b5dbecec26b7893301ec6073ef964d999df91f9fedb47f607ffe648f48811c56",
+    "robustness_dataset": "c0d840dc6ccfc7fc37e5d27dd9d034544cd72fd67f7ca18cb8fdc4c54220b6fb",
+    "distractor_registry": "4f707a53346de8cc3e91f961cafab7028ab9db5fe5b412d9a77a8efb14c4179c",
+    "runner": "9cdd0f1f9e1b37726d2a4c52dea37a8c639238578b2ef60e232a5888d0fa0cee"
+  }
+}

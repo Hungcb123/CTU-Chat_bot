@@ -1,0 +1,214 @@
+[
+  {
+    "domain": "academic",
+    "name": "tra_cuu_nganh_tuyen_sinh",
+    "description": "Tra cứu thông tin đề án tuyển sinh, chỉ tiêu và tổ hợp môn theo tên hoặc mã ngành.",
+    "parameters": {
+      "ten_nganh": {
+        "type": "string",
+        "description": "Tên hoặc mã ngành cần tra cứu thông tin tuyển sinh."
+      }
+    },
+    "deterministic_output": "Không tìm thấy dữ liệu đề án tuyển sinh phù hợp trong hệ thống.",
+    "registry_order": 1
+  },
+  {
+    "domain": "academic",
+    "name": "tim_nganh_theo_diem_chuan",
+    "description": "Tìm kiếm ngành đào tạo theo ngưỡng điểm chuẩn xét tuyển của năm gần nhất.",
+    "parameters": {
+      "diem_chuan": {
+        "type": "number",
+        "description": "Mức điểm chuẩn đầu vào cần tra cứu ngành phù hợp."
+      }
+    },
+    "deterministic_output": "Không tìm thấy ngành đào tạo tương ứng với ngưỡng điểm chuẩn này.",
+    "registry_order": 2
+  },
+  {
+    "domain": "academic",
+    "name": "tra_cuu_mon_tuong_duong",
+    "description": "Tra cứu các học phần tương đương hoặc thay thế trong chương trình đào tạo.",
+    "parameters": {
+      "ma_mon": {
+        "type": "string",
+        "description": "Tên hoặc mã học phần cần tìm môn học thay thế tương đương."
+      }
+    },
+    "deterministic_output": "Không có dữ liệu học phần tương đương thay thế cho môn học này.",
+    "registry_order": 3
+  },
+  {
+    "domain": "academic",
+    "name": "tra_cuu_lich_hoc",
+    "description": "Tra cứu thời khóa biểu và lịch học dự kiến của các lớp học phần mở trong học kỳ.",
+    "parameters": {
+      "ma_mon": {
+        "type": "string",
+        "description": "Mã học phần hoặc tên lớp học phần cần xem lịch."
+      }
+    },
+    "deterministic_output": "Chưa có lịch giảng dạy công bố cho học phần được yêu cầu.",
+    "registry_order": 4
+  },
+  {
+    "domain": "financial",
+    "name": "tra_cuu_hoc_phi_sau_dai_hoc",
+    "description": "Tra cứu định mức học phí các chương trình đào tạo thạc sĩ và tiến sĩ.",
+    "parameters": {
+      "chuyen_nganh": {
+        "type": "string",
+        "description": "Tên chuyên ngành hoặc hệ đào tạo sau đại học."
+      }
+    },
+    "deterministic_output": "Không tìm thấy dữ liệu biểu mức học phí sau đại học của chuyên ngành này.",
+    "registry_order": 1
+  },
+  {
+    "domain": "financial",
+    "name": "tinh_hoc_phi_hoc_lai",
+    "description": "Tính toán chi phí học lại hoặc học cải thiện điểm dựa trên số tín chỉ của học phần.",
+    "parameters": {
+      "so_tin_chi": {
+        "type": "integer",
+        "description": "Số lượng tín chỉ của học phần cần học lại."
+      },
+      "khoi_nganh": {
+        "type": "string",
+        "description": "Khối ngành hoặc lĩnh vực đào tạo của học phần."
+      }
+    },
+    "deterministic_output": "Mức phí học lại được tính theo đơn giá tín chỉ tương ứng của khóa học.",
+    "registry_order": 2
+  },
+  {
+    "domain": "financial",
+    "name": "tra_cuu_hoan_hoc_phi",
+    "description": "Tra cứu điều kiện, thủ tục và tỷ lệ hoàn trả học phí khi rút học phần hoặc thôi học.",
+    "parameters": {
+      "ma_sinh_vien": {
+        "type": "string",
+        "description": "Mã số sinh viên hoặc lý do rút học phí."
+      }
+    },
+    "deterministic_output": "Thủ tục hoàn học phí được xử lý theo quy định tài chính của trường.",
+    "registry_order": 3
+  },
+  {
+    "domain": "financial",
+    "name": "tra_cuu_cong_no",
+    "description": "Tra cứu tình trạng nợ đọng hoặc dư nợ học phí của sinh viên trong học kỳ hiện tại.",
+    "parameters": {
+      "ma_sinh_vien": {
+        "type": "string",
+        "description": "Mã số sinh viên cần kiểm tra công nợ."
+      }
+    },
+    "deterministic_output": "Không có thông tin nợ học phí tồn đọng cho sinh viên này.",
+    "registry_order": 4
+  },
+  {
+    "domain": "scholarship",
+    "name": "tra_cuu_hoc_bong_doanh_nghiep",
+    "description": "Tra cứu các chương trình học bổng tài trợ từ doanh nghiệp hoặc tổ chức bên ngoài.",
+    "parameters": {
+      "ten_hoc_bong": {
+        "type": "string",
+        "description": "Tên quỹ học bổng hoặc tên doanh nghiệp tài trợ."
+      }
+    },
+    "deterministic_output": "Thông tin học bổng doanh nghiệp được thông báo trên cổng thông tin định kỳ.",
+    "registry_order": 1
+  },
+  {
+    "domain": "scholarship",
+    "name": "kiem_tra_dieu_kien_hoc_bong",
+    "description": "Kiểm tra tiêu chuẩn và điều kiện hồ sơ ứng tuyển học bổng theo từng chương trình cụ thể.",
+    "parameters": {
+      "ten_quy": {
+        "type": "string",
+        "description": "Tên chương trình hoặc quỹ học bổng cần xét duyệt."
+      }
+    },
+    "deterministic_output": "Tiêu chuẩn xét học bổng gồm kết quả học tập và rèn luyện theo quy chế.",
+    "registry_order": 2
+  },
+  {
+    "domain": "scholarship",
+    "name": "tra_cuu_han_nop_hoc_bong",
+    "description": "Tra cứu thời hạn chót nộp hồ sơ xin xét cấp học bổng của các đợt trong năm học.",
+    "parameters": {
+      "ten_chuong_trinh": {
+        "type": "string",
+        "description": "Tên chương trình học bổng cần kiểm tra hạn nộp."
+      }
+    },
+    "deterministic_output": "Hạn nộp hồ sơ học bổng đã hết hạn hoặc chưa mở cổng đăng ký.",
+    "registry_order": 3
+  },
+  {
+    "domain": "scholarship",
+    "name": "tinh_ho_tro_sinh_vien",
+    "description": "Tính toán định mức tiền trợ cấp và hỗ trợ học tập cho sinh viên diện chính sách xã hội.",
+    "parameters": {
+      "dien_chinh_sach": {
+        "type": "string",
+        "description": "Diện đối tượng chính sách (hộ nghèo, mồ côi, khuyết tật, dân tộc thiểu số)."
+      }
+    },
+    "deterministic_output": "Mức trợ cấp xã hội được chi trả định kỳ theo quy định hiện hành.",
+    "registry_order": 4
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_ky_tuc_xa",
+    "description": "Tra cứu thông tin xét duyệt chỗ ở, đơn giá phòng và thủ tục đăng ký ký túc xá.",
+    "parameters": {
+      "loai_phong": {
+        "type": "string",
+        "description": "Loại phòng ký túc xá hoặc khu lưu trú sinh viên."
+      }
+    },
+    "deterministic_output": "Ký túc xá tiếp nhận đăng ký trực tuyến vào đầu mỗi năm học.",
+    "registry_order": 1
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_bao_hiem_y_te",
+    "description": "Tra cứu thời hạn thẻ, mức đóng và quyền lợi khám chữa bệnh bảo hiểm y tế sinh viên.",
+    "parameters": {
+      "ma_sinh_vien": {
+        "type": "string",
+        "description": "Mã số sinh viên cần tra cứu thông tin bảo hiểm y tế."
+      }
+    },
+    "deterministic_output": "Thẻ bảo hiểm y tế sinh viên có giá trị sử dụng trong suốt năm học đăng ký.",
+    "registry_order": 2
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_vay_von",
+    "description": "Tra cứu quy định, đối tượng và thủ tục xác nhận sinh viên để vay vốn ngân hàng chính sách.",
+    "parameters": {
+      "doi_tuong_vay": {
+        "type": "string",
+        "description": "Đối tượng hoặc chương trình tín dụng sinh viên vay vốn học tập."
+      }
+    },
+    "deterministic_output": "Nhà trường xác nhận giấy tờ vay vốn tại bộ phận hành chính một cửa.",
+    "registry_order": 3
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_quy_che_sinh_vien",
+    "description": "Tra cứu các văn bản nội quy, thủ tục hành chính và quy chế công tác sinh viên chung.",
+    "parameters": {
+      "tu_khoa": {
+        "type": "string",
+        "description": "Từ khóa thủ tục hoặc nội dung quy chế sinh viên cần tìm."
+      }
+    },
+    "deterministic_output": "Vui lòng xem chi tiết văn bản quy chế công tác sinh viên trên website trường.",
+    "registry_order": 4
+  }
+]

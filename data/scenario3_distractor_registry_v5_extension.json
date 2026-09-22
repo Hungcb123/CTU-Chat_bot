@@ -1,0 +1,194 @@
+[
+  {
+    "domain": "academic",
+    "name": "tra_cuu_ke_hoach_hoc_tap",
+    "description": "Tra cứu kế hoạch học tập dự kiến theo ngành, khóa tuyển sinh và học kỳ.",
+    "parameters": {"ten_nganh": {"type": "string", "description": "Tên hoặc mã ngành."}, "khoa": {"type": "string", "description": "Khóa tuyển sinh."}},
+    "deterministic_output": "Chưa có kế hoạch học tập phù hợp cho ngành và khóa được yêu cầu.",
+    "registry_order": 5
+  },
+  {
+    "domain": "academic",
+    "name": "tra_cuu_chuan_dau_ra",
+    "description": "Tra cứu chuẩn đầu ra, năng lực nghề nghiệp và yêu cầu ngoại ngữ của một ngành đào tạo.",
+    "parameters": {"ten_nganh": {"type": "string", "description": "Tên hoặc mã ngành cần xem chuẩn đầu ra."}},
+    "deterministic_output": "Không tìm thấy bộ chuẩn đầu ra tương ứng.",
+    "registry_order": 6
+  },
+  {
+    "domain": "academic",
+    "name": "tra_cuu_de_cuong_mon_hoc",
+    "description": "Tra cứu đề cương chi tiết, nội dung và phương pháp đánh giá của một môn học.",
+    "parameters": {"ma_mon": {"type": "string", "description": "Tên hoặc mã môn học."}},
+    "deterministic_output": "Chưa có đề cương chi tiết của môn học này.",
+    "registry_order": 7
+  },
+  {
+    "domain": "academic",
+    "name": "tra_cuu_mon_tien_quyet_truc_tiep",
+    "description": "Tra cứu môn tiên quyết trực tiếp của một học phần, không mở rộng toàn bộ chuỗi học trước.",
+    "parameters": {"ma_mon": {"type": "string", "description": "Tên hoặc mã môn học cần xem tiên quyết trực tiếp."}},
+    "deterministic_output": "Không tìm thấy môn tiên quyết trực tiếp cho học phần này.",
+    "registry_order": 8
+  },
+  {
+    "domain": "academic",
+    "name": "tra_cuu_hoc_ky_du_kien",
+    "description": "Tra cứu học kỳ dự kiến mà một môn học được bố trí trong chương trình đào tạo.",
+    "parameters": {"ma_mon": {"type": "string", "description": "Tên hoặc mã môn học."}},
+    "deterministic_output": "Chưa xác định được học kỳ dự kiến của môn học.",
+    "registry_order": 9
+  },
+  {
+    "domain": "academic",
+    "name": "tra_cuu_dieu_kien_tot_nghiep",
+    "description": "Tra cứu số tín chỉ tích lũy và các điều kiện bắt buộc để tốt nghiệp một ngành.",
+    "parameters": {"ten_nganh": {"type": "string", "description": "Tên hoặc mã ngành."}},
+    "deterministic_output": "Chưa có dữ liệu điều kiện tốt nghiệp cho ngành được yêu cầu.",
+    "registry_order": 10
+  },
+  {
+    "domain": "financial",
+    "name": "tra_cuu_le_phi_nhap_hoc",
+    "description": "Tra cứu các khoản lệ phí nhập học và khoản thu đầu khóa dành cho sinh viên mới.",
+    "parameters": {"khoa": {"type": "string", "description": "Khóa tuyển sinh cần tra cứu."}},
+    "deterministic_output": "Chưa có bảng lệ phí nhập học cho khóa này.",
+    "registry_order": 5
+  },
+  {
+    "domain": "financial",
+    "name": "tinh_lai_cham_dong_hoc_phi",
+    "description": "Tính khoản phát sinh khi sinh viên đóng học phí trễ hạn theo số ngày chậm.",
+    "parameters": {"so_tien": {"type": "number", "description": "Số học phí chưa đóng."}, "so_ngay_cham": {"type": "integer", "description": "Số ngày chậm đóng."}},
+    "deterministic_output": "Khoản phát sinh được xác định theo quy định thu học phí hiện hành.",
+    "registry_order": 6
+  },
+  {
+    "domain": "financial",
+    "name": "tra_cuu_lich_dong_hoc_phi",
+    "description": "Tra cứu thời hạn và các đợt đóng học phí trong một học kỳ.",
+    "parameters": {"hoc_ky": {"type": "string", "description": "Học kỳ hoặc năm học cần xem lịch đóng."}},
+    "deterministic_output": "Chưa công bố lịch đóng học phí cho học kỳ này.",
+    "registry_order": 7
+  },
+  {
+    "domain": "financial",
+    "name": "tra_cuu_phuong_thuc_thanh_toan",
+    "description": "Tra cứu phương thức thanh toán học phí qua ngân hàng, cổng trực tuyến hoặc quầy thu.",
+    "parameters": {"kenh_thanh_toan": {"type": "string", "description": "Kênh thanh toán cần hướng dẫn."}},
+    "deterministic_output": "Vui lòng sử dụng cổng thanh toán được nhà trường công bố.",
+    "registry_order": 8
+  },
+  {
+    "domain": "financial",
+    "name": "tra_cuu_bien_lai_hoc_phi",
+    "description": "Tra cứu và xác nhận biên lai sau khi sinh viên đã thanh toán học phí.",
+    "parameters": {"ma_sinh_vien": {"type": "string", "description": "Mã số sinh viên cần kiểm tra biên lai."}},
+    "deterministic_output": "Không tìm thấy biên lai học phí tương ứng.",
+    "registry_order": 9
+  },
+  {
+    "domain": "financial",
+    "name": "tinh_hoc_phi_theo_tin_chi",
+    "description": "Tính tổng học phí từ số tín chỉ đăng ký và đơn giá của từng tín chỉ.",
+    "parameters": {"so_tin_chi": {"type": "integer", "description": "Tổng số tín chỉ đăng ký."}, "don_gia": {"type": "number", "description": "Đơn giá mỗi tín chỉ."}},
+    "deterministic_output": "Tổng học phí được tính theo số tín chỉ và đơn giá đã cung cấp.",
+    "registry_order": 10
+  },
+  {
+    "domain": "scholarship",
+    "name": "tra_cuu_hoc_bong_khuyen_khich",
+    "description": "Tra cứu chính sách và nguyên tắc xét học bổng khuyến khích học tập của trường.",
+    "parameters": {"nam_hoc": {"type": "string", "description": "Năm học cần xem chính sách."}},
+    "deterministic_output": "Chính sách học bổng được áp dụng theo quyết định của năm học.",
+    "registry_order": 5
+  },
+  {
+    "domain": "scholarship",
+    "name": "xep_loai_hoc_bong",
+    "description": "Xếp loại học bổng dự kiến từ kết quả học tập và rèn luyện nhưng không tính số tiền.",
+    "parameters": {"gpa": {"type": "number", "description": "Điểm trung bình."}, "drl": {"type": "integer", "description": "Điểm rèn luyện."}},
+    "deterministic_output": "Mức xếp loại dự kiến phụ thuộc ngưỡng học tập và rèn luyện.",
+    "registry_order": 6
+  },
+  {
+    "domain": "scholarship",
+    "name": "tra_cuu_muc_hoc_bong",
+    "description": "Tra cứu bảng số tiền học bổng theo mức Khá, Giỏi hoặc Xuất sắc của từng khối ngành.",
+    "parameters": {"xep_loai": {"type": "string", "description": "Mức xếp loại học bổng."}, "khoi_nganh": {"type": "string", "description": "Khối ngành."}},
+    "deterministic_output": "Không tìm thấy bảng mức học bổng phù hợp.",
+    "registry_order": 7
+  },
+  {
+    "domain": "scholarship",
+    "name": "tra_cuu_ket_qua_hoc_bong",
+    "description": "Tra cứu trạng thái và kết quả xét duyệt học bổng của một sinh viên.",
+    "parameters": {"ma_sinh_vien": {"type": "string", "description": "Mã số sinh viên."}},
+    "deterministic_output": "Chưa có kết quả xét học bổng cho sinh viên này.",
+    "registry_order": 8
+  },
+  {
+    "domain": "scholarship",
+    "name": "tra_cuu_ho_so_hoc_bong",
+    "description": "Tra cứu thành phần hồ sơ và giấy tờ cần nộp cho một chương trình học bổng.",
+    "parameters": {"ten_chuong_trinh": {"type": "string", "description": "Tên chương trình học bổng."}},
+    "deterministic_output": "Danh mục hồ sơ được công bố theo từng chương trình học bổng.",
+    "registry_order": 9
+  },
+  {
+    "domain": "scholarship",
+    "name": "tra_cuu_hoc_bong_trao_doi",
+    "description": "Tra cứu học bổng trao đổi sinh viên và hỗ trợ học tập quốc tế.",
+    "parameters": {"quoc_gia": {"type": "string", "description": "Quốc gia hoặc chương trình trao đổi."}},
+    "deterministic_output": "Chưa có chương trình học bổng trao đổi phù hợp.",
+    "registry_order": 10
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_xac_nhan_sinh_vien",
+    "description": "Tra cứu thủ tục xin giấy xác nhận đang là sinh viên của trường.",
+    "parameters": {"muc_dich": {"type": "string", "description": "Mục đích xin giấy xác nhận."}},
+    "deterministic_output": "Giấy xác nhận sinh viên được đăng ký tại cổng hành chính.",
+    "registry_order": 5
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_bao_luu_ket_qua",
+    "description": "Tra cứu điều kiện và thủ tục bảo lưu kết quả học tập của sinh viên.",
+    "parameters": {"ly_do": {"type": "string", "description": "Lý do đề nghị bảo lưu."}},
+    "deterministic_output": "Hồ sơ bảo lưu được xem xét theo quy chế đào tạo.",
+    "registry_order": 6
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_tam_ngung_hoc",
+    "description": "Tra cứu thủ tục xin tạm ngừng học, nghỉ học tạm thời và quay lại học.",
+    "parameters": {"ly_do": {"type": "string", "description": "Lý do xin tạm ngừng học."}},
+    "deterministic_output": "Thủ tục tạm ngừng học cần được đơn vị đào tạo phê duyệt.",
+    "registry_order": 7
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_cap_lai_the_sinh_vien",
+    "description": "Tra cứu thủ tục cấp lại thẻ sinh viên khi bị mất hoặc hư hỏng.",
+    "parameters": {"ma_sinh_vien": {"type": "string", "description": "Mã số sinh viên."}},
+    "deterministic_output": "Sinh viên nộp yêu cầu cấp lại thẻ tại cổng hành chính.",
+    "registry_order": 8
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_khieu_nai_hoc_vu",
+    "description": "Tra cứu quy trình gửi khiếu nại về điểm, đăng ký học phần hoặc xử lý học vụ.",
+    "parameters": {"noi_dung": {"type": "string", "description": "Nội dung học vụ cần khiếu nại."}},
+    "deterministic_output": "Khiếu nại học vụ được tiếp nhận qua đơn vị quản lý đào tạo.",
+    "registry_order": 9
+  },
+  {
+    "domain": "general",
+    "name": "tra_cuu_lich_tiep_sinh_vien",
+    "description": "Tra cứu lịch tiếp sinh viên của các phòng ban và đơn vị hỗ trợ.",
+    "parameters": {"don_vi": {"type": "string", "description": "Tên phòng ban hoặc đơn vị."}},
+    "deterministic_output": "Lịch tiếp sinh viên được công bố theo tuần làm việc.",
+    "registry_order": 10
+  }
+]
