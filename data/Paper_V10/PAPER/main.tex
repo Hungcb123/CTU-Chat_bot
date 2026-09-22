@@ -16,7 +16,9 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,backgrounds}
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-\usepackage{microtype}
+% LNCS uses font shapes that may be non-scalable under pdfTeX/TeX Live 2026.
+% Keep character protrusion, but disable expansion to avoid a fatal shipout error.
+\usepackage[protrusion=true,expansion=false]{microtype}
 \PassOptionsToPackage{hyphens}{url}
 \usepackage{hyperref}
 \hypersetup{colorlinks=false, pdfborder={0 0 0}}

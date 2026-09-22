@@ -61,6 +61,15 @@ htmlcov/
 build/
 dist/
 
+# LaTeX auxiliary build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+
 # ==========================================
 # 5. Database & Heavy Storage Volumes (Root Level)
 # ==========================================
