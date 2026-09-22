@@ -26,20 +26,13 @@ Figure~\ref{fig:architecture} illustrates the system architecture of \system{}, 
     \setlength{\itemsep}{1.5pt}
     \setlength{\parsep}{0pt}
     \setlength{\parskip}{0pt}
-    \item \textbf{Node-scoped state updates:} \texttt{AgentState} retains the validated rewrite, raw and repaired routes, repair reason, retrieved evidence, and response. The supervisor writes routing fields, retrieval writes \texttt{context} and \texttt{retrieval\_instruction}, and the specialist writes \texttt{response}, making route repair traceable.
+    \item \textbf{Node-scoped state:} \texttt{AgentState} retains the validated rewrite, raw and repaired routes, repair reason, evidence, and response; each node writes only its corresponding fields.
     
-    \item \textbf{Two-Tier Conditional Routing Edges:} Instead of letting agents dynamically negotiate execution flow, the orchestration topology is governed by deterministic conditional functions:
-    \begin{equation}
-        \mathrm{Edge}_{\text{sup}}(\mathcal{S}) = \begin{cases}
-            \text{'academic\_agent'}, & \text{if } \mathcal{S}[\text{'next\_agent'}] = \text{'academic'} \\
-            \text{'retrieval'}, & \text{otherwise},
-        \end{cases}
-    \end{equation}
-    bypassing document retrieval for queries assigned to the academic agent. At the retrieval exit, $\mathrm{Edge}_{\text{ret}}(\mathcal{S})$ dispatches the retrieved context to the selected financial, scholarship, or general agent.
+    \item \textbf{Conditional routing:} Deterministic edges send academic queries directly to the graph agent and all other queries through retrieval before dispatch to the selected financial, scholarship, or general agent.
     
-    \item \textbf{Acyclic outer orchestration:} The StateGraph has no peer-to-peer agent edges. Each selected domain-specialized agent returns to \texttt{END}, so the outer routing path cannot cycle. ReAct tool interactions inside an agent remain distinct from this outer graph topology.
+    \item \textbf{Acyclic orchestration:} Specialists have no peer edges and return to \texttt{END}; their internal ReAct tool interactions are separate from the outer graph.
     
-    \item \textbf{Domain-specialized agents with asymmetric tools:} Academic, financial, and scholarship agents receive scoped tool lists; the general agent has no direct tool. A prompt gate requests one call only when required parameters are valid. If a tool-backed query omits an invocation, one bounded retry names the required tool; missing parameters instead trigger clarification.
+    \item \textbf{Asymmetric tools:} Academic, financial, and scholarship agents receive scoped lists, while the general agent has none. One bounded retry names an omitted required tool; invalid or missing parameters trigger clarification.
 \end{itemize}
 
 %------------------------------------------------
@@ -47,7 +40,7 @@ Figure~\ref{fig:architecture} illustrates the system architecture of \system{}, 
 \label{sec:neo4j_graph}
 
 \textbf{Schema defined by the ingestion layer:}
-The Neo4j graph models relational dependencies across academic counseling using a simplified schema, comprising over 1,500 entity nodes and 3,800 relational edges across 113 undergraduate curricula and statutory fee schedules. It incorporates 10 node labels (7 for curriculum: \texttt{Program}, \texttt{Course}, \texttt{Block}, etc.; and 3 for tuition: \texttt{TuitionFee}, \texttt{TuitionPolicy}, \texttt{ExemptionBasisRate}) interconnected via 13 relationship types (\texttt{HAS\_BLOCK}, \texttt{CONTAINS}, \texttt{REQUIRES}, \texttt{PARALLEL\_WITH}, \texttt{HAS\_PLO}, \texttt{HAS\_PEO}, \texttt{REALIZED\_BY}, \texttt{HAS\_TRACK}, \texttt{BELONGS\_TO\_TRACK}, \texttt{HAS\_JOB\_POSITION}, \texttt{HAS\_TUITION}, \texttt{GOVERNED\_BY}, and \texttt{HAS\_EXEMPTION\_BASIS}). Narrative regulations remain in the document store unless linked to structured entities.
+The Neo4j graph contains over 1,500 nodes and 3,800 edges across 113 undergraduate curricula and fee schedules. Its 10 node labels cover curriculum entities (e.g., \texttt{Program}, \texttt{Course}, and \texttt{Block}) and tuition entities (\texttt{TuitionFee}, \texttt{TuitionPolicy}, and \texttt{ExemptionBasisRate}); 13 typed relationships encode containment, prerequisites, program outcomes, tracks, occupations, tuition, and exemption bases. Narrative regulations remain in the document store.
 
 \textbf{Cypher tool mechanics:}
 The system does not ask the LLM to generate arbitrary Cypher. After the supervisor selects the academic agent, its ReAct policy chooses one of six typed tools and supplies the tool arguments. The tool normalizes identifiers or names and calls a fixed, parameterized Cypher query in the graph service. The tools implement three query classes:
@@ -65,46 +58,7 @@ This design binds agent actions directly to deterministic graph operations: the 
 \subsection{Algorithmic Foundations: Routing and Deterministic Arithmetic}
 \label{sec:algorithms}
 
-Algorithm~\ref{alg:routing} specifies the supervisor-routing and evidence-path dispatch procedure.
-
-\begin{algorithm}[!htbp]
-\footnotesize
-\SetAlFnt{\footnotesize}
-\SetAlCapFnt{\footnotesize}
-\SetAlCapNameFnt{\footnotesize}
-\SetAlgoVlined
-\LinesNumbered
-\caption{Supervisor Routing and Conditional Evidence-Path Dispatch}
-\label{alg:routing}
-\KwIn{Student query $q$, Dialogue history $\mathcal{H}$, Shared state $\mathcal{S}$, Ownership contract $\mathcal{P}$}
-\KwOut{State updates and next graph node}
-$q_{\text{standalone}} \leftarrow q$\;
-$q_{\mathrm{prev}} \leftarrow \mathrm{MostRecentUserQuery}(\mathcal{H})$\;
-\If{$\mathrm{ShouldRewriteQuery}(q, q_{\mathrm{prev}})$}{
-    $q_{\text{cand}} \leftarrow \mathrm{FastLLM\_Rewrite}(q, q_{\mathrm{prev}})$\;
-    \If{$\mathrm{ValidateRewrite}(q, q_{\text{cand}}, q_{\mathrm{prev}})$}{
-        $q_{\text{standalone}} \leftarrow q_{\text{cand}}$\;
-    }
-}
-$\langle d_{\mathrm{raw}}, \iota_{\mathrm{raw}} \rangle \leftarrow \mathrm{StructuredSupervisor}(q)$\;
-\If{structured classification fails}{
-    $d_{\mathrm{raw}} \leftarrow \text{'general'}$; $\iota_{\mathrm{raw}} \leftarrow \text{'other'}$\;
-}
-$\langle d^*, \iota^*, \rho \rangle \leftarrow \mathrm{RepairRoute}(q,d_{\mathrm{raw}},\iota_{\mathrm{raw}},\mathcal{P})$\;
-Write $q_{\text{standalone}},d_{\mathrm{raw}},\iota_{\mathrm{raw}},d^*,\iota^*,\rho$ to $\mathcal{S}$\;
-\eIf{$d^* = \text{'academic'}$}{
-    $v_{\text{next}} \leftarrow \text{'academic\_agent'}$\;
-}{
-    \If{$d^* = \text{'financial'}$}{
-        Prefetch tuition evidence from Neo4j, else JSON\;
-    }
-    Build retrieval lanes from $\iota^*$ and retrieve evidence\;
-    $v_{\text{next}} \leftarrow d^*\texttt{\_agent}$\;
-}
-\Return $\langle \mathcal{S}, v_{\text{next}} \rangle$\;
-\end{algorithm}
-
-Rewrites require validation, and structured classification falls back to \texttt{general}/\texttt{other}. \texttt{RepairRoute} preserves valid predictions but corrects strong rule conflicts or incompatible agent--intent pairs under $\mathcal{P}$. Conditional edges send academic queries to the graph agent and other domains through retrieval.
+For a query $q$ and its most recent dialogue predecessor, the supervisor first attempts a validated standalone rewrite. It then predicts domain $d_{\mathrm{raw}}$ and intent $\iota_{\mathrm{raw}}$ under a structured schema, falling back to \texttt{general}/\texttt{other} on parsing failure. The ownership contract repairs strong rule conflicts or incompatible domain--intent pairs and records both raw and repaired decisions in the shared state. Academic queries proceed directly to the graph agent; other domains build intent-scoped retrieval lanes, with financial queries first attempting Neo4j tuition lookup and then JSON fallback. The selected specialist receives the resulting state and terminates at \texttt{END}.
 
 \textbf{Deterministic Tuition Reduction Arithmetic:}
 For fee-reduction requests, \system{} augments the LLM with the external deterministic tool \texttt{tinh\_toan\_hoc\_phi}. The LLM interprets the request and supplies three parameters---the actual per-credit tuition $T$, the per-credit exemption basis $B$, and the percentage entitlement $p$---but does not perform the arithmetic through free-form text generation. The external tool validates the percentage range and applies the fixed calculation
@@ -122,62 +76,12 @@ Rather than a new general-purpose algorithm, the contribution lies in composing 
 
 This layer implements \emph{heterogeneous knowledge allocation}: rather than forcing all institutional knowledge into a uniform document index, \system{} preserves relational curriculum knowledge in Neo4j, accesses cohort-dependent tuition data through structured lookup, and retains narrative regulations and scholarship policies in document retrieval.
 
-Table~\ref{tab:decision_criteria} makes this policy explicit by separating the physical evidence representation from the mechanism used to access it at runtime.
-
-\begin{table}[h!]
-\centering
-\caption{Decision criteria mapping query characteristics to evidence representation mechanisms.}
-\label{tab:decision_criteria}
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{>{\raggedright\arraybackslash}p{0.30\columnwidth}>{\raggedright\arraybackslash}p{0.29\columnwidth}>{\raggedright\arraybackslash}p{0.30\columnwidth}}
-\toprule
-\textbf{Query characteristic} & \textbf{Evidence path} & \textbf{Rationale} \\
-\midrule
-Program/course attributes & Neo4j property lookup & Exact or normalized match \\
-Prerequisites/shared courses & Neo4j traversal & Stored graph relationships \\
-Regulation identifiers & BM25 child index & Exact token match \\
-Paraphrased regulations & Hybrid RRF + reranker & Lexical + semantic signals \\
-Fee/scholarship calculation & Python tool & Fixed formula outside LLM \\
-\bottomrule
-\end{tabular}
-\end{table}
+The access policy maps program attributes to Neo4j property lookup, prerequisite and shared-course questions to graph traversal, regulation identifiers to BM25, paraphrased regulations to hybrid RRF with reranking, and fee or scholarship arithmetic to deterministic Python tools.
 
 At runtime, academic queries enter the graph agent directly; other domains enter retrieval. Financial retrieval first attempts Neo4j tuition lookup with JSON fallback. The repaired intent then selects metadata-filtered document lanes, and packed evidence is passed only to the selected specialist.
 
 \textbf{Hybrid Document Retrieval Path.}
-For narrative regulations and scholarship criteria, evidence is acquired
-through the following pipeline:
-
-\begin{enumerate}
-    \setlength{\itemsep}{1.5pt}
-    \setlength{\parsep}{0pt}
-    \setlength{\parskip}{0pt}
-    \item \emph{Child-level candidate generation.}
-    A BM25 index searches child chunks, while Qdrant performs dense retrieval
-    over their 768-dimensional embeddings.
-
-    \item \emph{Parent resolution.}
-    Parent identifiers associated with the retrieved child chunks are used to
-    load the corresponding parent sections from PostgreSQL.
-
-    \item \emph{Reciprocal Rank Fusion.}
-    The dense- and BM25-derived parent rankings are combined as
-    \[
-        s_{\mathrm{RRF}}(d)
-        = \sum_{s\in\{\mathrm{bm25},\mathrm{dense}\}}
-          \frac{1}{k+r_s(d)}, \qquad k=60.
-    \]
-
-    \item \emph{Cross-encoder reranking.}
-    The fused parent candidates are reranked using
-    \texttt{BAAI/bge-reranker-v2-m3}. In the evaluated full configuration,
-    candidates from intent-governed lanes are pooled with the top 20 candidates
-    from unfiltered hybrid retrieval and the top-ranked BM25 candidates before
-    deduplication. Candidates with reranker scores below 0.20 are removed unless
-    fewer than two remain. Graph evidence is then added under predefined quotas,
-    and up to seven passages are packed for generation.
-\end{enumerate}
+For narrative regulations and scholarship criteria, BM25 and Qdrant search 400-character child chunks; their parent sections are loaded from PostgreSQL and fused using $s_{\mathrm{RRF}}(d)=\sum_{s\in\{\mathrm{bm25},\mathrm{dense}\}}(60+r_s(d))^{-1}$. The full configuration pools intent-governed candidates with the top 20 unfiltered hybrid candidates and top BM25 anchors, deduplicates them, and reranks with \texttt{BAAI/bge-reranker-v2-m3}. Scores below 0.20 are removed unless fewer than two candidates remain; graph evidence is then added under fixed quotas and up to seven passages are packed for generation.
 
 Parent sections use a 2,800-character target with 100-character overlap;
 child chunks use a 400-character target with 50-character overlap.
