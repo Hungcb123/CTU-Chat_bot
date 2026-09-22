@@ -20,6 +20,7 @@ from langchain_core.messages import (
     SystemMessage,
     ToolMessage,
 )
+from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
 from langgraph.graph import END, START, StateGraph
@@ -44,7 +45,11 @@ from app.services.query_intent import (
     validate_rewritten_query,
 )
 from app.services.orchestration_contract import repair_route_decision, tool_gate_prompt
-from app.services.tool_execution import recommend_required_tool
+from app.services.tool_execution import (
+    recommend_required_tool,
+    normalize_and_validate_before_invoke,
+    validate_tool_arguments,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -110,6 +115,68 @@ class RouteDecision(BaseModel):
 _INTENT_MAP: dict[str, QueryIntent] = {e.value: e for e in QueryIntent}
 
 
+def attach_validation_to_tool(tool_obj: Any) -> Any:
+    """Bọc tool với validation tham số tự động trước khi thực thi.
+
+    Áp dụng normalize_and_validate_before_invoke từ tool_execution.py.
+    Nếu tham số thiếu hoặc ngoài miền hợp lệ, trả về thông báo làm rõ thay vì để tool lỗi.
+    """
+    if not hasattr(tool_obj, "name"):
+        return tool_obj
+
+    orig_func = getattr(tool_obj, "func", None)
+    orig_coroutine = getattr(tool_obj, "coroutine", None)
+
+    def _format_error(errors: tuple[str, ...], tool_name: str) -> str:
+        error_msgs = []
+        for err in errors:
+            if err.startswith("missing:"):
+                param = err.split(":", 1)[1]
+                error_msgs.append(f"thiếu tham số bắt buộc '{param}'")
+            elif err.startswith("out_of_range:"):
+                param = err.split(":", 1)[1]
+                error_msgs.append(f"tham số '{param}' nằm ngoài khoảng hợp lệ")
+            elif err.startswith("not_numeric:"):
+                param = err.split(":", 1)[1]
+                error_msgs.append(f"tham số '{param}' phải là số")
+            elif err.startswith("duplicate_entities:"):
+                error_msgs.append("hai thực thể so sánh không được trùng nhau")
+            else:
+                error_msgs.append(err)
+        reason = "; ".join(error_msgs)
+        return (
+            f"[LỖI THAM SỐ] Công cụ '{tool_name}' không thể thực thi do {reason}. "
+            "Hãy hỏi lại người dùng để làm rõ hoặc bổ sung thông tin chính xác, tuyệt đối không tự suy diễn hoặc bịa số liệu."
+        )
+
+    def validated_run(*args, **kwargs):
+        tool_args = kwargs if kwargs else (args[0] if args and isinstance(args[0], dict) else {})
+        val, early = normalize_and_validate_before_invoke(tool_obj.name, tool_args)
+        if not val.valid:
+            return _format_error(val.errors, tool_obj.name)
+        call_kwargs = dict(kwargs)
+        call_kwargs.update(val.normalized_args)
+        return orig_func(*args, **call_kwargs) if orig_func else tool_obj._run(*args, **call_kwargs)
+
+    async def validated_arun(*args, **kwargs):
+        tool_args = kwargs if kwargs else (args[0] if args and isinstance(args[0], dict) else {})
+        val, early = normalize_and_validate_before_invoke(tool_obj.name, tool_args)
+        if not val.valid:
+            return _format_error(val.errors, tool_obj.name)
+        call_kwargs = dict(kwargs)
+        call_kwargs.update(val.normalized_args)
+        if orig_coroutine:
+            return await orig_coroutine(*args, **call_kwargs)
+        if orig_func:
+            return orig_func(*args, **call_kwargs)
+        return tool_obj._run(*args, **call_kwargs)
+
+    tool_obj.func = validated_run
+    if orig_coroutine:
+        tool_obj.coroutine = validated_arun
+    return tool_obj
+
+
 # ─────────────────────────────────────────────────────────────────────
 # 4. BUILD GRAPH FUNCTION
 # ─────────────────────────────────────────────────────────────────────
@@ -136,6 +203,10 @@ def build_agent_graph(
         financial_tools: Danh sách tools cho Financial Agent.
         scholarship_tools: Danh sách tools cho Scholarship Agent.
     """
+    # Gắn cơ chế validation và chuẩn hóa tham số tự động trước khi truyền vào ReAct agents
+    academic_tools = [attach_validation_to_tool(t) for t in (academic_tools or [])]
+    financial_tools = [attach_validation_to_tool(t) for t in (financial_tools or [])]
+    scholarship_tools = [attach_validation_to_tool(t) for t in (scholarship_tools or [])]
 
     # --- Structured LLM cho Supervisor routing ---
     supervisor_llm = llm.with_structured_output(RouteDecision)
