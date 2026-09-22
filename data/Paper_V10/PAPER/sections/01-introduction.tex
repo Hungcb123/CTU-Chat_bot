@@ -19,16 +19,16 @@ The objective of this study is to develop and evaluate CTU-Chat for heterogeneou
     \setlength{\parskip}{0pt}
 
     \item \textbf{RQ1 (Domain-Specialized Tool Disambiguation and Scalability):}
-    How do full-registry and Top-$k$ single-agent baselines compare with supervisor-routed generic and specialist gates in tool-selection reliability, end-to-end completion, and computational cost as semantically overlapping within-domain tools expand the registry from 11 to 51 tools?
+    How do full-registry and Top-$k$ single-agent baselines compare with supervisor-routed generic and specialist gates in tool-selection reliability, decision-level end-to-end pass rate, and computational cost as semantically overlapping within-domain tools expand the registry from 11 to 51 tools?
 
     \item \textbf{RQ2 (Heterogeneous Knowledge Allocation \& Modular Ablations):}
     What differences in context and answer quality are observed between the full heterogeneous configuration, uniform retrieval baselines, and its component ablations?
 
     \item \textbf{RQ3 (Representation-Aware Retrieval Effectiveness):}
-    How does the complete representation-aware evidence configuration compare with sparse, dense, hybrid, and reranked baselines in retrieval effectiveness, both overall and across counseling domains?
+    How does the complete representation-aware evidence configuration compare with sparse, dense, hybrid, and reranked baselines in retrieval effectiveness, both overall and across query-complexity tiers?
 \end{itemize}
 
-We hypothesize that domain-scoped candidate retrieval combined with contrastive specialist policies can reduce confusion among semantically adjacent tools relative to a matched generic single-agent gate. This hypothesis concerns tool disambiguation under the evaluated registry expansions; it does not assume that multi-agent execution will dominate a full-registry monolithic baseline on every accuracy or efficiency measure. To investigate this hypothesis and the research questions above, we propose CTU-Chat, which coordinates four domain-specialized agents for academic, financial, scholarship, and general administrative inquiries within a unified framework combining graph-based retrieval, structured data access, deterministic calculation, and hybrid document retrieval.
+We hypothesize that domain-scoped candidate retrieval combined with contrastive specialist policies can reduce confusion among semantically adjacent tools relative to a global Top-$k$ single-agent gate. This hypothesis concerns tool disambiguation under the evaluated registry expansions; it does not assume that multi-agent execution will dominate a full-registry monolithic baseline on every accuracy or efficiency measure. To investigate this hypothesis and the research questions above, we propose CTU-Chat, which coordinates four domain-specialized agents for academic, financial, scholarship, and general administrative inquiries within a unified framework combining graph-based retrieval, structured data access, deterministic calculation, and hybrid document retrieval.
 
 Specifically, this work provides three primary contributions:
 \begin{itemize}
@@ -37,7 +37,7 @@ Specifically, this work provides three primary contributions:
     \setlength{\parskip}{0pt}
     \item \textbf{C1 (Domain-Specialized Multi-Agent Architecture):} We design and implement a centralized supervisor-routed architecture coordinating four bounded specialists with isolated evidence representations, deterministic route repair, and partitioned tool privileges, and evaluate its tool-disambiguation behavior in registries of up to 51 tools.
     \item \textbf{C2 (Heterogeneous Knowledge Allocation):} We develop a hybrid representation strategy that models relational curricula via property graphs, binds statutory fee and exemption lookup to deterministic arithmetic tools, and indexes narrative regulations through parent-resolved document retrieval.
-    \item \textbf{C3 (Empirical Scalability and End-to-End Evaluation):} We evaluate semantic-neighbor tool ambiguity across 1,960 decisions with matched baselines, retrieval component stacking across 5 configurations, and generation quality across 7 configurations ($2,100$ turns) on a redesigned 100-query held-out benchmark.
+    \item \textbf{C3 (Tool-Ambiguity Stress Test and End-to-End Evaluation):} We evaluate semantic-neighbor tool ambiguity across 1,960 decisions with comparison baselines, retrieval component stacking across 5 configurations, and generation quality across 7 configurations ($2,100$ turns) on a redesigned 100-query held-out benchmark.
 \end{itemize}
 
 The remainder of this paper is organized as follows. \textbf{Section~2} reviews related work and summarizes the research gaps. \textbf{Section~3} presents the CTU-Chat architecture, evidence-acquisition methods, and domain-specialized agents. \textbf{Section~4} reports the experimental setup, results, and discussion. Finally, \textbf{Section~5} concludes the paper and outlines future work.
