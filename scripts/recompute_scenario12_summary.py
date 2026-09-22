@@ -16,8 +16,14 @@ import random
 from pathlib import Path
 from typing import Any
 
+import sys
+
 ROOT = Path(__file__).resolve().parents[1]
-LOG_DIR = ROOT / "logs" / "scenario12" / "20260916T075823Z"
+LOG_DIR = (
+    Path(sys.argv[1]).resolve()
+    if len(sys.argv) > 1
+    else ROOT / "logs" / "scenario12" / "20260920T153313Z"
+)
 DATASET_PATH = ROOT / "data" / "scenario12_heldout_100.jsonl"
 
 CONFIGS_S1 = ("E1", "E2", "E3", "E4", "E5")
@@ -37,12 +43,19 @@ def stddev(values: list[float]) -> float:
     return math.sqrt(variance)
 
 
+import numpy as np
+
+
 def bootstrap_ci(values: list[float], *, samples: int = 10000) -> list[float]:
     if not values:
         return [0.0, 0.0]
-    rng = random.Random(42)
-    means = sorted(mean([values[rng.randrange(len(values))] for _ in values]) for _ in range(samples))
-    return [means[int(0.025 * (samples - 1))], means[int(0.975 * (samples - 1))]]
+    arr = np.array(values, dtype=np.float64)
+    n = len(arr)
+    rng = np.random.default_rng(42)
+    # Generate bootstrap samples efficiently
+    indices = rng.integers(0, n, size=(samples, n))
+    sample_means = arr[indices].mean(axis=1)
+    return [float(np.percentile(sample_means, 2.5)), float(np.percentile(sample_means, 97.5))]
 
 
 def sha256_file(path: Path) -> str:

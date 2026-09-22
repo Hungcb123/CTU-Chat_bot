@@ -59,7 +59,7 @@ The system does not ask the LLM to generate arbitrary Cypher. After the supervis
     \item \emph{Structural traversal}: \texttt{xem\_chuoi\_tien\_quyet} follows \texttt{REQUIRES} paths up to ten hops and returns direct \texttt{PARALLEL\_WITH} courses. \texttt{mon\_chung\_giua\_nganh} computes a course intersection across two program--block paths, and \texttt{tim\_nganh\_co\_mon} traverses those paths in reverse.
     \item \emph{Structured financial lookup}: parameterized queries match \texttt{TuitionFee}, \texttt{TuitionPolicy}, and \texttt{ExemptionBasisRate} properties and their program relationships. This graph lookup is separate from the BM25--dense hybrid document retrieval path used for narrative regulations.
 \end{itemize}
-This design binds agent actions directly to deterministic graph operations: the LLM only selects the appropriate tool and supplies its arguments, while the query topology remains fixed and parameterized within the graph service. As a result, the multi-agent workflow reliably incorporates graph evidence while mitigating the syntactic and semantic fragility typically associated with unconstrained Cypher generation.
+This design binds agent actions directly to deterministic graph operations: the LLM only selects the appropriate tool and supplies its arguments, while the query topology remains fixed and parameterized within the graph service. The multi-agent workflow therefore incorporates graph evidence through bounded operations, reducing exposure to the syntactic and semantic errors associated with unconstrained Cypher generation.
 
 %------------------------------------------------
 \subsection{Algorithmic Foundations: Routing and Deterministic Arithmetic}
@@ -171,9 +171,12 @@ through the following pipeline:
 
     \item \emph{Cross-encoder reranking.}
     The fused parent candidates are reranked using
-    \texttt{BAAI/bge-reranker-v2-m3}. Each retrieval lane returns at most six
-    parent sections; multi-lane financial requests may combine up to nine before
-    deduplication and evidence packing.
+    \texttt{BAAI/bge-reranker-v2-m3}. In the evaluated full configuration,
+    candidates from intent-governed lanes are pooled with the top 20 candidates
+    from unfiltered hybrid retrieval and the top-ranked BM25 candidates before
+    deduplication. Candidates with reranker scores below 0.20 are removed unless
+    fewer than two remain. Graph evidence is then added under predefined quotas,
+    and up to seven passages are packed for generation.
 \end{enumerate}
 
 Parent sections use a 2,800-character target with 100-character overlap;

@@ -196,6 +196,30 @@ def extract_program_query(question: str) -> str | None:
     code = re.search(r"\b7\d{6}[a-z]?\b", normalized)
     if code:
         return code.group(0).upper()
+
+    # Regex extraction for major names in Vietnamese
+    # Pattern 1: after "ngành", "chuyên ngành", "cử nhân", "kỹ sư"
+    m1 = re.search(
+        r"(?:ngành|nganh|chuyên ngành|chuyen nganh|cử nhân|cu nhan|kỹ sư|ky su)\s+([A-ZÀ-Ỹa-zà-ỹ\s]+?)(?:\s+(?:hệ|he|chương trình|chuong trinh|khoa|tại|tai|học|hoc|có|co|cần|can|yêu cầu|yeu cau|được|duoc|thiết kế|thiet ke|quy định|trong|chuẩn|chuan|clc)\b|[?,.!]|$)",
+        question,
+        re.IGNORECASE,
+    )
+    if m1:
+        candidate = m1.group(1).strip()
+        if len(candidate) >= 3:
+            return candidate
+
+    # Pattern 2: after "chương trình" (e.g. "Trong chương trình Kỹ thuật cơ điện tử chuẩn...")
+    m2 = re.search(
+        r"(?:chương trình|chuong trinh)\s+(?:đào tạo\s+|chất lượng cao\s+|clc\s+|chuẩn\s+)?([A-ZÀ-Ỹa-zà-ỹ\s]+?)(?:\s+(?:chuẩn|chuan|hệ|he|học|hoc|có|co|cần|can|trong|yêu cầu)\b|[?,.!]|$)",
+        question,
+        re.IGNORECASE,
+    )
+    if m2:
+        candidate = m2.group(1).strip()
+        if len(candidate) >= 3:
+            return candidate
+
     return None
 
 
@@ -204,7 +228,11 @@ def query_signals(question: str) -> dict[str, bool]:
     tuition = any(term in normalized for term in ("hoc phi", "mien giam", "muc thu", "don gia"))
     academic = bool(re.search(r"\b[A-Z]{2}\d{3}[A-Z]?\b", question)) or any(
         term in normalized
-        for term in ("chuong trinh", "tong so tin chi", "thoi gian dao tao", "plo", "mon hoc", "hoc phan")
+        for term in (
+            "chuong trinh", "tong so tin chi", "so luong tin chi", "tin chi", "thoi gian dao tao",
+            "plo", "chuan dau ra", "mon hoc", "hoc phan", "tien quyet", "song hanh", "nganh",
+            "khoi luong kien thuc", "quy che", "canh bao", "tot nghiep", "thoi hoc",
+        )
     )
     policy = any(term in normalized for term in ("he so", "ngoai thoi gian", "hoc lai", "mien giam"))
     calculation = any(term in normalized for term in ("tong tien", "bao nhieu tien", "tinh tien"))
@@ -212,13 +240,26 @@ def query_signals(question: str) -> dict[str, bool]:
 
 
 def _format_tuition_row(row: dict[str, Any]) -> str:
-    return (
-        f"Ngành: {row.get('ten_nganh') or row.get('program_name') or ''}; "
-        f"mã ngành: {row.get('ma_nganh') or row.get('program_code') or ''}; "
-        f"khóa: {row.get('khoa') or ''}; năm học: {row.get('nam_hoc') or ''}; "
-        f"chương trình: {row.get('loai_ct') or ''}; "
-        f"mức học phí: {row.get('muc_hp')}; đơn vị: {row.get('don_vi_tinh') or ''}."
-    )
+    ten_nganh = row.get("ten_nganh") or row.get("program_name") or ""
+    ma_nganh = row.get("ma_nganh") or row.get("program_code") or ""
+    khoa = row.get("khoa") or ""
+    nam_hoc = row.get("nam_hoc") or ""
+    loai_ct = row.get("loai_ct") or ""
+    muc_hp = row.get("muc_hp")
+    don_vi = row.get("don_vi_tinh") or "đồng/năm"
+
+    parts = []
+    if ten_nganh:
+        parts.append(f"ngành {ten_nganh}" + (f" (mã {ma_nganh})" if ma_nganh else ""))
+    if loai_ct:
+        parts.append(f"chương trình {loai_ct}")
+    if khoa:
+        parts.append(f"khóa {khoa}")
+    if nam_hoc:
+        parts.append(f"năm học {nam_hoc}")
+
+    subject = ", ".join(parts) if parts else "Học phí"
+    return f"Theo biểu mức thu học phí CTU: {subject} có mức thu là {muc_hp} {don_vi}."
 
 
 def _program_source(program_code: str) -> str:
@@ -250,11 +291,14 @@ def graph_documents(question: str, graph_service: Any, tuition_catalog: Any) -> 
                 program = result["program"]
                 lines = [
                     "[DỮ LIỆU CHƯƠNG TRÌNH ĐÀO TẠO TỪ NEO4J]",
-                    f"Ngành: {program.get('name')}; mã: {program.get('code')}; khoa: {program.get('faculty') or program.get('unit') or ''}.",
+                    f"Chương trình đào tạo ngành {program.get('name')} (mã ngành: {program.get('code')}) thuộc {program.get('faculty') or program.get('unit') or 'Trường ĐH Cần Thơ'}.",
                 ]
-                for key in ("duration", "total_credits", "degree"):
-                    if program.get(key) not in (None, ""):
-                        lines.append(f"{key}: {program[key]}")
+                if program.get("duration"):
+                    lines.append(f"Thời gian đào tạo: {program['duration']}.")
+                if program.get("total_credits"):
+                    lines.append(f"Tổng số tín chỉ: {program['total_credits']} tín chỉ.")
+                if program.get("degree"):
+                    lines.append(f"Văn bằng tốt nghiệp: {program['degree']}.")
                 q_norm = normalize_text(question)
                 for block in result.get("blocks", []):
                     for course in block.get("courses", []):
@@ -323,10 +367,12 @@ def graph_documents(question: str, graph_service: Any, tuition_catalog: Any) -> 
             for row in policies[:2]:
                 source = canonical_source(row.get("source"))
                 if source:
+                    clean_items = []
+                    for key, value in row.items():
+                        if value not in (None, "") and key != "source":
+                            clean_items.append(f"{key.replace('_', ' ').capitalize()}: {value}")
                     docs.append(Document(
-                        page_content="[QUY ĐỊNH HỌC PHÍ TỪ NEO4J]\n" + "; ".join(
-                            f"{key}={value}" for key, value in row.items() if value not in (None, "")
-                        ),
+                        page_content="[QUY ĐỊNH HỌC PHÍ TỪ NEO4J]\n" + "\n".join(clean_items),
                         metadata={"source": source, "backend": "graph", "evidence_lane": "tuition_graph"},
                     ))
                     trace["graph_hit"] = True
@@ -340,10 +386,12 @@ def graph_documents(question: str, graph_service: Any, tuition_catalog: Any) -> 
             for row in basis_rows[:2]:
                 source = canonical_source(row.get("source"))
                 if source:
+                    clean_items = []
+                    for key, value in row.items():
+                        if value not in (None, "") and key != "source":
+                            clean_items.append(f"{key.replace('_', ' ').capitalize()}: {value}")
                     docs.append(Document(
-                        page_content="[CƠ SỞ MIỄN GIẢM TỪ NEO4J]\n" + "; ".join(
-                            f"{key}={value}" for key, value in row.items() if value not in (None, "")
-                        ),
+                        page_content="[CƠ SỞ MIỄN GIẢM TỪ NEO4J]\n" + "\n".join(clean_items),
                         metadata={"source": source, "backend": "graph", "evidence_lane": "tuition_graph"},
                     ))
                     trace["graph_hit"] = True
@@ -351,10 +399,27 @@ def graph_documents(question: str, graph_service: Any, tuition_catalog: Any) -> 
     return unique_documents(docs), trace
 
 
-def rerank_documents(documents: Sequence[Any], question: str, compressor: Any, limit: int) -> list[Any]:
+def rerank_documents(
+    documents: Sequence[Any],
+    question: str,
+    compressor: Any,
+    limit: int,
+    *,
+    min_score_threshold: float = 0.0,
+    min_k: int = 2,
+) -> list[Any]:
     docs = unique_documents(documents)
     if compressor is not None and len(docs) > 1:
-        return list(compressor.compress_documents(docs, question))[:limit]
+        ranked = list(compressor.compress_documents(docs, question))
+        if min_score_threshold > 0.0:
+            filtered = [
+                d for d in ranked
+                if getattr(d, "metadata", {}).get("reranker_score", 1.0) >= min_score_threshold
+            ]
+            if len(filtered) < min_k:
+                filtered = ranked[:min_k]
+            return filtered[:limit]
+        return ranked[:limit]
     return docs[:limit]
 
 
@@ -368,11 +433,11 @@ def merge_with_quotas(
     academic = [d for d in graph_docs if d.metadata.get("evidence_lane") == "academic_graph"]
     tuition = [d for d in graph_docs if d.metadata.get("evidence_lane") == "tuition_graph"]
     if academic and tuition:
-        academic_quota, tuition_quota = min(2, top_k), min(2, max(0, top_k - 2))
+        academic_quota, tuition_quota = min(1, top_k), min(1, max(0, top_k - 1))
     elif academic:
-        academic_quota, tuition_quota = min(2, top_k), 0
+        academic_quota, tuition_quota = min(1, top_k), 0
     elif tuition:
-        academic_quota, tuition_quota = 0, min(2, top_k)
+        academic_quota, tuition_quota = 0, min(1, top_k)
     else:
         academic_quota = tuition_quota = 0
     document_quota = max(0, top_k - academic_quota - tuition_quota)
@@ -391,7 +456,7 @@ def retrieve_configurations(
     top_k: int,
     metric_k: int = 10,
 ) -> RetrievalTrace:
-    from app.services.query_intent import classify_query_intent, build_retrieval_lanes
+    from app.services.query_intent import classify_query_intent, build_retrieval_lanes, RetrievalLane
 
     question = case.question
     candidate_k = max(top_k * 2, metric_k * 2, 10)
@@ -419,6 +484,26 @@ def retrieve_configurations(
     started = time.perf_counter()
     decision = classify_query_intent(question)
     lanes = [lane for lane in build_retrieval_lanes(decision) if lane.name != "not_applicable"]
+
+    # Soft Subspace Routing: Mở rộng các lane liên quan nếu phát hiện tín hiệu liên lĩnh vực
+    signals = query_signals(question)
+    existing_lane_names = {lane.name for lane in lanes}
+    if signals.get("academic"):
+        norm_q = normalize_text(question)
+        has_prog = any(term in norm_q for term in ("nganh", "chuyen nganh", "chuong trinh", "khoi luong", "tin chi", "thoi gian", "mon hoc", "hoc phan", "plo"))
+        has_rule = any(term in norm_q for term in ("quy che", "quy dinh", "canh bao", "thoi hoc", "tam dung", "bao luu", "tot nghiep", "xep loai"))
+        if has_prog and "academic_program" not in existing_lane_names:
+            lanes.append(RetrievalLane(name="academic_program", domain="academic_program", top_n=4))
+        if has_rule and "academic_rules" not in existing_lane_names:
+            lanes.append(RetrievalLane(name="academic_rules", domain="academic_regulation", top_n=3))
+        if "academic_rules" not in existing_lane_names and "academic_program" not in existing_lane_names:
+            lanes.append(RetrievalLane(name="academic_program", domain="academic_program", top_n=3))
+            lanes.append(RetrievalLane(name="academic_rules", domain="academic_regulation", top_n=3))
+    if signals.get("tuition") and not any(l.domain == "tuition" for l in lanes):
+        lanes.append(RetrievalLane(name="actual_tuition", domain="tuition", content_kind="rate_table", fee_kind="actual_tuition", top_n=3))
+    if ("hoc bong" in normalize_text(question) or "drl" in normalize_text(question)) and "scholarship" not in existing_lane_names:
+        lanes.append(RetrievalLane(name="scholarship", domain="scholarship", top_n=3))
+
     governed: list[Any] = []
     for lane in lanes:
         governed.extend(engine.retrieve(
@@ -447,14 +532,31 @@ def retrieve_configurations(
     graph_ms = (time.perf_counter() - started) * 1000
     gate_reasons.extend(graph_trace["gate_reasons"])
 
-    # Full Proposed Candidate Pool: Governed (targeted lanes) + Hybrid (safety net) + BM25 (lexical anchors)
+    # Full Proposed Candidate Pool: Governed (targeted lanes) + Hybrid (full safety net) + BM25 (lexical anchors)
     governed_candidates = unique_documents(list(governed) + list(hybrid_docs) + list(bm25_docs[:top_k]))
 
     # Cross-Encoder Reranking for Governed Text Candidates
     started = time.perf_counter()
-    governed_ranked_metric = rerank_documents(governed_candidates, question, compressor, metric_k)
+    governed_ranked_metric = rerank_documents(governed_candidates, question, compressor, metric_k, min_score_threshold=0.0)
     proposed_rerank_ms = (time.perf_counter() - started) * 1000
-    governed_ranked_top_k = list(governed_ranked_metric[:top_k])
+
+    # Baseline & Ablation Rerankings
+    started = time.perf_counter()
+    hybrid_ranked_metric = rerank_documents(hybrid_docs, question, compressor, metric_k, min_score_threshold=0.0)
+    hybrid_rerank_ms = (time.perf_counter() - started) * 1000
+
+    # Dynamic Thresholding: Lọc các chunk có điểm reranker quá thấp (< 0.20) để tối ưu hóa Context Precision
+    def _apply_dynamic_k(docs_list: list[Any], max_limit: int, threshold: float = 0.20, min_count: int = 2) -> list[Any]:
+        filtered = [
+            d for d in docs_list
+            if getattr(d, "metadata", {}).get("reranker_score", 1.0) >= threshold
+        ]
+        if len(filtered) < min_count:
+            filtered = list(docs_list[:min_count])
+        return filtered[:max_limit]
+
+    governed_ranked_top_k = _apply_dynamic_k(governed_ranked_metric, top_k, threshold=0.20, min_count=2)
+    hybrid_ranked_top_k = _apply_dynamic_k(hybrid_ranked_metric, top_k, threshold=0.20, min_count=2)
 
     # Lexical Safeguard: If top BM25 candidates have high keyword relevance but were displaced
     # by cross-encoder semantic drift, ensure the best lexical match is retained in top_k
@@ -465,14 +567,10 @@ def retrieve_configurations(
             cand_id = getattr(candidate_bm25, "metadata", {}).get("doc_id") or id(candidate_bm25)
             if cand_id not in top_k_ids:
                 cand_content = normalize_text(getattr(candidate_bm25, "page_content", ""))
-                if sum(t in cand_content for t in q_tokens) >= 2:
+                last_score = getattr(governed_ranked_top_k[-1], "metadata", {}).get("reranker_score", 1.0)
+                if sum(t in cand_content for t in q_tokens) >= 3 and last_score < 0.30:
                     governed_ranked_top_k[-1] = candidate_bm25
                     break
-
-    # Baseline & Ablation Rerankings
-    started = time.perf_counter()
-    hybrid_ranked_metric = rerank_documents(hybrid_docs, question, compressor, metric_k)
-    hybrid_rerank_ms = (time.perf_counter() - started) * 1000
 
     # T4 (Proposed Full Stack): Priority-ordered packing via merge_with_quotas (Graph + Governed Reranked)
     proposed_ranked_top_k = merge_with_quotas(governed_ranked_top_k, graph_docs, top_k=top_k)
@@ -481,7 +579,7 @@ def retrieve_configurations(
     no_graph_ranked = list(governed_ranked_top_k[:top_k])
 
     # T7 (w/o Governance): Hybrid reranked + Graph nodes
-    no_gov_ranked = merge_with_quotas(hybrid_ranked_metric[:top_k], graph_docs, top_k=top_k)
+    no_gov_ranked = merge_with_quotas(hybrid_ranked_top_k, graph_docs, top_k=top_k)
 
     # E5 (Proposed Retrieval): Multi-evidence ranking preserving graph quotas
     proposed_metric_ranking = merge_with_quotas(governed_ranked_metric, graph_docs, top_k=metric_k)
@@ -491,7 +589,7 @@ def retrieve_configurations(
         "T2": unique_documents(dense_docs)[:top_k],
         "T3": unique_documents(hybrid_docs)[:top_k],
         "T4": proposed_ranked_top_k,
-        "T5": merge_with_quotas(governed, graph_docs, top_k=top_k),
+        "T5": merge_with_quotas(governed[:top_k], graph_docs, top_k=top_k),
         "T6": no_graph_ranked,
         "T7": no_gov_ranked,
         "E1": unique_documents(bm25_docs)[:metric_k],

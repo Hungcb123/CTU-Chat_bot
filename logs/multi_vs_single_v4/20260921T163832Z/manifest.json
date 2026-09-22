@@ -1,0 +1,54 @@
+{
+  "protocol": "multi-vs-single-v4.0",
+  "created_at_utc": "2026-09-21T16:38:32.771580+00:00",
+  "status": "completed",
+  "hypothesis": "Domain partitioning exhibits a smaller tool-selection degradation than the monolithic gate as the global registry expands from 11 to 27 tools.",
+  "primary_outcome": "Live-multi minus monolithic tool-selection interaction: Delta(27) - Delta(11) on the 60 production cases.",
+  "secondary_outcomes": [
+    "Oracle-partitioned minus monolithic interaction",
+    "Live-multi minus oracle-partitioned routing overhead",
+    "End-to-end pass interaction",
+    "Visible tool count, schema characters, and decision latency",
+    "Robustness-suite results reported separately"
+  ],
+  "arms": {
+    "single_agent": "Monolithic gate exposing the full registry",
+    "oracle_partitioned": "Gold-domain specialist gate; mechanistic partitioning control",
+    "multi_agent": "Live structured supervisor plus production route repair and predicted-domain gate"
+  },
+  "ordering_policy": "Three deterministic per-case blocks place the gold tool first, middle, and last. Non-gold hash ordering is level-independent and nested.",
+  "order_blocks": [
+    "gold_first",
+    "gold_middle",
+    "gold_last"
+  ],
+  "repetitions": 3,
+  "levels": [
+    0,
+    2,
+    4
+  ],
+  "suites": [
+    "production_tools",
+    "robustness"
+  ],
+  "expected_records": 2160,
+  "workers": 4,
+  "timeout": 60.0,
+  "max_tool_calls": 1,
+  "seed": 20260921,
+  "temperature": 0.0,
+  "model": "gemini-2.5-flash-lite",
+  "location": "europe-west1",
+  "limit": 0,
+  "hashes": {
+    "tool_dataset": "b5dbecec26b7893301ec6073ef964d999df91f9fedb47f607ffe648f48811c56",
+    "robustness_dataset": "c0d840dc6ccfc7fc37e5d27dd9d034544cd72fd67f7ca18cb8fdc4c54220b6fb",
+    "distractor_registry": "4f707a53346de8cc3e91f961cafab7028ab9db5fe5b412d9a77a8efb14c4179c",
+    "runner": "9f2d4664ac9e406398eb54ae92fe28d0e6c523e0a21c71021523745a8fd2ce61",
+    "records": "fc53bb928d51a52b79238d19e6763a214821dd74a242627aa1c60fb38c788757"
+  },
+  "completed_at_utc": "2026-09-21T17:06:42.987636+00:00",
+  "actual_records": 2160,
+  "error_records": 13
+}

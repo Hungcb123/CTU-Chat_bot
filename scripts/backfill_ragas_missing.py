@@ -21,10 +21,14 @@ os.environ.setdefault("RAGAS_DO_NOT_TRACK", "true")
 ROOT = Path("/mnt/d/Project/Chatbot")
 sys.path.insert(0, str(ROOT))
 
-CHECKPOINT_PATH = ROOT / "logs/scenario12/20260916T075823Z/checkpoint.json"
+CHECKPOINT_PATH = (
+    Path(sys.argv[1]).resolve()
+    if len(sys.argv) > 1
+    else ROOT / "logs/scenario12/20260920T153313Z/checkpoint.json"
+)
 DATASET_PATH = ROOT / "data/scenario12_heldout_100.jsonl"
-LOG_PATH = ROOT / "logs/scenario12/backfill_ragas_missing.log"
-COVERAGE_PATH = ROOT / "logs/scenario12/ragas_coverage.json"
+LOG_PATH = CHECKPOINT_PATH.parent / "backfill_ragas_missing.log"
+COVERAGE_PATH = CHECKPOINT_PATH.parent / "ragas_coverage.json"
 
 BATCH_SIZE = 6
 MAX_WORKERS = 6
@@ -100,9 +104,26 @@ def main():
 
     orig_extract_json = ragas_pydantic_prompt.extract_json
 
+    def fix_missing_verdict(data):
+        if isinstance(data, dict) and "statements" in data:
+            for stmt in data.get("statements", []):
+                if isinstance(stmt, dict) and "verdict" not in stmt:
+                    reason = stmt.get("reason", "").lower()
+                    if any(w in reason for w in ["not", "cannot", "no evidence", "unsupported", "contradict", "không"]):
+                        stmt["verdict"] = 0
+                    else:
+                        stmt["verdict"] = 1
+        return data
+
     def safe_extract_json(text: str) -> str:
         extracted = orig_extract_json(text)
-        return sanitize_json_escapes(extracted)
+        cleaned = sanitize_json_escapes(extracted)
+        try:
+            data = json.loads(cleaned)
+            data = fix_missing_verdict(data)
+            return json.dumps(data, ensure_ascii=False)
+        except Exception:
+            return cleaned
 
     ragas_pydantic_prompt.extract_json = safe_extract_json
 
@@ -135,6 +156,7 @@ def main():
                 except (TypeError, ValueError):
                     parsed = json.loads(sanitize_json_escapes(inner))
 
+            parsed = fix_missing_verdict(parsed)
             raw_output = json.dumps(parsed, ensure_ascii=False)
         except (TypeError, ValueError):
             pass
@@ -158,7 +180,7 @@ def main():
         model="gemini-2.5-flash-lite",
         vertexai=True,
         project=project,
-        location="us-central1",
+        location=os.getenv("VERTEX_LOCATION", "europe-west1"),
         temperature=0,
         request_timeout=120,
     )

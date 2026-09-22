@@ -1,0 +1,17 @@
+\begin{tabular}{llrrrrr}
+\toprule
+Registry & Architecture & Visible & Schema chars & Selection & E2E & Latency (ms) \\
+\midrule
+11 & Monolithic & 11.0 & 5393 & \textbf{93.9\%} & \textbf{87.8\%} & 1039 \\
+11 & Oracle partition & 4.4 & 2027 & 92.2\% & 83.9\% & 890 \\
+11 & Live multi-agent & 4.5 & 2069 & 92.2\% & 84.4\% & 1703 \\
+\midrule
+19 & Monolithic & 19.0 & 7627 & \textbf{94.4\%} & \textbf{88.9\%} & 1097 \\
+19 & Oracle partition & 6.4 & 2591 & 91.1\% & 83.9\% & 858 \\
+19 & Live multi-agent & 6.5 & 2635 & 91.1\% & 83.9\% & 1702 \\
+\midrule
+27 & Monolithic & 27.0 & 9786 & \textbf{95.6\%} & \textbf{89.4\%} & 1143 \\
+27 & Oracle partition & 8.4 & 3110 & 93.3\% & 85.6\% & 911 \\
+27 & Live multi-agent & 8.5 & 3153 & 93.9\% & 86.1\% & 1728 \\
+\bottomrule
+\end{tabular}

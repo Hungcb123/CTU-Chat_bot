@@ -1,0 +1,171 @@
+{
+  "protocol": "multi-vs-single-v5.0",
+  "total_records": 9,
+  "error_records": 0,
+  "schema_guard_failures": 0,
+  "levels": [
+    0
+  ],
+  "production_tools": {
+    "0": {
+      "registry_size": 11,
+      "unique_cases": 1,
+      "architectures": {
+        "single_agent": {
+          "selection_passed": 1.0,
+          "arguments_passed": 1.0,
+          "result_passed": 1.0,
+          "passed": 1.0,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 11.0,
+          "visible_tool_schema_chars": 5393.0,
+          "total_decision_latency_ms": 1938.22,
+          "total_input_tokens": 1844.0,
+          "total_tokens": 1938.6667
+        },
+        "static_multi": {
+          "selection_passed": 1.0,
+          "arguments_passed": 1.0,
+          "result_passed": 1.0,
+          "passed": 1.0,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 6.0,
+          "visible_tool_schema_chars": 2268.0,
+          "total_decision_latency_ms": 2920.0933,
+          "total_input_tokens": 3591.0,
+          "total_tokens": 3639.0
+        },
+        "topk_multi": {
+          "selection_passed": 1.0,
+          "arguments_passed": 1.0,
+          "result_passed": 1.0,
+          "passed": 1.0,
+          "bounded_pass": 1.0,
+          "visible_tool_count": 5.0,
+          "visible_tool_schema_chars": 2009.0,
+          "total_decision_latency_ms": 2444.8167,
+          "total_input_tokens": 3521.0,
+          "total_tokens": 3546.0
+        }
+      },
+      "paired_contrasts": {
+        "topk_vs_single": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "static_vs_single": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "topk_vs_static": {
+          "selection_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "arguments_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "result_passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "passed": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "bounded_pass": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "robustness": {},
+  "topk_retrieval_recall": {
+    "0": 1.0
+  },
+  "interactions": {}
+}

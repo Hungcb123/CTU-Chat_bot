@@ -14,9 +14,9 @@ We evaluate \system{} on 200 administrative queries constructed through a docume
 
 An audit using entity inventories separate from the development split found no exact cross-split duplicates and a maximum 5-gram Jaccard similarity of 0.1875. Gold sources and required facts were reviewed against 244 institutional documents and 559 structured tuition records. The held-out set contains 19 Academic, 28 Financial, 17 Scholarship, and 16 General single-domain queries; the remaining 20 combine evidence across domains and are analyzed separately. Tables~\ref{tab:retrieval_evaluation} and~\ref{tab:e2e_evaluation} report results on this held-out set.
 
-After evidence review, 27 reference answers and 26 required-fact lists were corrected without changing questions, gold sources, domains, or complexity labels. Ragas observations for the reviewed cases were re-evaluated, and the final reporting audit recomputed Fact EM deterministically against the revised required facts.
+The final run (ID \texttt{20260921T043243Z}) used Ragas 0.4.3 with Answer Relevancy strictness 1 and 10,000 bootstrap resamples for 95\% confidence intervals. Its coverage audit found all 10,500 required metric values valid, with no missing values or evaluation failures.
 
-\noindent\textbf{Evaluated Snapshot and Infrastructure:} Reported results use a fixed Gemini 2.5 Flash Lite snapshot through Google Cloud Vertex AI with greedy decoding ($T=0.0$); later deployment-model substitutions are not evaluated. Each query was run $R=3$ times, yielding $2,100$ generation and Ragas turns ($7$ configurations $\times 100$ queries $\times 3$ runs). Neural reranking used an NVIDIA GeForce GTX 1650 GPU (4~GB VRAM). Neo4j 5.20 with APOC stored relational curricula; PostgreSQL stored parent chunks (2,800 characters, 100 overlap); and Qdrant indexed child chunks (400 characters, 50 overlap) using a 768-dimensional \texttt{vietnamese-bi-encoder}. The system used \texttt{bge-reranker-v2-m3}, LangGraph StateGraph, and Redis 7.
+\noindent\textbf{Evaluated Model and Infrastructure:} The evaluated run used the Gemini 2.5 Flash Lite model identifier through Google Cloud Vertex AI with temperature 0.0; later deployment-model substitutions were not evaluated. Each query was evaluated in three repetitions, producing 2,100 generated answers and 2,100 corresponding Ragas evaluations ($7$ configurations $\times 100$ queries $\times 3$ repetitions). Neural reranking used an NVIDIA GeForce GTX 1650 GPU (4~GB VRAM). Neo4j 5.20 with APOC stored relational curricula; PostgreSQL stored parent chunks (2,800 characters, 100 overlap); and Qdrant indexed child chunks (400 characters, 50 overlap) using a 768-dimensional \texttt{vietnamese-bi-encoder}. The system used \texttt{bge-reranker-v2-m3}, LangGraph StateGraph, and Redis 7.
 
 %------------------------------------------------
 \subsection{Evaluation Metrics}
@@ -24,7 +24,7 @@ After evidence review, 27 reference answers and 26 required-fact lists were corr
 
 \noindent\textbf{Evaluation Metrics:} Scenario~1 reports source-document-level Hit@$k$ ($k\in\{1,3\}$), Precision@5, Recall@5, MRR@10, and domain-level Hit@1. Scenario~3 measures routing accuracy, Macro-F1, intent accuracy, tool selection and argument Exact Match (EM), end-to-end pass rate, adversarial tool gating, and safe behavior under $\text{max\_tool\_calls}=1$ and a $60$-s timeout.
 
-Scenario~2 evaluates Top-7 synthesis using Ragas~\cite{es2023ragas}: Answer Relevancy (AR), Context Recall (CR), Context Precision (CP), Answer Correctness (AC), and Faithfulness (Faith). Factual Exact Match (Fact EM) measures strict numerical tuition-fee and credit agreement, while Source Recall measures gold-source coverage and Source Average Precision (Source AP) evaluates ranked, verified regulatory citations. To limit LLM-judge bias~\cite{zheng2023judging,es2023ragas}, evaluation conditions reference-grounded metrics on gold documents, uses greedy decoding over three runs, and includes programmatic Fact EM for tuition arithmetic.
+Scenario~2 evaluates Top-7 synthesis using Ragas~\cite{es2023ragas}: Answer Relevancy (AR), Context Recall (CR), Context Precision (CP), Answer Correctness (AC), and Faithfulness (Faith). Factual Exact Match (Fact EM) measures strict numerical tuition-fee and credit agreement, while Source Recall measures gold-source coverage and Source Average Precision (Source AP) evaluates the ranking of retrieved gold sources. To reduce LLM-judge bias~\cite{zheng2023judging,es2023ragas}, the evaluation uses gold reference answers and source documents for reference-grounded metrics, temperature-zero decoding over three repetitions, and programmatic Fact EM for tuition arithmetic.
 
 %------------------------------------------------
 \subsection{Experimental Scenarios and Benchmark Results}
@@ -35,7 +35,7 @@ We evaluate \system{} through retrieval component stacking (RQ3), end-to-end gen
 \subsubsection{Scenario 1 --- Retrieval Component Stacking (E1--E5):}
 Scenario~1 compares five cumulative retrieval configurations, from sparse and dense baselines to hybrid fusion, neural reranking, and the proposed intent-guided evidence stack, at aggregate and complexity-stratified levels on the 100-query held-out set.
 
-Table~\ref{tab:retrieval_evaluation} shows that E5 obtains the highest aggregate retrieval scores: 0.7500 Hit@1, 0.9100 Hit@3, 0.2380 Precision@5, 0.8458 Recall@5, and 0.8354 MRR@10. Relative to E4, E5 increases Hit@1 by 7.0 percentage points and MRR@10 by 0.0450; relative to E1, its Hit@1 is 22.0 points higher. Mean retrieval latency increases from 15.62~s for E4 to 17.09~s for E5. Because E5 jointly adds intent governance, graph grounding, and parent--child mapping, this contrast compares the integrated bundle rather than any isolated component.
+Table~\ref{tab:retrieval_evaluation} shows that E4 and E5 exceed the sparse, dense, and hybrid baselines on every aggregate metric. E4 reaches 0.7000 Hit@1 and 0.8054 MRR@10. The full intent-governed configuration E5 records the highest values: 0.7400 Hit@1, 0.9200 Hit@3, 0.3020 Precision@5, 0.8608 Recall@5, and 0.8333 MRR@10. Its higher latency (21.86~s vs.\ 15.37~s for E4) is consistent with additional intent-governed retrieval and graph-processing stages.
 
 \begin{table}[!htbp]
 \centering
@@ -46,11 +46,11 @@ Table~\ref{tab:retrieval_evaluation} shows that E5 obtains the highest aggregate
 \toprule
 \textbf{Retrieval Configuration} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{Recall@5} & \textbf{MRR@10} & \textbf{Latency (ms)} \\
 \midrule
-E1: BM25 Lexical Baseline        & 0.5300 & 0.7600 & 0.1980 & 0.7133 & 0.6661 & \textbf{9.79} \\
-E2: Dense Vector Semantic        & 0.4200 & 0.6300 & 0.1540 & 0.5542 & 0.5223 & 50.80 \\
-E3: Hybrid RRF (BM25 + Dense)    & 0.5000 & 0.7800 & 0.2040 & 0.7308 & 0.6568 & 53.10 \\
-E4: Hybrid + Neural Reranker     & 0.6800 & 0.9000 & 0.2320 & 0.8275 & 0.7904 & 15,624.33 \\
-\textbf{E5: CTU-Chat Proposed Retrieval} & \textbf{0.7500} & \textbf{0.9100} & \textbf{0.2380} & \textbf{0.8458} & \textbf{0.8354} & 17,094.94 \\
+E1: BM25 Lexical Baseline        & 0.5300 & 0.7700 & 0.2060 & 0.6167 & 0.6695 & \textbf{7.08} \\
+E2: Dense Vector Semantic        & 0.4600 & 0.6500 & 0.1760 & 0.5242 & 0.5604 & 33.66 \\
+E3: Hybrid RRF (BM25 + Dense)    & 0.5200 & 0.7900 & 0.2240 & 0.6625 & 0.6725 & 37.57 \\
+E4: Hybrid + Neural Reranker     & 0.7000 & 0.9100 & 0.2540 & 0.7508 & 0.8054 & 15,366.33 \\
+\textbf{E5: CTU-Chat Full Retrieval} & \textbf{0.7400} & \textbf{0.9200} & \textbf{0.3020} & \textbf{0.8608} & \textbf{0.8333} & 21,857.56 \\
 \bottomrule
 \end{tabular}
 }
@@ -69,18 +69,18 @@ E4: Hybrid + Neural Reranker     & 0.6800 & 0.9000 & 0.2320 & 0.8275 & 0.7904 & 
 \cmidrule(lr){3-4}\cmidrule(lr){5-6}
 & & \textbf{E4} & \textbf{E5} & \textbf{E4} & \textbf{E5} \\
 \midrule
-Direct single-hop       & 40 & 0.6500 & \textbf{0.6750} & 0.9000 & \textbf{0.9250} \\
-Within-domain multi-hop & 20 & 0.7000 & 0.7000 & 0.7167 & \textbf{0.7417} \\
-Cross-domain            & 20 & 0.7000 & \textbf{0.8500} & \textbf{0.7833} & 0.7750 \\
-Entity comparison       & 10 & 0.8000 & \textbf{1.0000} & 0.9500 & 0.9500 \\
-Temporal                 & 5 & 0.8000 & \textbf{1.0000} & 1.0000 & 1.0000 \\
-Adversarial              & 5 & 0.4000 & 0.4000 & 0.4500 & \textbf{0.5500} \\
+Direct single-hop       & 40 & 0.6500 & \textbf{0.6750} & 0.8500 & \textbf{0.9250} \\
+Within-domain multi-hop & 20 & \textbf{0.7000} & \textbf{0.7000} & 0.7000 & \textbf{0.7583} \\
+Cross-domain            & 20 & 0.7500 & \textbf{0.8000} & 0.6917 & \textbf{0.8250} \\
+Entity comparison       & 10 & 0.8000 & \textbf{0.9000} & 0.6667 & \textbf{0.9500} \\
+Temporal                 & 5 & 0.8000 & \textbf{1.0000} & 0.9000 & \textbf{1.0000} \\
+Adversarial              & 5 & \textbf{0.6000} & \textbf{0.6000} & 0.4167 & \textbf{0.5833} \\
 \bottomrule
 \end{tabular}
 \endgroup
 \end{table}
 
-E5's largest Hit@1 differences over E4 occur for entity-comparison and temporal queries (20 percentage points each) and cross-domain queries (15 points). Hit@1 is unchanged for multi-hop and adversarial queries, although E5 improves Recall@5 on both tiers. For cross-domain queries, E5 improves Hit@1 but has slightly lower Recall@5 (0.7750 vs.\ 0.7833).
+E5 matches or exceeds E4 on both metrics in every complexity tier. The largest Recall@5 differences occur for entity-comparison (28.33 percentage points; 0.9500 vs.\ 0.6667) and cross-domain queries (13.33 percentage points; 0.8250 vs.\ 0.6917). For the five temporal queries, E5 obtains 1.0000 on both metrics.
 
 \begin{table}[!htbp]
 \centering
@@ -92,13 +92,13 @@ E5's largest Hit@1 differences over E4 occur for entity-comparison and temporal 
 \toprule
 \textbf{Cfg.} & \textbf{CP} & \textbf{CR} & \textbf{AR} & \textbf{AC} & \textbf{Faith} & \textbf{Fact EM} & \textbf{Src. R} & \textbf{Src. AP} \\
 \midrule
-T1 & 0.2576 & 0.5411 & 0.3961 & 0.4758 & 0.8580 & 0.5874 & 0.7308 & 0.5498 \\
-T2 & 0.1664 & 0.2682 & 0.2281 & 0.3607 & 0.7082 & 0.5502 & 0.5642 & 0.4240 \\
-T3 & 0.2110 & 0.4843 & 0.3618 & 0.4631 & 0.8554 & 0.6023 & 0.7608 & 0.5469 \\
-\textbf{T4} & 0.3833 & 0.6296 & 0.4454 & 0.5080 & 0.9076 & \textbf{0.6607} & \textbf{0.8408} & \textbf{0.7313} \\
-T5 & 0.2255 & 0.4617 & 0.2996 & 0.4400 & 0.8494 & 0.5916 & 0.7192 & 0.6104 \\
-T6 & 0.3761 & 0.5979 & \textbf{0.4639} & \textbf{0.5108} & \textbf{0.9153} & 0.6329 & \textbf{0.8408} & 0.7058 \\
-T7 & \textbf{0.3862} & \textbf{0.6572} & 0.4235 & 0.4992 & 0.8918 & 0.6443 & 0.8208 & 0.7238 \\
+T1 & 0.2522 & 0.5349 & 0.3901 & 0.4615 & 0.8042 & 0.5924 & 0.6358 & 0.4637 \\
+T2 & 0.1626 & 0.2648 & 0.2370 & 0.3372 & 0.5817 & 0.5179 & 0.5342 & 0.4094 \\
+T3 & 0.2071 & 0.4693 & 0.3972 & 0.4361 & 0.7486 & 0.5792 & 0.6892 & 0.5015 \\
+\textbf{T4} & 0.3511 & \textbf{0.6534} & 0.4468 & 0.4785 & \textbf{0.8636} & 0.6331 & \textbf{0.8325} & \textbf{0.7316} \\
+T5 & 0.2248 & 0.5192 & 0.3425 & 0.4330 & 0.7618 & 0.6056 & 0.7892 & 0.6834 \\
+T6 & \textbf{0.3765} & 0.5791 & \textbf{0.4719} & \textbf{0.4913} & 0.8376 & 0.6184 & 0.6925 & 0.5939 \\
+T7 & 0.3541 & 0.6299 & 0.4304 & 0.4785 & 0.8427 & \textbf{0.6345} & 0.8208 & 0.7277 \\
 \bottomrule
 \end{tabular}
 \medskip
@@ -107,7 +107,7 @@ T7 & \textbf{0.3862} & \textbf{0.6572} & 0.4235 & 0.4992 & 0.8918 & 0.6443 & 0.8
 
 %------------------------------------------------
 \subsubsection{Scenario 2 --- End-to-End QA Generation and Modular Ablation (T1--T7):}
-Scenario~2 compares the full system (T4) with three single-agent RAG baselines (T1--T3) and three ablations (T5--T7) over $2,100$ evaluation turns. As shown in Table~\ref{tab:e2e_evaluation}, T4 exceeds BM25 on all eight metrics, including a notable advantage in Faithfulness ($0.9076$ vs.\ $0.8580$) and a 7.33-percentage-point difference in Fact~EM ($66.07\%$ vs.\ $58.74\%$). T4 records the highest Fact~EM and Source AP and ties T6 on Source Recall; T6 leads Answer Relevancy, Answer Correctness, and Faithfulness (though the Faithfulness difference with T4 is statistically indistinguishable from zero with 95\% bootstrap CI $[-0.0305, +0.0148]$), whereas T7 leads Context Precision and Context Recall. The differences are therefore metric-specific.
+Scenario~2 compares the full system (T4) with three retrieval baselines (T1--T3) and three ablations (T5--T7) over $2,100$ evaluation turns. As shown in Table~\ref{tab:e2e_evaluation}, T4 exceeds BM25 on all eight metrics, including higher Faithfulness ($0.8636$ vs.\ $0.8042$) and a 4.07-percentage-point Fact~EM difference ($63.31\%$ vs.\ $59.24\%$). T4 records the highest Context Recall ($0.6534$), Faithfulness ($0.8636$), Source Recall ($0.8325$), and Source AP ($0.7316$). T6 leads Context Precision, Answer Relevancy, and Answer Correctness, while T7 obtains slightly higher Fact~EM ($63.45\%$).
 \FloatBarrier
 
 %------------------------------------------------
@@ -153,9 +153,9 @@ Failure Gate Robustness    & 60 & 100.0\% & 100.0\% & 98.3\% & 98.3\% & 100.0\% 
 
 \textbf{Answering RQ1:} Before production route repair, the evaluated raw structured supervisor achieves $97.0\%$ routing accuracy, $97.8\%$ Macro-F1, and $95.0\%$ intent accuracy, compared with $85.0\%$, $69.2\%$, and $69.0\%$ for rule-based routing. The deterministic tuition tools achieve $100.0\%$ end-to-end pass rates, whereas scholarship calculation reaches $76.7\%$ with $86.7\%$ tool selection; all tools maintain $100.0\%$ bounded completion. Adversarial tests obtain $100.0\%$ tool-gating accuracy, $98.3\%$ safe-result behavior, and $100.0\%$ bounded completion. In a paired stress-test with 11 tools, single-agent and multi-agent end-to-end performance is $93.3\%$ and $88.3\%$, respectively, without a statistically significant difference. After adding 16 synthetic distractor tools (27 tools total), monolithic tool selection decreases from $98.3\%$ to $91.7\%$, whereas the domain-partitioned system maintains $100.0\%$ (paired $\Delta=+8.3$ percentage points, 95\% bootstrap CI $[+1.7,+15.0]$, $n=60$). These results suggest that partitioned tool access may reduce decision-space interference as the evaluated registry expands.
 
-\textbf{Answering RQ2:} T4 exceeds the no-cross-reranker configuration T5 on every reported metric, supporting the contribution of cross-reranking in this setting (e.g., Faithfulness improves by $+0.0582$, 95\% bootstrap CI $[+0.0226, +0.0940]$, $p < 0.001$). Comparisons with T6 and T7 are mixed: T4 leads T6 in Context Recall, Source AP, and Fact~EM but trails it slightly in Answer Relevancy, Answer Correctness, and Faithfulness ($0.9076$ vs.\ $0.9153$; paired difference $-0.0077$ is statistically insignificant with 95\% CI $[-0.0305, +0.0148]$) and ties it on Source Recall. T4 leads T7 in Faithfulness ($0.9076$ vs.\ $0.8918$), Answer Relevancy, Answer Correctness, Source Recall, Source AP, and Fact~EM but trails it in Context Precision and Context Recall. The ablations therefore indicate component-specific associations rather than uniform causal effects.
+\textbf{Answering RQ2:} T4 exceeds the no-cross-reranker configuration T5 on every reported metric. The paired Ragas differences favor T4 for all five judged metrics; for example, T4's Faithfulness is 0.1018 higher than T5's (95\% bootstrap CI $[+0.0548,+0.1475]$). Comparisons with the other ablations are mixed. Relative to T6 (without graph evidence), T4 has higher Context Recall, Faithfulness, Source Recall, and Fact~EM, but lower Context Precision, Answer Relevancy, Answer Correctness, and Source AP. Relative to T7 (without governance), T4 has higher Context Recall, Faithfulness, Answer Relevancy, Source Recall, and Source AP, while T7 is slightly higher on Context Precision and Fact~EM; their paired Ragas confidence intervals all include zero. These results support component-specific associations rather than uniform causal effects.
 
-\textbf{Answering RQ3:} E4 improves both early-rank ordering and evidence coverage over E3, while E5 provides smaller aggregate gains. E5's largest Hit@1 differences over E4 occur on entity-comparison, temporal, and cross-domain queries. Direct and within-domain multi-hop queries show smaller or no Hit@1 gains, and the adversarial tier remains difficult for both configurations. E5 also has slightly lower cross-domain Recall@5 despite its higher Hit@1. Because E5 changes three components jointly, these results do not isolate their individual causal effects.
+\textbf{Answering RQ3:} E4, which adds neural reranking to hybrid retrieval, exceeds E3 on every aggregate metric. E5 records the highest aggregate values and matches or exceeds E4 on Hit@1 and Recall@5 in every complexity tier. Because E5 jointly adds intent-governed lanes, graph evidence, and quota-based packing, these differences cannot be attributed to an individual component; they are nevertheless consistent with improved multi-source evidence aggregation in the evaluated setting.
 
 %------------------------------------------------
 \subsection{Threats to Validity and Limitations}

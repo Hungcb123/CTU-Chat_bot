@@ -1,0 +1,376 @@
+{
+  "CR": [
+    {
+      "key": "r1:HOUT-DIR-FIN-09:T4",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-FIN-09:T4",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-DIR-FIN-09:T4",
+      "val": null
+    }
+  ],
+  "AC": [
+    {
+      "key": "r3:HOUT-XDOM-18:T1",
+      "val": null
+    }
+  ],
+  "Faith": [
+    {
+      "key": "r1:HOUT-DIR-GEN-05:T7",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-DIR-GEN-07:T1",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-DIR-GEN-07:T2",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-DIR-GEN-07:T3",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-DIR-GEN-07:T6",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-DIR-GEN-07:T7",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-ACAD-03:T1",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-ACAD-03:T4",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-ACAD-03:T3",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-ACAD-03:T7",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-ACAD-03:T6",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-ACAD-04:T2",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-ACAD-04:T1",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-ACAD-04:T3",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-DIR-GEN-07:T5",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-SCH-04:T1",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-XDOM-17:T7",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-02:T3",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-02:T4",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-02:T6",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-02:T7",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-02:T5",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-03:T1",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-03:T2",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-03:T3",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-03:T5",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-04:T1",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-04:T3",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-ADVS-04:T7",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-SCH-06:T2",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-GEN-05:T7",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-GEN-07:T1",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-GEN-07:T2",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-GEN-07:T3",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-GEN-07:T7",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-GEN-10:T5",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-ACAD-03:T1",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-ACAD-03:T3",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-ACAD-03:T4",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-DIR-GEN-07:T5",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-ACAD-03:T7",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-ACAD-03:T6",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-ACAD-04:T1",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-ACAD-04:T4",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-ACAD-04:T3",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-SCH-03:T7",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-SCH-04:T3",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-SCH-04:T5",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-MHOP-GEN-02:T1",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-XDOM-17:T7",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-TEMP-04:T3",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-02:T4",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-02:T6",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-03:T1",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-03:T3",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-04:T1",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-03:T5",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-03:T7",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-04:T3",
+      "val": null
+    },
+    {
+      "key": "r2:HOUT-ADVS-04:T7",
+      "val": null
+    },
+    {
+      "key": "r1:HOUT-MHOP-GEN-02:T3",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-DIR-SCH-06:T1",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-DIR-GEN-05:T7",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-DIR-GEN-07:T1",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-DIR-GEN-07:T5",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-DIR-GEN-10:T5",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-ACAD-03:T3",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-ACAD-03:T4",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-ACAD-03:T6",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-ACAD-04:T2",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-ACAD-03:T7",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-ACAD-04:T1",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-ACAD-04:T6",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-ACAD-04:T3",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-SCH-03:T7",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-SCH-04:T5",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-SCH-04:T3",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-GEN-05:T7",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-XDOM-17:T7",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-MHOP-GEN-02:T3",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-ADVS-02:T6",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-ADVS-02:T7",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-ADVS-03:T1",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-ADVS-04:T1",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-ADVS-03:T5",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-ADVS-04:T3",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-ADVS-03:T3",
+      "val": null
+    },
+    {
+      "key": "r3:HOUT-ADVS-03:T7",
+      "val": null
+    }
+  ]
+}

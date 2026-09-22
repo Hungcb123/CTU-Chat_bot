@@ -1,0 +1,50 @@
+{
+  "protocol": "multi-vs-single-v6.0",
+  "created_at_utc": "2026-09-22T01:31:04.679410+00:00",
+  "status": "completed",
+  "hypothesis": "Supervisor-routed specialist gating degrades less than matched single-agent gating as intra-domain semantic-neighbor density increases.",
+  "primary_outcome": "Routed-specialist minus single-Top-k selection interaction Delta(high)-Delta(low) on the 50 fixed production cases.",
+  "secondary_outcome": "Routed-specialist minus routed-generic selection contrast isolates the contribution of contrastive specialist policy under shared routing.",
+  "arms": [
+    "single_full",
+    "single_topk",
+    "routed_generic",
+    "routed_specialist"
+  ],
+  "ambiguity_levels": [
+    0,
+    2,
+    4
+  ],
+  "registry_sizes": [
+    11,
+    31,
+    51
+  ],
+  "top_k": 7,
+  "primary_cases": 50,
+  "coverage_cases": 40,
+  "repetitions": 3,
+  "coverage_repetitions": 1,
+  "expected_route_calls": 190,
+  "shared_route_policy": "One live supervisor decision per case and order block is replayed across routed arms and ambiguity levels.",
+  "expected_records": 1960,
+  "seed": 20260922,
+  "temperature": 0.0,
+  "model": "gemini-2.5-flash-lite",
+  "location": "europe-west1",
+  "hashes": {
+    "dataset": "b5dbecec26b7893301ec6073ef964d999df91f9fedb47f607ffe648f48811c56",
+    "semantic_neighbor_registry": "da39ece5c22425f1d4a9b81b65d0195e687f1fddd4750013037febeb38fb2bec",
+    "base_runner_helpers": "2192b9992d2b48782ff9e294ccff9ba5919225f76aed258e6999434bd742634d",
+    "v3_helpers": "b0eb1919bf2e748a40d6383f06e2599d8001b3c621bb35d8274862b25b0c3b33",
+    "v4_helpers": "9f2d4664ac9e406398eb54ae92fe28d0e6c523e0a21c71021523745a8fd2ce61",
+    "v5_helpers": "2674256c1b773ee0179543713a54fcb09c246945cb02fd64beba9e0cf32e279a",
+    "runner": "c3d8f295b94ae411415a44648b2591baf1695425a689e0cf4e5fd2ae884925d0",
+    "records": "a1a2cdb727f1d89a1ccafecb245b3f9c01dbce3f1b0f9b695f0110d29dd75aa5"
+  },
+  "completed_at_utc": "2026-09-22T01:48:44.807508+00:00",
+  "actual_records": 1960,
+  "error_records": 0,
+  "schema_guard_failures": 6
+}

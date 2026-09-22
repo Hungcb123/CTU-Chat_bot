@@ -1,0 +1,45 @@
+{
+  "protocol": "multi-vs-single-v5.0",
+  "created_at_utc": "2026-09-22T00:25:48.650601+00:00",
+  "status": "locked_before_execution",
+  "hypothesis": "Dynamic within-domain Top-k shortlisting maintains selection quality while bounding tool exposure as the global registry grows from 11 to 51 tools.",
+  "primary_outcome": "Top-k multi minus monolithic selection interaction Delta(51)-Delta(11) on production cases.",
+  "noninferiority_margin": "Exploratory -5 percentage points; superiority interaction remains primary.",
+  "arms": [
+    "single_agent",
+    "static_multi",
+    "topk_multi"
+  ],
+  "levels": [
+    0
+  ],
+  "registry_sizes": [
+    11
+  ],
+  "top_k": 5,
+  "order_blocks": [
+    "gold_first",
+    "gold_middle",
+    "gold_last"
+  ],
+  "expected_records": 9,
+  "suites": [
+    "production_tools"
+  ],
+  "repetitions": 3,
+  "workers": 3,
+  "timeout": 60.0,
+  "max_tool_calls": 1,
+  "seed": 20260922,
+  "temperature": 0.0,
+  "model": "gemini-2.5-flash-lite",
+  "location": "europe-west1",
+  "limit": 1,
+  "hashes": {
+    "tool_dataset": "b5dbecec26b7893301ec6073ef964d999df91f9fedb47f607ffe648f48811c56",
+    "robustness_dataset": "c0d840dc6ccfc7fc37e5d27dd9d034544cd72fd67f7ca18cb8fdc4c54220b6fb",
+    "base_distractors": "4f707a53346de8cc3e91f961cafab7028ab9db5fe5b412d9a77a8efb14c4179c",
+    "extension_distractors": "3b7bbef532a7ee8a661f6b9293f60122af80c4b7316e71405c7c81ef42823ad2",
+    "runner": "424ffcba97880cec2a0b90fb53c0c8b9e2ecc3a0c33d08a36bc84b444eb3a2b3"
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "total_records": 24,
+  "production_cases_count": 2,
+  "robustness_cases_count": 2,
+  "levels": [
+    0,
+    2,
+    4
+  ],
+  "production_tools": {
+    "0": {
+      "registry_size": 11,
+      "distractors_per_domain": 0,
+      "unique_cases": 2,
+      "multi_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "single_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "paired_difference": {
+        "selection_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "arguments_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "result_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "bounded_pass": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "2": {
+      "registry_size": 19,
+      "distractors_per_domain": 2,
+      "unique_cases": 2,
+      "multi_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "single_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "paired_difference": {
+        "selection_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "arguments_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "result_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "bounded_pass": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "4": {
+      "registry_size": 27,
+      "distractors_per_domain": 4,
+      "unique_cases": 2,
+      "multi_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "single_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "paired_difference": {
+        "selection_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "arguments_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "result_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "bounded_pass": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  },
+  "robustness": {
+    "0": {
+      "registry_size": 11,
+      "distractors_per_domain": 0,
+      "unique_cases": 2,
+      "multi_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "single_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "paired_difference": {
+        "selection_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "arguments_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "result_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "bounded_pass": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "2": {
+      "registry_size": 19,
+      "distractors_per_domain": 2,
+      "unique_cases": 2,
+      "multi_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "single_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "paired_difference": {
+        "selection_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "arguments_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "result_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "bounded_pass": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "4": {
+      "registry_size": 27,
+      "distractors_per_domain": 4,
+      "unique_cases": 2,
+      "multi_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "single_agent": {
+        "selection_passed": 1.0,
+        "arguments_passed": 1.0,
+        "result_passed": 1.0,
+        "passed": 1.0,
+        "bounded_pass": 1.0
+      },
+      "paired_difference": {
+        "selection_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "arguments_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "result_passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "passed": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "bounded_pass": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  },
+  "interaction": {
+    "metric": "tool_selection_accuracy",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ]
+  }
+}

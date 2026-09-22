@@ -265,14 +265,18 @@ class OpenRouterCrossEncoder:
 
 
 class TemporalCrossEncoderReranker(CrossEncoderReranker):
-    """Reranker có ưu tiên MỀM theo thời gian (tie-break).
+    """Reranker có ưu tiên MỀM theo thời gian (tie-break) kết hợp Dynamic Score Thresholding.
 
     Vẫn xếp hạng chính theo điểm Cross-Encoder (độ liên quan). Chỉ khi hai
     tài liệu có điểm GẦN BẰNG NHAU (chênh lệch <= score_tolerance) thì mới
-    ưu tiên tài liệu có 'timestamp' mới hơn. Nhờ vậy văn bản cũ nhưng vẫn
-    khớp nội dung không bị loại oan, mà bản mới cùng chủ đề được đẩy lên trên.
+    ưu tiên tài liệu có 'timestamp' mới hơn.
+    Khi min_score_threshold > 0, tự động lọc bỏ các tài liệu có điểm liên quan
+    quá thấp (nhiễu), đồng thời đảm bảo giữ lại tối thiểu min_k tài liệu hàng đầu.
     """
     score_tolerance: float = 0.05
+    min_score_threshold: float = 0.0
+    min_k: int = 1
+    max_k: Optional[int] = None
 
     def compress_documents(
         self,
@@ -280,10 +284,18 @@ class TemporalCrossEncoderReranker(CrossEncoderReranker):
         query: str,
         callbacks: Callbacks | None = None,
     ) -> AbcSequence[Document]:
+        if not documents:
+            return []
         # Tối ưu: Cắt ngắn nội dung chấm điểm xuống 1000 ký tự để giảm tải ma trận Attention O(L^2)
         # Tài liệu Document thực tế trả về cho LLM vẫn giữ nguyên 100% full content
         scores = self.model.score([(query, (doc.page_content or "")[:1000]) for doc in documents])
         docs_with_scores = list(zip(documents, scores))
+
+        # Lưu lại điểm reranker vào metadata của Document để các module hạ tầng có thể dùng
+        for doc, score in docs_with_scores:
+            if hasattr(doc, "metadata") and isinstance(doc.metadata, dict):
+                doc.metadata["reranker_score"] = float(score)
+
         # Sắp theo (điểm liên quan giảm dần, timestamp giảm dần) để tie-break sơ bộ
         ranked = sorted(
             docs_with_scores,
@@ -306,7 +318,19 @@ class TemporalCrossEncoderReranker(CrossEncoderReranker):
         if bucket:
             bucket.sort(key=lambda ds: ds[0].metadata.get("timestamp", 0) or 0, reverse=True)
             reordered.extend(bucket)
-        return [doc for doc, _ in reordered[: self.top_n]]
+
+        # Dynamic Thresholding: Loại bỏ chunks có điểm quá thấp gây nhiễu context
+        if self.min_score_threshold > 0.0 and reordered:
+            filtered = [item for item in reordered if item[1] >= self.min_score_threshold]
+            if len(filtered) < self.min_k:
+                filtered = reordered[: self.min_k]
+            reordered = filtered
+
+        limit = self.top_n
+        if self.max_k is not None:
+            limit = min(limit, self.max_k)
+
+        return [doc for doc, _ in reordered[: limit]]
 
 from sqlalchemy.orm import Session
 from app.core.database import SyncSessionLocal
