@@ -29,7 +29,7 @@ pyvi>=0.1.1
 # - Embedding: Google Gemini text-embedding-004 (dùng langchain-google-genai)
 # - Reranker: NVIDIA Nemotron qua OpenRouter (dùng httpx)
 
-pydantic==2.1
+pydantic>=2.9.0,<3.0.0
 typing_extensions==4.15.0
 
 # Authentication and HTTP
