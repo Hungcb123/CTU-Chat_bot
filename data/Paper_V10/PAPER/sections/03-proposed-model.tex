@@ -32,7 +32,7 @@ Figure~\ref{fig:architecture} illustrates the system architecture of \system{}, 
     
     \item \textbf{Acyclic orchestration:} Specialists have no peer edges and return to \texttt{END}; their internal ReAct tool interactions are separate from the outer graph.
     
-    \item \textbf{Asymmetric tools:} Academic, financial, and scholarship agents receive scoped lists, while the general agent has none. One bounded retry names an omitted required tool; invalid or missing parameters trigger clarification.
+    \item \textbf{Asymmetric tools and deterministic validation:} Academic, financial, and scholarship agents receive scoped tool registries, while the general agent has none. Tool invocations pass through an argument validator before execution; missing mandatory parameters or out-of-range values intercept invocation and trigger user clarification. In addition, one bounded retry prompts the specialist when an expected tool call is omitted.
 \end{itemize}
 
 %------------------------------------------------
@@ -81,7 +81,7 @@ The access policy maps program attributes to Neo4j property lookup, prerequisite
 At runtime, academic queries enter the graph agent directly; other domains enter retrieval. Financial retrieval first attempts Neo4j tuition lookup with JSON fallback. The repaired intent then selects metadata-filtered document lanes, and packed evidence is passed only to the selected specialist.
 
 \textbf{Hybrid Document Retrieval Path.}
-For narrative regulations and scholarship criteria, BM25 and Qdrant search 400-character child chunks; their parent sections are loaded from PostgreSQL and fused using $s_{\mathrm{RRF}}(d)=\sum_{s\in\{\mathrm{bm25},\mathrm{dense}\}}(60+r_s(d))^{-1}$. The full configuration pools intent-governed candidates with the top 20 unfiltered hybrid candidates and top BM25 anchors, deduplicates them, and reranks with \texttt{BAAI/bge-reranker-v2-m3}. Scores below 0.20 are removed unless fewer than two candidates remain; graph evidence is then added under fixed quotas and up to seven passages are packed for generation.
+For narrative regulations and scholarship criteria, evidence is acquired via parent-resolved retrieval: BM25 and Qdrant search 400-character child chunks, their parent sections are loaded from PostgreSQL, and rankings are fused via $s_{\mathrm{RRF}}(d)=\sum_{s\in\{\mathrm{bm25},\mathrm{dense}\}}(60+r_s(d))^{-1}$. In production runtime, retrieval executes over intent-governed metadata lanes to minimize latency. In the evaluated full experimental configuration (evaluated in Section~4 as E5/T4), candidate pools are augmented with the top 20 unfiltered hybrid candidates and top BM25 anchors, deduplicated, and reranked using \texttt{BAAI/bge-reranker-v2-m3}. Scores below 0.20 are pruned unless fewer than two candidates remain; graph evidence is subsequently incorporated under fixed quotas, and up to seven passages are packed for generation.
 
 Parent sections use a 2,800-character target with 100-character overlap;
 child chunks use a 400-character target with 50-character overlap.
