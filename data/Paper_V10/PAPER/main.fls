@@ -1,9 +1,9 @@
-PWD /mnt/d/project/chatbot/data/Paper_V10/PAPER
+PWD /mnt/d/Project/Chatbot/data/Paper_V10/PAPER
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /home/hung/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT main.tex
+INPUT /mnt/d/Project/Chatbot/data/Paper_V10/PAPER/main.tex
 OUTPUT main.log
 INPUT ./llncs.cls
 INPUT ./llncs.cls
