@@ -1,0 +1,69 @@
+% ============================================================
+%  CTU-Chat: Domain-Specialized Agentic RAG with Heterogeneous
+%  Knowledge Allocation for Vietnamese University Counseling
+%  Springer LNCS -- main.tex
+% ============================================================
+\documentclass[runningheads]{llncs}
+
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage[varvw]{newtxmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{pifont}   % \cmark / \xmark
+\usepackage{placeins}
+
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{microtype}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false, pdfborder={0 0 0}}
+\renewcommand\UrlFont{\color{blue}\rmfamily}
+\emergencystretch=2em
+
+
+
+% ---------- convenience macros ----------
+\newcommand{\system}{\textsc{CTU-Chat}}  % system shorthand
+\newcommand{\cmark}{\ding{51}}           % check mark
+\newcommand{\xmark}{\ding{55}}           % cross mark
+\newcommand{\RRF}{s_{\mathrm{RRF}}}
+
+% ----------------------------------------
+\begin{document}
+
+\title{CTU-Chat: Supervisor-Routed Multi-Agent RAG with Heterogeneous Knowledge Allocation for University Counseling}
+\titlerunning{CTU-Chat: Supervisor-Routed Multi-Agent RAG}
+
+\author{Tuong-Hung Cao\orcidID{0009-0003-5886-2666} \and
+Ngoc-Anh Le\orcidID{0009-0006-7453-1009} \and
+Nhu-Quynh Nguyen\orcidID{0009-0008-7396-697X} \and
+Minh-Chanh Trang\orcidID{0009-0004-7446-522X} \and
+Lan Phuong Phan}
+\authorrunning{T.-H. Cao et al.}
+\institute{College of Information and Communication Technology,\\ Can Tho University, Can Tho, Vietnam\\
+\email{\{hungb2303873, anhb2303861, quynhb2303777, chanhb2303864\}@student.ctu.edu.vn}\\
+\email{pplan@ctu.edu.vn}}
+
+\maketitle
+
+% ---------- sections ----------
+\input{sections/00-abstract}
+\input{sections/01-introduction}
+\input{sections/02-related-work}
+\input{sections/03-proposed-model}
+\input{sections/04-experiments}
+\input{sections/05-conclusion}
+
+\begin{credits}
+\subsubsection{\discintname}
+The authors have no competing interests to declare that are relevant to the content of this article.
+\end{credits}
+
+\bibliographystyle{splncs04}
+\bibliography{references}
+
+\end{document}
