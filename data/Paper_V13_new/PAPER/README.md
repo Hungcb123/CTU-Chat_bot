@@ -5,10 +5,8 @@ Administrative Question Answering**.
 
 ## Template
 
-The source includes Springer `llncs.cls` version 2.20 and `splncs04.bst` copied
-verbatim from `Paper/Guild/Springer_Latex_Template.zip`, the template selected
-for this manuscript. The complete unchanged kit is preserved under
-`official-template/` for comparison.
+The source includes Springer `llncs.cls` version 2.25 and `splncs04.bst` conforming to the official Springer LNCS proceedings template (`rule paper/LaTeX2e+Proceedings+Template+ZIP`), which provides enhanced accessibility alt-text support (`\Description`), updated `credits` environment, and modern Times fonts (`newtxtext`, `newtxmath`).
+
 
 The class file is the only authority for page size, margins, fonts, headings,
 running heads, and spacing. Do not add an `article` fallback, `twocolumn`,
