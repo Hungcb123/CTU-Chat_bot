@@ -29,8 +29,7 @@ Our findings connect to several active themes. While ReAct~\cite{yao2023react} a
 %------------------------------------------------
 \subsection{Threats to Validity}
 \label{sec:limitations}
-
-\textbf{Internal:} Single LLM (Gemini 2.5 Flash Lite); temperature-zero decoding may not be fully deterministic across API instances, motivating three repetitions. Prompt sensitivity remains a potential confound.
+\textbf{Internal:} Single LLM (Gemini 2.5 Flash Lite); while temperature-zero decoding minimizes sampling variance, minor API-serving non-determinism and prompt sensitivity remain potential confounds.
 \textbf{External:} Single-institution benchmark (100 queries, 5 temporal, 5 adversarial); results may not generalize to other regulatory structures. Semantic-neighbor tools are evaluation constructs.
 \textbf{Construct:} E2E metrics rely partly on Ragas automated evaluation; required-fact matching reduces generator--judge bias. Human evaluation on a subset would strengthen validity.
 \textbf{Statistical:} Bootstrap CIs are query-level ($N{=}100$). Some ablation subsets ($N{\approx}20$) have limited power. Three registry sizes do not support asymptotic scaling claims.
