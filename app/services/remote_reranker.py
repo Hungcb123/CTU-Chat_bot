@@ -8,10 +8,16 @@ from typing import Any
 
 import httpx
 
+try:
+    from langchain_core.cross_encoders import BaseCrossEncoder
+except ImportError:
+    class BaseCrossEncoder:
+        pass
+
 logger = logging.getLogger(__name__)
 
 
-class RemoteCrossEncoder:
+class RemoteCrossEncoder(BaseCrossEncoder):
     """HTTP adapter compatible with ``HuggingFaceCrossEncoder.score``.
 
     The remote service returns raw cross-encoder scores keyed by the temporary

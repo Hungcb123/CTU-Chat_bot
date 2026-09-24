@@ -273,6 +273,7 @@ class TemporalCrossEncoderReranker(CrossEncoderReranker):
     Khi min_score_threshold > 0, tự động lọc bỏ các tài liệu có điểm liên quan
     quá thấp (nhiễu), đồng thời đảm bảo giữ lại tối thiểu min_k tài liệu hàng đầu.
     """
+    model: Any
     score_tolerance: float = 0.05
     min_score_threshold: float = 0.0
     min_k: int = 1
