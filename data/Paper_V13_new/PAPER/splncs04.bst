@@ -1,4 +1,4 @@
-%% BibTeX bibliography style `splncs03'
+%% BibTeX bibliography style `splncs04'
 %%
 %% BibTeX bibliography style for use with numbered references in
 %% Springer Verlag's "Lecture Notes in Computer Science" series.
@@ -6,7 +6,7 @@
 %% more details of the suggested reference format.)  Note that this
 %% file will not work for author-year style citations.
 %%
-%% Use \documentclass{llncs} and \bibliographystyle{splncs03}, and cite
+%% Use \documentclass{llncs} and \bibliographystyle{splncs04}, and cite
 %% a reference with (e.g.) \cite{smith77} to get a "[1]" in the text.
 %%
 %% This file comes to you courtesy of Maurizio "Titto" Patrignani of

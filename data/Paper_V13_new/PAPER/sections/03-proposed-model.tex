@@ -37,7 +37,7 @@ The system does not ask the LLM to generate arbitrary Cypher. After the supervis
 For a query $q$ and its dialogue predecessor, the supervisor first attempts a validated standalone rewrite, then predicts domain $d_{\mathrm{raw}}$ and intent $\iota_{\mathrm{raw}}$ under a structured schema, falling back to \texttt{general}/\texttt{other} on parsing failure. The ownership contract repairs rule conflicts or incompatible domain--intent pairs. Academic queries proceed directly to the graph agent; other domains build intent-scoped retrieval lanes, with financial queries first attempting Neo4j tuition lookup and then JSON fallback.
 
 \textbf{Deterministic Tuition Arithmetic.}
-For fee-reduction requests, the external tool \texttt{tinh\_toan\_hoc\_phi} receives three parameters---per-credit tuition $T$, per-credit exemption basis $B$, and percentage $p$---and applies:
+For fee-reduction requests, the tool \texttt{tinh\_}\allowbreak\texttt{toan\_}\allowbreak\texttt{hoc\_}\allowbreak\texttt{phi} receives three parameters---per-credit tuition $T$, per-credit exemption basis $B$, and percentage $p$---and applies:
 \begin{equation}
   D = B\frac{p}{100}, \qquad P = \max(0, T-D).
   \label{eq:tuition_reduction}

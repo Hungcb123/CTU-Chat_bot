@@ -9,7 +9,7 @@ Can Tho University (CTU) serves nearly 49,000 undergraduates in 2025--2026~\cite
 RAG and GraphRAG augment LLMs with documents and knowledge graphs~\cite{lewis2020rag,gao2023rag_survey,edge2024graphrag}, while agentic architectures support tool use and multi-agent coordination~\cite{yao2023react,wu2023autogen,schick2023toolformer}. These approaches do not prescribe how heterogeneous institutional evidence should be represented, routed, and processed. Known limitations in language-model arithmetic~\cite{qian2023limitations} further motivate deterministic calculation for financial queries.
 
 \textbf{Central hypothesis.}
-When a counseling system must handle diverse knowledge forms and semantically adjacent tools, routing queries to bounded specialists with representation-specific evidence paths may improve reliability relative to a single agent with equivalent capabilities---but at the cost of coordination latency. Whether this trade-off is favorable requires direct comparative evaluation.
+When a counseling system must handle diverse knowledge forms and semantically adjacent tools, routing queries to bounded specialists with representation-specific evidence paths may improve reliability relative to a single agent with equivalent capabilities, albeit with coordination latency. Whether this trade-off is favorable requires direct comparative evaluation.
 
 These challenges motivate three gaps: (1)~limited evidence comparing multi-agent and single-agent architectures under matched capabilities; (2)~limited mechanistic understanding of which components drive observed differences; and (3)~limited evidence on how bounded specialization maintains reliability as the tool registry grows. We formulate three research questions:
 \begin{itemize}
@@ -23,7 +23,7 @@ These challenges motivate three gaps: (1)~limited evidence comparing multi-agent
 
 This work provides three contributions:
 \textbf{C1}---a supervisor-routed bounded multi-agent architecture with four specialists, deterministic route repair, and partitioned tool privileges;
-\textbf{C2}---an architecture-level comparative evaluation against a functionally matched single-agent baseline and a routed generic-worker variant;
+\textbf{C2}---an architecture-level comparative evaluation against a functionally matched single-agent baseline and a routed generic-worker variant; and
 \textbf{C3}---architectural ablations of five components and a semantic-neighbor tool-registry stress test across 11--51 tools.
 
 The remainder of this paper is organized as follows. Section~2 reviews related work. Section~3 presents the CTU-Chat architecture. Section~4 describes the experimental setup. Section~5 reports results. Section~6 discusses findings and limitations. Section~7 concludes.
