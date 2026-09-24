@@ -14,15 +14,15 @@ We evaluate \system{} on 200 administrative queries constructed through a docume
 \subsection{Baselines and Configurations}
 \label{sec:baselines}
 
-\textbf{Fairness principle and execution contract.} All configurations share the same LLM (Gemini 2.5 Flash Lite, $T{=}0.0$), knowledge representations, retrieval stack (BM25 + dense + RRF + \texttt{bge-reranker-v2-m3}, $k{=}7$), and deterministic calculator access. Differences are strictly restricted to \emph{orchestration architecture}. To isolate orchestration differences from retrieval variance in Scenario~1, all three architecture variants evaluate over the identical shared full-stack evidence retrieval output ($T_4$), yielding matched pre-generation Source Recall (78.6\%) and Source AP (70.8\%). Performance divergences in final answers are therefore attributable purely to tool privilege scoping, prompt specialization, and agent routing. Multi-agent variants use intent-routed scoped registries with identical execution bounds: maximum 3 tool calls, matching context limits, 2{,}048 output-token budget, and 30-second timeouts. Token accounting for \system{} comprehensively aggregates all pipeline invocations (supervisor routing, contract repair, worker generation, and retries), ensuring rigorous parity with the single-agent baseline.
+\textbf{Fairness principle and execution contract.} For Scenario~1, all architecture configurations share the same LLM (Gemini 2.5 Flash Lite, $T{=}0.0$), knowledge representations, retrieval stack (BM25 + dense + RRF + \texttt{bge-reranker-v2-m3}, $k{=}7$), and deterministic calculator access. Differences are strictly restricted to \emph{orchestration architecture}. Scenario~2 intentionally changes one component at a time. To isolate orchestration differences from retrieval variance in Scenario~1, all three architecture variants evaluate over the identical shared full-stack evidence retrieval output, yielding matched pre-generation Source Recall (78.6\%) and Source AP (70.8\%). The shared evidence context excludes outputs of tools whose invocation is evaluated; tool-derived results are available only after successful tool execution. Performance divergences in final answers are therefore attributable purely to tool privilege scoping, prompt specialization, and agent routing. Multi-agent variants use intent-routed scoped registries with identical execution bounds: maximum 3 tool calls, matching context limits, 2{,}048 output-token budget, and 30-second timeouts. Token accounting for \system{} comprehensively aggregates all pipeline invocations (supervisor routing, contract repair, worker generation, and retries), ensuring rigorous parity with the single-agent baseline.
 
-\subsubsection{Scenario 1 --- Architecture Comparison (RQ1):}
+\paragraph{Scenario 1 --- Architecture Comparison (RQ1):}
 Three configurations are evaluated on the held-out set ($N{=}100$ queries, 300 runs under greedy decoding $T{=}0.0$):
 \textbf{S1-A:} Unified Single Agent with all 11 tools, no supervisor or routing;
 \textbf{S1-B:} Routed Generic Worker---supervisor routes to domain workers with scoped tools but a single generic prompt;
 \textbf{S1-C:} Full CTU-Chat with supervisor, contract repair, specialist prompts, scoped registries, and deterministic computation.
 
-\subsubsection{Scenario 2 --- Ablation (RQ2):}
+\paragraph{Scenario 2 --- Ablation (RQ2):}
 Five ablations each remove one component from Full CTU-Chat ($N{=}100$ queries per ablation, $T{=}0.0$):
 \textbf{S2-A1:} No Specialist Policy (generic worker prompt);
 \textbf{S2-A2:} No Tool Isolation (all 11 tools visible);
@@ -30,22 +30,22 @@ Five ablations each remove one component from Full CTU-Chat ($N{=}100$ queries p
 \textbf{S2-A4:} No Deterministic Calculation (LLM generates arithmetic directly);
 \textbf{S2-A5:} No Route Repair (raw supervisor output used directly).
 
-\subsubsection{Scenario 3 --- Tool Ambiguity (RQ3):}
+\paragraph{Scenario 3 --- Tool Ambiguity (RQ3):}
 Fifty fixed cases are evaluated while 40 semantic-neighbor tools expand registries to 11, 31, and 51 tools. Four configurations are compared: Full-Registry Single Agent, Global Top-10 Single Agent, Routed Generic, and Routed Specialist. Each case uses 3 counterbalanced tool-order blocks, yielding $50{\times}4{\times}3{\times}3{=}1{,}800$ decisions across counterbalanced blocks.
 
 %------------------------------------------------
 \subsection{Evaluation Metrics}
 \label{sec:metrics}
 
-Metrics span four groups. \emph{Final-answer quality:} Required-Fact Coverage (continuous proportion of reference facts verified in generated response), Answer Correctness, Answer Relevancy, and Faithfulness (Ragas~\cite{es2023ragas}). \emph{Evidence quality:} Source Recall, Source AP, Context Recall, Context Precision. \emph{Execution reliability:} Tool Invocations per Query, Tool Selection Accuracy, Argument EM/Contract Match, Result Accuracy, and route repair rate. \emph{Operational cost:} input/output tokens, LLM call counts, and wall-clock latency. Six primary endpoints are reported in the comparative evaluation: E2E Success Rate, Required-Fact Coverage, Source Recall, Source AP, Input Tokens, and Median Latency.
+Metrics span four groups. \emph{Final-answer quality:} Required-Fact Coverage (continuous proportion of reference facts verified in generated response), Answer Correctness, Answer Relevancy, and Faithfulness (Ragas~\cite{es2023ragas}). \emph{Evidence quality:} Source Recall, Source AP, Context Recall, Context Precision. \emph{Execution reliability:} Tool Invocations per Query, Tool Selection Accuracy, Argument EM/Contract Match, Result Accuracy, and route repair rate. \emph{Operational cost:} input/output tokens, LLM call counts, and wall-clock latency. In comparative evaluation, E2E Success Rate serves as the primary endpoint. Key secondary endpoints are Required-Fact Coverage, tool invocations, token cost, and latency. Source Recall and Source AP serve as controlled retrieval diagnostics, expected identical by design across Scenario~1 configurations.
 
-\textbf{E2E Success definition.} For retrieval queries, E2E Success is evaluated under the criterion of required facts ${\ge}50\%$, absence of unsupported claims, and retrieval of verified sources, complemented by continuous Fact Coverage. For tool queries: correct route, tool, arguments, result, and answer. For adversarial queries: absence of unnecessary tool calls and appropriate clarification or refusal. For the arithmetic subset ($N{=}9$), numeric exact match against official bursar schedules is independently audited.
+\textbf{E2E Success definition.} For retrieval queries, E2E Success is evaluated under the criterion of required facts ${\ge}50\%$, absence of unsupported claims, and retrieval of verified sources, complemented by continuous Fact Coverage. For tool queries: correct route, tool, arguments, result, and answer; for the Unified Single Agent baseline, routing correctness is evaluated as N/A by construction as it does not employ a router. For adversarial queries: absence of unnecessary tool calls and appropriate clarification or refusal. For the arithmetic subset ($N{=}9$), numeric exact match against official bursar schedules is independently audited.
 
 %------------------------------------------------
 \subsection{Statistical Protocol}
 \label{sec:statistics}
 
-Evaluations use greedy decoding ($T{=}0.0$) to minimize sampling variance. Paired differences across configurations are computed at the query level ($N{=}100$); 95\% CIs are estimated using 10,000 bootstrap resamples. Three primary pairwise comparisons (Scenario~1) are declared in advance; additional pairwise tests use Holm correction. Scenario~3 degradation is computed as $\Delta = \text{score}_{51} - \text{score}_{11}$ across counterbalanced tool-order blocks.
+Evaluations use greedy decoding ($T{=}0.0$) to minimize sampling variance. Paired differences across configurations are computed at the query level ($N{=}100$); 95\% CIs are estimated using 10,000 bootstrap resamples. The primary confirmatory hypothesis is CTU-Chat versus Unified Single Agent on E2E Success. Generic-worker comparisons, continuous Fact Coverage, token cost, and latency are evaluated as secondary outcomes with reported effect sizes and 95\% bootstrap CIs. Scenario~3 degradation is computed as $\Delta = \text{score}_{51} - \text{score}_{11}$ across counterbalanced tool-order blocks.
 
 %------------------------------------------------
 \subsection{Infrastructure}

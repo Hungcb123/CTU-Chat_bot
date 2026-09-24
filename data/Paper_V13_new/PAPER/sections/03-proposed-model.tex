@@ -26,7 +26,7 @@ Figure~\ref{fig:architecture} illustrates three coordinated tiers: (1)~the Inter
 \subsection{Neo4j Knowledge Graph and Cypher Tools}
 \label{sec:neo4j_graph}
 
-The Neo4j graph contains over 1,500 nodes and 3,800 edges across 113 undergraduate curricula and fee schedules. Its 10 node labels cover curriculum entities (\\texttt{Program}, \texttt{Course}, \texttt{Block}) and tuition entities (\texttt{TuitionFee}, \texttt{TuitionPolicy}, \texttt{ExemptionBasisRate}); 13 typed relationships encode containment, prerequisites, program outcomes, tracks, occupations, tuition, and exemption bases.
+The Neo4j graph contains over 1,500 nodes and 3,800 edges across 113 undergraduate curricula and fee schedules. Its 10 node labels cover curriculum entities (\texttt{Program}, \texttt{Course}, \texttt{Block}) and tuition entities (\texttt{TuitionFee}, \texttt{TuitionPolicy}, \texttt{ExemptionBasisRate}); 13 typed relationships encode containment, prerequisites, program outcomes, tracks, occupations, tuition, and exemption bases.
 
 The system does not ask the LLM to generate arbitrary Cypher. After the supervisor selects the academic agent, its ReAct policy chooses one of six typed tools and supplies arguments. Each tool normalizes identifiers and calls a fixed, parameterized Cypher query implementing three query classes: \emph{attribute lookup/search} (program codes, names, comparisons), \emph{structural traversal} (prerequisite chains up to ten hops, course intersection, reverse path search), and \emph{structured financial lookup} (tuition, policies, exemption rates). This design binds agent actions to deterministic graph operations, reducing exposure to errors from unconstrained Cypher generation.
 

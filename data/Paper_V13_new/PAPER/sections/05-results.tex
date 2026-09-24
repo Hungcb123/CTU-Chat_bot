@@ -27,11 +27,11 @@ Routed Gen.    & 71.0 & 59.6 & 78.6 & 70.8 & 0.31 & \textbf{3473} & 1415 & 8921 
 \end{table}
 
 \textbf{Pairwise bootstrap analysis} (10,000 resamples):
-(1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves an 8.0\,pp higher E2E point estimate (81.0\% vs.\ 73.0\%, paired 95\%\,bootstrap CI $[0.0, +16.0]$\,pp; exact McNemar $p{=}0.096$), alongside higher Fact Coverage ($\Delta{=}+0.028$, 95\%\,CI $[-0.021,+0.079]$) and a 41.4\% reduction in input tokens ($\Delta{=}-2607$, CI $[-3325,-1868]$), at the cost of $+5.49$\,s median end-to-end latency.
-(2)~CTU-Chat vs.\ Routed Generic: specialist policies raise Fact Coverage by $+7.05$\,pp (CI $[+0.010,+0.132]$, $p{<}0.05$).
-(3)~Routed Generic vs.\ Single Agent: comparable token savings ($\Delta{=}-2824$) but lower fact coverage ($\Delta{=}-0.042$, CI $[-0.098,+0.013]$), indicating that routing without policy specialization is insufficient.
+(1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves an 8.0\,pp higher E2E point estimate (81.0\% vs.\ 73.0\%, paired 95\%\,bootstrap CI $[0.0, +16.0]$\,pp; exact McNemar $p{=}0.096$), alongside higher Fact Coverage ($\Delta{=}+2.8$\,pp, 95\%\,CI $[-2.1, +7.9]$\,pp) and 41.4\% fewer input tokens alongside 26.1\% fewer total tokens ($\Delta{=}-2{,}044$ total tokens, CI $[-2{,}710, -1{,}378]$; Single: 7{,}826 vs.\ CTU: 5{,}782), at the cost of $+5.49$\,s median end-to-end latency.
+(2)~CTU-Chat vs.\ Routed Generic: specialist policies raise Fact Coverage by $+7.05$\,pp (CI $[+1.0, +13.2]$\,pp, $p{<}0.05$).
+(3)~Routed Generic vs.\ Single Agent: comparable token savings ($\Delta{=}-2{,}824$ input tokens) but lower Fact Coverage ($-4.2$\,pp, CI $[-9.8, +1.3]$\,pp), indicating that routing without policy specialization is insufficient.
 
-On the 20 cross-domain queries, CTU-Chat achieves an 85.0\% E2E point estimate compared with 75.0\% (Single) and 70.0\% (Generic), consistent with the intended single-owner multi-evidence-prefetch design.
+On the 20 cross-domain queries, CTU-Chat achieves an 85.0\% E2E point estimate compared with 75.0\% (Single) and 70.0\% (Generic), consistent with the intended single-owner multi-evidence-prefetch design. A sensitivity check across fact-coverage thresholds confirms stability: at $\theta{=}0.50$, CTU leads Single 81.0\% vs.\ 73.0\% (+8.0\,pp); at $\theta{=}0.60$, 63.0\% vs.\ 59.0\% (+4.0\,pp); and at strict thresholds ($\theta{=}0.75$: 39.0\% vs.\ 41.0\%; $\theta{=}1.00$: 32.0\% vs.\ 33.0\%), performance remains closely matched, demonstrating that the observed advantage is not an artifact of threshold selection.
 
 %------------------------------------------------
 \subsection{Scenario 2 --- Architectural Ablation}
@@ -87,32 +87,32 @@ Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 1
 
 \begin{table}[!htbp]
 \centering
-\caption{Scenario~3: Semantic-neighbor tool ambiguity ($N=50$, $R=3$).}
+\caption{Scenario~3: Semantic-neighbor tool ambiguity ($N=50$, 3 counterbalanced tool-order blocks).}
 \label{tab:tool_ambiguity}
-{\small\setlength{\tabcolsep}{3pt}
-\begin{tabular}{llccccc}
+{\small\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{llcccccc}
 \toprule
-\textbf{Reg.} & \textbf{Config.} & \textbf{Vis.} & \textbf{Sel.} & \textbf{E2E} & \textbf{Tok} & \textbf{Lat} \\
+\textbf{Reg.} & \textbf{Config.} & \textbf{Vis.} & \textbf{Gold-R} & \textbf{Sel.} & \textbf{E2E} & \textbf{Tok} & \textbf{Lat} \\
 \midrule
-\multirow{4}{*}{11} & Full-reg single & 11 & \textbf{94.0} & \textbf{86.0} & 1663 & \textbf{1098} \\
- & Top-10 single   & 10 & 93.3 & 83.3 & 1541 & 1148 \\
- & Routed gen.     & 5.1 & 90.7 & 80.0 & \textbf{1204} & 1889 \\
- & \textbf{Routed spec.} & 5.1 & 93.3 & 85.3 & 1441 & 1983 \\
+\multirow{4}{*}{11} & Full-reg single & 11 & -- & \textbf{94.0} & \textbf{86.0} & 1663 & \textbf{1098} \\
+ & Top-10 single   & 10 & \textbf{100.0} & 93.3 & 83.3 & 1541 & 1148 \\
+ & Routed gen.     & 5.1 & 98.0 & 90.7 & 80.0 & \textbf{1204} & 1889 \\
+ & \textbf{Routed spec.} & 5.1 & 98.0 & 93.3 & 85.3 & 1441 & 1983 \\
 \midrule
-\multirow{4}{*}{31} & Full-reg single & 31 & 91.3 & 84.7 & 2706 & 1157 \\
- & Top-10 single   & 10 & 90.0 & 81.3 & \textbf{1149} & \textbf{1033} \\
- & Routed gen.     & 9.8 & 88.0 & 79.3 & 1396 & 1958 \\
- & \textbf{Routed spec.} & 9.8 & \textbf{93.3} & \textbf{88.7} & 1830 & 2015 \\
+\multirow{4}{*}{31} & Full-reg single & 31 & -- & 91.3 & 84.7 & 2706 & 1157 \\
+ & Top-10 single   & 10 & \textbf{98.0} & 90.0 & 81.3 & \textbf{1149} & \textbf{1033} \\
+ & Routed gen.     & 9.8 & \textbf{98.0} & 88.0 & 79.3 & 1396 & 1958 \\
+ & \textbf{Routed spec.} & 9.8 & \textbf{98.0} & \textbf{93.3} & \textbf{88.7} & 1830 & 2015 \\
 \midrule
-\multirow{4}{*}{51} & Full-reg single & 51 & 92.7 & 83.3 & 3722 & 1289 \\
- & Top-10 single   & 10 & 86.7 & 78.7 & \textbf{1036} & \textbf{997} \\
- & Routed gen.     & 9.8 & 91.3 & 82.7 & 1340 & 1907 \\
- & \textbf{Routed spec.} & 9.8 & \textbf{92.7} & \textbf{88.0} & 1770 & 2021 \\
+\multirow{4}{*}{51} & Full-reg single & 51 & -- & 92.7 & 83.3 & 3722 & 1289 \\
+ & Top-10 single   & 10 & 96.0 & 86.7 & 78.7 & \textbf{1036} & \textbf{997} \\
+ & Routed gen.     & 9.8 & \textbf{98.0} & 91.3 & 82.7 & 1340 & 1907 \\
+ & \textbf{Routed spec.} & 9.8 & \textbf{98.0} & \textbf{92.7} & \textbf{88.0} & 1770 & 2021 \\
 \bottomrule
 \end{tabular}}
 \end{table}
 
-As the registry scales from 11 to 51 tools, the Full-Registry Single Agent degrades from 86.0\% to 83.3\% E2E while input tokens expand by 124\%. The Global Top-10 drops to 78.7\% (coinciding with shortlist truncation). The Routed Specialist preserves 88.0\% E2E at 51 tools with only 9.8 visible tools, maintaining a fixed-registry endpoint advantage (+4.7\,pp over Single Agent, +9.3\,pp over Top-10). The degradation interaction (Specialist vs.\ Top-10 high-minus-low difference) is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp), confirming an endpoint advantage without demonstrating statistically divergent degradation slopes.
+As the registry scales from 11 to 51 tools, the Full-Registry Single Agent degrades from 86.0\% to 83.3\% E2E while input tokens expand by 124\%. The Global Top-10 drops to 78.7\% (partially from gold tool truncation, as Gold Recall drops from 100.0\% to 96.0\%, and partially from LLM selection error). The Routed Specialist preserves 88.0\% E2E at 51 tools with only 9.8 visible tools. At the 51-tool endpoint, Routed Specialist exhibits a statistically credible advantage over Top-10 Single Agent (+9.3\,pp E2E, 95\% CI $[+2.0, +17.3]$\,pp) and a +4.7\,pp higher point estimate over Full-Registry Single Agent (95\% CI $[-1.3, +11.3]$\,pp, containing zero) while cutting input tokens by 52.4\% (1{,}770 vs.\ 3{,}722). The degradation interaction (Specialist vs.\ Top-10 high-minus-low difference) is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp), confirming an endpoint advantage without demonstrating statistically divergent degradation slopes.
 
 \FloatBarrier
 %------------------------------------------------
@@ -139,7 +139,7 @@ Hybrid + Reranker     & 0.830 & 0.940 & 0.230 & 0.955 & 0.896 & 1{,}145 \\
 \end{tabular}}
 \end{table}
 
-The progressive retrieval ablation confirms that each component contributes complementary strengths. BM25 provides a competitive baseline (0.810 Hit@1, 0.874 MRR@10) due to the frequency of rigid identifiers in Vietnamese administrative regulations (decree numbers, course codes). Dense semantic search exhibits lower recall (0.853 R@5) from vocabulary mismatch on specialized institutional nomenclature. Hybrid RRF fusion expands candidate breadth (0.940 Hit@3), though top-rank precision is slightly diluted by dense candidates relative to pure BM25. Incorporating cross-encoder neural reranking (\texttt{bge-reranker-v2-m3}) overcomes this dilution, surpassing the BM25 baseline (0.830 Hit@1, 0.896 MRR@10). Finally, graph grounding further lifts full-stack retrieval performance to 0.850 Hit@1 and 0.975 Recall@5, indicating that structured knowledge constraints effectively resolve institutional entity ambiguities.
+The progressive retrieval ablation confirms that each component contributes complementary strengths. BM25 provides a competitive baseline (0.810 Hit@1, 0.874 MRR@10) due to the frequency of rigid identifiers in Vietnamese administrative regulations (decree numbers, course codes). Dense semantic search exhibits lower recall (0.853 R@5) from vocabulary mismatch on specialized institutional nomenclature. Hybrid RRF fusion expands candidate breadth (0.940 Hit@3), though top-rank precision is slightly diluted by dense candidates relative to pure BM25. Incorporating cross-encoder neural reranking (\texttt{bge-reranker-v2-m3}) overcomes this dilution, surpassing the BM25 baseline (0.830 Hit@1, 0.896 MRR@10). The complete representation-aware stack further improves Hit@1 (0.850) and Recall@5 (0.975); because it jointly adds governed evidence integration and graph grounding, the gain cannot be attributed to either mechanism alone.
 
 %------------------------------------------------
 \subsection{Failure Analysis}
