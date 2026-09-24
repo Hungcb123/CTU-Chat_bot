@@ -8,7 +8,7 @@
 \subsection{Scenario 1 --- Architecture-Level Comparison}
 \label{sec:s1_results}
 
-Table~\ref{tab:arch_comparison} compares the three configurations on the 100-query held-out benchmark. All share the same LLM, knowledge sources, and retrieval stack; differences are restricted to orchestration.
+Table~\ref{tab:arch_comparison} compares the three configurations on the 100-query held-out benchmark. Because evidence retrieval is held fixed across configurations to strictly isolate orchestration effects, Source Recall (78.6\%) and Source AP (70.8\%) are identical across all three architectures. Differences in final answer quality and operational cost stem entirely from prompt specialization, tool privilege scoping, and agent routing.
 
 \begin{table}[!htbp]
 \centering
@@ -43,7 +43,7 @@ Table~\ref{tab:ablation} removes one mechanism at a time from Full CTU-Chat ($N{
 \centering
 \caption{Scenario~2: Ablation results ($N=100$). Negative $\Delta$ = degradation.}
 \label{tab:ablation}
-{\small\setlength{\tabcolsep}{3pt}
+{\small\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{lccccc}
 \toprule
 \textbf{Ablated} & \textbf{$\Delta$E2E} & \textbf{$\Delta$Fact} & \textbf{$\Delta$Src.R} & \textbf{$\Delta$Tok} & \textbf{$\Delta$Lat} \\
@@ -54,12 +54,11 @@ Uniform Text-RAG & $-$10.0 & $-$2.67 & $-$12.3 & $-$300  & $-$1910 \\
 No Route Rep.    & $-$4.0  & $-$2.05 & 0.0  & $-$219  & $-$1610 \\
 No Determ.~Calc.$^\dagger$ & $-$6.0 & $-$0.97 & 0.0 & $-$782 & $-$4540 \\
 \bottomrule
+\multicolumn{6}{l}{\rule{0pt}{2.5ex}\footnotesize $^\dagger$Full benchmark with calculators disabled. $\Delta$Tok/Lat in tokens/ms per query.}
 \end{tabular}}
-\smallskip
-{\footnotesize $^\dagger$Full benchmark with calculators disabled. $\Delta$Tok/Lat in tokens/ms per query.}
 \end{table}
 
-The two most impactful ablations are \emph{No Specialist Policy} ($-10.0$\,pp E2E, $-7.05$\,pp Fact) and \emph{Uniform Text-RAG Baseline} ($-10.0$\,pp E2E, $-12.3$\,pp Source Recall). Replacing representation-specific access with uniform text retrieval substantially reduces source recall in the evaluated benchmark, disproportionately harming structured-financial queries ($-17.8$\,pp) and cross-domain queries ($-20.0$\,pp), while No Route Repair degrades cross-domain queries by $-15.0$\,pp. Disabling deterministic calculation produces a $-6.0$\,pp secondary drop across the full benchmark; on the arithmetic tuition subset ($N{=}9$), failure rate rises from 11.1\% to 66.7\% ($-55.6$\,pp exact match pass) due to unconstrained arithmetic hallucination.
+The two largest observed degradations occur in \emph{No Specialist Policy} ($\Delta\text{E2E} = -10.0$\,pp, 95\% CI $[-19.0, -2.0]$\,pp; $\Delta\text{Fact} = -7.05$\,pp, CI $[-13.13, -1.22]$\,pp) and \emph{Uniform Text-RAG Baseline} ($\Delta\text{E2E} = -10.0$\,pp, CI $[-16.0, -5.0]$\,pp; $\Delta\text{Src.R} = -12.3$\,pp, CI $[-16.5, -8.3]$\,pp). Removing tool isolation causes a minor shift ($\Delta\text{E2E} = -3.0$\,pp, CI $[-9.0, +3.0]$\,pp, crossing zero) while expanding input tokens by $+1{,}270$. Disabling route repair yields $\Delta\text{E2E} = -4.0$\,pp (CI $[-10.0, 0.0]$\,pp), disproportionately harming cross-domain queries ($-15.0$\,pp). Disabling deterministic calculation produces $\Delta\text{E2E} = -6.0$\,pp (CI $[-12.0, -1.0]$\,pp) across the benchmark; on the arithmetic tuition subset ($N{=}9$), exact-match answers drop from 8/9 to 3/9 ($-55.6$\,pp exact match pass) due to unconstrained arithmetic hallucination.
 
 \begin{table}[!htbp]
 \centering
@@ -84,7 +83,7 @@ No Route Rep.    & \textbf{78.9} & 78.6 & 75.8 & 70.0 \\
 \subsection{Scenario 3 --- Tool Ambiguity Stress Test}
 \label{sec:s3_results}
 
-Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 11--51 tools ($N{=}50$, $R{=}3$ order blocks; 1,800 primary $+$ 480 coverage decisions).
+Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 11--51 tools ($N{=}50$, 3 counterbalanced tool-order blocks, 1,800 primary decisions).
 
 \begin{table}[!htbp]
 \centering
@@ -113,8 +112,9 @@ Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 1
 \end{tabular}}
 \end{table}
 
-As the registry scales from 11 to 51 tools, the Full-Registry Single Agent degrades from 86.0\% to 83.3\% E2E while input tokens expand by 124\%. The Global Top-10 drops to 78.7\% (coinciding with shortlist truncation). The Routed Specialist preserves 88.0\% E2E at 51 tools with only 9.8 visible tools, maintaining a fixed-registry endpoint advantage (+4.7\,pp over Single Agent, +9.3\,pp over Top-10) without displaying statistically divergent degradation slopes.
+As the registry scales from 11 to 51 tools, the Full-Registry Single Agent degrades from 86.0\% to 83.3\% E2E while input tokens expand by 124\%. The Global Top-10 drops to 78.7\% (coinciding with shortlist truncation). The Routed Specialist preserves 88.0\% E2E at 51 tools with only 9.8 visible tools, maintaining a fixed-registry endpoint advantage (+4.7\,pp over Single Agent, +9.3\,pp over Top-10). The degradation interaction (Specialist vs.\ Top-10 high-minus-low difference) is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp), confirming an endpoint advantage without demonstrating statistically divergent degradation slopes.
 
+\FloatBarrier
 %------------------------------------------------
 \subsection{Supporting Retrieval Validation}
 \label{sec:retrieval_results}
@@ -175,5 +175,5 @@ Table~\ref{tab:failures} categorizes error modes across the 46 failure instances
 \end{tabular}}
 \end{table}
 
-CTU-Chat's advantage is concentrated in tool-execution reliability (2 tool errors vs.\ 7; 2 unnecessary calls vs.\ 5). Both architectures share identical retrieval omissions (6 cases), confirming that retrieval quality is an orthogonal bottleneck.
+CTU-Chat's advantage is concentrated in tool-execution reliability (2 tool errors vs.\ 7; 2 unnecessary calls vs.\ 5). Gold-source absence and reranker-demotion counts are identical (2 and 4 respectively), while CTU-Chat incurs fewer cross-domain partial omissions (3 vs.\ 5), confirming that retrieval quality is an orthogonal bottleneck.
 
