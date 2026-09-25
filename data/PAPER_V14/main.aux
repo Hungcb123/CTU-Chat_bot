@@ -22,12 +22,16 @@
 \@writefile{toc}{\contentsline {title}{CTU-Chat: Supervisor-Routed Multi-Agent RAG with Heterogeneous Knowledge Allocation for University Counseling}{1}{chapter.1}\protected@file@percent }
 \@writefile{toc}{\authcount {5}}
 \@writefile{toc}{\contentsline {author}{Tuong-Hung Cao \and Ngoc-Anh Le \and Nhu-Quynh Nguyen \and Minh-Chanh Trang \and Lan Phuong Phan}{1}{chapter.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1.1}{}}
 \citation{lewis2020rag,gao2023rag_survey,edge2024graphrag}
 \citation{yao2023react,wu2023autogen,schick2023toolformer}
 \citation{qian2023limitations}
 \citation{nguyen2020phobert}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1.1}\protected@file@percent }
-\newlabel{sec:intro}{{1}{2}{Introduction}{section.1.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.1.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Vietnamese NLP and Retrieval Foundations}{2}{subsection.1.2.1}\protected@file@percent }
+\newlabel{sec:vietnamese_nlp}{{2.1}{2}{Vietnamese NLP and Retrieval Foundations}{subsection.1.2.1}{}}
 \citation{robertson2009bm25}
 \citation{karpukhin2020dpr,lewis2020rag}
 \citation{cormack2009rrf}
@@ -41,20 +45,16 @@
 \citation{wollny2021chatbots}
 \citation{ma2023caas}
 \citation{ma2025rebot}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.1.2}\protected@file@percent }
-\newlabel{sec:related}{{2}{3}{Related Work}{section.1.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Vietnamese NLP and Retrieval Foundations}{3}{subsection.1.2.1}\protected@file@percent }
-\newlabel{sec:vietnamese_nlp}{{2.1}{3}{Vietnamese NLP and Retrieval Foundations}{subsection.1.2.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Knowledge Graphs and GraphRAG}{3}{subsection.1.2.2}\protected@file@percent }
 \newlabel{sec:kg_graphrag}{{2.2}{3}{Knowledge Graphs and GraphRAG}{subsection.1.2.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Agentic RAG and Multi-Agent Orchestration}{3}{subsection.1.2.3}\protected@file@percent }
 \newlabel{sec:agentic_multiagent}{{2.3}{3}{Agentic RAG and Multi-Agent Orchestration}{subsection.1.2.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Educational Counseling Systems}{3}{subsection.1.2.4}\protected@file@percent }
 \newlabel{sec:educational_counseling}{{2.4}{3}{Educational Counseling Systems}{subsection.1.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Research Gaps}{3}{subsection.1.2.5}\protected@file@percent }
+\newlabel{sec:gaps}{{2.5}{3}{Research Gaps}{subsection.1.2.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Implemented \textsc  {CTU-Chat}{} architecture. Redis history enters the graph state; the supervisor's structured decision is contract-checked before conditional dispatch. Academic queries enter the graph-enabled agent; other domains pass through intent-scoped retrieval.}}{4}{figure.1.1}\protected@file@percent }
 \newlabel{fig:architecture}{{1}{4}{Implemented \system {} architecture. Redis history enters the graph state; the supervisor's structured decision is contract-checked before conditional dispatch. Academic queries enter the graph-enabled agent; other domains pass through intent-scoped retrieval}{figure.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Research Gaps}{4}{subsection.1.2.5}\protected@file@percent }
-\newlabel{sec:gaps}{{2.5}{4}{Research Gaps}{subsection.1.2.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Proposed Model}{4}{section.1.3}\protected@file@percent }
 \newlabel{sec:model}{{3}{4}{Proposed Model}{section.1.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overall Architecture}{4}{subsection.1.3.1}\protected@file@percent }
@@ -88,12 +88,12 @@
 \newlabel{sec:results}{{5}{8}{Results}{section.1.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Scenario 1 --- Architecture-Level Comparison}{8}{subsection.1.5.1}\protected@file@percent }
 \newlabel{sec:s1_results}{{5.1}{8}{Scenario 1 --- Architecture-Level Comparison}{subsection.1.5.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Scenario\nobreakspace  {}1: Architecture-level comparison ($N=100$). $\text  {Pass}_{.50}$ = Fact-Grounded Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens. Bold = best reliability / lowest cost.}}{9}{table.1.1}\protected@file@percent }
-\newlabel{tab:arch_comparison}{{1}{9}{Scenario~1: Architecture-level comparison ($N=100$). $\text {Pass}_{.50}$ = Fact-Grounded Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens. Bold = best reliability / lowest cost}{table.1.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Scenario\nobreakspace  {}1: Architecture-level comparison ($N=100$). $\text  {Pass}_{.50}$ = Automated Fact Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens. Bold = best reliability / lowest cost.}}{9}{table.1.1}\protected@file@percent }
+\newlabel{tab:arch_comparison}{{1}{9}{Scenario~1: Architecture-level comparison ($N=100$). $\text {Pass}_{.50}$ = Automated Fact Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens. Bold = best reliability / lowest cost}{table.1.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Scenario 2 --- Architectural Ablation}{9}{subsection.1.5.2}\protected@file@percent }
 \newlabel{sec:s2_results}{{5.2}{9}{Scenario 2 --- Architectural Ablation}{subsection.1.5.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scenario\nobreakspace  {}2: Architectural ablation results ($N=100$). Panel\nobreakspace  {}A reports overall benchmark differences ($\Delta $ relative to Full \textsc  {CTU-Chat}{}). Panel\nobreakspace  {}B reports Fact-Grounded Pass Rate ($\text  {Pass}_{\ge 50\%}$, \%) across query families.}}{10}{table.1.2}\protected@file@percent }
-\newlabel{tab:ablation}{{2}{10}{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta $ relative to Full \system {}). Panel~B reports Fact-Grounded Pass Rate ($\text {Pass}_{\ge 50\%}$, \%) across query families}{table.1.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scenario\nobreakspace  {}2: Architectural ablation results ($N=100$). Panel\nobreakspace  {}A reports overall benchmark differences ($\Delta $ relative to Full \textsc  {CTU-Chat}{}). Panel\nobreakspace  {}B reports Automated Fact Pass Rate ($\text  {Pass}_{\ge 50\%}$, \%) across query families.}}{10}{table.1.2}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{10}{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta $ relative to Full \system {}). Panel~B reports Automated Fact Pass Rate ($\text {Pass}_{\ge 50\%}$, \%) across query families}{table.1.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Scenario 3 --- Tool Ambiguity Stress Test}{10}{subsection.1.5.3}\protected@file@percent }
 \newlabel{sec:s3_results}{{5.3}{10}{Scenario 3 --- Tool Ambiguity Stress Test}{subsection.1.5.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Scenario\nobreakspace  {}3: Semantic-neighbor tool ambiguity ($N=50$, 3 counterbalanced tool-order blocks).}}{11}{table.1.3}\protected@file@percent }

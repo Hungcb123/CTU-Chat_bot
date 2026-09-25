@@ -12,7 +12,7 @@ Table~\ref{tab:arch_comparison} compares the three configurations on the 100-que
 
 \begin{table}[!htbp]
 \centering
-\caption{Scenario~1: Architecture-level comparison ($N=100$). $\text{Pass}_{.50}$ = Fact-Grounded Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow$). In/Out Tok = specialist agent tokens. Bold = best reliability / lowest cost.}
+\caption{Scenario~1: Architecture-level comparison ($N=100$). $\text{Pass}_{.50}$ = Automated Fact Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow$). In/Out Tok = specialist agent tokens. Bold = best reliability / lowest cost.}
 \label{tab:arch_comparison}
 {\small\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{lcccccccc}
@@ -27,13 +27,13 @@ Routed Gen.    & 66.0 & 54.2 & 78.6 & 70.8 & 0.31 & \textbf{3473} & 1415 & 8921 
 \end{table}
 
 \textbf{Pairwise bootstrap analysis} (10,000 resamples):
-(1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves a 10.0\,pp higher Fact-Grounded Pass Rate ($\text{Pass}_{\ge 50\%}$) point estimate (76.0\% vs.\ 66.0\%, paired 95\%\,bootstrap CI $[+2.0, +19.0]$\,pp; exact McNemar $p{=}0.0414$), alongside higher Fact Coverage ($\Delta{=}+3.58$\,pp, 95\%\,CI $[-1.2, +8.5]$\,pp) and 41.4\% fewer input tokens alongside 26.1\% fewer total tokens ($\Delta{=}-2{,}044$ total tokens, CI $[-2{,}710, -1{,}378]$; Single: 7{,}826 vs.\ CTU: 5{,}782), with $+5.49$\,s higher pipeline latency.
+(1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves a 10.0\,pp higher Automated Fact Pass Rate ($\text{Pass}_{\ge 50\%}$) point estimate (76.0\% vs.\ 66.0\%, paired 95\%\,bootstrap CI $[+2.0, +19.0]$\,pp; exact McNemar $p{=}0.0414$), alongside higher Fact Coverage ($\Delta{=}+3.58$\,pp, 95\%\,CI $[-1.2, +8.5]$\,pp) and 41.4\% fewer specialist input tokens (26.1\% fewer total specialist tokens: $\Delta{=}-2{,}044$, CI $[-2{,}710, -1{,}378]$; Single: 7{,}826 vs.\ CTU: 5{,}782; supervisor adds ${\sim}650$ input tokens/query), under differing measurement boundaries (10{,}652\,ms end-to-end multi-agent pipeline vs.\ 5{,}159\,ms post-retrieval single-agent generation).
 (2)~CTU-Chat vs.\ Routed Generic: specialist policies raise Fact Coverage by $+6.85$\,pp (CI $[+0.7, +13.0]$\,pp, $p{<}0.05$).
 (3)~Routed Generic vs.\ Single Agent: comparable token savings ($\Delta{=}-2{,}824$ input tokens) but a $-3.27$\,pp Fact Coverage point estimate (CI $[-9.0, +2.4]$\,pp); the interval includes zero.
 
 On the 20 cross-domain queries, CTU-Chat achieves an 80.0\% pass rate compared with 70.0\% (Single) and 65.0\% (Generic). A sensitivity check across fact-coverage thresholds shows that CTU-Chat has a higher point estimate at $\theta{=}0.50$ (76.0\% vs.\ 66.0\%; +10.0\,pp) and $\theta{=}0.60$ (54.0\% vs.\ 50.0\%; +4.0\,pp), while Single Agent has a slightly higher point estimate at $\theta{=}0.70$ (30.0\% vs.\ 27.0\%), $\theta{=}0.75$ (30.0\% vs.\ 27.0\%), and $\theta{=}1.00$ (25.0\% vs.\ 23.0\%).
 
-\textbf{Latency and Token Considerations:} Across configurations, latency reflects distinct operational boundaries: Single Agent ($5{,}159$\,ms) measures inference post-retrieval, whereas multi-agent variants ($8{,}921$\,ms for Routed Generic, and $10{,}652$\,ms for \system{}) measure pipeline execution inclusive of routing and contract dispatch. The $+1{,}731$\,ms delta between Routed Generic and \system{} corresponds to specialist contract enforcement producing $+677$ additional output tokens ($2{,}092$ vs.\ $1{,}415$). Ablation S2-A4 confirms this effect: removing structured contract outputs reduces latency by $4{,}540$\,ms. Regarding token usage, specialist prompt scoping saves input context ($3{,}690$ vs.\ $6{,}296$ in Table~\ref{tab:arch_comparison}), while supervisor routing adds an average of ${\sim}650$ input tokens per multi-agent query.
+\textbf{Latency and Token Considerations:} Across configurations, latency reflects distinct operational boundaries: Single Agent ($5{,}159$\,ms) measures inference post-retrieval, whereas multi-agent variants ($8{,}921$\,ms for Routed Generic, and $10{,}652$\,ms for \system{}) measure pipeline execution inclusive of routing and contract dispatch. Within multi-agent execution, the $+1{,}731$\,ms delta between Routed Generic and \system{} corresponds to specialist prompt instructions producing $+677$ additional output tokens ($2{,}092$ vs.\ $1{,}415$) for domain-tailored reasoning and evidence formatting. In ablation S2-A4, the system showed $4{,}540$\,ms lower latency when deterministic calculators were disabled. Regarding token usage, specialist prompt scoping reduces recorded agent input tokens ($3{,}690$ vs.\ $6{,}296$ in Table~\ref{tab:arch_comparison}), while supervisor routing introduces an unlogged upstream call averaging ${\sim}650$ input tokens per query.
 
 %------------------------------------------------
 \subsection{Scenario 2 --- Architectural Ablation}
@@ -43,7 +43,7 @@ Table~\ref{tab:ablation} removes one mechanism at a time from Full CTU-Chat ($N{
 
 \begin{table}[!htbp]
 \centering
-\caption{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta$ relative to Full \system{}). Panel~B reports Fact-Grounded Pass Rate ($\text{Pass}_{\ge 50\%}$, \%) across query families.}
+\caption{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta$ relative to Full \system{}). Panel~B reports Automated Fact Pass Rate ($\text{Pass}_{\ge 50\%}$, \%) across query families.}
 \label{tab:ablation}
 {\small\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{lccccc}
@@ -107,7 +107,7 @@ Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 1
 
 As the registry scales from 11 to 51 tools, the Full-Registry Single Agent changes from 86.0\% to 83.3\% E2E while input tokens increase by 124\%. The Global Top-10 changes from 83.3\% to 78.7\% E2E, alongside a Gold Recall change from 100.0\% to 96.0\%. The Routed Specialist records 88.0\% E2E at 51 tools with 9.8 visible tools. At the 51-tool endpoint, Routed Specialist has a +9.3\,pp E2E difference over Top-10 Single Agent (95\% CI $[+2.0, +17.3]$\,pp) and a +4.7\,pp point-estimate difference over Full-Registry Single Agent (95\% CI $[-1.3, +11.3]$\,pp) with 52.4\% fewer input tokens (1{,}770 vs.\ 3{,}722). The degradation interaction (Specialist vs.\ Top-10 high-minus-low difference) is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp).
 
-Analysis of stage-level timing across the 1,960 decisions reveals that Routed Specialist maintains a consistent latency profile across registry expansions ($2{,}091$\,ms at 11 tools vs.\ $2{,}116$\,ms at 51 tools). Here, supervisor routing introduces a fixed overhead of $946.5$--$961.8$\,ms (${\sim}45$\% of total decision time), tool gating requires $1{,}051.6$--$1{,}079.3$\,ms, and tool execution takes $71.0$--$92.8$\,ms. In contrast, while the Full-Registry Single Agent avoids supervisor dispatch ($0$\,ms routing overhead), its gating latency increases from $1{,}098.1$\,ms to $1{,}272.2$\,ms as prompt schema tokens scale from $1{,}663$ to $3{,}722$, demonstrating that the fixed routing overhead of the multi-agent architecture buys sub-linear input token scaling and resistance to semantic interference.
+Analysis of stage-level timing across the 1,960 decisions reveals that Routed Specialist maintains a consistent latency profile across registry expansions ($2{,}091$\,ms at 11 tools vs.\ $2{,}116$\,ms at 51 tools). Here, supervisor routing introduces a fixed overhead of $946.5$--$961.8$\,ms (${\sim}45$\% of total decision time), tool gating requires $1{,}051.6$--$1{,}079.3$\,ms, and tool execution takes $71.0$--$92.8$\,ms. In contrast, while the Full-Registry Single Agent avoids supervisor dispatch ($0$\,ms routing overhead), its gating latency increases from $1{,}098.1$\,ms to $1{,}272.2$\,ms as prompt schema tokens scale from $1{,}663$ (11 tools) to $3{,}722$ (51 tools), whereas the Routed Specialist bounds prompt schema tokens between $1{,}441$ and $1{,}770$ across the same expansion.
 
 %------------------------------------------------
 \subsection{Supporting Retrieval Validation}
@@ -139,7 +139,7 @@ BM25 records 0.530 Hit@1 and 0.669 MRR@10, compared with 0.460 Hit@1 and 0.560 M
 \subsection{Failure Analysis}
 \label{sec:failure_analysis}
 
-Table~\ref{tab:failures} categorizes error modes across the 46 failure instances ($<50\%$ Fact Coverage) in Scenario~1 (27 for Single Agent, 19 for CTU-Chat).
+Table~\ref{tab:failures} categorizes error modes across the 58 failure instances ($<50\%$ Fact Coverage) in Scenario~1 (34 for Single Agent, 24 for CTU-Chat).
 
 \begin{table}[!htbp]
 \centering
@@ -150,16 +150,16 @@ Table~\ref{tab:failures} categorizes error modes across the 46 failure instances
 \toprule
 \textbf{Category} & \textbf{Failure Mode} & \textbf{S1-A} & \textbf{S1-C} & \textbf{Category} & \textbf{Failure Mode} & \textbf{S1-A} & \textbf{S1-C} \\
 \midrule
-Routing   & Corrected misroute     & N/A & 4 & Tool       & Invalid arguments     & 4 & 1 \\
-          & Unrecoverable misroute & N/A & 2 &            & Wrong-family call     & 3 & 1 \\
-Retrieval & Gold source absent     & 2   & 2 &            & Unnecessary call      & 5 & 2 \\
-          & Cross-domain omission  & 5   & 3 & Generation & Result ignored        & 2 & 1 \\
-          & Reranker demoted       & 4   & 4 &            & Partial fact omission & 11 & 9 \\
+Routing   & Corrected misroute     & N/A & 1 & Tool       & Invalid arguments     & 4 & 1 \\
+          & Unrecoverable misroute & N/A & 3 &            & Wrong-family call     & 3 & 1 \\
+Retrieval & Gold source absent     & 3   & 3 &            & Unnecessary call      & 5 & 1 \\
+          & Cross-domain omission  & 3   & 2 & Generation & Result ignored        & 2 & 1 \\
+          & Reranker demoted       & 7   & 6 &            & Partial fact omission & 22 & 14 \\
 \midrule
-\multicolumn{4}{l|}{\textbf{Total ($<50\%$ Fact Coverage):}} & \multicolumn{4}{l}{\textbf{S1-A (Single): 27} \qquad \textbf{S1-C (CTU): 19}} \\
+\multicolumn{4}{l|}{\textbf{Total Failed Queries ($<50\%$ Fact):}} & \multicolumn{4}{l}{\textbf{S1-A (Single): 34} \qquad \textbf{S1-C (CTU): 24}} \\
 \bottomrule
 \end{tabular}}
 \end{table}
 
-CTU-Chat has 2 recorded tool errors versus 7 for Single Agent and 2 unnecessary calls versus 5. Gold-source absence and reranker-demotion counts are identical (2 and 4 respectively), while cross-domain partial omissions number 3 versus 5.
+CTU-Chat reduces overall failure instances from 34 to 24. Tool errors drop from 12 in Single Agent (4 invalid arguments, 3 wrong-family calls, 5 unnecessary invocations) to 3 in CTU-Chat due to scoped registries. Retrieval omissions (3 gold absent, 7 vs.\ 6 partial demotions) affect both configurations similarly because pre-generation retrieval was matched. In generation, partial fact omissions under complete retrieval ($sr=1.0$) decrease from 22 in Single Agent to 14 in CTU-Chat, reflecting more structured synthesis in specialist prompt contracts.
 

@@ -948,6 +948,8 @@ INPUT sections/05-results.tex
 INPUT ./sections/05-results.tex
 INPUT ./sections/05-results.tex
 INPUT sections/05-results.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-t1.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-t1.tfm
 INPUT ./sections/06-discussion.tex
 INPUT ./sections/06-discussion.tex
 INPUT ./sections/06-discussion.tex
