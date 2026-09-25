@@ -19,19 +19,21 @@ Table~\ref{tab:arch_comparison} compares the three configurations on the 100-que
 \toprule
 \textbf{Arch.} & \textbf{E2E} & \textbf{Fact} & \textbf{Src.R} & \textbf{Src.AP} & \textbf{Tools/Q} & \textbf{In Tok} & \textbf{Out Tok} & \textbf{Lat.\,(ms)} \\
 \midrule
-Single Agent   & 73.0 & 63.8 & 78.6 & 70.8 & 0.41 & 6296 & 1530 & \textbf{5159} \\
-Routed Gen.    & 71.0 & 59.6 & 78.6 & 70.8 & 0.31 & \textbf{3473} & 1415 & 8921 \\
-\textbf{CTU-Chat} & \textbf{81.0} & \textbf{66.7} & 78.6 & 70.8 & \textbf{0.28} & 3690 & \textbf{2092} & 10652 \\
+Single Agent   & 66.0 & 57.5 & 78.6 & 70.8 & 0.41 & 6296 & 1530 & \textbf{5159} \\
+Routed Gen.    & 66.0 & 54.2 & 78.6 & 70.8 & 0.31 & \textbf{3473} & 1415 & 8921 \\
+\textbf{CTU-Chat} & \textbf{76.0} & \textbf{61.0} & 78.6 & 70.8 & \textbf{0.28} & 3690 & \textbf{2092} & 10652 \\
 \bottomrule
 \end{tabular}}
 \end{table}
 
 \textbf{Pairwise bootstrap analysis} (10,000 resamples):
-(1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves an 8.0\,pp higher E2E point estimate (81.0\% vs.\ 73.0\%, paired 95\%\,bootstrap CI $[0.0, +16.0]$\,pp; exact McNemar $p{=}0.096$), alongside higher Fact Coverage ($\Delta{=}+2.8$\,pp, 95\%\,CI $[-2.1, +7.9]$\,pp) and 41.4\% fewer input tokens alongside 26.1\% fewer total tokens ($\Delta{=}-2{,}044$ total tokens, CI $[-2{,}710, -1{,}378]$; Single: 7{,}826 vs.\ CTU: 5{,}782), at the cost of $+5.49$\,s median end-to-end latency.
-(2)~CTU-Chat vs.\ Routed Generic: specialist policies raise Fact Coverage by $+7.05$\,pp (CI $[+1.0, +13.2]$\,pp, $p{<}0.05$).
-(3)~Routed Generic vs.\ Single Agent: comparable token savings ($\Delta{=}-2{,}824$ input tokens) but a $-4.2$\,pp Fact Coverage point estimate (CI $[-9.8, +1.3]$\,pp); the interval includes zero.
+(1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves a 10.0\,pp higher E2E point estimate (76.0\% vs.\ 66.0\%, paired 95\%\,bootstrap CI $[+2.0, +19.0]$\,pp; exact McNemar $p{=}0.0414$), alongside higher Fact Coverage ($\Delta{=}+3.58$\,pp, 95\%\,CI $[-1.2, +8.5]$\,pp) and 41.4\% fewer input tokens alongside 26.1\% fewer total tokens ($\Delta{=}-2{,}044$ total tokens, CI $[-2{,}710, -1{,}378]$; Single: 7{,}826 vs.\ CTU: 5{,}782), at the cost of $+5.49$\,s mean end-to-end latency.
+(2)~CTU-Chat vs.\ Routed Generic: specialist policies raise Fact Coverage by $+6.85$\,pp (CI $[+0.7, +13.0]$\,pp, $p{<}0.05$).
+(3)~Routed Generic vs.\ Single Agent: comparable token savings ($\Delta{=}-2{,}824$ input tokens) but a $-3.27$\,pp Fact Coverage point estimate (CI $[-9.0, +2.4]$\,pp); the interval includes zero.
 
-On the 20 cross-domain queries, CTU-Chat achieves an 85.0\% E2E point estimate compared with 75.0\% (Single) and 70.0\% (Generic). A sensitivity check across fact-coverage thresholds shows that CTU-Chat has a higher point estimate at $\theta{=}0.50$ (81.0\% vs.\ 73.0\%; +8.0\,pp) and $\theta{=}0.60$ (63.0\% vs.\ 59.0\%; +4.0\,pp), while Single Agent has a slightly higher point estimate at $\theta{=}0.75$ (41.0\% vs.\ 39.0\%) and $\theta{=}1.00$ (33.0\% vs.\ 32.0\%).
+On the 20 cross-domain queries, CTU-Chat achieves an 80.0\% E2E point estimate compared with 70.0\% (Single) and 65.0\% (Generic). A sensitivity check across fact-coverage thresholds shows that CTU-Chat has a higher point estimate at $\theta{=}0.50$ (76.0\% vs.\ 66.0\%; +10.0\,pp) and $\theta{=}0.60$ (54.0\% vs.\ 50.0\%; +4.0\,pp), while Single Agent has a slightly higher point estimate at $\theta{=}0.70$ (30.0\% vs.\ 27.0\%), $\theta{=}0.75$ (30.0\% vs.\ 27.0\%), and $\theta{=}1.00$ (25.0\% vs.\ 23.0\%).
+
+\textbf{Latency decomposition:} The $+5{,}493$\,ms mean latency difference between \system{} ($10{,}652$\,ms) and Single Agent ($5{,}159$\,ms) is attributable to two sequential processing stages. First, supervisor dispatch requires an extra round-trip ($2.00$ vs.\ $1.34$ mean LLM calls per query), which accounts for $+3{,}762$\,ms in the intermediate Routed Generic configuration ($8{,}921$\,ms). Second, specialist contract compliance and explicit chain-of-evidence formatting generate $+677$ additional output tokens ($2{,}092$ vs.\ $1{,}415$), contributing the remaining $+1{,}731$\,ms. This generation-phase effect is corroborated by ablation S2-A4 (Section~\ref{sec:s2_results}), where omitting structured calculations and strict contract schemas reduces latency by $4{,}540$\,ms.
 
 %------------------------------------------------
 \subsection{Scenario 2 --- Architectural Ablation}
@@ -41,43 +43,34 @@ Table~\ref{tab:ablation} removes one mechanism at a time from Full CTU-Chat ($N{
 
 \begin{table}[!htbp]
 \centering
-\caption{Scenario~2: Ablation results ($N=100$). Negative $\Delta$ = degradation.}
+\caption{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta$ relative to Full \system{}). Panel~B reports E2E Success (\%) across query families.}
 \label{tab:ablation}
 {\small\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{lccccc}
 \toprule
-\textbf{Ablated} & \textbf{$\Delta$E2E} & \textbf{$\Delta$Fact} & \textbf{$\Delta$Src.R} & \textbf{$\Delta$Tok} & \textbf{$\Delta$Lat} \\
+\multicolumn{6}{l}{\textbf{Panel A: Overall Benchmark Ablations}} \\
+\textbf{Ablated Component} & \textbf{$\Delta$E2E} & \textbf{$\Delta$Fact} & \textbf{$\Delta$Src.R} & \textbf{$\Delta$Tok} & \textbf{$\Delta$Lat} \\
 \midrule
-No Spec.~Policy  & $-$10.0 & $-$7.05 & 0.0  & $-$217  & $-$1731 \\
-Full Tool Vis.   & $-$3.0  & $-$0.02 & 0.0  & +1270   & +296 \\
-Uniform Text-RAG & $-$10.0 & $-$2.67 & $-$12.3 & $-$300  & $-$1910 \\
-No Route Rep.    & $-$4.0  & $-$2.05 & 0.0  & $-$219  & $-$1610 \\
-No Determ.~Calc.$^\dagger$ & $-$6.0 & $-$0.97 & 0.0 & $-$782 & $-$4540 \\
+No Spec.~Policy  & $-$10.0 & $-$6.85 & 0.0  & $-$217  & $-$1731 \\
+Full Tool Vis.   & 0.0     & +0.93   & 0.0  & +1270   & +296 \\
+Uniform Text-RAG & $-$9.0  & $-$2.18 & $-$12.3 & $-$300  & $-$1910 \\
+No Route Rep.    & $-$2.0  & $-$1.27 & 0.0  & $-$219  & $-$1610 \\
+No Determ.~Calc.$^\dagger$ & $-$4.0 & $-$0.93 & 0.0 & $-$782 & $-$4540 \\
+\midrule
+\multicolumn{6}{l}{\textbf{Panel B: E2E Success (\%) by Query Family}} \\
+\textbf{Configuration} & \textbf{Graph} ($n{=}19$) & \textbf{Struct-fin} ($n{=}28$) & \textbf{Narr-reg} ($n{=}33$) & \multicolumn{2}{c}{\textbf{Cross} ($n{=}20$)} \\
+\midrule
+\textbf{Full CTU-Chat} & 63.2 & \textbf{75.0} & 81.8 & \multicolumn{2}{c}{\textbf{80.0}} \\
+No Spec.~Policy  & 52.6 & 67.9 & 72.7 & \multicolumn{2}{c}{65.0} \\
+Full Tool Vis.   & \textbf{68.4} & 67.9 & \textbf{84.8} & \multicolumn{2}{c}{\textbf{80.0}} \\
+Uniform Text-RAG & 63.2 & 60.7 & 78.8 & \multicolumn{2}{c}{60.0} \\
+No Route Rep.    & \textbf{68.4} & \textbf{78.6} & 78.8 & \multicolumn{2}{c}{65.0} \\
 \bottomrule
 \multicolumn{6}{l}{\rule{0pt}{2.5ex}\footnotesize $^\dagger$Full benchmark with calculators disabled. $\Delta$Tok/Lat in tokens/ms per query.}
 \end{tabular}}
 \end{table}
 
-The two largest observed degradations occur in \emph{No Specialist Policy} ($\Delta\text{E2E} = -10.0$\,pp, 95\% CI $[-19.0, -2.0]$\,pp; $\Delta\text{Fact} = -7.05$\,pp, CI $[-13.13, -1.22]$\,pp) and \emph{Uniform Text-RAG Baseline} ($\Delta\text{E2E} = -10.0$\,pp, CI $[-16.0, -5.0]$\,pp; $\Delta\text{Src.R} = -12.3$\,pp, CI $[-16.5, -8.3]$\,pp). Removing tool isolation causes a minor shift ($\Delta\text{E2E} = -3.0$\,pp, CI $[-9.0, +3.0]$\,pp, crossing zero) while expanding input tokens by $+1{,}270$. Disabling route repair yields $\Delta\text{E2E} = -4.0$\,pp (CI $[-10.0, 0.0]$\,pp), disproportionately harming cross-domain queries ($-15.0$\,pp). Disabling deterministic calculation produces $\Delta\text{E2E} = -6.0$\,pp (CI $[-12.0, -1.0]$\,pp) across the benchmark; on the arithmetic tuition subset ($N{=}9$), exact-match answers drop from 8/9 to 3/9 ($-55.6$\,pp exact match pass) due to unconstrained arithmetic hallucination.
-
-\begin{table}[!htbp]
-\centering
-\caption{Scenario~2: E2E Success by query family across ablations.}
-\label{tab:ablation_breakdown}
-{\small\setlength{\tabcolsep}{4pt}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Config.} & \textbf{Graph} & \textbf{Struct-fin} & \textbf{Narr-reg} & \textbf{Cross} \\
- & ($n{=}19$) & ($n{=}28$) & ($n{=}33$) & ($n{=}20$) \\
-\midrule
-\textbf{Full CTU-Chat} & 73.7 & \textbf{85.7} & \textbf{78.8} & \textbf{85.0} \\
-No Spec.~Policy  & 63.2 & 82.1 & 66.7 & 70.0 \\
-Full Tool Vis.   & \textbf{78.9} & 71.4 & \textbf{78.8} & \textbf{85.0} \\
-Uniform Text-RAG & 73.7 & 67.9 & 75.8 & 65.0 \\
-No Route Rep.    & \textbf{78.9} & 78.6 & 75.8 & 70.0 \\
-\bottomrule
-\end{tabular}}
-\end{table}
+The two largest observed degradations occur in \emph{No Specialist Policy} ($\Delta\text{E2E} = -10.0$\,pp, 95\% CI $[-19.0, -1.0]$\,pp; $\Delta\text{Fact} = -6.85$\,pp, CI $[-13.0, -0.7]$\,pp) and \emph{Uniform Text-RAG Baseline} ($\Delta\text{E2E} = -9.0$\,pp, CI $[-15.0, -4.0]$\,pp; $\Delta\text{Src.R} = -12.3$\,pp, CI $[-16.5, -8.3]$\,pp). Removing tool isolation causes no change in point estimate ($\Delta\text{E2E} = 0.0$\,pp, CI $[-6.0, +6.0]$\,pp) while expanding input tokens by $+1{,}270$. Disabling route repair yields $\Delta\text{E2E} = -2.0$\,pp (CI $[-7.0, +3.0]$\,pp), disproportionately harming cross-domain queries ($-15.0$\,pp, dropping from 80.0\% to 65.0\%). Disabling deterministic calculation produces $\Delta\text{E2E} = -4.0$\,pp (CI $[-9.0, 0.0]$\,pp) across the benchmark; on the arithmetic tuition subset ($N{=}9$), exact-match answers drop from 8/9 to 3/9 ($-55.6$\,pp exact match pass) due to unconstrained arithmetic hallucination. Collectively, the ablations distinguish two functional roles: specialist policies, heterogeneous evidence, and deterministic calculation drive accuracy at the current 11-tool scale, while tool isolation (S2-A2) functions as an efficiency mechanism ($+1{,}270$ input tokens, $\Delta\text{E2E} = 0.0$\,pp) whose accuracy contribution is examined under larger registry scales in Scenario~3 (Section~\ref{sec:s3_results}). Query family breakdown in Panel~B confirms that heterogeneous evidence and specialist routing particularly bolster structured financial and cross-domain questions.
 
 %------------------------------------------------
 \subsection{Scenario 3 --- Tool Ambiguity Stress Test}
@@ -114,6 +107,8 @@ Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 1
 
 As the registry scales from 11 to 51 tools, the Full-Registry Single Agent changes from 86.0\% to 83.3\% E2E while input tokens increase by 124\%. The Global Top-10 changes from 83.3\% to 78.7\% E2E, alongside a Gold Recall change from 100.0\% to 96.0\%. The Routed Specialist records 88.0\% E2E at 51 tools with 9.8 visible tools. At the 51-tool endpoint, Routed Specialist has a +9.3\,pp E2E difference over Top-10 Single Agent (95\% CI $[+2.0, +17.3]$\,pp) and a +4.7\,pp point-estimate difference over Full-Registry Single Agent (95\% CI $[-1.3, +11.3]$\,pp) with 52.4\% fewer input tokens (1{,}770 vs.\ 3{,}722). The degradation interaction (Specialist vs.\ Top-10 high-minus-low difference) is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp).
 
+Analysis of stage-level timing across the 1,960 decisions reveals that Routed Specialist maintains a consistent latency profile across registry expansions ($2{,}091$\,ms at 11 tools vs.\ $2{,}116$\,ms at 51 tools). Here, supervisor routing introduces a fixed overhead of $946.5$--$961.8$\,ms (${\sim}45$\% of total decision time), tool gating requires $1{,}051.6$--$1{,}079.3$\,ms, and tool execution takes $71.0$--$92.8$\,ms. In contrast, while the Full-Registry Single Agent avoids supervisor dispatch ($0$\,ms routing overhead), its gating latency increases from $1{,}098.1$\,ms to $1{,}272.2$\,ms as prompt schema tokens scale from $1{,}663$ to $3{,}722$, demonstrating that the fixed routing overhead of the multi-agent architecture buys sub-linear input token scaling and resistance to semantic interference.
+
 %------------------------------------------------
 \subsection{Supporting Retrieval Validation}
 \label{sec:retrieval_results}
@@ -129,16 +124,16 @@ Table~\ref{tab:retrieval_evaluation} validates the retrieval subsystem independe
 \toprule
 \textbf{Config.} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{R@5} & \textbf{MRR@10} & \textbf{Lat.\,(ms)} \\
 \midrule
-BM25 Lexical          & 0.810 & 0.920 & \textbf{0.234} & 0.937 & 0.874 & \textbf{14} \\
-Dense Semantic        & 0.630 & 0.840 & 0.202 & 0.853 & 0.736 & 80 \\
-Hybrid RRF            & 0.770 & 0.940 & 0.222 & 0.935 & 0.851 & 80 \\
-Hybrid + Reranker     & 0.830 & 0.940 & 0.230 & 0.955 & 0.896 & 1{,}145 \\
-\textbf{Full Retrieval} & \textbf{0.850} & \textbf{0.960} & \textbf{0.234} & \textbf{0.975} & \textbf{0.913} & 1{,}153 \\
+BM25 Lexical          & 0.530 & 0.770 & 0.206 & 0.617 & 0.669 & \textbf{7} \\
+Dense Semantic        & 0.460 & 0.650 & 0.176 & 0.524 & 0.560 & 34 \\
+Hybrid RRF            & 0.520 & 0.790 & 0.224 & 0.662 & 0.673 & 38 \\
+Hybrid + Reranker     & 0.700 & 0.910 & 0.254 & 0.751 & 0.805 & 15{,}366 \\
+\textbf{Full Retrieval} & \textbf{0.740} & \textbf{0.920} & \textbf{0.302} & \textbf{0.861} & \textbf{0.833} & 21{,}858 \\
 \bottomrule
 \end{tabular}}
 \end{table}
 
-BM25 records 0.810 Hit@1 and 0.874 MRR@10, compared with 0.630 Hit@1 and 0.736 MRR@10 for dense semantic search. Hybrid RRF records 0.940 Hit@3 and 0.770 Hit@1. Adding the cross-encoder reranker (\texttt{bge-reranker-v2-m3}) raises Hit@1 to 0.830 and MRR@10 to 0.896. The full retrieval configuration records 0.850 Hit@1 and 0.975 Recall@5. Because this final configuration changes multiple evidence components, the difference cannot be attributed to one component alone.
+BM25 records 0.530 Hit@1 and 0.669 MRR@10, compared with 0.460 Hit@1 and 0.560 MRR@10 for dense semantic search. Hybrid RRF achieves 0.790 Hit@3 and 0.520 Hit@1, balancing lexical precision and semantic recall. Adding the cross-encoder reranker (\texttt{bge-reranker-v2-m3}) yields the most pronounced individual retrieval gain, raising Hit@1 from 0.520 to 0.700 (+18.0\,pp) and MRR@10 to 0.805 at the expense of reranker inference latency. The full retrieval configuration reaches 0.740 Hit@1, 0.861 Recall@5, and 0.833 MRR@10. Because this final configuration incorporates domain-specific evidence components, the difference cannot be attributed to one component alone.
 
 %------------------------------------------------
 \subsection{Failure Analysis}

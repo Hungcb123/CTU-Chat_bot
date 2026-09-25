@@ -1,0 +1,818 @@
+{
+  "meta": {
+    "results_path": "/mnt/d/Project/Chatbot/logs/v13_architecture/run_20260923_155602/results.jsonl",
+    "results_sha256": "796cbf7f50ad8ce64e03d6cd80e34a1d4509dc3708eaccbcbc0c250aef6a4360",
+    "heldout_current_sha256": "1c03cc6919abc4050ccac2664121d7935c1568fc470f95242c68495a82bd707b",
+    "heldout_backup_sha256": "baac2317827fc3315d9ca2a42619df34af9e461fc18456756ee609fe442164ff",
+    "model": "gemini-2.5-flash-lite",
+    "temperature": 0.0,
+    "top_k": 7,
+    "sample_size": 100
+  },
+  "retrieval_invariant_check": {
+    "identical_across_configurations": true,
+    "mismatch_count": 0,
+    "source_recall_all": 78.6,
+    "source_ap_all": 70.8
+  },
+  "table1_verification": {
+    "S1-A": {
+      "name": "Single Agent",
+      "n_queries": 100,
+      "E2E_theta50_log": 73.0,
+      "E2E_theta50_verified": 66.0,
+      "Fact_mean_log": 63.81666666666666,
+      "Fact_mean_verified": 57.45,
+      "Fact_std_log": 32.03734405567064,
+      "Src_Recall_mean": 78.58333333333334,
+      "Src_AP_mean": 70.78472222222221,
+      "Tools_per_Q_mean": 0.41,
+      "In_Tok_mean": 6296.3,
+      "Out_Tok_mean": 1529.79,
+      "Total_Tok_mean": 7826.09,
+      "Lat_mean_ms": 5158.921344280061,
+      "Lat_median_ms": 3185.3505819999555
+    },
+    "S1-B": {
+      "name": "Routed Gen.",
+      "n_queries": 100,
+      "E2E_theta50_log": 71.0,
+      "E2E_theta50_verified": 66.0,
+      "Fact_mean_log": 59.599999999999994,
+      "Fact_mean_verified": 54.18333333333333,
+      "Fact_std_log": 30.725532727549172,
+      "Src_Recall_mean": 78.58333333333334,
+      "Src_AP_mean": 70.78472222222221,
+      "Tools_per_Q_mean": 0.31,
+      "In_Tok_mean": 3472.56,
+      "Out_Tok_mean": 1414.63,
+      "Total_Tok_mean": 4887.19,
+      "Lat_mean_ms": 8921.012242279958,
+      "Lat_median_ms": 6389.226818499083
+    },
+    "S1-C": {
+      "name": "CTU-Chat",
+      "n_queries": 100,
+      "E2E_theta50_log": 81.0,
+      "E2E_theta50_verified": 76.0,
+      "Fact_mean_log": 66.64999999999999,
+      "Fact_mean_verified": 61.03333333333333,
+      "Fact_std_log": 28.54839650069585,
+      "Src_Recall_mean": 78.58333333333334,
+      "Src_AP_mean": 70.78472222222221,
+      "Tools_per_Q_mean": 0.28,
+      "In_Tok_mean": 3689.51,
+      "Out_Tok_mean": 2091.7,
+      "Total_Tok_mean": 5781.21,
+      "Lat_mean_ms": 10652.465194069973,
+      "Lat_median_ms": 6594.311196500712
+    }
+  },
+  "pairwise_bootstrap_and_mcnemar": {
+    "S1-C_vs_S1-A": {
+      "E2E_diff": {
+        "mean_diff": 0.08,
+        "ci_lower": 0.0,
+        "ci_upper": 0.16,
+        "n": 100
+      },
+      "Fact_diff": {
+        "mean_diff": 0.02833333333333334,
+        "ci_lower": -0.021,
+        "ci_upper": 0.07933333333333333,
+        "n": 100
+      },
+      "In_Tok_diff": {
+        "mean_diff": -2606.79,
+        "ci_lower": -3324.9004999999997,
+        "ci_upper": -1868.0872500000003,
+        "n": 100
+      },
+      "Total_Tok_diff": {
+        "mean_diff": -2044.88,
+        "ci_lower": -4192.794,
+        "ci_upper": 343.35624999999885,
+        "n": 100
+      },
+      "Lat_diff": {
+        "mean_diff": 5493.543849789913,
+        "ci_lower": 1471.8447545716447,
+        "ci_upper": 10055.105338143616,
+        "n": 100
+      },
+      "McNemar": {
+        "contingency_table": {
+          "both_pass": 68,
+          "config_a_only": 13,
+          "config_b_only": 5,
+          "both_fail": 14
+        },
+        "discordant_n": 18,
+        "k_min": 5,
+        "p_value": 0.09625244140625
+      }
+    },
+    "S1-C_vs_S1-B": {
+      "E2E_diff": {
+        "mean_diff": 0.1,
+        "ci_lower": 0.01,
+        "ci_upper": 0.19,
+        "n": 100
+      },
+      "Fact_diff": {
+        "mean_diff": 0.0705,
+        "ci_lower": 0.010166666666666666,
+        "ci_upper": 0.13149999999999998,
+        "n": 100
+      },
+      "In_Tok_diff": {
+        "mean_diff": 216.95,
+        "ci_lower": -430.76099999999997,
+        "ci_upper": 970.6969999999995,
+        "n": 100
+      },
+      "Total_Tok_diff": {
+        "mean_diff": 894.02,
+        "ci_lower": -1035.8935,
+        "ci_upper": 3152.05125,
+        "n": 100
+      },
+      "Lat_diff": {
+        "mean_diff": 1731.4529517900155,
+        "ci_lower": -2437.381605875851,
+        "ci_upper": 6368.268988503481,
+        "n": 100
+      },
+      "McNemar": {
+        "contingency_table": {
+          "both_pass": 66,
+          "config_a_only": 15,
+          "config_b_only": 5,
+          "both_fail": 14
+        },
+        "discordant_n": 20,
+        "k_min": 5,
+        "p_value": 0.04138946533203125
+      }
+    },
+    "S1-B_vs_S1-A": {
+      "E2E_diff": {
+        "mean_diff": -0.02,
+        "ci_lower": -0.1,
+        "ci_upper": 0.06,
+        "n": 100
+      },
+      "Fact_diff": {
+        "mean_diff": -0.042166666666666665,
+        "ci_lower": -0.09833333333333334,
+        "ci_upper": 0.013166666666666662,
+        "n": 100
+      },
+      "In_Tok_diff": {
+        "mean_diff": -2823.74,
+        "ci_lower": -3584.4317499999997,
+        "ci_upper": -2121.93625,
+        "n": 100
+      },
+      "Total_Tok_diff": {
+        "mean_diff": -2938.9,
+        "ci_lower": -4702.884999999999,
+        "ci_upper": -1278.5125,
+        "n": 100
+      },
+      "Lat_diff": {
+        "mean_diff": 3762.0908979998967,
+        "ci_lower": 189.02282168868555,
+        "ci_upper": 7429.880684223174,
+        "n": 100
+      },
+      "McNemar": {
+        "contingency_table": {
+          "both_pass": 63,
+          "config_a_only": 8,
+          "config_b_only": 10,
+          "both_fail": 19
+        },
+        "discordant_n": 18,
+        "k_min": 8,
+        "p_value": 0.8145294189453125
+      }
+    }
+  },
+  "cross_domain_20": {
+    "S1-A": {
+      "passed": 15,
+      "total": 20,
+      "rate": 75.0
+    },
+    "S1-B": {
+      "passed": 14,
+      "total": 20,
+      "rate": 70.0
+    },
+    "S1-C": {
+      "passed": 17,
+      "total": 20,
+      "rate": 85.0
+    }
+  },
+  "sensitivity_analysis": {
+    "theta_0.50": {
+      "S1-A": 73.0,
+      "S1-B": 71.0,
+      "S1-C": 81.0
+    },
+    "theta_0.60": {
+      "S1-A": 59.0,
+      "S1-B": 50.0,
+      "S1-C": 63.0
+    },
+    "theta_0.70": {
+      "S1-A": 41.0,
+      "S1-B": 35.0,
+      "S1-C": 39.0
+    },
+    "theta_0.75": {
+      "S1-A": 41.0,
+      "S1-B": 35.0,
+      "S1-C": 39.0
+    },
+    "theta_0.80": {
+      "S1-A": 34.0,
+      "S1-B": 28.000000000000004,
+      "S1-C": 34.0
+    },
+    "theta_0.90": {
+      "S1-A": 33.0,
+      "S1-B": 25.0,
+      "S1-C": 32.0
+    },
+    "theta_1.00": {
+      "S1-A": 33.0,
+      "S1-B": 25.0,
+      "S1-C": 32.0
+    }
+  },
+  "query_breakdown_sample": [
+    {
+      "query_id": "HOUT-ADVS-01",
+      "domain": "financial",
+      "query_type": "adversarial",
+      "question": "Học phí đại học Trường Đại học Cần Thơ năm nay thu bao nhiêu tiền?",
+      "gold_sources": [
+        "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+        "MucHocPhi_ChatLuongCao_TienTien.md",
+        "MucHocPhi_QuyDinhChung.md"
+      ],
+      "required_facts_log": [
+        "theo tín chỉ",
+        "tùy thuộc vào ngành học",
+        "khóa tuyển sinh"
+      ],
+      "required_facts_verified": [
+        "theo tín chỉ",
+        "tùy thuộc vào ngành học",
+        "khóa tuyển sinh"
+      ],
+      "fact_cov_log": {
+        "S1-A": 0.3333333333333333,
+        "S1-B": 0.3333333333333333,
+        "S1-C": 0.6666666666666666
+      },
+      "fact_cov_verified": {
+        "S1-A": 0.3333333333333333,
+        "S1-B": 0.3333333333333333,
+        "S1-C": 0.6666666666666666
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 4231,
+          "out": 62
+        },
+        "S1-B": {
+          "in": 3159,
+          "out": 876
+        },
+        "S1-C": {
+          "in": 4138,
+          "out": 4399
+        }
+      },
+      "latency_ms": {
+        "S1-A": 1072.0675320008013,
+        "S1-B": 7456.284589999996,
+        "S1-C": 18160.70303500055
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 0,
+        "S1-C": 0
+      }
+    },
+    {
+      "query_id": "HOUT-ADVS-02",
+      "domain": "scholarship",
+      "query_type": "adversarial",
+      "question": "Sinh viên muốn xin học bổng thì cần đáp ứng những tiêu chuẩn chung gì?",
+      "gold_sources": [
+        "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md"
+      ],
+      "required_facts_log": [
+        "điểm học tập",
+        "điểm rèn luyện",
+        "loại Khá trở lên"
+      ],
+      "required_facts_verified": [
+        "điểm học tập",
+        "điểm rèn luyện",
+        "loại Khá trở lên"
+      ],
+      "fact_cov_log": {
+        "S1-A": 0.0,
+        "S1-B": 0.0,
+        "S1-C": 0.3333333333333333
+      },
+      "fact_cov_verified": {
+        "S1-A": 0.0,
+        "S1-B": 0.0,
+        "S1-C": 0.3333333333333333
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 2753,
+          "out": 756
+        },
+        "S1-B": {
+          "in": 1026,
+          "out": 272
+        },
+        "S1-C": {
+          "in": 1546,
+          "out": 330
+        }
+      },
+      "latency_ms": {
+        "S1-A": 3457.0998640010657,
+        "S1-B": 5589.607373000035,
+        "S1-C": 5547.17268100103
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 0,
+        "S1-C": 0
+      }
+    },
+    {
+      "query_id": "HOUT-ADVS-03",
+      "domain": "general",
+      "query_type": "adversarial",
+      "question": "Trường Đại học Cần Thơ có những chính sách hỗ trợ tài chính nào dành cho sinh viên có hoàn cảnh khó khăn?",
+      "gold_sources": [
+        "HTCPHT.md",
+        "mghp.md",
+        "VayVon.md",
+        "02_246_23-06-2026.md"
+      ],
+      "required_facts_log": [
+        "miễn giảm học phí",
+        "hỗ trợ chi phí học tập",
+        "trợ cấp xã hội",
+        "vay vốn"
+      ],
+      "required_facts_verified": [
+        "miễn giảm học phí",
+        "hỗ trợ chi phí học tập",
+        "trợ cấp xã hội",
+        "vay vốn"
+      ],
+      "fact_cov_log": {
+        "S1-A": 0.0,
+        "S1-B": 0.25,
+        "S1-C": 0.25
+      },
+      "fact_cov_verified": {
+        "S1-A": 0.0,
+        "S1-B": 0.0,
+        "S1-C": 0.25
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 4329,
+          "out": 321
+        },
+        "S1-B": {
+          "in": 0,
+          "out": 0
+        },
+        "S1-C": {
+          "in": 0,
+          "out": 0
+        }
+      },
+      "latency_ms": {
+        "S1-A": 1882.7445629995054,
+        "S1-B": 5888.004173000809,
+        "S1-C": 5911.087626998778
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 0,
+        "S1-C": 0
+      }
+    },
+    {
+      "query_id": "HOUT-ADVS-04",
+      "domain": "academic",
+      "query_type": "adversarial",
+      "question": "Sinh viên bị buộc thôi học khi nào theo quy chế?",
+      "gold_sources": [
+        "quychehocvu.md"
+      ],
+      "required_facts_log": [
+        "buộc thôi học",
+        "cảnh báo học tập",
+        "thời gian học tập tối đa"
+      ],
+      "required_facts_verified": [
+        "buộc thôi học",
+        "cảnh báo học tập",
+        "thời gian học tập tối đa"
+      ],
+      "fact_cov_log": {
+        "S1-A": 0.6666666666666666,
+        "S1-B": 0.6666666666666666,
+        "S1-C": 0.6666666666666666
+      },
+      "fact_cov_verified": {
+        "S1-A": 0.6666666666666666,
+        "S1-B": 0.6666666666666666,
+        "S1-C": 0.6666666666666666
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 5898,
+          "out": 834
+        },
+        "S1-B": {
+          "in": 0,
+          "out": 0
+        },
+        "S1-C": {
+          "in": 0,
+          "out": 0
+        }
+      },
+      "latency_ms": {
+        "S1-A": 3250.39924200064,
+        "S1-B": 4993.882120999842,
+        "S1-C": 4493.6413180003
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 0,
+        "S1-C": 0
+      }
+    },
+    {
+      "query_id": "HOUT-ADVS-05",
+      "domain": "financial",
+      "query_type": "adversarial",
+      "question": "Học phí ngành Tiên tiến và Chất lượng cao tính theo năm hay tính theo tín chỉ?",
+      "gold_sources": [
+        "MucHocPhi_ChatLuongCao_TienTien.md",
+        "109_7480102C_MangMayTinhVaTruyenThongDuLieu_CTCLC.md"
+      ],
+      "required_facts_log": [
+        "theo năm",
+        "theo tín chỉ",
+        "chất lượng cao",
+        "tiên tiến"
+      ],
+      "required_facts_verified": [
+        "theo năm",
+        "theo tín chỉ",
+        "chất lượng cao",
+        "tiên tiến"
+      ],
+      "fact_cov_log": {
+        "S1-A": 1.0,
+        "S1-B": 0.75,
+        "S1-C": 1.0
+      },
+      "fact_cov_verified": {
+        "S1-A": 1.0,
+        "S1-B": 0.75,
+        "S1-C": 1.0
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 6142,
+          "out": 533
+        },
+        "S1-B": {
+          "in": 5070,
+          "out": 412
+        },
+        "S1-C": {
+          "in": 6049,
+          "out": 632
+        }
+      },
+      "latency_ms": {
+        "S1-A": 2613.1766630005586,
+        "S1-B": 6307.366197999727,
+        "S1-C": 7288.0912239998
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 0,
+        "S1-C": 0
+      }
+    },
+    {
+      "query_id": "HOUT-COMP-01",
+      "domain": "financial",
+      "query_type": "comparison",
+      "question": "So sánh mức học phí mỗi tín chỉ chuyên ngành giữa ngành Kỹ thuật xây dựng hệ chuẩn và hệ chất lượng cao Khóa 52?",
+      "gold_sources": [
+        "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+        "MucHocPhi_ChatLuongCao_TienTien.md",
+        "44_7580205_KyThuatXayDungCongTrinhGiaoThong.md"
+      ],
+      "required_facts_log": [
+        "Kỹ thuật xây dựng",
+        "966.000",
+        "1.438.000",
+        "chênh lệch"
+      ],
+      "required_facts_verified": [
+        "Kỹ thuật xây dựng",
+        "966.000",
+        "1.438.000",
+        "chênh lệch"
+      ],
+      "fact_cov_log": {
+        "S1-A": 0.5,
+        "S1-B": 0.5,
+        "S1-C": 0.5
+      },
+      "fact_cov_verified": {
+        "S1-A": 0.5,
+        "S1-B": 0.5,
+        "S1-C": 0.5
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 9683,
+          "out": 1010
+        },
+        "S1-B": {
+          "in": 3545,
+          "out": 2477
+        },
+        "S1-C": {
+          "in": 14176,
+          "out": 4990
+        }
+      },
+      "latency_ms": {
+        "S1-A": 4770.5145430009,
+        "S1-B": 12450.238108000121,
+        "S1-C": 20041.839974999675
+      },
+      "tool_calls": {
+        "S1-A": 2,
+        "S1-B": 0,
+        "S1-C": 2
+      }
+    },
+    {
+      "query_id": "HOUT-COMP-02",
+      "domain": "financial",
+      "query_type": "comparison",
+      "question": "Học phí toàn khóa ngành Thú y hệ chuẩn K52 cao hơn hay thấp hơn ngành Kiến trúc hệ chuẩn K52 và chênh lệch bao nhiêu triệu?",
+      "gold_sources": [
+        "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+        "115_7640101C_ThuY_CTCLC.md"
+      ],
+      "required_facts_log": [
+        "Thú y",
+        "166,6 triệu",
+        "Kiến trúc",
+        "165,6 triệu",
+        "cao hơn 1,0 triệu"
+      ],
+      "required_facts_verified": [
+        "Thú y",
+        "166,6 triệu",
+        "Kiến trúc",
+        "165,6 triệu",
+        "cao hơn 1,0 triệu"
+      ],
+      "fact_cov_log": {
+        "S1-A": 0.6,
+        "S1-B": 0.8,
+        "S1-C": 0.8
+      },
+      "fact_cov_verified": {
+        "S1-A": 0.4,
+        "S1-B": 0.4,
+        "S1-C": 0.4
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 5269,
+          "out": 2376
+        },
+        "S1-B": {
+          "in": 13172,
+          "out": 2658
+        },
+        "S1-C": {
+          "in": 16109,
+          "out": 1001
+        }
+      },
+      "latency_ms": {
+        "S1-A": 7090.41530399918,
+        "S1-B": 14195.228127999144,
+        "S1-C": 10828.168226000344
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 2,
+        "S1-C": 2
+      }
+    },
+    {
+      "query_id": "HOUT-COMP-03",
+      "domain": "financial",
+      "query_type": "comparison",
+      "question": "Học phí niên chế một năm của hai chuyên ngành chất lượng cao QTKD và Tài chính Ngân hàng khóa 52 chênh nhau như thế nào?",
+      "gold_sources": [
+        "MucHocPhi_ChatLuongCao_TienTien.md",
+        "85_7340101_QuanTriKinhDoanh.md"
+      ],
+      "required_facts_log": [
+        "Quản trị kinh doanh",
+        "Tài chính - Ngân hàng",
+        "CLC",
+        "1.363.000"
+      ],
+      "required_facts_verified": [
+        "Quản trị kinh doanh",
+        "Tài chính - Ngân hàng",
+        "CLC",
+        "38.000.000 đồng/năm"
+      ],
+      "fact_cov_log": {
+        "S1-A": 0.5,
+        "S1-B": 0.5,
+        "S1-C": 0.5
+      },
+      "fact_cov_verified": {
+        "S1-A": 0.25,
+        "S1-B": 0.25,
+        "S1-C": 0.25
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 3611,
+          "out": 857
+        },
+        "S1-B": {
+          "in": 2539,
+          "out": 558
+        },
+        "S1-C": {
+          "in": 3518,
+          "out": 477
+        }
+      },
+      "latency_ms": {
+        "S1-A": 2643.306109999685,
+        "S1-B": 6979.620471000089,
+        "S1-C": 7219.83090699905
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 0,
+        "S1-C": 0
+      }
+    },
+    {
+      "query_id": "HOUT-COMP-04",
+      "domain": "financial",
+      "query_type": "comparison",
+      "question": "Giữa ngành Nuôi trồng thủy sản tiên tiến K52 và ngành Công nghệ sinh học tiên tiến K52 thì ngành nào có đơn giá tín chỉ cao hơn?",
+      "gold_sources": [
+        "MucHocPhi_ChatLuongCao_TienTien.md",
+        "106_7420201_CongNgheSinhHoc.md"
+      ],
+      "required_facts_log": [
+        "Nuôi trồng thủy sản tiên tiến",
+        "1.564.000",
+        "Công nghệ sinh học",
+        "1.499.000"
+      ],
+      "required_facts_verified": [
+        "Nuôi trồng thủy sản tiên tiến",
+        "1.564.000",
+        "Công nghệ sinh học",
+        "1.499.000"
+      ],
+      "fact_cov_log": {
+        "S1-A": 1.0,
+        "S1-B": 1.0,
+        "S1-C": 1.0
+      },
+      "fact_cov_verified": {
+        "S1-A": 1.0,
+        "S1-B": 1.0,
+        "S1-C": 1.0
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 4579,
+          "out": 726
+        },
+        "S1-B": {
+          "in": 7431,
+          "out": 647
+        },
+        "S1-C": {
+          "in": 4483,
+          "out": 832
+        }
+      },
+      "latency_ms": {
+        "S1-A": 2655.1891030012484,
+        "S1-B": 7718.285063998337,
+        "S1-C": 7615.822999998272
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 2,
+        "S1-C": 0
+      }
+    },
+    {
+      "query_id": "HOUT-COMP-05",
+      "domain": "financial",
+      "query_type": "comparison",
+      "question": "Học phí một năm của ngành Kỹ thuật điều khiển và tự động hóa CLC khóa 51 so với khóa 52 chênh lệch bao nhiêu triệu đồng?",
+      "gold_sources": [
+        "MucHocPhi_ChatLuongCao_TienTien.md",
+        "48_7520216_KyThuatDieuKhienVaTuDongHoa.md"
+      ],
+      "required_facts_log": [
+        "Kỹ thuật điều khiển và tự động hóa",
+        "K51",
+        "1.251.000",
+        "K52"
+      ],
+      "required_facts_verified": [
+        "Kỹ thuật điều khiển và tự động hóa",
+        "K51",
+        "40 triệu",
+        "K52",
+        "44 triệu",
+        "4 triệu"
+      ],
+      "fact_cov_log": {
+        "S1-A": 0.75,
+        "S1-B": 0.75,
+        "S1-C": 0.5
+      },
+      "fact_cov_verified": {
+        "S1-A": 0.5,
+        "S1-B": 0.5,
+        "S1-C": 0.16666666666666666
+      },
+      "tokens": {
+        "S1-A": {
+          "in": 4680,
+          "out": 2216
+        },
+        "S1-B": {
+          "in": 3608,
+          "out": 4504
+        },
+        "S1-C": {
+          "in": 4587,
+          "out": 5495
+        }
+      },
+      "latency_ms": {
+        "S1-A": 7480.617985000208,
+        "S1-B": 17329.819253000096,
+        "S1-C": 19138.573507998444
+      },
+      "tool_calls": {
+        "S1-A": 0,
+        "S1-B": 0,
+        "S1-C": 0
+      }
+    }
+  ]
+}

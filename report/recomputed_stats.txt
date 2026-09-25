@@ -1,0 +1,71 @@
+Loaded 100 benchmark queries, 7 configs.
+  S1-A: 100 queries
+  S1-B: 100 queries
+  S1-C: 100 queries
+  S2-A2: 100 queries
+  S2-A3: 100 queries
+  S2-A4: 100 queries
+  S2-A5: 100 queries
+Family counts: {'Graph': 19, 'Struct-fin': 28, 'Narr-reg': 33, 'Cross': 20}
+
+============================================================
+TABLE 1: Scenario 1 Architecture Comparison (N=100)
+============================================================
+S1-A   | E2E:  66.0% | Fact:  57.5% | Src.R:  78.6% | Src.AP:  70.8% | Tools/Q: 0.00 | InTok:   6296 | OutTok:   1530 | Lat(mean):   5159ms | Lat(med):   3185ms
+S1-B   | E2E:  66.0% | Fact:  54.2% | Src.R:  78.6% | Src.AP:  70.8% | Tools/Q: 0.00 | InTok:   3473 | OutTok:   1415 | Lat(mean):   8921ms | Lat(med):   6389ms
+S1-C   | E2E:  76.0% | Fact:  61.0% | Src.R:  78.6% | Src.AP:  70.8% | Tools/Q: 0.00 | InTok:   3690 | OutTok:   2092 | Lat(mean):  10652ms | Lat(med):   6594ms
+
+--- CTU-Chat vs Single Agent ---
+E2E: Diff = +10.0 pp, 95% CI = [+2.0, +19.0] pp
+McNemar: b=15, c=5, n=20, p=0.0414
+Fact: Diff = +3.58 pp, 95% CI = [-1.22, +8.48] pp
+InTok: Diff = -2607 tokens, 95% CI = [-3325, -1868] tokens
+TotalTok (clean): Diff = -2756 tokens, 95% CI = [-3518, -1973] tokens
+
+--- CTU-Chat vs Routed Generic ---
+Fact: Diff = +6.85 pp, 95% CI = [+0.70, +13.03] pp
+E2E: Diff = +10.0 pp, 95% CI = [+1.0, +19.0] pp
+
+--- Routed Generic vs Single Agent ---
+Fact: Diff = -3.27 pp, 95% CI = [-9.03, +2.43] pp
+InTok: Diff = -2824 tokens, 95% CI = [-3584, -2122] tokens
+
+--- Cross-domain (N=20) ---
+CTU-Chat: 80.0% (16.0/20)
+Single:   70.0% (14.0/20)
+Generic:  65.0% (13.0/20)
+
+============================================================
+TABLE 2: Scenario 2 Architectural Ablation (Deltas rel. to Full CTU-Chat)
+============================================================
+No Spec.~Policy           | dE2E: -10.0 (CI [-19.0,  -1.0]) | dFact: -6.85 (CI [-13.03, -0.70]) | dSrc.R:  +0.0 | dInTok:   -217 | dTotTok:   -894 | dLat:  -1731ms
+Full Tool Vis.            | dE2E:  +0.0 (CI [ -6.0,  +6.0]) | dFact: +0.93 (CI [-2.22, +4.13]) | dSrc.R:  +0.0 | dInTok:  +1270 | dTotTok:  +1744 | dLat:   +296ms
+Uniform Text-RAG          | dE2E:  -9.0 (CI [-15.0,  -4.0]) | dFact: -2.18 (CI [-5.27, +0.75]) | dSrc.R: -12.3 | dInTok:   -300 | dTotTok:   -518 | dLat:  -1910ms
+No Route Rep.             | dE2E:  -2.0 (CI [ -7.0,  +3.0]) | dFact: -1.27 (CI [-4.02, +1.38]) | dSrc.R:  +0.0 | dInTok:   -219 | dTotTok:   -307 | dLat:  -1610ms
+No Determ.~Calc.$^\dagger$ | dE2E:  -4.0 (CI [ -9.0,  +0.0]) | dFact: -0.93 (CI [-4.42, +2.35]) | dSrc.R:  +0.0 | dInTok:   -782 | dTotTok:  -2319 | dLat:  -4540ms
+
+============================================================
+TABLE 3: Scenario 2 E2E Success by query family across ablations
+============================================================
+Config.                | Graph (n=19) | Struct-fin (n=28) | Narr-reg (n=33) | Cross (n=20)
+Full CTU-Chat          |         63.2 |              75.0 |            81.8 |         80.0
+No Spec.~Policy        |         52.6 |              67.9 |            72.7 |         65.0
+Full Tool Vis.         |         68.4 |              67.9 |            84.8 |         80.0
+Uniform Text-RAG       |         63.2 |              60.7 |            78.8 |         60.0
+No Route Rep.          |         68.4 |              78.6 |            78.8 |         65.0
+
+Tuition arithmetic subset queries: 13
+  HOUT-ADVS-01: Học phí đại học Trường Đại học Cần Thơ năm nay thu bao nhiêu tiền?
+  HOUT-COMP-08: Mức học phí làm cơ sở miễn giảm giữa Khối ngành V và Khối ngành III năm học 2025-2026 chênh nhau bao nhiêu tiền mỗi tín chỉ?
+  HOUT-DIR-FIN-03: Mức học phí năm học của ngành Kinh doanh quốc tế hệ chất lượng cao K52 là bao nhiêu tiền?
+  HOUT-DIR-FIN-06: Học phí một tín chỉ chuyên ngành của ngành Kiến trúc hệ chuẩn K52 là bao nhiêu tiền?
+  HOUT-DIR-FIN-10: Đối với sinh viên diện chính sách thuộc Khối ngành V, đơn giá mỗi tín chỉ dùng làm căn cứ xác định số tiền miễn giảm năm 2025-2026 là bao nhiêu?
+  HOUT-DIR-GEN-09: Hồ sơ đề nghị miễn, giảm học phí của sinh viên cần nộp những giấy tờ minh chứng nào?
+  HOUT-DIR-SCH-03: Trị giá mỗi suất học bổng SCIC năm 2026 dành cho sinh viên là bao nhiêu tiền?
+  HOUT-MHOP-FIN-02: Học phí toàn khóa ngành Kiến trúc K52 hệ chuẩn là bao nhiêu và chia trung bình mỗi năm học sinh viên đóng khoảng bao nhiêu tiền?
+  HOUT-MHOP-FIN-05: Mức học phí mỗi tín chỉ thực tế của ngành Quản trị kinh doanh K52 chuẩn và mức làm cơ sở miễn giảm Khối III chênh nhau bao nhiêu?
+  HOUT-MHOP-GEN-05: Sinh viên bị khuyết tật có hoàn cảnh khó khăn được hưởng trợ cấp xã hội và chính sách miễn giảm học phí cần nộp những giấy tờ gì?
+  HOUT-XDOM-08: Học bổng bình quân kỳ đầu của tân sinh viên K52 là bao nhiêu tiền, và số tiền đó có đủ trang trải học phí một kỳ của ngành Thú y chuẩn K52 không?
+  HOUT-XDOM-11: Học bổng Lương Văn Can hỗ trợ sinh viên hoàn cảnh khó khăn bao nhiêu tiền và có giới hạn ngành học trong trường không?
+  HOUT-XDOM-15: Mỗi tháng sinh viên dân tộc thiểu số nghèo được chi trả bao nhiêu tiền hỗ trợ chi phí, và quy trình kết hợp hồ sơ xin miễn giảm học phí ra sao?
+S1-C arith pass (E2E >=0.50): 13/13, S2-A4 arith pass (E2E >=0.50): 12/13
