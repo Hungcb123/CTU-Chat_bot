@@ -1,0 +1,13 @@
+% ============================================================
+% 07-conclusion.tex — V13 Conclusion (condensed, filled)
+% ============================================================
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+This study developed and evaluated \system{}, a supervisor-routed multi-agent RAG framework for heterogeneous university counseling, through architecture-level comparison, mechanistic ablation, and tool-ambiguity stress testing.
+
+Three principal findings address the research questions. For RQ1, the architecture-level comparison yields an 8.0\,pp higher End-to-End Success point estimate for CTU-Chat than for a functionally matched single-agent baseline (81.0\% vs.\ 73.0\%), although the paired CI touches zero and McNemar $p{=}0.096$; CTU-Chat uses 41.4\% fewer input tokens with higher latency. For RQ2, removing specialist policies corresponds to $-10.0$\,pp E2E, while replacing heterogeneous evidence allocation corresponds to $-12.3$\,pp Source Recall in this benchmark. For RQ3, the Routed Specialist records 88.0\% E2E at 51 tools, compared with 83.3\% for the Full-Registry Single Agent and 78.7\% for Global Top-10.
+
+These findings are consistent with the interpretation that supervisor-routed bounded specialization---comprising domain-specific policies, scoped tool access, representation-specific evidence paths, and deterministic computation---can support heterogeneous institutional counseling under the evaluated conditions, with measurable trade-offs in coordination latency and token cost.
+
+Future work should (1)~reduce routing latency through parallel candidate dispatch and prompt compression; (2)~extend evaluation to multi-institutional and bilingual benchmarks with naturally evolving tool registries; (3)~conduct human evaluation with multiple raters to complement automated metrics; and (4)~perform field trials assessing student trust and advisory efficacy in live counseling settings.

@@ -1,0 +1,27 @@
+% ============================================================
+% 06-discussion.tex — V13 Discussion (condensed)
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+%------------------------------------------------
+\subsection{Answering the Research Questions}
+
+\textbf{RQ1 (Architecture-Level Effectiveness):}
+The architecture-level comparison indicates that supervisor-routed multi-agent decomposition obtains an 8.0\,pp higher E2E point estimate than the Unified Single Agent (81.0\% vs.\ 73.0\%), although the paired bootstrap interval touches zero ($[0.0, +16.0]$\,pp; McNemar $p{=}0.096$). CTU-Chat also has a +2.8\,pp continuous Fact Coverage point estimate (95\%\,CI $[-2.1,+7.9]$\,pp) and 41.4\% fewer input tokens alongside 26.1\% fewer total tokens (3{,}690 vs.\ 6{,}296 input; 5{,}782 vs.\ 7{,}826 total), with higher mean latency (10{,}652 vs.\ 5{,}159\,ms). The Routed Generic configuration has lower Fact Coverage than CTU-Chat (59.6\% vs.\ 66.7\%; $\Delta{=}-7.05$\,pp, $p{<}0.05$), suggesting that specialist policies may contribute to the observed performance under this setup.
+
+\textbf{RQ2 (Architectural Mechanism):}
+The component ablations show distinct changes: uniform text retrieval (S2-A3) has the largest Source Recall drop ($-12.3$\,pp, including $-17.8$\,pp on structured finance); removing specialist prompts (S2-A1) has the largest Fact Coverage decline ($-7.05$\,pp); full tool visibility (S2-A2) is associated with $+1{,}270$ input tokens and little coverage change; omitting route repair (S2-A5) corresponds to $-15.0$\,pp on cross-domain queries; and disabling deterministic calculation (S2-A4) corresponds to a 55.6\,pp lower exact-match rate on arithmetic queries. These patterns are consistent with different roles for the components in this benchmark.
+
+\textbf{RQ3 (Tool Ambiguity):}
+At 51 tools, Routed Specialist records 88.0\% E2E with 9.8 visible tools, whereas Full-Registry Single Agent records 83.3\% with 124\% more input tokens than at 11 tools, and Global Top-10 records 78.7\%. The 51-tool endpoint favors the specialist over Top-10 in this stress test; the reported interaction interval does not establish different degradation slopes.
+
+%------------------------------------------------
+\subsection{Relation to Prior Work}
+
+While ReAct~\cite{yao2023react} and Toolformer~\cite{schick2023toolformer} explore tool use in single-agent settings, the tested full-registry configuration uses more input tokens at 51 than at 11 tools. Unlike general multi-agent frameworks (e.g., AutoGen~\cite{wu2023autogen}) that permit peer interaction, CTU-Chat uses hierarchical, contract-validated routing with single-owner prefetch. The S2-A3 ablation shows lower source recall with uniform text retrieval in this benchmark, consistent with the motivation for structured evidence access in GraphRAG~\cite{edge2024graphrag}. Whereas Adaptive-RAG~\cite{jeong2024adaptiverag} routes by semantic complexity, CTU-Chat routes by institutional representation requirements.
+
+%------------------------------------------------
+\subsection{Threats to Validity}
+\label{sec:limitations}
+\textbf{Internal:} Single LLM (Gemini 2.5 Flash Lite); while greedy decoding minimizes sampling variance, API serving variability and prompt sensitivity remain potential confounds. \textbf{External:} Single-institution benchmark (100 queries); findings may not directly generalize to other institutional statutes. Semantic-neighbor tools are controlled evaluation constructs. \textbf{Construct:} Automated metrics rely partly on Ragas; programmatic required-fact matching reduces generator--judge bias. \textbf{Statistical:} Bootstrap CIs are query-level ($N{=}100$); arithmetic ablation ($N{=}9$) has small sample size, though 8/9 vs.\ 3/9 exact-match differences are substantial. \textbf{Operational:} Wall-clock latency reflects API serving variability and evaluation hardware.
