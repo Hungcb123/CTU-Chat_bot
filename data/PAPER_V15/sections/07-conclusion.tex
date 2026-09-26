@@ -1,0 +1,7 @@
+% ============================================================
+% 07-conclusion.tex — V13 Conclusion
+% ============================================================
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+This study evaluated \system{}, a supervisor-routed multi-agent RAG framework for university counseling, across architecture comparison, ablation, and tool ambiguity stress testing. Three principal findings address the research questions: (1)~\system{} achieves a 10.0\,pp higher Automated Fact Pass Rate ($\text{Pass}_{\ge 50\%}$) than matched single-agent baseline (76.0\% vs.\ 66.0\%; paired CI $[+2.0, +19.0]$\,pp; exact McNemar $p{=}0.0414$) with 41.4\% fewer specialist input tokens; (2)~removing specialist policies reduces pass rate by $-10.0$\,pp, while replacing heterogeneous evidence reduces Source Recall by $-12.3$\,pp; and (3)~the Routed Specialist sustains 88.0\% tool E2E Success at 51 tools (vs.\ 83.3\% and 78.7\% for baselines). Domain policies, representation-specific evidence paths, and deterministic calculation contribute to counseling reliability, while scoped tool access provides scalability safeguards under registry expansion. Future work includes reducing dispatch latency via speculative routing, evaluating cross-institutional transfer, and conducting live counseling trials.

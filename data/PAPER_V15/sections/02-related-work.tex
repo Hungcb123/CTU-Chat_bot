@@ -1,0 +1,37 @@
+% ============================================================
+% 02-related-work.tex — V13 Related Work (condensed)
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+%------------------------------------------------
+\subsection{Vietnamese NLP and Retrieval Foundations}
+\label{sec:vietnamese_nlp}
+
+Vietnamese is an isolating, tonal language where white spaces separate syllables rather than words~\cite{nguyen2020phobert}; 85\% of word types contain at least two syllables. While domain-adapted bi-encoders capture semantic paraphrasing, Vietnamese higher-education decrees rely on rigid Sino-Vietnamese legal terminology and alphanumeric cohort codes, motivating coupling dense embeddings with exact lexical matching.
+
+BM25~\cite{robertson2009bm25} provides reliable exact token matching for rigid identifiers but cannot capture paraphrases. Dense retrieval~\cite{karpukhin2020dpr,lewis2020rag} captures paraphrastic intent but may struggle with rare alphanumeric tokens. Reciprocal Rank Fusion (RRF)~\cite{cormack2009rrf} merges BM25 and dense candidates without score calibration, while neural cross-encoders~\cite{nogueira2019bert,xiao2023bge} jointly encode query--passage pairs for reranking. Adaptive-RAG~\cite{jeong2024adaptiverag} demonstrates complexity-based retrieval selection. These approaches motivate dynamic retrieval but do not allocate institution-specific relational, tabular, and narrative knowledge to isolated specialist paths.
+
+%------------------------------------------------
+\subsection{Knowledge Graphs and GraphRAG}
+\label{sec:kg_graphrag}
+
+Knowledge graphs represent domain knowledge as structured triples~\cite{pan2024unifying}. GraphRAG~\cite{edge2024graphrag} leverages graph topology to uncover multi-hop associative paths that escape flat chunking, benefiting curriculum structures and prerequisite chains. However, universal graph extraction may introduce spurious relationships, motivating selective graph construction restricted to domains with well-defined relational schemas.
+
+%------------------------------------------------
+\subsection{Agentic RAG and Multi-Agent Orchestration}
+\label{sec:agentic_multiagent}
+
+ReAct~\cite{yao2023react} demonstrates interleaved reasoning and action, AutoGen~\cite{wu2023autogen} provides a multi-agent conversation framework, and Toolformer~\cite{schick2023toolformer} studies tool invocation. For institutional counseling, these capabilities raise design risks without explicit constraints: broad tool exposure increases errors; peer-to-peer exchanges increase coordination cost; a shared index mixes evidence across domains. Controlled comparisons against functionally matched single-agent baselines remain limited, as most evaluations report absolute performance without isolating the contribution of multi-agent decomposition from underlying capabilities.
+
+%------------------------------------------------
+\subsection{Educational Counseling Systems}
+\label{sec:educational_counseling}
+
+Educational chatbots assist in advising and learning support~\cite{wollny2021chatbots}. CAAS supports admission counseling for IT programs~\cite{ma2023caas}, while REBot combines retrieval with category-guided GraphRAG for academic regulations~\cite{ma2025rebot}. \system{} departs from prior systems across three aspects: (1)~\emph{Task scope}: modeling 113 curricula as relational property graphs with deterministic arithmetic for tuition; (2)~\emph{Multi-agent routing}: a LangGraph supervisor routes to four bounded specialists with isolated evidence spaces; and (3)~\emph{Architectural evaluation}: direct comparison against functionally matched baselines with component-level ablations.
+
+%------------------------------------------------
+\subsection{Research Gaps}
+\label{sec:gaps}
+
+Synthesizing the reviewed approaches identifies three gaps: (1)~limited architecture-level evidence comparing multi-agent and single-agent systems under matched capabilities; (2)~limited mechanistic understanding of which components drive observed differences; and (3)~limited robustness evidence under tool ambiguity as semantic neighbors accumulate. These gaps motivate the evaluation design in Sections~4--5.
