@@ -34,15 +34,10 @@ The system does not ask the LLM to generate arbitrary Cypher. After the supervis
 \subsection{Routing and Deterministic Arithmetic}
 \label{sec:algorithms}
 
-For a query $q$ and its dialogue predecessor, the supervisor first attempts a validated standalone rewrite, then predicts domain $d_{\mathrm{raw}}$ and intent $\iota_{\mathrm{raw}}$ under a structured schema, falling back to \texttt{general}/\texttt{other} on parsing failure. The ownership contract repairs rule conflicts or incompatible domain--intent pairs. Academic queries proceed directly to the graph agent; other domains build intent-scoped retrieval lanes, with financial queries first attempting Neo4j tuition lookup and then JSON fallback.
+For a query $q$ and its dialogue predecessor, the supervisor first attempts a validated standalone rewrite, then predicts domain $d_{\mathrm{raw}}$ and intent $\iota_{\mathrm{raw}}$ under a structured schema, falling back to \texttt{general}/\texttt{other} on parsing failure. The ownership contract resolves rule conflicts or incompatible domain--intent pairs. Academic queries proceed directly to the graph agent; other domains build intent-scoped retrieval lanes, with financial queries first attempting Neo4j tuition lookup and then JSON fallback.
 
 \textbf{Deterministic Tuition Arithmetic.}
-For fee-reduction requests, the tool \texttt{tinh\_}\allowbreak\texttt{toan\_}\allowbreak\texttt{hoc\_}\allowbreak\texttt{phi} receives three parameters---per-credit tuition $T$, per-credit exemption basis $B$, and percentage $p$---and applies:
-\begin{equation}
-  D = B\frac{p}{100}, \qquad P = \max(0, T-D).
-  \label{eq:tuition_reduction}
-\end{equation}
-The tool enforces $0 \le p \le 100$ and clamps $P$ at zero. The contribution lies in composing validated rewriting, constrained routing, and deterministic arithmetic within the multi-agent workflow.
+For fee-reduction requests, the tool \texttt{tinh\_}\allowbreak\texttt{toan\_}\allowbreak\texttt{hoc\_}\allowbreak\texttt{phi} receives three parameters---per-credit tuition $T$, per-credit exemption basis $B$, and exemption percentage $r \in [0, 100]$---and calculates deductible credit amount $D = B \times (r / 100)$ alongside net payable tuition $T_{\mathrm{net}} = \max(0, T - D)$. The tool clamps $T_{\mathrm{net}}$ at zero. The primary contribution is the integration of validated rewriting, constrained routing, and deterministic arithmetic into a unified multi-agent workflow.
 
 %------------------------------------------------
 \subsection{Heterogeneous Knowledge Allocation and Hybrid Retrieval}
@@ -56,4 +51,4 @@ For narrative regulations and scholarship criteria, BM25 and Qdrant search 400-c
 \subsection{Cross-Domain Query Handling}
 \label{sec:cross_domain}
 
-A bounded specialist architecture raises the question of how queries spanning multiple domains are handled. \system{} adopts a \emph{single-owner with signal-based evidence prefetch} policy: the supervisor selects one primary owner based on dominant intent, and the retrieval layer expands evidence lanes when keyword signals indicate related domains---for example, adding academic-program or academic-regulation lanes when curriculum terms are detected, a tuition lane when fee-related terms appear, or a scholarship lane when scholarship keywords are present. Specialists do not invoke other specialists; if the query requires evidence outside the owner's scope, the signal-detected lanes prefetch it through retrieval rather than cross-specialist delegation. This design trades full cross-domain tool composability for bounded execution with targeted evidence expansion. The 20 cross-domain held-out queries directly test this mechanism.
+To handle queries spanning multiple domains, \system{} adopts a \emph{single-owner with signal-based evidence prefetch} policy: the supervisor selects one primary owner based on dominant intent, and the retrieval layer expands evidence lanes when keyword signals indicate related domains---for example, adding academic-program or academic-regulation lanes when curriculum terms are detected, a tuition lane when fee-related terms appear, or a scholarship lane when scholarship keywords are present. Specialists do not invoke other specialists; if the query requires evidence outside the owner's scope, the signal-detected lanes prefetch it through retrieval rather than cross-specialist delegation. This design trades full cross-domain tool composability for bounded execution with targeted evidence expansion. The 20 cross-domain held-out queries directly test this mechanism.

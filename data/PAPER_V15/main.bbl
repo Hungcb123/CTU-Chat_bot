@@ -3,10 +3,6 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
 
-\bibitem{ctu2025opening}
-{Can Tho University}: Can tho university inaugurates the 2025--2026 academic
-  year (2025), \url{https://www.ctu.edu.vn}, accessed 13 September 2026
-
 \bibitem{cormack2009rrf}
 Cormack, G.V., Clarke, C.L.A., Buettcher, S.: Reciprocal rank fusion
   outperforms condorcet and individual rank learning methods. In: Proceedings
@@ -58,10 +54,10 @@ Ma, T., La, T.T., Le~Huu, L.T., Nguyen, M.N., Pham~Luu, K.V.: {REBot}: From
 
 \bibitem{ma2023caas}
 Ma, T.T., Chau, T.K., Nguyen, T.P., Huynh, G.K., Nguyen, T.H., Tran, V.C., Do,
-  T.N.: {CAAS}: Ho tro tu van tuyen sinh voi {Chat-Voice} su dung {ChatGPT} va
-  may hoc. In: Proceedings of the 16th National Conference on Fundamental and
-  Applied Information Technology Research (FAIR). pp. 526--533 (2023).
-  \doi{10.15625/vap.2023.0079}
+  T.N.: {CAAS}: Supporting admission counseling with {Chat-Voice} using
+  {ChatGPT} and machine learning. In: Proceedings of the 16th National
+  Conference on Fundamental and Applied Information Technology Research (FAIR).
+  pp. 526--533 (2023). \doi{10.15625/vap.2023.0079}
 
 \bibitem{nguyen2020phobert}
 Nguyen, D.Q., Nguyen, A.T.: {PhoBERT}: Pre-trained language models for
