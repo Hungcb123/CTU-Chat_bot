@@ -11,8 +11,9 @@ Cormack, G.V., Clarke, C.L.A., Buettcher, S.: Reciprocal rank fusion
 
 \bibitem{edge2024graphrag}
 Edge, D., Trinh, H., Cheng, N., Bradley, J., Chao, A., Mody, A., Truitt, S.,
-  Larson, J.: From local to global: A graph {RAG} approach to query-focused
-  summarization. arXiv preprint arXiv:2404.16130  (2024)
+  Metropolitansky, D., Ness, R.O., Larson, J.: From local to global: A graph
+  {RAG} approach to query-focused summarization. arXiv preprint
+  arXiv:2404.16130  (2024)
 
 \bibitem{es2023ragas}
 Es, S., James, J., Espinosa-Anke, L., Schockaert, S.: {RAGAS}: Automated
@@ -35,29 +36,31 @@ Jeong, S., Baek, J., Cho, S., Hwang, S.J., Park, J.C.: {Adaptive-RAG}: Learning
 
 \bibitem{karpukhin2020dpr}
 Karpukhin, V., O{\u{g}}uz, B., Min, S., Lewis, P., Wu, L., Edunov, S., Chen,
-  D., Yih, W.t.: Dense passage retrieval for open-domain question answering.
+  D., {Yih, W.-t.}: Dense passage retrieval for open-domain question answering.
   In: Proceedings of the 2020 Conference on Empirical Methods in Natural
   Language Processing (EMNLP). pp. 6769--6781 (2020).
   \doi{10.18653/v1/2020.emnlp-main.550}
 
 \bibitem{lewis2020rag}
 Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N.,
-  Kuttler, H., Lewis, M., Yih, W.t., Rockt{\"a}schel, T., Riedel, S., Kiela,
+  Kuttler, H., Lewis, M., {Yih, W.-t.}, Rockt{\"a}schel, T., Riedel, S., Kiela,
   D.: Retrieval-augmented generation for knowledge-intensive {NLP} tasks.
   Advances in Neural Information Processing Systems  \textbf{33},  9459--9474
   (2020)
 
 \bibitem{ma2025rebot}
 Ma, T., La, T.T., Le~Huu, L.T., Nguyen, M.N., Pham~Luu, K.V.: {REBot}: From
-  {RAG} to {CatRAG} with semantic enrichment and graph routing. arXiv preprint
-  arXiv:2510.01800  (2025)
+  {RAG} to {CatRAG} with semantic enrichment and graph routing. In:
+  Multi-disciplinary Trends in Artificial Intelligence (MIWAI 2025). Lecture
+  Notes in Computer Science, vol. 16354, pp. 435--447. Springer (2025).
+  \doi{10.1007/978-981-95-4960-3_35}
 
 \bibitem{ma2023caas}
-Mã, T.T., Châu, T.K., Nguyễn, T.P., Huỳnh, G.K., Nguyễn, T.H., Trần,
-  V.C., Đỗ, T.N.: {CAAS}: Hỗ trợ tư vấn tuyển sinh với
-  {Chat-Voice} sử dụng {ChatGPT} và máy học. In: Proceedings of the
-  16th National Conference on Fundamental and Applied Information Technology
-  Research (FAIR). pp. 526--533 (2023). \doi{10.15625/vap.2023.0079}
+Ma, T.T., Chau, T.K., Nguyen, T.P., Huynh, G.K., Nguyen, T.H., Tran, V.C., Do,
+  T.N.: {CAAS}: Supporting admission counseling with {Chat-Voice} using
+  {ChatGPT} and machine learning. In: Proceedings of the 16th National
+  Conference on Fundamental and Applied Information Technology Research (FAIR).
+  pp. 526--533 (2023). \doi{10.15625/vap.2023.0079}
 
 \bibitem{nguyen2020phobert}
 Nguyen, D.Q., Nguyen, A.T.: {PhoBERT}: Pre-trained language models for
@@ -99,13 +102,15 @@ Wollny, S., Schneider, J., Di~Mitri, D., Weidlich, J., Rittberger, M.,
 
 \bibitem{wu2023autogen}
 Wu, Q., Bansal, G., Zhang, J., Wu, Y., Li, B., Zhu, E., Jiang, L., Zhang, X.,
-  Zhang, C., Liu, J., et~al.: {AutoGen}: Enabling next-gen {LLM} applications
+  Zhang, S., Liu, J., et~al.: {AutoGen}: Enabling next-gen {LLM} applications
   via multi-agent conversation. arXiv preprint arXiv:2308.08155  (2023)
 
 \bibitem{xiao2023bge}
-Xiao, S., Liu, Z., Zhang, P., Muennighoff, N.: {C-Pack}: Packaged resources to
-  advance general chinese and cross-lingual embedding. arXiv preprint
-  arXiv:2309.07597  (2023)
+Xiao, S., Liu, Z., Zhang, P., Muennighoff, N., Lian, D., Nie, J.Y.: {C-Pack}:
+  Packed resources for general {Chinese} embeddings. In: Proceedings of the
+  47th International ACM SIGIR Conference on Research and Development in
+  Information Retrieval (SIGIR '24). pp. 641--649 (2024).
+  \doi{10.1145/3626772.3657878}
 
 \bibitem{yao2023react}
 Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., Cao, Y.:

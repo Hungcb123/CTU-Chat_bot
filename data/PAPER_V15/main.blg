@@ -5,42 +5,42 @@ The style file: splncs04.bst
 Database file #1: references.bib
 You've used 19 entries,
             2850 wiz_defined-function locations,
-            701 strings with 9693 characters,
-and the built_in function-call counts, 13366 in all, are:
-= -- 1066
-> -- 618
-< -- 16
-+ -- 252
-- -- 232
-* -- 902
-:= -- 1773
-add.period$ -- 38
+            708 strings with 9994 characters,
+and the built_in function-call counts, 14075 in all, are:
+= -- 1142
+> -- 638
+< -- 19
++ -- 260
+- -- 240
+* -- 953
+:= -- 1846
+add.period$ -- 43
 call.type$ -- 19
-change.case$ -- 190
+change.case$ -- 198
 chr.to.int$ -- 0
 cite$ -- 19
-duplicate$ -- 1092
-empty$ -- 1040
-format.name$ -- 251
-if$ -- 2834
+duplicate$ -- 1138
+empty$ -- 1094
+format.name$ -- 259
+if$ -- 3006
 int.to.chr$ -- 0
 int.to.str$ -- 19
-missing$ -- 247
+missing$ -- 256
 newline$ -- 63
 num.names$ -- 38
-pop$ -- 497
+pop$ -- 510
 preamble$ -- 1
-purify$ -- 153
+purify$ -- 157
 quote$ -- 0
-skip$ -- 329
+skip$ -- 357
 stack$ -- 0
-substring$ -- 646
-swap$ -- 619
-text.length$ -- 16
+substring$ -- 710
+swap$ -- 661
+text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 76
 warning$ -- 0
-while$ -- 89
+while$ -- 95
 width$ -- 21
-write$ -- 210
+write$ -- 218
