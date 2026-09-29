@@ -114,33 +114,33 @@ Across 1,800 primary decisions, Routed Specialist latency ranges from $1{,}983$ 
 \subsection{Supporting Retrieval Validation}
 \label{sec:retrieval_results}
 
-Table~\ref{tab:retrieval_evaluation} presents a standalone offline evaluation of the multi-source retrieval pipeline across progressive component stacking ($N{=}100$), isolating evidence retrieval performance from downstream multi-agent generation and routing.
+Table~\ref{tab:retrieval_evaluation} presents a standalone offline evaluation across progressive component stacking ($N{=}100$), isolating evidence retrieval from downstream orchestration. E4 adds a cross-encoder reranker to Hybrid RRF, while E5 integrates domain-governed routing, graph evidence, and quota-based merging.
 
 \begin{table}[!htbp]
 \centering
-\caption{Supporting evaluation: Progressive component stacking for standalone retrieval evaluation ($N=100$). Assesses the retrieval pipeline independently of downstream agent orchestration.}
+\caption{Standalone retrieval evaluation ($N{=}100$) on unique source filenames. Progresses to E4 (Hybrid RRF + cross-encoder reranker) and E5 (domain routing, graph evidence, quota merging), evaluated independently of agent orchestration.}
 \label{tab:retrieval_evaluation}
 {\small\setlength{\tabcolsep}{5pt}
 \begin{tabular}{lccccc}
 \toprule
-\textbf{Config.} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{R@5} & \textbf{MRR@10} \\
+\textbf{Configuration} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{R@5} & \textbf{MRR@10} \\
 \midrule
-BM25 Lexical          & 0.530 & 0.770 & 0.206 & 0.617 & 0.669 \\
-Dense Semantic        & 0.460 & 0.650 & 0.176 & 0.524 & 0.560 \\
-Hybrid RRF            & 0.520 & 0.790 & 0.224 & 0.662 & 0.673 \\
-Hybrid + Reranker     & 0.700 & 0.910 & 0.254 & 0.751 & 0.805 \\
-\textbf{Full Retrieval} & \textbf{0.740} & \textbf{0.920} & \textbf{0.302} & \textbf{0.861} & \textbf{0.833} \\
+E1: BM25 Lexical          & 0.530 & 0.770 & 0.206 & 0.617 & 0.669 \\
+E2: Dense Semantic        & 0.460 & 0.650 & 0.176 & 0.524 & 0.560 \\
+E3: Hybrid RRF            & 0.520 & 0.790 & 0.224 & 0.662 & 0.673 \\
+E4: Hybrid + Reranker     & 0.700 & 0.910 & 0.254 & 0.751 & 0.805 \\
+\textbf{E5: Full Retrieval} & \textbf{0.740} & \textbf{0.920} & \textbf{0.302} & \textbf{0.861} & \textbf{0.833} \\
 \bottomrule
 \end{tabular}}
 \end{table}
 
-BM25 outperforms dense search on Hit@1 (0.530 vs.\ 0.460), while Hybrid RRF balances both (0.790 Hit@3). The cross-encoder reranker yields the largest individual gain (+18.0\,pp Hit@1). The full configuration reaches 0.740 Hit@1, 0.861 Recall@5, and 0.833 MRR@10; because it incorporates domain-specific components, the gain cannot be attributed to one component alone.
+BM25 outperforms dense search on Hit@1 (0.530 vs.\ 0.460), while Hybrid RRF balances both (0.790 Hit@3). Cross-encoder reranking (E4) yields the largest individual gain (+18.0\,pp Hit@1). Full retrieval (E5) reaches 0.740 Hit@1, 0.861 Recall@5, and 0.833 MRR@10 through combined domain routing and graph evidence.
 
 %------------------------------------------------
 \subsection{Failure Analysis}
 \label{sec:failure_analysis}
 
-Table~\ref{tab:failures} categorizes errors in 58 failed query--configuration cases with Fact Coverage below 50\% (34 for Single Agent and 24 for CTU-Chat). Labels were assigned through manual review of execution traces and intermediate outputs; categories are non-mutually exclusive.
+Table~\ref{tab:failures} categorizes errors across 58 failed query cases ($\text{FactCov} < 50\%$: 34 Single Agent, 24 CTU-Chat) through manual review of execution traces and outputs. Categories are non-mutually exclusive.
 
 \begin{table}[!htbp]
 \centering
@@ -162,7 +162,7 @@ Retrieval & Gold source absent     & 3   & 3 &            & Unnecessary call    
 \end{tabular}}
 \end{table}
 
-The 34 Single Agent and 24 CTU-Chat failed query cases include 12 versus 3 tool errors. Retrieval errors are similar under shared evidence: 3 absent gold sources in each arm and 7 versus 6 reranker demotions. With complete retrieval ($sr=1.0$), partial fact omissions number 22 versus 14. These counts do not isolate effects of tool scoping or specialist prompts.
+Failed cases include 12 versus 3 tool errors. Retrieval errors are similar under shared evidence: 3 absent gold sources in each arm and 7 versus 6 reranker demotions. With complete retrieval ($sr=1.0$), partial fact omissions number 22 versus 14.
 
-Three traces illustrate distinct stages of failure. For the multi-hop query \texttt{HOUT-MHOP-}\allowbreak\texttt{ACAD-04}, repair changed the correct \texttt{general} route to \texttt{academic}; that worker refused the request. For \texttt{HOUT-XDOM-}\allowbreak\texttt{01}, all gold sources were retrieved ($sr{=}1.0$), but the worker omitted the financial answer. For \texttt{HOUT-XDOM-}\allowbreak\texttt{16}, the query reached \texttt{scholarship}, but retrieval missed the target document ($sr{=}0.5$). Only the first is a route-repair failure; both cross-domain cases fail after owner selection.
+Three traces illustrate distinct failure stages: repair erroneously redirected \texttt{HOUT-MHOP-}\allowbreak\texttt{ACAD-04} to \texttt{academic}, prompting a refusal; \texttt{HOUT-XDOM-}\allowbreak\texttt{01} retrieved full gold evidence ($sr{=}1.0$) but omitted the financial answer; and \texttt{HOUT-XDOM-}\allowbreak\texttt{16} reached \texttt{scholarship} but missed target evidence ($sr{=}0.5$). Only the first represents route-repair failure.
 

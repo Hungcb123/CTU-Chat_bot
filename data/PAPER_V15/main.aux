@@ -90,25 +90,25 @@
 \newlabel{tab:arch_comparison}{{1}{8}{Scenario~1: Architecture-level comparison ($N=100$). $\text {Pass}_{.50}$ = Automated Fact Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens; estimated routing input ($\sim $650 tokens/query) is excluded. Bold = best reliability / lowest cost}{table.1.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Scenario 2 --- Architectural Ablation}{9}{subsection.1.5.2}\protected@file@percent }
 \newlabel{sec:s2_results}{{5.2}{9}{Scenario 2 --- Architectural Ablation}{subsection.1.5.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scenario\nobreakspace  {}2: Architectural ablation results ($N=100$). Panel\nobreakspace  {}A reports overall benchmark differences ($\Delta $ relative to Full \textsc  {CTU-Chat}{}). Panel\nobreakspace  {}B reports Automated Fact Pass Rate ($\text  {Pass}_{\ge 50\%}$, \%) across query families.}}{9}{table.1.2}\protected@file@percent }
-\newlabel{tab:ablation}{{2}{9}{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta $ relative to Full \system {}). Panel~B reports Automated Fact Pass Rate ($\text {Pass}_{\ge 50\%}$, \%) across query families}{table.1.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Scenario 3 --- Tool Ambiguity Stress Test}{10}{subsection.1.5.3}\protected@file@percent }
-\newlabel{sec:s3_results}{{5.3}{10}{Scenario 3 --- Tool Ambiguity Stress Test}{subsection.1.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Scenario 3 --- Tool Ambiguity Stress Test}{9}{subsection.1.5.3}\protected@file@percent }
+\newlabel{sec:s3_results}{{5.3}{9}{Scenario 3 --- Tool Ambiguity Stress Test}{subsection.1.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scenario\nobreakspace  {}2: Architectural ablation results ($N=100$). Panel\nobreakspace  {}A reports overall benchmark differences ($\Delta $ relative to Full \textsc  {CTU-Chat}{}). Panel\nobreakspace  {}B reports Automated Fact Pass Rate ($\text  {Pass}_{\ge 50\%}$, \%) across query families.}}{10}{table.1.2}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{10}{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta $ relative to Full \system {}). Panel~B reports Automated Fact Pass Rate ($\text {Pass}_{\ge 50\%}$, \%) across query families}{table.1.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Scenario\nobreakspace  {}3: Semantic-neighbor tool ambiguity ($N=50$, 3 counterbalanced tool-order blocks).}}{10}{table.1.3}\protected@file@percent }
 \newlabel{tab:tool_ambiguity}{{3}{10}{Scenario~3: Semantic-neighbor tool ambiguity ($N=50$, 3 counterbalanced tool-order blocks)}{table.1.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Supporting Retrieval Validation}{11}{subsection.1.5.4}\protected@file@percent }
 \newlabel{sec:retrieval_results}{{5.4}{11}{Supporting Retrieval Validation}{subsection.1.5.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Supporting evaluation: Progressive component stacking for standalone retrieval evaluation ($N=100$). Assesses the retrieval pipeline independently of downstream agent orchestration.}}{11}{table.1.4}\protected@file@percent }
-\newlabel{tab:retrieval_evaluation}{{4}{11}{Supporting evaluation: Progressive component stacking for standalone retrieval evaluation ($N=100$). Assesses the retrieval pipeline independently of downstream agent orchestration}{table.1.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Standalone retrieval evaluation ($N{=}100$) on unique source filenames. Progresses to E4 (Hybrid RRF + cross-encoder reranker) and E5 (domain routing, graph evidence, quota merging), evaluated independently of agent orchestration.}}{11}{table.1.4}\protected@file@percent }
+\newlabel{tab:retrieval_evaluation}{{4}{11}{Standalone retrieval evaluation ($N{=}100$) on unique source filenames. Progresses to E4 (Hybrid RRF + cross-encoder reranker) and E5 (domain routing, graph evidence, quota merging), evaluated independently of agent orchestration}{table.1.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Failure Analysis}{11}{subsection.1.5.5}\protected@file@percent }
 \newlabel{sec:failure_analysis}{{5.5}{11}{Failure Analysis}{subsection.1.5.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes.}}{11}{table.1.5}\protected@file@percent }
-\newlabel{tab:failures}{{5}{11}{Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes}{table.1.5}{}}
 \citation{yao2023react}
 \citation{schick2023toolformer}
 \citation{wu2023autogen}
 \citation{jeong2024adaptiverag}
 \citation{edge2024graphrag}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes.}}{12}{table.1.5}\protected@file@percent }
+\newlabel{tab:failures}{{5}{12}{Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes}{table.1.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{12}{section.1.6}\protected@file@percent }
 \newlabel{sec:discussion}{{6}{12}{Discussion}{section.1.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Architectural Findings and Operational Trade-offs}{12}{subsection.1.6.1}\protected@file@percent }
@@ -120,12 +120,12 @@
 \bibcite{gao2023rag_survey}{3}
 \bibcite{jeong2024adaptiverag}{4}
 \bibcite{karpukhin2020dpr}{5}
+\bibcite{lewis2020rag}{6}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Threats to Validity}{13}{subsection.1.6.3}\protected@file@percent }
 \newlabel{sec:limitations}{{6.3}{13}{Threats to Validity}{subsection.1.6.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{13}{section.1.7}\protected@file@percent }
 \newlabel{sec:conclusion}{{7}{13}{Conclusion and Future Work}{section.1.7}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Disclosure of Interests.}{13}{section*.6}\protected@file@percent }
-\bibcite{lewis2020rag}{6}
 \bibcite{ma2025rebot}{7}
 \bibcite{ma2023caas}{8}
 \bibcite{nguyen2020phobert}{9}
