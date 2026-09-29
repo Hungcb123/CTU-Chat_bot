@@ -118,18 +118,18 @@ Table~\ref{tab:retrieval_evaluation} presents a standalone offline evaluation of
 
 \begin{table}[!htbp]
 \centering
-\caption{Supporting evaluation: Progressive component stacking for standalone retrieval evaluation ($N=100$). Assesses the retrieval pipeline independently of downstream agent orchestration.}
+\caption{Standalone retrieval evaluation ($N{=}100$) on unique source filenames. E4: Hybrid RRF with cross-encoder reranking. E5: domain-governed, hybrid, and BM25 candidates with reranking and graph quotas. Evaluated independently of agent orchestration.}
 \label{tab:retrieval_evaluation}
 {\small\setlength{\tabcolsep}{5pt}
 \begin{tabular}{lccccc}
 \toprule
-\textbf{Config.} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{R@5} & \textbf{MRR@10} \\
+\textbf{Configuration} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{R@5} & \textbf{MRR@10} \\
 \midrule
-BM25 Lexical          & 0.530 & 0.770 & 0.206 & 0.617 & 0.669 \\
-Dense Semantic        & 0.460 & 0.650 & 0.176 & 0.524 & 0.560 \\
-Hybrid RRF            & 0.520 & 0.790 & 0.224 & 0.662 & 0.673 \\
-Hybrid + Reranker     & 0.700 & 0.910 & 0.254 & 0.751 & 0.805 \\
-\textbf{Full Retrieval} & \textbf{0.740} & \textbf{0.920} & \textbf{0.302} & \textbf{0.861} & \textbf{0.833} \\
+E1: BM25 Lexical          & 0.530 & 0.770 & 0.206 & 0.617 & 0.669 \\
+E2: Dense Semantic        & 0.460 & 0.650 & 0.176 & 0.524 & 0.560 \\
+E3: Hybrid RRF            & 0.520 & 0.790 & 0.224 & 0.662 & 0.673 \\
+E4: Hybrid + Reranker     & 0.700 & 0.910 & 0.254 & 0.751 & 0.805 \\
+\textbf{E5: Full Retrieval} & \textbf{0.740} & \textbf{0.920} & \textbf{0.302} & \textbf{0.861} & \textbf{0.833} \\
 \bottomrule
 \end{tabular}}
 \end{table}
