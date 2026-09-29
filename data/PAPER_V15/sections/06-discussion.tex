@@ -19,7 +19,7 @@ Single-agent timing begins after retrieval, whereas multi-agent figures include 
 %------------------------------------------------
 \subsection{Relation to Prior Work}
 
-ReAct~\cite{yao2023react} and Toolformer~\cite{schick2023toolformer} study tool use; AutoGen~\cite{wu2023autogen} supports agent exchanges. \system{} instead uses one owner and evidence paths selected by data modality, differing from Adaptive-RAG's complexity-based retrieval~\cite{jeong2024adaptiverag}. The Source Recall drop under Uniform Text-RAG is consistent with GraphRAG's rationale for relational evidence~\cite{edge2024graphrag}, although the ablation also changes representation. These frameworks were not directly compared in our experiments.
+ReAct~\cite{yao2023react} and Toolformer~\cite{schick2023toolformer} study tool use; AutoGen~\cite{wu2023autogen} supports agent coordination. \system{} instead routes to bounded specialists with evidence paths chosen by data modality, differing from Adaptive-RAG's complexity-based retrieval~\cite{jeong2024adaptiverag}. The Source Recall drop under Uniform Text-RAG aligns with GraphRAG's rationale for relational evidence~\cite{edge2024graphrag}. These frameworks were not directly compared in our experiments.
 
 %------------------------------------------------
 \subsection{Threats to Validity}
