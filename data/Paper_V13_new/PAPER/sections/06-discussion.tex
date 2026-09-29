@@ -1,0 +1,27 @@
+% ============================================================
+% 06-discussion.tex — V13 Discussion (condensed)
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+%------------------------------------------------
+\subsection{Answering the Research Questions}
+
+\textbf{RQ1 (Architecture-Level Effectiveness):}
+The architecture-level comparison indicates that supervisor-routed multi-agent decomposition obtains an 8.0\,pp higher E2E point estimate than the Unified Single Agent (81.0\% vs.\ 73.0\%), although the paired bootstrap interval touches zero ($[0.0, +16.0]$\,pp; McNemar $p{=}0.096$). CTU-Chat also attains higher continuous Fact Coverage ($\Delta{=}+2.8$\,pp, 95\%\,CI $[-2.1,+7.9]$\,pp) and 41.4\% fewer input tokens alongside 26.1\% fewer total tokens (3{,}690 vs.\ 6{,}296 input; 5{,}782 vs.\ 7{,}826 total), alongside a median latency trade-off (10{,}652 vs.\ 5{,}159\,ms). The Routed Generic configuration (59.6\% Fact Coverage) demonstrates that routing without specialist policies impairs performance ($\Delta{=}-7.05$\,pp vs.\ CTU-Chat, $p{<}0.05$), showing that decomposition requires policy specialization to succeed.
+
+\textbf{RQ2 (Architectural Mechanism):}
+Component ablations confirm complementary functions: uniform text retrieval (S2-A3) produces the steepest Source Recall drop ($-12.3$\,pp, most severe on structured finance: $-17.8$\,pp); removing specialist prompts (S2-A1) yields the largest Fact Coverage decline ($-7.05$\,pp); unconstrained tool visibility (S2-A2) inflates tokens by $+1{,}270$ without improving coverage; omitting route repair (S2-A5) degrades cross-domain queries by $-15.0$\,pp; and disabling deterministic calculation (S2-A4) induces a 55.6\,pp exact-match collapse on arithmetic queries.
+
+\textbf{RQ3 (Tool Ambiguity):}
+As registries scale from 11 to 51 tools, Routed Specialist preserves 88.0\% E2E with 9.8 visible tools, whereas Full-Registry Single Agent degrades from 86.0\% to 83.3\% while expanding tokens by 124\%, and Global Top-10 drops to 78.7\% (coinciding with shortlist truncation). These observations show scoped registries preserve endpoint reliability at 51 tools without inducing statistically divergent degradation slopes.
+
+%------------------------------------------------
+\subsection{Relation to Prior Work}
+
+While ReAct~\cite{yao2023react} and Toolformer~\cite{schick2023toolformer} explore tool use in single-agent settings, our results show unconstrained registries suffer token inflation and elevated confusion under semantic distractors. Unlike general multi-agent frameworks (e.g., AutoGen~\cite{wu2023autogen}) that permit peer interaction, CTU-Chat enforces hierarchical, contract-validated routing with single-owner prefetch. Our S2-A3 ablation aligns with GraphRAG~\cite{edge2024graphrag}, showing that uniform text retrieval reduces source recall. Finally, whereas Adaptive-RAG~\cite{jeong2024adaptiverag} routes by semantic complexity, CTU-Chat routes by institutional representation requirements.
+
+%------------------------------------------------
+\subsection{Threats to Validity}
+\label{sec:limitations}
+\textbf{Internal:} Single LLM (Gemini 2.5 Flash Lite); while greedy decoding minimizes sampling variance, API serving variability and prompt sensitivity remain potential confounds. \textbf{External:} Single-institution benchmark (100 queries); findings may not directly generalize to other institutional statutes. Semantic-neighbor tools are controlled evaluation constructs. \textbf{Construct:} Automated metrics rely partly on Ragas; programmatic required-fact matching reduces generator--judge bias. \textbf{Statistical:} Bootstrap CIs are query-level ($N{=}100$); arithmetic ablation ($N{=}9$) has small sample size, though 8/9 vs.\ 3/9 exact-match differences are substantial. \textbf{Operational:} Wall-clock latency reflects API serving variability and evaluation hardware.

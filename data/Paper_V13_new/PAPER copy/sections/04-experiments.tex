@@ -1,0 +1,54 @@
+% ============================================================
+% 04-experiments.tex — V13 Experimental Setup (condensed)
+% ============================================================
+\section{Experimental Setup}
+\label{sec:exp_setup}
+
+%------------------------------------------------
+\subsection{Dataset and Annotation}
+\label{sec:dataset}
+
+We evaluate \system{} on 200 administrative queries constructed through a document-grounded semi-automated protocol over official CTU statutes. The 100-query development split supports index calibration and prompt engineering. The 100-query held-out set follows a predefined distribution: 40 direct, 20 within-domain multi-hop, 20 cross-domain, 10 entity-comparison, 5 temporal, and 5 adversarial queries (51 formal, 49 colloquial; 56 single-source, 44 multi-source). It contains 19 Academic, 28 Financial, 17 Scholarship, and 16 General single-domain queries; the remaining 20 combine evidence across domains. An audit found no cross-split duplicates (max 5-gram Jaccard = 0.1875). Each query is annotated along nine dimensions, including domain, evidence type, and tool requirements, to support fine-grained failure analysis.
+
+%------------------------------------------------
+\subsection{Baselines and Configurations}
+\label{sec:baselines}
+
+\textbf{Fairness principle and execution contract.} All configurations share the same LLM (Gemini 2.5 Flash Lite, $T{=}0.0$), knowledge representations, retrieval stack (BM25 + dense + RRF + \texttt{bge-reranker-v2-m3}, $k{=}7$), and deterministic calculator access. Differences are strictly restricted to \emph{orchestration architecture}. The Unified Single Agent operates with global retrieval over all institutional indices without prior domain restriction, accessing all 11 tool schemas within a single system prompt. Multi-agent variants use intent-routed scoped registries with identical execution bounds: maximum 3 tool calls, matching context limits, 2{,}048 output-token budget, and 30-second timeouts. Token accounting for \system{} comprehensively aggregates all pipeline invocations (supervisor routing, contract repair, worker generation, and retries), ensuring rigorous parity with the single-agent baseline.
+
+\subsubsection{Scenario 1 --- Architecture Comparison (RQ1):}
+Three configurations on the full held-out set ($N{=}100$, $R{=}3$, 900 runs):
+\textbf{S1-A:} Unified Single Agent with all 11 tools, no supervisor or routing;
+\textbf{S1-B:} Routed Generic Worker---supervisor routes to domain workers with scoped tools but a single generic prompt;
+\textbf{S1-C:} Full CTU-Chat with supervisor, contract repair, specialist prompts, scoped registries, and deterministic computation.
+
+\subsubsection{Scenario 2 --- Ablation (RQ2):}
+Five ablations each remove one component from Full CTU-Chat ($N{=}100$, $R{=}3$):
+\textbf{S2-A1:} No Specialist Policy (generic worker prompt);
+\textbf{S2-A2:} No Tool Isolation (all 11 tools visible);
+\textbf{S2-A3:} Uniform Text-RAG Baseline (graph data serialized to text, traversal disabled);
+\textbf{S2-A4:} No Deterministic Calculation (LLM generates arithmetic directly);
+\textbf{S2-A5:} No Route Repair (raw supervisor output used directly).
+
+\subsubsection{Scenario 3 --- Tool Ambiguity (RQ3):}
+Fifty fixed cases are evaluated while 40 semantic-neighbor tools expand registries to 11, 31, and 51 tools. Four configurations are compared: Full-Registry Single Agent, Global Top-10 Single Agent, Routed Generic, and Routed Specialist. Each case uses 3 counterbalanced tool-order blocks, yielding $50{\times}4{\times}3{\times}3{=}1{,}800$ primary decisions plus ${\approx}480$ coverage-suite decisions.
+
+%------------------------------------------------
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+Metrics span four groups. \emph{Final-answer quality:} Required-Fact Coverage (continuous proportion of reference facts verified in generated response), Answer Correctness, Answer Relevancy, and Faithfulness (Ragas~\cite{es2023ragas}). \emph{Evidence quality:} Source Recall, Source AP, Context Recall, Context Precision. \emph{Execution reliability:} Tool Invocations per Query, Tool Selection Accuracy, Argument EM/Contract Match, Result Accuracy, and route repair rate. \emph{Operational cost:} input/output tokens, LLM call counts, and wall-clock latency. Six primary endpoints are reported in the comparative evaluation: E2E Success Rate, Required-Fact Coverage, Source Recall, Source AP, Input Tokens, and Median Latency.
+
+\textbf{E2E Success definition.} For retrieval queries, E2E Success is evaluated under the criterion of required facts ${\ge}50\%$, absence of unsupported claims, and retrieval of verified sources, complemented by continuous Fact Coverage. For tool queries: correct route, tool, arguments, result, and answer. For adversarial queries: absence of unnecessary tool calls and appropriate clarification or refusal. For the arithmetic subset ($N{=}9$), numeric exact match against official bursar schedules is independently audited.
+
+%------------------------------------------------
+\subsection{Statistical Protocol}
+\label{sec:statistics}
+
+All scenarios use three repetitions per query, first averaged within each query. Paired differences are computed at the query level; 95\% CIs use 10,000 bootstrap resamples. Three primary pairwise comparisons (Scenario~1) are declared in advance; additional pairwise tests use Holm correction. Scenario~3 degradation is computed as $\Delta = \text{score}_{51} - \text{score}_{11}$; the interaction CI is reported.
+
+%------------------------------------------------
+\subsection{Infrastructure}
+\label{sec:infrastructure}
+
+Gemini 2.5 Flash Lite via Vertex AI ($T{=}0.0$). Neural reranking on a GTX 1650 (evaluation hardware). Neo4j~5.20 stores relational curricula; PostgreSQL stores parent chunks (2,800-char, 100 overlap); Qdrant indexes child chunks (400-char, 50 overlap) with a 768-dimensional \texttt{vietnamese-bi-encoder}. System uses \texttt{bge-reranker-v2-m3}, LangGraph StateGraph, and Redis~7. Latency excludes the first warm-up run. Prompt templates, tool contracts, and graph schema are archived.

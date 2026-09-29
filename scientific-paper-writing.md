@@ -3,7 +3,8 @@ name: scientific-paper-writing
 description: >
   Guides the writing and revision of scientific research papers for Computer Science / AI venues
   (IEEE, ACM, Springer LNCS). Covers every section from Title through References with strict rules
-  on neutral tone, hedging language, evidence-grounded claims, and LaTeX output.
+  on neutral tone, hedging language, evidence-grounded claims, structural frameworks (IMRaD, 6-part
+  Introduction, 5-step Abstract & Conclusion), and publication-ready LaTeX output.
   Use when the user asks to write, revise, review, or improve any part of a research paper,
   conference submission, or journal manuscript. Also use when the user mentions "paper", "manuscript",
   "submission", "abstract", "introduction", "related work", "methodology", "experiments", "conclusion",
@@ -15,8 +16,10 @@ description: >
 ## Overview
 
 This skill provides comprehensive, section-by-section guidance for writing and revising scientific
-research papers targeting Computer Science and AI venues (IEEE, ACM, Springer LNCS). It enforces
-**neutral academic tone**, forbids unsupported strong claims, and outputs publication-ready LaTeX.
+research papers targeting Computer Science and AI venues (IEEE, ACM, Springer LNCS). It synthesizes
+rigorous peer-reviewed publishing standards (including Elsevier's IMRaD framework, Peter Munene's
+comparative architecture, and Muhammad Muneeb's structural introduction model), enforces **neutral
+academic tone**, forbids unsupported strong claims, and outputs publication-ready LaTeX.
 
 ---
 
@@ -90,61 +93,88 @@ For every claim in the paper, classify it:
 
 ### 1. Title
 
-**Rules:**
-- Must cite the core intervention/method, context/domain, and ideally a design keyword or main finding
-- Use subtitles sparingly for study group names or clarifications
-- Keep concise but informative (typically 10–15 words)
-- Do NOT use marketing language ("revolutionary", "groundbreaking", "novel")
+**Core Rules:**
+- **Cite Core Intervention, Context/Domain, Design & Main Finding** (Elsevier guideline): Clearly indicate what was investigated, the technical mechanism, and the application setting.
+- **Use subtitles sparingly** for study group names, system variants, or specific benchmark scopes.
+- Keep concise but informative (typically 10–15 words).
+- Do NOT use marketing or hyperbolic language ("revolutionary", "groundbreaking", "novel", "game-changing").
 
-**Template:**
+**Standard Patterns:**
 ```
-[Method Name]: [Design Keyword] [Core Technique] for [Application Domain]
+[System Name]: [Design Keyword/Intervention] [Core Architecture] for [Application Domain]
+```
+*or*
+```
+[Core Technique] with [Key Mechanism] for [Domain/Problem]: An Empirical Investigation
 ```
 
-**Example:**
-```
-CTU-Chat: Supervisor-Routed Multi-Agent RAG with Heterogeneous
-Knowledge Allocation for University Counseling
-```
+**Examples:**
+- *Good (Descriptive & Grounded):*
+  ```
+  CTU-Chat: Supervisor-Routed Multi-Agent RAG with Heterogeneous
+  Knowledge Allocation for University Counseling
+  ```
+- *Bad (Vague & Promotional):*
+  ```
+  A Novel and Revolutionary AI Chatbot that Solves University Counseling
+  ```
 
 ---
 
 ### 2. Abstract
 
-**Purpose:** A brief, self-contained summary of the entire paper. The reader should understand
-*what was studied*, *how*, *key findings*, and *why it matters* — without reading the full paper.
+**Purpose:** A brief, self-contained summary of the entire paper. It must be **comprehensible by itself** without requiring the reader to consult the main text. It tells the reader *what was studied, how it was studied, the key findings, and why it matters*.
 
-**Structure (5-sentence pattern):**
-1. **Topic/Problem** — What challenge does this address?
-2. **Objective + Method** — What did you do and how?
-3. **Key Results** — What are the main quantitative findings?
-4. **Implication** — Why do these findings matter?
-5. *(Optional)* Scope limitation or qualifier
+#### The 5-Step Writing Process
+1. **Start with the topic or problem:** Establish the specific domain challenge.
+2. **State the objective or research question:** Explicitly state what the study set out to do.
+3. **Mention the method briefly:** Specify the proposed framework, datasets, or experimental approach.
+4. **Present the key result:** Provide concrete, quantitative metrics (numbers, confidence intervals, effect sizes).
+5. **End with the main implication:** Conclude with a hedged statement on what these findings mean for the field.
 
-**Rules:**
-- Length: 150–300 words (follow venue guidelines)
-- Highly condensed — no filler, no repetition
-- NO citations in the abstract
-- NO detailed discussion or interpretation
-- NO vague statements like "results are discussed"
-- Present key results with actual numbers
-- **MUST use neutral language** — hedge the implication sentence
+#### Annotated Example Abstract
+```
+[Topic / Problem]
+Rock slope instability remains a major challenge in mountainous road projects.
 
-**Mistakes to Avoid:**
-- Too much background (>2 sentences of context)
-- No clear quantitative result
-- Adding citations or detailed discussion
-- Writing vague conclusions like "results are discussed" or "results are promising"
+[Objective + Method]
+This study investigated the effect of discontinuity orientation on slope stability
+using field mapping and numerical modelling.
 
-**LaTeX Template:**
+[Key Result]
+The results showed that adverse joint orientation reduced the factor of safety
+significantly by 24.6% under saturated conditions.
+
+[Implication]
+The findings highlight the need for orientation-based support design in rock slopes,
+suggesting that structural geological mapping should precede stabilization planning.
+```
+
+#### Rules & Best Practices:
+- **Length:** Strictly 150–250 words (Springer LNCS) or 150–300 words (general).
+- **Self-contained (IMRaD in miniature):** Introduction $\rightarrow$ Methods $\rightarrow$ Results $\rightarrow$ Conclusion.
+- **NO citations:** Avoid literature citations entirely in the abstract.
+- **NO detailed discussion:** Keep interpretation concise; save extended analysis for the Discussion section.
+- **NO vague placeholders:** Never write "results are discussed", "promising results were obtained", or "various aspects are analyzed". State the actual key numbers.
+- **Hedged implication:** The final sentence must use tentative language (`suggests that`, `can support`, `is consistent with`).
+
+#### Mistakes to Avoid:
+- ❌ Too much background (>2 sentences of generic context).
+- ❌ Omitting concrete quantitative results.
+- ❌ Copying sentences verbatim from the Introduction or Conclusion.
+- ❌ Defining obscure acronyms without context.
+
+#### LaTeX Template:
 ```latex
 \begin{abstract}
-[Problem statement — 1-2 sentences].
-We present [System/Method Name], a [brief description of approach].
-[Core mechanism — 1-2 sentences describing how it works].
+[Problem statement and domain challenge --- 1--2 sentences].
+We present [System/Method Name], a [brief description of core approach and architecture].
+[Core mechanism and method --- 1--2 sentences describing how it operates and data used].
 Evaluation on [benchmark/dataset] shows that [System] achieves
-[metric1] of [value1] and [metric2] of [value2] on the [test set description].
-These findings suggest that [hedged implication statement].
+[metric1] of [value1] and [metric2] of [value2] ([confidence interval or baseline comparison]).
+These findings suggest that [hedged implication statement under the evaluated conditions].
+
+\keywords{First Keyword \and Second Keyword \and Third Keyword.}
 \end{abstract}
 ```
 
@@ -152,447 +182,235 @@ These findings suggest that [hedged implication statement].
 
 ### 3. Introduction
 
-**Structure (6-paragraph pattern):**
+**Purpose:** Lead the reader from a broad general context to the specific research gap, state the precise objectives, summarize the proposed methodology, and outline the structure of the paper.
 
-| Paragraph | Content | Color Code |
-|---|---|---|
-| 1. Topic Introduction | Broad context, why this domain matters | General → Specific |
-| 2. Topic Background | Existing approaches, what has been done | Literature landscape |
-| 3. Research Problem | Gaps, limitations, what remains unsolved | The "gap" paragraph |
-| 4. Research Objective | What this paper aims to do, specific goals | "This paper presents..." |
-| 5. Research Methodology | Brief overview of approach (expand in §3) | How you do it |
-| 6. Paper Outline | Section-by-section roadmap | "The rest of this paper..." |
+#### The 6-Part Structural Framework
 
-**Rules:**
-- Funnel structure: broad context → specific gap → your contribution
-- Each paragraph should have a clear topic sentence
-- Citations are expected in paragraphs 1-3
-- Contributions should be stated as observations, not as absolute claims
-- End with a clear paper outline paragraph
-- **A strong introduction clearly presents the background, identifies the gap, defines the objective, and outlines how your study addresses the problem**
+| Part | Component | Description & Role |
+|:---|:---|:---|
+| **1** | **Topic Introduction** | Broad context, societal/practical relevance, and domain importance (supported by authoritative citations/statistics). |
+| **2** | **Topic Background** | Technical landscape, evolution of current solutions, and what has been achieved so far in the literature. |
+| **3** | **Research Problem / Gap** | Precise limitations of existing approaches: what remains unsolved, brittle, or unexplored (the "knowledge gap"). |
+| **4** | **Research Objective** | Formal, explicit statement of study aims, broken down into primary and secondary targets: (i) ..., (ii) ... (or formal Research Questions RQ1, RQ2...). |
+| **5** | **Research Methodology** | Concrete overview of the proposed framework, datasets/benchmarks, preprocessing, and target evaluation metrics. |
+| **6** | **Paper Outline** | Section-by-section roadmap for the remainder of the manuscript. |
 
-**Tip:** The introduction should make the reader understand:
-1. Why the problem matters
-2. What others have done (and what's missing)
-3. What you propose
-4. How the paper is organized
+> 💡 **Golden Rule:** *"A strong introduction clearly presents the background, identifies the gap, defines the objective, and outlines how your study addresses the problem."*
 
-**Neutral Phrasing for Contributions:**
+#### Annotated Example Introduction
+```text
+[1. Topic Introduction]
+Air pollution has become a major environmental and public health concern globally.
+According to the World Health Organization, exposure to polluted air contributes to
+millions of premature deaths each year and increases the risk of cardiovascular
+diseases (WHO, 2023). Accurate prediction of air quality levels is essential for
+effective decision-making and for minimizing adverse impacts on human health.
+
+[2. Topic Background]
+Traditional air quality forecasting methods rely on statistical models and machine
+learning techniques that require manual feature engineering. With the advancement of
+deep learning, data-driven models have shown superior ability to learn intricate patterns
+automatically. For example, Li et al. (2021) applied Long Short-Term Memory (LSTM)
+networks for PM2.5 prediction and achieved promising results compared to conventional models.
+
+[3. Research Problem / Gap]
+Despite these advances, several challenges remain in existing studies. Many models are
+trained and evaluated on data from a single city, limiting their generalizability to
+different regions with varying climatic conditions (Gupta et al., 2019). Moreover,
+most studies focus on short-term prediction and do not consider the impact of
+meteorological factors comprehensively. These limitations highlight the need for a
+more robust, accurate, and generalizable framework that can operate across diverse urban environments.
+
+[4. Research Objective]
+The main objective of this study is to develop and evaluate a deep learning-based hybrid
+model for accurate and generalizable air quality prediction. Specifically, the study aims to:
+(i) integrate meteorological and pollutant variables to improve prediction accuracy, and
+(ii) assess the transferability of the proposed model across multiple cities with diverse conditions.
+
+[5. Research Methodology]
+To achieve the above objectives, this study proposes a hybrid deep learning framework
+that combines Convolutional Neural Networks (CNN) and Long Short-Term Memory (LSTM) networks.
+The model is trained on multi-city air quality datasets collected from publicly available monitoring
+stations. Data preprocessing, normalization, and feature selection are performed to ensure
+data quality. The model's performance is evaluated using standard metrics such as RMSE,
+MAE, R², and MAPE, and compared with established baseline models.
+
+[6. Paper Outline]
+The rest of this paper is organized as follows. Section 2 reviews related work on air quality
+prediction and identifies open challenges. Section 3 describes the dataset, preprocessing steps,
+and the proposed hybrid architecture. Section 4 presents the experimental results and comparative
+evaluations. Section 5 discusses the findings and practical implications. Finally, Section 6 concludes
+the study and outlines directions for future research.
 ```
-❌ "We make the following groundbreaking contributions..."
-✅ "The main contributions of this work are as follows:"
 
-❌ "This is the first system that..."
-✅ "To the best of our knowledge, this work is among the first to..."
-
-❌ "Our approach fundamentally changes..."
-✅ "The proposed approach offers a different perspective on..."
-```
+#### Rules for Contributions & Objectives:
+- Present contributions as verifiable engineering/scientific achievements, NOT marketing claims.
+- **Never claim uniqueness or absolute primacy:**
+  - ❌ *"We propose the first ever system that completely solves..."*
+  - ✅ *"To the best of our knowledge, this work is among the first to examine bounded multi-agent tool routing under..."*
+  - ✅ *"Specifically, this work provides three primary contributions: (1) an implemented supervisor architecture...; (2) an empirical evaluation across 51 tools...; and (3) an ablation study assessing component-level contributions."*
 
 ---
 
 ### 4. Related Work / Literature Review
 
-**Purpose:** Establish the knowledge landscape, position your work relative to existing literature,
-and justify why a new approach is needed.
+**Purpose:** Establish the current state of knowledge, position your work relative to existing approaches, and demonstrate why the identified research gap justifies a new solution.
 
 **Structure:**
-- Organize by **theme/topic**, NOT by paper
-- Each subsection covers one research thread
-- End each subsection with a transition showing how it motivates your work
-- Final subsection: **Comparative Synthesis and Research Gaps**
+- **Organize by theme/topic**, NOT chronologically or paper-by-paper.
+- Group related studies into logical streams (e.g., Sparse vs. Dense Retrieval, Graph Reasoning, Multi-Agent Orchestration).
+- End each subsection with a brief transition showing how it motivates your approach.
+- Final subsection: **Comparative Synthesis and Research Gaps** (summarizes how your work bridges the gaps).
 
 **Rules:**
-- Present prior work **fairly and accurately** — never misrepresent to make your work look better
-- Use present tense for established knowledge, past tense for specific study findings
-- Identify genuine gaps, not strawman limitations
-- Connect gaps explicitly to your proposed approach
-- Acknowledge overlap with existing methods honestly
-
-**Neutral Phrasing:**
-```
-❌ "Previous approaches fail to..."
-✅ "Previous approaches focus primarily on... but do not directly address..."
-
-❌ "No prior work has considered..."
-✅ "This aspect remains relatively underexplored in the existing literature."
-
-❌ "Their method is inferior because..."
-✅ "Their method addresses X but differs from the present work in its handling of Y."
-```
+- Present prior work **fairly and objectively** — never misrepresent baselines to make your approach look better.
+- Use present tense for established facts/theories, past tense for specific experimental findings of past papers.
+- Identify genuine structural or empirical limitations, not artificial strawmen.
 
 ---
 
 ### 5. Proposed Model / Methodology
 
-**Purpose:** Describe **in detail** what you did and how, so that another researcher could
-reproduce your work.
+**Purpose:** Describe **in detail what you did and how**, with sufficient precision to enable an independent researcher to replicate the entire study.
 
-**Structure:**
-1. Design principles / overview
-2. Architecture / system overview (with figure reference)
-3. Component-by-component description
-4. Algorithms (pseudocode if applicable)
-5. Implementation details
-
-**Rules:**
-- Describe in detail what you did and how
-- Detail selection criteria for datasets/population
-- Describe all techniques, analyses, and tools used
-- Include ethical considerations where applicable
-- Statistical methods should be described in dedicated paragraphs
-- Use consistent notation throughout
-- Every symbol/variable must be defined at first use
-- Reference figures and tables inline
-- Be precise about hyperparameters, configurations, and design choices
-
-**LaTeX Template for Algorithm:**
-```latex
-\begin{algorithm}[t]
-\caption{[Algorithm Name]}
-\label{alg:name}
-\begin{algorithmic}[1]
-\Require [Input description]
-\Ensure [Output description]
-\State [Step 1]
-\If{[condition]}
-    \State [action]
-\EndIf
-\State \Return [output]
-\end{algorithmic}
-\end{algorithm}
-```
+#### Comprehensive Methodology Checklist (Elsevier / IMRaD Standard):
+- [ ] **System Architecture / Formulation:** Formal definition of inputs, outputs, state representations, and mathematical notation.
+- [ ] **Selection Criteria for Datasets / Benchmarks:** Detail data sources, inclusion/exclusion criteria, cohort splits, and preprocessing pipelines.
+- [ ] **Detailed Description of Interventions & Tools:** Explain every component, module, query template, or prompt contract.
+- [ ] **Target Endpoints / Evaluation Criteria:** Define primary endpoints (e.g., end-to-end task success) and secondary endpoints (e.g., latency, token consumption, parameter exact match).
+- [ ] **Statistical Methods (Dedicated Paragraph):** Explicitly document statistical protocols: number of repeated trials ($R$), random seed control, confidence interval calculation (e.g., bootstrap percentiles), significance testing (e.g., Wilcoxon, McNemar), and variance reporting.
+- [ ] **Ethical & Governance Considerations:** Document data privacy, license compliance, institutional oversight, and human-evaluation ethics where applicable.
 
 ---
 
 ### 6. Experimental Results
 
-**Purpose:** Present empirical evidence that evaluates the proposed approach.
+**Purpose:** Present empirical evidence and quantitative measurements that address the research questions.
 
-**Structure:**
-1. Experimental setup (benchmark, dataset, protocols)
-2. Evaluation metrics (define each metric clearly)
-3. Baselines / comparison configurations
-4. Results presentation (tables + figures)
-5. Analysis and interpretation
+#### Two Paramount Rules for Results:
+1. **Rule 1: Avoid Commentary and Interpretation:**
+   Present the data objectively. State what the numbers are. Save speculative explanations, causal reasoning, and broader field implications for the **Discussion** section.
+2. **Rule 2: The 1-to-1 Correspondence Rule (Methods $\leftrightarrow$ Results):**
+   *Give a result for EVERY method, baseline, metric, or ablation presented in the Methodology section.* If a baseline or configuration was introduced in §3/§4, its performance must appear in the results tables. Conversely, never introduce a surprise method in the results that was not described in the experimental setup.
 
-**Rules:**
-- **Present results objectively** — avoid commentary and interpretation in the results table itself
-- Give a result for every method/metric presented in the experimental setup
-- Use appropriate illustrations (tables for precise numbers, figures for trends)
-- Report confidence intervals or variance when possible (especially with R > 1 runs)
-- **NEVER cherry-pick results** — report all metrics, including where your method does NOT win
-- Explicitly acknowledge when baselines outperform your method on specific metrics
+#### Rules for Tables & Figures:
+- Use **Tables** for exact numerical comparisons, confidence intervals, and multi-metric evaluations.
+- Use **Figures** for trends, scaling behavior, distributions, and ablation curves.
+- **Report ALL metrics honestly:** Never omit a metric just because a baseline performed better. Transparently highlight where baselines match or exceed the proposed approach.
 
 **Neutral Phrasing for Results:**
 ```
-❌ "Our method significantly outperforms all baselines."
-✅ "The proposed configuration achieves the highest [metric] ([value]),
-    while [baseline] retains the highest [other metric] ([value])."
-
-❌ "The results clearly demonstrate the superiority of..."
-✅ "The results indicate that [method] achieves higher scores
-    on [metrics] compared to [baselines] in the evaluated setting."
-
-❌ "This proves that our approach is optimal."
-✅ "These results support the proposed approach in the evaluated setting,
-    but do not establish that any individual component is universally optimal."
-```
-
-**Table Formatting (LaTeX):**
-```latex
-\begin{table}[t]
-\caption{[Descriptive caption with dataset and metric info].}
-\label{tab:name}
-\centering
-\begin{tabular}{l c c c}
-\toprule
-Configuration & Metric1 & Metric2 & Metric3 \\
-\midrule
-Baseline 1 & 0.xx & 0.xx & 0.xx \\
-Baseline 2 & 0.xx & 0.xx & 0.xx \\
-\textbf{Proposed} & \textbf{0.xx} & 0.xx & \textbf{0.xx} \\
-\bottomrule
-\end{tabular}
-\end{table}
+❌ "Our method decisively crushes all competing baselines across the board."
+✅ "The proposed configuration achieves higher scores on Context Recall (0.6534 vs. 0.5349)
+    and Faithfulness (0.8636 vs. 0.8042) compared to the lexical baseline,
+    while requiring higher mean latency (21.86 s vs. 7.08 ms)."
 ```
 
 ---
 
 ### 7. Discussion
 
-**Purpose:** Interpret the results, explain their significance, and connect them back to the
-research questions and broader literature.
+**Purpose:** Put your results in perspective with the broader scientific literature, interpret the findings, explain underlying mechanisms, and explicitly analyze limitations.
 
-**Structure:**
-1. Recap of main findings
-2. Comparison with prior work in context of literature
-3. Explanation of observed patterns
-4. Strengths of the approach
-5. **Limitations** (MANDATORY — never skip this)
-6. Implications for the field
-
-**Rules:**
-- Start with a recap of your main finding
-- Put your results in perspective with other reports in the literature
-- Explain significance and how findings contribute to knowledge
-- **MUST outline strengths AND limitations honestly**
-- Use hedging language throughout — discussion is inherently interpretive
-
-**Limitations Checklist (must address ALL that apply):**
-- [ ] Dataset size and representativeness
-- [ ] Evaluation methodology limitations (automated vs. human judges)
-- [ ] Generalizability beyond tested domain/institution/language
-- [ ] Computational cost and scalability
-- [ ] Domain-specific assumptions
-- [ ] Statistical significance considerations
-- [ ] Potential biases in data or evaluation
-
-**Neutral Phrasing:**
-```
-❌ "Our system has no significant limitations."
-✅ "The evaluation remains limited to [specific scope],
-    and further work is needed to assess generalizability."
-
-❌ "This proves our hypothesis."
-✅ "These findings are consistent with the hypothesis that...,
-    though alternative explanations cannot be excluded."
-```
+#### 4-Part Discussion Structure (Elsevier Model):
+1. **Recap of Main Findings:** Concisely restate the central empirical answers to the research questions without repeating raw tables.
+2. **Perspective with Literature:** Compare observed results with prior studies (e.g., *"This finding aligns with reports by Zhang et al. (2022) regarding dense retrieval drift on rare entities, but differs in..."*).
+3. **Significance & Contribution to Knowledge:** Explain *how* and *why* these results advance the state of the art or institutional practice.
+4. **Strengths and Limitations (MANDATORY):** A comprehensive, honest appraisal of study constraints:
+   - Data scope (e.g., single-institution vs. multi-institution).
+   - Evaluation methodology (automated LLM judges vs. blind human trials).
+   - Computational overhead and operational trade-offs.
+   - Failure modes observed in edge cases.
 
 ---
 
 ### 8. Conclusion
 
-**Purpose:** The final takeaway. Explain what the findings mean, why they matter, and what
-should happen next.
+**Purpose:** Provide the final takeaway of the paper. It explains *what the findings mean, why they matter, and what should happen next*.
 
-**Structure (5-point pattern):**
-1. **Restate aim** — what the study set out to do
-2. **Summarize main findings** — key quantitative results
-3. **Interpret significance** — what these findings mean
-4. **State practical implications or recommendations**
-5. **End with future work directions**
+#### The 5-Step Writing Process
+1. **Restate the aim of the study:** What problem was tackled and what was built/evaluated.
+2. **Summarize the main findings:** Concrete summary of how the research questions were answered.
+3. **Interpret their significance:** What this implies for researchers and practitioners.
+4. **State practical implications or recommendations:** Actionable guidance for real-world adoption.
+5. **End with strong closing insights or future directions:** Specific, high-impact avenues for subsequent research.
 
-**Rules:**
-- Do NOT repeat the abstract word for word
-- Do NOT introduce new data or results
-- Do NOT make claims not supported by the presented results
-- MUST end with a clear takeaway or future direction
-- Keep it reflective and developed (not just a copy of the abstract)
+#### Annotated Example Conclusion
+```text
+[1. Restate Aim]
+This study developed and evaluated a supervisor-routed multi-agent RAG framework
+with heterogeneous knowledge allocation for university counseling.
 
-**Mistakes to Avoid:**
-- Repeating the abstract verbatim
-- Introducing new experimental data
-- Making claims not supported by results
-- Ending without a clear takeaway
+[2. Main Findings]
+The experimental evaluation confirmed that domain specialization improves decision-level
+pass rate by 9.3 percentage points over a global Top-10 baseline under tool ambiguity,
+while requiring 52.4% fewer input tokens than monolithic full-registry execution.
 
-**Neutral Phrasing:**
-```
-❌ "In conclusion, we have proven that X is the best approach for Y."
-✅ "Taken together, these findings suggest that [approach]
-    is a promising direction for [domain], though further evaluation
-    across [broader scope] is needed to assess generalizability."
+[3. Meaning / Significance]
+These findings demonstrate that representation-specific evidence paths---graph traversal
+for curricula, deterministic calculation for statutory fees, and hybrid retrieval for
+regulations---can effectively accommodate heterogeneous institutional knowledge.
 
-❌ "Our system will revolutionize..."
-✅ "The proposed architecture demonstrates potential for...,
-    and future work will explore..."
+[4. Practical Implications / Recommendations]
+In practical deployments, specialist routing is recommended when tool ambiguity and
+bounded evidence access are primary concerns, whereas single-agent gates remain
+preferable when operational latency and token budgets are constrained.
+
+[5. Future Work]
+Future work should focus on reducing dispatch latency through speculative tool routing,
+validating cross-institutional transfer across bilingual curricula, and conducting
+longitudinal user studies in live student advisory centers.
 ```
 
 ---
 
 ### 9. References
 
-**Rules:**
-- List ALL sources used as a basis for your work
-- **Check accuracy of every reference**, even if copied from other papers
-- Follow the exact citation style required by the venue (IEEE, ACM, Springer)
-- Ensure every citation in the text has a corresponding reference entry
-- Ensure every reference entry is cited at least once in the text
-- Prefer published, peer-reviewed sources over preprints when available
-- Include DOIs when available
+**Core Rules:**
+- List all sources cited in the text; ensure strict 1-to-1 correspondence between in-text citations and reference list.
+- **Verify accuracy of every reference, even when copied from other papers:** Double-check author names, titles, publication years, venue/journal names, and volume/page numbers.
+- Ensure DOIs are provided wherever available in standard format (`https://doi.org/...`).
+- Adhere strictly to the venue's bibliographic format (`splncs04` for Springer LNCS, IEEEtran for IEEE, ACM-Reference-Format for ACM).
 
 ---
 
-## Writing Style Rules
+## Abstract vs. Conclusion — Complete Structural Comparison
 
-### General Academic Writing Standards
-
-1. **Use third person or first person plural** ("we propose", "the system processes")
-   — avoid "I" in multi-author papers
-2. **Use active voice** when describing your contributions, passive voice for general knowledge
-3. **Be precise** — avoid vague quantifiers ("a lot", "many", "very")
-4. **Define all acronyms** at first use: "Retrieval-Augmented Generation (RAG)"
-5. **Maintain consistent terminology** — don't alternate between synonyms for technical terms
-6. **One idea per paragraph** — start each paragraph with a topic sentence
-7. **Use parallel structure** in lists and enumerations
-8. **Avoid colloquialisms and informal language**
-
-### Sentence-Level Quality Checks
-
-- [ ] Is every sentence necessary? (Remove filler)
-- [ ] Is every technical term defined at first use?
-- [ ] Is every claim backed by evidence or a citation?
-- [ ] Are all numbers presented with consistent precision?
-- [ ] Are all figure/table references correct?
-
-### LaTeX Best Practices
-
-- Use `\cref{}` or `\autoref{}` for cross-references
-- Use `\textbf{}` for emphasis in tables, not colors
-- Use `booktabs` package (`\toprule`, `\midrule`, `\bottomrule`) for tables
-- Use `\label{}` immediately after `\caption{}`
-- Use non-breaking spaces before references: `Figure~\ref{fig:arch}`
-- Use `\url{}` or `\href{}` for URLs
-- Place floats (figures/tables) at top of page with `[t]`
-
----
-
-## Pre-Submission Checklist
-
-Run through this checklist before any submission:
-
-### Content Quality
-- [ ] Every section follows the structure outlined above
-- [ ] Abstract is 150–300 words, self-contained, has quantitative results
-- [ ] Introduction has clear gap → contribution → outline flow
-- [ ] Related work is organized by theme, ends with synthesis
-- [ ] Methodology is reproducible (parameters, configurations, tools listed)
-- [ ] All claimed results have corresponding table/figure evidence
-- [ ] Discussion includes honest limitations section
-- [ ] Conclusion does not introduce new data
-
-### Claim Neutrality (⚠️ MOST IMPORTANT)
-- [ ] **ZERO instances** of "prove", "clearly show", "superior", "best", "novel" used as strong claims
-- [ ] All comparative claims are qualified with "in the evaluated setting" or similar
-- [ ] All interpretive statements use hedging verbs (suggest, indicate, appear to)
-- [ ] Limitations are explicitly stated
-- [ ] No absolute claims ("always", "never", "guarantees")
-- [ ] Contribution statements use measured language
-- [ ] Results that favor baselines over proposed method are honestly reported
-
-### Formatting & References
-- [ ] Paper follows venue template exactly
-- [ ] All figures and tables are referenced in text
-- [ ] All acronyms defined at first use
-- [ ] Reference list is complete and formatted correctly
-- [ ] All references have correct author names, year, venue
-- [ ] Page limit is respected
-- [ ] Supplementary material is properly linked (if applicable)
-
-### Reproducibility
-- [ ] Hyperparameters and configurations are fully specified
-- [ ] Dataset description is complete (size, splits, collection method)
-- [ ] Computational infrastructure is documented
-- [ ] Code/data availability statement is included (if venue requires)
-- [ ] Random seeds or variance measures are reported
-
----
-
-## Workflow: Writing a Paper from Scratch
-
-When asked to write a complete paper or a section, follow this sequence:
-
-1. **Understand the research** — Ask for: research questions, methodology, results data, target venue
-2. **Draft the outline** — Create a section-by-section outline with key points
-3. **Write bottom-up** — Methods → Results → Discussion → Introduction → Abstract → Conclusion
-   (Write Abstract and Conclusion LAST, after all content is finalized)
-4. **Claim audit** — Run the Claim Strength Audit on every paragraph
-5. **Style check** — Apply the Writing Style Rules and Sentence-Level Quality Checks
-6. **Pre-submission checklist** — Run the full checklist above
-7. **Output LaTeX** — Generate publication-ready `.tex` file
-
----
-
-## Workflow: Revising an Existing Paper
-
-When asked to review or revise an existing manuscript:
-
-1. **Read the full paper** to understand context and flow
-2. **Identify strong claims** — Search for forbidden patterns (see table above)
-3. **Classify each claim** using the L1–L4 audit
-4. **Propose neutral alternatives** — Show before/after for each change
-5. **Check section completeness** — Verify against the section guides above
-6. **Verify cross-references** — Tables, figures, equations all referenced correctly
-7. **Run pre-submission checklist**
-8. **Output a revision report** with diff-style changes
-
----
-
-## Common Mistakes in CS/AI Papers
-
-| Mistake | Fix |
-|---|---|
-| Claiming SOTA without comprehensive baselines | Compare with relevant baselines, qualify claims |
-| Ignoring metrics where baselines win | Report ALL metrics honestly |
-| Overfitting narrative to results | Let data speak, acknowledge unexpected patterns |
-| Abstract/Conclusion overlap >70% | Write conclusion as reflection, not abstract copy |
-| Missing limitations | Always include at least 3–5 honest limitations |
-| Undefined notation | Define every symbol at first use |
-| "As shown in Table X" without interpretation | Add a sentence interpreting what the table shows |
-| Inconsistent tense | Present for general knowledge, past for your experiments |
-| Name-dropping without synthesis | Group by theme, synthesize gaps at the end |
-| Vague future work ("more experiments") | Be specific: what experiments, what data, what questions |
-
----
-
-## Additional Rules for AI/ML Papers
-
-1. **Report variance** — If you run R > 1 repetitions, report mean ± std or confidence intervals
-2. **Ablation transparency** — When removing components, explain what the isolated effect is
-   vs. what a bundled comparison shows
-3. **LLM-as-judge caveat** — When using LLM-based evaluation, acknowledge potential bias
-   and describe mitigation steps (reference-grounded, greedy decoding, multiple runs)
-4. **Computational cost** — Report training/inference time and hardware requirements
-5. **Negative results** — Briefly discuss configurations that did NOT improve performance;
-   this builds credibility and helps the community
-6. **Reproducibility statement** — Include code availability, data availability, or clear
-   configuration specifications
-
----
-
-## Abstract vs. Conclusion — Key Differences
-
-These two sections are often confused. Here is how they differ:
+The Abstract and Conclusion serve fundamentally different purposes and cater to different reader objectives.
 
 | Aspect | Abstract | Conclusion |
-|---|---|---|
-| **Location** | Beginning of the study | End of the study |
-| **Main purpose** | Quick overview of the entire study | Final answer and meaning of the study |
-| **Answers** | What did you study, how, and what did you find? | What do the findings mean, and what should we take away? |
-| **Content** | Problem, purpose, methodology, key findings | Key findings, interpretation, contribution, implications, limitations, recommendations |
-| **Length** | Usually brief: ~150–300 words | Usually much longer |
-| **Detail** | Highly condensed | More developed and reflective |
-| **Literature citations** | Usually avoided | May be used where appropriate |
-| **Research questions** | Briefly indicates whether/how they were answered | Explicitly demonstrates how they were answered |
-| **Recommendations** | Usually not included | Often included |
-| **Contribution** | Briefly stated | Explained more fully |
-| **Reader's goal** | Decide whether the study is relevant | Understand what the study ultimately means |
+|:---|:---|:---|
+| **Location** | Beginning of the manuscript | End of the manuscript |
+| **Main Purpose** | Gives a quick, self-contained overview of the entire study | Provides the final takeaway, meaning, and broader implications |
+| **Key Question Answered** | *What did you study, how did you study it, and what did you find?* | *What do the findings mean, why do they matter, and what should we take away?* |
+| **Content Elements** | Problem statement, objective, core methodology, key quantitative results, brief implication | Restated aim, summary of findings addressing RQs, interpretation of significance, practical implications, limitations, recommendations, future work |
+| **Length** | Strictly condensed: typically 150–250 words (LNCS) or 150–300 words | Substantially longer, developed across multiple paragraphs |
+| **Level of Detail** | Highly condensed, concise summary | Developed, reflective, contextualized, and analytical |
+| **Literature Citations** | Strictly avoided (no citations) | May be cited where appropriate to contextualize findings against prior literature |
+| **Research Questions** | Briefly mentions what was evaluated or hypothesized | Explicitly demonstrates **how each Research Question (RQ1, RQ2...) was answered** |
+| **Recommendations** | Usually omitted | Frequently included as actionable guidance for practitioners |
+| **Contributions** | Stated in 1 brief sentence | Explained fully in relation to operational trade-offs and theoretical impact |
+| **Reader's Goal** | Deciding whether the paper is relevant to read | Understanding the ultimate meaning, reliability, and future impact of the work |
 
 ---
 
-## Output Format
+## Pre-Submission Quality Audit Checklist
 
-When generating paper content, ALWAYS output in LaTeX format unless the user explicitly
-requests otherwise. Use the venue-appropriate document class:
+Run through this master checklist before finalizing any scientific manuscript:
 
-```latex
-% IEEE
-\documentclass[conference]{IEEEtran}
+### 1. Structural Completeness
+- [ ] **Title:** Reflects core intervention, context, and methodology without marketing buzzwords.
+- [ ] **Abstract:** Follows the 5-step process (Problem $\rightarrow$ Objective $\rightarrow$ Method $\rightarrow$ Results $\rightarrow$ Implication), between 150–250 words, zero citations.
+- [ ] **Introduction:** Follows the 6-part framework (Topic Intro $\rightarrow$ Background $\rightarrow$ Gap $\rightarrow$ Objectives (i)/(ii) $\rightarrow$ Methodology & Metrics $\rightarrow$ Outline).
+- [ ] **Related Work:** Organized by theme, ends with a comparative gap synthesis.
+- [ ] **Methodology:** Includes selection criteria, tool mechanics, dedicated statistical methods paragraph, and ethical considerations.
+- [ ] **Results:** Follows the 1-to-1 correspondence rule with Methods; free of speculative commentary.
+- [ ] **Discussion:** Evaluates results against prior literature and includes an honest limitations section.
+- [ ] **Conclusion:** Follows the 5-step process; explicitly addresses each Research Question; does not copy the abstract verbatim.
+- [ ] **References:** 100% verified for metadata accuracy; DOIs included.
 
-% ACM
-\documentclass[sigconf]{acmart}
-
-% Springer LNCS
-\documentclass[runningheads]{llncs}
-```
-
-Include appropriate packages at the top:
-```latex
-\usepackage{amsmath,amssymb}
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{xcolor}
-```
+### 2. Tone & Academic Rigor (⚠️ CRITICAL)
+- [ ] Zero instances of forbidden strong claims ("proves", "clearly shows", "superior", "guarantees", "novel").
+- [ ] All comparative claims bounded by "under the evaluated conditions" or "on the tested benchmarks".
+- [ ] Hedging language applied to all interpretive assertions (`suggests`, `indicates`, `is consistent with`).
+- [ ] Baseline advantages transparently acknowledged.

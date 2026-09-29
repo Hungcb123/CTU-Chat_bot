@@ -1,0 +1,1 @@
+1 (Fig. 1) - In LaTeX you may insert your alternative texts into your manuscript using the \verb |\Description | command in a \verb |figure| environment

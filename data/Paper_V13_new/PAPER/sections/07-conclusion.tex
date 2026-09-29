@@ -1,0 +1,8 @@
+% ============================================================
+% 07-conclusion.tex — V13 Conclusion (condensed, filled)
+% ============================================================
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+This paper presented \system{}, a supervisor-routed multi-agent RAG framework for statutory university counseling. Evaluated against matched single-agent baselines across 200 queries, \system{} achieved an 8.0\,pp higher E2E Success point estimate (81.0\% vs.\ 73.0\%) and 41.4\% fewer input tokens alongside 26.1\% fewer total tokens, with an identified latency trade-off. Component ablations confirmed that specialist policies ($-10.0$\,pp E2E) and heterogeneous evidence paths ($-12.3$\,pp Source Recall) drive core reliability, while deterministic arithmetic eliminates calculation hallucination. Under semantic-neighbor expansion to 51 tools, scoped specialist gating maintained an endpoint execution advantage (+9.3\,pp over Top-10, +4.7\,pp over Full Single-Agent). Future work includes parallel speculative dispatch to reduce routing latency, bilingual extensions, and live student-advisory trials.
+
