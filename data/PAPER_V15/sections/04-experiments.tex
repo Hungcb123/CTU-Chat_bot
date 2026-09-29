@@ -31,15 +31,19 @@ Five ablations each remove one component from Full CTU-Chat ($N{=}100$ queries p
 \textbf{S2-A5:} No Route Repair (raw supervisor output used directly).
 
 \paragraph{Scenario 3 --- Tool Ambiguity (RQ3):}
-Fifty fixed cases are evaluated while 40 semantic-neighbor tools expand registries to 11, 31, and 51 tools. Four configurations are compared: Full-Registry Single Agent, Global Top-10 Single Agent, Routed Generic, and Routed Specialist. Each case uses 3 counterbalanced tool-order blocks, yielding $50{\times}4{\times}3{\times}3{=}1{,}800$ decisions across counterbalanced blocks.
+Fifty fixed cases are evaluated while 40 semantic-neighbor tools expand registries to 11, 31, and 51 tools. Four configurations are compared: Full-Registry Single Agent, Global Top-10 Single Agent, Routed Generic, and Routed Specialist. Each case uses 3 counterbalanced tool-order blocks, yielding $50 \times 4 \times 3 \times 3 = 1{,}800$ decisions across counterbalanced blocks.
 
 %------------------------------------------------
 \subsection{Evaluation Metrics}
 \label{sec:metrics}
 
-Metrics span four groups. \emph{Final-answer quality:} Required-Fact Coverage (continuous proportion of reference facts matched via substring containment in generated response), Answer Correctness, Answer Relevancy, and Faithfulness (Ragas~\cite{es2023ragas}). \emph{Evidence quality:} Source Recall, Source AP, Context Recall, Context Precision. \emph{Execution reliability:} Tool Invocations per Query, Tool Selection Accuracy, Argument EM/Contract Match, Result Accuracy, and route repair rate. \emph{Operational cost:} input/output tokens, LLM call counts, and wall-clock latency. Source Recall and Source AP serve as controlled retrieval diagnostics, identical by design across Scenario~1 configurations.
+Reported metrics span four evaluation dimensions:
+(1)~\emph{Final-answer quality:} Required-Fact Coverage ($\text{FactCov}$, continuous proportion of reference facts matched via substring containment in generated responses) and Automated Fact Pass Rate ($\text{Pass}_{\ge 50\%}$).
+(2)~\emph{Evidence retrieval quality:} Source Recall ($\text{Src.R}$) and Source AP ($\text{Src.AP}$) serve as controlled retrieval diagnostics across Scenario~1 configurations. For standalone retrieval evaluation (Table~\ref{tab:retrieval_evaluation}), standard IR metrics include $\text{Hit}@k$ (proportion of queries with at least one gold document in the top-$k$ retrieved chunks), Precision@5 ($\text{P}@5$), Recall@5 ($\text{R}@5$), and Mean Reciprocal Rank ($\text{MRR}@10$).
+(3)~\emph{Execution reliability:} Tool Invocations per Query, Tool Selection Accuracy, Tool End-to-End Success ($\text{E2E}$), and route repair rate.
+(4)~\emph{Operational cost:} Specialist input/output tokens and wall-clock latency.
 
-\textbf{Primary Evaluation Metrics.} In Scenarios~1 and 2, the primary evaluation metric is the \emph{Automated Fact Pass Rate} ($\text{Pass}_{\ge 50\%}$), defined programmatically as the proportion of responses where at least 50\% of predefined required fact phrases are matched via automated substring containment ($\text{FactCov} \ge 0.50$), complemented by continuous Fact Coverage. Since this lexical metric measures surface phrase occurrence rather than semantic or arithmetic accuracy, it functions as a surface-grounding proxy. To address this limitation, it is complemented by independent deterministic evaluations: in Scenario~3 by \emph{Tool E2E Success} (correct tool selection, valid parameters, and error-free execution), and on the arithmetic subset ($N{=}9$) by numeric exact-match auditing against official bursar schedules.
+\textbf{Primary Evaluation Metrics.} In Scenarios~1 and 2, the primary evaluation metric is the \emph{Automated Fact Pass Rate} ($\text{Pass}_{\ge 50\%}$), defined programmatically as the proportion of responses where at least 50\% of predefined required fact phrases are matched via automated substring containment ($\text{FactCov} \ge 0.50$), complemented by continuous Fact Coverage. Since this lexical metric measures surface phrase occurrence rather than semantic or arithmetic accuracy, it functions as a surface-grounding proxy. To address this limitation, it is complemented in Scenario~3 by deterministic \emph{Tool E2E Success} (correct tool selection, valid parameters, and error-free execution).
 
 %------------------------------------------------
 \subsection{Statistical Protocol and Measurement Scope}

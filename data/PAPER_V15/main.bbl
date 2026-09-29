@@ -15,13 +15,6 @@ Edge, D., Trinh, H., Cheng, N., Bradley, J., Chao, A., Mody, A., Truitt, S.,
   {RAG} approach to query-focused summarization. arXiv preprint
   arXiv:2404.16130  (2024)
 
-\bibitem{es2023ragas}
-Es, S., James, J., Espinosa-Anke, L., Schockaert, S.: {RAGAS}: Automated
-  evaluation of retrieval augmented generation. In: Proceedings of the 18th
-  Conference of the European Chapter of the Association for Computational
-  Linguistics: System Demonstrations. pp. 150--158 (2024).
-  \doi{10.18653/v1/2024.eacl-demo.16}
-
 \bibitem{gao2023rag_survey}
 Gao, Y., Xiong, Y., Gao, X., Jia, K., Pan, J., Bi, Y., Dai, Y., Sun, J., Wang,
   Q., Wang, H.: Retrieval-augmented generation for large language models: A
