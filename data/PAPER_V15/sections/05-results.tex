@@ -1,5 +1,5 @@
 % ============================================================
-% 05-results.tex — V13 Results (condensed)
+% 05-results.tex — V15 Results (condensed)
 % ============================================================
 \section{Results}
 \label{sec:results}
@@ -106,9 +106,9 @@ Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 1
 \end{tabular}}
 \end{table}
 
-As the registry scales from 11 to 51 tools, the Full-Registry Single Agent's E2E success rate drops from 86.0\% to 83.3\%, while its input tokens increase by 124\%. The Global Top-10 changes from 83.3\% to 78.7\% E2E, alongside a Gold Recall change from 100.0\% to 96.0\%. The Routed Specialist records 88.0\% E2E at 51 tools with 9.8 visible tools. At the 51-tool endpoint, Routed Specialist has a +9.3\,pp E2E difference over Top-10 Single Agent (95\% CI $[+2.0, +17.3]$\,pp) and a +4.7\,pp point-estimate difference over Full-Registry Single Agent (95\% CI $[-1.3, +11.3]$\,pp) with 52.4\% fewer input tokens (1{,}770 vs.\ 3{,}722). The relative difference in performance degradation (Specialist vs.\ Top-10) is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp).
+As the registry scales from 11 to 51 tools, the Full-Registry Single Agent's E2E success rate drops from 86.0\% to 83.3\%, while its input tokens increase by 124\%. The Global Top-10 changes from 83.3\% to 78.7\% E2E, alongside a Gold Recall change from 100.0\% to 96.0\%. The Routed Specialist records 88.0\% E2E at 51 tools with 9.8 visible tools. At the 51-tool scale, Routed Specialist has a +9.3\,pp E2E difference over Top-10 Single Agent (95\% CI $[+2.0, +17.3]$\,pp) and a +4.7\,pp point-estimate difference over Full-Registry Single Agent (95\% CI $[-1.3, +11.3]$\,pp) with 52.4\% fewer input tokens (1{,}770 vs.\ 3{,}722). The relative difference in performance degradation (Specialist vs.\ Top-10) is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp).
 
-Across 1,800 primary decisions, Routed Specialist mean decision latency ranges from $2{,}091$ to $2{,}116$\,ms as registries expand from 11 to 51 tools; mean supervisor routing takes about $950$\,ms. Full-Registry Single Agent latency rises from $1{,}098$ to $1{,}272$\,ms while its input tokens increase from $1{,}663$ to $3{,}722$; Routed Specialist input tokens range from $1{,}441$ to $1{,}770$.
+Across 1,800 primary decisions, Routed Specialist mean decision latency ranges from $1{,}983$ to $2{,}021$\,ms as registries expand from 11 to 51 tools; mean supervisor routing takes about $950$\,ms. Full-Registry Single Agent latency rises from $1{,}098$ to $1{,}289$\,ms while its input tokens increase from $1{,}663$ to $3{,}722$; Routed Specialist input tokens range from $1{,}441$ to $1{,}830$.
 
 %------------------------------------------------
 \subsection{Supporting Retrieval Validation}
