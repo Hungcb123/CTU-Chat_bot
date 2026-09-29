@@ -39,7 +39,7 @@ Fifty fixed cases are evaluated while 40 semantic-neighbor tools expand registri
 
 Reported metrics span four evaluation dimensions:
 (1)~\emph{Final-answer quality:} Required-Fact Coverage ($\text{FactCov}$, continuous proportion of reference facts matched via substring containment in generated responses) and Automated Fact Pass Rate ($\text{Pass}_{\ge 50\%}$).
-(2)~\emph{Evidence retrieval quality:} Source Recall ($\text{Src.R}$) and Source AP ($\text{Src.AP}$) serve as controlled retrieval diagnostics across Scenario~1 configurations. For standalone retrieval evaluation (Table~\ref{tab:retrieval_evaluation}), standard IR metrics include $\text{Hit}@k$ (proportion of queries with at least one gold document in the top-$k$ retrieved chunks), Precision@5 ($\text{P}@5$), Recall@5 ($\text{R}@5$), and Mean Reciprocal Rank ($\text{MRR}@10$).
+(2)~\emph{Evidence retrieval:} Source Recall ($\text{Src.R}$) and Source AP ($\text{Src.AP}$) assess Scenario~1. Table~\ref{tab:retrieval_evaluation} ranks unique source filenames after collapsing repeated chunks. Per query, $\text{Hit}@k$: any gold in top $k$; $\text{P}@5$: top-five gold count divided by five; $\text{R}@5$: that count divided by gold count (1 if none); $\text{MRR}@10$: reciprocal first gold rank within ten (0 if absent). Means are over 100 queries.
 (3)~\emph{Execution reliability:} Tool Invocations per Query, Tool Selection Accuracy, Tool End-to-End Success ($\text{E2E}$), and route repair rate.
 (4)~\emph{Operational cost:} Specialist input/output tokens and wall-clock latency.
 

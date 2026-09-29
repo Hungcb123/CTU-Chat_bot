@@ -114,7 +114,7 @@ Across 1,800 primary decisions, Routed Specialist latency ranges from $1{,}983$ 
 \subsection{Supporting Retrieval Validation}
 \label{sec:retrieval_results}
 
-Table~\ref{tab:retrieval_evaluation} presents a standalone offline evaluation of the multi-source retrieval pipeline across progressive component stacking ($N{=}100$), isolating evidence retrieval performance from downstream multi-agent generation and routing.
+Table~\ref{tab:retrieval_evaluation} presents a standalone offline evaluation of retrieval ($N{=}100$), isolating evidence retrieval performance from downstream multi-agent generation and routing. E4 cross-encoder reranks Hybrid RRF candidates; E5 reranks governed, hybrid, and BM25 candidates, then merges graph evidence under quotas.
 
 \begin{table}[!htbp]
 \centering
