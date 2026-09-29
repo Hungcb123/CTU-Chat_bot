@@ -8,7 +8,7 @@
 \subsection{Scenario 1 --- Architecture-Level Comparison}
 \label{sec:s1_results}
 
-Table~\ref{tab:arch_comparison} compares the three configurations on the 100-query held-out benchmark. Because pre-generation evidence retrieval is held fixed across configurations, Source Recall (78.6\%) and Source AP (70.8\%) are identical across all three architectures. The observed differences in final answer quality and operational cost may be associated with the combined orchestration changes described in Section~\ref{sec:exp_setup}.
+Table~\ref{tab:arch_comparison} compares three arms on the 100-query held-out set. Shared pre-generation retrieval fixes Source Recall (78.6\%) and Source AP (70.8\%) across arms; answer and cost differences reflect their combined orchestration changes.
 
 \begin{table}[!htbp]
 \centering
@@ -28,13 +28,13 @@ Routed Gen.    & 66.0 & 54.2 & 78.6 & 70.8 & 0.31 & \textbf{3473} & 1415 & 8921 
 
 \textbf{Pairwise bootstrap analysis} (10,000 resamples):
 (1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves a 10.0\,pp higher $\text{Pass}_{\ge 50\%}$ point estimate (76.0\% vs.\ 66.0\%, paired 95\%\,bootstrap CI $[+2.0, +19.0]$\,pp; exact McNemar $p{=}0.0414$), alongside higher Fact Coverage ($\Delta{=}+3.58$\,pp, CI $[-1.2, +8.5]$\,pp) and 41.4\% fewer specialist input tokens, under differing measurement boundaries (10{,}652\,ms end-to-end pipeline vs.\ 5{,}159\,ms post-retrieval generation).
-(2)~CTU-Chat vs.\ Routed Generic: specialist policies raise Fact Coverage by $+6.85$\,pp (CI $[+0.7, +13.0]$\,pp, $p{<}0.05$).
-(3)~Routed Generic vs.\ Single Agent: both yield $66.0\%$ pass rate, but Routed Generic records lower Fact Coverage ($54.2\%$ vs.\ $57.5\%$). The Single Agent suffers prompt interference from all 11 tool schemas ($0.41$ tools/query), while Routed Generic restricts visibility but lacks domain-specific reasoning directives---demonstrating that tool scoping and specialist prompting must operate conjointly.
+(2)~CTU-Chat vs.\ Routed Generic: CTU-Chat has $+6.85$\,pp higher Fact Coverage (CI $[+0.7, +13.0]$\,pp, $p{<}0.05$).
+(3)~Routed Generic and Single Agent both pass $66.0\%$, with Fact Coverage of $54.2\%$ and $57.5\%$, respectively. The Single Agent invokes more tools ($0.41$ per query); prompt interference was not measured.
 
 On the 20 cross-domain queries, \system{} achieves an 80.0\% pass rate (vs.\ 70.0\% Single, 65.0\% Generic). Evaluating sensitivity across thresholds, \system{} demonstrates a higher automated pass rate at the baseline 50\% fact-coverage threshold (unadjusted exact McNemar $p{=}0.0414$). This margin narrows at 60\% (54.0\% vs.\ 50.0\%) and reverses at stricter thresholds (e.g., 27.0\% vs.\ 30.0\% at 75\%). However, the difference at 75\% remains statistically uncertain ($p{=}0.5488$, 95\% CI $[-10.0, +3.0]$\,pp), indicating neither architecture holds a definitive advantage under stringent fact-matching criteria.
 
 \textbf{Operational Trade-offs:}
-Table~\ref{tab:arch_comparison} reveals accuracy--efficiency trade-offs. \system{} achieves the highest reliability ($\text{Pass}_{.50} = 76.0\%$) with $0.28$ tools/query, but its end-to-end pipeline latency ($10{,}652$\,ms, including routing and contract verification) and Single Agent post-retrieval timing ($5{,}159$\,ms) span different boundaries, precluding direct speed comparison. Within multi-agent variants, specialist prompts add $+1{,}731$\,ms and $+677$ output tokens over generic workers for domain-tailored reasoning. Specialist scoping reduces recorded input tokens ($3{,}690$ vs.\ $6{,}296$), offset by ${\sim}650$ upstream routing tokens per query. Single-agent designs suit single-domain FAQ workflows with small tool pools; \system{} is preferable where heterogeneous evidence and deterministic arithmetic carry administrative consequences.
+Table~\ref{tab:arch_comparison} shows \system{} has the highest automated pass estimate and fewest tool calls per query. Latencies span different measurement boundaries, precluding a direct speed comparison. Among multi-agent variants, \system{} records $1{,}731$\,ms and $677$ output tokens more than Routed Generic. Its specialist uses $3{,}690$ input tokens versus $6{,}296$ for Single Agent, plus an estimated ${\sim}650$ routing tokens.
 
 %------------------------------------------------
 \subsection{Scenario 2 --- Architectural Ablation}
@@ -71,7 +71,7 @@ No Route Rep.    & \textbf{68.4} & \textbf{78.6} & 78.8 & \multicolumn{2}{c}{65.
 \end{tabular}}
 \end{table}
 
-The two largest observed degradations occur in \emph{No Specialist Policy} ($\Delta\text{Pass}_{.50} = -10.0$\,pp, 95\% CI $[-19.0, -1.0]$\,pp; $\Delta\text{Fact} = -6.85$\,pp, CI $[-13.0, -0.7]$\,pp) and \emph{Uniform Text-RAG Baseline} ($\Delta\text{Pass}_{.50} = -9.0$\,pp, CI $[-15.0, -4.0]$\,pp; $\Delta\text{Src.R} = -12.3$\,pp, CI $[-16.5, -8.3]$\,pp). Removing tool isolation causes no change in point estimate ($\Delta\text{Pass}_{.50} = 0.0$\,pp, CI $[-6.0, +6.0]$\,pp) while expanding input tokens by $+1{,}270$. Disabling route repair yields $\Delta\text{Pass}_{.50} = -2.0$\,pp (CI $[-7.0, +3.0]$\,pp), disproportionately harming cross-domain queries ($-15.0$\,pp, dropping from 80.0\% to 65.0\%). Disabling deterministic calculation produces $\Delta\text{Pass}_{.50} = -4.0$\,pp (CI $[-9.0, 0.0]$\,pp) across the benchmark; on the arithmetic tuition subset ($N{=}9$), exact-match answers drop from 8/9 to 3/9 ($-55.6$\,pp exact match pass) due to unconstrained arithmetic hallucination. Collectively, the ablations distinguish two functional roles. First, specialist policies, heterogeneous evidence, and deterministic calculators drive accuracy at the 11-tool scale. Second, tool isolation (S2-A2) acts primarily as an efficiency mechanism ($+1{,}270$ input tokens, $\Delta\text{Pass}_{.50} = 0.0$\,pp); its contribution to accuracy is further examined at larger registry scales in Scenario~3 (Section~\ref{sec:s3_results}). Query family breakdown in Panel~B reveals distinct performance profiles across domain modalities: while cross-domain queries reach $80.0\%$ pass rate, graph-based curriculum queries record $63.2\%$. This gap reflects the structural exactness demanded by curriculum queries, which require multi-property credit aggregations across degree blocks (general, core, elective, and prerequisite chains), where omitting a single credit constraint leads to automated lexical failure. In contrast, cross-domain queries benefit directly from the route-repair mechanism, which resolves domain dispatch conflicts and maintains evidence coverage across disparate policy documents (evidenced by the $15.0$\,pp drop from $80.0\%$ to $65.0\%$ when route repair is disabled).
+The largest pass-rate decreases occur without Specialist Policy ($-10.0$\,pp, 95\% CI $[-19.0, -1.0]$\,pp) and with Uniform Text-RAG ($-9.0$\,pp, CI $[-15.0, -4.0]$\,pp). The former lowers Fact Coverage by $6.85$\,pp (CI $[-13.0, -0.7]$\,pp); the latter lowers Source Recall by $12.3$\,pp (CI $[-16.5, -8.3]$\,pp). Removing tool isolation leaves the pass estimate unchanged (CI $[-6.0, +6.0]$\,pp) but adds $1{,}270$ input tokens. Without route repair, overall pass changes by $-2.0$\,pp (CI $[-7.0, +3.0]$\,pp), while cross-domain pass falls from $80.0\%$ to $65.0\%$. Without deterministic calculation, overall pass changes by $-4.0$\,pp (CI $[-9.0, 0.0]$\,pp); numeric exact matches on nine tuition queries fall from 8/9 to 3/9. Panel~B shows $63.2\%$ pass on graph queries versus $80.0\%$ on cross-domain queries. Graph queries can require credit aggregation across degree blocks; omitting one required fact may lower this substring-based score.
 
 %------------------------------------------------
 \subsection{Scenario 3 --- Tool Ambiguity Stress Test}
@@ -108,7 +108,7 @@ Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 1
 
 As the registry scales from 11 to 51 tools, the Full-Registry Single Agent's E2E success rate drops from 86.0\% to 83.3\%, while its input tokens increase by 124\%. The Global Top-10 changes from 83.3\% to 78.7\% E2E, alongside a Gold Recall change from 100.0\% to 96.0\%. The Routed Specialist records 88.0\% E2E at 51 tools with 9.8 visible tools. At the 51-tool endpoint, Routed Specialist has a +9.3\,pp E2E difference over Top-10 Single Agent (95\% CI $[+2.0, +17.3]$\,pp) and a +4.7\,pp point-estimate difference over Full-Registry Single Agent (95\% CI $[-1.3, +11.3]$\,pp) with 52.4\% fewer input tokens (1{,}770 vs.\ 3{,}722). The relative difference in performance degradation (Specialist vs.\ Top-10) is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp).
 
-Stage-level timing across 1,800 decisions shows that Routed Specialist maintains consistent latency ($2{,}091$--$2{,}116$\,ms) as registries expand from 11 to 51 tools, with supervisor routing contributing a fixed ${\sim}950$\,ms overhead. In contrast, Full-Registry Single Agent gating latency grows from $1{,}098$\,ms to $1{,}272$\,ms as prompt schema tokens scale from $1{,}663$ to $3{,}722$, whereas Routed Specialist bounds schema tokens between $1{,}441$ and $1{,}770$.
+Across 1,800 primary decisions, Routed Specialist mean decision latency ranges from $2{,}091$ to $2{,}116$\,ms as registries expand from 11 to 51 tools; mean supervisor routing takes about $950$\,ms. Full-Registry Single Agent latency rises from $1{,}098$ to $1{,}272$\,ms while its input tokens increase from $1{,}663$ to $3{,}722$; Routed Specialist input tokens range from $1{,}441$ to $1{,}770$.
 
 %------------------------------------------------
 \subsection{Supporting Retrieval Validation}
@@ -140,7 +140,7 @@ BM25 outperforms dense search on Hit@1 (0.530 vs.\ 0.460), while Hybrid RRF bala
 \subsection{Failure Analysis}
 \label{sec:failure_analysis}
 
-Table~\ref{tab:failures} categorizes error modes across the 58 failure instances ($<50\%$ Fact Coverage) in Scenario~1 (34 for Single Agent, 24 for CTU-Chat), established through manual qualitative review of individual execution traces and intermediate outputs.
+Table~\ref{tab:failures} categorizes errors in 58 failed query--configuration cases with Fact Coverage below 50\% (34 for Single Agent and 24 for CTU-Chat). Labels were assigned through manual review of execution traces and intermediate outputs; categories are non-mutually exclusive.
 
 \begin{table}[!htbp]
 \centering
@@ -152,7 +152,7 @@ Table~\ref{tab:failures} categorizes error modes across the 58 failure instances
 \textbf{Category} & \textbf{Failure Mode} & \textbf{S1-A} & \textbf{S1-C} & \textbf{Category} & \textbf{Failure Mode} & \textbf{S1-A} & \textbf{S1-C} \\
 \midrule
 Routing   & Corrected misroute     & N/A & 1 & Tool       & Invalid arguments     & 4 & 1 \\
-          & Unrecoverable misroute & N/A & 3 &            & Wrong-family call     & 3 & 1 \\
+          & Repair misroute         & N/A & 1 &            & Wrong-family call     & 3 & 1 \\
 Retrieval & Gold source absent     & 3   & 3 &            & Unnecessary call      & 5 & 1 \\
           & Cross-domain omission  & 3   & 2 & Generation & Result ignored        & 2 & 1 \\
           & Reranker demoted       & 7   & 6 &            & Partial fact omission & 22 & 14 \\
@@ -162,7 +162,7 @@ Retrieval & Gold source absent     & 3   & 3 &            & Unnecessary call    
 \end{tabular}}
 \end{table}
 
-CTU-Chat reduces overall failure instances from 34 to 24. Tool errors drop from 12 in Single Agent (4 invalid arguments, 3 wrong-family calls, 5 unnecessary invocations) to 3 in CTU-Chat due to scoped registries. Retrieval omissions (3 gold absent, 7 vs.\ 6 partial demotions) affect both configurations similarly because pre-generation retrieval was matched. In generation, partial fact omissions under complete retrieval ($sr=1.0$) decrease from 22 in Single Agent to 14 in CTU-Chat, reflecting more structured synthesis in specialist prompt contracts.
+The 34 Single Agent and 24 CTU-Chat failed query cases include 12 versus 3 tool errors. Retrieval errors are similar under shared evidence: 3 absent gold sources in each arm and 7 versus 6 reranker demotions. With complete retrieval ($sr=1.0$), partial fact omissions number 22 versus 14. These counts do not isolate effects of tool scoping or specialist prompts.
 
-Trace-level analysis of the three unrecoverable routing failures reveals three modes: (1)~\emph{Repair-induced misroute} (\texttt{HOUT-MHOP-ACAD-04}): rule-based repair overrode a correct \texttt{general} route to \texttt{academic} on curriculum keywords, causing capability refusal. (2)~\emph{Single-owner generation gap} (\texttt{HOUT-XDOM-01}): all gold sources were retrieved ($sr{=}1.0$), but the specialist's scoped prompt refused generating the financial component. (3)~\emph{Single-owner retrieval gap} (\texttt{HOUT-XDOM-16}): the \texttt{scholarship} specialist missed the target document ($sr{=}0.5$). All three illustrate single-owner dispatch limitations for multi-intent queries, differing in where the pipeline breaks: route repair, generation, and retrieval.
+Three traces illustrate distinct stages of failure. For the multi-hop query \texttt{HOUT-MHOP-}\allowbreak\texttt{ACAD-04}, repair changed the correct \texttt{general} route to \texttt{academic}; that worker refused the request. For \texttt{HOUT-XDOM-}\allowbreak\texttt{01}, all gold sources were retrieved ($sr{=}1.0$), but the worker omitted the financial answer. For \texttt{HOUT-XDOM-}\allowbreak\texttt{16}, the query reached \texttt{scholarship}, but retrieval missed the target document ($sr{=}0.5$). Only the first is a route-repair failure; both cross-domain cases fail after owner selection.
 

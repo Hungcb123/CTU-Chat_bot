@@ -4,7 +4,7 @@
 \section{Proposed Model}
 \label{sec:model}
 
-This section presents \system{}'s architecture, algorithms, and evidence-acquisition mechanisms. The design follows three principles: \emph{centralized agent coordination} (a contract-checked supervisor dispatches each query to one domain agent); \emph{heterogeneous knowledge allocation} (each information structure maps to a corresponding evidence representation); and \emph{representation-aware evidence routing} (graph-tool or intent-scoped retrieval path according to the assigned domain).
+\system{} combines three design principles: centralized coordination, heterogeneous knowledge allocation, and representation-aware evidence routing. A contract-checked supervisor assigns one specialist per query. Depending on the domain, the specialist uses graph traversal for curricula, structured lookup and calculation for fees, or retrieval for narrative policies.
 
 %------------------------------------------------
 \subsection{Overall Architecture}
@@ -16,11 +16,11 @@ Figure~\ref{fig:architecture} illustrates three coordinated tiers: (1)~the Inter
 \centering
 \includegraphics[width=0.88\textwidth]{figures/architecture.jpg}
 \Description{Diagram of the three-tier CTU-Chat system architecture. The top tier shows the interaction layer with a centralized supervisor router. The middle tier contains four domain-specialized agents: an academic graph agent connected to Neo4j, a financial agent with deterministic arithmetic tools, a scholarship agent with hybrid retrieval, and a general administrative agent. The bottom tier shows the heterogeneous knowledge storage layer comprising Neo4j graph database, PostgreSQL parent-chunk store, Qdrant vector index, and Redis session history. Solid arrows denote direct tool access and dashed arrows denote retrieval-node evidence acquisition. A contract-repair mechanism validates and may correct the supervisor's routing decision before conditional dispatch.}
-\caption{Implemented \system{} architecture. Redis history enters the graph state; the supervisor's structured decision is contract-checked before conditional dispatch. Academic queries enter the graph-enabled agent; other domains pass through intent-scoped retrieval.}
+\caption{Implemented \system{} architecture. Redis-backed history and validated query rewriting are used in live multi-turn serving; the offline benchmark uses fixed single-turn queries and bypasses these components. The supervisor's structured decision is contract-checked before conditional dispatch. Academic queries enter the graph-enabled agent; other domains pass through intent-scoped retrieval.}
 \label{fig:architecture}
 \end{figure}
 
-\system{} specializes LangGraph through typed state (\texttt{AgentState} with validated rewrite, routes, evidence, and response), an intent--owner contract that checks structured supervisor output before dispatch, conditional routing (academic queries enter the graph agent directly; others pass through retrieval), acyclic orchestration (specialists return to \texttt{END} without peer chatter), and asymmetric tool registries (scoping tools per specialist). In live deployment, \system{} maintains multi-turn session state via Redis and applies validated query rewriting. For the offline experimental evaluation in Section~\ref{sec:exp_setup}, the system is evaluated in a controlled single-turn benchmark harness with fixed queries, isolating the routing, retrieval, and tool-scoping mechanisms without query-rewriting confounds.
+\system{} uses a typed \texttt{AgentState} for rewrites, routes, evidence, and responses. An intent--owner contract checks supervisor output before conditional dispatch: academic queries enter the graph agent; other domains use intent-scoped retrieval. Specialists see only assigned tools and return to \texttt{END} without peer exchanges. The fixed-query benchmark in Section~\ref{sec:exp_setup} bypasses Redis history and query rewriting used in live multi-turn serving.
 
 %------------------------------------------------
 \subsection{Neo4j Knowledge Graph and Cypher Tools}
@@ -43,7 +43,7 @@ For fee-reduction requests, the tool \texttt{tinh\_}\allowbreak\texttt{toan\_}\a
 \subsection{Heterogeneous Knowledge Allocation and Hybrid Retrieval}
 \label{sec:hybrid_retrieval}
 
-Rather than a uniform document index, \system{} preserves relational curricula in Neo4j, accesses cohort-dependent tuition through structured lookup, and retains narrative regulations in document retrieval. Academic queries enter the graph agent directly; others enter retrieval. Financial retrieval first attempts Neo4j tuition lookup with JSON fallback; the repaired intent then selects metadata-filtered document lanes.
+\system{} stores curricula in Neo4j, accesses cohort-specific fees through structured lookup, and retrieves narrative regulations from documents. Financial requests try Neo4j tuition lookup with JSON fallback before the repaired intent selects metadata-filtered retrieval lanes.
 
 For narrative regulations and scholarship criteria, BM25 and Qdrant search 400-character child chunks; parent sections (2,800-char target, 100-char overlap) are loaded from PostgreSQL and fused via RRF: $s_{\mathrm{RRF}}(d)=\sum_{s\in\{\mathrm{bm25},\mathrm{dense}\}}(60+r_s(d))^{-1}$. The full stack pools intent-governed and unfiltered candidates, deduplicates, and reranks with \texttt{bge-reranker-v2-m3}. Scores below 0.20 are removed unless fewer than two candidates remain; graph evidence is added under fixed quotas and up to seven passages are packed for generation.
 
@@ -51,4 +51,4 @@ For narrative regulations and scholarship criteria, BM25 and Qdrant search 400-c
 \subsection{Cross-Domain Query Handling}
 \label{sec:cross_domain}
 
-To handle queries spanning multiple domains, \system{} adopts a \emph{single-owner with signal-based evidence prefetch} policy: the supervisor selects one primary owner based on dominant intent, and the retrieval layer expands evidence lanes when keyword signals indicate related domains---for example, adding academic-program or academic-regulation lanes when curriculum terms are detected, a tuition lane when fee-related terms appear, or a scholarship lane when scholarship keywords are present. Specialists do not invoke other specialists; if the query requires evidence outside the owner's scope, the signal-detected lanes prefetch it through retrieval rather than cross-specialist delegation. This design trades full cross-domain tool composability for bounded execution with targeted evidence expansion. The 20 cross-domain held-out queries directly test this mechanism.
+For cross-domain queries, \system{} uses a single-owner, signal-based evidence-prefetch policy. The supervisor selects an owner by dominant intent; keyword signals add academic-program, academic-regulation, tuition, or scholarship retrieval lanes. The owner uses this evidence without calling another specialist. This bounds execution but may leave a needed tool or source outside the owner's scope. The 20 cross-domain held-out queries test this policy.
