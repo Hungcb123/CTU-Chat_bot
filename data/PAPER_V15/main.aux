@@ -14,10 +14,10 @@
 \fi}
 \global\let\hyper@last\relax 
 \gdef\HyperFirstAtBeginDocument#1{#1}
-\providecommand\HyField@AuxAddToFields[1]{}
-\providecommand\HyField@AuxAddToCoFields[2]{}
+\providecommand*\HyPL@Entry[1]{}
 \citation{ma2023caas}
 \citation{ma2025rebot}
+\HyPL@Entry{0<</S/D>>}
 \@writefile{toc}{\contentsline {title}{CTU-Chat: Supervisor-Routed Multi-Agent RAG with Heterogeneous Knowledge Allocation for University Counseling}{1}{chapter.1}\protected@file@percent }
 \@writefile{toc}{\authcount {6}}
 \@writefile{toc}{\contentsline {author}{Tuong-Hung Cao \and Ngoc-Anh Le \and Nhu-Quynh Nguyen \and Minh-Chanh Trang \and Xuan-Phuong Chau\and Lan Phuong Phan}{1}{chapter.1}\protected@file@percent }
@@ -26,6 +26,7 @@
 \citation{qian2023limitations}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1.1}\protected@file@percent }
 \newlabel{sec:intro}{{1}{2}{Introduction}{section.1.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Central Hypothesis.}{2}{section*.2}\protected@file@percent }
 \citation{nguyen2020phobert}
 \citation{robertson2009bm25}
 \citation{karpukhin2020dpr,lewis2020rag}
@@ -48,8 +49,8 @@
 \newlabel{sec:kg_graphrag}{{2.2}{3}{Knowledge Graphs and GraphRAG}{subsection.1.2.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Agentic RAG and Multi-Agent Orchestration}{3}{subsection.1.2.3}\protected@file@percent }
 \newlabel{sec:agentic_multiagent}{{2.3}{3}{Agentic RAG and Multi-Agent Orchestration}{subsection.1.2.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Educational Counseling Systems}{3}{subsection.1.2.4}\protected@file@percent }
-\newlabel{sec:educational_counseling}{{2.4}{3}{Educational Counseling Systems}{subsection.1.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Educational Counseling Systems}{4}{subsection.1.2.4}\protected@file@percent }
+\newlabel{sec:educational_counseling}{{2.4}{4}{Educational Counseling Systems}{subsection.1.2.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Research Gaps}{4}{subsection.1.2.5}\protected@file@percent }
 \newlabel{sec:gaps}{{2.5}{4}{Research Gaps}{subsection.1.2.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Proposed Model}{4}{section.1.3}\protected@file@percent }
@@ -70,12 +71,12 @@
 \newlabel{sec:exp_setup}{{4}{6}{Experimental Setup}{section.1.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset and Annotation}{6}{subsection.1.4.1}\protected@file@percent }
 \newlabel{sec:dataset}{{4.1}{6}{Dataset and Annotation}{subsection.1.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baselines and Configurations}{6}{subsection.1.4.2}\protected@file@percent }
-\newlabel{sec:baselines}{{4.2}{6}{Baselines and Configurations}{subsection.1.4.2}{}}
 \citation{es2023ragas}
-\@writefile{toc}{\contentsline {paragraph}{Scenario 1 --- Architecture Comparison (RQ1):}{7}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Scenario 2 --- Ablation (RQ2):}{7}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Scenario 3 --- Tool Ambiguity (RQ3):}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baselines and Configurations}{7}{subsection.1.4.2}\protected@file@percent }
+\newlabel{sec:baselines}{{4.2}{7}{Baselines and Configurations}{subsection.1.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scenario 1 --- Architecture Comparison (RQ1):}{7}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scenario 2 --- Ablation (RQ2):}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scenario 3 --- Tool Ambiguity (RQ3):}{7}{section*.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{7}{subsection.1.4.3}\protected@file@percent }
 \newlabel{sec:metrics}{{4.3}{7}{Evaluation Metrics}{subsection.1.4.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Statistical Protocol and Measurement Scope}{8}{subsection.1.4.4}\protected@file@percent }
@@ -86,14 +87,14 @@
 \newlabel{sec:results}{{5}{8}{Results}{section.1.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Scenario 1 --- Architecture-Level Comparison}{8}{subsection.1.5.1}\protected@file@percent }
 \newlabel{sec:s1_results}{{5.1}{8}{Scenario 1 --- Architecture-Level Comparison}{subsection.1.5.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Scenario\nobreakspace  {}1: Architecture-level comparison ($N=100$). $\text  {Pass}_{.50}$ = Automated Fact Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens. Bold = best reliability / lowest cost.}}{8}{table.1.1}\protected@file@percent }
-\newlabel{tab:arch_comparison}{{1}{8}{Scenario~1: Architecture-level comparison ($N=100$). $\text {Pass}_{.50}$ = Automated Fact Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens. Bold = best reliability / lowest cost}{table.1.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Scenario\nobreakspace  {}1: Architecture-level comparison ($N=100$). $\text  {Pass}_{.50}$ = Automated Fact Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens; estimated routing input ($\sim $650 tokens/query) is excluded. Bold = best reliability / lowest cost.}}{9}{table.1.1}\protected@file@percent }
+\newlabel{tab:arch_comparison}{{1}{9}{Scenario~1: Architecture-level comparison ($N=100$). $\text {Pass}_{.50}$ = Automated Fact Pass Rate ($\ge 50\%$ required facts). Tools/Q = mean tool invocations ($\downarrow $). In/Out Tok = specialist agent tokens; estimated routing input ($\sim $650 tokens/query) is excluded. Bold = best reliability / lowest cost}{table.1.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Scenario 2 --- Architectural Ablation}{9}{subsection.1.5.2}\protected@file@percent }
 \newlabel{sec:s2_results}{{5.2}{9}{Scenario 2 --- Architectural Ablation}{subsection.1.5.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scenario\nobreakspace  {}2: Architectural ablation results ($N=100$). Panel\nobreakspace  {}A reports overall benchmark differences ($\Delta $ relative to Full \textsc  {CTU-Chat}{}). Panel\nobreakspace  {}B reports Automated Fact Pass Rate ($\text  {Pass}_{\ge 50\%}$, \%) across query families.}}{9}{table.1.2}\protected@file@percent }
-\newlabel{tab:ablation}{{2}{9}{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta $ relative to Full \system {}). Panel~B reports Automated Fact Pass Rate ($\text {Pass}_{\ge 50\%}$, \%) across query families}{table.1.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Scenario 3 --- Tool Ambiguity Stress Test}{10}{subsection.1.5.3}\protected@file@percent }
-\newlabel{sec:s3_results}{{5.3}{10}{Scenario 3 --- Tool Ambiguity Stress Test}{subsection.1.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Scenario 3 --- Tool Ambiguity Stress Test}{9}{subsection.1.5.3}\protected@file@percent }
+\newlabel{sec:s3_results}{{5.3}{9}{Scenario 3 --- Tool Ambiguity Stress Test}{subsection.1.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scenario\nobreakspace  {}2: Architectural ablation results ($N=100$). Panel\nobreakspace  {}A reports overall benchmark differences ($\Delta $ relative to Full \textsc  {CTU-Chat}{}). Panel\nobreakspace  {}B reports Automated Fact Pass Rate ($\text  {Pass}_{\ge 50\%}$, \%) across query families.}}{10}{table.1.2}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{10}{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta $ relative to Full \system {}). Panel~B reports Automated Fact Pass Rate ($\text {Pass}_{\ge 50\%}$, \%) across query families}{table.1.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Scenario\nobreakspace  {}3: Semantic-neighbor tool ambiguity ($N=50$, 3 counterbalanced tool-order blocks).}}{10}{table.1.3}\protected@file@percent }
 \newlabel{tab:tool_ambiguity}{{3}{10}{Scenario~3: Semantic-neighbor tool ambiguity ($N=50$, 3 counterbalanced tool-order blocks)}{table.1.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Supporting Retrieval Validation}{11}{subsection.1.5.4}\protected@file@percent }
@@ -102,29 +103,29 @@
 \newlabel{tab:retrieval_evaluation}{{4}{11}{Supporting evaluation: Progressive retrieval component stacking ($N=100$)}{table.1.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Failure Analysis}{11}{subsection.1.5.5}\protected@file@percent }
 \newlabel{sec:failure_analysis}{{5.5}{11}{Failure Analysis}{subsection.1.5.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes.}}{11}{table.1.5}\protected@file@percent }
-\newlabel{tab:failures}{{5}{11}{Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes}{table.1.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes.}}{12}{table.1.5}\protected@file@percent }
+\newlabel{tab:failures}{{5}{12}{Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes}{table.1.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{12}{section.1.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{12}{Discussion}{section.1.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Architectural Findings and Operational Trade-offs}{12}{subsection.1.6.1}\protected@file@percent }
 \citation{yao2023react}
 \citation{schick2023toolformer}
 \citation{wu2023autogen}
 \citation{jeong2024adaptiverag}
 \citation{edge2024graphrag}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{12}{section.1.6}\protected@file@percent }
-\newlabel{sec:discussion}{{6}{12}{Discussion}{section.1.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Architectural Findings and Operational Trade-offs}{12}{subsection.1.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Relation to Prior Work}{12}{subsection.1.6.2}\protected@file@percent }
 \bibstyle{splncs04}
 \bibdata{references}
 \bibcite{cormack2009rrf}{1}
-\bibcite{edge2024graphrag}{2}
-\bibcite{es2023ragas}{3}
-\bibcite{gao2023rag_survey}{4}
-\bibcite{jeong2024adaptiverag}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Relation to Prior Work}{13}{subsection.1.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Threats to Validity}{13}{subsection.1.6.3}\protected@file@percent }
 \newlabel{sec:limitations}{{6.3}{13}{Threats to Validity}{subsection.1.6.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{13}{section.1.7}\protected@file@percent }
 \newlabel{sec:conclusion}{{7}{13}{Conclusion and Future Work}{section.1.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Disclosure of Interests.}{13}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Disclosure of Interests.}{13}{section*.6}\protected@file@percent }
+\bibcite{edge2024graphrag}{2}
+\bibcite{es2023ragas}{3}
+\bibcite{gao2023rag_survey}{4}
+\bibcite{jeong2024adaptiverag}{5}
 \bibcite{karpukhin2020dpr}{6}
 \bibcite{lewis2020rag}{7}
 \bibcite{ma2025rebot}{8}
