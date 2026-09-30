@@ -1,0 +1,7 @@
+% ============================================================
+% 07-conclusion.tex — V15 Conclusion
+% ============================================================
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+We evaluated \system{}, a supervisor-routed multi-agent RAG system for university counseling, across architecture comparisons, ablations, and tool ambiguity tests. Automated Fact Pass Rate exceeds the matched Single Agent by 10.0\,pp (paired 95\% CI $[+2.0, +19.0]$\,pp; exact McNemar $p{=}0.0414$), with fewer specialist input tokens. Removing specialist policies or graph evidence lowers pass rate or Source Recall, respectively. At 51 tools, Routed Specialist records 88.0\% tool E2E Success. Deterministic calculation ablation yields an estimated $-4.0$\,pp difference in overall fact pass (95\% CI $[-9.0, 0.0]$\,pp), while scoped tool access bounds the specialist's visible registry in the 51-tool test. These findings reflect automated fact matching; live multi-turn benefits remain untested. Future work will address the $10.65$\,s pipeline latency and evaluate institutional transfer.
