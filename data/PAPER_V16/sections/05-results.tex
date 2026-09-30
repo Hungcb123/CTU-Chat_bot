@@ -1,0 +1,170 @@
+% ============================================================
+% 05-results.tex — V15 Results (condensed)
+% ============================================================
+\section{Results}
+\label{sec:results}
+
+%------------------------------------------------
+\subsection{Scenario 1 --- Architecture-Level Comparison}
+\label{sec:s1_results}
+
+Table~\ref{tab:arch_comparison} compares three arms on the 100-query held-out set. Shared pre-generation retrieval fixes Source Recall (78.6\%) and Source AP (70.8\%) across arms; answer and cost differences reflect their combined orchestration changes.
+
+\begin{table}[!htbp]
+\centering
+\caption{Scenario~1: Architecture-level comparison ($N=100$). $\text{Pass}_{.50}^{\text{Lex}}$ = Lexical Fact Pass Rate ($\ge 50\%$ required facts). $\text{Pass}_{.75}^{\text{Jdg}}$ = LLM-Judge Strict Semantic Pass Rate ($\text{AC} \ge 0.75$). $\text{Num-EM}$ = Numeric Exact Match on financial queries. Tools/Q = mean tool invocations ($\downarrow$). In/Out Tok = specialist agent tokens; estimated routing input ($\sim$650 tokens/query) is excluded. Bold = best reliability / lowest cost. Shared pre-generation retrieval fixes Source Recall (78.6\%) and Source AP (70.8\%) across arms.}
+\label{tab:arch_comparison}
+{\small\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Arch.} & \textbf{Pass$_{.50}^{\text{Lex}}$} & \textbf{Pass$_{\ge .75}^{\text{Jdg}}$} & \textbf{Num-EM} & \textbf{Fact} & \textbf{Tools/Q} & \textbf{In Tok} & \textbf{Out Tok} & \textbf{Lat.\,(ms)} \\
+\midrule
+Single Agent   & 66.0 & 33.0 & 60.0 & 57.5 & 0.41 & 6296 & 1530 & \textbf{5159} \\
+Routed Gen.    & 66.0 & 29.0 & 54.0 & 54.2 & 0.31 & \textbf{3473} & 1415 & 8921 \\
+\textbf{CTU-Chat} & \textbf{76.0} & \textbf{37.0} & \textbf{62.5} & \textbf{61.0} & \textbf{0.28} & 3690 & \textbf{2092} & 10652 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\textbf{Pairwise bootstrap analysis} (10,000 resamples):
+(1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves a 10.0\,pp higher $\text{Pass}_{\ge 50\%}^{\text{Lex}}$ estimate (76.0\% vs.\ 66.0\%, paired 95\%\,bootstrap CI $[+2.0, +19.0]$\,pp; McNemar $p{=}0.0414$), higher Fact Coverage ($\Delta{=}+3.58$\,pp, CI $[-1.2, +8.5]$\,pp), and 41.4\% fewer specialist input tokens (differing boundaries: 10{,}652\,ms end-to-end vs.\ 5{,}159\,ms post-retrieval).
+(2)~CTU-Chat vs.\ Routed Generic: CTU-Chat gains $+6.85$\,pp Fact Coverage (CI $[+0.7, +13.0]$\,pp, $p{<}0.05$). Generic and Single Agent both pass $66.0\%$ (Fact Coverage $54.2\%$ vs.\ $57.5\%$; tool calls $0.31$ vs.\ $0.41$/query).
+(3)~Cross-domain queries: \system{} passes 80.0\% (vs.\ 70.0\% Single, 65.0\% Generic).
+Evaluating threshold sensitivity reveals trade-offs: \system{}'s margin at 50\% narrows at 60\% (54.0\% vs.\ 50.0\%) and reverses at 75\% (27.0\% vs.\ 30.0\%, $p{=}0.5488$, 95\% CI $[-10.0, +3.0]$\,pp), showing neither architecture dominates at stringent lexical thresholds.
+
+\textbf{LLM-as-a-Judge and Numeric Exact Match:}
+To address lexical limitations, an independent LLM judge (Gemini 2.5 Flash Lite) and programmatic Numeric Exact Match ($\text{Num-EM}$) evaluated all 100 queries. Continuous evaluation shows comparable Mean Answer Correctness across architectures (\system{} 57.7\% vs.\ Single Agent 58.6\%, Generic 48.1\%), while Single Agent yields higher Mean Answer Relevancy (80.9\% vs.\ 77.8\% for \system{}, 66.7\% for Generic) because concise single-agent responses avoid tangential counseling details. Crucially, under strict semantic criteria ($\text{Pass}_{\ge 75\%}^{\text{Jdg}}$), \system{} outperforms Single Agent by $+4.0$\,pp (37.0\% vs.\ 33.0\%) and Generic by $+8.0$\,pp (29.0\%). On financial queries, deterministic tools achieve 62.5\% Numeric Exact Match versus 60.0\% (Single) and 54.0\% (Generic). On academic curriculum queries, specialist graph traversal achieves 63.2\% semantic pass versus 52.6\% for Single Agent ($+10.5$\,pp), showing structural evidence allocation mitigates arithmetic and curriculum hallucination.
+
+\textbf{Operational Trade-offs:}
+Table~\ref{tab:arch_comparison} shows \system{} achieves the highest pass rates and fewest tool calls per query. Multi-agent routing adds $1{,}731$\,ms and $677$ output tokens over Routed Generic, while specialist inputs ($3{,}690$ tokens) drop substantially relative to Single Agent ($6{,}296$ tokens, plus ${\sim}650$ routing tokens).
+
+%------------------------------------------------
+\subsection{Scenario 2 --- Architectural Ablation}
+\label{sec:s2_results}
+
+Table~\ref{tab:ablation} removes one mechanism at a time from Full CTU-Chat ($N{=}100$). Deltas are relative to the full system.
+
+\begin{table}[!htb]
+\centering
+\caption{Scenario~2: Architectural ablation results ($N=100$). Panel~A reports overall benchmark differences ($\Delta$ relative to Full \system{}). Panel~B reports Automated Fact Pass Rate ($\text{Pass}_{\ge 50\%}$, \%) across query families.}
+\label{tab:ablation}
+{\small\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lccccc}
+\toprule
+\multicolumn{6}{l}{\textbf{Panel A: Overall Benchmark Ablations}} \\
+\textbf{Ablated Component} & \textbf{$\Delta$Pass$_{.50}$} & \textbf{$\Delta$Fact} & \textbf{$\Delta$Src.R} & \textbf{$\Delta$Tok} & \textbf{$\Delta$Lat} \\
+\midrule
+No Spec.~Policy  & $-$10.0 & $-$6.85 & 0.0  & $-$217  & $-$1731 \\
+Full Tool Vis.   & 0.0     & +0.93   & 0.0  & +1270   & +296 \\
+Uniform Text-RAG & $-$9.0  & $-$2.18 & $-$12.3 & $-$300  & $-$1910 \\
+No Route Rep.    & $-$2.0  & $-$1.27 & 0.0  & $-$219  & $-$1610 \\
+No Determ.~Calc.$^\dagger$ & $-$4.0 & $-$0.93 & 0.0 & $-$782 & $-$4540 \\
+\midrule
+\multicolumn{6}{l}{\textbf{Panel B: Fact-Grounded Pass Rate ($\text{Pass}_{\ge 50\%}$) by Query Family}} \\
+\textbf{Configuration} & \textbf{Graph} ($n{=}19$) & \textbf{Struct-fin} ($n{=}28$) & \textbf{Narr-reg} ($n{=}33$) & \multicolumn{2}{c}{\textbf{Cross} ($n{=}20$)} \\
+\midrule
+\textbf{Full CTU-Chat} & 63.2 & \textbf{75.0} & 81.8 & \multicolumn{2}{c}{\textbf{80.0}} \\
+No Spec.~Policy  & 52.6 & 67.9 & 72.7 & \multicolumn{2}{c}{65.0} \\
+Full Tool Vis.   & \textbf{68.4} & 67.9 & \textbf{84.8} & \multicolumn{2}{c}{\textbf{80.0}} \\
+Uniform Text-RAG & 63.2 & 60.7 & 78.8 & \multicolumn{2}{c}{60.0} \\
+No Route Rep.    & \textbf{68.4} & \textbf{78.6} & 78.8 & \multicolumn{2}{c}{65.0} \\
+\bottomrule
+\multicolumn{6}{l}{\rule{0pt}{2.5ex}\footnotesize $^\dagger$Full benchmark with calculators disabled. $\Delta$Tok/Lat in tokens/ms per query.}
+\end{tabular}}
+\end{table}
+
+The largest pass-rate decreases occur without Specialist Policy ($-10.0$\,pp, 95\% CI $[-19.0, -1.0]$\,pp) and with Uniform Text-RAG ($-9.0$\,pp, CI $[-15.0, -4.0]$\,pp). The former lowers Fact Coverage by $6.85$\,pp (CI $[-13.0, -0.7]$\,pp); the latter lowers Source Recall by $12.3$\,pp (CI $[-16.5, -8.3]$\,pp). Removing tool isolation leaves the pass estimate unchanged (CI $[-6.0, +6.0]$\,pp) but adds $1{,}270$ input tokens. Without route repair, overall pass changes by $-2.0$\,pp (CI $[-7.0, +3.0]$\,pp), while cross-domain pass falls from $80.0\%$ to $65.0\%$. Without deterministic calculation, overall automated fact pass changes by $-4.0$\,pp (95\% CI $[-9.0, 0.0]$\,pp). This benchmark-wide result uses the $\text{FactCov} \ge 0.50$ threshold and does not measure numeric exact match. Panel~B shows $63.2\%$ pass on graph queries versus $80.0\%$ on cross-domain queries. Graph queries can require credit aggregation across degree blocks; omitting one required fact may lower this substring-based score.
+
+%------------------------------------------------
+\subsection{Scenario 3 --- Tool Ambiguity Stress Test}
+\label{sec:s3_results}
+
+Table~\ref{tab:tool_ambiguity} reports the semantic-neighbor experiment across 11--51 tools ($N{=}50$, 3 counterbalanced tool-order blocks, 1,800 primary decisions).
+
+\begin{table}[!htb]
+\centering
+\caption{Scenario~3: Semantic-neighbor tool ambiguity ($N=50$, 3 counterbalanced tool-order blocks).}
+\label{tab:tool_ambiguity}
+{\small\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Reg.} & \textbf{Config.} & \textbf{Vis.} & \textbf{Gold-R} & \textbf{Sel.} & \textbf{E2E} & \textbf{Tok} & \textbf{Lat} \\
+\midrule
+\multirow{4}{*}{11} & Full-reg single & 11 & -- & \textbf{94.0} & \textbf{86.0} & 1663 & \textbf{1098} \\
+ & Top-10 single   & 10 & \textbf{100.0} & 93.3 & 83.3 & 1541 & 1148 \\
+ & Routed gen.     & 5.1 & 98.0 & 90.7 & 80.0 & \textbf{1204} & 1889 \\
+ & \textbf{Routed spec.} & 5.1 & 98.0 & 93.3 & 85.3 & 1441 & 1983 \\
+\midrule
+\multirow{4}{*}{31} & Full-reg single & 31 & -- & 91.3 & 84.7 & 2706 & 1157 \\
+ & Top-10 single   & 10 & \textbf{98.0} & 90.0 & 81.3 & \textbf{1149} & \textbf{1033} \\
+ & Routed gen.     & 9.8 & \textbf{98.0} & 88.0 & 79.3 & 1396 & 1958 \\
+ & \textbf{Routed spec.} & 9.8 & \textbf{98.0} & \textbf{93.3} & \textbf{88.7} & 1830 & 2015 \\
+\midrule
+\multirow{4}{*}{51} & Full-reg single & 51 & -- & 92.7 & 83.3 & 3722 & 1289 \\
+ & Top-10 single   & 10 & 96.0 & 86.7 & 78.7 & \textbf{1036} & \textbf{997} \\
+ & Routed gen.     & 9.8 & \textbf{98.0} & 91.3 & 82.7 & 1340 & 1907 \\
+ & \textbf{Routed spec.} & 9.8 & \textbf{98.0} & \textbf{92.7} & \textbf{88.0} & 1770 & 2021 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+As the registry scales from 11 to 51 tools, Full-Registry Single Agent E2E success drops from 86.0\% to 83.3\% (input tokens $+124\%$). Global Top-10 drops from 83.3\% to 78.7\% E2E (Gold Recall: 100.0\% to 96.0\%). Routed Specialist maintains 88.0\% E2E at 51 tools (9.8 visible tools), yielding a +9.3\,pp margin over Top-10 (95\% CI $[+2.0, +17.3]$\,pp) and +4.7\,pp over Full-Registry (95\% CI $[-1.3, +11.3]$\,pp) with 52.4\% fewer input tokens (1{,}770 vs.\ 3{,}722). Degradation relative to Top-10 is $+7.3$\,pp (95\% CI $[0.0, +15.3]$\,pp).
+
+Across 1,800 primary decisions, Routed Specialist latency ranges from $1{,}983$ to $2{,}021$\,ms (supervisor routing: ${\sim}950$\,ms; input tokens: $1{,}441$--$1{,}830$). Full-Registry latency rises from $1{,}098$ to $1{,}289$\,ms as input tokens scale from $1{,}663$ to $3{,}722$.
+
+%------------------------------------------------
+\subsection{Supporting Retrieval Validation}
+\label{sec:retrieval_results}
+
+Table~\ref{tab:retrieval_evaluation} presents a standalone offline evaluation of retrieval ($N{=}100$), isolating evidence retrieval performance from downstream multi-agent generation and routing. E4 cross-encoder reranks Hybrid RRF candidates; E5 reranks governed, hybrid, and BM25 candidates, then merges graph evidence under quotas.
+
+\begin{table}[!htbp]
+\centering
+\caption{Standalone retrieval evaluation ($N{=}100$) on unique source filenames. E4: Hybrid RRF with cross-encoder reranking. E5: domain-governed, hybrid, and BM25 candidates with reranking and graph quotas. Evaluated independently of agent orchestration.}
+\label{tab:retrieval_evaluation}
+{\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Configuration} & \textbf{Hit@1} & \textbf{Hit@3} & \textbf{P@5} & \textbf{R@5} & \textbf{MRR@10} \\
+\midrule
+E1: BM25 Lexical          & 0.530 & 0.770 & 0.206 & 0.617 & 0.669 \\
+E2: Dense Semantic        & 0.460 & 0.650 & 0.176 & 0.524 & 0.560 \\
+E3: Hybrid RRF            & 0.520 & 0.790 & 0.224 & 0.662 & 0.673 \\
+E4: Hybrid + Reranker     & 0.700 & 0.910 & 0.254 & 0.751 & 0.805 \\
+\textbf{E5: Full Retrieval} & \textbf{0.740} & \textbf{0.920} & \textbf{0.302} & \textbf{0.861} & \textbf{0.833} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+BM25 outperforms dense search on Hit@1 (0.530 vs.\ 0.460), while Hybrid RRF balances both (0.790 Hit@3). The cross-encoder reranker yields the largest individual gain (+18.0\,pp Hit@1). The full configuration reaches 0.740 Hit@1, 0.861 Recall@5, and 0.833 MRR@10; because it incorporates domain-specific components, the gain cannot be attributed to one component alone.
+
+%------------------------------------------------
+\subsection{Failure Analysis}
+\label{sec:failure_analysis}
+
+Table~\ref{tab:failures} categorizes errors in 58 failed query--configuration cases with Fact Coverage below 50\% (34 for Single Agent and 24 for CTU-Chat). Labels were assigned through manual review of execution traces and intermediate outputs; categories are non-mutually exclusive.
+
+\begin{table}[!htbp]
+\centering
+\caption{Failure taxonomy across architecture configurations ($N=100$). Categories are non-mutually exclusive; a single query may exhibit multiple error modes.}
+\label{tab:failures}
+{\footnotesize\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{llcc|llcc}
+\toprule
+\textbf{Category} & \textbf{Failure Mode} & \textbf{S1-A} & \textbf{S1-C} & \textbf{Category} & \textbf{Failure Mode} & \textbf{S1-A} & \textbf{S1-C} \\
+\midrule
+Routing   & Corrected misroute     & N/A & 1 & Tool       & Invalid arguments     & 4 & 1 \\
+          & Repair misroute         & N/A & 1 &            & Wrong-family call     & 3 & 1 \\
+Retrieval & Gold source absent     & 3   & 3 &            & Unnecessary call      & 5 & 1 \\
+          & Cross-domain omission  & 3   & 2 & Generation & Result ignored        & 2 & 1 \\
+          & Reranker demoted       & 7   & 6 &            & Partial fact omission & 22 & 14 \\
+\midrule
+\multicolumn{4}{l|}{\textbf{Total Failed Queries ($<50\%$ Fact):}} & \multicolumn{4}{l}{\textbf{S1-A (Single): 34} \qquad \textbf{S1-C (CTU): 24}} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The 34 Single Agent and 24 CTU-Chat failed query cases include 12 versus 3 tool errors. Retrieval errors are similar under shared evidence: 3 absent gold sources in each arm and 7 versus 6 reranker demotions. With complete retrieval ($sr=1.0$), partial fact omissions number 22 versus 14. These counts do not isolate effects of tool scoping or specialist prompts.
+
+Three traces illustrate distinct stages of failure. For the multi-hop query \texttt{HOUT-MHOP-}\allowbreak\texttt{ACAD-04}, repair changed the correct \texttt{general} route to \texttt{academic}; that worker refused the request. For \texttt{HOUT-XDOM-}\allowbreak\texttt{01}, all gold sources were retrieved ($sr{=}1.0$), but the worker omitted the financial answer. For \texttt{HOUT-XDOM-}\allowbreak\texttt{16}, the query reached \texttt{scholarship}, but retrieval missed the target document ($sr{=}0.5$). Only the first is a route-repair failure; both cross-domain cases fail after owner selection.
+
