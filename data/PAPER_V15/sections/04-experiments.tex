@@ -1,0 +1,58 @@
+% ============================================================
+% 04-experiments.tex — V15 Experimental Setup (condensed)
+% ============================================================
+\section{Experimental Setup}
+\label{sec:exp_setup}
+
+%------------------------------------------------
+\subsection{Dataset and Annotation}
+\label{sec:dataset}
+
+We evaluate \system{} on 200 administrative queries constructed through a document-grounded protocol over official CTU statutes. The 100-query development split supports index calibration and prompt engineering. The 100-query held-out set follows a predefined distribution: 40 direct, 20 within-domain multi-hop, 20 cross-domain, 10 entity-comparison, 5 temporal, and 5 adversarial queries (51 formal, 49 colloquial; 38 single-source, 62 multi-source). It contains 19 Academic, 28 Financial, 17 Scholarship, and 16 General single-domain queries; the remaining 20 combine evidence across domains. Candidate queries and ground-truth evidence were extracted from official statutes: one annotator established reference answers, required facts, and gold sources, while a second annotator independently verified all annotations; disagreements were adjudicated against official regulatory text. An audit found no cross-split duplicates (max 5-gram Jaccard = 0.1875). Each query is annotated along nine dimensions, including domain, evidence type, and tool requirements, to support fine-grained failure analysis.
+
+%------------------------------------------------
+\subsection{Baselines and Configurations}
+\label{sec:baselines}
+
+\textbf{Baseline equivalence and execution bounds.} Scenario~1 configurations share Gemini 2.5 Flash Lite ($T{=}0.0$), knowledge representations, deterministic calculator access, and the same retrieval output (BM25 + dense + RRF + \texttt{bge-reranker-v2-m3}, $k{=}7$). Shared retrieval gives identical Source Recall (78.6\%) and Source AP (70.8\%); tool outputs remain configuration-specific. Scenario~1 compares orchestration bundles, while Scenario~2 changes one component at a time. Multi-agent variants allow at most 3 tool calls, 2{,}048 output tokens, and 30-second timeouts. Reported tokens cover specialist execution; supervisor routing adds an estimated ${\sim}650$ input tokens per query.
+
+\paragraph{Scenario 1 --- Architecture Comparison (RQ1):}
+Three configurations are evaluated on the held-out set ($N{=}100$ queries, 300 runs under greedy decoding $T{=}0.0$):
+\textbf{S1-A:} Unified Single Agent with all 11 tools, no supervisor or routing;
+\textbf{S1-B:} Routed Generic Worker---supervisor routes to domain workers with scoped tools but a single generic prompt;
+\textbf{S1-C:} Full CTU-Chat with supervisor, contract repair, specialist prompts, scoped registries, and deterministic computation.
+
+\paragraph{Scenario 2 --- Ablation (RQ2):}
+Five ablations each remove one component from Full CTU-Chat ($N{=}100$ queries per ablation, $T{=}0.0$):
+\textbf{S2-A1:} No Specialist Policy (generic worker prompt);
+\textbf{S2-A2:} No Tool Isolation (all 11 tools visible);
+\textbf{S2-A3:} Uniform Text-RAG Baseline (graph data serialized to text, traversal disabled);
+\textbf{S2-A4:} No Deterministic Calculation (LLM generates arithmetic directly);
+\textbf{S2-A5:} No Route Repair (raw supervisor output used directly).
+
+\paragraph{Scenario 3 --- Tool Ambiguity (RQ3):}
+Fifty fixed cases are evaluated while 40 semantic-neighbor tools expand registries to 11, 31, and 51 tools. Four configurations are compared: Full-Registry Single Agent, Global Top-10 Single Agent, Routed Generic, and Routed Specialist. Each case uses 3 counterbalanced tool-order blocks, yielding $50 \times 4 \times 3 \times 3 = 1{,}800$ decisions across counterbalanced blocks.
+
+%------------------------------------------------
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+Reported metrics span four evaluation dimensions:
+(1)~\emph{Final-answer quality:} Required-Fact Coverage ($\text{FactCov}$, continuous proportion of reference facts matched via substring containment in generated responses) and Automated Fact Pass Rate ($\text{Pass}_{\ge 50\%}$).
+(2)~\emph{Evidence retrieval:} Source Recall ($\text{Src.R}$) and Source AP ($\text{Src.AP}$) assess Scenario~1. Table~\ref{tab:retrieval_evaluation} ranks unique source filenames after collapsing repeated chunks. Per query, $\text{Hit}@k$: any gold in top $k$; $\text{P}@5$: top-five gold count divided by five; $\text{R}@5$: that count divided by gold count (1 if none); $\text{MRR}@10$: reciprocal first gold rank within ten (0 if absent). Means are over 100 queries.
+(3)~\emph{Execution reliability:} Tool Invocations per Query, Tool Selection Accuracy, Tool End-to-End Success ($\text{E2E}$), and route repair rate.
+(4)~\emph{Operational cost:} Specialist input/output tokens and wall-clock latency.
+
+\textbf{Primary Evaluation Metrics.} In Scenarios~1 and 2, the primary evaluation metric is the \emph{Automated Fact Pass Rate} ($\text{Pass}_{\ge 50\%}$), defined programmatically as the proportion of responses where at least 50\% of predefined required fact phrases are matched via automated substring containment ($\text{FactCov} \ge 0.50$), complemented by continuous Fact Coverage. Since this lexical metric measures surface phrase occurrence rather than semantic or arithmetic accuracy, it functions as a surface-grounding proxy. To address this limitation, it is complemented in Scenario~3 by deterministic \emph{Tool E2E Success} (correct tool selection, valid parameters, and error-free execution).
+
+%------------------------------------------------
+\subsection{Statistical Protocol and Measurement Scope}
+\label{sec:statistics}
+
+Evaluations use greedy decoding ($T{=}0.0$) to minimize sampling variance. Paired differences across configurations are computed at the query level ($N{=}100$); 95\% CIs are estimated using 10,000 bootstrap resamples. The primary confirmatory hypothesis compares CTU-Chat versus Unified Single Agent on $\text{Pass}_{\ge 50\%}$. Timing follows configuration boundaries: baseline S1-A latency measures agent invocation post-retrieval, while multi-agent variants measure pipeline latency inclusive of supervisor routing, route repair, and specialist execution. Reported tokens record specialist agent execution; upstream supervisor routing adds an estimated overhead of ${\sim}650$ input tokens per query (derived from prompt and schema length).
+
+%------------------------------------------------
+\subsection{Infrastructure}
+\label{sec:infrastructure}
+
+We use Gemini 2.5 Flash Lite via Vertex AI ($T{=}0.0$) and rerank on a GTX 1650. Neo4j~5.20 stores relational curricula; PostgreSQL stores parent chunks (2,800 characters, 100 overlap); Qdrant indexes child chunks (400 characters, 50 overlap) with a 768-dimensional \texttt{vietnamese-bi-encoder}. The system uses \texttt{bge-reranker-v2-m3}, LangGraph StateGraph, and Redis~7. Latency excludes the first warm-up run. Prompt templates, tool contracts, and graph schema are archived.

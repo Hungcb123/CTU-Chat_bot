@@ -1,0 +1,1650 @@
+[
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-ACAD-03",
+    "question": "Ngành Đảm bảo chất lượng và an toàn thực phẩm có bao nhiêu tín chỉ bắt buộc trên tổng số tín chỉ?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "161 tín chỉ",
+      "117 tín chỉ bắt buộc",
+      "44 tín chỉ tự chọn"
+    ],
+    "gold_sources": [
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md"
+    ],
+    "retrieved_sources": [
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "105_7540101C_CongNgheThucPham_CTCLC.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 1,
+    "response_snippet": "Trong tổng số 161 tín chỉ của ngành Đảm bảo chất lượng và an toàn thực phẩm (mã ngành: 7540106), có 127 tín chỉ bắt buộc (bao gồm 32 tín chỉ Giáo dục đại cương, 43 tín chỉ chuyên ngành và 42 tín chỉ c..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-ACAD-06",
+    "question": "Khung đào tạo cử nhân Quản lý thủy sản thiết kế tất cả bao nhiêu tín chỉ trong toàn khóa?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "Quản lý thủy sản",
+      "141 tín chỉ"
+    ],
+    "gold_sources": [
+      "102_7620305_QuanLyThuySan.md"
+    ],
+    "retrieved_sources": [
+      "102_7620305_QuanLyThuySan.md",
+      "100_7620301_NuoiTrongThuySan.md",
+      "102_7620305_QuanLyThuySan.md",
+      "98_7620302_BenhHocThuySan.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 1,
+    "response_snippet": ""
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-ACAD-07",
+    "question": "Ngành Công nghệ Sau thu hoạch tại Trường ĐHCT có bao nhiêu tín chỉ bắt buộc?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Công nghệ Sau thu hoạch",
+      "116 tín chỉ bắt buộc",
+      "161"
+    ],
+    "gold_sources": [
+      "103_7540104_CongNgheSauThuHoach.md"
+    ],
+    "retrieved_sources": [
+      "103_7540104_CongNgheSauThuHoach.md",
+      "103_7540104_CongNgheSauThuHoach.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 1,
+    "response_snippet": "Trong khối kiến thức cơ sở ngành của ngành Công nghệ Sau thu hoạch (mã ngành: 7540104), có 44 tín chỉ bắt buộc và 6 tín chỉ tự chọn."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-ACAD-08",
+    "question": "Chương trình chất lượng cao ngành Công nghệ thực phẩm yêu cầu tích lũy bao nhiêu tín chỉ?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "Công nghệ thực phẩm chất lượng cao",
+      "161 tín chỉ"
+    ],
+    "gold_sources": [
+      "105_7540101C_CongNgheThucPham_CTCLC.md"
+    ],
+    "retrieved_sources": [
+      "104_7540101_CongNgheThucPham.md",
+      "105_7540101C_CongNgheThucPham_CTCLC.md",
+      "104_7540101_CongNgheThucPham.md",
+      "105_7540101C_CongNgheThucPham_CTCLC.md",
+      "105_7540101C_CongNgheThucPham_CTCLC.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.5,
+    "tool_calls": 1,
+    "response_snippet": "Chương trình Chất lượng cao ngành Công nghệ thực phẩm có tổng số 168 tín chỉ."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-ACAD-09",
+    "question": "Số lượng tín chỉ cần hoàn tất đối với sinh viên ngành Kỹ thuật y sinh được quy định là bao nhiêu?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "Kỹ thuật y sinh",
+      "161 tín chỉ"
+    ],
+    "gold_sources": [
+      "63_7520212_KyThuatYSinh.md"
+    ],
+    "retrieved_sources": [
+      "63_7520212_KyThuatYSinh.md",
+      "63_7520212_KyThuatYSinh.md",
+      "63_7520212_KyThuatYSinh.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 1,
+    "response_snippet": ""
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-ACAD-10",
+    "question": "Trong chương trình Kỹ thuật cơ điện tử chuẩn, phần kiến thức bắt buộc chiếm bao nhiêu tín chỉ?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Kỹ thuật cơ điện tử",
+      "116 tín chỉ bắt buộc",
+      "161"
+    ],
+    "gold_sources": [
+      "54_7520114_KyThuatCoDienTu.md"
+    ],
+    "retrieved_sources": [
+      "54_7520114_KyThuatCoDienTu.md",
+      "54_7520114_KyThuatCoDienTu.md",
+      "54_7520114_KyThuatCoDienTu.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Trong chương trình Kỹ thuật cơ điện tử, khối kiến thức chuyên ngành có 42 tín chỉ bắt buộc."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-FIN-04",
+    "question": "Cho em hỏi học phí mỗi tín chỉ ngành Tài chính - Ngân hàng CLC K52 tính bao nhiêu một tín chỉ?",
+    "domain": "financial",
+    "query_type": "direct",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "Tài chính - Ngân hàng",
+      "CLC",
+      "1.363.000 đồng/tín chỉ"
+    ],
+    "gold_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": ""
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-FIN-08",
+    "question": "Học phí ngành Thú y chương trình chất lượng cao K52 thu bao nhiêu triệu một năm?",
+    "domain": "financial",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Thú y",
+      "CLC",
+      "44 triệu đồng/năm"
+    ],
+    "gold_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "115_7640101C_ThuY_CTCLC.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Học phí ngành Thú y chương trình chất lượng cao khóa K52 là 41,8 triệu đồng một năm."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-SCH-04",
+    "question": "Tân sinh viên Khóa 52 đạt học bổng đầu vào có mức hỗ trợ bình quân trong học kỳ đầu tiên là bao nhiêu?",
+    "domain": "scholarship",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "5.000.000 đồng",
+      "học kỳ đầu tiên",
+      "tân sinh viên"
+    ],
+    "gold_sources": [
+      "HB_TanSinhVien_K52.md"
+    ],
+    "retrieved_sources": [
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "HB_TanSinhVien_K52.md",
+      "HB_K51_2026.md",
+      "Tài liệu phân bổ quỹ học bổng.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.5,
+    "tool_calls": 0,
+    "response_snippet": "Theo quy định về học bổng cho học kỳ đầu tiên của khóa 52, mức học bổng khuyến khích là 6.000.000 đồng/sinh viên/học kỳ."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-SCH-08",
+    "question": "Học bổng SCIC dành cho sinh viên thuộc các ngành học nào?",
+    "domain": "scholarship",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "SCIC",
+      "Kinh tế",
+      "Tài chính"
+    ],
+    "gold_sources": [
+      "HB_SCIC_2026.md"
+    ],
+    "retrieved_sources": [
+      "02_7310201_ChinhTriHoc.md",
+      "HB_SCIC_2026.md",
+      "HB_SCIC_2026.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.5,
+    "tool_calls": 0,
+    "response_snippet": "Học bổng SCIC dành cho sinh viên theo học tại Trường Công nghệ Thông tin & Truyền thông, Đại học Cần Thơ."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-GEN-05",
+    "question": "Sinh viên được xin tạm nghỉ học vì lý do cá nhân tối đa bao nhiêu học kỳ?",
+    "domain": "general",
+    "query_type": "direct",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "tạm nghỉ học",
+      "thời gian học tập tối đa"
+    ],
+    "gold_sources": [
+      "5_don_xin_tam_nghi_hoc_llp.md"
+    ],
+    "retrieved_sources": [
+      "2015_777_QD_DHCT_llp.md",
+      "2020_CV1194-DHCT_Mon_hoc_GDQPAN_giang_day_tu_HK1_nam_hoc_2020-2021_llp.md"
+    ],
+    "source_recall": 0.0,
+    "source_ap": 0.0,
+    "tool_calls": 0,
+    "response_snippet": "Theo quy định của Trường Đại học Cần Thơ:\n\n*   **Sinh viên học bổng Hiệp định:** Được tạm dừng học tập tối đa 01 năm học (tương đương 2 học kỳ) nếu có lý do chính đáng và được sự đồng ý của các bên li..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-DIR-GEN-10",
+    "question": "Hướng dẫn và quy trình tiếp nhận sinh viên chuyển ngành chuyển trường theo văn bản 3924 quy định ra sao?",
+    "domain": "general",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "3924",
+      "chuyển ngành",
+      "chuyển trường"
+    ],
+    "gold_sources": [
+      "02_3924KHTH_23-10-2023_llp.md"
+    ],
+    "retrieved_sources": [
+      "02_3175KHTH_30-08-2023_llp.md",
+      "02_3924KHTH_23-10-2023_llp.md",
+      "02_3175KHTH_30-08-2023_llp.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.5,
+    "tool_calls": 0,
+    "response_snippet": "Theo văn bản số 3924/KHTH-ĐT ngày 23/10/2023, đây là \"ĐƠN ĐỀ NGHỊ CHUYỂN CHƯƠNG TRÌNH, NGÀNH ĐÀO TẠO\". Đơn này bao gồm các thông tin cần thiết khi sinh viên có nguyện vọng chuyển sang học một chương t..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-MHOP-FIN-01",
+    "question": "Sinh viên học ngành Kỹ thuật điều khiển và tự động hóa CLC K52 nếu được giảm 70% học phí theo chính sách thì số tiền hỗ trợ được tính dựa trên mức biểu phí nào?",
+    "domain": "financial",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "538.000 đồng/tín chỉ",
+      "Khối ngành V",
+      "cơ sở tính miễn giảm"
+    ],
+    "gold_sources": [
+      "MucHocPhi_2526_MienGiam.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "48_7520216_KyThuatDieuKhienVaTuDongHoa.md"
+    ],
+    "retrieved_sources": [
+      "48_7520216_KyThuatDieuKhienVaTuDongHoa.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "2023_QD6772-DHCT_QD_ban_hanh_Quy_dinh_dao_tao_CLC_va_dao_tao_TT_trinh_do_DH_ap_dung_tu_K50_tro_ve_sau_llp.md",
+      "nd116.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 0.6666666666666666,
+    "source_ap": 0.6666666666666666,
+    "tool_calls": 2,
+    "response_snippet": "Dựa trên thông tin bạn cung cấp, mức học phí thực tế cho ngành Kỹ thuật điều khiển và tự động hóa CLC K52 là 1.340.000 đồng/tín chỉ. Tuy nhiên, tôi không tìm thấy thông tin về mức học phí làm cơ sở để..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-MHOP-FIN-02",
+    "question": "Học phí toàn khóa ngành Kiến trúc K52 hệ chuẩn là bao nhiêu và chia trung bình mỗi năm học sinh viên đóng khoảng bao nhiêu tiền?",
+    "domain": "financial",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Kiến trúc",
+      "165,6 triệu đồng",
+      "5 năm"
+    ],
+    "gold_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "62_7580101_KienTruc.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.5,
+    "tool_calls": 0,
+    "response_snippet": "Học phí toàn khóa ngành Kiến trúc hệ chuẩn Khóa 52 là 165.6 triệu đồng.\nChia trung bình mỗi năm, sinh viên đóng khoảng 33.12 triệu đồng."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-MHOP-FIN-04",
+    "question": "Tổng học phí toàn khóa ngành Thú y hệ chuẩn K52 so với số tín chỉ toàn khóa 175 tín chỉ thì đơn giá bình quân mỗi tín chỉ là bao nhiêu?",
+    "domain": "financial",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Thú y",
+      "166,6 triệu",
+      "966.000 đồng/tín chỉ"
+    ],
+    "gold_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "96_7640101_ThuY.md",
+      "115_7640101C_ThuY_CTCLC.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_QuyDinhChung.md"
+    ],
+    "source_recall": 0.6666666666666666,
+    "source_ap": 0.6666666666666666,
+    "tool_calls": 1,
+    "response_snippet": "Dựa trên thông tin bạn cung cấp, học phí cho ngành Thú y hệ chuẩn K52 là 1.016.000 đồng/tín chỉ. Tuy nhiên, bạn lại đề cập đến tổng số tín chỉ toàn khóa là 175 tín chỉ, trong khi thông tin tra cứu đượ..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-MHOP-SCH-01",
+    "question": "Học bổng khuyến khích học tập kỳ đầu tiên của tân sinh viên K51 có mức bình quân bao nhiêu và được chi trả vào thời gian nào?",
+    "domain": "scholarship",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "5.000.000 đồng",
+      "K51",
+      "khuyến khích học tập"
+    ],
+    "gold_sources": [
+      "HB_K51_2026.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md"
+    ],
+    "retrieved_sources": [
+      "HB_K51_2026.md",
+      "Tài liệu phân bổ quỹ học bổng.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "HB_K51_2026.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.8333333333333333,
+    "tool_calls": 0,
+    "response_snippet": "Mức học bổng bình quân cho học kỳ đầu tiên của tân sinh viên Khóa 51 là 5.000.000 đồng/sinh viên/học kỳ.\n\nThông tin về thời gian chi trả học bổng không có trong tài liệu được cung cấp. Bạn có thể liên..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-MHOP-SCH-02",
+    "question": "Cách phân bổ quỹ học bổng khuyến khích cho từng ngành học được tính dựa trên tỷ lệ phần trăm nào của tổng học phí sinh viên đã đóng?",
+    "domain": "scholarship",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "8%",
+      "90%",
+      "học phí sinh viên cùng khóa, ngành"
+    ],
+    "gold_sources": [
+      "Tài liệu phân bổ quỹ học bổng.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md"
+    ],
+    "retrieved_sources": [
+      "02_7310201_ChinhTriHoc.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "Tài liệu phân bổ quỹ học bổng.md",
+      "QuyTrinh4-Congtacsinhvien_llp.md",
+      "HB_K51_2026.md",
+      "Tài liệu phân bổ quỹ học bổng.md",
+      "QD4544_Quy-dinh-cong-tac-hoc-vu-Lien-thong2019_llp.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.5833333333333333,
+    "tool_calls": 1,
+    "response_snippet": "Dựa trên thông tin tôi có, quỹ học bổng khuyến khích học tập được phân bổ cho từng lớp chuyên ngành dựa trên tỷ lệ 8% tổng học phí sinh viên đã đóng của lớp đó. Tuy nhiên, có một số quy định cụ thể ch..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-MHOP-SCH-05",
+    "question": "Sinh viên đạt học bổng khuyến khích loại Xuất sắc thì số tiền nhận được so với mức học phí đã nộp của kỳ đó được xác định ra sao?",
+    "domain": "scholarship",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "1,2",
+      "120%",
+      "học phí đã nộp"
+    ],
+    "gold_sources": [
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md"
+    ],
+    "retrieved_sources": [
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Mức học bổng loại Xuất sắc bằng 1,2 lần mức học bổng loại Khá. Mức học bổng loại Khá được xác định bằng số tiền học phí sinh viên đã đóng trong học kỳ liền trước. Trường hợp được miễn, giảm, được nhà ..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-MHOP-GEN-03",
+    "question": "Thủ tục xin miễn 100% học phí theo quy định chính sách cần làm đơn theo mẫu nào và nộp vào thời điểm nào trong học kỳ?",
+    "domain": "general",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "miễn 100% học phí",
+      "mẫu số 12",
+      "đầu mỗi học kỳ"
+    ],
+    "gold_sources": [
+      "12_don_de_nghi_mien_giam_hoc_phi_llp.md",
+      "mghp.md"
+    ],
+    "retrieved_sources": [
+      "mghp.md",
+      "12_don_de_nghi_mien_giam_hoc_phi_llp.md",
+      "mghp.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Xin vui lòng cho biết bạn thuộc đối tượng nào trong các trường hợp sau để tôi có thể hướng dẫn cụ thể hơn về thủ tục và thời điểm nộp đơn:\n\n*   Con của người hoạt động cách mạng trước 08/1945; Con của..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-MHOP-GEN-04",
+    "question": "Quy trình xin chuyển ngành từ năm thứ hai theo văn bản 3924 kết hợp quy chế học vụ yêu cầu điều kiện điểm trung bình tích lũy đạt từ mức nào?",
+    "domain": "general",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "chuyển ngành",
+      "năm thứ nhất",
+      "không bị cảnh báo"
+    ],
+    "gold_sources": [
+      "02_3924KHTH_23-10-2023_llp.md",
+      "quychehocvu.md"
+    ],
+    "retrieved_sources": [
+      "qt_hoc_2_CTDT_llp.md",
+      "02_3924KHTH_23-10-2023_llp.md",
+      "02_3924KHTH_23-10-2023_llp.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.25,
+    "tool_calls": 1,
+    "response_snippet": "Dựa trên thông tin bạn cung cấp, quy trình xin chuyển ngành từ năm thứ hai theo văn bản 3924 kết hợp quy chế học vụ yêu cầu điểm trung bình tích lũy đạt từ 2,00 trở lên."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-XDOM-01",
+    "question": "Ngành Nuôi trồng thủy sản chương trình tiên tiến K52 có tổng bao nhiêu tín chỉ và đơn giá mỗi tín chỉ chuyên ngành là bao nhiêu đồng?",
+    "domain": "financial+academic",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "Nuôi trồng thủy sản tiên tiến",
+      "161 tín chỉ",
+      "1.564.000 đồng/tín chỉ"
+    ],
+    "gold_sources": [
+      "101_7620301T_NuoiTrongThuySan_CTTT.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "100_7620301_NuoiTrongThuySan.md"
+    ],
+    "retrieved_sources": [
+      "100_7620301_NuoiTrongThuySan.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "101_7620301T_NuoiTrongThuySan_CTTT.md",
+      "100_7620301_NuoiTrongThuySan.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.9166666666666666,
+    "tool_calls": 0,
+    "response_snippet": "Ngành Nuôi trồng thủy sản - Chương trình tiên tiến có tổng số 163 tín chỉ. Đối với chương trình tiên tiến, khóa K52 có đơn giá mỗi tín chỉ là 1.564.000 đồng."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-XDOM-07",
+    "question": "Học phí một năm của ngành Tài chính - Ngân hàng CLC K52 là bao nhiêu và sinh viên có thể ứng tuyển học bổng SCIC trị giá 10 triệu không?",
+    "domain": "financial+scholarship",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.25,
+    "required_facts": [
+      "Tài chính - Ngân hàng",
+      "38.000.000 đồng/năm",
+      "SCIC",
+      "10.000.000 đồng"
+    ],
+    "gold_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "HB_SCIC_2026.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "HB_SCIC_2026.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Học phí một năm của ngành Tài chính – Ngân hàng chương trình chất lượng cao, khóa K52 là 40.000.000 đồng/năm học.\n\nVề học bổng SCIC trị giá 10 triệu đồng, học bổng này chỉ dành cho sinh viên theo học ..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-XDOM-09",
+    "question": "Quỹ học bổng khuyến khích trích tối thiểu 8% từ nguồn thu học phí, vậy sinh viên đạt loại Xuất sắc ngành Quản trị kinh doanh K52 sẽ nhận mức học bổng tính ra sao so với học phí đã đóng?",
+    "domain": "financial+scholarship",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "8%",
+      "1,2",
+      "học phí thực đóng"
+    ],
+    "gold_sources": [
+      "Tài liệu phân bổ quỹ học bổng.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "HB_TanSinhVien_K52.md",
+      "Tài liệu phân bổ quỹ học bổng.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.9166666666666666,
+    "tool_calls": 0,
+    "response_snippet": "Để tính chính xác mức học bổng loại Xuất sắc cho sinh viên ngành Quản trị kinh doanh K52, bạn vui lòng cho biết thêm thông tin về chương trình đào tạo (ví dụ: chuẩn, chất lượng cao - clc) của ngành nà..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-XDOM-13",
+    "question": "Sinh viên học ngành Quản trị kinh doanh K52 thuộc diện hộ cận nghèo thì được giảm bao nhiêu phần trăm học phí và mức hỗ trợ mỗi tín chỉ là bao nhiêu?",
+    "domain": "financial+social_support",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Khối ngành III",
+      "451.000 đồng/tín chỉ",
+      "Quản trị kinh doanh"
+    ],
+    "gold_sources": [
+      "mghp.md",
+      "MucHocPhi_2526_MienGiam.md",
+      "85_7340101_QuanTriKinhDoanh.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MauXacNhanhoNghoe.md",
+      "14_giay_chung_nhan_hoc_sinh_sinh_vien_thuoc_ho_can_ngheo_llp.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 0.0,
+    "source_ap": 0.0,
+    "tool_calls": 0,
+    "response_snippet": "Chào bạn,\n\nTheo thông tin tra cứu được:\n*   Học phí thực tế của ngành Quản trị kinh doanh (chương trình chuẩn), khóa K52 là **844.000 đồng/tín chỉ**.\n*   Mức học phí làm cơ sở để tính miễn giảm cho ng..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-XDOM-16",
+    "question": "Sinh viên ngành Nuôi trồng thủy sản chương trình tiên tiến cần tích lũy bao nhiêu tín chỉ và điểm GPA tối thiểu bao nhiêu để nộp hồ sơ học bổng SCC?",
+    "domain": "academic+scholarship",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.25,
+    "required_facts": [
+      "Nuôi trồng thủy sản tiên tiến",
+      "161 tín chỉ",
+      "8.0",
+      "SCC"
+    ],
+    "gold_sources": [
+      "101_7620301T_NuoiTrongThuySan_CTTT.md",
+      "HB_SCC.md"
+    ],
+    "retrieved_sources": [
+      "100_7620301_NuoiTrongThuySan.md",
+      "101_7620301T_NuoiTrongThuySan_CTTT.md",
+      "HB_Vallet_Chi_Tiet.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.25,
+    "tool_calls": 0,
+    "response_snippet": "Chào bạn,\n\nChương trình đào tạo ngành Nuôi trồng thủy sản - Chương trình tiên tiến (mã ngành: 7620301T) có tổng số tín chỉ là 163 tín chỉ.\n\nVề học bổng, tôi có thông tin về **Học bổng Vallet** như sau..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-XDOM-19",
+    "question": "Sinh viên ngành Thú y học trong 5 năm với 175 tín chỉ thì quỹ học bổng khuyến khích có cấp suốt 5 năm học không?",
+    "domain": "academic+scholarship",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.25,
+    "required_facts": [
+      "Thú y",
+      "175 tín chỉ",
+      "5 năm",
+      "từng học kỳ"
+    ],
+    "gold_sources": [
+      "96_7640101_ThuY.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "QuyTrinh4-Congtacsinhvien_llp.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.25,
+    "tool_calls": 0,
+    "response_snippet": "Dựa trên thông tin được cung cấp, quỹ học bổng khuyến khích học tập được tính toán dựa trên tổng học phí của sinh viên trong học kỳ liền trước và có quy trình phân bổ cho từng học kỳ (HK1, HK2). Điều ..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-COMP-02",
+    "question": "Học phí toàn khóa ngành Thú y hệ chuẩn K52 cao hơn hay thấp hơn ngành Kiến trúc hệ chuẩn K52 và chênh lệch bao nhiêu triệu?",
+    "domain": "financial",
+    "query_type": "comparison",
+    "fact_coverage": 0.4,
+    "required_facts": [
+      "Thú y",
+      "166,6 triệu",
+      "Kiến trúc",
+      "165,6 triệu",
+      "cao hơn 1,0 triệu"
+    ],
+    "gold_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "115_7640101C_ThuY_CTCLC.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Tôi tra cứu được học phí ngành Kiến trúc hệ chuẩn K52 là 165.6 triệu đồng/khóa. Tuy nhiên, tôi không tìm thấy thông tin học phí ngành Thú y hệ chuẩn K52. Tôi chỉ tìm thấy thông tin học phí ngành Thú y..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-COMP-03",
+    "question": "Học phí niên chế một năm của hai chuyên ngành chất lượng cao QTKD và Tài chính Ngân hàng khóa 52 chênh nhau như thế nào?",
+    "domain": "financial",
+    "query_type": "comparison",
+    "fact_coverage": 0.25,
+    "required_facts": [
+      "Quản trị kinh doanh",
+      "Tài chính - Ngân hàng",
+      "CLC",
+      "38.000.000 đồng/năm"
+    ],
+    "gold_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "85_7340101_QuanTriKinhDoanh.md"
+    ],
+    "retrieved_sources": [
+      "85_7340101_QuanTriKinhDoanh.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "86_7340101C_QuanTriKinhDoanh_CTCLC.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Học phí niên chế một năm của hai chuyên ngành Chất lượng cao Quản trị kinh doanh và Tài chính Ngân hàng khóa 52 là như nhau, đều là 40.000.000 đồng/năm học. Do đó, mức chênh lệch giữa hai chuyên ngành..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-COMP-07",
+    "question": "Chương trình đào tạo ngành Thú y hệ chuẩn và ngành Quản lý thủy sản khác nhau bao nhiêu tín chỉ toàn khóa?",
+    "domain": "academic",
+    "query_type": "comparison",
+    "fact_coverage": 0.4,
+    "required_facts": [
+      "Thú y",
+      "175 tín chỉ",
+      "Quản lý thủy sản",
+      "141 tín chỉ",
+      "34"
+    ],
+    "gold_sources": [
+      "96_7640101_ThuY.md",
+      "102_7620305_QuanLyThuySan.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "96_7640101_ThuY.md",
+      "115_7640101C_ThuY_CTCLC.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.25,
+    "tool_calls": 2,
+    "response_snippet": "Ngành Thú y có 173 tín chỉ, ngành Quản lý thủy sản có 161 tín chỉ. Vậy ngành Thú y có nhiều hơn ngành Quản lý thủy sản là 12 tín chỉ."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-COMP-10",
+    "question": "Giữa ngành Luật hệ chuẩn K52 và ngành Kỹ thuật xây dựng hệ chuẩn K52 thì ngành nào có học phí toàn khóa thấp hơn và thấp hơn bao nhiêu?",
+    "domain": "financial",
+    "query_type": "comparison",
+    "fact_coverage": 0.4,
+    "required_facts": [
+      "Luật",
+      "114,5 triệu",
+      "Kỹ thuật xây dựng",
+      "150,3 triệu",
+      "thấp hơn 35,8 triệu"
+    ],
+    "gold_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "111_7380103_LuatDanSuVaToTungDanSu.md"
+    ],
+    "retrieved_sources": [
+      "111_7380103_LuatDanSuVaToTungDanSu.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Dựa trên thông tin học phí thực tế cho Khóa 52 năm học 2026-2027:\n\n*   **Ngành Luật dân sự và tố tụng dân sự (mã 7380103)** có học phí toàn khóa là 114,500,000 VNĐ.\n*   **Ngành Kỹ thuật xây dựng (mã 7..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-TEMP-01",
+    "question": "Học phí một tín chỉ chuyên ngành của ngành Tài chính - Ngân hàng CLC thay đổi như thế nào từ Khóa 49 đến Khóa 52?",
+    "domain": "financial",
+    "query_type": "temporal",
+    "fact_coverage": 0.25,
+    "required_facts": [
+      "Khóa 49",
+      "1.142.000",
+      "Khóa 52",
+      "1.363.000"
+    ],
+    "gold_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 3,
+    "response_snippet": "Học phí một tín chỉ chuyên ngành của ngành Tài chính - Ngân hàng CLC thay đổi như sau:\n- Khóa K50: 1.118.000 đồng/tín chỉ\n- Khóa K51: 1.363.000 đồng/tín chỉ\n- Khóa K52: 1.363.000 đồng/tín chỉ"
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-ADVS-01",
+    "question": "Học phí đại học Trường Đại học Cần Thơ năm nay thu bao nhiêu tiền?",
+    "domain": "financial",
+    "query_type": "adversarial",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "theo tín chỉ",
+      "tùy thuộc vào ngành học",
+      "khóa tuyển sinh"
+    ],
+    "gold_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_QuyDinhChung.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_QuyDinhChung.md",
+      "MucHocPhi_QuyDinhChung.md",
+      "MucHocPhi_QuyDinhChung.md",
+      "MucHocPhi_QuyDinhChung.md",
+      "MucHocPhi_QuyDinhChung.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 0.6666666666666666,
+    "source_ap": 0.6666666666666666,
+    "tool_calls": 0,
+    "response_snippet": "Bạn vui lòng cho biết bạn muốn tra cứu học phí của năm học nào, hệ đào tạo nào (chính quy, VLVH, từ xa, CLC, tiên tiến...), và ngành học cụ thể (hoặc khóa tuyển sinh) để tôi có thể cung cấp thông tin ..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-ADVS-02",
+    "question": "Sinh viên muốn xin học bổng thì cần đáp ứng những tiêu chuẩn chung gì?",
+    "domain": "scholarship",
+    "query_type": "adversarial",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "điểm học tập",
+      "điểm rèn luyện",
+      "loại Khá trở lên"
+    ],
+    "gold_sources": [
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md"
+    ],
+    "retrieved_sources": [
+      "HB_Vallet_Chi_Tiet.md",
+      "HB_LuongVanCang.md"
+    ],
+    "source_recall": 0.0,
+    "source_ap": 0.0,
+    "tool_calls": 0,
+    "response_snippet": "Để xin học bổng, sinh viên cần đáp ứng các tiêu chuẩn chung sau:\n\n*   **Về học tập:**\n    *   Có điểm trung bình học kỳ chính khóa từ 7,5 trở lên (theo thang điểm 10) hoặc từ 3,0 trở lên (theo thang đ..."
+  },
+  {
+    "config": "S1-A",
+    "config_name": "Single Agent",
+    "query_id": "HOUT-ADVS-03",
+    "question": "Trường Đại học Cần Thơ có những chính sách hỗ trợ tài chính nào dành cho sinh viên có hoàn cảnh khó khăn?",
+    "domain": "general",
+    "query_type": "adversarial",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "miễn giảm học phí",
+      "hỗ trợ chi phí học tập",
+      "trợ cấp xã hội",
+      "vay vốn"
+    ],
+    "gold_sources": [
+      "HTCPHT.md",
+      "mghp.md",
+      "VayVon.md",
+      "02_246_23-06-2026.md"
+    ],
+    "retrieved_sources": [
+      "QuyTrinh4-Congtacsinhvien_llp.md",
+      "HB_LeSo.md",
+      "HB_TanSinhVien_K52.md",
+      "mghp.md",
+      "Vayvon_Viettinbank_2025_v2.md",
+      "mghp.md"
+    ],
+    "source_recall": 0.25,
+    "source_ap": 0.0625,
+    "tool_calls": 0,
+    "response_snippet": "Trường Đại học Cần Thơ có chính sách hỗ trợ tài chính cho sinh viên có hoàn cảnh khó khăn thông qua việc vận động các cơ quan, tổ chức, cá nhân đóng góp học bổng để giúp sinh viên có hoàn cảnh khó khă..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-DIR-ACAD-03",
+    "question": "Ngành Đảm bảo chất lượng và an toàn thực phẩm có bao nhiêu tín chỉ bắt buộc trên tổng số tín chỉ?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "161 tín chỉ",
+      "117 tín chỉ bắt buộc",
+      "44 tín chỉ tự chọn"
+    ],
+    "gold_sources": [
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md"
+    ],
+    "retrieved_sources": [
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "114_7540106_DamBaoChatLuongVaAnToanTthucPham.md",
+      "105_7540101C_CongNgheThucPham_CTCLC.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 1,
+    "response_snippet": "Trong ngành Đảm bảo chất lượng và an toàn thực phẩm, có **121 tín chỉ bắt buộc** trên tổng số 161 tín chỉ."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-DIR-ACAD-08",
+    "question": "Chương trình chất lượng cao ngành Công nghệ thực phẩm yêu cầu tích lũy bao nhiêu tín chỉ?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "Công nghệ thực phẩm chất lượng cao",
+      "161 tín chỉ"
+    ],
+    "gold_sources": [
+      "105_7540101C_CongNgheThucPham_CTCLC.md"
+    ],
+    "retrieved_sources": [
+      "104_7540101_CongNgheThucPham.md",
+      "105_7540101C_CongNgheThucPham_CTCLC.md",
+      "104_7540101_CongNgheThucPham.md",
+      "105_7540101C_CongNgheThucPham_CTCLC.md",
+      "105_7540101C_CongNgheThucPham_CTCLC.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.5,
+    "tool_calls": 1,
+    "response_snippet": "Chương trình Chất lượng cao ngành Công nghệ Thực phẩm tại Trường Đại học Cần Thơ yêu cầu tích lũy 168 tín chỉ."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-DIR-ACAD-10",
+    "question": "Trong chương trình Kỹ thuật cơ điện tử chuẩn, phần kiến thức bắt buộc chiếm bao nhiêu tín chỉ?",
+    "domain": "academic",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Kỹ thuật cơ điện tử",
+      "116 tín chỉ bắt buộc",
+      "161"
+    ],
+    "gold_sources": [
+      "54_7520114_KyThuatCoDienTu.md"
+    ],
+    "retrieved_sources": [
+      "54_7520114_KyThuatCoDienTu.md",
+      "54_7520114_KyThuatCoDienTu.md",
+      "54_7520114_KyThuatCoDienTu.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 1,
+    "response_snippet": "Trong chương trình Kỹ thuật cơ điện tử chuẩn, phần kiến thức bắt buộc chiếm:\n- Khối kiến thức Giáo dục đại cương: 39 tín chỉ\n- Khối kiến thức chuyên ngành: 42 tín chỉ\n- Khối kiến thức cơ sở ngành: 41 ..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-DIR-FIN-08",
+    "question": "Học phí ngành Thú y chương trình chất lượng cao K52 thu bao nhiêu triệu một năm?",
+    "domain": "financial",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Thú y",
+      "CLC",
+      "44 triệu đồng/năm"
+    ],
+    "gold_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "115_7640101C_ThuY_CTCLC.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Học phí ngành Thú y, chương trình Chất lượng cao, khóa K52, năm học 2026-2027 là 41,8 triệu đồng/năm học."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-DIR-SCH-08",
+    "question": "Học bổng SCIC dành cho sinh viên thuộc các ngành học nào?",
+    "domain": "scholarship",
+    "query_type": "direct",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "SCIC",
+      "Kinh tế",
+      "Tài chính"
+    ],
+    "gold_sources": [
+      "HB_SCIC_2026.md"
+    ],
+    "retrieved_sources": [
+      "02_7310201_ChinhTriHoc.md",
+      "HB_SCIC_2026.md",
+      "HB_SCIC_2026.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.5,
+    "tool_calls": 0,
+    "response_snippet": "Học bổng SCIC năm 2026 dành cho sinh viên đang theo học tại Trường Công nghệ Thông tin & Truyền thông, Đại học Cần Thơ, có thành tích, giải thưởng về lĩnh vực công nghệ, trí tuệ nhân tạo (AI) và hoạt ..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-DIR-GEN-05",
+    "question": "Sinh viên được xin tạm nghỉ học vì lý do cá nhân tối đa bao nhiêu học kỳ?",
+    "domain": "general",
+    "query_type": "direct",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "tạm nghỉ học",
+      "thời gian học tập tối đa"
+    ],
+    "gold_sources": [
+      "5_don_xin_tam_nghi_hoc_llp.md"
+    ],
+    "retrieved_sources": [
+      "2015_777_QD_DHCT_llp.md",
+      "2020_CV1194-DHCT_Mon_hoc_GDQPAN_giang_day_tu_HK1_nam_hoc_2020-2021_llp.md"
+    ],
+    "source_recall": 0.0,
+    "source_ap": 0.0,
+    "tool_calls": 0,
+    "response_snippet": "Tôi không tìm thấy thông tin này trong tài liệu hiện có của Nhà trường."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-MHOP-ACAD-03",
+    "question": "Sinh viên muốn nộp đơn xin tạm nghỉ học thì cần đáp ứng điều kiện gì trong quy chế học vụ và thời hạn tối đa nộp đơn trước học kỳ là khi nào?",
+    "domain": "academic",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "tạm nghỉ học",
+      "ít nhất một học kỳ",
+      "Quy chế học vụ"
+    ],
+    "gold_sources": [
+      "quychehocvu.md",
+      "5_don_xin_tam_nghi_hoc_llp.md"
+    ],
+    "retrieved_sources": [
+      "quychehocvu.md",
+      "5_don_xin_tam_nghi_hoc_llp.md",
+      "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Theo Quy định công tác học vụ dành cho sinh viên trình độ đại học hình thức chính quy, sinh viên có thể làm đơn xin phép nghỉ học tạm thời trong các trường hợp sau:\n\n1.  **Được điều động vào các lực l..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-MHOP-ACAD-04",
+    "question": "Nếu sinh viên muốn chuyển chương trình đào tạo sang ngành Kỹ thuật xây dựng thì thủ tục làm đơn và điều kiện số tín chỉ đã tích lũy quy định thế nào?",
+    "domain": "academic",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "chuyển CTĐT",
+      "Kỹ thuật xây dựng",
+      "năm thứ nhất"
+    ],
+    "gold_sources": [
+      "7_don_de_nghi_chuyen_ctdt_llp.md",
+      "46_7580201_KyThuatXayDung.md"
+    ],
+    "retrieved_sources": [
+      "44_7580205_KyThuatXayDungCongTrinhGiaoThong.md",
+      "02_3175KHTH_30-08-2023_llp.md",
+      "02_3924KHTH_23-10-2023_llp.md",
+      "7_don_de_nghi_chuyen_ctdt_llp.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.125,
+    "tool_calls": 0,
+    "response_snippet": "Xin lỗi, tôi không có chức năng tra cứu về thủ tục chuyển chương trình đào tạo hay các quy định về số tín chỉ đã tích lũy. Tôi chỉ có thể cung cấp thông tin về cấu trúc ngành học, môn học, khung chươn..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-MHOP-FIN-01",
+    "question": "Sinh viên học ngành Kỹ thuật điều khiển và tự động hóa CLC K52 nếu được giảm 70% học phí theo chính sách thì số tiền hỗ trợ được tính dựa trên mức biểu phí nào?",
+    "domain": "financial",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "538.000 đồng/tín chỉ",
+      "Khối ngành V",
+      "cơ sở tính miễn giảm"
+    ],
+    "gold_sources": [
+      "MucHocPhi_2526_MienGiam.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "48_7520216_KyThuatDieuKhienVaTuDongHoa.md"
+    ],
+    "retrieved_sources": [
+      "48_7520216_KyThuatDieuKhienVaTuDongHoa.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "2023_QD6772-DHCT_QD_ban_hanh_Quy_dinh_dao_tao_CLC_va_dao_tao_TT_trinh_do_DH_ap_dung_tu_K50_tro_ve_sau_llp.md",
+      "nd116.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 0.6666666666666666,
+    "source_ap": 0.6666666666666666,
+    "tool_calls": 1,
+    "response_snippet": "Dựa trên thông tin tôi có, tôi không tìm thấy mức học phí làm cơ sở để tính miễn giảm cho ngành Kỹ thuật điều khiển và tự động hóa khóa K52. Do đó, tôi không thể xác định số tiền hỗ trợ cụ thể."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-MHOP-FIN-04",
+    "question": "Tổng học phí toàn khóa ngành Thú y hệ chuẩn K52 so với số tín chỉ toàn khóa 175 tín chỉ thì đơn giá bình quân mỗi tín chỉ là bao nhiêu?",
+    "domain": "financial",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Thú y",
+      "166,6 triệu",
+      "966.000 đồng/tín chỉ"
+    ],
+    "gold_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "96_7640101_ThuY.md",
+      "115_7640101C_ThuY_CTCLC.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_QuyDinhChung.md"
+    ],
+    "source_recall": 0.6666666666666666,
+    "source_ap": 0.6666666666666666,
+    "tool_calls": 0,
+    "response_snippet": "Theo thông tin từ biểu mức thu học phí năm học 2026-2027, ngành Thú y (mã 7640101), chương trình chuẩn, khóa K52 có mức thu là 1.016.000 VNĐ/tín chỉ.\n\nTổng số tín chỉ của chương trình này theo dữ liệu..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-MHOP-SCH-03",
+    "question": "Sinh viên năm cuối ngành Tài chính - Ngân hàng có thể ứng tuyển học bổng SCIC không và hồ sơ cần chuẩn bị những giấy tờ gì?",
+    "domain": "scholarship",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "SCIC",
+      "Tài chính - Ngân hàng",
+      "bảng điểm tích lũy"
+    ],
+    "gold_sources": [
+      "HB_SCIC_2026.md",
+      "87_7340201_TaiChinh-NganHang.md"
+    ],
+    "retrieved_sources": [
+      "HB_SCIC_2026.md",
+      "mghp.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.5,
+    "tool_calls": 0,
+    "response_snippet": "Chào bạn,\n\nTheo thông tin học bổng SCIC 2026, bạn cần chuẩn bị các giấy tờ sau:\n*   Đơn xin học bổng (theo mẫu đính kèm).\n*   Bảng điểm có xác nhận của nhà trường.\n*   Các minh chứng hợp lệ theo các t..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-MHOP-GEN-03",
+    "question": "Thủ tục xin miễn 100% học phí theo quy định chính sách cần làm đơn theo mẫu nào và nộp vào thời điểm nào trong học kỳ?",
+    "domain": "general",
+    "query_type": "multi_hop",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "miễn 100% học phí",
+      "mẫu số 12",
+      "đầu mỗi học kỳ"
+    ],
+    "gold_sources": [
+      "12_don_de_nghi_mien_giam_hoc_phi_llp.md",
+      "mghp.md"
+    ],
+    "retrieved_sources": [
+      "mghp.md",
+      "12_don_de_nghi_mien_giam_hoc_phi_llp.md",
+      "mghp.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Để xin miễn 100% học phí, bạn cần làm đơn theo mẫu \"ĐƠN ĐỀ NGHỊ MIỄN, GIẢM HỌC PHÍ\" (được cung cấp trong tài liệu).\n\nThông tin về thời điểm nộp đơn trong học kỳ không có trong tài liệu được cung cấp. ..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-XDOM-01",
+    "question": "Ngành Nuôi trồng thủy sản chương trình tiên tiến K52 có tổng bao nhiêu tín chỉ và đơn giá mỗi tín chỉ chuyên ngành là bao nhiêu đồng?",
+    "domain": "financial+academic",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.0,
+    "required_facts": [
+      "Nuôi trồng thủy sản tiên tiến",
+      "161 tín chỉ",
+      "1.564.000 đồng/tín chỉ"
+    ],
+    "gold_sources": [
+      "101_7620301T_NuoiTrongThuySan_CTTT.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "100_7620301_NuoiTrongThuySan.md"
+    ],
+    "retrieved_sources": [
+      "100_7620301_NuoiTrongThuySan.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "101_7620301T_NuoiTrongThuySan_CTTT.md",
+      "100_7620301_NuoiTrongThuySan.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.9166666666666666,
+    "tool_calls": 0,
+    "response_snippet": "Xin lỗi, tôi không thể tra cứu được đơn giá tín chỉ chuyên ngành. Tôi chỉ có thể cung cấp thông tin về tổng số tín chỉ của chương trình đào tạo. Bạn có muốn tôi tra cứu thông tin này không?"
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-XDOM-09",
+    "question": "Quỹ học bổng khuyến khích trích tối thiểu 8% từ nguồn thu học phí, vậy sinh viên đạt loại Xuất sắc ngành Quản trị kinh doanh K52 sẽ nhận mức học bổng tính ra sao so với học phí đã đóng?",
+    "domain": "financial+scholarship",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "8%",
+      "1,2",
+      "học phí thực đóng"
+    ],
+    "gold_sources": [
+      "Tài liệu phân bổ quỹ học bổng.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md",
+      "HB_TanSinhVien_K52.md",
+      "Tài liệu phân bổ quỹ học bổng.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 0.9166666666666666,
+    "tool_calls": 0,
+    "response_snippet": "Mức học bổng khuyến khích học tập loại Xuất sắc được tính bằng 1.2 lần mức học bổng loại Khá. Mức học bổng loại Khá bằng với số tiền học phí sinh viên đã đóng trong học kỳ liền trước. Do đó, sinh viên..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-XDOM-13",
+    "question": "Sinh viên học ngành Quản trị kinh doanh K52 thuộc diện hộ cận nghèo thì được giảm bao nhiêu phần trăm học phí và mức hỗ trợ mỗi tín chỉ là bao nhiêu?",
+    "domain": "financial+social_support",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "Khối ngành III",
+      "451.000 đồng/tín chỉ",
+      "Quản trị kinh doanh"
+    ],
+    "gold_sources": [
+      "mghp.md",
+      "MucHocPhi_2526_MienGiam.md",
+      "85_7340101_QuanTriKinhDoanh.md"
+    ],
+    "retrieved_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MauXacNhanhoNghoe.md",
+      "14_giay_chung_nhan_hoc_sinh_sinh_vien_thuoc_ho_can_ngheo_llp.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 0.0,
+    "source_ap": 0.0,
+    "tool_calls": 0,
+    "response_snippet": "Chào bạn,\n\nTheo thông tin tra cứu được, học phí cho ngành Quản trị kinh doanh K52 năm học 2026-2027 như sau:\n*   Chương trình chuẩn: 844.000 VNĐ/tín chỉ.\n*   Chương trình chất lượng cao (CLC): 1.363.0..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-XDOM-16",
+    "question": "Sinh viên ngành Nuôi trồng thủy sản chương trình tiên tiến cần tích lũy bao nhiêu tín chỉ và điểm GPA tối thiểu bao nhiêu để nộp hồ sơ học bổng SCC?",
+    "domain": "academic+scholarship",
+    "query_type": "cross_domain",
+    "fact_coverage": 0.25,
+    "required_facts": [
+      "Nuôi trồng thủy sản tiên tiến",
+      "161 tín chỉ",
+      "8.0",
+      "SCC"
+    ],
+    "gold_sources": [
+      "101_7620301T_NuoiTrongThuySan_CTTT.md",
+      "HB_SCC.md"
+    ],
+    "retrieved_sources": [
+      "100_7620301_NuoiTrongThuySan.md",
+      "101_7620301T_NuoiTrongThuySan_CTTT.md",
+      "HB_Vallet_Chi_Tiet.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.25,
+    "tool_calls": 0,
+    "response_snippet": "Xin lỗi, tôi không tìm thấy thông tin về học bổng SCC trong tài liệu được cung cấp."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-COMP-02",
+    "question": "Học phí toàn khóa ngành Thú y hệ chuẩn K52 cao hơn hay thấp hơn ngành Kiến trúc hệ chuẩn K52 và chênh lệch bao nhiêu triệu?",
+    "domain": "financial",
+    "query_type": "comparison",
+    "fact_coverage": 0.4,
+    "required_facts": [
+      "Thú y",
+      "166,6 triệu",
+      "Kiến trúc",
+      "165,6 triệu",
+      "cao hơn 1,0 triệu"
+    ],
+    "gold_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "115_7640101C_ThuY_CTCLC.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 2,
+    "response_snippet": "Học phí toàn khóa ngành Thú y hệ chuẩn K52 là 166.6 triệu đồng, cao hơn ngành Kiến trúc hệ chuẩn K52 là 165.6 triệu đồng. Chênh lệch là 1 triệu đồng."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-COMP-03",
+    "question": "Học phí niên chế một năm của hai chuyên ngành chất lượng cao QTKD và Tài chính Ngân hàng khóa 52 chênh nhau như thế nào?",
+    "domain": "financial",
+    "query_type": "comparison",
+    "fact_coverage": 0.25,
+    "required_facts": [
+      "Quản trị kinh doanh",
+      "Tài chính - Ngân hàng",
+      "CLC",
+      "38.000.000 đồng/năm"
+    ],
+    "gold_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "85_7340101_QuanTriKinhDoanh.md"
+    ],
+    "retrieved_sources": [
+      "85_7340101_QuanTriKinhDoanh.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "86_7340101C_QuanTriKinhDoanh_CTCLC.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Học phí niên chế một năm của ngành Quản trị kinh doanh (chất lượng cao, khóa 52) là 40.000.000 VNĐ/năm học.\nHọc phí niên chế một năm của ngành Tài chính – Ngân hàng (chất lượng cao, khóa 52) là 40.000..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-COMP-05",
+    "question": "Học phí một năm của ngành Kỹ thuật điều khiển và tự động hóa CLC khóa 51 so với khóa 52 chênh lệch bao nhiêu triệu đồng?",
+    "domain": "financial",
+    "query_type": "comparison",
+    "fact_coverage": 0.1667,
+    "required_facts": [
+      "Kỹ thuật điều khiển và tự động hóa",
+      "K51",
+      "40 triệu",
+      "K52",
+      "44 triệu",
+      "4 triệu"
+    ],
+    "gold_sources": [
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "48_7520216_KyThuatDieuKhienVaTuDongHoa.md"
+    ],
+    "retrieved_sources": [
+      "48_7520216_KyThuatDieuKhienVaTuDongHoa.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_ChatLuongCao_TienTien.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Học phí một năm của ngành Kỹ thuật điều khiển và tự động hóa Chất lượng cao (CLC) khóa 51, năm học 2026-2027 là 37.000.000 VNĐ.\n\nĐối với khóa 52, học phí là 1.251.000 VNĐ/tín chỉ. Với tổng số 161 tín ..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-COMP-07",
+    "question": "Chương trình đào tạo ngành Thú y hệ chuẩn và ngành Quản lý thủy sản khác nhau bao nhiêu tín chỉ toàn khóa?",
+    "domain": "academic",
+    "query_type": "comparison",
+    "fact_coverage": 0.4,
+    "required_facts": [
+      "Thú y",
+      "175 tín chỉ",
+      "Quản lý thủy sản",
+      "141 tín chỉ",
+      "34"
+    ],
+    "gold_sources": [
+      "96_7640101_ThuY.md",
+      "102_7620305_QuanLyThuySan.md"
+    ],
+    "retrieved_sources": [
+      "115_7640101C_ThuY_CTCLC.md",
+      "96_7640101_ThuY.md",
+      "115_7640101C_ThuY_CTCLC.md"
+    ],
+    "source_recall": 0.5,
+    "source_ap": 0.25,
+    "tool_calls": 1,
+    "response_snippet": "Ngành Thú y có 173 tín chỉ, còn ngành Quản lý thủy sản có 161 tín chỉ. Như vậy, ngành Thú y có nhiều hơn ngành Quản lý thủy sản 12 tín chỉ toàn khóa."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-COMP-10",
+    "question": "Giữa ngành Luật hệ chuẩn K52 và ngành Kỹ thuật xây dựng hệ chuẩn K52 thì ngành nào có học phí toàn khóa thấp hơn và thấp hơn bao nhiêu?",
+    "domain": "financial",
+    "query_type": "comparison",
+    "fact_coverage": 0.4,
+    "required_facts": [
+      "Luật",
+      "114,5 triệu",
+      "Kỹ thuật xây dựng",
+      "150,3 triệu",
+      "thấp hơn 35,8 triệu"
+    ],
+    "gold_sources": [
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "111_7380103_LuatDanSuVaToTungDanSu.md"
+    ],
+    "retrieved_sources": [
+      "111_7380103_LuatDanSuVaToTungDanSu.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md",
+      "MucHocPhi_DaiHocChinhQuy_Khoa52.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Chào bạn,\n\nDựa trên bảng học phí thực tế cho Khóa 52, năm học 2026-2027:\n\n*   **Ngành Luật dân sự và tố tụng dân sự (K52)** có mức học phí toàn khóa là **114,500,000 VNĐ**.\n*   **Ngành Kỹ thuật xây dự..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-TEMP-04",
+    "question": "Quy định công tác học vụ năm 2021 (QĐ 1813) và Quy chế học vụ hiện hành có điểm gì cần lưu ý về thời gian tối đa để sinh viên hoàn thành khóa học?",
+    "domain": "academic",
+    "query_type": "temporal",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "2 lần thời gian",
+      "tối đa",
+      "Quy chế học vụ"
+    ],
+    "gold_sources": [
+      "quychehocvu.md",
+      "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.md"
+    ],
+    "retrieved_sources": [
+      "quychehocvu.md",
+      "quychehocvu.md",
+      "quychehocvu.md",
+      "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.md",
+      "QD1813_QD_ban_hanh_Quy_dinh_cong_tac_hoc_vu_2021.md",
+      "quychehocvu.md"
+    ],
+    "source_recall": 1.0,
+    "source_ap": 1.0,
+    "tool_calls": 0,
+    "response_snippet": "Theo Quy định công tác học vụ dành cho sinh viên trình độ đại học hình thức chính quy ban hành kèm theo Quyết định số 1813/QĐ-ĐHCT ngày 12 tháng 7 năm 2021 của Hiệu trưởng Trường Đại học Cần Thơ, có n..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-ADVS-02",
+    "question": "Sinh viên muốn xin học bổng thì cần đáp ứng những tiêu chuẩn chung gì?",
+    "domain": "scholarship",
+    "query_type": "adversarial",
+    "fact_coverage": 0.3333,
+    "required_facts": [
+      "điểm học tập",
+      "điểm rèn luyện",
+      "loại Khá trở lên"
+    ],
+    "gold_sources": [
+      "03-7-2026_Qd_dinhmuchocbong_261signedsignedsignedsigned_llp.md"
+    ],
+    "retrieved_sources": [
+      "HB_Vallet_Chi_Tiet.md",
+      "HB_LuongVanCang.md"
+    ],
+    "source_recall": 0.0,
+    "source_ap": 0.0,
+    "tool_calls": 0,
+    "response_snippet": "Để xin học bổng, sinh viên cần đáp ứng các tiêu chuẩn chung sau:\n\n*   **Học bổng Xuất sắc**: GPA từ 3.6 trở lên và Điểm rèn luyện (ĐRL) từ 90 trở lên.\n*   **Học bổng Giỏi**: GPA từ 3.2 trở lên và ĐRL ..."
+  },
+  {
+    "config": "S1-C",
+    "config_name": "CTU-Chat",
+    "query_id": "HOUT-ADVS-03",
+    "question": "Trường Đại học Cần Thơ có những chính sách hỗ trợ tài chính nào dành cho sinh viên có hoàn cảnh khó khăn?",
+    "domain": "general",
+    "query_type": "adversarial",
+    "fact_coverage": 0.25,
+    "required_facts": [
+      "miễn giảm học phí",
+      "hỗ trợ chi phí học tập",
+      "trợ cấp xã hội",
+      "vay vốn"
+    ],
+    "gold_sources": [
+      "HTCPHT.md",
+      "mghp.md",
+      "VayVon.md",
+      "02_246_23-06-2026.md"
+    ],
+    "retrieved_sources": [
+      "QuyTrinh4-Congtacsinhvien_llp.md",
+      "HB_LeSo.md",
+      "HB_TanSinhVien_K52.md",
+      "mghp.md",
+      "Vayvon_Viettinbank_2025_v2.md",
+      "mghp.md"
+    ],
+    "source_recall": 0.25,
+    "source_ap": 0.0625,
+    "tool_calls": 0,
+    "response_snippet": "Trường Đại học Cần Thơ có các chính sách hỗ trợ tài chính dành cho sinh viên có hoàn cảnh khó khăn như sau:\n\n*   **Hỗ trợ học bổng cho sinh viên có hoàn cảnh khó khăn:**\n    *   **Mục đích:** Vận động..."
+  }
+]

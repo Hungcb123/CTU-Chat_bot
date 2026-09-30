@@ -68,3 +68,17 @@ Trong lần biên dịch lại, `sections/05-results.tex` còn dùng `\FloatBarr
 **Kiểm tra sau chỉnh sửa:** `tectonic.exe main.tex --keep-logs` hoàn tất và tạo lại `main.pdf` (15 trang). Bộ kiểm tra LNCS vẫn báo **22 PASS, 0 FAIL, 1 WARN**; Abstract 244 từ; cảnh báo còn lại là sơ đồ JPG. Kiểm tra font của PDF mới thấy `/Type0` và `/Type1`, không thấy `/Type3`. Bản biên dịch vẫn ghi một số cảnh báo `Overfull \hbox`; chưa xử lý dàn trang chi tiết trong lượt chỉnh claim này.
 
 **Còn cần kiểm tra sau khi sửa benchmark:** toàn bộ phần trăm, khoảng tin cậy, p-value, so sánh ngưỡng và các câu định lượng trong Abstract/Conclusion. Việc làm mềm claim không thay thế cho tính lại kết quả từ nhãn đã xác minh.
+
+## Bổ sung rà soát Table 5 — PAPER_V15
+
+Ngày cập nhật: 2026-09-29. Ghi chú này bổ sung cho nhận xét về bản PAPER_V15; các nhận định dưới đây cần được đối chiếu với log trước khi chốt bảng.
+
+**Vấn đề:** Table 5 đang gom ba trường hợp dưới nhãn “unrecoverable routing failures”, dù bằng chứng mô tả lỗi ở các giai đoạn khác nhau.
+
+- `HOUT-MHOP-ACAD-04`: lỗi gắn với bước route repair. Nên phân loại riêng là **route-repair failure**; mô tả đúng thứ tự quyết định ban đầu và bước sửa route.
+- `HOUT-XDOM-01`: nguồn đã được truy xuất nhưng worker bỏ sót phần học phí trong câu trả lời. Đây là **answer-generation/coverage failure sau định tuyến**, không phải misroute.
+- `HOUT-XDOM-16`: truy vấn được chuyển đúng đến scholarship nhưng câu trả lời thiếu nguồn SCC. Đây là **evidence/answer-coverage failure sau định tuyến**, không phải misroute.
+
+**Đề nghị sửa:** đổi nhãn tổng quát thành “unrecovered query failures”, hoặc tách số liệu thành **1 route-repair failure** và **2 post-routing evidence/answer failures** sau khi xác nhận từng ca từ log. Không gọi cả ba là lỗi định tuyến nếu hai ca sau đã chọn đúng owner. Bỏ câu khẳng định cả ba là truy vấn đa ý định; `HOUT-MHOP-ACAD-04` được mô tả là multi-hop, nên chỉ dùng loại truy vấn đã được gán và kiểm chứng cho từng ID.
+
+**Cần kiểm tra trước khi sửa paper:** đối chiếu ID, owner ban đầu, kết quả route repair, nguồn được trả về và nội dung câu trả lời trong trace; bảo đảm số đếm trong Table 5 khớp với phân loại mới. Ghi chú này là khuyến nghị biên tập, chưa xác nhận lại log hay thay đổi số liệu.
