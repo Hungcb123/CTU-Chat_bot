@@ -12,12 +12,12 @@ Table~\ref{tab:arch_comparison} compares three arms on the 100-query held-out se
 
 \begin{table}[!htbp]
 \centering
-\caption{Scenario~1: Architecture-level comparison ($N=100$). $\text{Pass}_{.50}^{\text{Lex}}$ = Lexical Fact Pass Rate ($\ge 50\%$ required facts). $\text{Pass}_{.50}^{\text{Jdg}}$ / $\text{Pass}_{\ge .75}^{\text{Jdg}}$ = LLM-Judge Semantic Pass Rates ($\text{AC} \ge 0.50$ / $\ge 0.75$). $\text{AC}$ / $\text{AR}$ = Mean Answer Correctness / Relevancy. $\text{Num-EM}$ = Numeric Exact Match on financial queries ($N_{\text{fin}}=50$). Fact = mean fact coverage (\%). In/Out Tok = specialist agent tokens; supervisor routing ($\sim$650 tokens/query) is excluded. Bold = best reliability / lowest cost. Shared pre-generation retrieval fixes Source Recall (78.6\%) and Source AP (70.8\%) across arms.}
+\caption{Scenario~1: Architecture-level comparison ($N=100$). $\text{Pass}_{.50}^{\text{Lex}}$ = Lexical Fact Pass Rate ($\ge 50\%$ required facts). $\text{Pass}_{.50}^{\text{Jdg}}$ / $\text{Pass}_{\ge .75}^{\text{Jdg}}$ = LLM-Judge Semantic Pass Rates ($\text{AC} \ge 0.50$ / $\ge 0.75$). $\text{AC}$ / $\text{AR}$ = Mean Answer Correctness / Relevancy. $\text{Num-FC}$ = Numeric Figure Coverage on financial queries ($N_{\text{fin}}=50$). Fact = mean fact coverage (\%). In/Out Tok = specialist agent tokens; supervisor routing ($\sim$650 tokens/query) is excluded. Bold = best reliability / lowest cost. Shared pre-generation retrieval fixes Source Recall (78.6\%) and Source AP (70.8\%) across arms.}
 \label{tab:arch_comparison}
-{\scriptsize\setlength{\tabcolsep}{1.8pt}
+{\footnotesize\setlength{\tabcolsep}{1.6pt}
 \begin{tabular}{lcccccccccc}
 \toprule
-\textbf{Arch.} & \textbf{Pass$_{.50}^{\text{Lex}}$} & \textbf{Pass$_{.50}^{\text{Jdg}}$} & \textbf{Pass$_{\ge .75}^{\text{Jdg}}$} & \textbf{AC} & \textbf{AR} & \textbf{Num-EM} & \textbf{Fact} & \textbf{In Tok} & \textbf{Out Tok} & \textbf{Lat.\,(ms)} \\
+\textbf{Arch.} & \textbf{Pass$_{.50}^{\text{Lex}}$} & \textbf{Pass$_{.50}^{\text{Jdg}}$} & \textbf{Pass$_{\ge .75}^{\text{Jdg}}$} & \textbf{AC} & \textbf{AR} & \textbf{Num-FC} & \textbf{Fact} & \textbf{In Tok} & \textbf{Out Tok} & \textbf{Lat.\,(ms)} \\
 \midrule
 Single Agent   & 66.0 & \textbf{61.0} & 33.0 & \textbf{58.6} & \textbf{80.9} & 60.0 & 57.5 & 6296 & 1530 & \textbf{5159} \\
 Routed Gen.    & 66.0 & 52.0 & 29.0 & 48.1 & 66.7 & 54.0 & 54.2 & \textbf{3473} & \textbf{1415} & 8921 \\
@@ -26,14 +26,19 @@ Routed Gen.    & 66.0 & 52.0 & 29.0 & 48.1 & 66.7 & 54.0 & 54.2 & \textbf{3473} 
 \end{tabular}}
 \end{table}
 
+\pagebreak[4]
+\begingroup\emergencystretch=2em
 \textbf{Pairwise bootstrap analysis} (10,000 resamples):
-(1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves a 10.0\,pp higher $\text{Pass}_{\ge 50\%}^{\text{Lex}}$ estimate (76.0\% vs.\ 66.0\%, paired 95\%\,bootstrap CI $[+2.0, +19.0]$\,pp; McNemar $p{=}0.0414$), higher Fact Coverage ($\Delta{=}+3.58$\,pp, CI $[-1.2, +8.5]$\,pp), and 41.4\% fewer specialist input tokens (differing boundaries: 10{,}652\,ms end-to-end vs.\ 5{,}159\,ms post-retrieval).
+(1)~CTU-Chat vs.\ Single Agent: Lexical fact pass is 76.0\% vs.\ 66.0\% ($\Delta{=}+10.0$\,pp; paired 95\% bootstrap CI $[+2.0, +19.0]$\,pp; McNemar $p{=}0.0414$). Fact Coverage rises by $3.58$\,pp (CI $[-1.2, +8.5]$\,pp), while specialist input tokens fall by 41.4\% (differing boundaries: 10{,}652\,ms end-to-end vs.\ 5{,}159\,ms post-retrieval).
 (2)~CTU-Chat vs.\ Routed Generic: CTU-Chat gains $+6.85$\,pp Fact Coverage (CI $[+0.7, +13.0]$\,pp, $p{<}0.05$). Generic and Single Agent both pass $66.0\%$ (Fact Coverage $54.2\%$ vs.\ $57.5\%$).
 (3)~Cross-domain queries: \system{} passes 80.0\% (vs.\ 70.0\% Single, 65.0\% Generic).
 Evaluating threshold sensitivity reveals trade-offs: \system{}'s margin at 50\% narrows at 60\% (54.0\% vs.\ 50.0\%) and reverses at 75\% (27.0\% vs.\ 30.0\%, $p{=}0.5488$, 95\% CI $[-10.0, +3.0]$\,pp), showing neither architecture dominates at stringent lexical thresholds.
+\par\endgroup
 
 \textbf{LLM-as-a-Judge and Numeric Exact Match:}
+\begingroup\emergencystretch=1em
 To complement lexical metrics, an independent LLM judge (Gemini 2.5 Flash Lite) and programmatic Numeric Exact Match ($\text{Num-EM}$, $N_{\text{fin}}{=}50$) evaluated all 100 held-out queries. Continuous evaluation shows comparable Mean Answer Correctness across architectures: Single Agent achieves 58.6\% versus 57.7\% for \system{} ($\Delta = -0.90$\,pp, 95\% CI $[-7.2, +5.3]$\,pp) and 48.1\% for Generic. On moderate semantic threshold ($\text{Pass}_{.50}^{\text{Jdg}}$), Single Agent leads slightly (61.0\% vs.\ 59.0\% for \system{}, 52.0\% for Generic; $\Delta = -2.0$\,pp, 95\% CI $[-12.0, +8.0]$\,pp). Single Agent also achieves higher Mean Answer Relevancy (80.9\% vs.\ 77.8\% for \system{}, 66.7\% for Generic). This stems from response characteristics: Single Agent generates concise, direct answers focused narrowly on the prompt, whereas \system{} operates as an advisory counseling system incorporating regulatory constraints, prerequisite paths, and fee conditions, which incurs minor verbosity penalties from the judge despite preserving factuality. Under strict semantic criteria ($\text{Pass}_{\ge .75}^{\text{Jdg}}$), \system{} attains a higher point estimate (37.0\% vs.\ 33.0\% for Single Agent, $\Delta = +4.0$\,pp; 29.0\% for Generic). However, a paired McNemar test reveals this difference is not statistically significant ($p{=}0.4807$, paired 95\% bootstrap CI $[-4.0, +12.0]$\,pp spanning zero), indicating that strict semantic pass rates reflect an estimated point difference rather than confirmed semantic superiority. On financial queries ($N_{\text{fin}}{=}50$), programmatic regex extraction and VND normalization confirm that deterministic calculation yields 62.5\% Numeric Exact Match compared to 60.0\% for Single Agent ($\Delta = +2.5$\,pp, 95\% CI $[-6.7, +11.8]$\,pp) and 54.0\% for Generic. These results demonstrate that specialist tools reduce arithmetic hallucination while general semantic performance exhibits nuanced trade-offs across answer conciseness and multi-agent coordination.
+\par\endgroup
 
 \textbf{Operational Trade-offs:}
 Table~\ref{tab:arch_comparison} delineates clear architectural trade-offs: Single Agent provides lower end-to-end latency ($5{,}159$\,ms vs.\ $10{,}652$\,ms) and higher Answer Relevancy (80.9\% vs.\ 77.8\%) with zero supervisor overhead. Conversely, \system{} achieves higher lexical fact pass (+10.0\,pp, $p{=}0.0414$), stronger cross-domain synthesis (80.0\% vs.\ 70.0\%), and reduces specialist input tokens by 41.4\% ($3{,}690$ vs.\ $6{,}296$, plus ${\sim}650$ routing tokens).
@@ -43,6 +48,8 @@ Table~\ref{tab:arch_comparison} delineates clear architectural trade-offs: Singl
 \label{sec:s2_results}
 
 Table~\ref{tab:ablation} removes one mechanism at a time from Full CTU-Chat ($N{=}100$). Deltas are relative to the full system.
+
+The largest pass-rate decreases occur without Specialist Policy ($-10.0$\,pp, 95\% CI $[-19.0, -1.0]$\,pp) and with Uniform Text-RAG ($-9.0$\,pp, CI $[-15.0, -4.0]$\,pp). The former lowers Fact Coverage by $6.85$\,pp (CI $[-13.0, -0.7]$\,pp); the latter lowers Source Recall by $12.3$\,pp (CI $[-16.5, -8.3]$\,pp). Removing tool isolation leaves the pass estimate unchanged (CI $[-6.0, +6.0]$\,pp) but adds $1{,}270$ input tokens. Without route repair, overall pass changes by $-2.0$\,pp (CI $[-7.0, +3.0]$\,pp), while cross-domain pass falls from $80.0\%$ to $65.0\%$. Without deterministic calculation, overall automated fact pass changes by $-4.0$\,pp (95\% CI $[-9.0, 0.0]$\,pp). This benchmark-wide result uses the $\text{FactCov} \ge 0.50$ threshold and does not measure numeric exact match. Panel~B shows $63.2\%$ pass on graph queries versus $80.0\%$ on cross-domain queries. Graph queries can require credit aggregation across degree blocks; omitting one required fact may lower this substring-based score.
 
 \begin{table}[!htb]
 \centering
@@ -72,8 +79,6 @@ No Route Rep.    & \textbf{68.4} & \textbf{78.6} & 78.8 & \multicolumn{2}{c}{65.
 \multicolumn{6}{l}{\rule{0pt}{2.5ex}\footnotesize $^\dagger$Full benchmark with calculators disabled. $\Delta$Tok/Lat in tokens/ms per query.}
 \end{tabular}}
 \end{table}
-
-The largest pass-rate decreases occur without Specialist Policy ($-10.0$\,pp, 95\% CI $[-19.0, -1.0]$\,pp) and with Uniform Text-RAG ($-9.0$\,pp, CI $[-15.0, -4.0]$\,pp). The former lowers Fact Coverage by $6.85$\,pp (CI $[-13.0, -0.7]$\,pp); the latter lowers Source Recall by $12.3$\,pp (CI $[-16.5, -8.3]$\,pp). Removing tool isolation leaves the pass estimate unchanged (CI $[-6.0, +6.0]$\,pp) but adds $1{,}270$ input tokens. Without route repair, overall pass changes by $-2.0$\,pp (CI $[-7.0, +3.0]$\,pp), while cross-domain pass falls from $80.0\%$ to $65.0\%$. Without deterministic calculation, overall automated fact pass changes by $-4.0$\,pp (95\% CI $[-9.0, 0.0]$\,pp). This benchmark-wide result uses the $\text{FactCov} \ge 0.50$ threshold and does not measure numeric exact match. Panel~B shows $63.2\%$ pass on graph queries versus $80.0\%$ on cross-domain queries. Graph queries can require credit aggregation across degree blocks; omitting one required fact may lower this substring-based score.
 
 %------------------------------------------------
 \subsection{Scenario 3 --- Tool Ambiguity Stress Test}

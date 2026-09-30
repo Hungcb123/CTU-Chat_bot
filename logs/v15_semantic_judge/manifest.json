@@ -1,0 +1,7 @@
+{
+  "model": "gemini-3.8-flash",
+  "rubric": "v15-blind-seven-v1",
+  "rubric_sha256": "b04fe08d28c4b5afc392274005a280321012f0ab04d789708465a4c2b0ad56f8",
+  "cases_sha256": "a1e484d75f089aa8a28b64ab2b49424d8d40b0186abeb8e3c152ec3c7ce890d5",
+  "answers_sha256": "28a68220469a68bb6da0895c6829088995b7ef349ddf7d8f533581a552299c7a"
+}
