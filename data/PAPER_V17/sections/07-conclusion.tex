@@ -1,0 +1,7 @@
+% ============================================================
+% 07-conclusion.tex — V15 Conclusion
+% ============================================================
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+We evaluated \system{} for university counseling through architecture comparisons, ablations, and tool ambiguity tests. Automated Fact Pass Rate exceeds the matched Single Agent by 10.0\,pp (paired 95\% CI $[+2.0, +19.0]$\,pp; exact McNemar $p{=}0.0414$), with fewer specialist input tokens. Removing specialist policies or graph evidence lowers pass rate or Source Recall, respectively. At 51 tools, Routed Specialist records 88.0\% tool E2E Success. Deterministic calculation ablation yields an estimated $-4.0$\,pp difference in overall fact pass (95\% CI $[-9.0, 0.0]$\,pp); scoped access also bounds visible tools at 51-tool scale. These findings rely on fact matching; multi-turn benefits remain untested. Human and LLM-as-a-Judge assessments, alongside deterministic numeric checks, will complement substring matching. We will test streaming, caching for repeated queries, and supervisor prompt optimization to improve responsiveness and assess transfer to other universities.
