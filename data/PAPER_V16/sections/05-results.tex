@@ -12,31 +12,31 @@ Table~\ref{tab:arch_comparison} compares three arms on the 100-query held-out se
 
 \begin{table}[!htbp]
 \centering
-\caption{Scenario~1: Architecture-level comparison ($N=100$). $\text{Pass}_{.50}^{\text{Lex}}$ = Lexical Fact Pass Rate ($\ge 50\%$ required facts). $\text{Pass}_{.75}^{\text{Jdg}}$ = LLM-Judge Strict Semantic Pass Rate ($\text{AC} \ge 0.75$). $\text{Num-EM}$ = Numeric Exact Match on financial queries. Tools/Q = mean tool invocations ($\downarrow$). In/Out Tok = specialist agent tokens; estimated routing input ($\sim$650 tokens/query) is excluded. Bold = best reliability / lowest cost. Shared pre-generation retrieval fixes Source Recall (78.6\%) and Source AP (70.8\%) across arms.}
+\caption{Scenario~1: Architecture-level comparison ($N=100$). $\text{Pass}_{.50}^{\text{Lex}}$ = Lexical Fact Pass Rate ($\ge 50\%$ required facts). $\text{Pass}_{.50}^{\text{Jdg}}$ / $\text{Pass}_{\ge .75}^{\text{Jdg}}$ = LLM-Judge Semantic Pass Rates ($\text{AC} \ge 0.50$ / $\ge 0.75$). $\text{AC}$ / $\text{AR}$ = Mean Answer Correctness / Relevancy. $\text{Num-EM}$ = Numeric Exact Match on financial queries ($N_{\text{fin}}=50$). Fact = mean fact coverage (\%). In/Out Tok = specialist agent tokens; supervisor routing ($\sim$650 tokens/query) is excluded. Bold = best reliability / lowest cost. Shared pre-generation retrieval fixes Source Recall (78.6\%) and Source AP (70.8\%) across arms.}
 \label{tab:arch_comparison}
-{\small\setlength{\tabcolsep}{3.2pt}
-\begin{tabular}{lcccccccc}
+{\scriptsize\setlength{\tabcolsep}{1.8pt}
+\begin{tabular}{lcccccccccc}
 \toprule
-\textbf{Arch.} & \textbf{Pass$_{.50}^{\text{Lex}}$} & \textbf{Pass$_{\ge .75}^{\text{Jdg}}$} & \textbf{Num-EM} & \textbf{Fact} & \textbf{Tools/Q} & \textbf{In Tok} & \textbf{Out Tok} & \textbf{Lat.\,(ms)} \\
+\textbf{Arch.} & \textbf{Pass$_{.50}^{\text{Lex}}$} & \textbf{Pass$_{.50}^{\text{Jdg}}$} & \textbf{Pass$_{\ge .75}^{\text{Jdg}}$} & \textbf{AC} & \textbf{AR} & \textbf{Num-EM} & \textbf{Fact} & \textbf{In Tok} & \textbf{Out Tok} & \textbf{Lat.\,(ms)} \\
 \midrule
-Single Agent   & 66.0 & 33.0 & 60.0 & 57.5 & 0.41 & 6296 & 1530 & \textbf{5159} \\
-Routed Gen.    & 66.0 & 29.0 & 54.0 & 54.2 & 0.31 & \textbf{3473} & 1415 & 8921 \\
-\textbf{CTU-Chat} & \textbf{76.0} & \textbf{37.0} & \textbf{62.5} & \textbf{61.0} & \textbf{0.28} & 3690 & \textbf{2092} & 10652 \\
+Single Agent   & 66.0 & \textbf{61.0} & 33.0 & \textbf{58.6} & \textbf{80.9} & 60.0 & 57.5 & 6296 & 1530 & \textbf{5159} \\
+Routed Gen.    & 66.0 & 52.0 & 29.0 & 48.1 & 66.7 & 54.0 & 54.2 & \textbf{3473} & \textbf{1415} & 8921 \\
+\textbf{\system{}} & \textbf{76.0} & 59.0 & \textbf{37.0} & 57.7 & 77.8 & \textbf{62.5} & \textbf{61.0} & 3690 & 2092 & 10652 \\
 \bottomrule
 \end{tabular}}
 \end{table}
 
 \textbf{Pairwise bootstrap analysis} (10,000 resamples):
 (1)~CTU-Chat vs.\ Single Agent: CTU-Chat achieves a 10.0\,pp higher $\text{Pass}_{\ge 50\%}^{\text{Lex}}$ estimate (76.0\% vs.\ 66.0\%, paired 95\%\,bootstrap CI $[+2.0, +19.0]$\,pp; McNemar $p{=}0.0414$), higher Fact Coverage ($\Delta{=}+3.58$\,pp, CI $[-1.2, +8.5]$\,pp), and 41.4\% fewer specialist input tokens (differing boundaries: 10{,}652\,ms end-to-end vs.\ 5{,}159\,ms post-retrieval).
-(2)~CTU-Chat vs.\ Routed Generic: CTU-Chat gains $+6.85$\,pp Fact Coverage (CI $[+0.7, +13.0]$\,pp, $p{<}0.05$). Generic and Single Agent both pass $66.0\%$ (Fact Coverage $54.2\%$ vs.\ $57.5\%$; tool calls $0.31$ vs.\ $0.41$/query).
+(2)~CTU-Chat vs.\ Routed Generic: CTU-Chat gains $+6.85$\,pp Fact Coverage (CI $[+0.7, +13.0]$\,pp, $p{<}0.05$). Generic and Single Agent both pass $66.0\%$ (Fact Coverage $54.2\%$ vs.\ $57.5\%$).
 (3)~Cross-domain queries: \system{} passes 80.0\% (vs.\ 70.0\% Single, 65.0\% Generic).
 Evaluating threshold sensitivity reveals trade-offs: \system{}'s margin at 50\% narrows at 60\% (54.0\% vs.\ 50.0\%) and reverses at 75\% (27.0\% vs.\ 30.0\%, $p{=}0.5488$, 95\% CI $[-10.0, +3.0]$\,pp), showing neither architecture dominates at stringent lexical thresholds.
 
 \textbf{LLM-as-a-Judge and Numeric Exact Match:}
-To address lexical limitations, an independent LLM judge (Gemini 2.5 Flash Lite) and programmatic Numeric Exact Match ($\text{Num-EM}$) evaluated all 100 queries. Continuous evaluation shows comparable Mean Answer Correctness across architectures (\system{} 57.7\% vs.\ Single Agent 58.6\%, Generic 48.1\%), while Single Agent yields higher Mean Answer Relevancy (80.9\% vs.\ 77.8\% for \system{}, 66.7\% for Generic) because concise single-agent responses avoid tangential counseling details. Crucially, under strict semantic criteria ($\text{Pass}_{\ge 75\%}^{\text{Jdg}}$), \system{} outperforms Single Agent by $+4.0$\,pp (37.0\% vs.\ 33.0\%) and Generic by $+8.0$\,pp (29.0\%). On financial queries, deterministic tools achieve 62.5\% Numeric Exact Match versus 60.0\% (Single) and 54.0\% (Generic). On academic curriculum queries, specialist graph traversal achieves 63.2\% semantic pass versus 52.6\% for Single Agent ($+10.5$\,pp), showing structural evidence allocation mitigates arithmetic and curriculum hallucination.
+To complement lexical metrics, an independent LLM judge (Gemini 2.5 Flash Lite) and programmatic Numeric Exact Match ($\text{Num-EM}$, $N_{\text{fin}}{=}50$) evaluated all 100 held-out queries. Continuous evaluation shows comparable Mean Answer Correctness across architectures: Single Agent achieves 58.6\% versus 57.7\% for \system{} ($\Delta = -0.90$\,pp, 95\% CI $[-7.2, +5.3]$\,pp) and 48.1\% for Generic. On moderate semantic threshold ($\text{Pass}_{.50}^{\text{Jdg}}$), Single Agent leads slightly (61.0\% vs.\ 59.0\% for \system{}, 52.0\% for Generic; $\Delta = -2.0$\,pp, 95\% CI $[-12.0, +8.0]$\,pp). Single Agent also achieves higher Mean Answer Relevancy (80.9\% vs.\ 77.8\% for \system{}, 66.7\% for Generic). This stems from response characteristics: Single Agent generates concise, direct answers focused narrowly on the prompt, whereas \system{} operates as an advisory counseling system incorporating regulatory constraints, prerequisite paths, and fee conditions, which incurs minor verbosity penalties from the judge despite preserving factuality. Under strict semantic criteria ($\text{Pass}_{\ge .75}^{\text{Jdg}}$), \system{} attains a higher point estimate (37.0\% vs.\ 33.0\% for Single Agent, $\Delta = +4.0$\,pp; 29.0\% for Generic). However, a paired McNemar test reveals this difference is not statistically significant ($p{=}0.4807$, paired 95\% bootstrap CI $[-4.0, +12.0]$\,pp spanning zero), indicating that strict semantic pass rates reflect an estimated point difference rather than confirmed semantic superiority. On financial queries ($N_{\text{fin}}{=}50$), programmatic regex extraction and VND normalization confirm that deterministic calculation yields 62.5\% Numeric Exact Match compared to 60.0\% for Single Agent ($\Delta = +2.5$\,pp, 95\% CI $[-6.7, +11.8]$\,pp) and 54.0\% for Generic. These results demonstrate that specialist tools reduce arithmetic hallucination while general semantic performance exhibits nuanced trade-offs across answer conciseness and multi-agent coordination.
 
 \textbf{Operational Trade-offs:}
-Table~\ref{tab:arch_comparison} shows \system{} achieves the highest pass rates and fewest tool calls per query. Multi-agent routing adds $1{,}731$\,ms and $677$ output tokens over Routed Generic, while specialist inputs ($3{,}690$ tokens) drop substantially relative to Single Agent ($6{,}296$ tokens, plus ${\sim}650$ routing tokens).
+Table~\ref{tab:arch_comparison} delineates clear architectural trade-offs: Single Agent provides lower end-to-end latency ($5{,}159$\,ms vs.\ $10{,}652$\,ms) and higher Answer Relevancy (80.9\% vs.\ 77.8\%) with zero supervisor overhead. Conversely, \system{} achieves higher lexical fact pass (+10.0\,pp, $p{=}0.0414$), stronger cross-domain synthesis (80.0\% vs.\ 70.0\%), and reduces specialist input tokens by 41.4\% ($3{,}690$ vs.\ $6{,}296$, plus ${\sim}650$ routing tokens).
 
 %------------------------------------------------
 \subsection{Scenario 2 --- Architectural Ablation}
@@ -166,5 +166,5 @@ Retrieval & Gold source absent     & 3   & 3 &            & Unnecessary call    
 
 The 34 Single Agent and 24 CTU-Chat failed query cases include 12 versus 3 tool errors. Retrieval errors are similar under shared evidence: 3 absent gold sources in each arm and 7 versus 6 reranker demotions. With complete retrieval ($sr=1.0$), partial fact omissions number 22 versus 14. These counts do not isolate effects of tool scoping or specialist prompts.
 
-Three traces illustrate distinct stages of failure. For the multi-hop query \texttt{HOUT-MHOP-}\allowbreak\texttt{ACAD-04}, repair changed the correct \texttt{general} route to \texttt{academic}; that worker refused the request. For \texttt{HOUT-XDOM-}\allowbreak\texttt{01}, all gold sources were retrieved ($sr{=}1.0$), but the worker omitted the financial answer. For \texttt{HOUT-XDOM-}\allowbreak\texttt{16}, the query reached \texttt{scholarship}, but retrieval missed the target document ($sr{=}0.5$). Only the first is a route-repair failure; both cross-domain cases fail after owner selection.
+Three traces illustrate distinct failure stages: in \texttt{HOUT-MHOP-}\allowbreak\texttt{ACAD-04}, repair misrouted a \texttt{general} query to \texttt{academic}; in \texttt{HOUT-XDOM-}\allowbreak\texttt{01}, all gold sources were retrieved ($sr{=}1.0$) but the worker omitted the financial answer; and in \texttt{HOUT-XDOM-}\allowbreak\texttt{16}, retrieval missed the target document ($sr{=}0.5$).
 
